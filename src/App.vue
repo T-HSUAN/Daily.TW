@@ -1,29 +1,37 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">日日旅著首頁</router-link>
+    <router-link to="/ticket">景點票券</router-link>
+    <router-link to="/login">登入|註冊</router-link>
+    <router-link to="/cart">購物車</router-link>
+    <!-- 登入 商品頁面 商品詳情 -->
   </nav>
   <router-view/>
 </template>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  text-align: right;
+  color: #6A5D4A;
+  background: #FFF6E3;
 }
 
 nav {
-  padding: 30px;
+  height: 200px;
+  padding: 0 120px;
+  background: #FEF0D1;
 
   a {
+    margin: auto 0 auto 20px;
     font-weight: bold;
-    color: #2c3e50;
+
+    color: #6A5D4A;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #E3C451;
     }
   }
 }
