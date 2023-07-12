@@ -122,14 +122,6 @@ export default {
             ],
         };
     },
-    created() {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json())
-            .then((json) => {
-                this.productData = json;
-                this.updateDisplay();
-            });
-    },
     methods: {
         updateDisplay() {
             if (this.searchText === "") {
