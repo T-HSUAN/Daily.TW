@@ -3,8 +3,8 @@
         <div class="header">
             <!-- <img alt="logo" src="./assets/img/logo.png"> -->
             <router-link to="/">
-                <img :src="require('@/assets/img/logo.png')" alt="logo"/>
-        </router-link>
+                <img :src="require('@/assets/img/logo.png')" alt="logo" />
+            </router-link>
             <nav>
                 <router-link to="/">日日旅著首頁</router-link>
                 <router-link to="/ticket">景點票券</router-link>
