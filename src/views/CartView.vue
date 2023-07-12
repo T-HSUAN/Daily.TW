@@ -1,29 +1,25 @@
 <style>
-    body{
-    background-color: #FFF6E3;
-    color: #3b3a2b;
-}
 h1{
     padding-left: 100px;
 }
-.header{
+.title{
     display: flex;
     justify-content: center;
     max-width: 1000px;
     margin: 0 auto;
     height: 30px;
     padding-left: 10px;
-    border-bottom: 3px solid gray;
+    /* border-bottom: 3px solid gray; */
 }
-.header div{
+.title div{
     width: 200px;
     line-height: 30px;
     text-align: center;
 }
-.header .products{
+.title .products{
     text-align: left;
 }
-.header .products{
+.title .products{
     width: 50%;
 }
 .content{
@@ -79,9 +75,10 @@ button{
 }
 </style>
 <template>
-    <div class="cart">
+    <main>
+        <div class="cart">
         <h1>購物車</h1>
-        <div class="header">
+        <div class="title">
             <div class="products">商品</div>
             <div class="price">單價</div>
             <div class="count">數量</div> 
@@ -89,7 +86,7 @@ button{
             <div class="delete"></div>
         </div>
         <div class="item_list">
-            <div class="header content" v-for="(item, index) in itemList" :key="item.id" >
+            <div class="title content" v-for="(item, index) in itemList" :key="item.id" >
                 <div class="products">
                     <img :src="item.img" alt="">
                     <div class="name">{{item.Name}}</div>
@@ -114,6 +111,7 @@ button{
             元</p>
         </div>
     </div>
+    </main>
 </template>
 <script>
     export default {
@@ -147,7 +145,7 @@ button{
                         img:'https://picsum.photos/300/200/?random=12',
                         price:2300,
                         count:1
-                    },
+                    }
                 ]
             }
         },
