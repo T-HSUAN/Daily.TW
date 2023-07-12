@@ -12,7 +12,6 @@
       </nav>
     </div>
   </header>
-  <router-view/>
 </template>
 <script>
 export default {

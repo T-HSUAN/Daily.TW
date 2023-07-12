@@ -2,13 +2,10 @@
 <template>
   <main>
     <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <HelloWorld :sectionTitle="title" sectionBg="defalt"/>
-    <!-- <HelloWorld sctionTitle="Welcome to Your Vue.js App"  sectionBg="gray"/>
-    <HelloWorld sctionTitle="sction 2" sectionBg="red"/> -->
-  </div>
+      <HelloWorld :sectionTitle="title" sectionBg="defalt"/>
+    </div>
   </main>
-
+  <!-- <router-view/> -->
 </template>
 
 <script>
