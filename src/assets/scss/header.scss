@@ -1,0 +1,27 @@
+header {
+    width: 100%;
+    height: 200px;
+    padding-top: 45px;
+    background: #fef0d1;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        background: #fef0d1;
+        img {
+            width: 190px;
+        }
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            a {
+                margin: auto 0 auto 20px;
+                font-size: 20px;
+                color: #6a5d4a;
+
+                &.router-link-exact-active {
+                    color: #e3c451;
+                }
+            }
+        }
+    }
+}
