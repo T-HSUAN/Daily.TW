@@ -24,7 +24,12 @@
     data(){
       return {
         title: '景點票券',
-        ticket: '',
+        searchText: '',
+        // 商品資料(僅在進入畫面時去取一次資料)
+        ticketData: [],
+        // 呈現的商品資料(針對productData來搜尋篩選)
+        ticketDisplay: [],
+
         subtitle:'票券列表',
         itemList:[
           {
@@ -84,9 +89,24 @@
         ]
       }
     },
+    },
+    created() {
+      fetch('https://fakestoreapi.com/products')
+      .then(res=>res.json())
+      .then(json=>{
+        this.productData = json
+        this.updateDisplay()
+      })
+    },
     methods: {
-        search(){
+      updateDisplay(){
+        if(this.searchText === ''){
+          this.productDisplay = this.productData
+        }else{
+          this.productDisplay = this.productData.filter(item => item.title.includes(this.searchText))
+        }
       }
     },
   }
+  
   </script>
