@@ -15,6 +15,12 @@ const routesUser = [
     component: () => import(/* webpackChunkName: "ticket" */ '@/views/TicketView.vue')
   },
   {
+    path: '/product',
+    name: 'product',
+    // component: TicketView
+    component: () => import(/* webpackChunkName: "ticket" */ '@/views/ProductView.vue')
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '@/views/LoginView.vue')
