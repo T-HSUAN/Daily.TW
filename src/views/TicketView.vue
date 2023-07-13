@@ -14,6 +14,11 @@
                 v-for="(item, index) in ticketDisplay"
                 :key="item.id"
             >
+            <div
+                class="card"
+                v-for="(item, index) in ticketDisplay"
+                :key="item.id"
+            >
                 <img :src="item.img" alt="" />
                 <p>{{ item.Name }}</p>
                 <p>{{ item.description }}</p>
@@ -89,6 +94,7 @@ export default {
                     description: "這個景點一級棒!!買下去就對了",
                     price: 50,
                     count: 1,
+                    count: 1,
                 },
                 {
                     id: 2,
@@ -152,6 +158,7 @@ export default {
                     img: "https://picsum.photos/300/200/?random=17",
                     description: "這個景點一級棒!!買下去就對了",
                     price: 750,
+                    count: 1,
                     count: 1,
                 },
             ],
