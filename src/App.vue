@@ -1,5 +1,6 @@
 <template>
     <MainHeader></MainHeader>
+    <FontAwesomeIcons></FontAwesomeIcons>
 
     <main>
         <router-view />
@@ -11,10 +12,13 @@
 <script>
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
+import FontAwesomeIcons from "@/components/FontAwesomeIcons.vue";
+
 export default {
     components: {
         MainHeader,
         MainFooter,
+        FontAwesomeIcons,
     },
 };
 </script>

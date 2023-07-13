@@ -19,10 +19,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark, faHeart, faClock, faEyeSlash, faCircleXmark  } from '@fortawesome/free-regular-svg-icons'
+
+import { faCartShopping, faMagnifyingGlass, faLocationDot, faCloud, faEye, faArrowLeft, faArrowRight, faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
+
+import { faLine, faInstagram, faSquareFacebook } from '@fortawesome/free-brands-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret)
+library.add(faBookmark, faHeart, faCartShopping, faMagnifyingGlass, faLine, faInstagram, faSquareFacebook, faClock, faLocationDot, faCloud, faEye, faEyeSlash, faCircleXmark, faArrowLeft, faArrowRight, faCircleChevronDown)
 
 
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).mount("#app");
