@@ -23,3 +23,37 @@ main {
     background: #fefff5;
     color: #6a5d4a;
 }
+
+
+//base
+@import 'base/color';
+@import 'base/font';
+@import 'base/reset';
+@import 'base/var';
+
+// mixin
+@import 'mixin/all';
+
+// plugin 
+// @import '../node_modules/bootstrap/scss/bootstrap';
+
+// component
+@import 'component/arrow';
+@import 'component/btn';
+@import 'component/form';
+@import 'component/selection';
+@import 'component/table';
+
+// layout
+@import 'layout/_breadcrumb';
+@import 'layout/card';
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/_searchbar';
+@import 'layout/_sidebar';
+
+// page
+@import 'page/index';
+@import 'page/plan';
+@import 'page/schedule';
+@import 'page/trip';
