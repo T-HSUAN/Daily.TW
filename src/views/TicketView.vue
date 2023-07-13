@@ -14,11 +14,6 @@
                 v-for="(item, index) in ticketDisplay"
                 :key="item.id"
             >
-            <div
-                class="card"
-                v-for="(item, index) in ticketDisplay"
-                :key="item.id"
-            >
                 <img :src="item.img" alt="" />
                 <p>{{ item.Name }}</p>
                 <p>{{ item.description }}</p>
