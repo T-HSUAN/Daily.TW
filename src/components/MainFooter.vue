@@ -7,5 +7,5 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/footer.scss";
+@import "@/assets/scss/main.scss";
 </style>
