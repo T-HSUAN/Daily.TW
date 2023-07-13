@@ -21,8 +21,14 @@
                 <button @click="createItem(index)">加入購物車</button>
             </div>
         </div>
-        <div class="cart">
-            <h1>購物車</h1>
+        <img
+            class="carttoggle"
+            :src="require('@/assets/img/cart.png')"
+            alt="cart"
+            @click="toggleCart"
+        />
+        <div class="cart" v-show="togglePage">
+            <h1>購物車清單</h1>
             <div class="title">
                 <div class="products">商品</div>
                 <div class="price">單價</div>
@@ -60,6 +66,7 @@
                     元
                 </p>
             </div>
+            <div class="close" @click="toggleCart">close</div>
         </div>
     </main>
     <main v-else>Loading...</main>
@@ -81,6 +88,7 @@ export default {
                     img: "https://picsum.photos/300/200/?random=9",
                     description: "這個景點一級棒!!買下去就對了",
                     price: 50,
+                    count: 1,
                     count: 1,
                 },
                 {
@@ -146,9 +154,11 @@ export default {
                     description: "這個景點一級棒!!買下去就對了",
                     price: 750,
                     count: 1,
+                    count: 1,
                 },
             ],
             itemList: [],
+            togglePage: false,
         };
     },
     methods: {
@@ -184,6 +194,12 @@ export default {
         cancel: function (index) {
             console.log(this);
             this.itemList.splice(index, 1);
+        },
+        close() {
+            this.style.display = "none";
+        },
+        toggleCart() {
+            this.togglePage = !this.togglePage;
         },
     },
     computed: {
@@ -237,79 +253,104 @@ export default {
         }
     }
 }
-.title {
-    display: flex;
-    justify-content: center;
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 30px;
-    padding-left: 10px;
-    div {
-        width: 200px;
-        line-height: 30px;
-        text-align: center;
-    }
-    .products {
-        width: 50%;
-        text-align: left;
-    }
-}
-.content {
-    height: 50px;
-    margin-left: 137px;
-    padding: 25px 0;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    .delete {
-        height: 100px;
+.cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 700px;
+    height: 100vh;
+    padding: 10px 50px;
+    background: #eece75;
+    .title {
         display: flex;
+        margin: 0 auto;
+        height: 30px;
+        padding-left: 10px;
+        div {
+            width: 100px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .products {
+            width: 300px;
+            text-align: left;
+        }
+    }
+    .content {
+        // height: 50px;
+        padding: 25px 0;
+        justify-content: center;
         align-items: center;
+        color: black;
+        .products {
+            display: flex;
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 3px;
+                float: left;
+            }
+            .name {
+                margin-left: 100px;
+                margin-top: 20px;
+            }
+        }
+        .count {
+            p {
+                display: inline-block;
+                width: 30px;
+                padding: 0 5px;
+                text-align: center;
+                border: 1px solid gray;
+            }
+        }
+        button {
+            background: none;
+            font-size: 32px;
+            border: none;
+            cursor: pointer;
+            &:hover {
+                color: #a0a2d1;
+            }
+        }
+        .delete {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            &:hover button {
+                color: #a0a2d1;
+            }
+        }
+    }
+    .result {
+        margin: 30px 80px 30px 0;
+        p {
+            text-align: right;
+        }
+        .total-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #d53e3e;
+        }
+    }
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 24px;
+        color: #fefff5;
         cursor: pointer;
-        &:hover button {
+        &:hover {
             color: #a0a2d1;
         }
     }
 }
-.products {
-    img {
-        width: 80px;
-        height: 80px;
-        border-radius: 3px;
-        margin-left: 15px;
-        float: left;
-    }
-    .name {
-        margin-left: 100px;
-        margin-top: 20px;
-    }
-}
-.count {
-    p {
-        display: inline-block;
-        width: 30px;
-        padding: 0 5px;
-        text-align: center;
-        border: 1px solid gray;
-    }
-}
-button {
-    background: none;
-    border: none;
+
+.carttoggle {
+    position: fixed;
+    right: 30px;
+    bottom: 200px;
     cursor: pointer;
-    &:hover {
-        color: #a0a2d1;
-    }
-}
-.result {
-    padding-right: 250px;
-    p {
-        text-align: right;
-    }
-    .total-price {
-        font-size: 32px;
-        font-weight: 800;
-        color: #d53e3e;
-    }
 }
 </style>
