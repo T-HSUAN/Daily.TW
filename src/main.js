@@ -19,9 +19,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faBookmark, faHeart, faClock, faEyeSlash, faCircleXmark  } from '@fortawesome/free-regular-svg-icons'
 
-import { faCartShopping, faMagnifyingGlass, faLocationDot, faCloud, faEye, faArrowLeft, faArrowRight, faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark, faHeart, faClock, faEyeSlash, faCircleXmark, faCartShopping, faMagnifyingGlass, faLocationDot, faCloud, faEye, faArrowLeft, faArrowRight, faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 import { faLine, faInstagram, faSquareFacebook } from '@fortawesome/free-brands-svg-icons'
 
