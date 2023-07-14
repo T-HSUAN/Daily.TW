@@ -9,10 +9,6 @@
         padding: 41px 0px;
     }
 
-    .ticket_title{
-        font-size: $xl_h3;
-        @include text-h3;
-    } 
     .ticket_price{
         display: flex;
     }
