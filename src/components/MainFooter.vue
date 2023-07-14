@@ -1,6 +1,11 @@
 <template>
-    <footer id="mainFooter">footer</footer>
-    <FontAwesomeIcons icon="shirt" />
+    <footer id="mainFooter">
+        <div class="section">
+            
+            
+        </div>
+
+    </footer>
 </template>
 
 <script>
