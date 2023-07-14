@@ -1,5 +1,6 @@
 <template>
     <footer id="mainFooter">footer</footer>
+    <FontAwesomeIcons icon="shirt" />
 </template>
 
 <script>

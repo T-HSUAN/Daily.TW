@@ -1,8 +1,9 @@
 <template>
     <MainHeader></MainHeader>
-    <ArrowLeft></ArrowLeft>
+    <TicketVertical></TicketVertical>
 
     <main>
+
       <router-view />
     </main>
   
@@ -12,15 +13,14 @@
 <script>
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
-import ArrowLeft from "@/components/ArrowLeft.vue";
-
+import TicketVertical from "@/components/TicketVertical.vue";
 
 
 export default {
   components: {
     MainHeader,
     MainFooter,
-    ArrowLeft
+    TicketVertical,
 },
 };
 </script>

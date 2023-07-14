@@ -28,13 +28,21 @@
         <font-awesome-icon icon="fa-solid fa-shirt" />
         <font-awesome-icon icon="fa-solid fa-bullhorn" />
         <font-awesome-icon icon="fa-solid fa-bag-shopping" />
-
-
+<!-- 
+        <font-awesome-icon :icon="`fa-solid fa-${icon}`" /> -->
+        <!-- <FontAwesomeIcons icon="shirt" /> -->
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+    props: {
+        icon: {
+            type: String,
+            default: ""
+        }
+    },
+};
 </script>
 
 <style lang="scss" scoped>
