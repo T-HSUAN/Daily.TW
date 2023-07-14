@@ -2,7 +2,7 @@
     <div class="banner">
         <!-- w1200 h400 -->
         <!-- <img :src="" alt="" /> -->
-        <div class="img">圖片</div>
+        <div class="img">票券A限時優惠中!!!</div>
     </div>
     <!-- 篩選bar -->
     <div class="filter">
@@ -38,7 +38,7 @@
             <h3>{{ item.Name }}</h3>
             <p>{{ item.tag }}</p>
             <h4>NT$ {{ item.price }}</h4>
-            <button @click="createItem(index)">加入購物車</button>
+            <button class="btn" @click="createItem(index)">+ 加入購物車</button>
         </div>
     </div>
     <div v-else>Loading</div>
@@ -72,7 +72,7 @@ export default {
                     id: 2,
                     Name: "票券B",
                     img: "https://picsum.photos/300/200/?random=10",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 700,
                     count: 1,
                 },
@@ -80,7 +80,7 @@ export default {
                     id: 3,
                     Name: "票券C",
                     img: "https://picsum.photos/300/200/?random=11",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 1200,
                     count: 1,
                 },
@@ -88,7 +88,7 @@ export default {
                     id: 4,
                     Name: "票券D",
                     img: "https://picsum.photos/300/200/?random=12",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 2300,
                     count: 1,
                 },
@@ -96,7 +96,7 @@ export default {
                     id: 5,
                     Name: "票券E",
                     img: "https://picsum.photos/300/200/?random=13",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 300,
                     count: 1,
                 },
@@ -104,7 +104,7 @@ export default {
                     id: 6,
                     Name: "票券F",
                     img: "https://picsum.photos/300/200/?random=14",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 500,
                     count: 1,
                 },
@@ -112,7 +112,7 @@ export default {
                     id: 7,
                     Name: "票券G",
                     img: "https://picsum.photos/300/200/?random=15",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 200,
                     count: 1,
                 },
@@ -120,7 +120,7 @@ export default {
                     id: 8,
                     Name: "票券H",
                     img: "https://picsum.photos/300/200/?random=16",
-                    tag: "這個景點一級棒!!買下去就對了",
+                    tag: "xxx",
                     price: 250,
                     count: 1,
                 },
@@ -197,6 +197,8 @@ export default {
         height: 400px;
         margin: auto;
         background: $mid_yellow;
+        color: $textColor_white;
+        font-size: $xl_h1;
         text-align: center;
         border: 1px solid $textColor_default;
     }
@@ -247,16 +249,28 @@ export default {
         background-image: url("../assets/img/ticket.png");
         background-size: contain;
         color: $textColor_white;
+        text-align: center;
+        cursor: pointer;
         img {
             margin-top: $sp5;
             margin-bottom: $sp7;
             width: 100%;
         }
         h3 {
-            font-size: 32px;
+            @include xl_h3;
         }
         h5 {
             font-style: 20px;
+        }
+        .btn {
+            display: flex;
+            width: 184px;
+            height: 46px;
+            margin: $sp2 auto;
+            background: $default_yellow;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
         }
     }
 }

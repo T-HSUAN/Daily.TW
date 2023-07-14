@@ -7,30 +7,30 @@
     letter-spacing: 0.6px;
 
     display: inline-flex;
-    padding: 8px 32px;
+    padding: $sp1 $sp4;
     justify-content: center;
     align-items: center;
     gap: 10px;
     border-radius: 50px;
     border: 2px solid $textColor_default;
     background: $textColor_default;
-    &:hover{
+    &:hover {
         color: $textColor_default;
         background: $textColor_white;
         box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
     }
-    &:active{
+    &:active {
         color: $textColor_tint;
-        border:2px solid $textColor_tint;
+        border: 2px solid $textColor_tint;
         background: $textColor_white;
     }
 }
 
 // 標籤
-.tag{
+.tag {
     position: absolute;
     display: none;
-    +span{
+    + span {
         display: inline-flex;
         padding: 8px 20px;
         justify-content: center;
@@ -40,7 +40,7 @@
         border: 2px solid $textColor_default;
         background: $textColor_white;
     }
-    &:checked + span{
+    &:checked + span {
         color: $textColor_white;
         border: 2px solid $textColor_default;
         background: $textColor_default;
@@ -48,7 +48,7 @@
 }
 
 // cancel button
-.cancel_btn{
+.cancel_btn {
     display: flex;
     width: 40px;
     height: 29px;
@@ -59,7 +59,6 @@
     cursor: pointer;
 }
 
-
 // Toggle Switch
 /* The switch - the box around the slider */
 .switch {
@@ -67,17 +66,17 @@
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
-  
-  /* Hide default HTML checkbox */
-  .switch input {
+}
+
+/* Hide default HTML checkbox */
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  /* The slider */
-  .toggle_slider {
+}
+
+/* The slider */
+.toggle_slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -85,11 +84,11 @@
     right: 0;
     bottom: 0;
     background-color: $default_yellow;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  .toggle_slider:before {
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.toggle_slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -97,31 +96,29 @@
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  
-  input:checked + .toggle_slider {
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .toggle_slider {
     background-color: $textColor_default;
-  }
-  
-  input:focus + .toggle_slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .toggle_slider:before {
+}
+
+input:focus + .toggle_slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .toggle_slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .toggle_slider.round {
+}
+
+/* Rounded sliders */
+.toggle_slider.round {
     border-radius: 34px;
-  }
-  
-  .toggle_slider.round:before {
+}
+
+.toggle_slider.round:before {
     border-radius: 50%;
-  }
-
-
+}

@@ -38,7 +38,7 @@
     padding: 0;
 }
 #app {
-    font-family: $fontFamiliy;
+    font-family: $fontFamily;
     color: $textColor_default;
     font-size: $xl_p;
 }
@@ -62,7 +62,13 @@ h5 {
     font-size: $xl_h5;
     text-align: center;
 }
+header {
+    background: $bgColor_tint;
+}
 main {
     color: $textColor_default;
     background: $bgColor_tint;
+}
+footer {
+    background: $default_yellow;
 }
