@@ -95,7 +95,6 @@ export default {
                     description: "這個景點一級棒!!買下去就對了",
                     price: 50,
                     count: 1,
-                    count: 1,
                 },
                 {
                     id: 2,
