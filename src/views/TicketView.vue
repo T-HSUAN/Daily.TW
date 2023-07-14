@@ -1,13 +1,14 @@
-<!-- 產品的內容區塊 -->
+<!-- 景點票券的內容區塊 -->
 <template>
     <main v-if="ticketData.length > 0">
         <h1>{{ title }}</h1>
+        <!-- 篩選搜尋框 -->
         <div class="searchbox">
             <label for="search">搜尋景點</label>
             <input type="search" v-model="searchText" />
             <button @click="updateDisplay">搜尋</button>
         </div>
-        <!-- <h2>{{ subtitle }}</h2> -->
+        <!-- 景點票券清單 -->
         <div class="ticket-list">
             <div
                 class="card"
@@ -21,6 +22,8 @@
                 <button @click="createItem(index)">加入購物車</button>
             </div>
         </div>
+        <!-- 景點票券清單 -->
+        <!-- 購物車 -->
         <img
             class="carttoggle"
             :src="require('@/assets/img/cart.png')"
@@ -36,6 +39,7 @@
                 <div class="amount">金額</div>
                 <div class="delete"></div>
             </div>
+            <!-- 票券內容 -->
             <div class="item_list">
                 <div
                     class="title content"
@@ -58,6 +62,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 票券總計 -->
             <div class="result">
                 <p>({{ itemList.length }}項商品) 總計</p>
                 <p>
@@ -68,6 +73,7 @@
             </div>
             <div class="close" @click="toggleCart">close</div>
         </div>
+        <!-- 購物車 -->
     </main>
     <main v-else>Loading...</main>
 </template>
@@ -161,6 +167,9 @@ export default {
             togglePage: false,
         };
     },
+    created() {
+        this.updateDisplay();
+    },
     methods: {
         updateDisplay() {
             if (this.searchText === "") {
@@ -177,10 +186,8 @@ export default {
                 if (!this.itemList.includes(newItem)) {
                     this.itemList.push(newItem);
                 } else {
-                    window.alert("該項目已存在於購物車中。");
+                    window.alert("該票券已存在於購物車中。");
                 }
-            } else {
-                window.alert("無效的索引。");
             }
         },
         add(index) {

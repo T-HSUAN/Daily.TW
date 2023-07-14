@@ -13,7 +13,6 @@
                 <router-link to="/about">關於我們</router-link>
                 <router-link to="/login">登入|註冊</router-link>
                 <!-- <router-link to="/cart">購物車</router-link> -->
-                <!-- 登入 商品頁面 商品詳情 -->
             </nav>
         </div>
     </header>
