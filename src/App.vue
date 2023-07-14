@@ -1,7 +1,6 @@
 <template>
     <MainHeader></MainHeader>
-    <TicketVertical></TicketVertical>
-
+    <btn :btnTexts="你想要參照的key"></btn>
     <main>
 
       <router-view />
@@ -13,14 +12,12 @@
 <script>
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
-import TicketVertical from "@/components/TicketVertical.vue";
 
 
 export default {
   components: {
     MainHeader,
     MainFooter,
-    TicketVertical,
 },
 };
 </script>
