@@ -34,5 +34,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     }
 
 ## Font-awesome 的格式
-*如果是在 main.js 要使用 icon，就要使用 camelCase ，但在 App.vue 則要使用 kebab-case。
-*Note that you add the icons in camelCase in main.js but in kebab-case in App.vue.
+* 如果是在 main.js 要使用 icon，就要使用 camelCase ，但在 App.vue 則要使用 kebab-case。
+* Note that you add the icons in camelCase in main.js but in kebab-case in App.vue.
+
+## 判斷式
+* 巢狀判斷式請勿用三元運算子
