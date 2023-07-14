@@ -2,14 +2,13 @@
 * {
     margin: 0;
     padding: 0;
-    font-size: 18px;
 }
 #app {
     font-family: "Noto Sans TC", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #6a5d4a;
-    background: #fff6e3;
+    font-size: 18px;
 }
 h1 {
     font-size: 64px;
@@ -19,41 +18,43 @@ h2 {
     font-size: 40px;
     text-align: center;
 }
+h3 {
+    font-size: 32px;
+}
 main {
-    background: #fefff5;
     color: #6a5d4a;
+    background: #fff6e3;
 }
 
-
 //base
-@import 'base/color';
-@import 'base/font';
-@import 'base/reset';
-@import 'base/var';
+@import "base/color";
+@import "base/font";
+@import "base/reset";
+@import "base/var";
 
 // mixin
-@import 'mixin/all';
+@import "mixin/all";
 
-// plugin 
+// plugin
 // @import '../node_modules/bootstrap/scss/bootstrap';
 
 // component
-@import 'component/arrow';
-@import 'component/btn';
-@import 'component/form';
-@import 'component/selection';
-@import 'component/table';
+@import "component/arrow";
+@import "component/btn";
+@import "component/form";
+@import "component/selection";
+@import "component/table";
 
 // layout
-@import 'layout/_breadcrumb';
-@import 'layout/card';
-@import 'layout/footer';
-@import 'layout/header';
-@import 'layout/_searchbar';
-@import 'layout/_sidebar';
+@import "layout/breadcrumb";
+@import "layout/card";
+@import "layout/footer";
+@import "layout/header";
+@import "layout/searchbar";
+@import "layout/sidebar";
 
 // page
-@import 'page/index';
-@import 'page/plan';
-@import 'page/schedule';
-@import 'page/trip';
+@import "page/index";
+@import "page/plan";
+@import "page/schedule";
+@import "page/trip";
