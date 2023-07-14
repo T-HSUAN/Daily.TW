@@ -1,0 +1,15 @@
+.ticketVertical_container{
+    background-image: url('@/assets/img/layout/ticketVertical.svg');
+    background-position: center;  
+    width: 275px;
+    height: 533px;
+    
+    img{
+        width: 100%;
+        padding: 41px 0px;
+    }
+
+    .ticket_price{
+        display: flex;
+    }
+}

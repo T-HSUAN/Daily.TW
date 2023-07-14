@@ -1,8 +1,8 @@
 <template>
     <MainHeader></MainHeader>
-    <ArrowLeft></ArrowLeft>
-
+    <btn :btnTexts="你想要參照的key"></btn>
     <main>
+
       <router-view />
     </main>
   
@@ -12,15 +12,12 @@
 <script>
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
-import ArrowLeft from "@/components/ArrowLeft.vue";
-
 
 
 export default {
   components: {
     MainHeader,
     MainFooter,
-    ArrowLeft
 },
 };
 </script>

@@ -1,5 +1,11 @@
 <template>
-    <footer id="mainFooter">footer</footer>
+    <footer id="mainFooter">
+        <div class="section">
+            
+            
+        </div>
+
+    </footer>
 </template>
 
 <script>

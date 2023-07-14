@@ -9,11 +9,34 @@ const routesUser = [
         component: HomeView,
     },
     {
+        path: "/plan",
+        name: "plan",
+        component: () =>
+            import(/* webpackChunkName: "plan" */ "@/views/PlanView.vue"),
+    },
+    {
+        path: "/trip",
+        name: "trip",
+        component: () =>
+            import(/* webpackChunkName: "trip" */ "@/views/TripView.vue"),
+    },{
+        path: "/oott",
+        name: "oott",
+        component: () =>
+            import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
+    },
+    {
         path: "/ticket",
         name: "ticket",
         // component: TicketView
         component: () =>
             import(/* webpackChunkName: "ticket" */ "@/views/TicketView.vue"),
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: () =>
+            import(/* webpackChunkName: "about" */ "@/views/AboutView.vue"),
     },
     {
         path: "/login",
@@ -27,6 +50,8 @@ const routesUser = [
         component: () =>
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
     },
+    
+    
 ];
 
 const router = createRouter({
