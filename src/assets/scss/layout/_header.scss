@@ -9,14 +9,17 @@ header {
         background: #fef0d1;
         img {
             width: 190px;
+            // padding-left: 120px;
+            position: relative;
+            left: 120px;
         }
         nav {
             max-width: 1200px;
             margin: auto;
             a {
-                margin: auto 0 auto 20px;
+                margin: auto 0 auto 40px;
                 font-size: 20px;
-                color: #6a5d4a;
+                color: $textColor_default;
 
                 &.router-link-exact-active {
                     color: #e3c451;
