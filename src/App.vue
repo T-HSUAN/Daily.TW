@@ -1,6 +1,7 @@
 <template>
     <MainHeader></MainHeader>
-  
+    <ArrowLeft></ArrowLeft>
+
     <main>
       <router-view />
     </main>
@@ -11,12 +12,16 @@
 <script>
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
+import ArrowLeft from "@/components/ArrowLeft.vue";
+
+
 
 export default {
   components: {
     MainHeader,
     MainFooter,
-  },
+    ArrowLeft
+},
 };
 </script>
 

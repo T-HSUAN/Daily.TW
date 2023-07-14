@@ -1,0 +1,24 @@
+.arrow {
+    color: $textColor_default;
+
+    border: 2px $textColor_default solid;   
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    /* btn/default */
+    box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
+
+    &:hover{
+        color: $textColor_white;
+        background: $textColor_default;
+        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    &:active{
+        color: $textColor_white;
+        background: $textColor_tint;
+    }
+}

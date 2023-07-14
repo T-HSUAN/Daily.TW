@@ -17,7 +17,17 @@
         <font-awesome-icon icon="fa-solid fa-arrow-left" />
         <font-awesome-icon icon="fa-solid fa-arrow-right" />
         <font-awesome-icon icon="fa-solid fa-circle-chevron-down" />
-
+        <font-awesome-icon icon="fa-solid fa-pen" />
+        <font-awesome-icon icon="fa-solid fa-trash-can" />
+        <font-awesome-icon icon="fa-solid fa-square-plus" />
+        <font-awesome-icon icon="fa-solid fa-sort-up" />
+        <font-awesome-icon icon="fa-solid fa-car" />
+        <font-awesome-icon icon="fa-solid fa-ticket" />
+        <font-awesome-icon icon="fa-solid fa-user" />
+        <font-awesome-icon icon="fa-solid fa-user-tie" />
+        <font-awesome-icon icon="fa-solid fa-shirt" />
+        <font-awesome-icon icon="fa-solid fa-bullhorn" />
+        <font-awesome-icon icon="fa-solid fa-bag-shopping" />
 
 
     </div>
@@ -28,5 +38,4 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/footer.scss";
 </style>    
