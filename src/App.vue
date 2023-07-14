@@ -1,11 +1,11 @@
 <template>
     <MainHeader></MainHeader>
-    <btn :btnTexts="你想要參照的key"></btn>
+    <ArrowLeft></ArrowLeft>
+
     <main>
-       <TicketVertical></TicketVertical>
       <router-view />
     </main>
-  
+
     <MainFooter></MainFooter>
 </template>
 
@@ -19,7 +19,7 @@ export default {
   components: {
     MainHeader,
     MainFooter,
-    TicketVertical
+    ArrowLeft
 },
 };
 </script>
