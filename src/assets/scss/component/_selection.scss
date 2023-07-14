@@ -1,0 +1,22 @@
+// 下拉式選單
+select{
+    color: $textColor_default;
+    background-color: $textColor_white;
+    border: 2px solid $textColor_default;
+    border-radius: 50px;
+    letter-spacing: 0.6px;
+    outline: none;
+    &:focus{
+        border-color: $textColor_tint;
+    }
+}
+
+// xl or sm
+#selection_xl{
+    font-size: 20px; // 變數失效但 px 可用
+    padding: $sp1 $sp5 $sp1 $sp1;
+}
+#selection_sm{
+    font-size: 16px; // 變數失效但 px 可用
+    padding: 6px $sp4 6px $sp1;
+}

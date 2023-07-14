@@ -2,11 +2,11 @@
 <div class="ticketVertical_container">
     <img :src="require('@/assets/img/ticketExample.png')" alt="斑比山丘門票">
     <div class="ticket_text">
-        <h3 class="ticket_title">斑比斑比斑比斑比山丘門票</h3>
-        <span class="ticket_tags">宜蘭・#親子 #情侶 #農場</span>
+        <h3 class="ticket_title">{{ ticketTitle }}</h3>
+        <span class="ticket_tags">{{ticketTags}}</span>
         <div class="ticket_price">
-            <span>NT$ 800</span>
-            <span>NT$ 599</span>
+            <span>{{originalPrice}}</span>
+            <span>{{ FinalPrice }}</span>
         </div>
     </div>
 
@@ -15,6 +15,20 @@
     
 <script>
     export default {
+        props:{
+            ticketTitle:{
+                default: "票券標題"
+            },
+            ticketTags:{
+                default: "票券標籤"
+            },
+            originalPrice:{
+                default: "原價"
+            },
+            FinalPrice:{
+                default: "售價"
+            }
+        }
     } 
 </script>
     
