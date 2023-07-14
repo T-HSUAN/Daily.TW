@@ -1,10 +1,10 @@
 <template>
     <MainHeader></MainHeader>
-
+  
     <main>
-        <router-view />
+      <router-view />
     </main>
-
+  
     <MainFooter></MainFooter>
 </template>
 
@@ -13,10 +13,10 @@ import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
 
 export default {
-    components: {
-        MainHeader,
-        MainFooter,
-    },
+  components: {
+    MainHeader,
+    MainFooter,
+  },
 };
 </script>
 

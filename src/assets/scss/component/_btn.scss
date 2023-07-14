@@ -1,0 +1,59 @@
+// 按鈕
+.btn {
+    color: $textColor_white;
+    text-align: center;
+    font-family: $fontFamiliy;
+    font-size: $xl_h5;
+    letter-spacing: 0.6px;
+
+    display: inline-flex;
+    padding: 8px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    border: 2px solid $textColor_default;
+    background: $textColor_default;
+    &:hover{
+        color: $textColor_default;
+        background: $textColor_white;
+        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    &:active{
+        color: $textColor_tint;
+        border:2px solid $textColor_tint;
+        background: $textColor_white;
+    }
+}
+
+// 標籤
+.tag{
+    position: absolute;
+    display: none;
+    +span{
+        display: inline-flex;
+        padding: 8px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 50px;
+        border: 2px solid $textColor_default;
+        background: $textColor_white;
+    }
+    &:checked + span{
+        color: $textColor_white;
+        border: 2px solid $textColor_default;
+        background: $textColor_default;
+    }
+}
+
+
+.cancel_btn{
+    display: flex;
+    width: 40px;
+    height: 29px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
