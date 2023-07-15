@@ -1,0 +1,49 @@
+// 會員中心側邊欄
+.sidenav{
+    background-color: $textColor_white;
+    border: 2px solid $textColor_default;
+    box-sizing: border-box;
+    border-radius: 10px;
+    width: 234px;
+    padding: $sp4;
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: $sp2;
+    }
+    li{
+        display: flex;
+        gap: $sp1;
+        .icon_box{
+            width: 32px;
+            height: 32px;
+            background-color: $textColor_tint;
+            border-radius: 50px;
+            padding: 6.5px 0;
+            box-sizing: border-box;
+            .icon_img{
+                color: $textColor_white;
+                display: block;
+                margin: auto;
+            }
+        }
+        .sidenav_title{
+            letter-spacing: 0.6px;
+            h4, .sidenav_subtitle{
+                margin-bottom: $sp2;
+            }
+            h4{
+                font-size: 24px;
+                font-weight: 600;
+                text-align: left;
+                line-height: 32px;
+            }
+            .sidenav_subtitle{
+                display: block;
+                color: $textColor_default;
+                font-size: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+}
