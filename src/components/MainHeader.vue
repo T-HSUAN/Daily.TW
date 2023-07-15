@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="header" v-show="showHeader">
-            <!-- <img alt="logo" src="./assets/img/logo.png"> -->
+            <!-- logo:home-link -->
             <router-link to="/">
                 <img :src="require('../assets/img/big.svg')" alt="logo" />
             </router-link>
@@ -15,8 +15,8 @@
                 <!-- <router-link to="/cart">購物車</router-link> -->
             </nav>
         </div>
-    
-        <div class="header_sm" v-show=" !showHeader">
+
+        <div class="header_sm" v-show="!showHeader">
             <!-- <img alt="logo" src="./assets/img/logo.png"> -->
             <router-link to="/">
                 <img :src="require('../assets/img/small.svg')" alt="logo" />
@@ -35,27 +35,24 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      showHeader: true
-    };
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
-  methods: {
-    handleScroll() {
-      this.showHeader = window.scrollY <= 0;
-    }
-  }
+    data() {
+        return {
+            showHeader: true,
+        };
+    },
+    mounted() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.handleScroll);
+    },
+    methods: {
+        handleScroll() {
+            this.showHeader = window.scrollY <= 0;
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/main.scss";
 </style>
-
-
-

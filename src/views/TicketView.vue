@@ -1,8 +1,8 @@
 <template>
     <div class="banner">
         <!-- w1200 h400 -->
-        <!-- <img :src="" alt="" /> -->
-        <div class="img">票券A限時優惠中!!!</div>
+        <img :src="require('@/assets/img/ticket_banner.png')" alt="banner" />
+        <h1>{{ banner.title }}</h1>
     </div>
     <!-- 篩選bar -->
     <div class="filter">
@@ -27,7 +27,7 @@
         </div>
     </div>
     <!-- 景點票券清單 -->
-    <div class="list" v-if="ticketData.length > 0">
+    <div class="ticket_list" v-if="ticketData.length > 0">
         <div
             class="ticket"
             v-for="(item, index) in ticketDisplay"
@@ -42,12 +42,68 @@
         </div>
     </div>
     <div v-else>Loading</div>
+    <!-- 購物車清單 -->
+    <img
+        class="cart_toggle"
+        :src="require('@/assets/img/cart.png')"
+        alt="cart"
+        @click="toggleCart"
+    />
+    <div class="cart_sidebar" v-show="togglePage">
+        <h1>付款明細</h1>
+        <div class="title">
+            <div class="products">商品</div>
+            <div class="price">單價</div>
+            <div class="count">數量</div>
+            <div class="amount">金額</div>
+            <div class="delete"></div>
+        </div>
+        <!-- 購買內容 -->
+        <div class="item">
+            <div
+                class="title content"
+                v-for="(item, index) in itemList"
+                :key="item.id"
+            >
+                <div class="products">
+                    <img :src="item.img" alt="" />
+                    <div class="name">{{ item.Name }}</div>
+                </div>
+                <div class="price">$ {{ item.price }}</div>
+                <div class="count">
+                    <button @click="reduce(item)">-</button>
+                    <p>{{ item.count }}</p>
+                    <button @click="add(index)">+</button>
+                </div>
+                <div class="amount">$ {{ item.price * item.count }}</div>
+                <div class="delete" @click="cancel(index)" title="刪除">
+                    <button>X</button>
+                </div>
+            </div>
+        </div>
+        <!-- 票券總計 -->
+        <div class="result">
+            <p>({{ itemList.length }}項商品) 總計</p>
+            <p>
+                💰
+                <span class="total-price"> {{ totalPrice }} </span>
+                元
+            </p>
+        </div>
+        <div class="close" @click="toggleCart">close</div>
+    </div>
 </template>
 <script>
+// import TicketHorizontal from '@/components/TicketHorizontal.vue';
+
 export default {
+    //     components: {
+    //         TicketHorizontal
+    //   },
     data() {
         return {
             banner: {
+                title: "景點票券一次購夠GO",
                 img: "",
             },
             filter: {
@@ -125,11 +181,12 @@ export default {
                     count: 1,
                 },
             ],
-            // 呈現的商品資料(針對productData來搜尋篩選)
+            // 呈現的商品資料(針對ticketData來搜尋篩選)
             ticketDisplay: [],
+            // 購物車清單
+            itemList: [],
             //toggle購物車頁面
-            // itemList: [],
-            // togglePage: false,
+            togglePage: false,
         };
     },
     created() {
@@ -141,66 +198,81 @@ export default {
                 this.ticketDisplay = this.ticketData;
             } else {
                 this.ticketDisplay = this.ticketData.filter((item) =>
-                    item.Name.includes(this.searchText)
+                    item.Name.includes(this.filter.searchText)
                 );
             }
         },
+        // 加入購物車
+        createItem(index) {
+            if (index >= 0 && index < this.ticketData.length) {
+                const newItem = this.ticketData[index];
+                if (!this.itemList.includes(newItem)) {
+                    this.itemList.push(newItem);
+                } else {
+                    window.alert("該票券已存在於購物車中。");
+                }
+            }
+        },
+        // 增加項目數量
+        add(index) {
+            this.itemList[index].count++;
+        },
+        // 減少項目數量
+        reduce(item) {
+            if (item.count > 0) {
+                item.count--;
+            }
+        },
+        // 刪除項目
+        cancel: function (index) {
+            console.log(this);
+            this.itemList.splice(index, 1);
+        },
+        // 點擊關閉購物車
+        close() {
+            this.style.display = "none";
+        },
+        // toggle購物車
+        toggleCart() {
+            this.togglePage = !this.togglePage;
+        },
     },
-    //     createItem(index) {
-    //         if (index >= 0 && index < this.ticketData.length) {
-    //             const newItem = this.ticketData[index];
-    //             if (!this.itemList.includes(newItem)) {
-    //                 this.itemList.push(newItem);
-    //             } else {
-    //                 window.alert("該票券已存在於購物車中。");
-    //             }
-    //         }
-    //     },
-    //     add(index) {
-    //         this.itemList[index].count++;
-    //     },
-    //     reduce(item) {
-    //         if (item.count > 0) {
-    //             item.count--;
-    //         }
-    //     },
-    //     cancel: function (index) {
-    //         console.log(this);
-    //         this.itemList.splice(index, 1);
-    //     },
-    //     close() {
-    //         this.style.display = "none";
-    //     },
-    //     toggleCart() {
-    //         this.togglePage = !this.togglePage;
-    //     },
-    // },
-    // computed: {
-    //     totalPrice() {
-    //         if (this.itemList.length === 0) return;
-    //         let total = 0;
-    //         for (let index = 0; index < this.itemList.length; index++) {
-    //             const accumulator =
-    //                 this.itemList[index].price * this.itemList[index].count;
-    //             total += accumulator;
-    //         }
-    //         return total;
-    //     },
-    // },
+    computed: {
+        // 計算購物車總計
+        totalPrice() {
+            if (this.itemList.length === 0) return;
+            let total = 0;
+            for (let index = 0; index < this.itemList.length; index++) {
+                const accumulator =
+                    this.itemList[index].price * this.itemList[index].count;
+                total += accumulator;
+            }
+            return total;
+        },
+    },
 };
 </script>
 <style lang="scss">
 @import "@/assets/scss/main.scss";
 .banner {
-    .img {
+    height: 400px;
+    position: relative;
+    img {
+        display: block;
+        width: 100%;
         max-width: 1200px;
-        height: 400px;
+        // max-height: 400px;
         margin: auto;
-        background: $mid_yellow;
+        // background: $mid_yellow;
         color: $textColor_white;
         font-size: $xl_h1;
-        text-align: center;
-        border: 1px solid $textColor_default;
+    }
+    h1 {
+        position: absolute;
+        top: 170px;
+        left: 0;
+        right: 400px;
+        margin: auto;
     }
 }
 .filter {
@@ -208,6 +280,7 @@ export default {
     line-height: 70px;
     background: $bgColor_default;
     .bar {
+        box-sizing: border-box;
         max-width: 1200px;
         margin: auto;
         padding: 0 $sp1;
@@ -234,7 +307,7 @@ export default {
         }
     }
 }
-.list {
+.ticket_list {
     box-sizing: border-box;
     max-width: 1200px;
     margin: $sp5 auto;
@@ -273,5 +346,105 @@ export default {
             cursor: pointer;
         }
     }
+}
+.cart_sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 700px;
+    height: 100vh;
+    padding: 10px 50px;
+    background: $textColor_tint;
+    .title {
+        display: flex;
+        margin: 0 auto;
+        height: 30px;
+        padding-left: 10px;
+        div {
+            width: 100px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .products {
+            width: 300px;
+            text-align: left;
+        }
+    }
+    .content {
+        // height: 50px;
+        padding: 25px 0;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        .products {
+            display: flex;
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 3px;
+                float: left;
+            }
+            .name {
+                margin-left: 100px;
+                margin-top: 20px;
+            }
+        }
+        .count {
+            p {
+                display: inline-block;
+                width: 30px;
+                padding: 0 5px;
+                text-align: center;
+                border: 1px solid gray;
+            }
+        }
+        button {
+            background: none;
+            font-size: 32px;
+            border: none;
+            cursor: pointer;
+            &:hover {
+                color: #a0a2d1;
+            }
+        }
+        .delete {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            &:hover button {
+                color: #a0a2d1;
+            }
+        }
+    }
+    .result {
+        margin: 30px 80px 30px 0;
+        p {
+            text-align: right;
+        }
+        .total-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #d53e3e;
+        }
+    }
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-size: 24px;
+        color: #fefff5;
+        cursor: pointer;
+        &:hover {
+            color: #a0a2d1;
+        }
+    }
+}
+
+.cart_toggle {
+    position: fixed;
+    right: 30px;
+    bottom: 200px;
+    cursor: pointer;
 }
 </style>

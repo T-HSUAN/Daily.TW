@@ -1,27 +1,22 @@
-//header背景加入漸層效果
+//header背景加入漸層效果 更正大小
 .header {
     display: flex;
     justify-content: space-between;
-    background: $bgColor_default;
+    align-items: center;
     width: 100%;
+    max-width: 1200px;
     height: 200px;
-    padding-top: 45px;
-    background: linear-gradient(
-        180deg,
-        #fef0d1 59.9%,
-        rgba(254, 240, 209, 0) 100%
-    );
+    margin: 0 auto;
     //logo
-    img {
-        width: 190px;
-        position: relative;
-        left: 120px;
+    a {
+        img {
+            width: 190px;
+        }
     }
+
     nav {
-        max-width: 1200px;
-        margin: auto;
         a {
-            margin: auto 0 auto 40px;
+            margin-right: $sp5;
             font-size: 20px;
             color: $textColor_default;
 
@@ -33,25 +28,24 @@
 }
 
 .header_sm {
-    display: flex;
     display: none;
+    display: flex;
     justify-content: space-between;
-    background: $bgColor_default;
-    height: 104px;
+    align-items: center;
     width: 100%;
-    img {
-        width: 190px;
-        // padding-left: 120px;
-        position: relative;
-        left: 120px;
-        top: 30px;
+    max-width: 768px;
+    height: 100px;
+    margin: 0 auto;
+    //logo
+    a {
+        img {
+            width: 75px;
+        }
     }
     nav {
-        max-width: 1200px;
-        margin: auto;
         a {
-            margin: 0 40px;
-            font-size: 20px;
+            margin-right: $sp3;
+            font-size: 16px;
             color: $textColor_default;
 
             &.router-link-exact-active {
