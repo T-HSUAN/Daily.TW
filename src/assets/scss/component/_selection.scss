@@ -1,5 +1,5 @@
-// 下拉式選單
-select{
+// 下拉式選單(票券詳情及後台使用)
+select#selection_main{
     color: $textColor_default;
     background-color: $textColor_white;
     border: 2px solid $textColor_default;

@@ -1,0 +1,36 @@
+// 後台表格
+.table_wrap{
+    border: 2px solid $tint_yellow;
+    border-radius: 5px;
+    table{
+        width: 100%;
+        table-layout: fixed;
+        box-sizing: border-box;
+        tr:nth-child(odd){
+            background-color: $textColor_white;
+        }
+        tr:nth-child(even){
+            background-color: $tint_yellow;
+        }
+        tr{
+            th,td{
+                letter-spacing:0.6px;
+                color: $textColor_default;
+                padding: $sp1;
+                text-align: center;
+            }
+            th{
+                font-size: $xl_h4;
+            }
+            td{
+                font-size: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            th:nth-child(1), tr:nth-child(1){
+                width: 50px;
+            }
+        }
+    }
+}
