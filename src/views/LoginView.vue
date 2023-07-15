@@ -30,7 +30,7 @@
             <button class="btn" @click="login" v-if="item.tab == 1">登入</button>
             <router-link to="./register" class="btn" v-if="item.tab == 2">註冊</router-link>
             </div>
-        <div class="register">
+        <div class="register" >
             <h1>還不是會員?</h1>
             <h2>加入日日旅著體驗完整服務</h2>
             <div class="register_img">
