@@ -1,5 +1,41 @@
-
+@mixin xl_h1 {
+    font-size: $xl_h1;
+}
+@mixin xl_h2 {
+    font-size: $xl_h2;
+}
 @mixin xl_h3 {
     font-size: $xl_h3;
     font-weight: bold;
+}
+@mixin xl_h4 {
+    font-size: $xl_h4;
+    font-weight: bold;
+}
+@mixin xl_h5 {
+    font-size: $xl_h5;
+    font-weight: bold;
+}
+@mixin xl_p {
+    font-size: $xl_p;
+}
+@mixin sm_h1 {
+    font-size: $sm_h1;
+}@mixin sm_h2 {
+    font-size: $sm_h2;
+}
+@mixin sm_h3 {
+    font-size: $sm_h3;
+    font-weight: bold;
+}
+@mixin sm_h4 {
+    font-size: $sm_h4;
+    font-weight: bold;
+}
+@mixin sm_h5 {
+    font-size: $sm_h5;
+    font-weight: medium;
+}
+@mixin sm_p {
+    font-size: $sm_p;
 }
