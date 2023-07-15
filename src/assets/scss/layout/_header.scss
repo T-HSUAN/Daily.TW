@@ -1,56 +1,94 @@
-//header背景加入漸層效果 更正大小
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    height: 200px;
-    margin: 0 auto;
-    //logo
-    a {
-        img {
-            width: 190px;
+//桌機版header快要完成了~~
+header {
+    background: linear-gradient(
+        180deg,
+        $bgColor_default 59.9%,
+        rgba(254, 240, 209, 0) 100%
+    );
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        height: 200px;
+        margin: 0 auto;
+        //logo
+        a {
+            .logo {
+                width: 190px;
+            }
+        }
+
+        nav {
+            display: flex;
+            a {
+                display: flex;
+                margin-right: $sp5;
+                font-size: 20px;
+                color: $textColor_default;
+                img {
+                    width: 20px;
+                }
+                &.router-link-exact-active {
+                    color: $default_yellow;
+                }
+            }
         }
     }
 
-    nav {
+    .header_sm {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        display: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        height: 100px;
+        background: linear-gradient(
+            180deg,
+            $bgColor_default 59.9%,
+            rgba(254, 240, 209, 0) 100%
+        );
+        z-index: 9999;
+        //logo
         a {
-            margin-right: $sp5;
-            font-size: 20px;
-            color: $textColor_default;
-
-            &.router-link-exact-active {
-                color: $default_yellow;
+            .logo {
+                width: 200px;
+            }
+        }
+        nav {
+            a {
+                margin-right: $sp3;
+                font-size: 16px;
+                color: $textColor_default;
+                img {
+                    display: none;
+                    width: 20px;
+                }
+                &.router-link-exact-active {
+                    color: $default_yellow;
+                    img {
+                        display: block;
+                    }
+                }
             }
         }
     }
 }
-
-.header_sm {
-    display: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 768px;
-    height: 100px;
-    margin: 0 auto;
-    //logo
-    a {
-        img {
-            width: 75px;
-        }
-    }
-    nav {
-        a {
-            margin-right: $sp3;
-            font-size: 16px;
-            color: $textColor_default;
-
-            &.router-link-exact-active {
-                color: $default_yellow;
-            }
-        }
-    }
-}
+// .sm {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     margin: 0 auto;
+//     z-index: 9999;
+//     .header {
+//         display: none;
+//     }
+// }

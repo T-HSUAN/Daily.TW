@@ -63,17 +63,7 @@ h5 {
     font-size: $xl_h5;
     text-align: center;
 }
-header {
-    background: linear-gradient(
-        180deg,
-        $bgColor_default 59.9%,
-        rgba(254, 240, 209, 0) 100%
-    );
-}
 main {
     color: $textColor_default;
     background: $bgColor_tint;
-}
-footer {
-    background: $default_yellow;
 }
