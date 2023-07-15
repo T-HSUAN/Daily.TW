@@ -1,0 +1,53 @@
+.search_bar{
+    width: 100%;
+    .multi_filter{
+        display: flex;
+        justify-content: space-between;
+        background-color: $bgColor_default;
+        padding: $sp2;
+        .order_select_wrap{
+            display: flex;
+            align-items: center;
+            gap: $sp5;
+            .order_tool{
+                display: flex;
+                gap: $sp1;
+                .order_icon{
+                    padding-top: 4px;
+                }
+                button{
+                    background-color: $bgColor_default;
+                    color: $textColor_default;
+                    border: 0;
+                    display: flex;
+                    align-items: center;
+                    gap: $sp1;
+                    span{
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+                    .order_arrow_icon{
+                        padding-top: 4px;
+                    }
+                }
+            }
+        }
+        .select_tool{
+            display: flex;
+            gap: $sp1;
+            select#select_filter{
+                appearance: none;
+                font-size: 20px;
+                font-weight: 600;
+                color: $textColor_default;
+                border: 0;
+                background-color: $bgColor_default;
+            }
+        }
+        .search_tool{
+            display: flex;
+            gap: $sp1;
+            flex-direction: row;
+        }
+    }
+}

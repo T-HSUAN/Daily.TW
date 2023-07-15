@@ -16,11 +16,15 @@
     <!-- 在 font-awesome 裡沒有找到單側的箭頭、navbar的按鈕，先放替代的 -->
         <font-awesome-icon icon="fa-solid fa-arrow-left" />
         <font-awesome-icon icon="fa-solid fa-arrow-right" />
+        <font-awesome-icon icon="fa-solid fa-arrow-up" />
         <font-awesome-icon icon="fa-solid fa-circle-chevron-down" />
+        <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
+        <font-awesome-icon icon="fa-solid fa-filter" />
         <font-awesome-icon icon="fa-solid fa-pen" />
         <font-awesome-icon icon="fa-solid fa-trash-can" />
         <font-awesome-icon icon="fa-solid fa-square-plus" />
         <font-awesome-icon icon="fa-solid fa-sort-up" />
+        <font-awesome-icon icon="fa-solid fa-sort-down" />
         <font-awesome-icon icon="fa-solid fa-car" />
         <font-awesome-icon icon="fa-solid fa-ticket" />
         <font-awesome-icon icon="fa-solid fa-user" />
