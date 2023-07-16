@@ -17,6 +17,4 @@ export default {
 </style>
 
 <!-- 使用方法-->
-<!-- 在 template 裡放 <btn :btnTexts="你想要參照的key"></btn> -->
-<!-- 改變單個標籤的內容 -->
-<!-- 在 data() return 的地方確認有 "你想要參照的key":"你想要參照的value" -->
+<!-- 建議直接套用 CSS 就好 -->
