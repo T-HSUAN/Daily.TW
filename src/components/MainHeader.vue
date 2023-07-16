@@ -1,6 +1,9 @@
 <template>
-    <header :class="{ sm: !showHeader }">
-        <div :class="{ header: showHeader }">
+    <!-- 滾動超過200px header增加class:sm -->
+    <header :class="{ sm: showHeader }">
+        <!-- 滾動超過200px不顯示default -->
+        <div v-if="!showHeader" class="header_default">
+            <!--  + { _hidden: !showHeader } -->
             <!-- logo:home-link -->
             <router-link to="/">
                 <img
@@ -11,7 +14,7 @@
             </router-link>
             <nav>
                 <router-link
-                    v-for="(item, index) in menu"
+                    v-for="item in menu"
                     :key="item.id"
                     :to="'/' + item.link"
                     @click="flagDisplay(item.id)"
@@ -22,12 +25,13 @@
                             display: item.display,
                         }"
                     />
-                    {{ item.name }}
+                    &nbsp;{{ item.name }}
                 </router-link>
             </nav>
         </div>
-
-        <div v-if="!showHeader" class="header_sm">
+        <!-- 滾動超過200px顯示sm -->
+        <div v-else class="header_sm">
+            <!-- + { _display: showHeader } -->
             <router-link to="/">
                 <img
                     class="logo"
@@ -36,13 +40,20 @@
                 />
             </router-link>
             <nav>
-                <router-link to="/plan">專屬旅著</router-link>
-                <router-link to="/trip">出遊特輯</router-link>
-                <router-link to="/oott">穿搭特輯</router-link>
-                <router-link to="/ticket">景點票券</router-link>
-                <router-link to="/about">關於我們</router-link>
-                <router-link to="/login">登入|註冊</router-link>
-                <!-- <router-link to="/cart">購物車</router-link> -->
+                <router-link
+                    v-for="item in menu"
+                    :key="item.id"
+                    :to="'/' + item.link"
+                    @click="flagDisplay(item.id)"
+                    ><img
+                        :src="require(`../assets/img/${item.img}.svg`)"
+                        alt="icon"
+                        :style="{
+                            display: item.display,
+                        }"
+                    />
+                    &nbsp;{{ item.name }}
+                </router-link>
             </nav>
         </div>
     </header>
@@ -107,7 +118,7 @@ export default {
     },
     methods: {
         handleScroll() {
-            this.showHeader = window.scrollY <= 200;
+            this.showHeader = window.scrollY > 0;
         },
         flagDisplay(itemId) {
             this.menu.forEach((item) => {

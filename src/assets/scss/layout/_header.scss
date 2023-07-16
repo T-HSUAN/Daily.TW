@@ -5,7 +5,8 @@ header {
         $bgColor_default 59.9%,
         rgba(254, 240, 209, 0) 100%
     );
-    .header {
+
+    .header_default {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -35,6 +36,9 @@ header {
                 }
             }
         }
+        &_hidden {
+            display: none;
+        }
     }
 
     .header_sm {
@@ -43,7 +47,6 @@ header {
         left: 0;
         right: 0;
         margin: 0 auto;
-        display: none;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -55,7 +58,6 @@ header {
             $bgColor_default 59.9%,
             rgba(254, 240, 209, 0) 100%
         );
-        z-index: 9999;
         //logo
         a {
             .logo {
@@ -63,7 +65,9 @@ header {
             }
         }
         nav {
+            display: flex;
             a {
+                display: flex;
                 margin-right: $sp3;
                 font-size: 16px;
                 color: $textColor_default;
@@ -79,16 +83,21 @@ header {
                 }
             }
         }
+        &_display {
+            display: block;
+        }
     }
 }
-// .sm {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     margin: 0 auto;
-//     z-index: 9999;
-//     .header {
-//         display: none;
-//     }
-// }
+//header sm版
+.sm {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(
+        180deg,
+        $bgColor_default 59.9%,
+        rgba(254, 240, 209, 0) 100%
+    );
+    z-index: 9999;
+}
