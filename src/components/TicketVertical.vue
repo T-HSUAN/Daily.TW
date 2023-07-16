@@ -19,6 +19,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 export default {
     props: {
         ticketTitle: {
@@ -35,6 +36,16 @@ export default {
         },
     },
 };
+=======
+    export default {
+        props:{
+                ticketTitle:String,
+                ticketTags:String,
+                originalPrice:Number,
+                FinalPrice:Number,
+            }
+    } 
+>>>>>>> Ben
 </script>
 
 <style></style>
