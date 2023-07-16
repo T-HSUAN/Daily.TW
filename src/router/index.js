@@ -33,6 +33,15 @@ const routesUser = [
             import(/* webpackChunkName: "ticket" */ "@/views/TicketView.vue"),
     },
     {
+        path: "/ticketinfo",
+        name: "ticketinfo",
+        // component: TicketInfo
+        component: () =>
+            import(
+                /* webpackChunkName: "ticketinfo" */ "@/views/TicketInfo.vue"
+            ),
+    },
+    {
         path: "/about",
         name: "about",
         component: () =>

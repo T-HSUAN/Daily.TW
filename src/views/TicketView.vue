@@ -5,42 +5,24 @@
         <h1>{{ banner.title }}</h1>
     </div>
     <!-- 篩選bar -->
-    <div class="filter">
-        <div class="bar">
-            <div class="title">
-                <p>↑人氣</p>
-                <p>↑上架時間</p>
-                <p>↑地區</p>
-            </div>
-            <div class="searchbar">
-                <input
-                    type="text"
-                    name="search"
-                    id="search"
-                    v-model="filter.searchText"
-                />
-                <!-- placeholder="請輸入關鍵字" -->
-                <label for="search" class="btn" @click="updateDisplay"
-                    >搜尋</label
-                >
-            </div>
-        </div>
-    </div>
+    <searchbar />
     <!-- 景點票券清單 -->
     <div class="ticket_list" v-if="ticketData.length > 0">
-        <div
-            class="ticket"
-            v-for="(item, index) in ticketDisplay"
+        <router-link
+            v-for="item in ticketDisplay"
             :key="item.id"
+            :to="item.link"
         >
-            <img :src="item.img" alt="" />
-            <h3>{{ item.Name }}</h3>
-            <p>{{ item.tag }}</p>
-            <h4>NT$ {{ item.price }}</h4>
-            <button class="btn add_cart" @click="createItem(index)">
-                + 加入購物車
-            </button>
-        </div>
+            <div class="ticket">
+                <img :src="item.img" alt="" />
+                <h3>{{ item.Name }}</h3>
+                <p>{{ item.tag }}</p>
+                <h4>NT$ {{ item.price }}</h4>
+                <button class="btn add_cart" @click="createItem(index)">
+                    + 加入購物車
+                </button>
+            </div>
+        </router-link>
     </div>
     <div v-else>Loading</div>
     <!-- 購物車清單 -->
@@ -96,7 +78,12 @@
     </div>
 </template>
 <script>
+import searchbar from "@/components/Searchbar.vue";
+
 export default {
+    components: {
+        searchbar,
+    },
     data() {
         return {
             banner: {
@@ -120,6 +107,7 @@ export default {
                     tag: "#xxx",
                     price: 50,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 2,
@@ -128,6 +116,7 @@ export default {
                     tag: "xxx",
                     price: 700,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 3,
@@ -136,6 +125,7 @@ export default {
                     tag: "xxx",
                     price: 1200,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 4,
@@ -144,6 +134,7 @@ export default {
                     tag: "xxx",
                     price: 2300,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 5,
@@ -152,6 +143,7 @@ export default {
                     tag: "xxx",
                     price: 300,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 6,
@@ -160,6 +152,7 @@ export default {
                     tag: "xxx",
                     price: 500,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 7,
@@ -168,6 +161,7 @@ export default {
                     tag: "xxx",
                     price: 200,
                     count: 1,
+                    link: "/ticketinfo",
                 },
                 {
                     id: 8,
@@ -176,6 +170,7 @@ export default {
                     tag: "xxx",
                     price: 250,
                     count: 1,
+                    link: "/ticketinfo",
                 },
             ],
             // 呈現的商品資料(針對ticketData來搜尋篩選)
@@ -270,38 +265,6 @@ export default {
         left: 0;
         right: 400px;
         margin: auto;
-    }
-}
-.filter {
-    width: 100%;
-    line-height: 70px;
-    background: $bgColor_default;
-    .bar {
-        box-sizing: border-box;
-        max-width: 1200px;
-        margin: auto;
-        padding: 0 $sp1;
-        display: flex;
-        justify-content: space-between;
-        .title {
-            display: flex;
-        }
-        .searchbar {
-            display: flex;
-            align-items: center;
-            #search {
-                width: 160px;
-                height: 30px;
-                margin-right: $sp3;
-                padding: $sp1 $sp3;
-                font-size: $xl_p;
-                border-radius: 50px;
-            }
-            .btn {
-                width: 40px;
-                height: 30px;
-            }
-        }
     }
 }
 .ticket_list {

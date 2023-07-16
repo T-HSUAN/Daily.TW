@@ -1,19 +1,19 @@
 <template>
     <label>
-    <input type="checkbox" class="tag">
-    <span>{{ tagTexts }}</span>
-    </label>  
+        <input type="checkbox" class="tag" />
+        <span>{{ tagTexts }}</span>
+    </label>
 </template>
 
 <script>
 export default {
-    name: 'tag',
+    name: "tag",
     props: {
-        tagTexts:{
-            default:'#標籤',
-        }
-    }
-} 
+        tagTexts: {
+            default: "#標籤",
+        },
+    },
+};
 </script>
 
 <!-- 使用方法-->
@@ -21,7 +21,9 @@ export default {
 <!-- 改變單個標籤的內容 -->
 <!-- 在 data() return 的地方確認有 "你想要參照的key":"你想要參照的value" -->
 
-
-
 <style>
+label {
+    width: 92px;
+    height: 45px;
+}
 </style>
