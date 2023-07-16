@@ -50,6 +50,7 @@
         border-radius: 50px;
         border: 2px solid $textColor_default;
         background: $textColor_white;
+        cursor: pointer;
     }
     &:checked + span {
         color: $textColor_white;

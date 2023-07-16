@@ -1,6 +1,5 @@
 <template>
     <MainHeader></MainHeader>
-    
     <main>
       <router-view />
 
@@ -21,7 +20,6 @@ export default {
     MainHeader,
     MainFooter,
     ArrowUp,
-
 },
 };
 </script>
