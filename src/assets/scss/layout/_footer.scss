@@ -4,8 +4,61 @@ footer {
     background-color: $default_yellow;
     text-align: center;
     display: flex;
-    section {
+    flex-direction: column;
+    margin: auto;
+    .footer_section {
+        max-width: 1200px;
         display: flex;
-        flex-direction: column;
+        margin: auto;
+        .footer_block{
+            display: flex;
+            padding-right: 150px;
+            .footer_list{
+                display: flex;
+                flex-direction: column;
+                h4{
+                    @include sm_h5;
+                    padding: 10px;
+                }
+                a{
+                    @include sm_p;
+                    color: $textColor_default;
+                    padding: 10px;
+                    
+                }
+            }
+        }
+        .social_box{
+            width: 395px;
+            display: flex;
+            flex-direction: column;
+            .social_icon{
+                display: flex;
+                p{
+                    @include xl_h5;
+                    padding: 5px 15px 15px 5px;
+                }
+                a{
+                    font-size: 25px;
+                    padding: 0 5px;
+                    color: $textColor_default;
+                }
+               
+            }
+            .footer_input{
+                border-radius: 50px;
+                border: 2px solid $textColor_default;
+                letter-spacing: 2px;
+                // color: $textColor_default;
+                text-indent: 10px;
+                height: 40px;
+            }
+        }
+    }
+    .footer_notice{
+        p{
+            @include sm_p;
+            padding: 10px;
+        }
     }
 }
