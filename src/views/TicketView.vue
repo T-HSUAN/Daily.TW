@@ -33,16 +33,18 @@
             v-for="(item, index) in ticketDisplay"
             :key="item.id"
         >
-            <!-- <img class="ticket-style" :src="ticket.style" alt="" /> -->
             <img :src="item.img" alt="" />
             <h3>{{ item.Name }}</h3>
             <p>{{ item.tag }}</p>
             <h4>NT$ {{ item.price }}</h4>
-            <button class="btn" @click="createItem(index)">+ 加入購物車</button>
+            <button class="btn add_cart" @click="createItem(index)">
+                + 加入購物車
+            </button>
         </div>
     </div>
     <div v-else>Loading</div>
     <!-- 購物車清單 -->
+    <!-- <router-link to="/cart"></router-link> -->
     <img
         class="cart_toggle"
         :src="require('@/assets/img/cart.png')"
@@ -94,12 +96,7 @@
     </div>
 </template>
 <script>
-// import TicketHorizontal from '@/components/TicketHorizontal.vue';
-
 export default {
-    //     components: {
-    //         TicketHorizontal
-    //   },
     data() {
         return {
             banner: {
@@ -335,7 +332,7 @@ export default {
         h5 {
             font-style: 20px;
         }
-        .btn {
+        .add_cart {
             display: flex;
             width: 184px;
             height: 46px;

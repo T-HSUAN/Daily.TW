@@ -1,10 +1,13 @@
 .arrow {
     color: $textColor_default;
-
+    width: 40px;
+    height: 40px;
+    @media (min-width:1200px) {
+        width: 56px;
+        height: 56px;
+    }
     border: 2px $textColor_default solid;   
     border-radius: 50%;
-    width: 56px;
-    height: 56px;
     justify-content: center;
     align-items: center;
     gap: 10px;
