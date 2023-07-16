@@ -1,9 +1,6 @@
 <template>
     <div class="ticketVertical_container">
-        <img
-            :src="require('@/assets/img/ticketExample.png')"
-            alt="斑比山丘門票"
-        />
+        <img :src="require('@/assets/img/ticketExample.png')" alt="票券照片" />
         <div class="ticket_text">
             <h3 class="ticket_title">{{ ticketTitle }}</h3>
             <span class="ticket_tags">{{ ticketTags }}</span>

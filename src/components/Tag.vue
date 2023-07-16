@@ -10,6 +10,7 @@ export default {
     name: "tag",
     props: {
         tagTexts: {
+            type: String,
             default: "#標籤",
         },
     },

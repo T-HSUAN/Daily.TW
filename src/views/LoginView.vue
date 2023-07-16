@@ -4,8 +4,9 @@
     <div v-for="(item, key) in tabItems" 
         :class="{active: key == tabActive}" >
         <div v-if="tabActive == item.tab" class="canvas" >
-            <div class="login" :class="{ 'bg-red': isClicked && item.tab === 2 }" >
-
+            <div class="login">
+                <div class="login_card" :class="{ active: isActive }"  >             
+                <!-- :class="{ 'bg-red': isClicked && item.tab === 2 }" -->
                 <h1>{{ item.title }}</h1>
                 <div class="third-party"><img :src="require('@/assets/img/LINE.png')" alt="icon"><p>使用LINE登入</p></div>
                 <div class="third-party"><img :src="require('@/assets/img/FB.png')" alt="icon"><p>使用FACEBOOK登入</p></div>
@@ -24,6 +25,7 @@
                 </div>
                 <button class="btn" @click="login" v-if="item.tab == 1">登入</button>
                 <router-link to="./register" class="btn" v-if="item.tab == 2">註冊</router-link>
+            </div>
             </div>
             <div class="register" >
                 <h1>還不是會員?</h1>
@@ -61,7 +63,7 @@ export default {
       },
       email: '',
       psw:'',
-    //   isClicked: false
+      isActive: false
     }
   },
   methods: {
@@ -79,6 +81,7 @@ export default {
     },
     handleClick() {
       this.updateTab(this.tabItems[this.tabActive].goNext);
+      this.isActive = !this.isActive;
     //   this.isClicked=true;
     //   this.toggleColor();
     },
@@ -93,92 +96,97 @@ export default {
 
 <style lang="scss" scoped>
     @import '@/assets/scss/main.scss';
-    // .bg-red {
-    // background-color: red;
-    // }
+    
     .canvas{
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin: 100px auto;
-    //   background-color:$bgColor_tint;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 100px auto;
       .login{
-        width: 40%;
-          padding: 50px 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          width: 40%;
           background-color: $default_blue;
-          
-          h1{
-          //   color: #FEFFF5;
-            font-size: $xl_h1;
-            text-align: center;
+          border-radius: 20px 0 0 20px;
+          .active {
+              background-color: $tint_green;
           }
-        .third-party{
-          width: 410px;
-          height: 60px;
-          margin: 15px 0;
-          display: flex;
-          align-items: center;
-          background: $textColor_white;
-          border-radius: 5px;
-          cursor: pointer;
-            &:hover{
-              background: $tint_yellow;
-            }
-          img{
-            width: 33px;
-            height: 33px;
-            margin-left: 25px;
-          }
-          p{
-            margin-left: 20px;
-          }
-        }
-        label{
-          color: #FEFFF5;
-        }
-        input{
-          width: 320px;
-          height: 50px;
-          padding-left: 25px;
-          margin-left: 25px;
-          background: $textColor_white;
-          color: $textColor_tint;
-          border-radius: 50px;
-        }
-        .note{
-          box-sizing: border-box;
-          width: 100%;
-          padding: 0 45px;
-          display: flex;
-          justify-content: space-between;
-          label{
-            display: inline-block;
-            cursor: pointer;
-            #remember{
-            width: 20px;
-            height: 20px;
-          }
-          }
-          a{
-            color: $textColor_white;
-            &:hover{
-              color: $tint_blue;
-            }
-          }
-
-        }
+          .login_card{
+              padding: 50px 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              border-radius: 20px 0 0 20px;   
+              h1{
+                  color: #FEFFF5;
+                  font-size: $xl_h1;
+                  text-align: center;
+              }
+              .third-party{
+                  width: 410px;
+                  height: 60px;
+                  margin: 15px 0;
+                  display: flex;
+                  align-items: center;
+                  background: $textColor_white;
+                  border-radius: 5px;
+                  cursor: pointer;
+                  &:hover{
+                    background: $tint_yellow;
+                  }
+                  img{
+                    width: 33px;
+                    height: 33px;
+                    margin-left: 25px;
+                  }
+                  p{
+                    margin-left: 20px;
+                  }
+                }
+                label{
+                    color: #FEFFF5;
+                }
+                input{
+                    width: 320px;
+                    height: 50px;
+                    padding-left: 25px;
+                    margin-left: 25px;
+                    background: $textColor_white;
+                    color: $textColor_tint;
+                    border-radius: 50px;
+                }
+                .note{
+                    box-sizing: border-box;
+                    width: 100%;
+                    padding: 0 45px;
+                    display: flex;
+                    justify-content: space-between;
+                    label{
+                        display: inline-block;
+                        cursor: pointer;
+                        #remember{
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                    a{
+                        color: $textColor_white;
+                        &:hover{
+                            color: $tint_blue;
+                        }
+                    }
+                
+                }
       
+          }
       }
-    .register{
+      .register{
         width: 40%;
         padding: 50px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
         background: #93AE51;
+        border-radius: 0 20px 20px 0;
+
         h1{
           color: #FEFFF5;
           font-size: 64px;
