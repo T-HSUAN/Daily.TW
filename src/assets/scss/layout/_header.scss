@@ -30,22 +30,24 @@
 .header_sm {
     display: none;
     display: flex;
+    position: fixed;
+    left: 120px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 768px;
+    max-width: 1200px;
     height: 100px;
     margin: 0 auto;
     //logo
     a {
         img {
-            width: 75px;
+            width: 200px;
         }
     }
     nav {
         a {
             margin-right: $sp3;
-            font-size: 16px;
+            font-size: 20px;
             color: $textColor_default;
 
             &.router-link-exact-active {
