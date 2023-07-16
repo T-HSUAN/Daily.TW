@@ -29,9 +29,9 @@
                         <option value="">台中</option>
                         <option value="">高雄</option>
                     </select>
-                    <div class="select_arrow">
+                    <!-- <div class="select_arrow">
                         <font-awesome-icon icon="fa-solid fa-sort-down" />
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <label class="search_tool">
@@ -40,20 +40,20 @@
             </label>
         </div>
         <div class="tags_filter">
-            <!-- 不知道要如何帶入已製作好的tag -->
+            <tag />
+            <tag />
+            <tag />
         </div>
     </div>
 </template>
 
 <script>
-// export default {
-//     name: 'tag',
-//     props: {
-//         tagTexts:{
-//             default:'#標籤',
-//         }
-//     }
-// } 
+import tag from "@/components/Tag.vue";
+export default {
+    components: {
+        tag,
+    },
+} 
 </script>
 
 <style lang="scss">
