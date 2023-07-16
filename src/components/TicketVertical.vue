@@ -16,19 +16,11 @@
 <script>
     export default {
         props:{
-            ticketTitle:{
-                default: "票券標題"
-            },
-            ticketTags:{
-                default: "票券標籤"
-            },
-            originalPrice:{
-                default: "原價"
-            },
-            FinalPrice:{
-                default: "售價"
+                ticketTitle:String,
+                ticketTags:String,
+                originalPrice:Number,
+                FinalPrice:Number,
             }
-        }
     } 
 </script>
     
