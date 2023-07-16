@@ -1,13 +1,17 @@
 // 按鈕
 .btn {
+    font-size: $sm_h5;
+    padding: 8px 24px;;
+    @media (min-width: 1200px) {
+    font-size: $xl_h5;
+    padding: 8px 32px;
+    }
+
     color: $textColor_white;
     text-align: center;
     font-family: $fontFamily;
-    font-size: $xl_h5;
     letter-spacing: 0.6px;
-
     display: inline-flex;
-    padding: $sp1 $sp4;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -26,16 +30,23 @@
     }
 }
 
+
+
 // 標籤
 .tag {
     position: absolute;
     display: none;
     + span {
+        @include sm_p;
+        padding: 4px 12px;
+        @media (min-width: 1200px) {
+            @include xl_p;
+            padding: 8px 20px;
+        }
         display: inline-flex;
-        padding: 8px 20px;
+        width: fit-content;
         justify-content: center;
         align-items: center;
-        gap: 10px;
         border-radius: 50px;
         border: 2px solid $textColor_default;
         background: $textColor_white;
@@ -49,13 +60,11 @@
 
 // cancel button
 .cancel_btn {
-    display: flex;
-    width: 40px;
-    height: 29px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    font-size: $xl_h5;
+    font-size: $sm_h5;    
+    @media (min-width: 1200px) {
+        font-size: $xl_h5
+    }
+    text-decoration: underline;
     cursor: pointer;
 }
 
