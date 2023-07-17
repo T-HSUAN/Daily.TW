@@ -8,7 +8,7 @@ select#selection_main{
     outline: none;
     @include sm_h5;
     padding: 6px $sp4 6px $sp1;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
         @include xl_h5;
         padding: $sp1 $sp5 $sp1 $sp1;
     }
@@ -16,13 +16,3 @@ select#selection_main{
         border-color: $textColor_tint;
     }
 }
-
-// xl or sm
-// #selection_xl{
-//     font-size: 20px; 
-//     padding: $sp1 $sp5 $sp1 $sp1;
-// }
-// #selection_sm{
-//     font-size: 16px; 
-//     padding: 6px $sp4 6px $sp1;
-// }

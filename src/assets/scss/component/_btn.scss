@@ -1,12 +1,12 @@
 // 按鈕
 .btn {
     font-size: $sm_h5;
-    padding: 8px 24px;;
+    padding: 8px 24px;
     @media (min-width: 1200px) {
     font-size: $xl_h5;
     padding: 8px 32px;
     }
-
+    white-space: nowrap;
     color: $textColor_white;
     text-align: center;
     font-family: $fontFamily;

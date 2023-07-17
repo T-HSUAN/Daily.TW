@@ -3,22 +3,35 @@
     align-items: center;
     font-size: 16px;
     gap: 4px;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
         font-size: 18px;
         gap: $sp1;
     }
     a{
         color: $textColor_default;
+        letter-spacing: 0.6px;
     }
     a:last-child{
         color: $textColor_tint;
+        padding-bottom: 2px;
+        @media (min-width: 768px) {
+            padding-bottom: $sp1;
+        }
         &::before{
             content: '';
             display: inline-block;
-            width: 20px;
-            height: 24px;
+            width: 13px;
+            height: 16px;
             background-image: url('~@/assets/img/flag_trip.svg');
+            background-size: 100%;
+            background-repeat: no-repeat;
             padding-right: 4px;
+            transform: translateY(1px);
+            @media (min-width: 768px) {
+                width: 20px;
+                height: 24px;
+                transform: translateY(3px);
+            }
         }
     }
 }
