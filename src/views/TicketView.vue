@@ -96,7 +96,7 @@ export default {
                 subtitle: "票券列表",
             },
             ticket: {
-                style: require("../assets/img/ticket.png"),
+                style: require("@/assets/img/layout/ticketVertical.svg"),
             },
             // 商品資料 需連接DB(僅在進入畫面時去取一次資料)
             ticketData: [
@@ -246,163 +246,168 @@ export default {
 </script>
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-.banner {
-    width: 100%;
-    height: 400px;
-    position: relative;
-    img {
-        @include width(1200) {
-            display: block;
-        }
-    }
-    h1 {
-        position: absolute;
-        top: 170px;
-        left: 0;
-        right: 400px;
-        margin: 0 auto;
-        @include xl_h1;
-        text-align: center;
-    }
+
+@media all and (min-width: $md) {
 }
-.ticket_list {
-    box-sizing: border-box;
-    max-width: 1200px;
-    margin: $sp5 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    .ticket {
-        width: 275px;
-        height: 530px;
-        margin: $sp1;
+@media all and (min-width: $xl) {
+    .banner {
+        width: 100%;
+        height: 400px;
         position: relative;
-        background-image: url("../assets/img/ticket.png");
-        background-size: contain;
-        color: $textColor_white;
-        text-align: center;
-        cursor: pointer;
         img {
-            margin-top: $sp5;
-            margin-bottom: $sp7;
-            width: 100%;
+            @include width(1200) {
+                display: block;
+            }
         }
-        h3 {
-            @include xl_h3;
-        }
-        h5 {
-            font-style: 20px;
-        }
-        .add_cart {
-            display: flex;
-            width: 184px;
-            height: 46px;
-            margin: $sp2 auto;
-            background: $default_yellow;
-            font-size: 20px;
-            border: none;
-            cursor: pointer;
-        }
-    }
-}
-.cart_sidebar {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 700px;
-    height: 100vh;
-    padding: 10px 50px;
-    background: $textColor_tint;
-    .title {
-        display: flex;
-        margin: 0 auto;
-        height: 30px;
-        padding-left: 10px;
-        div {
-            width: 100px;
-            line-height: 30px;
+        h1 {
+            position: absolute;
+            top: 170px;
+            left: 0;
+            right: 400px;
+            margin: 0 auto;
+            @include xl_h1;
             text-align: center;
         }
-        .products {
-            width: 300px;
-            text-align: left;
+    }
+    .ticket_list {
+        box-sizing: border-box;
+        max-width: 1200px;
+        margin: $sp5 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .ticket {
+            width: 275px;
+            height: 530px;
+            margin: $sp1;
+            position: relative;
+            background-image: url("../assets/img/layout/ticketVertical.svg");
+            background-size: contain;
+            color: $textColor_white;
+            text-align: center;
+            cursor: pointer;
+            img {
+                margin-top: $sp5;
+                margin-bottom: $sp7;
+                width: 100%;
+            }
+            h3 {
+                @include xl_h3;
+            }
+            h5 {
+                font-style: 20px;
+            }
+            .add_cart {
+                display: flex;
+                width: 184px;
+                height: 46px;
+                margin: $sp2 auto;
+                background: $default_yellow;
+                font-size: 20px;
+                border: none;
+                cursor: pointer;
+            }
         }
     }
-    .content {
-        // height: 50px;
-        padding: 25px 0;
-        justify-content: center;
-        align-items: center;
-        color: black;
-        .products {
+    .cart_sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 700px;
+        height: 100vh;
+        padding: 10px 50px;
+        background: $textColor_tint;
+        .title {
             display: flex;
-            img {
-                width: 80px;
-                height: 80px;
-                border-radius: 3px;
-                float: left;
-            }
-            .name {
-                margin-left: 100px;
-                margin-top: 20px;
-            }
-        }
-        .count {
-            p {
-                display: inline-block;
-                width: 30px;
-                padding: 0 5px;
+            margin: 0 auto;
+            height: 30px;
+            padding-left: 10px;
+            div {
+                width: 100px;
+                line-height: 30px;
                 text-align: center;
-                border: 1px solid gray;
+            }
+            .products {
+                width: 300px;
+                text-align: left;
             }
         }
-        button {
-            background: none;
-            font-size: 32px;
-            border: none;
+        .content {
+            // height: 50px;
+            padding: 25px 0;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            .products {
+                display: flex;
+                img {
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 3px;
+                    float: left;
+                }
+                .name {
+                    margin-left: 100px;
+                    margin-top: 20px;
+                }
+            }
+            .count {
+                p {
+                    display: inline-block;
+                    width: 30px;
+                    padding: 0 5px;
+                    text-align: center;
+                    border: 1px solid gray;
+                }
+            }
+            button {
+                background: none;
+                font-size: 32px;
+                border: none;
+                cursor: pointer;
+                &:hover {
+                    color: #a0a2d1;
+                }
+            }
+            .delete {
+                height: 100px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                &:hover button {
+                    color: #a0a2d1;
+                }
+            }
+        }
+        .result {
+            margin: 30px 80px 30px 0;
+            p {
+                text-align: right;
+            }
+            .total-price {
+                font-size: 32px;
+                font-weight: 800;
+                color: #d53e3e;
+            }
+        }
+        .close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 24px;
+            color: #fefff5;
             cursor: pointer;
             &:hover {
                 color: #a0a2d1;
             }
         }
-        .delete {
-            height: 100px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            &:hover button {
-                color: #a0a2d1;
-            }
-        }
     }
-    .result {
-        margin: 30px 80px 30px 0;
-        p {
-            text-align: right;
-        }
-        .total-price {
-            font-size: 32px;
-            font-weight: 800;
-            color: #d53e3e;
-        }
-    }
-    .close {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        font-size: 24px;
-        color: #fefff5;
-        cursor: pointer;
-        &:hover {
-            color: #a0a2d1;
-        }
-    }
-}
 
-.cart_toggle {
-    position: fixed;
-    right: 30px;
-    bottom: 200px;
-    cursor: pointer;
+    .cart_toggle {
+        position: fixed;
+        right: 30px;
+        bottom: 200px;
+        cursor: pointer;
+    }
 }
 </style>

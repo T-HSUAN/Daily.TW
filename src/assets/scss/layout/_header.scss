@@ -1,103 +1,133 @@
-//桌機版header快要完成了~~
 header {
+    display: none;
+}
+.phone {
+    display: block;
+    @include width(100);
+    height: 75px;
     background: linear-gradient(
         180deg,
         $bgColor_default 59.9%,
         rgba(254, 240, 209, 0) 100%
     );
-
-    .header_default {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px;
-        height: 200px;
-        margin: 0 auto;
-        //logo
-        a {
-            .logo {
-                width: 190px;
-            }
-        }
-
-        nav {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+        width: 160px;
+        margin: 0 $sp4;
+    }
+    .ham {
+        width: 40px;
+        margin: 0 $sp4;
+        cursor: pointer;
+    }
+}
+// 768 up
+@media screen and (min-width: $md) {
+    header {
+        display: block;
+        background: linear-gradient(
+            180deg,
+            $bgColor_default 59.9%,
+            rgba(254, 240, 209, 0) 100%
+        );
+        .header_default {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            height: 200px;
+            margin: 0 auto;
+            //logo
             a {
-                display: flex;
-                margin-right: $sp5;
-                font-size: 20px;
-                color: $textColor_default;
-                img {
-                    width: 20px;
-                }
-                &.router-link-exact-active {
-                    color: $default_yellow;
+                .logo {
+                    width: 190px;
                 }
             }
+
+            nav {
+                display: flex;
+                a {
+                    display: flex;
+                    margin-right: $sp5;
+                    font-size: 20px;
+                    color: $textColor_default;
+                    img {
+                        width: 20px;
+                    }
+                    &.router-link-exact-active {
+                        color: $default_yellow;
+                    }
+                }
+            }
+            &_hidden {
+                display: none;
+            }
         }
-        &_hidden {
-            display: none;
+
+        .header_sm {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            height: 100px;
+            background: linear-gradient(
+                180deg,
+                $bgColor_default 59.9%,
+                rgba(254, 240, 209, 0) 100%
+            );
+            //logo
+            a {
+                .logo {
+                    width: 200px;
+                }
+            }
+            nav {
+                display: flex;
+                a {
+                    display: flex;
+                    margin-right: $sp3;
+                    font-size: 16px;
+                    color: $textColor_default;
+                    img {
+                        display: none;
+                        width: 20px;
+                    }
+                    &.router-link-exact-active {
+                        color: $default_yellow;
+                        img {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            &_display {
+                display: block;
+            }
         }
     }
-
-    .header_sm {
+    //header sm版
+    .sm {
         position: fixed;
         top: 0;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         width: 100%;
-        max-width: 1200px;
         height: 100px;
         background: linear-gradient(
             180deg,
             $bgColor_default 59.9%,
             rgba(254, 240, 209, 0) 100%
         );
-        //logo
-        a {
-            .logo {
-                width: 200px;
-            }
-        }
-        nav {
-            display: flex;
-            a {
-                display: flex;
-                margin-right: $sp3;
-                font-size: 16px;
-                color: $textColor_default;
-                img {
-                    display: none;
-                    width: 20px;
-                }
-                &.router-link-exact-active {
-                    color: $default_yellow;
-                    img {
-                        display: block;
-                    }
-                }
-            }
-        }
-        &_display {
-            display: block;
-        }
+        z-index: 9999;
     }
-}
-//header sm版
-.sm {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(
-        180deg,
-        $bgColor_default 59.9%,
-        rgba(254, 240, 209, 0) 100%
-    );
-    z-index: 9999;
+    //header phone版
+    .phone {
+        display: none;
+    }
 }

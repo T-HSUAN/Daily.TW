@@ -8,7 +8,7 @@
             <router-link to="/">
                 <img
                     class="logo"
-                    :src="require('../assets/img/logo.png')"
+                    :src="require('@/assets/img/layout/logo.png')"
                     alt="logo"
                 />
             </router-link>
@@ -19,7 +19,7 @@
                     :to="'/' + item.link"
                     @click="flagDisplay(item.id)"
                     ><img
-                        :src="require(`../assets/img/${item.img}.svg`)"
+                        :src="require(`@/assets/img/layout/${item.img}.svg`)"
                         alt="icon"
                         :style="{
                             display: item.display,
@@ -35,7 +35,7 @@
             <router-link to="/">
                 <img
                     class="logo"
-                    :src="require('../assets/img/small.svg')"
+                    :src="require('@/assets/img/layout/small.svg')"
                     alt="logo"
                 />
             </router-link>
@@ -46,7 +46,7 @@
                     :to="'/' + item.link"
                     @click="flagDisplay(item.id)"
                     ><img
-                        :src="require(`../assets/img/${item.img}.svg`)"
+                        :src="require(`@/assets/img/layout/${item.img}.svg`)"
                         alt="icon"
                         :style="{
                             display: item.display,
@@ -56,6 +56,18 @@
                 </router-link>
             </nav>
         </div>
+    </header>
+    <header class="phone">
+        <img
+            class="logo"
+            :src="require('@/assets/img/layout/small.svg')"
+            alt="logo"
+        />
+        <img
+            class="ham"
+            :src="require('@/assets/img/layout/hamburger.svg')"
+            alt="hamburger"
+        />
     </header>
 </template>
 <script>
