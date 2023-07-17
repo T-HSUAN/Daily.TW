@@ -21,7 +21,8 @@
 }
 @mixin sm_h1 {
     font-size: $sm_h1;
-}@mixin sm_h2 {
+}
+@mixin sm_h2 {
     font-size: $sm_h2;
 }
 @mixin sm_h3 {
@@ -38,4 +39,22 @@
 }
 @mixin sm_p {
     font-size: $sm_p;
+}
+//斷點
+
+$md: 768px;
+$xl: 1200px;
+
+// layout
+@mixin width($w) {
+    @if $w == 100 {
+        width: 100%;
+        @content;
+        //以下置中
+    } @else {
+        width: 100%;
+        max-width: $w + px;
+        margin: auto;
+        @content;
+    }
 }

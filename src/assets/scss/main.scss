@@ -40,27 +40,23 @@
     font-family: $fontFamily;
     color: $textColor_default;
     background: $bgColor_tint;
-    font-size: $xl_p;
+    @include xl_p;
 }
+
 h1 {
-    font-size: $xl_h1;
-    text-align: center;
+    @include xl_h1;
 }
 h2 {
-    font-size: $xl_h2;
-    text-align: center;
+    @include xl_h2;
 }
 h3 {
-    font-size: $xl_h3;
-    text-align: center;
+    @include xl_h3;
 }
 h4 {
-    font-size: $xl_h4;
-    text-align: center;
+    @include sm_h4;
 }
 h5 {
-    font-size: $xl_h5;
-    text-align: center;
+    @include xl_h5;
 }
 main {
     color: $textColor_default;

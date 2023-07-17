@@ -98,7 +98,7 @@ export default {
             ticket: {
                 style: require("../assets/img/ticket.png"),
             },
-            // 商品資料(僅在進入畫面時去取一次資料)
+            // 商品資料 需連接DB(僅在進入畫面時去取一次資料)
             ticketData: [
                 {
                     id: 1,
@@ -173,7 +173,7 @@ export default {
                     link: "/ticketinfo",
                 },
             ],
-            // 呈現的商品資料(針對ticketData來搜尋篩選)
+            // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
             // 購物車清單
             itemList: [],
@@ -247,24 +247,22 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/main.scss";
 .banner {
+    width: 100%;
     height: 400px;
     position: relative;
     img {
-        display: block;
-        width: 100%;
-        max-width: 1200px;
-        // max-height: 400px;
-        margin: auto;
-        // background: $mid_yellow;
-        color: $textColor_white;
-        font-size: $xl_h1;
+        @include width(1200) {
+            display: block;
+        }
     }
     h1 {
         position: absolute;
         top: 170px;
         left: 0;
         right: 400px;
-        margin: auto;
+        margin: 0 auto;
+        @include xl_h1;
+        text-align: center;
     }
 }
 .ticket_list {
