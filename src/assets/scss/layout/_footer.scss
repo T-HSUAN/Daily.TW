@@ -59,6 +59,7 @@ footer {
         p{
             @include sm_p;
             padding: 10px;
+            letter-spacing: 1px;
         }
     }
 }
