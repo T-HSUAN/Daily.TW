@@ -15,6 +15,7 @@ import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
 import ArrowUp from "@/components/ArrowUp.vue";
 
+
 export default {
   components: {
     MainHeader,

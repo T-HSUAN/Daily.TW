@@ -3,42 +3,43 @@ label{
     display: flex;
     flex-direction: column;
     letter-spacing: 0.6px;
-    input[type="text"],
-    input[type="password"]{
-        color: $textColor_default;
-        background-color: $textColor_white;
-        border-radius: 50px;
-        border: 2px solid $textColor_default;
-        outline: none;
+}
+input[type="text"],
+input[type="password"]{
+    color: $textColor_default;
+    background-color: $textColor_white;
+    border-radius: 50px;
+    border: 2px solid $textColor_default;
+    outline: none;
+    padding: 4px $sp2;
+    letter-spacing: 0.6px;
+    @include sm_p;
+    @media (min-width: 768px) {
+        @include xl_p;
         padding: $sp1 $sp2;
-        letter-spacing: 0.6px;
-        @include sm_p;
-        @media (min-width: 1200px) {
-            @include xl_p;
-        }
-        &::placeholder{
-            color: $textColor_tint;
-            transform: translateY(1px);
-        }
-        &:focus{
-            box-shadow: 0px 0px 5px 2px rgba(106, 93, 74, 0.25) inset;
-        }
     }
+    &::placeholder{
+        color: $textColor_tint;
+        transform: translateY(1px);
+    }
+    &:focus{
+        box-shadow: 0px 0px 5px 2px rgba(106, 93, 74, 0.25) inset;
+    }
+}
     
-    // warning status
-    input[type="text"].form_warning,
-    input[type="password"].form_warning{
-        border-color: $warningColor;
-        &:focus{
-            border-color: $textColor_default;
-        }
+// warning status
+input[type="text"].form_warning,
+input[type="password"].form_warning{
+    border-color: $warningColor;
+    &:focus{
+        border-color: $textColor_default;
     }
-    .form_warning + span{
-        color: $warningColor;
-        padding: $sp1 $sp2;
-        @include sm_p;
-        @media (min-width: 1200px) {
-            @include xl_p;
-        }
+}
+.form_warning + span{
+    color: $warningColor;
+    padding: $sp1 $sp2;
+    @include sm_p;
+    @media (min-width: 768px) {
+        @include xl_p;
     }
 }

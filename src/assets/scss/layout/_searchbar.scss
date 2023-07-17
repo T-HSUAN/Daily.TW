@@ -1,18 +1,32 @@
 .search_bar {
     width: 100%;
-    background-color: $bgColor_default;
     .multi_filter {
         display: flex;
-        justify-content: space-between;
+        gap: $sp2;
+        flex-direction: column;
+        align-items: center;
+        @media (min-width: 768px) {
+            gap: 0;
+            flex-direction: row;
+            justify-content: space-between;
+        }
         background-color: $bgColor_default;
         padding: $sp2;
         .order_select_wrap {
             display: flex;
             align-items: center;
             gap: $sp5;
+            order: 2;
+            @media (min-width: 768px) {
+                order: 0;
+            }
             .order_tool {
                 display: flex;
-                gap: $sp1;
+                align-items: center;
+                gap: 4px;
+                @media (min-width: 768px) {
+                    gap: $sp1;
+                }
                 .order_icon {
                     padding-top: 4px;
                 }
@@ -25,7 +39,7 @@
                     gap: 4px;
                     span {
                         @include sm_h5;
-                        @media (min-width: 1200px) {
+                        @media (min-width: 768px) {
                             @include xl_h5;
                         }
                     }
@@ -34,21 +48,25 @@
                     }
                 }
             }
-        }
-        .select_tool {
-            display: flex;
-            gap: $sp1;
-            select#select_filter {
-                // appearance: none;
-                @include sm_h5;
-                @media (min-width: 1200px) {
-                    @include xl_h5;
+            .select_tool {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                @media (min-width: 768px) {
+                    gap: $sp1;
                 }
-                color: $textColor_default;
-                border: 0;
-                background-color: $bgColor_default;
-                outline: none;
-                cursor: pointer;
+                select#select_filter {
+                    // appearance: none;
+                    @include sm_h5;
+                    @media (min-width: 768px) {
+                        @include xl_h5;
+                    }
+                    color: $textColor_default;
+                    border: 0;
+                    background-color: $bgColor_default;
+                    outline: none;
+                    cursor: pointer;
+                }
             }
         }
         .search_tool {
@@ -60,7 +78,10 @@
     .tags_filter {
         display: flex;
         flex-wrap: wrap;
-        gap: $sp1;
+        gap: 4px;
         padding: $sp2;
+        @media (min-width: 768px) {
+            gap: $sp1;
+        }
     }
 }
