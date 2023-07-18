@@ -1,44 +1,62 @@
 @mixin xl_h1 {
     font-size: $xl_h1;
+    font-weight: 900;
+    letter-spacing: 0.6px;
 }
 @mixin xl_h2 {
     font-size: $xl_h2;
+    font-weight: 900;
+    letter-spacing: 0.6px;
 }
 @mixin xl_h3 {
     font-size: $xl_h3;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.6px;
 }
 @mixin xl_h4 {
     font-size: $xl_h4;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.6px;
 }
 @mixin xl_h5 {
     font-size: $xl_h5;
-    font-weight: medium;
+    font-weight: 500;
+    letter-spacing: 0.6px;
 }
 @mixin xl_p {
     font-size: $xl_p;
+    font-weight: 400;
+    letter-spacing: 0.6px;
 }
 @mixin sm_h1 {
     font-size: $sm_h1;
+    font-weight: 900;
+    letter-spacing: 0.6px;
 }
 @mixin sm_h2 {
     font-size: $sm_h2;
+    font-weight: 900;
+    letter-spacing: 0.6px;
 }
 @mixin sm_h3 {
     font-size: $sm_h3;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.6px;
 }
 @mixin sm_h4 {
     font-size: $sm_h4;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 0.6px;
 }
 @mixin sm_h5 {
     font-size: $sm_h5;
-    font-weight: medium;
+    font-weight: 500;
+    letter-spacing: 0.6px;
 }
 @mixin sm_p {
     font-size: $sm_p;
+    font-weight: 400;
+    letter-spacing: 0.6px;
 }
 //斷點
 

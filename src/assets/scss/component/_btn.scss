@@ -2,7 +2,7 @@
 .btn {
     font-size: $sm_h5;
     padding: 8px 24px;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
     font-size: $xl_h5;
     padding: 8px 32px;
     }
@@ -18,6 +18,7 @@
     border-radius: 50px;
     border: 2px solid $textColor_default;
     background: $textColor_default;
+    cursor: pointer;
     &:hover {
         color: $textColor_default;
         background: $textColor_white;
@@ -39,7 +40,7 @@
     + span {
         @include sm_p;
         padding: 4px 12px;
-        @media (min-width: 1200px) {
+        @media (min-width: 768px) {
             @include xl_p;
             padding: 8px 20px;
         }
@@ -62,7 +63,7 @@
 // cancel button
 .cancel_btn {
     font-size: $sm_h5;    
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
         font-size: $xl_h5
     }
     text-decoration: underline;
