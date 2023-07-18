@@ -1,15 +1,80 @@
+
 footer {
+    box-sizing: border-box;
     width: 100%;
-    height: 300px;
+    padding: $sp2;
     background-color: $default_yellow;
     text-align: center;
     display: flex;
     flex-direction: column;
     margin: auto;
+    .footer_section{
+        border-bottom: 1px solid $textColor_default;
+        .footer_input{
+            border-radius: 50px;
+            border: 2px solid $textColor_default;
+            letter-spacing: 2px;
+            // color: $textColor_default;
+            text-indent: 10px;
+            height: 40px;
+        }
+    }
+    
+}
+//手機版
+@media screen and (max-width: 767px) {
+    .footer_section{
+        display: flex;
+        flex-direction: column-reverse;
+        .footer_block{
+            display: none;
+          }
+          .social_box{
+            display: none;
+          }
+          .social_box_md{
+            p{
+                @include sm_h5;
+                padding: $sp1 ;
+            }
+            .footer_input{
+                width: 308px;
+                margin: $sp1;
+            }
+            .social_icon{
+                display: flex;
+                width: 308px;
+                margin: auto;
+                justify-content: end;
+                a{
+                    
+                    color: $textColor_default;
+                    font-size: 25px;
+                    padding: 5px 3px;
+                    
+                }
+            }
+          }
+          
+    }
+    .footer_notice{
+        padding: $sp1;
+        width: 340px;
+        display: flex;
+        margin: auto;
+            p{
+                @include sm_p;
+                letter-spacing: 1px;
+            }
+          }
+}
+//電腦版
+@media screen and (min-width: 768px) {
     .footer_section {
         max-width: 1200px;
         display: flex;
         margin: auto;
+        padding: $sp2;
         .footer_block{
             display: flex;
             padding-right: 150px;
@@ -24,8 +89,8 @@ footer {
                     @include sm_p;
                     color: $textColor_default;
                     padding: 10px;
-                    
                 }
+                
             }
         }
         .social_box{
@@ -43,23 +108,19 @@ footer {
                     padding: 0 5px;
                     color: $textColor_default;
                 }
-               
+                   
             }
-            .footer_input{
-                border-radius: 50px;
-                border: 2px solid $textColor_default;
-                letter-spacing: 2px;
-                // color: $textColor_default;
-                text-indent: 10px;
-                height: 40px;
+            
+        }
+     }
+        .footer_notice{
+            p{
+                @include sm_p;
+                padding: $sp2;
+                letter-spacing: 1px;
             }
         }
-    }
-    .footer_notice{
-        p{
-            @include sm_p;
-            padding: 10px;
-            letter-spacing: 1px;
+        .social_box_md{
+            display: none;
         }
     }
-}
