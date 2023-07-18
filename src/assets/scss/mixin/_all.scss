@@ -1,8 +1,10 @@
 @mixin xl_h1 {
     font-size: $xl_h1;
+    font-weight: bold;
 }
 @mixin xl_h2 {
     font-size: $xl_h2;
+    font-weight: bold;
 }
 @mixin xl_h3 {
     font-size: $xl_h3;
@@ -21,9 +23,11 @@
 }
 @mixin sm_h1 {
     font-size: $sm_h1;
+    font-weight: bold;
 }
 @mixin sm_h2 {
     font-size: $sm_h2;
+    font-weight: bold;
 }
 @mixin sm_h3 {
     font-size: $sm_h3;
@@ -41,7 +45,7 @@
     font-size: $sm_p;
 }
 //斷點
-
+$sm: 767px;
 $md: 768px;
 $xl: 1200px;
 
