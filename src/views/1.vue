@@ -13,45 +13,33 @@
         <h1>{{ banner.title }}</h1>
     </div>
     <!-- 篩選bar -->
-    <!-- <searchbar /> -->
-    <div class="searchbox">
-        <label for="search">搜尋景點</label>
-        <input type="search" v-model="filter.searchText" />
-        <button @click="updateDisplay">搜尋</button>
-    </div>
+    <searchbar />
     <!-- 景點票券清單 -->
     <div class="ticket_list" v-if="ticketDisplay.length > 0">
         <div
-            class="ticket"
             v-for="(item, index) in ticketDisplay"
             :key="item.id"
+            class="ticket"
         >
+            <!-- :to="item.link" -->
             <img :src="item.img" alt="" />
             <h3>{{ item.Name }}</h3>
             <p>{{ item.tag }}</p>
-            <h4>NT$ {{ item.price_adultF }}</h4>
+            <p>NT$ {{ item.price_adultF }}</p>
             <button class="btn add_cart" @click="createItem(index)">
                 + 加入購物車
             </button>
         </div>
     </div>
-    <div v-else>查無結果</div>
+    <div v-else>Loading</div>
     <!-- 購物車清單 -->
     <!-- <router-link to="/cart"></router-link> -->
-    <!-- <img
+    <img
         class="cart_toggle"
         :src="require('@/assets/img/cart.png')"
         alt="cart"
         @click="toggleCart"
-    /> -->
-    <div class="cart">
-        <font-awesome-icon
-            icon="fa-solid fa-cart-shopping"
-            class="cart_toggle"
-            @click="toggleCart"
-        />
-        <div class="numTag">{{ itemList.length }}</div>
-    </div>
+    />
     <div class="cart_sidebar" v-show="togglePage">
         <h1>付款明細</h1>
         <!-- 購買內容 -->
@@ -119,12 +107,12 @@
     </div>
 </template>
 <script>
-// import searchbar from "@/components/Searchbar.vue";
+import searchbar from "@/components/Searchbar.vue";
 
 export default {
-    // components: {
-    //     searchbar,
-    // },
+    components: {
+        searchbar,
+    },
     data() {
         return {
             banner: {
@@ -264,28 +252,24 @@ export default {
         };
     },
     methods: {
-        //模糊搜尋
         updateDisplay() {
             if (this.filter.searchText === "") {
                 this.ticketDisplay = this.ticketData;
             } else {
-                const regexText = this.filter.searchText.split("").join(".*");
-                const regex = new RegExp(regexText, "i");
                 this.ticketDisplay = this.ticketData.filter((item) =>
-                    regex.test(item.Name)
+                    item.Name.includes(this.filter.searchText)
                 );
             }
         },
-
+        // 加入購物車
         createItem(index) {
-            let cartItem = this.ticketDisplay[index];
-            // 檢查商品是否已經存在於購物車中
-            if (!this.itemList.includes(cartItem)) {
-                this.itemList.push(cartItem);
-            } else {
-                window.alert(
-                    "票券已加入購物車，請點擊確認全票與優待票購買數量。"
-                );
+            if (index >= 0 && index < this.ticketData.length) {
+                const newItem = this.ticketData[index];
+                if (!this.itemList.includes(newItem)) {
+                    this.itemList.push(newItem);
+                } else {
+                    window.alert("該票券已存在於購物車中。");
+                }
             }
         },
         // 刪除項目
@@ -349,11 +333,6 @@ export default {
         text-align: center;
     }
 }
-.searchbox {
-    margin: auto;
-    display: flex;
-    justify-content: center;
-}
 .ticket_list {
     box-sizing: border-box;
     max-width: $sm;
@@ -389,38 +368,6 @@ export default {
             border: none;
             cursor: pointer;
         }
-    }
-}
-.cart {
-    width: 100px;
-    height: 100px;
-    position: fixed;
-    right: 0px;
-    top: 200px;
-    background: $textColor_default;
-    border-radius: 50% 0 0 50%;
-    .cart_toggle {
-        width: 45px;
-        height: 45px;
-        padding: $sp2;
-        position: absolute;
-        top: 10px;
-        left: $sp1;
-        background: $textColor_white;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-    .numTag {
-        display: inline-block;
-        width: 25px;
-        position: absolute;
-        right: $sp2;
-        top: 3px;
-        line-height: 25px;
-        text-align: center;
-        color: $textColor_white;
-        background: $warningColor;
-        border-radius: 50%;
     }
 }
 .cart_sidebar {
@@ -481,6 +428,12 @@ export default {
         &:hover {
             color: #a0a2d1;
         }
+    }
+    .cart_toggle {
+        position: fixed;
+        right: 30px;
+        bottom: 200px;
+        cursor: pointer;
     }
 }
 @media all and (min-width: $xl) {
@@ -556,6 +509,13 @@ export default {
                 color: #a0a2d1;
             }
         }
+    }
+
+    .cart_toggle {
+        position: fixed;
+        right: 30px;
+        bottom: 200px;
+        cursor: pointer;
     }
 }
 </style>
