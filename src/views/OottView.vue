@@ -13,11 +13,17 @@
             </div>
         </div>
     </div>
+    <OottCard />
 </template>
 
 <script>
 
+import OottCard from '@/components/OottCard.vue';
+
 export default {
+  components: {
+    OottCard,
+},
   data(){
     return {
     }
@@ -26,7 +32,8 @@ export default {
     
   },
   components:{
-  }
+    OottCard
+}
 }
 </script>
 <style lang="scss">
