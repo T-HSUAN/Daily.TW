@@ -35,10 +35,11 @@ header {
         .header_default {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: start;
             width: 100%;
             max-width: 1200px;
             height: 200px;
+            padding-top: $sp4;
             margin: 0 auto;
             //logo
             a {
@@ -52,6 +53,7 @@ header {
                 a {
                     display: flex;
                     margin-right: $sp5;
+                    padding-top: $sp2;
                     font-size: 20px;
                     color: $textColor_default;
                     img {
