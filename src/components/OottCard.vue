@@ -104,10 +104,6 @@
                             width: 100%;
                         }
                     }
-
-                    .oott_card_author_name{
-
-                    }
                 }
                 .oott_card_deco_footprint{
                     width: 32px;
