@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
+import OottPostView from "@/views/OottPostView.vue";
 
 const routesUser = [
     {
@@ -12,6 +13,12 @@ const routesUser = [
         name: "plan",
         component: () =>
             import(/* webpackChunkName: "plan" */ "@/views/PlanView.vue"),
+    },
+    {
+        path: "/plan/quiz",
+        name: "quiz",
+        component: () =>
+            import(/* webpackChunkName: "quiz" */ "@/views/PlanQuiz.vue"),
     },
     {
         path: "/trip",
@@ -67,6 +74,10 @@ const routesUser = [
         component: () =>
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
     },
+    {
+        path: '/OottPostView',
+        component: OottPostView,
+      },
 ];
 
 const router = createRouter({

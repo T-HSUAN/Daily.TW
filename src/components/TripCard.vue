@@ -1,9 +1,16 @@
 <template>
-    <div class="trip_default">
-        <img
-            :src="require('@/assets/img/trip_card_example.png')"
-            alt="景點照片"
-        />
+    <div class="trip_card_default">
+        <label class="bookmark">
+            <input type="checkbox" />
+            <font-awesome-icon icon="fa-solid fa-bookmark" />
+            <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
+        </label>
+        <div class="trip_card_img">
+            <img
+                :src= "tripCardPhoto"
+                alt="景點照片"
+            />
+        </div>
         <div class="trip_card_text">
             <span class="trip_card_tags">{{ tripCardTags }}</span>
             <h3 class="trip_card_title">{{tripCardTitle}}</h3>
@@ -19,24 +26,65 @@
 <script>
     export default {
         props:{
-            tripCardTags:String,
-            tripCardTitle:String,
-            tripCardDesc:String,
-            tripCardAuthor:String,
-            tripCardDate:String,
+            // 這裡是 TripCard 組件的屬性（props），用於接收外部傳遞的資料
+            tripCardPhoto: String, // 圖片的路徑
+            tripCardTags: String, // 標籤文字
+            tripCardTitle: String, // 標題文字
+            tripCardDesc: String, // 描述文字
+            tripCardAuthor: String, // 作者名稱
+            tripCardDate: String, // 日期
         }
     }
 </script>
 
 <style lang="scss">
-.trip_default{
+.trip_card_default{
     background-image: url('@/assets/img/layout/trip_card_default.svg');
-    background-position: center;  
-    width: 388px;
-    height: 521px;
-    img{
-        margin: 24px;
+    background-position: top;  
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 276px;
+    height: 332px;
+    @media (min-width: 768px) {
+        width: 388px;
+        height: 521px;
     }
+    position: relative;
+    .bookmark{
+        display: block;
+        position: absolute;
+        right: 32px;
+        top: -5px;
+        @media (min-width: 768px) {
+            right: 32px;
+        }
+        color: #6A5D4A;
+        font-size: 50px;
+        .front_bookmark{
+            position: absolute;
+            top: 6px;
+            right: 3px;
+            font-size: 42px;
+            color: #FEFFF5;
+            z-index: 5;
+        };
+        input{
+            display: none;
+            &:checked ~ .front_bookmark{
+                color:  var(--semantic-warning, #DB4918)
+            }
+        }
+    }
+    .trip_card_img{
+        padding: 24px;
+        @media (min-width: 768px) {
+            padding: 24px;
+        }
+        img{
+            width: 100%;
+        }
+    }
+
     .trip_card_text{
         margin: 24px;
         margin-top: 0;
@@ -85,3 +133,4 @@
     }
 }
 </style>
+

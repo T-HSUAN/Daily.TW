@@ -49,13 +49,18 @@
 <style lang="scss">
     @import "@/assets/scss/main.scss";
     .oott_default{
-        width: 311px;
+        width: 257px;
+        height: 440px;
         background-color: $default_yellow;
         border-radius: 10px;
         padding: 24px 16px 24px 16px;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        @media (min-width: 768px) {
+        width: 311px;
+        height: 522px;
+    }
         
         .oott_card_pic{
             width: 100%;
@@ -103,10 +108,6 @@
                         img{
                             width: 100%;
                         }
-                    }
-
-                    .oott_card_author_name{
-
                     }
                 }
                 .oott_card_deco_footprint{
