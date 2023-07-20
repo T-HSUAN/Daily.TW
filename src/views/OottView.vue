@@ -13,7 +13,6 @@
             </div>
         </div>
     </div>
-    <OottCard />
 </template>
 
 <script>
