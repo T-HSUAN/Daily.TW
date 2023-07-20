@@ -2,7 +2,7 @@
 <template>
 	<main>
 		<!-- 專屬旅著區塊 -->
-		<div class="plan">
+		<div class="planSec">
 			<div class="container">
 				<h1>一日行程 + 穿搭建議<br>規劃你的說走就走 !</h1>
 				<p>煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br>在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br>如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！</p>
@@ -14,7 +14,7 @@
 		</div>
 
 		<!-- 行程區塊 -->
-		<div class="trip">
+		<div class="tripSec">
 			<div class="bgCurve">
 				<img src="~@/assets/img/bgCurve_A.png" alt="">
 			</div>
@@ -27,16 +27,39 @@
 			</div>
 			<div class="content">
 				<div class="wrap">
-					<div class="tripTitle">台中文青一日遊</div>
-					<div class="tripCover"></div>
-					<div class="tripSpots"></div>
-					<div class="btn">馬上出發<font-awesome-icon icon="fa-solid fa-arrow-right" /></div>
+					<div class="head">
+						<div class="tripTitle">台中文青一日遊</div>
+						<div class="tripCover">
+							<img src="~@/assets/img/index_trip_cover_example.png" alt="">
+						</div>
+					</div>
+					<div class="info">
+						<div class="tripSpots">
+							<div class="spot spot1">
+								<img src="~@/assets/img/trip_flag_white.svg" alt="">
+								<h5>屯區藝文中心</h5>
+							</div>
+							<div class="spot spot2">
+								<img src="~@/assets/img/trip_flag_white.svg" alt="">
+								<h5>太平買菸場</h5>
+							</div>
+							<div class="spot spot3">
+								<img src="~@/assets/img/trip_flag_white.svg" alt="">
+								<h5>新盛綠川水岸廊道</h5>
+							</div>
+							<div class="spot spot4">
+								<img src="~@/assets/img/trip_flag_white.svg" alt="">
+								<h5>第二市場</h5>
+							</div>
+						</div>
+						<div class="btn">馬上出發<font-awesome-icon icon="fa-solid fa-arrow-right" /></div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- 穿搭區塊 -->
-		<div class="oott">
+		<div class="oottSec">
 			<div class="bgCurve">
 				<img src="~@/assets/img/bgCurve_B.png" alt="">
 			</div>
@@ -51,14 +74,20 @@
 			</div>
 			<div class="content">
 				<div class="wrap">
-					
+					<div class="oottCard">
+
+					</div>
 				</div>
+				<div class="panel">
+					<div class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-left" /></div>
+					<div class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-right" /></div>
+				</div>
+				<div class="btn">查看更多</div>
 			</div>
-			<div class="btn">查看更多</div>
 		</div>
 
 		<!-- 票券區塊 -->
-		<div class="ticket">
+		<div class="ticketSec">
 			<div class="bgCurve">
 				<img src="~@/assets/img/bgCurve_A.png" alt="">
 			</div>
@@ -75,8 +104,8 @@
 				<div class="wrap">
 					
 				</div>
+				<div class="btn">查看更多</div>
 			</div>
-			<div class="btn">查看更多</div>
 		</div>
 	</main>
 </template>
@@ -128,10 +157,11 @@ export default {
 		}
 
 // 專屬旅著區塊
-.plan{
+.planSec{
 	padding-top: 120px;
 	padding-bottom: 184px;
 	background-color: $bgColor_default;
+	overflow: hidden;
 	
 	.container{
 		position: relative;
@@ -164,7 +194,7 @@ export default {
 }
 
 // 行程區塊
-.trip{
+.tripSec{
 	position: relative;
 	padding: 184px 0;
 
@@ -173,13 +203,49 @@ export default {
 		max-width: 1200px;
 		display: flex;
 		align-items: center;
-
 		
+	}
+
+	.content{
+		.wrap{
+			margin: 0 auto;
+			width: 80%;
+			display: flex;
+			align-items: center;
+			.head{
+				position: relative;
+				.tripTitle{
+					position: absolute;
+					padding: 8px 32px;
+					display: inline-block;
+					font-family: Shippori Mincho;
+					font-size: 32px;
+					font-weight: 800;
+					letter-spacing: 0.06em;
+				}
+				.tripCover{
+					width: 60%;
+					img{
+						width: 100%;
+					}
+				}
+			}
+			.info{
+				.tripSpots{
+					.spot{
+						display: flex;
+					}
+					h5{
+						font-weight: 400;
+					}
+				}
+			}
+		}
 	}
 }
 
 // 穿搭區塊
-.oott{
+.oottSec{
 	position: relative;
 	padding: 184px 0;
 	background-color: $bgColor_default;
@@ -193,10 +259,25 @@ export default {
 		
 	}
 
+	.content{
+		margin: 0 auto;
+		max-width: 1200px;
+		text-align: center;
+
+		.wrap{
+
+		}
+		.panel{
+			display: flex;
+			justify-content: center;
+			gap: 64px;
+		}
+	}
+
 }
 
 // 票券區塊
-.ticket{
+.ticketSec{
 	position: relative;
 	padding: 184px 0;
 
@@ -207,6 +288,12 @@ export default {
 		align-items: center;
 
 		
+	}
+
+	.content{
+		margin: 0 auto;
+		max-width: 1200px;
+		text-align: center;
 	}
 
 }
