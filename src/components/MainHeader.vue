@@ -10,6 +10,7 @@
                     class="logo"
                     :src="require('@/assets/img/layout/logo.png')"
                     alt="logo"
+                    @click="homeClick()"
                 />
             </router-link>
             <nav>
@@ -131,6 +132,11 @@ export default {
     methods: {
         handleScroll() {
             this.showHeader = window.scrollY > 0;
+        },
+        homeClick() {
+            this.menu.forEach((item) => {
+                item.display = "none";
+            });
         },
         flagDisplay(itemId) {
             this.menu.forEach((item) => {

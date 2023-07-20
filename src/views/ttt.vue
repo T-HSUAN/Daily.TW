@@ -23,22 +23,17 @@
     <!-- 景點票券清單 -->
     <div class="ticket_list" v-if="ticketDisplay.length > 0">
         <div
-            class="ticket_card"
+            class="ticket"
             v-for="(item, index) in ticketDisplay"
             :key="item.id"
         >
-            <Ticket
-                :ticketTitle="item.Name"
-                :ticketTags="item.tag"
-                :originalPrice="item.price_adultO"
-                :FinalPrice="item.price_adultF"
-            >
-            </Ticket>
-            <div class="add_cart">
-                <button class="btn" @click="createItem(index)">
-                    + 加入購物車
-                </button>
-            </div>
+            <img :src="item.img" alt="" />
+            <h3>{{ item.Name }}</h3>
+            <p>{{ item.tag }}</p>
+            <h4>NT$ {{ item.price_adultF }}</h4>
+            <button class="btn add_cart" @click="createItem(index)">
+                + 加入購物車
+            </button>
         </div>
     </div>
     <div v-else>查無結果</div>
@@ -124,12 +119,10 @@
 </template>
 <script>
 import searchbar from "@/components/Searchbar_ticket.vue";
-import Ticket from "@/components/TicketVertical.vue";
 import ticketData from "@/router/ticketData.js";
 export default {
     components: {
         searchbar,
-        Ticket,
     },
     data() {
         return {
@@ -145,7 +138,7 @@ export default {
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
             },
-            // 商品資料(僅在進入畫面時去取一次資料)
+            // 商品資料 需連接DB(僅在進入畫面時去取一次資料)
             ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             // ticketDisplay: ticketDisplay,

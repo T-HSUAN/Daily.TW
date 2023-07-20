@@ -8,9 +8,6 @@
                 <span>{{ originalPrice }}</span>
                 <span>{{ FinalPrice }}</span>
             </div>
-            <button class="btn add_cart" @click="createItem(index)">
-                + 加入購物車
-            </button>
         </div>
     </div>
 </template>
