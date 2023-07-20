@@ -7,7 +7,7 @@
         </label>
         <div class="trip_card_img">
             <img
-                :src="require('../assets/img/trip_card_example.png')"
+                :src= "tripCardPhoto"
                 alt="景點照片"
             />
         </div>
@@ -26,11 +26,13 @@
 <script>
     export default {
         props:{
-            tripCardTags:String,
-            tripCardTitle:String,
-            tripCardDesc:String,
-            tripCardAuthor:String,
-            tripCardDate:String,
+            // 這裡是 TripCard 組件的屬性（props），用於接收外部傳遞的資料
+            tripCardPhoto: String, // 圖片的路徑
+            tripCardTags: String, // 標籤文字
+            tripCardTitle: String, // 標題文字
+            tripCardDesc: String, // 描述文字
+            tripCardAuthor: String, // 作者名稱
+            tripCardDate: String, // 日期
         }
     }
 </script>
@@ -69,7 +71,7 @@
         input{
             display: none;
             &:checked ~ .front_bookmark{
-                color: #6A5D4A;
+                color:  var(--semantic-warning, #DB4918)
             }
         }
     }
@@ -131,3 +133,4 @@
     }
 }
 </style>
+

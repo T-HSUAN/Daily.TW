@@ -60,7 +60,7 @@
     }
 }
 
-// cancel button
+// 取消按鈕
 .cancel_btn {
     color: $textColor_default;
     @include sm_h5;   
@@ -72,8 +72,7 @@
     font-family: $fontFamily;
 }
 
-// Toggle Switch
-/* The switch - the box around the slider */
+// 開關
 .switch {
     position: relative;
     display: inline-block;
@@ -81,14 +80,13 @@
     height: 34px;
 }
 
-/* Hide default HTML checkbox */
+
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
 .toggle_slider {
     position: absolute;
     cursor: pointer;
@@ -127,7 +125,6 @@ input:checked + .toggle_slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .toggle_slider.round {
     border-radius: 34px;
 }
