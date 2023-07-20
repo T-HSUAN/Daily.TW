@@ -37,7 +37,7 @@
 
 <style lang="scss">
 .trip_card_default{
-    background-image: url('@/assets/img/layout/trip_card_default.png');
+    background-image: url('@/assets/img/layout/trip_card_default.svg');
     background-position: top;  
     background-size: cover;
     background-repeat: no-repeat;
