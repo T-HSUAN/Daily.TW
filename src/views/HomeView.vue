@@ -2,7 +2,7 @@
 <template>
 	<main>
 		<!-- 專屬旅著區塊 -->
-		<div class="planSec">
+		<section class="plan">
 			<div class="container">
 				<h1>一日行程 + 穿搭建議<br>規劃你的說走就走 !</h1>
 				<p>煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br>在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br>如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！</p>
@@ -11,10 +11,10 @@
 					<img src="~@/assets/img/index_plan_cover_example.png" alt="">
 				</div>
 			</div>
-		</div>
+		</section>
 
 		<!-- 行程區塊 -->
-		<div class="tripSec">
+		<section class="trip">
 			<div class="bgCurve">
 				<img src="~@/assets/img/bgCurve_A.png" alt="">
 			</div>
@@ -56,10 +56,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		<!-- 穿搭區塊 -->
-		<div class="oottSec">
+		<section class="oott">
 			<div class="bgCurve">
 				<img src="~@/assets/img/bgCurve_B.png" alt="">
 			</div>
@@ -84,10 +84,11 @@
 				</div>
 				<div class="btn">查看更多</div>
 			</div>
-		</div>
+			<div class="btn">查看更多</div>
+		</section>
 
 		<!-- 票券區塊 -->
-		<div class="ticketSec">
+		<section class="ticket">
 			<div class="bgCurve">
 				<img src="~@/assets/img/bgCurve_A.png" alt="">
 			</div>
@@ -106,7 +107,8 @@
 				</div>
 				<div class="btn">查看更多</div>
 			</div>
-		</div>
+			<div class="btn">查看更多</div>
+		</section>
 	</main>
 </template>
 
