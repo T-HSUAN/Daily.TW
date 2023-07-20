@@ -13,7 +13,6 @@
         <h1>{{ banner.title }}</h1>
     </div>
     <!-- <searchbar /> -->
-    <!-- <searchbar /> -->
     <div class="searchbox">
         <label for="search">搜尋景點</label>
         <input type="search" v-model="filter.searchText" />
@@ -123,7 +122,7 @@
     </div>
 </template>
 <script>
-import searchbar from "@/components/Searchbar_ticket.vue";
+import searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import ticketData from "@/router/ticketData.js";
 export default {
