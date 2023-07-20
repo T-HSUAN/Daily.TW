@@ -62,12 +62,14 @@
 
 // cancel button
 .cancel_btn {
-    font-size: $sm_h5;    
+    color: $textColor_default;
+    @include sm_h5;   
     @media (min-width: 768px) {
-        font-size: $xl_h5
+        @include xl_h5;
     }
     text-decoration: underline;
     cursor: pointer;
+    font-family: $fontFamily;
 }
 
 // Toggle Switch
