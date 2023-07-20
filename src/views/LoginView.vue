@@ -9,8 +9,8 @@
             </div>
             <div class="login" :class="{ active: isActive }">
                 <h2>{{ item.title }}</h2>
-                <div class="login_option"><img :src="require('@/assets/img/LINE.png')" alt="icon"><p>使用LINE登入</p></div>
-                <div class="login_option"><img :src="require('@/assets/img/FB.png')" alt="icon"><p>使用FACEBOOK登入</p></div>
+                <div class="login_way"><img :src="require('@/assets/img/LINE.png')" alt="icon"><p>使用LINE登入</p></div>
+                <div class="login_way"><img :src="require('@/assets/img/FB.png')" alt="icon"><p>使用FACEBOOK登入</p></div>
                 <label for="email">Email</label>
                 <input type="text" v-model="email" placeholder='請輸入EMAIL'>
                 <label for="psw">密碼</label>
@@ -25,7 +25,6 @@
                 <div v-show="item.tab == 2" class="space"></div>
                 <div class="cancel_group">
                     <router-link to="./login" v-if="item.tab == 1" @click="handleClick">還不是會員?</router-link>
-                    <!-- <router-link to="./login" v-else v-if="item.tab == 2" @click="handleClick">取消</router-link> -->
                     <div v-else v-if="item.tab == 2" @click="handleClick">取消</div>
                     <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
                     <router-link v-if="item.tab == 2" to="./register" class="btn">註冊</router-link>
@@ -95,6 +94,7 @@ export default {
 
 <style lang="scss" scoped>
     @import '@/assets/scss/main.scss';
+    //手機板
     .canvas{
         width: 83%;
         background-color: $textColor_tint;
@@ -133,7 +133,7 @@ export default {
                 line-height: 150%; /* 42px */
                 letter-spacing: 0.84px;
             }
-            .login_option{
+            .login_way{
                 width: 100%;
                 box-sizing: border-box;
                 padding: $sp1 $sp2;
@@ -235,7 +235,8 @@ export default {
         }
         
     }
-    @media all and (min-width: $md){//768
+    //平板
+    @media all and (min-width: $md){
         .canvas{
             max-width: 1000px;
             display: flex;
@@ -254,7 +255,7 @@ export default {
                 h2{
                     letter-spacing: 2px;
                 }
-                .login_option{
+                .login_way{
                     width: 80%;               
                 }
                 label{
@@ -315,13 +316,14 @@ export default {
             }
         }
     }
-    @media all and (min-width: $xl){//1200
+    //桌機板
+    @media all and (min-width: $xl){
         .canvas{
             .login{
                 h2{
                     font-size: $xl_h2;
                 }
-                .login_option{
+                .login_way{
                     width: 410px;
                     padding: $sp2 $sp3;
                     p{
@@ -371,8 +373,7 @@ export default {
                 }  
             }
         }
-    }
-    
+    } 
 </style>
 
 

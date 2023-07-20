@@ -35,11 +35,11 @@
                     <a href=""><font-awesome-icon icon="fa-brands fa-instagram" /></a>
                     <a href=""><font-awesome-icon icon="fa-brands fa-square-facebook" /></a>
                 </div>
-                <input class="footer_input" type="search" v-model="email" placeholder='請輸入-email'>
+                <input class="footer_input" type="text" v-model="email" placeholder='請輸入-email'>
             </div>
             <div class="social_box_md">
                 <p>獲得最新行程&穿搭靈感</p>
-                <input class="footer_input" type="search" v-model="email" placeholder='請輸入-email'>
+                <input class="footer_input" type="text" v-model="email" placeholder='請輸入-email'>
                 <div class="social_icon">
                     <a href="#"><font-awesome-icon icon="fa-brands fa-line" /></a>
                     <a href=""><font-awesome-icon icon="fa-brands fa-instagram" /></a>
@@ -54,7 +54,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            email:''
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
