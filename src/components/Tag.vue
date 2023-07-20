@@ -18,9 +18,7 @@ export default {
 </script>
 
 <!-- 使用方法-->
-<!-- 在 template 裡放 <Tag :tagTexts="你想要參照的key"></Tag> -->
-<!-- 改變單個標籤的內容 -->
-<!-- 在 data() return 的地方確認有 "你想要參照的key":"你想要參照的value" -->
+<!-- 建議複製 template 跟套用scss style 就好，因為每個 tag 可能會連到不同的資料庫表單。  -->
 
 <style>
 label {

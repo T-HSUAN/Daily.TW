@@ -2,9 +2,7 @@
     <MainHeader></MainHeader>
     <main>
       <router-view />
-
     </main>
-
     <ArrowUp></ArrowUp>
     <MainFooter></MainFooter>
 </template>
@@ -16,12 +14,18 @@ import MainFooter from "@/components/MainFooter.vue";
 import ArrowUp from "@/components/ArrowUp.vue";
 
 
+
 export default {
   components: {
     MainHeader,
     MainFooter,
     ArrowUp,
+
 },
+data() {
+  return {
+    }
+  }
 };
 </script>
 
@@ -29,4 +33,7 @@ export default {
 // @import url('./assets/scss/main.scss');
 // @import './assets/scss/main.scss';
 @import "@/assets/scss/main.scss";
+.ticketCard{
+  margin: 4px;
+}
 </style>
