@@ -132,3 +132,51 @@ header {
         display: none;
     }
 }
+
+ /* 新增側邊欄樣式 */
+ aside {
+    width: 250px;
+    height: 600px;
+    // border: 1px solid $textColor_default;
+    flex-direction: column;
+    border-radius: 50px 0 0 0;
+    box-shadow:  0 1px 3px 3px #0005;
+    background-color:$tint_yellow;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: left .8s ease-in-out;
+    box-sizing: border-box;
+  }
+  
+  .show-sidebar {
+    right: 0;
+    z-index: 99;
+    .ham_close{
+        width: 25px;
+        padding: 5px;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        border: 1px solid $textColor_default;
+        border-radius: 50px;
+    }
+    nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 75px;
+        a{
+            font-size: $sm_h4;
+            color: $textColor_default;
+            padding: 10px;
+            display: flex;
+            text-align: center;
+        }
+    }    
+    .sidebar_logo{
+        padding-top: $sp9;
+        display: flex;
+        margin: auto;
+    }
+  }

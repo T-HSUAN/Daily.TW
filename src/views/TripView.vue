@@ -9,7 +9,7 @@
     <!-- 熱門行程 -->
     <section class="topTrip">
         <div class="bgCurve">
-            <img src="~@/assets/img/bgCurve_A.png" alt="">
+            <img src="@/assets/img/bgCurve_A.png" alt="">
         </div>
         <div class="title">
             <div class="duckDeco">
