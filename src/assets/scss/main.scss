@@ -39,7 +39,7 @@
 #app {
     font-family: $fontFamily;
     color: $textColor_default;
-    background: $bgColor_tint;
+    // background: $bgColor_tint;
     @include sm_p;
 }
 
