@@ -1,11 +1,84 @@
 <!-- home的內容區塊 -->
 <template>
-  <main>
-    <div class="home">
-      <HelloWorld :sectionTitle="title" sectionBg="defalt"/>
-    </div>
-  </main>
-  <!-- <router-view/> -->
+	<main>
+		<!-- 專屬旅著區塊 -->
+		<div class="plan">
+			<div class="container">
+				<h1>一日行程 + 穿搭建議<br>規劃你的說走就走 !</h1>
+				<p>煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br>在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br>如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！</p>
+				<div class="btn">立即體驗<font-awesome-icon icon="fa-solid fa-arrow-right" /></div>
+				<div class="coverPic">
+					<img src="~@/assets/img/index_plan_cover_example.png" alt="">
+				</div>
+			</div>
+		</div>
+
+		<!-- 行程區塊 -->
+		<div class="trip">
+			<div class="bgCurve">
+				<img src="~@/assets/img/bgCurve_A.png" alt="">
+			</div>
+			<div class="title">
+				<div class="duckDeco">
+					<img src="~@/assets/img/duck_trace.png" alt="" class="trace">
+					<img src="~@/assets/img/duck_green.png" alt="" class="duck">
+				</div>
+				<h2>精選出遊特輯</h2>
+			</div>
+			<div class="content">
+				<div class="wrap">
+					<div class="tripTitle">台中文青一日遊</div>
+					<div class="tripCover"></div>
+					<div class="tripSpots"></div>
+					<div class="btn">馬上出發<font-awesome-icon icon="fa-solid fa-arrow-right" /></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 穿搭區塊 -->
+		<div class="oott">
+			<div class="bgCurve">
+				<img src="~@/assets/img/bgCurve_B.png" alt="">
+			</div>
+			<div class="title">
+				<div class="duck">
+					<div class="duckDeco">
+						<img src="~@/assets/img/duck_trace.png" alt="" class="trace">
+						<img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
+					</div>
+				</div>
+				<h2>人氣穿搭特輯</h2>
+			</div>
+			<div class="content">
+				<div class="wrap">
+					
+				</div>
+			</div>
+			<div class="btn">查看更多</div>
+		</div>
+
+		<!-- 票券區塊 -->
+		<div class="ticket">
+			<div class="bgCurve">
+				<img src="~@/assets/img/bgCurve_A.png" alt="">
+			</div>
+			<div class="title">
+				<div class="duck">
+					<div class="duckDeco">
+						<img src="~@/assets/img/duck_trace.png" alt="" class="trace">
+						<img src="~@/assets/img/duck_blue.png" alt="" class="duck">
+					</div>
+				</div>
+				<h2>人氣穿搭特輯</h2>
+			</div>
+			<div class="content">
+				<div class="wrap">
+					
+				</div>
+			</div>
+			<div class="btn">查看更多</div>
+		</div>
+	</main>
 </template>
 
 <script>
@@ -13,13 +86,129 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  components: {
-    HelloWorld
-  },
-  data(){
-    return {
-       title: '歡迎光臨日日旅著'
-    }
-  }
+	components: {
+		HelloWorld
+	},
+	data(){
+		return {
+			title: '歡迎光臨日日旅著'
+		}
+	}
 }
 </script>
+
+<style lang="scss">
+@import "@/assets/scss/main.scss";
+
+// 全頁設定
+.bgCurve{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 96px;
+
+	img{
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.duckDeco{
+			position: relative;
+
+			.trace{
+				width: 192px;
+				position: absolute;
+				left: -160px;
+				bottom: -8px;
+			}
+			.duck{
+				width: 120px;
+			}
+		}
+
+// 專屬旅著區塊
+.plan{
+	padding-top: 120px;
+	padding-bottom: 184px;
+	background-color: $bgColor_default;
+	
+	.container{
+		position: relative;
+		margin: 0 auto;
+		max-width: 1200px;
+
+		h1{
+			color: $default_yellow;
+			line-height: 140%;
+		}
+	
+		p{
+			margin-top: 24px;
+			margin-bottom: 48px;
+			line-height: 165%;
+		}
+	
+		.coverPic{
+			position: absolute;
+			right: -20%;
+			top: -100px;
+			width: 640px;
+	
+			img{
+				width: 100%;
+			}
+		}
+	}
+
+}
+
+// 行程區塊
+.trip{
+	position: relative;
+	padding: 184px 0;
+
+	.title{
+		margin: 0 auto;
+		max-width: 1200px;
+		display: flex;
+		align-items: center;
+
+		
+	}
+}
+
+// 穿搭區塊
+.oott{
+	position: relative;
+	padding: 184px 0;
+	background-color: $bgColor_default;
+
+	.title{
+		margin: 0 auto;
+		max-width: 1200px;
+		display: flex;
+		align-items: center;
+
+		
+	}
+
+}
+
+// 票券區塊
+.ticket{
+	position: relative;
+	padding: 184px 0;
+
+	.title{
+		margin: 0 auto;
+		max-width: 1200px;
+		display: flex;
+		align-items: center;
+
+		
+	}
+
+}
+
+</style>
