@@ -79,12 +79,11 @@
 					</div>
 				</div>
 				<div class="panel">
-					<div class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-left" /></div>
-					<div class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-right" /></div>
+					<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-left" /></button>
+					<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-right" /></button>
 				</div>
 				<div class="btn">查看更多</div>
 			</div>
-			<div class="btn">查看更多</div>
 		</section>
 
 		<!-- 票券區塊 -->
@@ -107,7 +106,6 @@
 				</div>
 				<div class="btn">查看更多</div>
 			</div>
-			<div class="btn">查看更多</div>
 		</section>
 	</main>
 </template>
@@ -132,6 +130,10 @@ export default {
 @import "@/assets/scss/main.scss";
 
 // 全頁設定
+#app{
+	background-color: $bgColor_default;
+}
+
 .bgCurve{
 	position: absolute;
 	top: 0;
@@ -159,7 +161,7 @@ export default {
 		}
 
 // 專屬旅著區塊
-.planSec{
+.plan{
 	padding-top: 120px;
 	padding-bottom: 184px;
 	background-color: $bgColor_default;
@@ -196,7 +198,7 @@ export default {
 }
 
 // 行程區塊
-.tripSec{
+.trip{
 	position: relative;
 	padding: 184px 0;
 
@@ -247,7 +249,7 @@ export default {
 }
 
 // 穿搭區塊
-.oottSec{
+.oott{
 	position: relative;
 	padding: 184px 0;
 	background-color: $bgColor_default;
@@ -279,7 +281,7 @@ export default {
 }
 
 // 票券區塊
-.ticketSec{
+.ticket{
 	position: relative;
 	padding: 184px 0;
 
