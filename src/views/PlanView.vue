@@ -33,7 +33,9 @@
                 </div>
             </div>
         </div>
-        <div class="btn">開始答題</div>
+        <router-link to="/plan/quiz">
+            <div class="btn">開始答題</div>
+        </router-link>
         <div class="banner_deco">
             <div class="plan_duck">
                 <img src="~@/assets/img/layout/plan_duck.png" alt="">
@@ -68,6 +70,9 @@
     background-color: $bgColor_default;
     padding-top: $sp4;
     overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
     background-image: url("~@/assets/img/layout/plan_bg_sm.png");
     @media (min-width: $md){
         background-image: url("~@/assets/img/layout/plan_bg_xl.png");
@@ -261,7 +266,7 @@
         .plan_duck{
             padding-left: $sp1;
             position: absolute;
-            bottom: 30%;
+            bottom: 20%;
             left: 0;
             width: 100%;
             img{
@@ -273,6 +278,7 @@
         .plan_grass{
             width: 100%;
             position: relative;
+            top: 4px;
             img{
                 width: 100%;
                 vertical-align: bottom;
