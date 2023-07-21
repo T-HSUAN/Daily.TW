@@ -1,92 +1,97 @@
-.ticketVertical_container{
-    background-image: url('@/assets/img/layout/ticketVertical.svg');
-    background-position: top;  
+.ticketVertical_container {
+    background-image: url("@/assets/img/layout/ticketVertical.svg");
+    background-position: top;
     background-size: cover;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     width: 258px;
     height: 500px;
-    @media (min-width : 768px) {
-        width: 275px;
+    @media (min-width: 768px) {
+        width: 276px;
         height: 533px;
     }
 
-    
-    img{
+    img {
         width: 100%;
         height: 165px;
         margin: 38px 0px;
-    @media (min-width : 768px) {
-        height: 177px;
-        margin: 41px 0px;
+        @media (min-width: 768px) {
+            height: 177px;
+            margin: 41px 0px;
         }
     }
-    .ticket_text{
+    .ticket_text {
         display: flex;
         flex-direction: column;
         margin: 20px 21px;
-        height: 180px;
-        @media (min-width : 768px) {
+
+        @media (min-width: 768px) {
             margin: 9px 23px;
+            height: 170px;
         }
-        h3{
+        h3 {
             @include sm_h3;
             color: $textColor_white;
             letter-spacing: 0.72px;
             line-height: 150%;
-            @media (min-width : 768px) {
+            @media (min-width: 768px) {
                 @include xl_h3;
             }
         }
-    
-        .ticket_tags{
+
+        .ticket_location {
             display: inline-block;
             color: $tint_blue;
-            font-family: Noto Sans CJK TC;
             font-size: 14px;
             margin-top: 8px;
             flex-grow: 1;
-            @media (min-width : 768px) {
+            @media (min-width: 768px) {
                 font-size: 16px;
                 margin-top: 10px;
             }
-            font-weight: 300;
-            letter-spacing: 0.32px;
-        }
-    
-        .ticket_price{
-            display: flex;
-            align-content: center;
-            flex-grow: 0;
-            @media (min-width : 768px) {
-                margin-bottom: 53px;
+            .ticket_tags {
+                font-weight: 300;
+                letter-spacing: 0.32px;
             }
-            justify-content: center; 
-            span{            
+        }
+        .ticket_addr {
+            display: none;
+        }
+
+        .ticket_price {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            margin-top: $sp6;
+            flex-grow: 0;
+            @media (min-width: 768px) {
+                margin-top: $sp5;
+            }
+            span {
                 color: $textColor_white;
                 text-align: right;
                 font-family: Noto Sans TC;
                 font-size: 28px;
                 line-height: 150%;
-                @media (min-width : 768px) {
+                @media (min-width: 768px) {
                     font-size: 36px;
                 }
                 font-weight: 900;
                 flex-grow: 1;
             }
 
-            span:first-child{
+            span:first-child {
                 color: $tint_blue;
                 font-family: Noto Sans TC;
                 font-size: 14px;
                 line-height: 28px;
+                text-align: left;
                 align-self: center;
-                @media (min-width : 768px) {
+                @media (min-width: 768px) {
                     font-size: 16px;
                 }
                 font-weight: 900;
                 text-decoration-line: line-through;
             }
-
         }
     }
 }
