@@ -135,11 +135,13 @@
     </div>
     <div class="btn_wrap">
         <button class="cancel_btn">回到上一題</button>
-        <button class="btn">
-            看結果
-            <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
-            <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
-        </button>
+        <router-link to="/plan/quiz/result">
+            <button class="btn">
+                看結果
+                <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
+                <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
+            </button>
+        </router-link>
     </div>
 </div>
 </template>
