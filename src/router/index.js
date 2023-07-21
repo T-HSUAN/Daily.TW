@@ -67,6 +67,7 @@ const routesUser = [
         component: () =>
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
     },
+    
 ];
 
 const router = createRouter({

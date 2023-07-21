@@ -9,12 +9,25 @@
             </div>
             <div class="login" :class="{ active: isActive }">
                 <h2>{{ item.title }}</h2>
-                <div class="login_way"><img :src="require('@/assets/img/LINE.png')" alt="icon"><p>使用LINE登入</p></div>
-                <div class="login_way"><img :src="require('@/assets/img/FB.png')" alt="icon"><p>使用FACEBOOK登入</p></div>
-                <label for="email">Email</label>
-                <input type="text" v-model="email" placeholder='請輸入EMAIL'>
+                <div class="login_way">
+                    <img :src="require('@/assets/img/LINE.png')" alt="icon">
+                    <p>使用LINE登入</p>
+                </div>
+                <div class="login_way">
+                    <img :src="require('@/assets/img/FB.png')" alt="icon">
+                    <p>使用FACEBOOK登入</p>
+                </div>
+                <label for="email">Email
+                    <input type="text" 
+                        v-model="email"
+                        @input="validateEmail" 
+                        placeholder='請輸入EMAIL'>
+                    <div v-if="showError" class="error_message">請輸入有效的...@gmail.com格式</div>
+                </label>
                 <label for="psw">密碼</label>
-                <input type="password" v-model="psw" placeholder='請輸入密碼 (英數混合6-12碼)'>
+                <input type="password" 
+                    v-model="psw" 
+                    placeholder='請輸入密碼 (英數混合6-12碼)'>
                 <div class="login_action">
                     <label for="remember" v-if="item.tab == 1">
                     <input type="checkbox" name="remember" id="remember" >
@@ -24,11 +37,32 @@
                 </div>
                 <div v-show="item.tab == 2" class="space"></div>
                 <div class="cancel_group">
-                    <router-link to="./login" v-if="item.tab == 1" @click="handleClick">還不是會員?</router-link>
-                    <div v-else v-if="item.tab == 2" @click="handleClick">取消</div>
+                    <router-link to="./login" 
+                        v-if="item.tab == 1" 
+                        @click="handleClick"
+                        class="cancel_btn">
+                        還不是會員?
+                    </router-link>
+                    <router-link to="./login" 
+                        v-if="item.tab == 2" 
+                        @click="handleClick"
+                        class="cancel_btn">
+                        取消
+                    </router-link>
                     <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
-                    <router-link v-if="item.tab == 2" to="./register" class="btn">註冊</router-link>
-                    <router-link v-else v-if="item.tab == 1" to="./login" @click="login" class="btn">登入</router-link>
+                    <router-link 
+                        v-if="item.tab == 2" 
+                        to="./register" 
+                        class="btn">
+                        註冊
+                    </router-link>
+                    <router-link 
+                        v-else v-if="item.tab == 1" 
+                        to="./login" 
+                        @click="login" 
+                        class="btn">
+                        登入
+                    </router-link>
                 </div>
             </div>
             <div class="register" :class="{ active: isActive }">
@@ -38,7 +72,13 @@
                     <img src="@/assets/img/joinus_md.png" alt="joinus">
                 </div>
                 <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
-                <router-link v-if="item.tab == 1" to="./login" @click="handleClick" class="btn" >註冊</router-link>
+                <router-link 
+                    v-if="item.tab == 1" 
+                    to="./login" 
+                    @click="handleClick" 
+                    class="btn" >
+                    註冊
+                </router-link>
             </div>       
         </div>
     </div>
@@ -46,47 +86,58 @@
 </template>
 <script>
 export default {
-  data(){
-    return {
-      tabActive: 1,
-      tabItems:{
-        1:{
-            title: '歡迎登入',
-            subtitle:'還不是會員?',
-            tab: 1,
-            goNext: 2,
-            btn:'登入'
-        },
-        2:{
-            title: '加入旅著',
-            subtitle:'Welcome!',
-            tab: 2,
-            goNext:1,
-            btn:'註冊'
-        },
-      },
-      email: '',
-      psw:'',
-      isActive: false
-    }
-  },
-  methods: {
-        login(){
-          if(this.email === 'test' && this.psw === 'test'){
-            window.alert('登入成功')
-          }
-          else{
-            window.alert('登入失敗，請重新登入');
-          }
-        },
-        // 切換tab
-        updateTab(index){
-            this.tabActive = index
-        },
-        handleClick() {
-            this.updateTab(this.tabItems[this.tabActive].goNext);
-            this.isActive = !this.isActive;
+    data(){
+        return {
+            tabActive: 1,
+            tabItems:{
+                1:{
+                    title: '歡迎登入',
+                    subtitle:'還不是會員?',
+                    tab: 1,
+                    goNext: 2,
+                    btn:'登入'
+                },
+                2:{
+                    title: '加入旅著',
+                    subtitle:'Welcome!',
+                    tab: 2,
+                    goNext:1,
+                    btn:'註冊'
+                },
+            },
+            email: '',
+            psw:'',
+            isActive: false,
+            showError: false,
         }
+    },
+    methods: {
+    validateEmail() {
+      const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+      if (!regex.test(this.email)) {
+        // 輸入格式不正確，顯示錯誤提示
+        this.showError = true;
+      } else {
+        // 輸入格式正確，隱藏錯誤提示
+        this.showError = false;
+      }
+    },
+      login(){
+        if(this.email === '123@gmail.com' && this.psw === 'test'){
+          window.alert('登入成功')
+        }
+        else{
+          window.alert('登入失敗，請重新登入');
+        }
+      },
+      // 切換tab
+      updateTab(index){
+          this.tabActive = index
+      },
+      handleClick() {
+          this.updateTab(this.tabItems[this.tabActive].goNext);
+          this.isActive = !this.isActive;
+      }
     }
 }
 </script>
@@ -95,7 +146,7 @@ export default {
 <style lang="scss" scoped>
     @import '@/assets/scss/main.scss';
     //手機板
-    .canvas{
+    .canvas{  
         width: 83%;
         background-color: $textColor_tint;
         margin: 150px auto;
@@ -161,6 +212,26 @@ export default {
                 font-weight: 700;
                 letter-spacing: 0.72px;
                 padding: 4px 0;
+                position: relative;
+                input{
+                    width: 100%;
+                    padding: $sp1 20px;
+                    background: $textColor_white;
+                    color: $textColor_default;
+                    border-radius: 50px;
+                    box-sizing: border-box;
+                    font-size: $sm_p;
+                    margin: $sp1 0 $sp1;
+                    border: 2px solid $textColor_default;
+                }
+                .error_message{
+                    position: absolute;
+                    bottom: -2px;
+                    // left: 50%;
+                    // transform: translateX(-50%);
+                    color: $warningColor;
+                    font-size: $sm_p;
+                }
             }
             input{
                 width: 100%;
@@ -173,6 +244,7 @@ export default {
                 margin: $sp1 0 $sp1;
                 border: 2px solid $textColor_default;
             }
+            
             .login_action{
                 width: 100%;
                 display: flex;
@@ -213,18 +285,9 @@ export default {
                 justify-content: flex-end;
                 align-items: center;
                 a:first-child{
-                    text-decoration: underline;
-                    color: $textColor_default;
-                    font-size: $sm_p;
                     padding: 0 $sp2;
                 }
-                div{
-                    text-decoration: underline;
-                    color: $textColor_default;
-                    font-size: $sm_p;
-                    padding: 0 $sp2;
-                    cursor: pointer;
-                }
+                
                 .btn{
                     box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
                 }
@@ -235,6 +298,7 @@ export default {
         }
         
     }
+
     //平板
     @media all and (min-width: $md){
         .canvas{
@@ -337,6 +401,10 @@ export default {
                     width: 410px;
                     font-size: $xl_p;
                     margin: $sp1 0 $sp2 0;
+                }
+                .error_message{
+                    color: $warningColor;
+                    font-size: $xl_p;
                 }
                 .login_action{
                     width: 410px;
