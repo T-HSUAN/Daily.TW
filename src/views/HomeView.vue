@@ -268,9 +268,9 @@ export default {
 		max-width: 1200px;
 		text-align: center;
 
-		.wrap{
+		// .wrap{
 
-		}
+		// }
 		.panel{
 			display: flex;
 			justify-content: center;
