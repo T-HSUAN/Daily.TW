@@ -8,12 +8,17 @@
         <div class="member_img">
             <span>上傳照片</span>
         </div>
-        <button class="btn">上傳大頭貼</button>
+        <button class="btn" @click="toggleHiddenBlock">上傳大頭貼</button>
+        <!-- <div v-if="showHiddenBlock" class="hidden-block">
+      這是隱藏的區塊
+    </div> -->
         <form class="form" >
             <div v-for="(item, index) in tabItems" 
                 :key="index">
-                <label for="options">{{ item.text }}</label>
-                <input type="text" v-model="options" :placeholder="item.placeholder"/>
+                <label for="member">{{ item.text }}</label>
+                <input type="text" 
+                    v-model="member" 
+                    :placeholder="item.placeholder"/>
             </div>
             <label for="year">生日</label>
             <div class="date_group">
@@ -43,26 +48,83 @@
                 </select>
             </div>
             <label for="gender">性別</label>
-            <div class="grnder_group">
-                <input type="checkbox" id="roundCheckbox" class="round-checkbox">
-                <label for="roundCheckbox" class="checkbox-label">
-                    <span>男</span>
+            <div class="gender_group">
+                <label class="checkbox_container" @click="toggleCheckbox('isMan')">
+                    <input type="checkbox" v-model="isMan" class="myCheckbox">
+                    <span class="checkmark"></span>
+                    <span class="content" >男</span>
                 </label>
-                <!-- <input type="checkbox" id="roundCheckbox" class="round-checkbox">
-                <label for="roundCheckbox" class="checkbox-label">
-                    <span>女</span>
-                </label> -->
-                <!-- <input type="checkbox" id="roundCheckbox" class="round-checkbox">
-                <label for="roundCheckbox" class="checkbox-label">
-                    <span>不告訴你</span>
-                </label> -->
-
+                <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
+                    <input type="checkbox" v-model="isWomen" class="myCheckbox">
+                    <span class="checkmark"></span>
+                    <span class="content" >女</span>
+                </label>
+                <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
+                    <input type="checkbox" v-model="isSecret" class="myCheckbox">
+                    <span class="checkmark"></span>
+                    <span class="content" >不告訴你</span>
+                </label>  
             </div>
+            <label for="phone">電話</label>
+            <input type="text" v-model="phone" @input="filterNonNumeric" placeholder="請輸入電話">
         </form>
+        <div class="btn_group">
+            <router-link
+                to="./login" 
+                class="cancel_btn">
+                取消
+            </router-link>
+            <router-link
+                to="./" 
+                class="btn">
+            註冊
+            </router-link>
+        </div>
     </section>
     
 </template>
+<!-- 
+    
 
+<template>
+  <div>
+    按鈕 
+    <button @click="toggleHiddenBlock">點擊顯示/隱藏區塊</button>
+
+    隱藏的區塊，根據showHiddenBlock的值來判斷是否顯示 
+    <div v-if="showHiddenBlock" class="hidden-block">
+      這是隱藏的區塊
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      showHiddenBlock: false, // 初始時隱藏區塊
+    };
+  },
+  methods: {
+    toggleHiddenBlock() {
+      // 點擊按鈕時切換區塊的顯示狀態
+      this.showHiddenBlock = !this.showHiddenBlock;
+    },
+  },
+};
+</script>
+
+<style>
+.hidden-block {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-top: 10px;
+}
+</style>
+
+
+
+ -->
 <script>
 export default{
     data(){
@@ -89,12 +151,18 @@ export default{
                     placeholder:'請輸入暱稱'
                 },
             },
+            member:'',
             selectedYear: '', // 用於存儲選擇的年份值
             yearList: [], // 用於存儲年份選項的數組
             selectedMonth: '',
             monthList: [],
             selectedDate: '',
             dateList: [],
+            isMan: false,
+            isWomen: false,
+            isSecret: false,
+            phone: '',
+            showHiddenBlock: false,
         }
     },
     methods: {
@@ -129,6 +197,31 @@ export default{
             const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
             this.dateList = Array.from({ length: daysInMonth }, (_, index) => (index + 1).toString());
         },
+        toggleCheckbox(option) {
+            if (option === "isMan") {
+                this.isMan = true;
+                this.isWomen = false;
+                this.isSecret = false;
+            } else if (option === "isWomen") {
+                this.isMan = false;
+                this.isWomen = true;
+                this.isSecret = false;
+            } else if (option === "isSecret") {
+                this.isMan = false;
+                this.isWomen = false;
+                this.isSecret = true;
+            }
+        },
+        filterNonNumeric() {
+            // 使用正則表達式過濾非數字字符
+            this.phone = this.phone.replace(/\D/g, '');
+        },
+        toggleHiddenBlock() {
+      this.showHiddenBlock = !this.showHiddenBlock;
+    },
+        
+        
+        
     },
     watch: {
         selectedYear(newVal) {
@@ -140,6 +233,23 @@ export default{
             this.populateDateList(this.selectedYear, newVal);
             this.selectedDate = '1';
         },
+        // 監聽資料屬性變化，保證至少選一個
+        isMan(newValue) {
+            if (!newValue && !this.isWomen && !this.isSecret) {
+                this.isMan = true;
+            }
+        },
+        isWomen(newValue) {
+            if (!newValue && !this.isMan && !this.isSecret) {
+                this.isWomen = true;
+            }
+        },
+        isSecret(newValue) {
+            if (!newValue && !this.isMan && !this.isWomen) {
+                this.isSecret = true;
+            }
+        },
+        
     },
     created() {
         this.populateYearList();
@@ -157,6 +267,7 @@ export default{
 
 <style lang="scss" scoped>
     @import '@/assets/scss/main.scss';
+    
     .canvas{
         width: 83%;
         background-color: $mid_green;
@@ -164,7 +275,7 @@ export default{
         box-sizing: border-box;
         margin: 150px auto;
         border-radius: 30px;
-        // position: relative;
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -196,7 +307,7 @@ export default{
             border-radius: 50%;
             margin: 0 0 $sp2;
             background-color: $textColor_white;
-            // position: relative;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -205,9 +316,17 @@ export default{
                 font-size: $sm_p;
             }
         }
-        button{
+//         .hidden-block {
+//             position: absolute;
+//   background-color: red;
+//   padding: 10px;
+//   margin-top: 10px;
+// }
+        .btn{
             margin: 0 0 $sp4;
+            box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
         }
+
         .form{
             width: 100%;
             label{
@@ -260,43 +379,57 @@ export default{
                     }
                 }
             }
-            // 隱藏原本的checkbox
-            .round-checkbox {
-                display: none;
-            }
-            // 創建圓形checkbox的外觀
-            .checkbox-label {
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%; // 圓形的關鍵，設置為50%
-                border: 2px solid $textColor_default;
-                background-color: $textColor_white;
-                cursor: pointer;
-
-                // 用於顯示被選中的checkbox
-                &::after {
-                    content: "";
-                    display: block;
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background-color: #333; // 可以自行調整選中的填充顏色
-                    margin: 3px; // 調整選中標記的位置
-                    visibility: hidden;
-                }
-            
-                // 當checkbox被選中時顯示標記
-                ~ .round-checkbox:checked + &::after {
-                    visibility: visible;
-                }
-                span{
+            .gender_group{
+                display: flex;
+                justify-content: space-between;
+                padding: 0 0 $sp1;
+                .checkbox_container {
                     // width: 100px;
-                    padding: 30px;
+                    position: relative;
+                    display: inline-block;
+                    cursor: pointer;
+                    font-size: $sm_h4;
+                    margin: $sp1 0;
+                    
+                    // 隱藏原本的checkbox
+                    input {
+                        display: none;
+                    }
+                    //圓形按鈕
+                    .checkmark {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        margin: 4px 0;
+                        height: 16px;
+                        width: 16px;
+                        border-radius: 50%;
+                        background-color: $textColor_white;
+                        outline: 2px solid $textColor_default;
+                    } 
+                    // 當checkbox選中時變更背景顏色
+                    input:checked ~ .checkmark {
+                        background-color: $textColor_default;
+                    }
+                    .content {
+                        padding-left: 30px;
+                    }
                 }
             }
-        
-
+        }
+        .btn_group{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            // padding: $sp2 0;
+            a:first-child{
+                padding: 0 $sp2;
+            }
+            .btn{
+                box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
+            }
+            
         }
 }
 </style>

@@ -21,6 +21,12 @@ const routesUser = [
             import(/* webpackChunkName: "quiz" */ "@/views/PlanQuiz.vue"),
     },
     {
+        path: "/plan/quiz/result",
+        name: "result",
+        component: () =>
+            import(/* webpackChunkName: "result" */ "@/views/PlanResult.vue"),
+    },
+    {
         path: "/trip",
         name: "trip",
         component: () =>
