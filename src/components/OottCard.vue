@@ -31,18 +31,11 @@
 
 <script>
     export default{
-        // props:{
-        //     oottCardTags: String,
-        //     oottCardDate: String,
-        //     oottCardAuthor: String,
-        // }
-        data(){
-            return {
-                oottCardTags: "#日系 #休閒 #風景",
-                oottCardDate: "2022 / 12 / 12",
-                oottCardAuthor: "Alison",
-            }
-        }
+         props:{
+             oottCardTags: String,
+             oottCardDate: String,
+             oottCardAuthor: String,
+         }
     }
 </script>
 
