@@ -33,7 +33,4 @@ data() {
 // @import url('./assets/scss/main.scss');
 // @import './assets/scss/main.scss';
 @import "@/assets/scss/main.scss";
-.ticketCard{
-  margin: 4px;
-}
 </style>

@@ -1,9 +1,20 @@
 <template>
-    <div class="ticketVertical_container">
-        <img :src= "ticketPhoto" alt="票券照片" />
+    <div class="ticketVertical_container ticket_single">
+        <img :src="ticketPhoto" alt="票券照片" />
         <div class="ticket_text">
             <h3 class="ticket_title">{{ ticketTitle }}</h3>
-            <span class="ticket_tags">{{ ticketTags }}</span>
+            <p class="ticket_location">
+                {{ ticketLocation }}・
+                <span class="ticket_tags"
+                    >{{ ticketTags }}{{ ticketTags }}{{ ticketTags }}</span
+                >
+            </p>
+            <p class="ticket_details">{{ ticketDetails }}</p>
+            <p class="ticket_addr">
+                <font-awesome-icon icon="fa-solid fa-location-dot" />&nbsp;{{
+                    ticketAddr
+                }}
+            </p>
             <div class="ticket_price">
                 <span>{{ originalPrice }}</span>
                 <span>{{ FinalPrice }}</span>
@@ -17,6 +28,9 @@ export default {
     props: {
         ticketPhoto: String,
         ticketTitle: String,
+        ticketLocation: String,
+        ticketDetails: String,
+        ticketAddr: String,
         ticketTags: String,
         originalPrice: Number,
         FinalPrice: Number,

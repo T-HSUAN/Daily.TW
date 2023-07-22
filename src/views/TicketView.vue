@@ -12,13 +12,7 @@
         />
         <h1>{{ banner.title }}</h1>
     </div>
-    <!-- <searchbar /> -->
-    <div class="searchbox">
-        <label for="search">搜尋景點</label>
-        <input type="search" v-model="filter.searchText" />
-        <button @click="updateDisplay">搜尋</button>
-    </div>
-
+    <Searchbar :Filter="updateDisplay" />
     <!-- 景點票券清單 -->
     <div class="ticket_list" v-if="ticketDisplay.length > 0">
         <div
@@ -26,13 +20,15 @@
             v-for="(item, index) in ticketDisplay"
             :key="item.id"
         >
-            <Ticket
-                :ticketTitle="item.Name"
-                :ticketTags="item.tag"
-                :originalPrice="item.price_adultO"
-                :FinalPrice="item.price_adultF"
-            >
-            </Ticket>
+            <router-link :to="item.link" title="點擊查看票券詳情">
+                <Ticket
+                    :ticketPhoto="item.img"
+                    :ticketTitle="item.Name"
+                    :ticketLocation="item.location"
+                    :ticketTags="item.tag"
+                    :originalPrice="item.price_adultO"
+                    :FinalPrice="item.price_adultF"
+            /></router-link>
             <div class="add_cart">
                 <button class="btn" @click="createItem(index)">
                     + 加入購物車
@@ -122,12 +118,14 @@
     </div>
 </template>
 <script>
-import searchbar from "@/components/Searchbar.vue";
+import Sidebar from "./MainSidebar.vue";
+import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import ticketData from "@/router/ticketData.js";
 export default {
     components: {
-        searchbar,
+        Sidebar,
+        Searchbar,
         Ticket,
     },
     data() {
@@ -136,11 +134,9 @@ export default {
                 title: "景點票券一次購夠GO",
                 img: "",
             },
-            filter: {
-                title: "景點票券",
-                searchText: "",
-                subtitle: "票券列表",
-            },
+            // filter: {
+            //     searchText: "",
+            // },
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
             },
@@ -160,10 +156,12 @@ export default {
     methods: {
         //模糊搜尋
         updateDisplay() {
-            if (this.filter.searchText === "") {
+            if (this.$store.state.filter.searchText === "") {
                 this.ticketDisplay = this.ticketData;
             } else {
-                const regexText = this.filter.searchText.split("").join(".*");
+                const regexText = this.$store.state.filter.searchText
+                    .split("")
+                    .join(".*");
                 const regex = new RegExp(regexText, "i");
                 this.ticketDisplay = this.ticketData.filter((item) =>
                     regex.test(item.Name)
@@ -224,5 +222,4 @@ export default {
 </script>
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-@import "@/assets/scss/page/ticket.scss";
 </style>

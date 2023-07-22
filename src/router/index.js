@@ -21,6 +21,12 @@ const routesUser = [
             import(/* webpackChunkName: "quiz" */ "@/views/PlanQuiz.vue"),
     },
     {
+        path: "/plan/quiz/result",
+        name: "result",
+        component: () =>
+            import(/* webpackChunkName: "result" */ "@/views/PlanResult.vue"),
+    },
+    {
         path: "/trip",
         name: "trip",
         component: () =>
@@ -39,15 +45,15 @@ const routesUser = [
         component: () =>
             import(/* webpackChunkName: "ticket" */ "@/views/TicketView.vue"),
     },
-    // {
-    //     path: "/ticketinfo",
-    //     name: "ticketinfo",
-    //     // component: TicketInfo
-    //     component: () =>
-    //         import(
-    //             /* webpackChunkName: "ticketinfo" */ "@/views/TicketInfo.vue"
-    //         ),
-    // },
+    {
+        path: "/ticketinfo",
+        name: "ticketinfo",
+        // component: TicketInfo
+        component: () =>
+            import(
+                /* webpackChunkName: "ticketinfo" */ "@/views/TicketInfo.vue"
+            ),
+    },
     {
         path: "/about",
         name: "about",
@@ -75,9 +81,9 @@ const routesUser = [
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
     },
     {
-        path: '/OottPostView',
+        path: "/OottPostView",
         component: OottPostView,
-      },
+    },
 ];
 
 const router = createRouter({

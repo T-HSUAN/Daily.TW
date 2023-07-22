@@ -1,6 +1,6 @@
 <!-- 專屬旅著 -->
 <template>
-    <div class="plan">
+    <div class="plan_view">
         <div class="plan_title">
             <h1>測出你的一日專屬旅著！</h1>
         </div>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <router-link to="/plan/quiz">
-            <div class="btn">開始答題</div>
+            <button class="btn">開始答題</button>
         </router-link>
         <div class="banner_deco">
             <div class="plan_duck">
@@ -65,12 +65,12 @@
 #app{
     background-color: $bgColor_default;
 }
-.plan{
+.plan_view{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: $bgColor_default;
-    padding-top: $sp4;
+    // padding-top: $sp4;
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;

@@ -1,3 +1,6 @@
+#app {
+    background: $bgColor_tint;
+}
 .banner {
     width: 100%;
     position: relative;
@@ -142,6 +145,7 @@
                 margin: $sp1 0;
                 font-size: 20px;
                 label {
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     font-size: 14px;
@@ -233,7 +237,7 @@
         width: 100px;
         height: 100px;
         right: 0px;
-        top: 150px;
+        top: 120px;
         .cart_toggle {
             width: 36px;
             height: 36px;
@@ -249,10 +253,10 @@
         }
     }
     .cart_sidebar {
-        top: 150px;
+        top: 120px;
         right: 0;
         width: 400px;
-        height: 800px;
+        height: 784px;
         padding: $sp4 $sp5;
         h2 {
             margin-bottom: $sp3;
@@ -260,9 +264,9 @@
         }
         .item {
             height: 550px;
-            padding: $sp3 0;
+            padding: $sp2 0;
             .details {
-                margin: $sp3 $sp3 $sp3 0;
+                margin: $sp1 $sp3 $sp3 0;
                 border-bottom: 2px solid $textColor_default;
                 .title {
                     font-size: 20px;
@@ -300,7 +304,7 @@
             }
         }
         .result {
-            margin: $sp5 0;
+            margin: $sp4 0;
             p {
                 font-size: 20px;
             }
