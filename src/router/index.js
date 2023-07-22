@@ -37,6 +37,14 @@ const routesUser = [
         name: "oott",
         component: () =>
             import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
+      
+    },
+    {
+        path: "/oott_info",
+        name: "oott_info",
+        // component: TicketView
+        component: () =>
+            import(/* webpackChunkName: "oott" */ "@/views/Oott_info.vue"),
     },
     {
         path: "/ticket",

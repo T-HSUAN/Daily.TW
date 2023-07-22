@@ -1,5 +1,5 @@
 <!-- 穿搭特輯 -->
-
+https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.0.4/swiper-bundle.css
 <template>
 <!-- 投稿部分 -->
     <div class="post_section">
@@ -61,6 +61,8 @@
 		<h2>人氣穿搭</h2>
 	</div>
 </div>
+
+
 </template>
 
 <script>
@@ -125,8 +127,10 @@ h2{
 // 投稿區塊
 
 //投稿共用
+
 .post_section{
         // max-width: 1200px;
+        // padding-top: 100px;
         background-color: $bgColor_default;
         width: 100%;
         box-sizing: border-box;
