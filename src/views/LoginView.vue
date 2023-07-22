@@ -1,6 +1,6 @@
 <!-- 登入/註冊 -->
 <template>
-  <section >   
+  <section class="loginview">   
     <div v-for="(item, key) in tabItems" 
         :class="{active: key == tabActive}" >
         <div v-if="tabActive == item.tab" class="canvas" >
@@ -143,15 +143,26 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '@/assets/scss/main.scss';
+
+    #app{
+        background-color: $bgColor_default;
+    }
     //手機板
+
+.loginview{
+    padding: 200px 0 150px;
+    position: relative;
+    // z-index: 2;
     .canvas{  
         width: 83%;
         background-color: $textColor_tint;
-        margin: 150px auto;
+        margin: auto;
         border-radius: $sp3;
+        // padding-top: 100px;
         position: relative;
+        z-index: 2;
         // 變換背景色
         .active {
             border-radius: $sp3;
@@ -176,6 +187,7 @@ export default {
             display: flex;
             flex-direction: column;
             align-items: center;
+            // background-color: red;
             h2{
                 color: $textColor_white;
                 font-size: $sm_h2;
@@ -299,8 +311,11 @@ export default {
         
     }
 
+}
     //平板
     @media all and (min-width: $md){
+    .loginview{
+        padding: 50px 0;
         .canvas{
             max-width: 1000px;
             display: flex;
@@ -380,8 +395,10 @@ export default {
             }
         }
     }
+    }
     //桌機板
     @media all and (min-width: $xl){
+    .loginview{
         .canvas{
             .login{
                 h2{
@@ -441,6 +458,7 @@ export default {
                 }  
             }
         }
+    }
     } 
 </style>
 
