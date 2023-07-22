@@ -33,6 +33,34 @@
 	</div>
 </div>
 
+
+<!-- 人氣穿搭 -->
+<div class="top_oott">
+    <div class="bgCurve">
+		<img src="~@/assets/img/bgCurve_B.png" alt="">
+	    </div>
+    <div class="title">
+		<div class="duckDeco">
+			<img src="~@/assets/img/duck_trace.png" alt="" class="trace">
+			<img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
+		</div>
+		<h2>人氣穿搭</h2>
+	</div>
+</div>
+
+<!-- 穿搭作家 -->
+<div class="writer_oott">
+    <div class="bgCurve">
+		<img src="~@/assets/img/bgCurve_A.png" alt="">
+	    </div>
+    <div class="title">
+		<div class="duckDeco">
+			<img src="~@/assets/img/duck_trace.png" alt="" class="trace">
+			<img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
+		</div>
+		<h2>人氣穿搭</h2>
+	</div>
+</div>
 </template>
 
 <script>
@@ -76,7 +104,7 @@ export default {
 
 .duckDeco{
 			position: absolute;
-            left: 150px;
+            left: 100px;
 
 			.trace{
 				width: 192px;
@@ -88,9 +116,15 @@ export default {
 				width: 120px;
 			}
 		}
+h2{
+    position: absolute;
+    font-size: $sm_h1;
+    left: 200px;
+    top: 230px;
+}
 // 投稿區塊
 
-//共用
+//投稿共用
 .post_section{
         // max-width: 1200px;
         background-color: $bgColor_default;
@@ -113,7 +147,6 @@ export default {
                 margin: 0 $sp2;
                 padding: $sp1;
             }
-            
         }
 }
 //手機版
@@ -229,6 +262,22 @@ export default {
 
 //主題穿搭
 .theme{
+    position: relative;
+    padding: 184px 0;
+    
+}
+
+
+//人氣穿搭
+.top_oott{
+    position: relative;
+    padding: 184px 0;
+    background-color: $bgColor_default;
+}
+
+
+//穿搭作家
+.writer_oott{
     position: relative;
     padding: 184px 0;
 }
