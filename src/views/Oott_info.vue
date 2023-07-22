@@ -22,12 +22,12 @@
 <!-- 穿搭資訊頁 -->
     <div class="oott_info_section">
         <div class="pic_md">
-            <img src="~@/assets/img/info_name_2.png" alt="作者頭像">
+            <img src="@/assets/img/info_name_2.png" alt="作者頭像">
             <a href="">Ailson</a>
         </div>
         <div class="pic_block">
             <div class="pic">
-                <img src="~@/assets/img/oott_40.png" alt="穿搭照片">
+                <img src="@/assets/img/oott_40.png" alt="穿搭照片">
                 <font-awesome-icon class="heart" icon="fa-solid fa-heart" />
             </div>
             
