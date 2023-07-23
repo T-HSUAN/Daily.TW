@@ -1,5 +1,6 @@
 <template>
     <!-- 768px以下顯示側邊欄 -->
+    <div class="container_box">
     <header v-if="viewportWidth <= 768" class="phone">
         <img
             class="logo"
@@ -95,6 +96,7 @@
             </nav>
         </div>
     </header>
+   </div>
 </template>
 
 <script>

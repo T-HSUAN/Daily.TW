@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-        <router-link to="/plan/quiz">
+        <router-link to="/plan_quiz">
             <button class="btn">開始答題</button>
         </router-link>
         <div class="banner_deco">
