@@ -75,6 +75,12 @@ const routesUser = [
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
     },
     {
+        path: "/login/forgetpsw",
+        name: "forgetpsw",
+        component: () =>
+            import(/* webpackChunkName: "forgetpsw" */ "@/views/ForgetPsw.vue"),
+    },
+    {
         path: "/register",
         name: "register",
         component: () =>
