@@ -1,5 +1,5 @@
 <template>
-    <div class="banner">
+    <div class="ticket_banner">
         <img
             class="banner_xl"
             :src="require('@/assets/img/ticket_banner.png')"
@@ -20,14 +20,23 @@
             v-for="(item, index) in ticketDisplay"
             :key="item.id"
         >
+            <img
+                class="hover_showDuck"
+                src="@/assets/img/duck_chooseme.svg"
+                alt="hover_showDuck"
+            />
             <router-link :to="item.link" title="點擊查看票券詳情">
                 <Ticket
                     :ticketPhoto="item.img"
                     :ticketTitle="item.Name"
                     :ticketLocation="item.location"
                     :ticketTags="item.tag"
+                    :showDetails="false"
+                    :showAddr="false"
+                    :showNT="true"
                     :originalPrice="item.price_adultO"
                     :FinalPrice="item.price_adultF"
+                    :discountTag="item.discount"
             /></router-link>
             <div class="add_cart">
                 <button class="btn" @click="createItem(index)">
@@ -121,7 +130,7 @@
 import Sidebar from "./MainSidebar.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
-import ticketData from "@/router/ticketData.js";
+import ticketData from "@/store/ticketData.js";
 export default {
     components: {
         Sidebar,
@@ -143,7 +152,6 @@ export default {
             // 商品資料(僅在進入畫面時去取一次資料)
             ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
-            // ticketDisplay: ticketDisplay,
             ticketDisplay: [],
             // 購物車清單
 

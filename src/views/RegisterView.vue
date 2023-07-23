@@ -12,9 +12,7 @@
             </div>
             <button class="btn photo" @click="toggleHiddenBlock">上傳大頭貼</button>
         </div>
-        <!-- <div v-if="showHiddenBlock" class="hidden-block">
-      這是隱藏的區塊
-    </div> -->
+
         <form class="form" >
             <div v-for="(item, index) in tabItems" 
                 :key="index">
@@ -408,7 +406,7 @@ export default{
 
 @media all and (min-width: $xl) {
     
-    .registerview{
+.registerview{
     padding: 30px 0 10px;
     .canvas{
         max-width: 1000px;

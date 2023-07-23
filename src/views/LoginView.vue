@@ -33,7 +33,7 @@
                     <input type="checkbox" name="remember" id="remember" >
                     <span>記住我</span>
                     </label>
-                    <router-link to="./" v-if="item.tab == 1">忘記密碼?</router-link>
+                    <router-link to="./login/forgetpsw" v-if="item.tab == 1">忘記密碼?</router-link>
                 </div>
                 <div v-show="item.tab == 2" class="space"></div>
                 <div class="cancel_group">
@@ -153,14 +153,11 @@ export default {
 
 .loginview{
     padding: 200px 0 150px;
-    // position: relative;
-    // z-index: 2;
     .canvas{  
         width: 83%;
         background-color: $textColor_tint;
         margin: auto;
         border-radius: $sp3;
-        // padding-top: 100px;
         position: relative;
         z-index: 2;
         // 變換背景色
