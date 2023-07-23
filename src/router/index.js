@@ -45,7 +45,7 @@ const routesUser = [
         name: "oott_info",
         // component: TicketView
         component: () =>
-            import(/* webpackChunkName: "oott" */ "@/views/Oott_info.vue"),
+            import(/* webpackChunkName: "oott" */ "@/views/OottInfo.vue"),
     },
     {
         path: "/ticket",
@@ -74,6 +74,12 @@ const routesUser = [
         name: "login",
         component: () =>
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
+    },
+    {
+        path: "/login/forgetpsw",
+        name: "forgetpsw",
+        component: () =>
+            import(/* webpackChunkName: "forgetpsw" */ "@/views/ForgetPsw.vue"),
     },
     {
         path: "/member",
