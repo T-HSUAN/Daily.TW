@@ -59,14 +59,74 @@
         </div>
     </div>
 
+<!-- 查看更多 -->
+    <div class="oott_more">
+        <div class="bgCurve">
+            <img src="~@/assets/img/bgCurve_B.png" alt="">
+            </div>
+        <div class="title">
+            <div class="duckDeco">
+                <img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
+            </div>
+            <h2>看看其他穿搭</h2>
+        </div>
+        <div>
+            <div class="card_container">
+                <outfit-card
+                    v-for="card in cards"
+                    :key="card.id"
+                    :oottCardImage="card.image"
+                    :oottCardTags="card.tags"
+                    :oottCardDate="card.date"
+                    :oottCardAuthorPic="card.authorPic"
+                    :oottCardAuthor="card.author"
+                />
+            </div>
+        </div>
+        <div class="look_more">
+            <button class="btn">查看更多</button>
+        </div>
+    </div>
+    
+
 </template>
 <script>
 export default {
-    data() {
-        return {};
-    },
-    methods: {},
+  components: {
+    OutfitCard,
+  },
+  data() {
+    return {
+      cards: [
+        {
+          id: 1,
+          image: 'oott_card_example.png',
+          tags: '#日系 #休閒 #風景',
+          date: '2022-12-12',
+          authorPic: 'oott_card_proPic_example.png',
+          author: 'Ailson',
+        },
+        {
+          id: 2,
+          image: '~@/assets/img/oott_06.png',
+          tags: '#日系 #休閒 #風景',
+          date: '2022-12-12',
+          authorPic: 'oott_card_proPic_example.png',
+          author: 'Ailson',
+        },
+        {
+          id: 3,
+          image: 'oott_card_example.png',
+          tags: '#日系 #休閒 #風景',
+          date: '2022-12-12',
+          authorPic: 'oott_card_proPic_example.png',
+          author: 'Ailson',
+        },
+      ],
+    };
+  },
 };
+import OutfitCard from "@/components/OottCard.vue";
 </script>
 
 <style lang="scss">
@@ -268,5 +328,114 @@ export default {
         }
     }
 }
+
+// 查看更多
+
+
+.bgCurve{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 96px;
+
+	img{
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media (min-width: 768px) {
+                flex-direction: row;
+            }
+    .duck{
+        width: 90px;
+        height: 66px;
+        @media (min-width: 768px) {
+                   width: 130px;
+                   height: 100px;
+                }
+    }
+}
+h2{
+    font-size: $sm_h2;
+    @media (min-width: 768px) {
+                    font-size: $xl_h2;
+                }
+}
+
+.oott_more{
+    position: relative;
+    padding: 120px 0;
+    background-color: $bgColor_default;
+    .card_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 30px;
+        margin: auto;
+        gap: 30px;
+        @media (min-width: 768px) {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .oott_default:nth-child(1) {
+            transform: rotate(-2deg);
+            }
+
+            
+        .oott_default:nth-child(2) {
+        transform: rotate(2deg);
+        }
+
+           
+        .oott_default:nth-child(3) {
+        transform: rotate(-2deg);
+        }
+    }
+    .look_more{
+        padding-top: 60px;
+        display: flex;
+        justify-content: center;
+        .btn {
+            font-size: $sm_h5;
+            padding: 8px 24px;
+            @media (min-width: 768px) {
+            font-size: $xl_h5;
+            padding: 8px 32px;
+            }
+            white-space: nowrap;
+            color: $textColor_white;
+            text-align: center;
+            font-family: $fontFamily;
+            letter-spacing: 0.6px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 50px;
+            border: 2px solid $textColor_default;
+            background: $textColor_default;
+            cursor: pointer;
+            &:hover {
+                color: $textColor_default;
+                background: $textColor_white;
+                box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+            }
+            &:active {
+                color: $textColor_tint;
+                border: 2px solid $textColor_tint;
+                background: $textColor_white;
+            }
+        }
+    }
+}
+
+
 
 </style>
