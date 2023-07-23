@@ -9,17 +9,22 @@
                     >{{ ticketTags }}{{ ticketTags }}{{ ticketTags }}</span
                 >
             </p>
-            <p class="ticket_details">{{ ticketDetails }}</p>
-            <p class="ticket_addr">
-                <font-awesome-icon icon="fa-solid fa-location-dot" />&nbsp;{{
-                    ticketAddr
-                }}
+            <!-- if true顯示 false不顯示 -->
+            <p class="ticket_details" v-if="showDetails === true">
+                {{ ticketDetails }}
             </p>
-            <div class="ticket_price">
-                <span>{{ originalPrice }}</span>
-                <span>{{ FinalPrice }}</span>
+            <p class="ticket_addr" v-if="showAddr === true">
+                <font-awesome-icon icon="fa-solid fa-location-dot" />&nbsp;
+                {{ ticketAddr }}
+            </p>
+            <div class="ticket_price" v-if="showNT === true">
+                <p class="price_original" v-if="originalPrice !== ''">NT$</p>
+                <p class="price_original">{{ originalPrice }}</p>
+                <p class="price_final">NT$</p>
+                <p class="price_final">{{ FinalPrice }}</p>
             </div>
         </div>
+        <p class="discount_tag" v-if="discountTag !== ''">{{ discountTag }}</p>
     </div>
 </template>
 
@@ -29,11 +34,25 @@ export default {
         ticketPhoto: String,
         ticketTitle: String,
         ticketLocation: String,
+        showDetails: Boolean,
         ticketDetails: String,
+        showAddr: Boolean,
         ticketAddr: String,
         ticketTags: String,
+        showNT: Boolean,
         originalPrice: Number,
         FinalPrice: Number,
+        // DiscountTag: Boolean,
+        discountTag: String,
+    },
+    methods: {
+        // showDiscountTag() {
+        //     if (discountTag === "") {
+        //         this.DiscountTag = false;
+        //     } else {
+        //         this.DiscountTag = true;
+        //     }
+        // },
     },
 };
 </script>

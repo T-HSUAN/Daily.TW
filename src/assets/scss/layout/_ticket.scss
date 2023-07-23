@@ -5,6 +5,9 @@
     background-repeat: no-repeat;
     width: 258px;
     height: 500px;
+    &:hover {
+        background-image: url("@/assets/img/layout/ticketVertical_hover.svg");
+    }
     @media (min-width: 768px) {
         width: 276px;
         height: 533px;
@@ -22,20 +25,17 @@
     .ticket_text {
         display: flex;
         flex-direction: column;
-        margin: 20px 21px;
+        margin: $sp1 $sp3;
+        height: 150px;
 
         @media (min-width: 768px) {
             margin: 9px 23px;
             height: 170px;
         }
         h3 {
-            @include sm_h3;
             color: $textColor_white;
             letter-spacing: 0.72px;
             line-height: 150%;
-            @media (min-width: 768px) {
-                @include xl_h3;
-            }
         }
 
         .ticket_location {
@@ -61,27 +61,13 @@
             display: flex;
             justify-content: center;
             align-content: center;
-            margin-top: $sp6;
+            margin-top: $sp2;
             flex-grow: 0;
             @media (min-width: 768px) {
-                margin-top: $sp5;
+                margin-top: $sp2;
             }
-            span {
-                color: $textColor_white;
-                text-align: right;
-                font-family: Noto Sans TC;
-                font-size: 28px;
-                line-height: 150%;
-                @media (min-width: 768px) {
-                    font-size: 36px;
-                }
-                font-weight: 900;
-                flex-grow: 1;
-            }
-
-            span:first-child {
+            .price_original {
                 color: $tint_blue;
-                font-family: Noto Sans TC;
                 font-size: 14px;
                 line-height: 28px;
                 text-align: left;
@@ -92,6 +78,40 @@
                 font-weight: 900;
                 text-decoration-line: line-through;
             }
+            .price_final {
+                color: $textColor_white;
+                text-align: right;
+                font-size: 28px;
+                line-height: 150%;
+                @media (min-width: 768px) {
+                    font-size: 36px;
+                }
+                font-weight: 900;
+                flex-grow: 1;
+            }
+        }
+    }
+    .discount_tag {
+        display: inline-block;
+        width: 65px;
+        line-height: 65px;
+        position: absolute;
+        right: -20px;
+        top: 250px;
+        font-size: 20px;
+        font-weight: 700;
+        color: $textColor_white;
+        background: $default_red;
+        text-align: center;
+        border-radius: 50%;
+        transform: rotate(15deg);
+        @media (min-width: 768px) {
+            width: 70px;
+            line-height: 70px;
+            right: -20px;
+            top: 300px;
+            font-size: 24px;
+            font-weight: 900;
         }
     }
 }
