@@ -1,5 +1,5 @@
 <!-- 穿搭特輯 -->
-https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.0.4/swiper-bundle.css
+
 <template>
 <!-- 投稿部分 -->
     <div class="post_section">
