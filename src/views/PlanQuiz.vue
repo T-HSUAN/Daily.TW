@@ -135,7 +135,7 @@
     </div>
     <div class="btn_wrap">
         <button class="cancel_btn">回到上一題</button>
-        <router-link to="/plan/quiz/result">
+        <router-link to="/plan_result">
             <button class="btn">
                 看結果
                 <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
