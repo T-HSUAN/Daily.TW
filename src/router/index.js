@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import OottPostView from "@/views/OottPostView.vue";
+import TripCollectionView from "@/views/TripCollectionView.vue";
 
 const routesUser = [
     {
@@ -98,6 +99,11 @@ const routesUser = [
         path: "/OottPostView",
         component: OottPostView,
     },
+    {
+        path: "/TripCollectionView",
+        component: TripCollectionView,
+    },
+    
 ];
 
 const router = createRouter({

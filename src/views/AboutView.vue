@@ -212,6 +212,9 @@
 
 <style lang="scss">
 @import "@/assets/scss/main.scss";
+#app{
+    background-color: $bgColor_default;
+}
 
 .about_bg{
     background-color: $bgColor_default;
