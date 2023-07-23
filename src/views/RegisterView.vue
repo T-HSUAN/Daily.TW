@@ -1,14 +1,17 @@
 <!-- 會員註冊資料頁面 -->
 <template>
-    <section class="canvas" >
+<section class="registerview">
+    <div class="canvas" >
         <div class="joinus_sm">
             <img src="@/assets/img/joinus_sm.png" alt="joinus">
         </div>
         <h2>加入旅著</h2>
-        <div class="member_img">
-            <span>上傳照片</span>
+        <div class="photo_group">
+            <div class="member_img">
+                <img src="../assets/img/photo_stickers.png" alt="上傳照片">
+            </div>
+            <button class="btn photo" @click="toggleHiddenBlock">上傳大頭貼</button>
         </div>
-        <button class="btn" @click="toggleHiddenBlock">上傳大頭貼</button>
         <!-- <div v-if="showHiddenBlock" class="hidden-block">
       這是隱藏的區塊
     </div> -->
@@ -80,51 +83,10 @@
             註冊
             </router-link>
         </div>
-    </section>
-    
-</template>
-<!-- 
-    
-
-<template>
-  <div>
-    按鈕 
-    <button @click="toggleHiddenBlock">點擊顯示/隱藏區塊</button>
-
-    隱藏的區塊，根據showHiddenBlock的值來判斷是否顯示 
-    <div v-if="showHiddenBlock" class="hidden-block">
-      這是隱藏的區塊
     </div>
-  </div>
+</section>   
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showHiddenBlock: false, // 初始時隱藏區塊
-    };
-  },
-  methods: {
-    toggleHiddenBlock() {
-      // 點擊按鈕時切換區塊的顯示狀態
-      this.showHiddenBlock = !this.showHiddenBlock;
-    },
-  },
-};
-</script>
-
-<style>
-.hidden-block {
-  background-color: #f0f0f0;
-  padding: 10px;
-  margin-top: 10px;
-}
-</style>
-
-
-
- -->
 <script>
 export default{
     data(){
@@ -265,9 +227,15 @@ export default{
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '@/assets/scss/main.scss';
     
+    #app{
+        background-color: $bgColor_default;
+    }
+
+.registerview{
+    padding: 30px 0 10px;
     .canvas{
         width: 83%;
         background-color: $mid_green;
@@ -301,32 +269,33 @@ export default{
             line-height: 150%; /* 42px */
             letter-spacing: 0.84px;
         }
-        .member_img{
-            width: 125px;
-            height: 125px;
-            border-radius: 50%;
-            margin: 0 0 $sp2;
-            background-color: $textColor_white;
-            position: relative;
+        .photo_group{
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            cursor: pointer;
-            span{
-                font-size: $sm_p;
+            .member_img{
+                border: 2px solid $textColor_default;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                padding: 20px;
+                margin: 0 0 $sp2;
+                background-color: $textColor_white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                }
+            }
+            .photo{
+                margin: 0 0 $sp4;
+                box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
             }
         }
-//         .hidden-block {
-//             position: absolute;
-//   background-color: red;
-//   padding: 10px;
-//   margin-top: 10px;
-// }
-        .btn{
-            margin: 0 0 $sp4;
-            box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-        }
-
         .form{
             width: 100%;
             label{
@@ -348,12 +317,13 @@ export default{
                 border: 2px solid $textColor_default;
             }
             .date_group{
+                width: 100%;
                 display: flex;
                 justify-content: space-between;
-                padding: $sp1 0 $sp2;
+                padding: $sp1 0 $sp4;
                 select {
                     // 隱藏原本的下拉箭頭
-                    width: 100px;
+                    width: 33%;
                     appearance: none;
                     -moz-appearance: none;
                     -webkit-appearance: none;
@@ -366,31 +336,30 @@ export default{
                     border: 2px solid $textColor_default;
                     border-radius: 50px;
                     padding: 6px $sp2;
+                    margin: 0 4px 0 0;
                     cursor: pointer;
                     &:hover {
                         color: $textColor_default;
                         background: $textColor_white;
-                        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        border: 2px solid $textColor_default;
                     }
                     &:active {
                         color: $textColor_tint;
-                        border: 2px solid $textColor_tint;
+                        border: 2px solid $textColor_default;
                         background: $textColor_white;
                     }
                 }
             }
             .gender_group{
+                width: 100%;
                 display: flex;
-                justify-content: space-between;
-                padding: 0 0 $sp1;
                 .checkbox_container {
-                    // width: 100px;
+                    width: 20%;
                     position: relative;
                     display: inline-block;
                     cursor: pointer;
                     font-size: $sm_h4;
-                    margin: $sp1 0;
-                    
+                    margin: $sp1 0 $sp2;
                     // 隱藏原本的checkbox
                     input {
                         display: none;
@@ -412,8 +381,11 @@ export default{
                         background-color: $textColor_default;
                     }
                     .content {
-                        padding-left: 30px;
+                        padding-left: 20px;
                     }
+                }
+                .checkbox_container:nth-of-type(3) {
+                    width: 30%;
                 }
             }
         }
@@ -422,14 +394,80 @@ export default{
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            // padding: $sp2 0;
+            margin: $sp2 0;
             a:first-child{
-                padding: 0 $sp2;
+                margin: 0 $sp2;
             }
             .btn{
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
             }
             
         }
+    }
+}
+
+@media all and (min-width: $xl) {
+    
+    .registerview{
+    padding: 30px 0 10px;
+    .canvas{
+        max-width: 1000px;
+        padding: $sp12 0;
+        .joinus_sm{
+            display: none;
+        }
+        h2{
+            font-size: $xl_h2;
+        }
+        .photo_group{
+            flex-direction: row;
+            .member_img{
+                width: 100px;
+                height: 100px;
+                padding: $sp5;
+            }
+            .photo{
+                margin: 0 $sp5;
+            }
+        }
+        .form{
+            width: 60%;
+            label{
+                font-size: $xl_h4;
+            }
+            input{
+                padding: $sp1 20px;
+                font-size: $xl_p;
+                margin: $sp1 0 $sp3;
+            }
+            .date_group{
+                select {
+                    font-size: $xl_p;
+                    padding: $sp1 20px;
+                }
+            }
+            .gender_group{
+                .checkbox_container {
+                    font-size: $xl_h4;
+                    margin: $sp1 0 $sp3;
+                    .checkmark {
+                        margin: 4px 0;
+                        height: 24px;
+                        width: 24px;
+                    } 
+                    .content {
+                        padding-left: 30px;
+                    }
+                }
+                .checkbox_container:nth-of-type(3) {
+                    width: 30%;
+                }
+            }
+        }
+        .btn_group{
+            justify-content: center;           
+        }
+    }
+}
 }
 </style>

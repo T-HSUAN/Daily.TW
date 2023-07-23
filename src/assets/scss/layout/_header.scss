@@ -2,10 +2,11 @@ header {
     display: none;
 }
 .phone {
-    position: fixed;
+    // position: fixed;
     display: block;
     @include width(100);
     height: 75px;
+    z-index: 99;
     background: linear-gradient(
         180deg,
         $bgColor_default 59.9%,
@@ -41,6 +42,8 @@ header {
             height: 200px;
             padding-top: $sp4;
             margin: 0 auto;
+            z-index: 99;
+
             //logo
             a {
                 .logo {
@@ -127,7 +130,7 @@ header {
             $bgColor_default 59.9%,
             rgba(254, 240, 209, 0) 100%
         );
-        z-index: 9999;
+        z-index: 99;
     }
     //header phone版
     .phone {
@@ -153,7 +156,7 @@ header {
   
   .show-sidebar {
     right: 0;
-    z-index: 99;
+    z-index: 100;
     .ham_close{
         width: 25px;
         padding: 5px;

@@ -1,10 +1,15 @@
 <template>
     <div class="oott_default">
         <img 
-            :src="require('@/assets/img/oott_card_example.png')"
+            :src="oottPhoto"
             alt="穿搭照片"
             class="oott_card_pic"
         >
+        <label class="heart">
+            <input type="checkbox" />
+            <font-awesome-icon icon="fa-solid fa-heart" />
+            <font-awesome-icon icon="fa-solid fa-heart" class="front_heart"/>
+        </label>
         <div class="oott_card_text">
             <div class="oott_card_info">
                 <span class="oott_card_tag">{{ oottCardTags }}</span>
@@ -14,7 +19,7 @@
                 <div class="oott_card_author">
                     <div class="oott_card_author_proPic">
                         <img
-                            :src="require('@/assets/img/oott_card_proPic_example.png')"
+                            :src="oottAuthorPhoto"
                             alt="作者照片"
                         >
                     </div>
@@ -31,17 +36,12 @@
 
 <script>
     export default{
-        // props:{
-        //     oottCardTags: String,
-        //     oottCardDate: String,
-        //     oottCardAuthor: String,
-        // }
-        data(){
-            return {
-                oottCardTags: "#日系 #休閒 #風景",
-                oottCardDate: "2022 / 12 / 12",
-                oottCardAuthor: "Alison",
-            }
+        props:{
+            oottPhoto: String,
+            oottCardTags: String,
+            oottCardDate: String,
+            oottAuthorPhoto: String,
+            oottCardAuthor: String,
         }
     }
 </script>
@@ -54,16 +54,43 @@
         background-color: $default_yellow;
         border-radius: 10px;
         padding: 24px 16px 24px 16px;
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 16px;
         @media (min-width: 768px) {
         width: 311px;
         height: 522px;
-    }
+        }
         
         .oott_card_pic{
             width: 100%;
+        }
+
+        .heart{
+            display: block;
+            position: absolute;
+            right: 32px;
+            top: 32px;
+            @media (min-width: 768px) {
+                right: 30px;
+            }
+            color: #6A5D4A;
+            font-size: 50px;
+            .front_heart{
+                position: absolute;
+                top: 7px;
+                right: 3px;
+                font-size: 42px;
+                color: #FEFFF5;
+                z-index: 5;
+            };
+            input{
+                display: none;
+                &:checked ~ .front_bookmark{
+                    color:  var(--semantic-warning, $default_red)
+                }
+            }
         }
 
         .oott_card_text{
@@ -76,8 +103,11 @@
                 display: flex;
                 justify-content: space-between;
                 color: $tint_yellow;
-                font-size: 16px;
+                font-size: 14px;
                 letter-spacing: 0.02em;
+                @media (min-width: 768px) {
+                    font-size: 16px;
+                }
 
                 .oott_card_tag{
                     font-weight: 400;

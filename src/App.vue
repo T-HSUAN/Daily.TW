@@ -2,6 +2,7 @@
     <MainHeader></MainHeader>
     <main>
       <router-view />
+
     </main>
     <ArrowUp></ArrowUp>
     <MainFooter></MainFooter>

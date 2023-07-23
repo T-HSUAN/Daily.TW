@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import OottPostView from "@/views/OottPostView.vue";
+import TripCollectionView from "@/views/TripCollectionView.vue";
 
 const routesUser = [
     {
@@ -37,6 +38,14 @@ const routesUser = [
         name: "oott",
         component: () =>
             import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
+      
+    },
+    {
+        path: "/oott_info",
+        name: "oott_info",
+        // component: TicketView
+        component: () =>
+            import(/* webpackChunkName: "oott" */ "@/views/Oott_info.vue"),
     },
     {
         path: "/ticket",
@@ -67,6 +76,12 @@ const routesUser = [
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
     },
     {
+        path: "/member",
+        name: "member",
+        component: () =>
+            import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
+    },
+    {
         path: "/register",
         name: "register",
         component: () =>
@@ -84,6 +99,11 @@ const routesUser = [
         path: "/OottPostView",
         component: OottPostView,
     },
+    {
+        path: "/TripCollectionView",
+        component: TripCollectionView,
+    },
+    
 ];
 
 const router = createRouter({
