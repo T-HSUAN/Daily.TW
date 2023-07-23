@@ -19,6 +19,22 @@
             <h2>熱門行程</h2>
         </div>
         <div class="content">
+            <div class="wrap">
+						<div class="tripCards">
+							<tripCard
+							class="tripCard"
+							v-for="(trip, index) in trips"
+							:key="index"
+							:tripCardPhoto="trip.tripPhoto"
+							:tripCardTags="trip.tripCardTags"
+							:tripCardTitle="trip.tripCardTitle"
+							:tripCardDesc="trip.tripCardDesc"
+            				:tripCardAuthor="trip.tripCardAuthor"
+            				:tripCardDate="trip.tripCardDate"
+							></tripCard>
+						</div>
+					</div>
+					<btn class="btn"><a href="">查看更多</a></btn>
         </div>
     </section>
 
@@ -35,6 +51,22 @@
             <h2>精選行程</h2>
         </div>
         <div class="content">
+            <div class="wrap">
+						<div class="tripCards">
+							<tripCard
+							class="tripCard"
+							v-for="(trip, index) in trips"
+							:key="index"
+							:tripCardPhoto="trip.tripPhoto"
+							:tripCardTags="trip.tripCardTags"
+							:tripCardTitle="trip.tripCardTitle"
+							:tripCardDesc="trip.tripCardDesc"
+            				:tripCardAuthor="trip.tripCardAuthor"
+            				:tripCardDate="trip.tripCardDate"
+							></tripCard>
+						</div>
+					</div>
+					<btn class="btn"><a href="">查看更多</a></btn>
         </div>
     </section>
     
@@ -59,31 +91,69 @@
 @import "@/assets/scss/main.scss";
 
 // 全頁設定
+
+#app{
+	background-color: $bgColor_default;
+}
+
 .bgCurve{
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 96px;
-
-	img{
+		position: absolute;
+		top: 0;
 		width: 100%;
-		height: 100%;
+		height: 48px;
+
+		@media (min-width: 768px) {
+		height: 96px;
+        }
+		
+		img{
+			width: 100%;
+			height: 100%;
+		}
 	}
-}
+	
+	.title{
+		margin: 0 auto 24px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
 
-.duckDeco{
-    position: relative;
+		@media (min-width: 768px) {
+		margin: 0 auto 32px;
+		max-width: 1200px;
+		flex-direction: row;
+		align-items: center;
+		}
+		
+		.duckDeco{
+			position: relative;
+			
+			.trace{
+				display: none;
+				
+				@media (min-width: 768px) {
+				display: block;
+				width: 192px;
+				position: absolute;
+				left: -160px;
+				bottom: -8px;
+				}
+			}
+			
+			.duck{
+				width: 80px;
+	
+				@media (min-width: 768px) {
+				width: 120px;
+				}
+			}
+		}
+	}
 
-    .trace{
-        width: 192px;
-        position: absolute;
-        left: -160px;
-        bottom: -8px;
-    }
-    .duck{
-        width: 120px;
-    }
-}
+	a{
+		color: inherit;
+	}
 
 // banner
 .banner{
@@ -96,14 +166,28 @@
 	position: relative;
 	padding: 184px 0;
 
-	.title{
-		margin: 0 auto;
-		max-width: 1200px;
-		display: flex;
-		align-items: center;
+    .content{
+        margin: 0 auto;
+        max-width: 1200px;
+        text-align: center;
 
-		
-	}
+        .wrap{
+            margin-bottom: 32px;
+            .tripCards{
+                display: flex;
+                overflow-x: scroll;
+
+                .tripCard{
+                    flex-shrink: 0;
+                    margin-left: 32px;
+                    @media (min-width: 768px) {
+                    margin-left: 24px;
+                    }
+                }
+
+            }
+        }
+    }
 }
 
 // 精選行程
@@ -112,14 +196,29 @@
 	padding: 184px 0;
 	background-color: $bgColor_default;
 
-	.title{
-		margin: 0 auto;
-		max-width: 1200px;
-		display: flex;
-		align-items: center;
+    .content{
+        margin: 0 auto;
+        max-width: 1200px;
+        text-align: center;
 
-		
-	}
+        .wrap{
+            margin-bottom: 32px;
+            .tripCards{
+                display: flex;
+                overflow-x: scroll;
+
+                .tripCard{
+                    flex-shrink: 0;
+                    margin-left: 32px;
+                    @media (min-width: 768px) {
+                    margin-left: 24px;
+                    }
+                }
+
+            }
+        }
+    }
+
 }
 
 // 駐站旅人
@@ -127,29 +226,33 @@
 	position: relative;
 	padding: 184px 0;
 
-	.title{
-		margin: 0 auto;
-		max-width: 1200px;
-		display: flex;
-		align-items: center;
-
-		
-	}
 }
 
 </style>
 
 <script>
+import tripCard from '@/components/TripCard.vue'
 
 export default {
     data(){
         return {
+            trips:[
+				{
+					tripCardPhoto: String,
+					tripCardTags: String,
+					tripCardTitle: String,
+					tripCardDesc: String,
+					tripCardAuthor: String,
+					tripCardDate: String,
+				}
+			]
         }
     },
     methods: {
 
     },
     components:{
+        tripCard
     }
 }
 </script>
