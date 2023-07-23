@@ -5,21 +5,23 @@
             <font-awesome-icon icon="fa-solid fa-bookmark" />
             <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
         </label>
-        <div class="trip_card_img">
-            <img
-                :src= "tripCardPhoto"
-                alt="景點照片"
-            />
-        </div>
-        <div class="trip_card_text">
-            <span class="trip_card_tags">{{ tripCardTags }}</span>
-            <h3 class="trip_card_title">{{tripCardTitle}}</h3>
-            <p class="trip_card_desc">{{tripCardDesc}}</p>
-            <div class="trip_card_info">
-                <span>{{tripCardAuthor}}</span>
-                <span>{{tripCardDate}}</span>
+        <a href="#">
+            <div class="trip_card_img">
+                <img
+                    :src= "tripCardPhoto"
+                    alt="景點照片"
+                />
             </div>
-        </div>
+            <div class="trip_card_text">
+                <span class="trip_card_tags">{{ tripCardTags }}</span>
+                <h3 class="trip_card_title">{{tripCardTitle}}</h3>
+                <p class="trip_card_desc">{{tripCardDesc}}</p>
+                <div class="trip_card_info">
+                    <span>{{tripCardAuthor}}</span>
+                    <span>{{tripCardDate}}</span>
+                </div>
+            </div>
+        </a>
     </div>
 </template>
 
@@ -39,10 +41,8 @@
 
 <style lang="scss">
 .trip_card_default{
-    background-image: url('@/assets/img/layout/trip_card_default.svg');
-    background-position: top;  
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color:var(--green-default, #93AE51);
+    border-radius: 5px 20px 20px 5px;
     width: 276px;
     height: 332px;
     @media (min-width: 768px) {
@@ -99,7 +99,6 @@
             margin: 7px 0;
             color: var(--text-white, #FEFFF5);
             font-family: Shippori Mincho;
-            font-size: 32px;
             font-weight: 700;
             letter-spacing: 0.64px;
         }
@@ -111,13 +110,29 @@
             text-overflow: ellipsis;
             line-height: 165%; 
             letter-spacing: 0.54px;
+            position: relative;
+            &::after{
+                content: '...';
+                position: absolute;
+                bottom: 0;
+                background-color: var(--green-default, #93AE51);
+                width: 15px;
+                right: 3px;
+                @media (min-width:1200px) {
+                    width: 18px;
+                    right: 15px;
+                }
+            }
         }
         .trip_card_info{
             margin-top: 24px;
             display: flex;
             justify-content: space-between;
             color: var(--green-tint, #DAE5BE);
-            font-size: 16px;
+            font-size: 12px;
+            @media (min-width:768px) {
+                font-size: 16px;
+            }
             font-weight: 500;
             line-height: 150%; 
             letter-spacing: 0.32px;
