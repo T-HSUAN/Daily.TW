@@ -25,12 +25,14 @@
 @import "layout/searchbar";
 @import "layout/sidenav";
 @import "layout/ticket";
+@import "layout/ticketsingle";
 
 // page
 @import "page/index";
 @import "page/plan";
 @import "page/schedule";
 @import "page/ticketview";
+@import "page/ticketinfo";
 @import "page/trip";
 
 * {

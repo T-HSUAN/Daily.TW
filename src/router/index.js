@@ -38,7 +38,6 @@ const routesUser = [
         name: "oott",
         component: () =>
             import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
-      
     },
     {
         path: "/oott_info",
@@ -55,7 +54,7 @@ const routesUser = [
             import(/* webpackChunkName: "ticket" */ "@/views/TicketView.vue"),
     },
     {
-        path: "/ticketinfo",
+        path: "/ticket_info",
         name: "ticketinfo",
         // component: TicketInfo
         component: () =>
@@ -109,7 +108,6 @@ const routesUser = [
         path: "/TripCollectionView",
         component: TripCollectionView,
     },
-    
 ];
 
 const router = createRouter({

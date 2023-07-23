@@ -1,5 +1,6 @@
+<!-- 後來決定把橫式票券另外寫一個，檔名:TicketSingleCard，不然有時會有奇怪bug -->
 <template>
-    <div class="ticketVertical_container ticket_single">
+    <div class="ticketVertical_container">
         <img :src="ticketPhoto" alt="票券照片" />
         <div class="ticket_text">
             <h3 class="ticket_title">{{ ticketTitle }}</h3>
@@ -9,19 +10,10 @@
                     >{{ ticketTags }}{{ ticketTags }}{{ ticketTags }}</span
                 >
             </p>
-            <!-- if true顯示 false不顯示 -->
-            <p class="ticket_details" v-if="showDetails === true">
-                {{ ticketDetails }}
-            </p>
-            <p class="ticket_addr" v-if="showAddr === true">
-                <font-awesome-icon icon="fa-solid fa-location-dot" />&nbsp;
-                {{ ticketAddr }}
-            </p>
-            <div class="ticket_price" v-if="showNT === true">
+            <div class="ticket_price">
                 <p class="price_original" v-if="originalPrice !== ''">NT$</p>
                 <p class="price_original">{{ originalPrice }}</p>
-                <p class="price_final">NT$</p>
-                <p class="price_final">{{ FinalPrice }}</p>
+                <p class="price_final">NT${{ FinalPrice }}</p>
             </div>
         </div>
         <p class="discount_tag" v-if="discountTag !== ''">{{ discountTag }}</p>
@@ -34,25 +26,12 @@ export default {
         ticketPhoto: String,
         ticketTitle: String,
         ticketLocation: String,
-        showDetails: Boolean,
         ticketDetails: String,
-        showAddr: Boolean,
         ticketAddr: String,
         ticketTags: String,
-        showNT: Boolean,
-        originalPrice: Number,
+        originalPrice: { Number, String },
         FinalPrice: Number,
-        // DiscountTag: Boolean,
         discountTag: String,
-    },
-    methods: {
-        // showDiscountTag() {
-        //     if (discountTag === "") {
-        //         this.DiscountTag = false;
-        //     } else {
-        //         this.DiscountTag = true;
-        //     }
-        // },
     },
 };
 </script>

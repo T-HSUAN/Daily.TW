@@ -1,0 +1,70 @@
+.ticket_single_card {
+    display: flex;
+    width: 100%;
+    max-width: $sm;
+    margin: $sp2 auto;
+    @media (min-width: $md) {
+        background-image: url("@/assets/img/layout/ticketHorizontal.svg");
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        max-width: 1135px;
+        height: 361px;
+    }
+    img {
+        max-width: 311px;
+        margin: $sp3 auto;
+        @media (min-width: $md) {
+            max-width: 500px;
+            height: 100%;
+            margin: 0 $sp9;
+        }
+    }
+    .ticket_text {
+        display: flex;
+        flex-direction: column;
+        margin: $sp3;
+
+        @media (min-width: $md) {
+            margin: $sp3;
+            height: 360px;
+        }
+        h3 {
+            @include sm_h3;
+            color: $textColor_white;
+            letter-spacing: 0.72px;
+            line-height: 150%;
+            @media (min-width: $md) {
+                @include xl_h3;
+            }
+        }
+
+        .ticket_location {
+            display: inline-block;
+            color: $tint_blue;
+            font-size: 14px;
+            margin-top: 8px;
+            flex-grow: 0;
+            @media (min-width: $md) {
+                font-size: 16px;
+                margin-top: 10px;
+            }
+            .ticket_tags {
+                font-weight: 300;
+                letter-spacing: 0.32px;
+            }
+        }
+        .ticket_details {
+            line-height: 30px;
+            margin: $sp2 $sp5 $sp7 0;
+            color: $textColor_white;
+        }
+        .ticket_addr {
+            display: block;
+            color: $textColor_white;
+            .fa-location-dot {
+                color: $mid_red;
+            }
+        }
+    }
+}

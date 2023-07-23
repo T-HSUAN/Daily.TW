@@ -4,20 +4,22 @@
         width: 100%;
         background: $bgColor_default;
         .multi_filter {
+            box-sizing: border-box;
             display: flex;
             gap: $sp2;
             flex-direction: column;
             align-items: center;
             max-width: $xl;
             margin: auto;
+            padding: $sp2;
+            background-color: $bgColor_default;
             z-index: 2;
             @media (min-width: 768px) {
+                max-width: $xl;
                 gap: 0;
                 flex-direction: row;
                 justify-content: space-between;
             }
-            background-color: $bgColor_default;
-            padding: $sp2;
             .order_select_wrap {
                 display: flex;
                 align-items: center;
