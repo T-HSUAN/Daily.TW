@@ -71,16 +71,16 @@
             <h2>看看其他穿搭</h2>
         </div>
         <div>
-            <div class="card_container">
-                <outfit-card
-                    v-for="card in cards"
-                    :key="card.id"
-                    :oottCardImage="card.image"
-                    :oottCardTags="card.tags"
-                    :oottCardDate="card.date"
-                    :oottCardAuthorPic="card.authorPic"
-                    :oottCardAuthor="card.author"
-                />
+            <div class="oottCards">
+                <oottCard
+                class="oottCard"
+                v-for="(oott, index) in ootts"
+                :key="index"
+                :oottPhoto="oott.oottPhoto"
+                :oottCardTags="oott.oottCardTags"
+                :oottCardDate="oott.oottCardDate"
+                :oottCardAuthor="oott.oottCardAuthor"
+                ></oottCard>
             </div>
         </div>
         <div class="look_more">
@@ -93,40 +93,37 @@
 <script>
 export default {
   components: {
-    OutfitCard,
+    oottCard,
   },
   data() {
     return {
-      cards: [
-        {
-          id: 1,
-          image: 'oott_card_example.png',
-          tags: '#日系 #休閒 #風景',
-          date: '2022-12-12',
-          authorPic: 'oott_card_proPic_example.png',
-          author: 'Ailson',
-        },
-        {
-          id: 2,
-          image: '~@/assets/img/oott_06.png',
-          tags: '#日系 #休閒 #風景',
-          date: '2022-12-12',
-          authorPic: 'oott_card_proPic_example.png',
-          author: 'Ailson',
-        },
-        {
-          id: 3,
-          image: 'oott_card_example.png',
-          tags: '#日系 #休閒 #風景',
-          date: '2022-12-12',
-          authorPic: 'oott_card_proPic_example.png',
-          author: 'Ailson',
-        },
+        ootts:[
+            {
+                oottPhoto: require('@/assets/img/oott_card_example.png'),
+                oottCardTags: "#日系 #休閒 #風景",
+                oottCardDate: "2022 / 12 / 12",
+                oottAuthorPhoto: require('@/assets/img/info_name_2.png'),
+                oottCardAuthor: "Alison",
+            },
+            {
+                oottPhoto: require('@/assets/img/oott_06.png'),
+                oottCardTags: "#復古 #海邊",
+                oottCardDate: "2022 / 7 / 3",
+                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+                oottCardAuthor: "Susan",
+            },
+            {
+                oottPhoto: require('@/assets/img/oott_41.png'),
+                oottCardTags: "#街頭 #潮流",
+                oottCardDate: "2022 / 7 / 6",
+                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+                oottCardAuthor: "Max",
+            },
       ],
     };
   },
 };
-import OutfitCard from "@/components/OottCard.vue";
+import oottCard from '@/components/OottCard.vue'
 </script>
 
 <style lang="scss">
@@ -372,7 +369,7 @@ h2{
     position: relative;
     padding: 120px 0;
     background-color: $bgColor_default;
-    .card_container{
+    .oottCards{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -396,6 +393,7 @@ h2{
            
         .oott_default:nth-child(3) {
         transform: rotate(-2deg);
+        
         }
     }
     .look_more{

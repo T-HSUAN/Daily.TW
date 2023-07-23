@@ -96,7 +96,7 @@
             </nav>
         </div>
     </header>
-</div>
+   </div>
 </template>
 
 <script>
