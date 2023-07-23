@@ -7,7 +7,9 @@
                 :ticketTitle="Title"
                 :ticketLocation="Location"
                 :ticketTags="Tags"
+                :showDetails="true"
                 :ticketDetails="Details"
+                :showAddr="true"
                 :ticketAddr="Addr"
             />
         </div>
@@ -27,12 +29,10 @@
                 <div class="ticket_item">
                     <div class="ticket_adult">
                         <select name="ticket_count_adult" id="count_adult">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option value="0" selected>0</option>
+                            <option :value="num" v-for="num in 5" :key="num">
+                                {{ num }}
+                            </option>
                         </select>
                         <label for="count_adult">
                             <p class="name">全票</p>
@@ -44,12 +44,10 @@
                     </div>
                     <div class="ticket_ex">
                         <select name="ticket_count_ex" id="count_ex">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option value="0" selected>0</option>
+                            <option :value="num" v-for="num in 5" :key="num">
+                                {{ num }}
+                            </option>
                         </select>
                         <label for="count_ex">
                             <p class="name">優待票</p>

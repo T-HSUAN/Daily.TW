@@ -65,7 +65,8 @@
                 }
             }
             .ticket_details {
-                margin: $sp7 $sp5 $sp7 0;
+                line-height: 30px;
+                margin: $sp2 $sp5 $sp7 0;
                 color: $textColor_white;
             }
             .ticket_addr {
@@ -141,7 +142,7 @@
             top: $sp5;
             right: $sp2;
             .content {
-                height: 500px;
+                height: 516px;
                 padding: $sp4;
                 display: flex;
                 flex-direction: column;
