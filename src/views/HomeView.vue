@@ -7,7 +7,10 @@
 				<div class="container">
 					<h1>一日行程 + 穿搭建議<br>規劃你的說走就走 !</h1>
 					<p>煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br>在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br>如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！</p>
-					<btn class="btn"><a href="">立即體驗<font-awesome-icon icon="fa-solid fa-arrow-right" /></a></btn>
+					<a href="/plan">
+						<btn class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
+        				<img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown"></btn>
+                    </a>
 					<div class="coverPic">
 						<img src="~@/assets/img/index_plan_cover_example.png" alt="">
 					</div>
@@ -55,7 +58,10 @@
 									<img src="~@/assets/img/trip_deco_footPrint.svg" alt="">
 								</div>
 							</div>
-							<btn class="btn"><a href="">馬上出發<font-awesome-icon icon="fa-solid fa-arrow-right" /></a></btn>
+							<a href="/trip_info">
+								<btn class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
+								<img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown"></btn>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -92,7 +98,9 @@
 						<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-left" /></button>
 						<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-right" /></button>
 					</div>
-					<btn class="btn"><a href="">查看更多</a></btn>
+					<a href="/oott">
+						<btn class="btn">查看更多</btn>
+					</a>
 				</div>
 			</section>
 			<!-- 票券區塊 -->
@@ -125,7 +133,9 @@
 							></ticketCard>
 						</div>
 					</div>
-					<btn class="btn"><a href="">查看更多</a></btn>
+					<a href="/ticket">
+						<btn class="btn">查看更多</btn>
+					</a>
 				</div>
 			</section>
 		</main>
@@ -187,32 +197,32 @@ export default {
 					ticketTitle: "斑比斑比斑比斑比山丘門票",
 					ticketLocation: "宜蘭",
 					ticketTags: "#標籤",
-					originalPrice: "$NT" + 800,
-					finalPrice: "$NT" + 599,
+					originalPrice: 800,
+					finalPrice: 599,
 				},
 				{
 					ticketPhoto: require('@/assets/img/ticketExample.png'),
 					ticketTitle: "斑比斑比斑比斑比山丘門票",
 					ticketLocation: "宜蘭",
 					ticketTags: "#標籤",
-					originalPrice: "$NT" + 800,
-					finalPrice: "$NT" + 599,
+					originalPrice: 800,
+					finalPrice: 599,
 				},
 				{
 					ticketPhoto: require('@/assets/img/ticketExample.png'),
 					ticketTitle: "斑比斑比斑比斑比山丘門票",
 					ticketLocation: "宜蘭",
 					ticketTags: "#標籤",
-					originalPrice: "$NT" + 800,
-					finalPrice: "$NT" + 599,
+					originalPrice: 800,
+					finalPrice: 599,
 				},
 				{
 					ticketPhoto: require('@/assets/img/ticketExample.png'),
 					ticketTitle: "斑比斑比斑比斑比山丘門票",
 					ticketLocation: "宜蘭",
 					ticketTags: "#標籤",
-					originalPrice: "$NT" + 800,
-					finalPrice: "$NT" + 599,
+					originalPrice: 800,
+					finalPrice: 599,
 				},
 			]
 			
@@ -228,6 +238,7 @@ export default {
 	background-color: $bgColor_default;
 }
 .index{
+	
 	// 全頁設定
 	
 	.bgCurve{
@@ -285,9 +296,27 @@ export default {
 		}
 	}
 
-	a{
-		color: inherit;
-	}
+	.btn{
+        position: relative;
+        img{
+            width: 40px;
+            @media (min-width: $md){
+                width: 45px;
+            }
+        }
+        .arrow_white{
+            position: absolute;
+            right: 24px;
+            @media (min-width: $md){
+                right: 32px;
+            }
+        }
+        &:hover{
+            .arrow_white{
+                display: none;
+            }
+        }
+    }
 	
 	// 專屬旅著區塊
 	.index_plan{
@@ -486,12 +515,16 @@ export default {
 				.ticketCards{
 					display: flex;
 					overflow-x: scroll;
+					@media (min-width: 1260px) {
+					justify-content: space-between;
+					overflow: visible;
+					}
 
 					.ticketCard{
 						flex-shrink: 0;
 						margin-left: 32px;
-						@media (min-width: 768px) {
-						margin-left: 24px;
+						@media (min-width: 1260px) {
+						margin-left: 0;
 						}
 					}
 
