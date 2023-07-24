@@ -150,9 +150,9 @@
 // import Tag from "@/components/Tag.vue";
 
 export default {
-    // components: {
+    components: {
     //     Tag,
-    // },
+     },
     data() {
         return {
             placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆", "懷舊"],

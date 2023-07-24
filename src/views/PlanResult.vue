@@ -259,7 +259,7 @@
                                     <span>NT$ 599</span>
                                 </div>
                                 <div class="ticket_link">
-                                    <a href="/ticketinfo">查看詳情</a>
+                                    <a href="/ticket_info">查看詳情</a>
                                 </div>
                             </div>
                         </div>
@@ -268,7 +268,7 @@
                         </div>
                     </div>
                     <div class="ticket_card">
-                        <a href="/ticketinfo">
+                        <a href="/ticket_info">
                             <Ticket
                             v-for="(ticket, index) in tickets"
                             :key="index"

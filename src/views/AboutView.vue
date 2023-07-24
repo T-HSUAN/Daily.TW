@@ -414,16 +414,36 @@
         }
     }
 }
-// .about_us_wave{
-//     background-image: url(~@/assets/img/layout/bg_wave1_sm.png);
-//     background-size: contain;
-//     background-repeat: no-repeat;
-//     width: 100%;
-//     height: 48px;
-//     position: relative;
-//     bottom: 10px;
-//     outline: 1px solid red;
-// }
+.about_us_wave,
+.about_message_wave{
+    margin-top: -3%;
+    background-image: url(~@/assets/img/layout/bg_wave1_sm.png);
+    width: 100%;
+    height: 56px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    @media (min-width: 375px){
+        background-image: url(~@/assets/img/layout/bg_wave1_xl.png);
+        height: 96px;
+        margin-top: -1%;
+    }
+}
+.about_service_wave{
+    margin-top: -3%;
+    background-image: url(~@/assets/img/layout/bg_wave2_sm.png);
+    width: 100%;
+    height: 56px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    @media (min-width: 375px){
+        background-image: url(~@/assets/img/layout/bg_wave2_xl.png);
+        height: 96px;
+        margin-top: -1%;
+    }
+}
 .about_service{
     display: flex;
     flex-direction: column;
@@ -629,8 +649,13 @@
     }
 }
 .about_message{
-    padding: $sp4 $sp7;
+    padding: $sp10 $sp7 $sp4 $sp7;
+    margin-top: -90px;
     background-color: $bgColor_default;
+    @media (min-width: $md){
+        padding: $sp15 $sp7 $sp4 $sp7;
+        margin-top: -90px;
+    }
     .message_title{
         h2{
             @include sm_h2;
