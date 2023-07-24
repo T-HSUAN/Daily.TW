@@ -17,23 +17,30 @@
                     <img :src="require('@/assets/img/FB.png')" alt="icon">
                     <p>使用FACEBOOK登入</p>
                 </div>
-                <label for="email">Email
+                <label for="email">Email</label>
                     <input type="text" 
                         v-model="email"
-                        @input="validateEmail" 
+                        @input="validateEmail"
+                        :class="{ form_warning: !isEmailValid }" 
                         placeholder='請輸入EMAIL'>
-                    <div v-if="showError" class="error_message">請輸入有效的...@gmail.com格式</div>
-                </label>
+                    <!-- <span class="error_message" v-if="!isPasswordValid">
+                        請輸入@gmail.com格式</span> -->
                 <label for="psw">密碼</label>
                 <input type="password" 
-                    v-model="psw" 
-                    placeholder='請輸入密碼 (英數混合6-12碼)'>
+                    v-model="psw"
+                    @input="validatePassword"
+                    :class="{ form_warning: !isPasswordValid }" 
+                    placeholder='請輸入密碼 (英數混合6-12碼)'
+                    >
                 <div class="login_action">
                     <label for="remember" v-if="item.tab == 1">
                     <input type="checkbox" name="remember" id="remember" >
                     <span>記住我</span>
                     </label>
-                    <router-link to="./login/forgetpsw" v-if="item.tab == 1">忘記密碼?</router-link>
+                    <router-link to="./login/forgetpsw" 
+                    v-if="item.tab == 1">
+                    忘記密碼?
+                </router-link>
                 </div>
                 <div v-show="item.tab == 2" class="space"></div>
                 <div class="cancel_group">
@@ -60,7 +67,9 @@
                         v-else v-if="item.tab == 1" 
                         to="./login" 
                         @click="login" 
-                        class="btn">
+                        class="btn"
+                        :class="{ btn: isEmailValid && isPasswordValid }"
+                        :disabled="!(isEmailValid && isPasswordValid)">
                         登入
                     </router-link>
                 </div>
@@ -107,29 +116,31 @@ export default {
             },
             email: '',
             psw:'',
+            isEmailValid: true,
+            isPasswordValid: true,
             isActive: false,
             showError: false,
         }
     },
     methods: {
-    validateEmail() {
-      const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-      if (!regex.test(this.email)) {
-        // 輸入格式不正確，顯示錯誤提示
-        this.showError = true;
-      } else {
-        // 輸入格式正確，隱藏錯誤提示
-        this.showError = false;
-      }
-    },
-      login(){
-        if(this.email === '123@gmail.com' && this.psw === 'test'){
-          window.alert('登入成功')
-        }
-        else{
-          window.alert('登入失敗，請重新登入');
-        }
-      },
+        validateEmail() {
+            const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            this.isEmailValid = regex.test(this.email);
+        },
+        validatePassword() {
+            const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
+            this.isPasswordValid = regex.test(this.psw);
+        },
+        login() {
+            if (this.isEmailValid && this.isPasswordValid) {
+                if (this.email === "test123@gmail.com" && this.psw === "test123") {
+                    window.alert("登入成功");
+                    // 在这里进行页面跳转逻辑
+                } else {
+                    window.alert("帳號或密碼錯誤，請重新登入");
+                }
+            }
+        },
       // 切換tab
       updateTab(index){
           this.tabActive = index
@@ -145,7 +156,9 @@ export default {
 
 <style lang="scss" >
     @import '@/assets/scss/main.scss';
-
+    // *{
+    //     // outline: 1px solid red;
+    // }
     #app{
         background-color: $bgColor_default;
     }
@@ -221,38 +234,37 @@ export default {
                 letter-spacing: 0.72px;
                 padding: 4px 0;
                 position: relative;
-                input{
-                    width: 100%;
-                    padding: $sp1 20px;
-                    background: $textColor_white;
-                    color: $textColor_default;
-                    border-radius: 50px;
-                    box-sizing: border-box;
-                    font-size: $sm_p;
-                    margin: $sp1 0 $sp1;
-                    border: 2px solid $textColor_default;
-                }
-                .error_message{
-                    position: absolute;
-                    bottom: -2px;
-                    // left: 50%;
-                    // transform: translateX(-50%);
-                    color: $warningColor;
-                    font-size: $sm_p;
-                }
             }
             input{
                 width: 100%;
-                padding: $sp1 20px;
-                background: $textColor_white;
-                color: $textColor_default;
-                border-radius: 50px;
                 box-sizing: border-box;
-                font-size: $sm_p;
-                margin: $sp1 0 $sp1;
-                border: 2px solid $textColor_default;
             }
-            
+// //          /* 初始状态下隐藏错误提示 */
+// .error_message {
+//   display: none;
+// }
+
+// /* 错误提示显示的状态 */
+// .error_message.v-if {
+//   display: block;
+
+//   /* 添加过渡效果，使显示和隐藏平滑 */
+//   transition: opacity 0.3s ease-out;
+//   opacity: 1; /* 设置透明度为1，即完全显示 */
+// }
+
+// /* 错误提示隐藏的状态 */
+// .error_message:not(.v-if) {
+//   display: block;
+
+//   /* 添加过渡效果，使显示和隐藏平滑 */
+//   transition: opacity 0.3s ease-out;
+//   opacity: 0; /* 设置透明度为0，即完全隐藏 */
+
+//   /* 如果你希望隐藏的同时保留原来的空间 */
+//   /* visibility: hidden; */
+// }
+   
             .login_action{
                 width: 100%;
                 display: flex;
@@ -303,6 +315,7 @@ export default {
                 }
             }
         }
+        
         .register{
             display: none;    
         }
@@ -377,6 +390,7 @@ export default {
                 }
                 .joinus_md{
                     width: 300px;
+                    height: 300px;
                     overflow: hidden;
                     margin: $sp4 0 $sp10;
                     img{

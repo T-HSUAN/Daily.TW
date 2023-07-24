@@ -17,30 +17,32 @@
                         @input="validateEmail" 
                         placeholder='請輸入EMAIL'>
                     <div v-if="showError" class="error_message">請輸入有效的...@gmail.com格式</div>
+                    <div v-if="item.tab == 1" class="space_forget"></div>
                 </label>
                 <div class="psw_group"
-                    v-if="item.tab == 2">
-                    <label for="newpsw">
-                        新密碼
-                    </label>
-                    <input 
-                    type="password" 
-                    v-model="newpsw" 
-                    @input="validatePassword"
-                    :placeholder="passwordPlaceholder">
-                    <label for="repeatpsw">
-                        密碼
-                    </label>
-                    <input 
-                    type="password" 
-                    v-model="repeatpsw"
-                    @input="validatePassword"
-                    :placeholder="passwordPlaceholder">
-                    <div v-if="!isPasswordValid" class="error_message">請輸入英數混合的6-12位密碼且兩次輸入值要相同</div>
-                    <button v-if="isPasswordValid" @click="handleSubmit">送出</button>
-                </div>
-                
-                
+                v-if="item.tab == 2">
+                <label for="newpsw">
+                    新密碼
+                </label>
+                <input 
+                type="password" 
+                v-model="newpsw" 
+                @input="validatePassword"
+                :placeholder="passwordPlaceholder">
+                <label for="repeatpsw">
+                    密碼
+                </label>
+                <input 
+                type="password" 
+                v-model="repeatpsw"
+                @input="validatePassword"
+                :placeholder="passwordPlaceholder">
+                <div v-if="!isPasswordValid" class="error_message">請輸入英數混合的6-12位密碼且兩次輸入值要相同</div>
+                <div v-if="item.tab == 2" class="space_reset"></div>
+                <button v-if="isPasswordValid" @click="handleSubmit">送出</button>
+            </div>
+            
+            
                 <div class="cancel_group">
                     <router-link to="./" 
                         @click="handleClick"
@@ -67,18 +69,13 @@
             </div>
             <div class="register" :class="{ active: isActive }">
                 <h2>{{ item.subtitle }}</h2>
-                <p v-if="item.tab == 1">加入日日旅著體驗完整服務</p>
                 <div class="joinus_md">
-                    <img src="@/assets/img/joinus_md.png" alt="joinus">
+                    <img v-if="item.tab == 1" src="../assets/img/forget_md.png" alt="">
+                    <img v-if="item.tab == 2" src="../assets/img/reset_md.png" alt="">
+
                 </div>
-                <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
-                <router-link 
-                    v-if="item.tab == 1" 
-                    to="./login" 
-                    @click="handleClick" 
-                    class="btn" >
-                    註冊
-                </router-link>
+                <div class="welcome">{{ item.text}}</div>
+                
             </div>       
         </div>
         </div>
@@ -94,11 +91,16 @@ export default {
                     title: '忘記密碼',
                     tab: 1,
                     goNext: 2,
+                    subtitle:"Forget",
+                    text:"Please enter your EMAIL",
+                    img:""
                 },
                 2:{
                     title: '重設密碼',
                     tab: 2,
                     goNext:1,
+                    subtitle:"Reset",
+                    text:"Please enter your password"
                 },
             },
             email: '',
@@ -228,21 +230,17 @@ export default {
                 position: relative;
                 input{
                     width: 100%;
-                    padding: $sp1 20px;
-                    background: $textColor_white;
-                    color: $textColor_default;
-                    border-radius: 50px;
                     box-sizing: border-box;
                     font-size: $sm_p;
                     margin: $sp1 0 $sp1;
-                    border: 2px solid $textColor_default;
                 }
                 .error_message{
                     position: absolute;
                     bottom: -2px;
-                    color: $warningColor;
-                    font-size: $sm_p;
+                color: $warningColor;
+                font-size: $sm_p;
                 }
+                
             }
             .psw_group{
                 width: 100%;
@@ -267,6 +265,7 @@ export default {
                     font-size: $sm_p;
                     margin: $sp1 0 $sp1;
                 }
+                
             }
             .cancel_group{
                 width: 100%;
@@ -276,12 +275,8 @@ export default {
                 a:first-child{
                     padding: 0 $sp2;
                 }
-                div{
-                    padding: $sp1 $sp2;
-                }
-                .btn{
-                    box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-                }
+                
+                
             }
             
         }
@@ -293,141 +288,107 @@ export default {
 
 }
 
-@media all and (min-width: $xl){
-
+@media all and (min-width: $md){
+    // *{
+    //     outline: 1px solid red;
+    // }
 .forgetpsw{
-    padding: 30px 0 10px;
-    .canvas{  
+    padding: 50px 0;
+    .canvas{
         max-width: 1000px;
-            display: flex;
-            justify-content: center;
-            margin: $sp10 auto;
+        display: flex;
+        justify-content: center;
+        margin: $sp10 auto;
         .joinus_sm{
             display: none;
         }
         .forget{
-            padding: $sp8 $sp3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 50%;
+            border-right: 2px solid $textColor_white;
+            padding: $sp6 0;
             h2{
-                color: $textColor_white;
-                font-size: $sm_h2;
-                padding: 0 0 $sp5;
-                font-weight: 900;
-                line-height: 150%; /* 42px */
-                letter-spacing: 0.84px;
+                font-size: $xl_h2;
+                padding: 0 0 110px;
             }
             p{
-                font-size: $sm_p;
+                font-size: $xl_p;
                 font-weight: 400;
-                line-height: 180%; /* 25.2px */
-                letter-spacing: 0.42px;
-                text-align: center;
+                line-height: 165%; /* 25.2px */
+                letter-spacing: 0.54px;
             }
             label{
-                width: 100%;
-                color: $textColor_white;
-                font-size: $sm_h4;
-                font-weight: 700;
-                letter-spacing: 0.72px;
-                padding: 4px 0;
-                position: relative;
+                width: 80%;
+                font-size: $xl_h4;
                 input{
-                    width: 100%;
-                    padding: $sp1 20px;
-                    background: $textColor_white;
-                    color: $textColor_default;
-                    border-radius: 50px;
-                    box-sizing: border-box;
-                    font-size: $sm_p;
-                    margin: $sp1 0 $sp1;
-                    border: 2px solid $textColor_default;
+                    font-size: $xl_p;
+                }
+                .space_forget{
+                    margin: 0 0 110px;
                 }
                 .error_message{
-                    position: absolute;
-                    bottom: -2px;
-                    color: $warningColor;
-                    font-size: $sm_p;
+                    bottom: -6px;
+                    font-size: $xl_p;
                 }
             }
             .psw_group{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
+                width: 80%;
                 label{
-                    width: 100%;
-                    color: $textColor_white;
-                    font-size: $sm_h4;
-                    font-weight: 700;
-                    letter-spacing: 0.72px;
-                    padding: 4px 0;
-                    position: relative;
+                        font-size: $xl_h4;
+                    }
+                    input{
+                        font-size: $xl_p;
+                        margin: $sp1 0 $sp1;
+                    }
+                    .space_reset{
+                    margin: 0 0 80px;
                 }
-                input{
-                    width: 100%;
-                    padding: $sp1 20px;
-                    background: $textColor_white;
-                    color: $textColor_default;
-                    box-sizing: border-box;
-                    font-size: $sm_p;
-                    margin: $sp1 0 $sp1;
                 }
-            }
-            .cancel_group{
-                width: 100%;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
+                .cancel_group{
+                justify-content: center;
                 a:first-child{
                     padding: 0 $sp2;
                 }
-                div{
-                    padding: $sp1 $sp2;
-                }
-                .btn{
-                    box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-                }
+                
+                
             }
             
         }
         .register{
-                width: 50%;
-                padding: $sp6 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border-radius: 0 $sp3 $sp3 0;
-                h2{
-                    color: $textColor_white;
-                    font-size: $sm_h2;
-                    padding: 0 0 $sp5;
-                    font-weight: 900;
-                    letter-spacing: 2px;
-                }
-                p{
-                    font-size: $sm_h4;
-                    color:$textColor_white;
-                    font-weight: 700;
-                    letter-spacing: 0.72px;
-                }
-                .joinus_md{
-                    width: 300px;
-                    overflow: hidden;
-                    margin: $sp4 0 $sp10;
-                    img{
-                        display: block;
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
-                    }
-                }
-                .welcome{
-                    font-size: $sm_h4;
-                    color:$textColor_white;
-                }      
+            width: 50%;
+            padding: $sp6 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 0 $sp3 $sp3 0;
+            h2{
+                color: $textColor_white;
+                font-size: $xl_h2;
+                padding: 0 0 $sp5;
+                font-weight: 900;
+                letter-spacing: 2px;
             }
+            p{
+                font-size: $xl_h4;
+                color:$textColor_white;
+                font-weight: 700;
+                letter-spacing: 0.72px;
+            }
+            .joinus_md{
+                width: 300px;
+                overflow: hidden;
+                margin: $sp4 0 $sp10;
+                img{
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .welcome{
+                font-size: $xl_h4;
+                color:$textColor_white;
+            }      
+        }
         
     }
 
