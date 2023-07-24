@@ -23,38 +23,58 @@
 
         <!-- 行程內容 -->
         <section class="trip_content">
-            <header>
-                <div class="title">
-                    <h2>新竹內灣放鬆小旅行</h2>
-                    <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" class="deco">
+            <article class="trip_article">
+                <div class="header">
+                    <div class="trip_title">
+                        <h2>新竹內灣放鬆小旅行</h2>
+                        <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" class="deco">
+                    </div>
+                    <h5 class="author">作者 | 日日旅著小編</h5>
+                    <h5 class="date">發布日期 | 2023年7月2日</h5>
+                    <h5 class="views">2,345 次瀏覽</h5>
                 </div>
-                <div class="author">作者 | 日日旅著小編</div>
-                <div class="date">發布日期 | 2023年7月2日</div>
-                <div class="views">2,345 次瀏覽</div>
-            </header>
-            <section class="trip_desc">
-                <p>新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳、自然景觀，推薦大家可以一同順遊。除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。</p>
-            </section>
-            <section class="spot1">
-                <h3>合興車站</h3>
-                <div class="time">
-                    <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                    <h5>停留30分鐘</h5>
+                <div class="trip_desc">
+                    <p>新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳、自然景觀，推薦大家可以一同順遊。除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。</p>
                 </div>
-                <div class="spot_img"></div>
-                <p class="spot_desc">位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。</p>
-                <div class="spot_loction">
-                    <font-awesome-icon icon="fa-solid fa-location-dot" />
-                    <h5>新竹縣橫山鄉中山街一段17號</h5>
+                <section class="spot">
+                    <div class="spot_title">
+                        <h3>合興車站</h3>
+                        <div class="time">
+                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
+                            <h5>停留30分鐘</h5>
+                        </div>
+                    </div>
+                    <div class="spot_img">
+                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                    </div>
+                    <p class="spot_desc">位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。</p>
+                    <div class="spot_loc">
+                        <font-awesome-icon icon="fa-solid fa-location-dot" />
+                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                    </div>
+                </section>
+                <section class="trip_tags">
+                    <div class="tags">#新竹</div>
+                    <div class="tags">#放鬆</div>
+                    <div class="tags">#懷舊</div>
+                    <div class="tags">#情侶</div>
+                </section>
+            </article>
+            <div class="sidebar">
+                <nav class="route">
+                    <ol>
+                        <li>合興車站</li>
+                        <li>內灣愛情故事館</li>
+                        <li>內灣老街</li>
+                        <li>劉興欽漫畫館</li>
+                        <li>內灣隱藏版咖啡</li>
+                    </ol>
+                </nav>
+                <div class="collect">
+                    <font-awesome-icon icon="fa-solid fa-bookmark" />
+                    <label for="">加入收藏清單</label>
                 </div>
-            </section>
-            <section class="trip_tags">
-                <div class="tag">#新竹</div>
-                <div class="tag">#放鬆</div>
-                <div class="tag">#懷舊</div>
-                <div class="tag">#情侶</div>
-            </section>
-            
+            </div>
         </section>
 
         <!-- 穿搭區塊 -->
@@ -177,161 +197,279 @@
 <style lang="scss">
 @import "@/assets/scss/main.scss";
 
-// 全頁設定
+.tripInfo{
 
-.bgCurve{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 48px;
-
-    @media (min-width: 768px) {
-    height: 96px;
-    }
+    // 全頁設定
     
-    img{
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.title{
-    margin: 0 auto 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-
-    @media (min-width: 768px) {
-    margin: 0 auto 32px;
-    max-width: 1200px;
-    flex-direction: row;
-    align-items: center;
-    }
-    
-    .duckDeco{
-        position: relative;
-        
-        .trace{
-            display: none;
-            
-            @media (min-width: 768px) {
-            display: block;
-            width: 192px;
-            position: absolute;
-            left: -160px;
-            bottom: -8px;
-            }
-        }
-        
-        .duck{
-            width: 80px;
-
-            @media (min-width: 768px) {
-            width: 120px;
-            }
-        }
-    }
-}
-
-.btn{
-    position: relative;
-    img{
-        width: 40px;
-        @media (min-width: $md){
-            width: 45px;
-        }
-    }
-    .arrow_white{
+    .bgCurve{
         position: absolute;
-        right: 24px;
-        @media (min-width: $md){
-            right: 32px;
+        top: 0;
+        width: 100%;
+        height: 48px;
+    
+        @media (min-width: 768px) {
+        height: 96px;
+        }
+        
+        img{
+            width: 100%;
+            height: 100%;
         }
     }
-    &:hover{
-        .arrow_white{
-            display: none;
-        }
-    }
-}
-
-
-.breadcrumb{
-    max-width: $xl;
-    margin: $sp3 auto $sp4;
-}
-
-// 穿搭區塊
-.index_oott{
-    position: relative;
-    padding: 160px 0 80px;
-    background-color: $bgColor_default;
-
-    .content{
-        padding-left: 32px;
-        margin: 0 auto;
+    
+    .title{
+        margin: 0 auto 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    
+        @media (min-width: 768px) {
+        margin: 0 auto 32px;
         max-width: 1200px;
-        text-align: center;
+        flex-direction: row;
+        align-items: center;
+        }
+        
+        .duckDeco{
+            position: relative;
+            
+            .trace{
+                display: none;
+                
+                @media (min-width: 768px) {
+                display: block;
+                width: 192px;
+                position: absolute;
+                left: -160px;
+                bottom: -8px;
+                }
+            }
+            
+            .duck{
+                width: 80px;
+    
+                @media (min-width: 768px) {
+                width: 120px;
+                }
+            }
+        }
+    }
+    
+    .btn{
+        position: relative;
+        img{
+            width: 40px;
+            @media (min-width: $md){
+                width: 45px;
+            }
+        }
+        .arrow_white{
+            position: absolute;
+            right: 24px;
+            @media (min-width: $md){
+                right: 32px;
+            }
+        }
+        &:hover{
+            .arrow_white{
+                display: none;
+            }
+        }
+    }
+    
+    
+    .breadcrumb{
+        max-width: $xl;
+        margin: $sp3 auto $sp4;
+        padding: 0 32px;
+    }
 
-        .wrap{
-            margin-bottom: 16px;
-            overflow-x: scroll;
-            @media (min-width: 768px) {
+    // 行程內容
+    .trip_content{
+        margin: 0 auto;
+        padding: 0 32px;
+        max-width: $xl;
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: $sp4;
+
+        .trip_article{
+            width: calc((100% - 352px) / 4 * 3 + 256px);
+
+            .header{
+                position: relative;
+                margin-bottom: $sp6;
+
+                .trip_title{
+                    display: flex;
+                    align-items: end;
+                    margin-bottom: $sp2;
+
+                    h2{
+                        font-family: 'Shippori Mincho', serif;
+                        font-weight: 700;
+                    }
+                }
+
+                .author{
+                    color: $textColor_tint;
+                    margin-bottom: $sp1;
+                }
+
+                .date{
+                    color: $textColor_tint;
+                    margin-bottom: $sp1;
+                }
+
+                .views{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                }
+            }
+
+            .trip_desc{
+                margin-bottom: $sp6;
+                p{
+                    line-height: 165%;
+                }
+            }
+
+            .spot{
+                .spot_title{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: $sp3;
+
+                    .time{
+                        display: flex;
+                        gap: $sp1;
+                    }
+                }
+                .spot_img{
+                    width: 100%;
+                    margin-bottom: $sp3;
+
+                    img{
+                        width: 100%;
+                    }
+                }
+                .spot_desc{
+                    line-height: 165%;
+                    margin-bottom: $sp3;
+                }
+                .spot_loc{
+                    display: flex;
+                    gap: $sp1;
+                    margin-bottom: $sp5;
+                }
+
+            }
+            .trip_tags{
+                display: flex;
+                gap: 16px;
+
+                .tags{
+                    color: $textColor_white;
+                    background-color: $textColor_default;
+                    padding: 8px 20px;
+                    border-radius: 50px;
+                    margin-bottom: $sp8;
+                }
+            }
+        }
+        .sidebar{
+            position: sticky;
+            top: $sp12;
+            width: calc((100% - 352px) / 4 + 64px);
+            border-radius: 10px;
+            border: 3px solid $textColor_default;
+            background-color: $bgColor_default;
+            .route{
+                padding: $sp3;
+                border-bottom: 3px solid $textColor_default;
+            }
+            .collect{
+                padding: $sp3;
+            }
+        }
+    }
+    
+    // 穿搭區塊
+    .index_oott{
+        position: relative;
+        padding: 160px 0 80px;
+        background-color: $bgColor_default;
+    
+        .content{
+            padding-left: 32px;
+            margin: 0 auto;
+            max-width: 1200px;
+            text-align: center;
+    
+            .wrap{
+                margin-bottom: 16px;
+                overflow-x: scroll;
+                @media (min-width: 768px) {
+                        overflow: visible;
+                        }
+                .oottCards{
+                    display: flex;
+                    gap: 32px;
+                    .oottCard{
+                        flex-shrink: 0;
+    
+                    }
+                }
+            }
+            .panel{
+                display: flex;
+                justify-content: center;
+                gap: 64px;
+                margin-bottom: 32px;
+            }
+        }
+    
+    }
+    
+    // 票券區塊
+    .index_ticket{
+        position: relative;
+        padding: 160px 0;
+    
+        .content{
+            margin: 0 auto;
+            max-width: 1200px;
+            text-align: center;
+    
+            .wrap{
+                margin-bottom: 32px;
+                .ticketCards{
+                    display: flex;
+                    overflow-x: scroll;
+                    @media (min-width: 1260px) {
+                    justify-content: space-between;
                     overflow: visible;
                     }
-            .oottCards{
-                display: flex;
-                gap: 32px;
-                .oottCard{
-                    flex-shrink: 0;
-
-                }
-            }
-        }
-        .panel{
-            display: flex;
-            justify-content: center;
-            gap: 64px;
-            margin-bottom: 32px;
-        }
-    }
-
-}
-
-// 票券區塊
-.index_ticket{
-    position: relative;
-    padding: 160px 0;
-
-    .content{
-        margin: 0 auto;
-        max-width: 1200px;
-        text-align: center;
-
-        .wrap{
-            margin-bottom: 32px;
-            .ticketCards{
-                display: flex;
-                overflow-x: scroll;
-                @media (min-width: 1260px) {
-                justify-content: space-between;
-                overflow: visible;
-                }
-
-                .ticketCard{
-                    flex-shrink: 0;
-                    margin-left: 32px;
-                    @media (min-width: 1260px) {
-                    margin-left: 0;
+    
+                    .ticketCard{
+                        flex-shrink: 0;
+                        margin-left: 32px;
+                        @media (min-width: 1260px) {
+                        margin-left: 0;
+                        }
                     }
+    
                 }
-
             }
         }
+    
     }
-
 }
+
 
 </style>
 
