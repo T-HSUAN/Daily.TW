@@ -176,7 +176,7 @@
                             </a></td>
                         </tr>
                         </tbody>
-                        <button class="btn">所有訂單</button>
+                        <a href="/myorder"><button class="btn">所有訂單</button></a>
                     </table>
                 </div>
             </div>
@@ -425,12 +425,15 @@ export default {
        }
        .card_list{
             position: relative;
+            justify-content: center;
             display: flex;
             padding: $sp3 0;
             margin: $sp3 ;
             border-bottom: 2px solid $textColor_default;
+            overflow-x: scroll;//////////////////////scroll_bar
             @media (min-width: 768px) {
                 margin: 0;
+                overflow: visible;//////////////////////scroll_bar
             }
             .card{
                 flex-direction: column;
@@ -580,9 +583,11 @@ export default {
             border-bottom: 2px solid $textColor_default;
             display: flex;
             justify-content: center;
+            overflow-x: scroll;//////////////////////scroll_bar
             @media (min-width: 768px) {
                 padding: $sp3 0 $sp6 0;
                 margin: 0;
+                overflow: visible;//////////////////////scroll_bar
             }
             .trip_card_default{
                 background-color:var(--green-default, #93AE51);
@@ -748,9 +753,11 @@ export default {
                 padding: $sp2 0 $sp6 0;
                 margin: $sp3;
                 border-bottom: 2px solid $textColor_default;
+                overflow-x: scroll;//////////////////////scroll_bar
                 @media (min-width: 768px) {
                     padding: $sp3 0 $sp6 0; 
                     margin: 0; 
+                    overflow: visible;//////////////////////scroll_bar
                 }
             .oottCards{
                 display: flex;
