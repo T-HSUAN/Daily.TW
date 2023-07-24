@@ -32,7 +32,7 @@
     flex-wrap: wrap;
     justify-content: center;
     .ticket_card {
-        margin: $sp2 $sp2;
+        margin: $sp2;
         position: relative;
         cursor: pointer;
         &:hover .hover_showDuck {
@@ -227,7 +227,7 @@
         max-width: $xl;
         margin: $sp4 auto;
         .ticket_card {
-            margin: $sp1 12px;
+            margin: $sp1;
         }
     }
     .cart {
