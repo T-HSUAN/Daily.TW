@@ -99,11 +99,11 @@ const routesUser = [
             import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
     },
     {
-        path: "/register",
-        name: "register",
+        path: "/signup",
+        name: "signup",
         component: () =>
             import(
-                /* webpackChunkName: "register" */ "@/views/RegisterView.vue"
+                /* webpackChunkName: "signup" */ "@/views/SignUpView.vue"
             ),
     },
     {
