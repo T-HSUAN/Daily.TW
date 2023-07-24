@@ -53,7 +53,7 @@
         height: 440px;
         background-color: $default_yellow;
         border-radius: 10px;
-        padding: 24px 16px 24px 16px;
+        padding: 24px 16px 16px 16px;
         position: relative;
         display: flex;
         flex-direction: column;

@@ -1,5 +1,5 @@
 .container_box{
-    height: 70px;
+    height: 75px;
     background: linear-gradient(
         180deg,
         $bgColor_default 59.9%,
@@ -20,8 +20,8 @@ header {
     z-index: 99;
     background: linear-gradient(
         180deg,
-        $bgColor_default 59.9%,
-        rgba(254, 240, 209, 0) 100%
+        $bgColor_default,
+        rgba(254, 240, 209, 0)
     );
     display: flex;
     justify-content: space-between;
