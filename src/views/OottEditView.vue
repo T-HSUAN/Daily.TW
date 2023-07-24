@@ -71,8 +71,8 @@
                                     <span>{{ seasonTag }}</span>
                                 </label>
                         </div>
-                        <button>取消編輯</button>
-                        <button>送出審核</button>
+                        <button class="cancel_btn">取消編輯</button>
+                        <button class="btn">送出審核</button>
                     </div>
                 </div>
                 <!-- post_button -->
@@ -107,7 +107,7 @@ export default{
         @media (min-width: 768px) {
             width: 735px;
         }
-        @media (min-width : 1220px) {
+        @media (min-width : 1200px) {
             box-sizing: border-box;
             width: 1200px;            
         }
@@ -121,7 +121,7 @@ export default{
             flex-shrink: 0;
             height: 506px;
             display: none;
-            @media (min-width : 1024px) {
+            @media (min-width : 1200px) {
                 display: block;            
             }
         }
@@ -152,16 +152,19 @@ export default{
                 display: none;
                 @media (min-width: 1024px) {
                 display: block;
+                margin-bottom: 22px;
                 }
             }
             .post_edit_title{
                 display: flex;
-                align-content: baseline;
+                justify-content: space-between;
+                align-items: center;
                 h3{
                     flex-grow: 1;
+                    line-height: 150%;
                 }
-                span{
-                    vertical-align: baseline;
+                .status{
+                    color: var(--semantic-warning, #DB4918);
                 }
             }
             .post_content_container{
