@@ -59,13 +59,13 @@
                     <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
                     <router-link 
                         v-if="item.tab == 2" 
-                        to="./register" 
+                        to="./signup" 
                         class="btn">
                         註冊
                     </router-link>
                     <router-link 
                         v-else v-if="item.tab == 1" 
-                        to="./login" 
+                        to="./member" 
                         @click="login" 
                         class="btn"
                         :class="{ btn: isEmailValid && isPasswordValid }"

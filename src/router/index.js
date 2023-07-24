@@ -92,7 +92,7 @@ const routesUser = [
         name: "signup",
         component: () =>
             import(
-                /* webpackChunkName: "register" */ "@/views/SignUpView.vue"
+                /* webpackChunkName: "signup" */ "@/views/SignUpView.vue"
             ),
     },
     {
