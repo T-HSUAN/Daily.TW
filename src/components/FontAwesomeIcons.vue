@@ -1,6 +1,7 @@
 <template>
     <div>
         <font-awesome-icon icon="fa-solid fa-bookmark" />
+        <font-awesome-icon icon="fa-regular fa-bookmark" />
         <font-awesome-icon icon="fa-solid fa-heart" />
         <font-awesome-icon icon="fa-solid fa-cart-shopping" />
         <font-awesome-icon icon="fa-solid fa-magnifying-glass" />

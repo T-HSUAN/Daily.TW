@@ -35,6 +35,18 @@ const routesUser = [
             import(/* webpackChunkName: "trip" */ "@/views/TripView.vue"),
     },
     {
+        path: "/trip_overview",
+        name: "trip_overview",
+        component: () =>
+            import(/* webpackChunkName: "tripoverview" */ "@/views/TripOverview.vue"),
+    },
+    {
+        path: "/trip_info",
+        name: "trip_info",
+        component: () =>
+            import(/* webpackChunkName: "tripinfo" */ "@/views/TripInfo.vue"),
+    },
+    {
         path: "/oott",
         name: "oott",
         component: () =>
@@ -88,11 +100,11 @@ const routesUser = [
             import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
     },
     {
-        path: "/register",
-        name: "register",
+        path: "/signup",
+        name: "signup",
         component: () =>
             import(
-                /* webpackChunkName: "register" */ "@/views/RegisterView.vue"
+                /* webpackChunkName: "signup" */ "@/views/SignUpView.vue"
             ),
     },
     {

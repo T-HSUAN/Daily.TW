@@ -31,10 +31,12 @@
 							:tripCardDesc="trip.tripCardDesc"
             				:tripCardAuthor="trip.tripCardAuthor"
             				:tripCardDate="trip.tripCardDate"
-							></tripCard>
+							/>
 						</div>
 					</div>
-					<btn class="btn"><a href="">查看更多</a></btn>
+					<router-link to="/trip_overview">
+                        <div class="btn">查看更多</div>
+                    </router-link>
         </div>
     </section>
 
@@ -63,10 +65,12 @@
 							:tripCardDesc="trip.tripCardDesc"
             				:tripCardAuthor="trip.tripCardAuthor"
             				:tripCardDate="trip.tripCardDate"
-							></tripCard>
+							/>
 						</div>
 					</div>
-					<btn class="btn"><a href="">查看更多</a></btn>
+					<router-link to="/trip_overview">
+                        <div class="btn">查看更多</div>
+                    </router-link>
         </div>
     </section>
     
