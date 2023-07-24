@@ -3,7 +3,7 @@
     <div class="tripOverview">
 
         <!-- 麵包屑 -->
-        <sec class="breadcrumb">
+        <div class="breadcrumb">
             <router-link to="/">
                 <span>首頁</span>
             </router-link>
@@ -15,7 +15,8 @@
             <router-link to="/trip_overview">
                 <span>行程總覽</span>
             </router-link>
-        </sec>
+        </div>
+
         <!-- 標題 -->
         <h2>行程總覽</h2>
         <!-- 搜尋篩選欄 -->
