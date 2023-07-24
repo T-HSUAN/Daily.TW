@@ -100,10 +100,13 @@ export default {
     .breadcrumb{
         max-width: $xl;
         margin: $sp3 auto;
+        padding: 0 $sp2;
     }
     
     .list{
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
         .trip_list {
             
