@@ -52,11 +52,17 @@ const routesUser = [
             import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
     },
     {
+        path: "/oott_overview",
+        name: "oott_overview",
+        component: () =>
+            import(/* webpackChunkName: "oottoverview" */ "@/views/OottOverview.vue"),
+    },
+    {
         path: "/oott_info",
         name: "oott_info",
         // component: TicketView
         component: () =>
-            import(/* webpackChunkName: "oott" */ "@/views/OottInfo.vue"),
+            import(/* webpackChunkName: "oottinfo" */ "@/views/OottInfo.vue"),
     },
     {
         path: "/ticket",
@@ -97,6 +103,12 @@ const routesUser = [
         name: "member",
         component: () =>
             import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
+    },
+    {
+        path: "/myorder",
+        name: "myorder",
+        component: () =>
+            import(/* webpackChunkName: "myorder" */ "@/views/MyOrder.vue"),
     },
     {
         path: "/signup",
