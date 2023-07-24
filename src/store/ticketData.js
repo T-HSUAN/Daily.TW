@@ -15,7 +15,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 2,
@@ -33,7 +33,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 3,
@@ -51,7 +51,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 4,
@@ -69,7 +69,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 5,
@@ -87,7 +87,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 6,
@@ -105,7 +105,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 7,
@@ -123,7 +123,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
     {
         id: 8,
@@ -141,7 +141,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        link: "/ticketinfo",
+        link: "/ticket_info",
     },
 ];
 export default ticketData;

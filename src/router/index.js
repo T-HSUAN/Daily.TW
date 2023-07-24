@@ -16,13 +16,13 @@ const routesUser = [
             import(/* webpackChunkName: "plan" */ "@/views/PlanView.vue"),
     },
     {
-        path: "/plan/quiz",
+        path: "/plan_quiz",
         name: "quiz",
         component: () =>
             import(/* webpackChunkName: "quiz" */ "@/views/PlanQuiz.vue"),
     },
     {
-        path: "/plan/quiz/result",
+        path: "/plan_result",
         name: "result",
         component: () =>
             import(/* webpackChunkName: "result" */ "@/views/PlanResult.vue"),
@@ -38,14 +38,13 @@ const routesUser = [
         name: "oott",
         component: () =>
             import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
-      
     },
     {
         path: "/oott_info",
         name: "oott_info",
         // component: TicketView
         component: () =>
-            import(/* webpackChunkName: "oott" */ "@/views/Oott_info.vue"),
+            import(/* webpackChunkName: "oott" */ "@/views/OottInfo.vue"),
     },
     {
         path: "/ticket",
@@ -55,7 +54,7 @@ const routesUser = [
             import(/* webpackChunkName: "ticket" */ "@/views/TicketView.vue"),
     },
     {
-        path: "/ticketinfo",
+        path: "/ticket_info",
         name: "ticketinfo",
         // component: TicketInfo
         component: () =>
@@ -109,7 +108,6 @@ const routesUser = [
         path: "/TripCollectionView",
         component: TripCollectionView,
     },
-    
 ];
 
 const router = createRouter({
