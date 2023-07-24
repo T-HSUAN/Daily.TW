@@ -6,18 +6,22 @@
             <h3 class="ticket_title">{{ ticketTitle }}</h3>
             <p class="ticket_location">
                 {{ ticketLocation }}・
-                <span class="ticket_tags"
-                    >{{ ticketTags }}{{ ticketTags }}{{ ticketTags }}</span
-                >
+                <span class="ticket_tags">{{ ticketTags }}</span>
             </p>
             <p class="ticket_details">
                 {{ ticketDetails }}
             </p>
             <!-- if true顯示 false不顯示 -->
-            <p class="ticket_addr" v-if="showAddr === true">
+            <a
+                class="ticket_addr"
+                :href="ticketAddrLink"
+                target="_blank"
+                title="點擊查看地圖"
+                v-if="showAddr === true"
+            >
                 <font-awesome-icon icon="fa-solid fa-location-dot" />&nbsp;
                 {{ ticketAddr }}
-            </p>
+            </a>
             <div class="ticket_price" v-if="showNT === true">
                 <!--以下不用加true/false，它是參考originalPrice的值，沒有價格就會不顯示 -->
                 <p class="price_original" v-if="originalPrice !== ''">NT$</p>
@@ -31,6 +35,8 @@
 </template>
 
 <script>
+import { stringifyQuery } from "vue-router";
+
 export default {
     props: {
         ticketPhoto: String,
@@ -39,6 +45,7 @@ export default {
         ticketDetails: String,
         showAddr: Boolean,
         ticketAddr: String,
+        ticketAddrLink: String,
         ticketTags: String,
         showNT: Boolean,
         originalPrice: { Number, String },

@@ -25,7 +25,7 @@
                 src="@/assets/img/duck_chooseme.svg"
                 alt="hover_showDuck"
             />
-            <router-link :to="item.link" title="點擊查看票券詳情">
+            <router-link :to="item.singlecard_link" title="點擊查看票券詳情">
                 <Ticket
                     :ticketPhoto="item.img"
                     :ticketTitle="item.Name"
@@ -43,6 +43,9 @@
         </div>
     </div>
     <div v-else>查無結果</div>
+    <button class="btn more" v-if="ticketDisplay.length === ticketData.length">
+        更多
+    </button>
     <!-- 購物車清單 -->
     <!-- <router-link to="/cart"></router-link> -->
     <div class="cart">

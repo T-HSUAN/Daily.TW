@@ -67,6 +67,10 @@
         }
     }
 }
+.more {
+    display: block;
+    margin: $sp4 auto;
+}
 .cart {
     width: 80px;
     height: 80px;
@@ -116,6 +120,7 @@
         color: $textColor_white;
         text-align: left;
     }
+    // 付款明系列表
     .item {
         height: 500px;
         padding: $sp3 0;
@@ -141,6 +146,7 @@
                     }
                 }
             }
+            // 張數&票價
             .ticket_adult,
             .ticket_ex {
                 width: 100%;
@@ -154,6 +160,7 @@
                     align-items: center;
                     font-size: 14px;
                 }
+                // select
                 .count_adult,
                 .count_ex {
                     width: 60px;
@@ -165,6 +172,7 @@
                     border-radius: 50px;
                 }
             }
+            // 小計
             .amount {
                 margin: $sp2;
                 text-align: right;
@@ -227,8 +235,12 @@
         max-width: $xl;
         margin: $sp4 auto;
         .ticket_card {
-            margin: $sp1;
+            margin: $sp1 auto;
         }
+    }
+    .more {
+        display: block;
+        margin: $sp7 auto;
     }
     .cart {
         width: 100px;
