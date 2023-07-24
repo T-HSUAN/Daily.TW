@@ -70,7 +70,7 @@
             </div>
             <h2>看看其他穿搭</h2>
         </div>
-        <div>
+        <div class="wrap">
             <div class="oottCards">
                 <oottCard
                 class="oottCard"
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="look_more">
-            <button class="btn">查看更多</button>
+            <a href="/oott_overview"><button class="btn">查看更多</button></a>
         </div>
     </div>
     
@@ -369,31 +369,41 @@ h2{
     position: relative;
     padding: 120px 0;
     background-color: $bgColor_default;
-    .oottCards{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 30px;
-        margin: auto;
-        gap: 30px;
+    .wrap{
+        margin-bottom: 16px;
+        overflow-x: scroll;//////////////////////scroll_bar
         @media (min-width: 768px) {
+                overflow: visible;//////////////////////scroll_bar
+                }
+        .oottCards{
             display: flex;
-            justify-content: center;
-            flex-direction: row;
-        }
-        .oott_default:nth-child(1) {
-            transform: rotate(-2deg);
+            align-items: center;
+            padding-top: 60px;
+            margin: auto;
+            gap: 30px;
+            @media (min-width: 768px) {
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
             }
+            .oottCard{
+                flex-shrink: 0;
 
-            
-        .oott_default:nth-child(2) {
-        transform: rotate(2deg);
-        }
+                .oott_default:nth-child(1) {
+                    transform: rotate(-2deg);
+                    }
 
-           
-        .oott_default:nth-child(3) {
-        transform: rotate(-2deg);
-        
+                    
+                .oott_default:nth-child(2) {
+                transform: rotate(2deg);
+                }
+
+                
+                .oott_default:nth-child(3) {
+                transform: rotate(-2deg);
+                
+                }
+            }
         }
     }
     .look_more{

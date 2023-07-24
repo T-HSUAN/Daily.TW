@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import OottPostView from "@/views/OottPostView.vue";
 import TripCollectionView from "@/views/TripCollectionView.vue";
+import OottEditView from "@/views/OottEditView.vue";
 
 const routesUser = [
     {
@@ -34,17 +35,35 @@ const routesUser = [
             import(/* webpackChunkName: "trip" */ "@/views/TripView.vue"),
     },
     {
+        path: "/trip_overview",
+        name: "trip_overview",
+        component: () =>
+            import(/* webpackChunkName: "tripoverview" */ "@/views/TripOverview.vue"),
+    },
+    {
+        path: "/trip_info",
+        name: "trip_info",
+        component: () =>
+            import(/* webpackChunkName: "tripinfo" */ "@/views/TripInfo.vue"),
+    },
+    {
         path: "/oott",
         name: "oott",
         component: () =>
             import(/* webpackChunkName: "oott" */ "@/views/OottView.vue"),
     },
     {
+        path: "/oott_overview",
+        name: "oott_overview",
+        component: () =>
+            import(/* webpackChunkName: "oottoverview" */ "@/views/OottOverview.vue"),
+    },
+    {
         path: "/oott_info",
         name: "oott_info",
         // component: TicketView
         component: () =>
-            import(/* webpackChunkName: "oott" */ "@/views/OottInfo.vue"),
+            import(/* webpackChunkName: "oottinfo" */ "@/views/OottInfo.vue"),
     },
     {
         path: "/ticket",
@@ -87,11 +106,17 @@ const routesUser = [
             import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
     },
     {
-        path: "/register",
-        name: "register",
+        path: "/myorder",
+        name: "myorder",
+        component: () =>
+            import(/* webpackChunkName: "myorder" */ "@/views/MyOrder.vue"),
+    },
+    {
+        path: "/signup",
+        name: "signup",
         component: () =>
             import(
-                /* webpackChunkName: "register" */ "@/views/RegisterView.vue"
+                /* webpackChunkName: "signup" */ "@/views/SignUpView.vue"
             ),
     },
     {
@@ -107,6 +132,10 @@ const routesUser = [
     {
         path: "/TripCollectionView",
         component: TripCollectionView,
+    },
+    {
+        path: "/OottEditView",
+        component: OottEditView,
     },
 ];
 

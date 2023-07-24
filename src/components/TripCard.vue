@@ -46,7 +46,7 @@
     width: 276px;
     height: 332px;
     @media (min-width: 768px) {
-        width: 388px;
+        width: 378px;
         height: 521px;
     }
     position: relative;
