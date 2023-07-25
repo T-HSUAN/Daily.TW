@@ -69,7 +69,8 @@
                         @click="login" 
                         class="btn"
                         :class="{ btn: isEmailValid && isPasswordValid }"
-                        :disabled="!(isEmailValid && isPasswordValid)">
+                        >
+                        <!-- :disabled="!(isEmailValid && isPasswordValid)" -->
                         登入
                     </router-link>
                 </div>
@@ -132,14 +133,16 @@ export default {
             this.isPasswordValid = regex.test(this.psw);
         },
         login() {
-            if (this.isEmailValid && this.isPasswordValid) {
-                if (this.email === "test123@gmail.com" && this.psw === "test123") {
-                    window.alert("登入成功");
-                    // 在这里进行页面跳转逻辑
-                } else {
-                    window.alert("帳號或密碼錯誤，請重新登入");
-                }
+        // if (this.isEmailValid && this.isPasswordValid) {
+            if (this.email === "test123@gmail.com" && this.psw === "test123") {
+            window.alert("登入成功");
+            // 执行页面跳转
+            // this.$router.push({ path: "/member" });
+        } else {
+            window.alert("帳號或密碼錯誤，請重新登入");
+            this.$router.replace({ path: "/login" });
             }
+        // }
         },
       // 切換tab
       updateTab(index){
