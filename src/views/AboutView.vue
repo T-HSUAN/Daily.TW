@@ -300,6 +300,7 @@ export default defineComponent({
         .about_subtitle{
             @include sm_h4;
             line-height: 150%;
+            white-space: nowrap;
             display: flex;
             flex-direction: column;
             animation: fadeIn 1s ease-in;
@@ -355,7 +356,7 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: $sp6 $sp3 $sp3 $sp3;
+        padding: $sp6 $sp3 $sp5 $sp3;
         position: relative;
         @media (min-width: $md){
             align-items: flex-start;
@@ -485,7 +486,7 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     padding: $sp10 $sp7 $sp4 $sp7;
-    margin-top: -140px;
+    margin-top: -130px;
     background-color: $bgColor_tint;
     @media (min-width: $md){
         padding: $sp15 $sp7 $sp4 $sp7;
@@ -528,7 +529,7 @@ export default defineComponent({
             flex-wrap: wrap;
             justify-content: center;
             gap: $sp3;
-            width: 1200px;
+            max-width: 1200px;
         }
         .service_card_wrap{
             width: 265px;
@@ -761,7 +762,7 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     padding: $sp10 $sp7 $sp4 $sp7;
-    margin-top: -140px;
+    margin-top: -130px;
     background-color: $bgColor_tint;
     @media (min-width: $md){
         flex-direction: row;
