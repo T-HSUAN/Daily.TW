@@ -138,8 +138,9 @@ export default {
             window.alert("登入成功");
             // 执行页面跳转
             this.$router.push({ path: "/member" });
-            } else {
+        } else {
             window.alert("帳號或密碼錯誤，請重新登入");
+            this.$router.push({ path: "/login" });
             }
         }
         },

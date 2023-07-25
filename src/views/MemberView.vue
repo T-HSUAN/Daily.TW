@@ -22,7 +22,7 @@
                                     <li>性別</li>
                                     <li>email</li>
                                 </ul>
-                                <router-link to="./profile_edit" class="btn" >編輯</router-link>
+                                <router-link to="./member_info" class="btn" >編輯</router-link>
                             </div>
                         </div>
                     </div>
