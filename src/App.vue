@@ -2,8 +2,7 @@
     <MainHeader></MainHeader>
     <main>
       <router-view />
-      <router-link to="/MyOott">MyOott</router-link>
-      <router-link to="/TripCollectionView">TripCollectionView</router-link>
+
     </main>
     <ArrowUp></ArrowUp>
     <MainFooter></MainFooter>

@@ -25,7 +25,7 @@
                         <select name="my_oott_sorting" id="my_oott_sorting">
                             <option value="">由新到舊</option>
                             <option value="">由舊到新</option>
-                            <option value="">審核狀態</option>
+                            <option value="">瀏覽人氣</option>
                         </select>
 
                         <!-- 狀態 -->
