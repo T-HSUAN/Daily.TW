@@ -149,12 +149,12 @@
 
 <script>
 // import Tag from "@/components/Tag.vue";
-import Sidenav from "@/components/Sidenav.vue";
+// import Sidenav from "@/components/Sidenav.vue";
 
 export default {
     components: {
     //     Tag,
-        Sidenav,
+        // Sidenav,
      },
     data() {
         return {

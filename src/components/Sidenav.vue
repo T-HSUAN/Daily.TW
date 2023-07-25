@@ -1,7 +1,7 @@
 <template>
     <div class="sidenav">
         <ul>
-            <li @click="showSubtitleMember = !showSubtitleMember">
+            <li @click="toggleSubtitle('member')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img
@@ -14,7 +14,7 @@
                     <h4>帳號管理</h4>
                     <div
                         class="sidenav_subtitle_wrap"
-                        v-if="showSubtitleMember"
+                        v-if="showSubtitle.member"
                     >
                         <router-link to="/member_info" class="sidenav_subtitle"
                             >個人資料修改</router-link
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </li>
-            <li @click="showSubtitleOott = !showSubtitleOott">
+            <li @click="toggleSubtitle('oott')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img src="~@/assets/img/sidenav_icon_oott.svg" alt="" />
@@ -33,14 +33,14 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>穿搭管理</h4>
-                    <div class="sidenav_subtitle_wrap" v-if="showSubtitleOott">
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.oott">
                         <router-link to="/member_oott" class="sidenav_subtitle"
                             >我的穿搭</router-link
                         >
                     </div>
                 </div>
             </li>
-            <li @click="showSubtitleLike = !showSubtitleLike">
+            <li @click="toggleSubtitle('like')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img src="~@/assets/img/sidenav_icon_like.svg" alt="" />
@@ -48,7 +48,7 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>收藏管理</h4>
-                    <div class="sidenav_subtitle_wrap" v-if="showSubtitleLike">
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.like">
                         <router-link
                             to="/member_like_trip"
                             class="sidenav_subtitle"
@@ -82,8 +82,27 @@
     </div>
 </template>
 
-<script></script>
+<script>
+export default {
+    data() {
+        return {
+            showSubtitleMember: false,
+            showSubtitleOott: false,
+            showSubtitleLike: false,
+            showSubtitleOrder: false,
+            showSubtitle: {
+                order: false,
+            },
+            windowWidth: 1600,
+        };
+    },
+    methods: {
+        toggleSubtitle(key) {
+            if (this.windowWidth > 1024) return;
+            this.showSubtitle[key] = !this.showSubtitle[key];
+        },
+    },
+};
+</script>
 
-<style lang="scss">
-@import "@/assets/scss/baseAndMixin.scss";
-</style>
+<style lang="scss"></style>

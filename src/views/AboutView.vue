@@ -350,6 +350,7 @@ export default defineComponent({
         .about_subtitle {
             @include sm_h4;
             line-height: 150%;
+            white-space: nowrap;
             display: flex;
             flex-direction: column;
             animation: fadeIn 1s ease-in;
@@ -400,7 +401,7 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: $sp6 $sp3 $sp3 $sp3;
+        padding: $sp6 $sp3 $sp5 $sp3;
         position: relative;
         @media (min-width: $md) {
             align-items: flex-start;
@@ -494,16 +495,37 @@ export default defineComponent({
         }
     }
 }
-// .about_us_wave{
-//     background-image: url(~@/assets/img/layout/bg_wave1_sm.png);
-//     background-size: contain;
-//     background-repeat: no-repeat;
-//     width: 100%;
-//     height: 48px;
-//     position: relative;
-//     bottom: 10px;
-//     outline: 1px solid red;
-// }
+.about_us_wave,
+.about_message_wave {
+    margin-top: -3%;
+    background-image: url(~@/assets/img/layout/bg_wave1_sm.png);
+    width: 100%;
+    height: 56px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    @media (min-width: 375px) {
+        background-image: url(~@/assets/img/layout/bg_wave1_xl.png);
+        height: 135px;
+        margin-top: -1%;
+    }
+}
+.about_service_wave {
+    margin-top: -3%;
+    background-image: url(~@/assets/img/layout/bg_wave2_sm.png);
+    width: 100%;
+    height: 56px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
+    position: relative;
+    @media (min-width: 375px) {
+        background-image: url(~@/assets/img/layout/bg_wave2_xl.png);
+        height: 135px;
+        margin-top: -1%;
+    }
+}
 .about_service {
     display: flex;
     flex-direction: column;
@@ -546,6 +568,7 @@ export default defineComponent({
             flex-wrap: wrap;
             justify-content: center;
             gap: $sp3;
+            max-width: 1200px;
         }
         .service_card_wrap {
             width: 265px;
@@ -777,7 +800,8 @@ export default defineComponent({
     @media (min-width: $md) {
         flex-direction: row;
         justify-content: center;
-        padding: $sp6 $sp7;
+        padding: $sp15 $sp7 $sp6 $sp7;
+        margin-top: -120px;
     }
     .info_logo img {
         width: 150px;

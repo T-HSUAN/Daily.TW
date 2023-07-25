@@ -150,7 +150,7 @@
             .bubble:nth-child(1){
                 position: relative;
                 bottom: 16px;
-                right: 16px;
+                left: 16px;
                 background-image: url("~@/assets/img/layout/plan_bubble1.png");
                 @media (min-width: $md){
                     left: 0;
@@ -167,7 +167,7 @@
             .bubble:nth-child(2){
                 position: relative;
                 top: 32px;
-                right: -16px;
+                right: -30px;
                 z-index: 1;
                 background-image: url("~@/assets/img/layout/plan_bubble3.png");
                 @media (min-width: $md){
@@ -186,11 +186,10 @@
             .bubble:nth-child(1){
                 position: relative;
                 bottom: 12px;
-                left: 16px;
+                left: 0;
                 background-image: url("~@/assets/img/layout/plan_bubble2.png");
                 @media (min-width: $md){
                     bottom: 40px;
-                    left: 0;
                 }
                 @media (min-width: $xl){
                     bottom: 40px;
@@ -206,7 +205,7 @@
             .bubble:nth-child(2){
                 position: relative;
                 top: 24px;
-                left: -16px;
+                left: -30px;
                 background-image: url("~@/assets/img/layout/plan_bubble4.png");
                 @media (min-width: $md){
                     left: -60px;

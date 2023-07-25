@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import TripCollectionView from "@/views/TripCollectionView.vue";
-import OottEditView from "@/views/OottEditView.vue";
 
 const routesUser = [
     {
@@ -155,20 +153,42 @@ const routesUser = [
             ),
     },
     {
-        path: "/OottPostView",
+        path: "/oott_post_view",
         name: "OottPostView",
         component: () =>
             import(
-                /* webpackChunkName: "oottPostView" */ "@/views/OottPostView.vue"
+                /* webpackChunkName: "OottPostView" */ "@/views/OottPostView.vue"
             ),
     },
     {
-        path: "/TripCollectionView",
-        component: TripCollectionView,
+        path: "/trip_collection_view",
+        name: "TripCollectionView",
+        component: () =>
+            import(
+                /* webpackChunkName: "TripCollectionView" */ "@/views/TripCollectionView.vue"
+            ),
     },
     {
-        path: "/OottEditView",
-        component: OottEditView,
+        path: "/oott_edit_view",
+        name: "OottEditView",
+        component: () =>
+            import(
+                /* webpackChunkName: "OottEditView" */ "@/views/OottEditView.vue"
+            ),
+    },
+    {
+        path: "/my_oott",
+        name: "OottEditView",
+        component: () =>
+            import(/* webpackChunkName: "MyOott" */ "@/views/MyOott.vue"),
+    },
+    {
+        path: "/oott_collection_view",
+        name: "OottEditView",
+        component: () =>
+            import(
+                /* webpackChunkName: "OottCollectionView" */ "@/views/OottCollectionView.vue"
+            ),
     },
 ];
 
