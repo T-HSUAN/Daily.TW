@@ -1,13 +1,33 @@
 <template>
     <div class="collection_wrap">
-        <h2>收藏管理</h2>
+        <h2>穿搭管理</h2>
         
         <div class="collection_container">
             <Sidenav class="sidenav"></Sidenav>
 
             <div class="collection_content">
-                <h3>穿搭收藏</h3>
+                <h3>我的穿搭</h3>
                 <hr>
+                <div class="status_bar">
+                    <div class="status_message">
+                        <h5>您有 </h5>
+                        <h5>1</h5>
+                        <h5> 則貼文待修改</h5>
+                        <h5>1</h5>
+                        <h5> 則貼文審核中</h5>
+                        <h5>12</h5>
+                        <h5> 則貼文已發布</h5>
+                    </div>
+                    <div class="status_sorting">
+                        <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
+                        <span>排序依據</span>
+                        <font-awesome-icon icon="fa-solid fa-arrow-down" />
+                        <font-awesome-icon icon="fa-solid fa-caret-down" />
+                        <font-awesome-icon icon="fa-solid fa-filter" />
+                        <span>狀態</span>
+                        <font-awesome-icon icon="fa-solid fa-caret-down" />
+                    </div>
+                </div>
                 <div class="card_wrap">
                     <div class="card" v-for="oott in oottData" key="oott.oottCardAuthor">
                         <OottCard
@@ -59,8 +79,25 @@
         hr{
             margin-bottom: 32px;
         }
-        
 
+        // status bar
+        .status_bar{
+            margin-bottom: 39px;
+            .status_message{
+                color: var(--yellow-tint, #FBEDC8);
+                background: var(--yellow-default, #E3C451);
+                padding: 16px 32px;
+                display: flex;
+                gap:16px;
+            }
+            .status_sorting{
+                background: var(--yellow-tint, #FBEDC8);
+                padding: 16px 32px;
+                gap: 16px;
+            }
+        }
+
+        // card
         .card_wrap{
             display: flex;
             flex-wrap: wrap;

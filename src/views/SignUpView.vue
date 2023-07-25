@@ -357,7 +357,7 @@ export default{
                     display: inline-block;
                     cursor: pointer;
                     font-size: $sm_h4;
-                    margin: $sp1 0 $sp2;
+                    margin: $sp1 0 $sp3;
                     // 隱藏原本的checkbox
                     input {
                         display: none;
@@ -395,9 +395,6 @@ export default{
             margin: $sp2 0;
             a:first-child{
                 margin: 0 $sp2;
-            }
-            .btn{
-                box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
             }
             
         }

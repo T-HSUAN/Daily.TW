@@ -1,13 +1,15 @@
 <!-- 單一票券的內容區塊 -->
 <template>
     <TicketSingleCard
-        :ticketPhoto="Photo"
-        :ticketTitle="Title"
-        :ticketLocation="Location"
-        :ticketTags="Tags"
-        :ticketDetails="Details"
+        :ticketPhoto="img"
+        :ticketTitle="Name"
+        :ticketLocation="location"
+        :ticketTags="tag"
+        :ticketDetails="ticket_details"
         :showAddr="true"
-        :ticketAddr="Addr"
+        :ticketAddr="ticket_addr"
+        :ticketAddrLink="ticket_addr_link"
+        :discountTag="discount"
     />
     <div class="ticket_info">
         <div class="ticket_desc">
@@ -15,7 +17,7 @@
             <ol class="content">
                 <li>全票200元(含體驗飼料一份)。</li>
                 <li>
-                    優待票50元(6~12歲之孩童、65歲以上之長者、領有身心障礙手冊者及其陪同者為優待票，皆需憑證明文件購票）。
+                    優待票50元(6~12歲之孩童、65歲以上之長者、領有身心障礙手冊者及其陪同者為優待票，皆需憑證明文件購票)。
                 </li>
                 <li>5歲以下孩童免購票。</li>
             </ol>
@@ -24,7 +26,12 @@
             <h3>選擇門票數量</h3>
             <div class="ticket_item">
                 <div class="ticket_adult">
-                    <select name="ticket_count_adult" id="count_adult">
+                    <select
+                        name="ticket_count_adult"
+                        class="count_adult"
+                        v-model="count_adult"
+                        @change="subTotalPrice()"
+                    >
                         <option value="0" selected>0</option>
                         <option :value="num" v-for="num in 5" :key="num">
                             {{ num }}
@@ -33,13 +40,20 @@
                     <label for="count_adult">
                         <p class="name">全票</p>
                         <div class="price">
-                            <p class="final">NT$ 90</p>
-                            <p class="origin">原價:NT$100</p>
+                            <p class="final">NT$ {{ price_adultF }}</p>
+                            <p class="origin" v-if="price_adultO !== ''">
+                                原價:NT$ {{ price_adultO }}
+                            </p>
                         </div>
                     </label>
                 </div>
                 <div class="ticket_ex">
-                    <select name="ticket_count_ex" id="count_ex">
+                    <select
+                        name="ticket_count_ex"
+                        class="count_ex"
+                        v-model="count_ex"
+                        @change="subTotalPrice()"
+                    >
                         <option value="0" selected>0</option>
                         <option :value="num" v-for="num in 5" :key="num">
                             {{ num }}
@@ -48,8 +62,10 @@
                     <label for="count_ex">
                         <p class="name">優待票</p>
                         <div class="price">
-                            <p class="final">NT$ 45</p>
-                            <p class="origin">原價:NT$50</p>
+                            <p class="final">NT$ {{ price_exF }}</p>
+                            <p class="origin" v-if="price_exO !== ''">
+                                原價:NT$ {{ price_exO }}
+                            </p>
                         </div>
                     </label>
                 </div>
@@ -59,9 +75,19 @@
         <div class="ticket_amount">
             <div class="content">
                 <h3>目前選擇</h3>
-                <p>全票 (NT$90 / 張) x2 NT$180</p>
-                <p>半票 (NT$45 / 張) x1 NT$45</p>
-                <p class="total">總計 <span>NT$450</span></p>
+                <p>
+                    全票 (NT$ {{ price_adultF }} / 張) x {{ count_adult
+                    }}<span>NT$ {{ price_adultF * count_adult }}</span>
+                </p>
+
+                <p>
+                    半票 (NT$ {{ price_exF }} / 張) x {{ count_ex
+                    }}<span>NT$ {{ price_exF * count_ex }}</span>
+                </p>
+
+                <p class="total">
+                    總計 <span>NT${{ subtotal }}</span>
+                </p>
                 <div class="buy_btn">
                     <button class="btn">加入購物車</button>
                     <button class="btn">直接購買</button>
@@ -73,19 +99,25 @@
             <dl>
                 <dt>單日門票有效期：</dt>
                 <dd>
-                    入園時間必須為2023年12月31日之前。請參閱官方時間表以瀏覽最新公佈的景點開放日期與時間。
+                    請注意，此門票僅限於2023年12月31日前入園。請務必參閱官方時間表，確認景點的最新開放日期與時間，並確保在有效期內使用門票。
                 </dd>
-                <dt>不可轉售，否則作廢：</dt>
+                <dt>禁止轉售：</dt>
                 <dd>
-                    進行轉售或嘗試轉售此門票，不論成功與否，一經發現即作廢。
+                    門票僅限持票人使用，不可進行轉售或嘗試轉售。任何發現的轉售行為，無論成功與否，將導致門票作廢，並可能面臨法律追究。
                 </dd>
-                <dt>身份認證：</dt>
+                <dt>身份證明：</dt>
                 <dd>
-                    兌換門票或進入景點時，賓客須出示票券或購票憑據，及應本公司要求出示個人身份證明文件，以核實其身份。
-                    詳情及其他驗證安排，請按此查閱單日門票的條款及細則。
+                    兌換門票或進入景點時，請攜帶有效的身份證明文件，以核實您的身份。根據本公司的要求，可能需要出示票券或購票憑據以及個人身份證明文件。請遵守以上注意事項，確保您的入場體驗順利且安全。如有其他驗證安排或細則，請查閱相關的官方公告以瞭解更多資訊。
                 </dd>
             </dl>
         </div>
+    </div>
+    <div class="cart">
+        <font-awesome-icon
+            icon="fa-solid fa-cart-shopping"
+            class="cart_toggle"
+        />
+        <div class="numTag">0</div>
     </div>
 </template>
 
@@ -98,16 +130,32 @@ export default {
     },
     data() {
         return {
-            Photo: require("@/assets/img/ticketExample.png"),
-            Title: "蘭陽博物館門票",
-            Location: "宜蘭",
-            Tags: "#親子 #農場",
-            Details:
+            img: require("@/assets/img/ticketExample.png"),
+            Name: "斑比山丘門票",
+            location: "宜蘭",
+            tag: "#親子#情侶#農場",
+            ticket_details:
                 "大受歡迎的親子景點，園區內有多種動物，可以與梅花鹿、水豚、羊咩咩來場親密的互動。美美子咖啡廳的冰淇淋十分美味，推薦給所有人到店購買品嚐。",
-            Addr: "宜蘭縣冬山鄉下湖路285號",
-            OriginalP: 100,
-            FinalP: 90,
+            ticket_addr: "宜蘭縣冬山鄉下湖路285號",
+            ticket_addr_link: "https://goo.gl/maps/bT2uJusZ3vYEofDF7",
+            price_adultO: "",
+            price_adultF: 200,
+            price_exO: "",
+            price_exF: 50,
+            discount: "9折",
+            count_adult: 0,
+            count_ex: 0,
+            subtotal: 0,
         };
+    },
+    methods: {
+        //小計
+        subTotalPrice() {
+            const subtotalAdult = this.price_adultF * this.count_adult;
+            const subtotalEx = this.price_exF * this.count_ex;
+
+            this.subtotal = subtotalAdult + subtotalEx;
+        },
     },
 };
 </script>

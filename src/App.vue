@@ -3,7 +3,6 @@
     <main>
       <router-view />
 
-      <router-link to="/OottEditView">OottEditView</router-link>
     </main>
     <ArrowUp></ArrowUp>
     <MainFooter></MainFooter>
