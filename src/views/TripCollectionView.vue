@@ -39,10 +39,9 @@
     .collection_container {
         display: flex;
     }
-
     width: 90%;
     margin: auto;
-    @media (min-width: 1200px) {
+    @media (min-width: 1250px) {
         box-sizing: border-box;
         width: 1200px;
     }

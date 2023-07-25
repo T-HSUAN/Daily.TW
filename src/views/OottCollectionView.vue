@@ -35,14 +35,8 @@
             display: flex;
         }
 
-        .collection_content{
-            @media (min-width : 768px) {
-                margin-left: 30px;
-            }
-        }
 
-
-        @media (min-width : 1220px) {
+        @media (min-width : 1250px) {
             box-sizing: border-box;
                 width: 1200px;            
             }
