@@ -9,7 +9,7 @@
                 <h3>穿搭收藏</h3>
                 <hr>
                 <div class="card_wrap">
-                    <div class="card" v-for="oott in oottData" key="oott.oottCardAuthor">
+                    <div class="card" av-for="oott in oottDta" key="oott.oottCardAuthor">
                         <OottCard
                         :oottPhoto= "oott.oottPhoto"
                         :oottCardTags= "oott.oottCardTags"

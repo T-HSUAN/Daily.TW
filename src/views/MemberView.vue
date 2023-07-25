@@ -441,13 +441,10 @@ export default {
                 padding: 10px;
                 .pic{
                     img{
-                        width: 205px;
-                        height: 256px;
-                        @media (min-width: 768px) {
-                            width: 260px;
-                            height: 347px;
-                        }
+                        width: 260px;
+                        height: 347px;
                     }
+                
                 }
                 .text{
                     display: flex;
@@ -593,13 +590,10 @@ export default {
                 background-color:var(--green-default, #93AE51);
                 border-radius: 5px 20px 20px 5px;
                 margin: 5px;
-                width: 231px;
-                height: 400px;
-                @media (min-width: 768px) {
-                    width: 276px;
-                    height: 443px;
-                }
+                width: 276px;
+                height: 443px;
                 position: relative;
+                @media (min-width: 768px) {}
                 .bookmark{
                     display: block;
                     position: absolute;
@@ -757,22 +751,23 @@ export default {
                 @media (min-width: 768px) {
                     padding: $sp3 0 $sp6 0; 
                     margin: 0; 
+                    justify-content: center;
                     overflow: visible;//////////////////////scroll_bar
                 }
             .oottCards{
                 display: flex;
                 width: 100%;
-                justify-content: center;
+                 justify-content: center;
+                
                 @media (min-width: 768px) {
                     width: 900px;
                 }
                 .oottCard{
                     margin: 5px;
-                    width: 237px;
-                    height: 350px;
+                    width: 256px;
+                    height: 440px;
                     @media (min-width: 768px) {
-                        width: 256px;
-                        height: 440px;
+                        justify-content: center;
                     }
                 }
                 .btn{
