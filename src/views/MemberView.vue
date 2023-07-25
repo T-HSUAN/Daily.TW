@@ -271,7 +271,7 @@ export default {
         .sidenav{
             flex-shrink: 0;
             height: 506px;
-            display: none;
+            // display: none;
             @media (min-width: 768px) {
                 margin: $sp3 0;
             }
