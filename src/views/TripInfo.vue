@@ -176,7 +176,7 @@
                             :tripCardDesc="trip.tripCardDesc"
             				:tripCardAuthor="trip.tripCardAuthor"
             				:tripCardDate="trip.tripCardDate"
-							></tripCard>
+							/>
 						</div>
 					</div>
 					<a href="/trip">
