@@ -47,7 +47,7 @@
 </script>
 
 <style lang="scss">
-    @import "@/assets/scss/main.scss";
+    @import "@/assets/scss/baseAndMixin.scss";
     .oott_default{
         width: 257px;
         height: 440px;
