@@ -127,7 +127,7 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-    @import '@/assets/scss/main.scss';
+    @import '@/assets/scss/baseAndMixin.scss';
     .oott_edit_wrap{
         width: 257px;
         margin: 0 auto;

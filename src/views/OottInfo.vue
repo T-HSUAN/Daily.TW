@@ -128,7 +128,7 @@ import oottCard from '@/components/OottCard.vue'
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 
 // 麵包屑
 .breadcrumb {

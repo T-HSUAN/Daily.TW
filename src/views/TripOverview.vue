@@ -88,7 +88,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 
 .tripOverview{
 

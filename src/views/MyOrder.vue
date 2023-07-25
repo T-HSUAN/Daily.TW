@@ -114,7 +114,7 @@
   </script>
   
   <style lang="scss">
-  @import "@/assets/scss/main.scss";
+  @import "@/assets/scss/baseAndMixin.scss";
   
   .lg_area {
     width: 100%;
