@@ -5,23 +5,21 @@
             <font-awesome-icon icon="fa-solid fa-bookmark" />
             <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
         </label>
-        <a href="#">
-            <div class="trip_card_img">
-                <img
-                    :src= "tripCardPhoto"
-                    alt="景點照片"
-                />
+        <div class="trip_card_img">
+            <img
+                :src= "tripCardPhoto"
+                alt="景點照片"
+            />
+        </div>
+        <div class="trip_card_text">
+            <span class="trip_card_tags">{{ tripCardTags }}</span>
+            <h3 class="trip_card_title">{{tripCardTitle}}</h3>
+            <p class="trip_card_desc">{{tripCardDesc}}</p>
+            <div class="trip_card_info">
+                <span>{{tripCardAuthor}}</span>
+                <span>{{tripCardDate}}</span>
             </div>
-            <div class="trip_card_text">
-                <span class="trip_card_tags">{{ tripCardTags }}</span>
-                <h3 class="trip_card_title">{{tripCardTitle}}</h3>
-                <p class="trip_card_desc">{{tripCardDesc}}</p>
-                <div class="trip_card_info">
-                    <span>{{tripCardAuthor}}</span>
-                    <span>{{tripCardDate}}</span>
-                </div>
-            </div>
-        </a>
+        </div>
     </div>
 </template>
 
@@ -40,14 +38,19 @@
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/main.scss";
+
 .trip_card_default{
     background-color:var(--green-default, #93AE51);
     border-radius: 5px 20px 20px 5px;
+    padding: $sp2;
     width: 276px;
-    height: 332px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     @media (min-width: 768px) {
+        padding: $sp3;
         width: 378px;
-        height: 521px;
     }
     position: relative;
     .bookmark{
@@ -76,18 +79,18 @@
         }
     }
     .trip_card_img{
-        padding: 24px;
-        @media (min-width: 768px) {
-            padding: 24px;
-        }
+        width: 100%;
         img{
             width: 100%;
         }
     }
 
     .trip_card_text{
-        margin: 24px;
-        margin-top: 0;
+        margin-top: $sp2;
+        text-align: left;
+        @media (min-width:768px) {
+        margin-top: $sp3; 
+        }
         .trip_card_tags{
             color: var(--green-tint, #DAE5BE);
             font-family: Noto Sans CJK TC;
@@ -103,26 +106,29 @@
             letter-spacing: 0.64px;
         }
         .trip_card_desc{
-            height: 89px;
+            max-height: 72px;
             align-self: stretch;
             overflow: hidden;
-            color: var(--text-white, #FEFFF5);
+            color: $textColor_white;
             text-overflow: ellipsis;
-            line-height: 165%; 
-            letter-spacing: 0.54px;
+            line-height: 180%; 
             position: relative;
-            &::after{
-                content: '...';
-                position: absolute;
-                bottom: 0;
-                background-color: var(--green-default, #93AE51);
-                width: 15px;
-                right: 3px;
-                @media (min-width:1200px) {
-                    width: 18px;
-                    right: 15px;
-                }
+            @media (min-width:768px) {
+            max-height: 89px;
+            line-height: 165%; 
             }
+            // &::after{
+            //     content: '...';
+            //     position: absolute;
+            //     bottom: 0;
+            //     background-color: var(--green-default, #93AE51);
+            //     width: 15px;
+            //     right: 3px;
+            //     @media (min-width:1200px) {
+            //         width: 18px;
+            //         right: 15px;
+            //     }
+            // }
         }
         .trip_card_info{
             margin-top: 24px;
