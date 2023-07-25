@@ -22,7 +22,11 @@
     <div class="about_us">
         <div class="about_swiper">
             <div class="swiper_wrap">
-                <img src="~@/assets/img/layout/about_pic1.png" alt="">
+                <Carousel :autoplay="3000" :wrap-around="true">
+                    <Slide v-for="item in aboutPic" :key="item.index">
+                        <img :src="item.src" alt="">
+                    </Slide>
+                </Carousel>
             </div>
             <div class="slogan_deco">
                 <img src="~@/assets/img/layout/about_slogan.png" alt="">
@@ -94,7 +98,7 @@
                         <div class="card_side_deco"></div>
                         <div class="card_main">
                             <h3>出遊特輯</h3>
-                            <p>我們將依據您的需求客製化<br>推薦專屬的旅遊行程與穿搭</p>
+                            <p>由駐站旅人及小編規劃行程<br>不知道要去哪裡就能跟著走</p>
                             <img src="~@/assets/img/layout/about_service2.png" alt="">
                         </div>
                     </div>
@@ -113,7 +117,7 @@
                         <div class="card_side_deco"></div>
                         <div class="card_main">
                             <h3>穿搭特輯</h3>
-                            <p>我們將依據您的需求客製化<br>推薦專屬的旅遊行程與穿搭</p>
+                            <p>風格旅人分享出遊衣著搭配<br>展現獨特穿搭提供穿搭靈感</p>
                             <img src="~@/assets/img/layout/about_service3.png" alt="">
                         </div>
                     </div>
@@ -132,7 +136,7 @@
                         <div class="card_side_deco"></div>
                         <div class="card_main">
                             <h3>景點票券</h3>
-                            <p>我們將依據您的需求客製化<br>推薦專屬的旅遊行程與穿搭</p>
+                            <p>囊括全台各地優惠景點門票<br>方便您一次購買到旅遊所需</p>
                             <img src="~@/assets/img/layout/about_service4.png" alt="">
                         </div>
                     </div>
@@ -208,7 +212,29 @@
     </div>
 </template>
 
-<script></script>
+<script>
+import { defineComponent } from 'vue'
+import { Carousel, Pagination, Slide } from 'vue3-carousel'
+
+import 'vue3-carousel/dist/carousel.css'
+
+export default defineComponent({
+  name: 'Autoplay',
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+  },
+  data: ()=>({
+
+    aboutPic: [
+            {src: require('@/assets/img/layout/about_pic1.png')},
+            {src: require('@/assets/img/layout/about_pic2.png')},
+            {src: require('@/assets/img/layout/about_pic3.png')}
+    ]
+  })
+})
+</script>
 
 <style lang="scss">
 @import "@/assets/scss/main.scss";
@@ -266,6 +292,7 @@
         h2{
             @include sm_h2;
             line-height: 150%;
+            animation: fadeIn 1s ease-in;
             @media (min-width: $md){
                 @include xl_h1;
             }
@@ -275,6 +302,7 @@
             line-height: 150%;
             display: flex;
             flex-direction: column;
+            animation: fadeIn 1s ease-in;
             @media (min-width: $md){
                 @include xl_h2;
                 flex-direction: row;
@@ -304,16 +332,22 @@
         display: none;
         @media (min-width: $xl){
             display: block;
-            padding: $sp6 149px 140px $sp3;
+            padding: $sp6 149px 140px $sp5;
             position: relative;
             .slogan_deco img{
                 width: 574px;
                 position: absolute;
                 bottom: -20px;
-                right: 0;
+                right: 10px;
+                z-index: 0;
             }
-            .swiper_wrap img{
+            .swiper_wrap{
                 width: 446px;
+                position: relative;
+                z-index: 1;
+                img{
+                    width: 100%;
+                }
             }
         }
     }
@@ -359,7 +393,7 @@
             .about_arrow{
                 display: inline-block;
                 img{
-                    width: 24px;
+                    width: 36px;
                     padding: 0 $sp1;
                     position: relative;
                     bottom: 4px;
@@ -393,6 +427,7 @@
             }
             .about_duck img{
                 width: 143px;
+                animation: shake .5s linear infinite alternate;
                 @media (min-width: $md){
                     width: 258px;
                 }
@@ -425,7 +460,7 @@
     background-position: top center;
     @media (min-width: 375px){
         background-image: url(~@/assets/img/layout/bg_wave1_xl.png);
-        height: 96px;
+        height: 135px;
         margin-top: -1%;
     }
 }
@@ -440,7 +475,7 @@
     position: relative;
     @media (min-width: 375px){
         background-image: url(~@/assets/img/layout/bg_wave2_xl.png);
-        height: 96px;
+        height: 135px;
         margin-top: -1%;
     }
 }
@@ -654,7 +689,7 @@
     background-color: $bgColor_default;
     @media (min-width: $md){
         padding: $sp15 $sp7 $sp4 $sp7;
-        margin-top: -90px;
+        margin-top: -110px;
     }
     .message_title{
         h2{
@@ -694,6 +729,7 @@
                     }
                 }
                 textarea{
+                    width: 224px;
                     @media (min-width: $md){
                         width: 500px;
                     }
@@ -779,5 +815,33 @@
             
         }
     }
+}
+@keyframes fadeIn{
+    0%{opacity: 0; transform: translate(0, -100%);}
+    100%{opacity: 1; transform: translate(0, 0);}
+}
+// @keyframes form{
+//     0%{transform: rotate(0deg);}
+//     100%{transform: rotate(-10deg);}
+// }
+// @keyframes pen{
+//     0%{transform: translate(0px, 0px);}
+//     100%{transform: translate(-6px, 25px);}
+// }
+// @keyframes search{
+//     0%{transform: translate(0px, 0px) rotate(65deg);}
+//     100%{transform: translate(-40px, 60px) rotate(0deg);}
+// }
+@keyframes shine{
+    0%{transform: scale(1);}
+    100%{transform: scale(1.2);}
+}
+@keyframes bounce{
+    0%{transform: scale(0);}
+    100%{transform: scale(1);}
+}
+@keyframes shake{
+    0%{transform: translateX(-10px) rotate(-10deg);}
+    100%{transform: translateX(10px) rotate(5deg);}
 }
 </style>

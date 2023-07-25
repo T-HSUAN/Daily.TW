@@ -52,16 +52,62 @@
 <div class="writer_oott">
     <div class="bgCurve">
 		<img src="~@/assets/img/bgCurve_A.png" alt="">
-	    </div>
-    <div class="title">
-		<div class="duckDeco">
-			<img src="~@/assets/img/duck_trace.png" alt="" class="trace">
-			<img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
-		</div>
-		<h2>人氣穿搭</h2>
 	</div>
+    <div class="wrap">
+        <div class="title">
+            <div class="duckDeco">
+                <img src="~@/assets/img/duck_trace.png" alt="" class="trace">
+                <img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
+            </div>
+            <div class="heading">
+                <h2>人氣穿搭</h2>
+                <p>看看他們怎麼玩 /</p>
+            </div>
+        </div>
+        <div class="content">
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+                <div class="author">
+                    <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
+                    <h4>Alison</h4>
+                </div>
+        </div>
+    </div>
 </div>
-
 
 </template>
 
@@ -85,7 +131,7 @@ export default {
 }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/main.scss";
 // 全頁設定
 
@@ -104,25 +150,41 @@ export default {
 	}
 }
 
-.duckDeco{
-			position: absolute;
-            left: 100px;
+.title{
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 
-			.trace{
-				width: 192px;
-				position: absolute;
-				left: -160px;
-				bottom: -8px;
-			}
-			.duck{
-				width: 120px;
-			}
-		}
-h2{
-    position: absolute;
-    font-size: $sm_h1;
-    left: 200px;
-    top: 230px;
+    @media (min-width: 768px) {
+        margin: 0 auto 32px;
+        max-width: 1200px;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .duckDeco{
+        position: relative;
+        
+        .trace{
+            display: none;
+            @media (min-width: 768px) {
+            display: block;
+            width: 192px;
+            position: absolute;
+            left: -160px;
+            bottom: -8px;
+            }
+        }
+        
+        .duck{
+            width: 80px;
+            @media (min-width: 768px) {
+            width: 120px;
+            }
+        }
+    }
 }
 // 投稿區塊
 
@@ -284,5 +346,37 @@ h2{
 .writer_oott{
     position: relative;
     padding: 184px 0;
+    .wrap{
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .heading{
+        display: flex;
+        flex-direction: column;
+        gap: $sp2;
+        width: 280px;
+    }
+    .content{
+        width: 100%;
+        display: flex;
+        gap: $sp5;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        .author{
+            width: 128px;
+            text-align: center;
+            .profilePic{
+                width: 128px;
+                height: 128px;
+                border-radius: 55% 60% 55% 50%;
+                overflow: hidden;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
 }
 </style>

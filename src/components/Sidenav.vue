@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </li>
-            <li @click="showSubtitleOrder = !showSubtitleOrder">
+            <li @click="toggleSubtitle('order')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img src="~@/assets/img/sidenav_icon_order.svg" alt="">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>訂單紀錄</h4>
-                    <div class="sidenav_subtitle_wrap" v-if="showSubtitleOrder">
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.order">
                         <router-link to="/member_order" class="sidenav_subtitle">我的訂單</router-link>
                     </div>
                 </div>
@@ -63,17 +63,22 @@
 export default{
     data(){
         return{
-            showSubtitleMember: true,
-            showSubtitleOott: true,
-            showSubtitleLike: true,
-            showSubtitleOrder: true,
+            showSubtitleMember: false,
+            showSubtitleOott: false,
+            showSubtitleLike: false,
+            showSubtitleOrder: false,
+            showSubtitle: {
+                order: false,
+            },
+            windowWidth: 1600,
         };
     },
-    // methods: {
-    //     toggleSubtitle(){
-    //         this.showSubtitle = !this.showSubtitle;
-    //     },
-    // }
+    methods: {
+        toggleSubtitle(key){
+            if (this.windowWidth > 1024) return;
+            this.showSubtitle[key] = !this.showSubtitle[key];
+        },
+    }
 }
 </script>
 

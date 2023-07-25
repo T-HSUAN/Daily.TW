@@ -79,6 +79,7 @@
                 :oottPhoto="oott.oottPhoto"
                 :oottCardTags="oott.oottCardTags"
                 :oottCardDate="oott.oottCardDate"
+                :oottAuthorPhoto="oott.oottAuthorPhoto"
                 :oottCardAuthor="oott.oottCardAuthor"
                 ></oottCard>
             </div>

@@ -21,7 +21,7 @@
         },
         methods:{
             handleScroll(){
-                if (window.scrollY > 100){
+                if (window.scrollY > 1000){
                     this.showBackToTopArrow = true
                 } else {
                     this.showBackToTopArrow = false
@@ -40,7 +40,7 @@
     <style>
     .back_to_top{
         position:fixed ;
-        bottom: 10px;
+        bottom: 100px;
         right: 10px;
         z-index: 999;
     }
