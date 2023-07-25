@@ -38,7 +38,7 @@
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 
 .trip_card_default{
     background-color:var(--green-default, #93AE51);
