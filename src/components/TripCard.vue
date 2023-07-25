@@ -1,9 +1,8 @@
 <template>
     <div class="trip_card_default">
-        <label class="bookmark">
-            <input type="checkbox" />
-            <font-awesome-icon icon="fa-solid fa-bookmark" />
-            <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
+        <label>
+            <input type="checkbox">
+            <span></span>
         </label>
         <a href="#">
             <div class="trip_card_img">
@@ -40,6 +39,7 @@
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/main.scss";
 .trip_card_default{
     background-color:var(--green-default, #93AE51);
     border-radius: 5px 20px 20px 5px;
@@ -50,28 +50,40 @@
         height: 521px;
     }
     position: relative;
-    .bookmark{
-        display: block;
-        position: absolute;
-        right: 32px;
-        top: -5px;
-        @media (min-width: 768px) {
-            right: 32px;
-        }
-        color: #6A5D4A;
-        font-size: 50px;
-        .front_bookmark{
-            position: absolute;
-            top: 6px;
-            right: 3px;
-            font-size: 42px;
-            color: #FEFFF5;
-            z-index: 5;
-        };
-        input{
+    label{
+        input[type="checkbox"]{
             display: none;
-            &:checked ~ .front_bookmark{
-                color:  var(--semantic-warning, #DB4918)
+        }
+        input[type="checkbox"] + span::before{
+            content: '';
+            display: inline-block;
+            width: 29px;
+            height: 47px;
+            background-image: url(~@/assets/img/bookmark_default.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: -2px;
+            right: 32px;
+            cursor: pointer;
+            @media (min-width: $md){
+                width: 32px;
+                height: 48px;
+                right: 32px;
+            }
+        }
+        input[type="checkbox"]:checked + span::before{
+            content: '';
+            display: inline-block;
+            width: 29px;
+            height: 47px;
+            background-image: url(~@/assets/img/bookmark_clicked.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            @media (min-width: $md){
+                width: 32px;
+                height: 48px;
             }
         }
     }
@@ -93,8 +105,13 @@
             font-family: Noto Sans CJK TC;
             font-size: 16px;
             letter-spacing: 0.32px;
+
         }
         .trip_card_title{
+            @media (min-width: 1200px) {
+                height: 70px;
+            }
+            line-height: 120%;
             text-align: left;
             margin: 7px 0;
             color: var(--text-white, #FEFFF5);
@@ -125,14 +142,19 @@
             }
         }
         .trip_card_info{
-            margin-top: 24px;
             display: flex;
             justify-content: space-between;
             color: var(--green-tint, #DAE5BE);
+            margin-top: 24px;
             font-size: 12px;
             @media (min-width:768px) {
                 font-size: 16px;
+                margin-top: 36px;
             }
+            @media (min-width:1200px) {
+                margin-top: 12px;
+            }
+
             font-weight: 500;
             line-height: 150%; 
             letter-spacing: 0.32px;

@@ -11,21 +11,29 @@
                 <div class="status_bar">
                     <div class="status_message">
                         <h5>您有 </h5>
-                        <h5>1</h5>
+                        <h5 class="status_number">1</h5>
                         <h5> 則貼文待修改</h5>
-                        <h5>1</h5>
+                        <h5 class="status_number">1</h5>
                         <h5> 則貼文審核中</h5>
-                        <h5>12</h5>
+                        <h5 class="status_number">12</h5>
                         <h5> 則貼文已發布</h5>
                     </div>
                     <div class="status_sorting">
                         <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
+                        <!-- 排序依據 -->
                         <span>排序依據</span>
-                        <font-awesome-icon icon="fa-solid fa-arrow-down" />
-                        <font-awesome-icon icon="fa-solid fa-caret-down" />
-                        <font-awesome-icon icon="fa-solid fa-filter" />
-                        <span>狀態</span>
-                        <font-awesome-icon icon="fa-solid fa-caret-down" />
+                        <select name="my_oott_sorting" id="my_oott_sorting">
+                            <option value="">由新到舊</option>
+                            <option value="">由舊到新</option>
+                            <option value="">審核狀態</option>
+                        </select>
+
+                        <!-- 狀態 -->
+                        <!-- <font-awesome-icon icon="fa-solid fa-filter" />
+                        <select name="my_oott_sorting" id="my_oott_sorting">
+
+                        </select>
+                        <font-awesome-icon icon="fa-solid fa-caret-down" /> -->
                     </div>
                 </div>
                 <div class="card_wrap">
@@ -55,14 +63,8 @@
             display: flex;
         }
 
-        .collection_content{
-            @media (min-width : 768px) {
-                margin-left: 30px;
-            }
-        }
 
-
-        @media (min-width : 1220px) {
+        @media (min-width : 1250px) {
             box-sizing: border-box;
                 width: 1200px;            
             }
@@ -83,6 +85,10 @@
         // status bar
         .status_bar{
             margin-bottom: 39px;
+            @media (min-width: 768px) {
+            margin-left: 30px;
+            }
+
             .status_message{
                 color: var(--yellow-tint, #FBEDC8);
                 background: var(--yellow-default, #E3C451);
@@ -93,7 +99,10 @@
             .status_sorting{
                 background: var(--yellow-tint, #FBEDC8);
                 padding: 16px 32px;
-                gap: 16px;
+                span{
+                    margin-right: 16px;
+                }
+                
             }
         }
 
@@ -105,7 +114,7 @@
 
             .oott_default{
                 box-sizing: border-box;
-                margin: 6px;
+                margin: 16px;
                 width: 257px;
                 height: 440px;
                 @media (min-width:768px) {
