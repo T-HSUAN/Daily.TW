@@ -55,7 +55,7 @@ const routesUser = [
     },
     {
         path: "/ticket_info",
-        name: "ticketinfo",
+        name: "ticket_info",
         // component: TicketInfo
         component: () =>
             import(
@@ -75,8 +75,8 @@ const routesUser = [
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
     },
     {
-        path: "/login/forgetpsw",
-        name: "forgetpsw",
+        path: "/forget_psw",
+        name: "forget_psw",
         component: () =>
             import(/* webpackChunkName: "forgetpsw" */ "@/views/ForgetPsw.vue"),
     },
@@ -85,6 +85,18 @@ const routesUser = [
         name: "member",
         component: () =>
             import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
+    },
+    {
+        path: "/member_info",
+        name: "member_info",
+        component: () =>
+            import(/* webpackChunkName: "member_info" */ "@/views/MemberInfo.vue"),
+    },
+    {
+        path: "/member_psw",
+        name: "member_psw",
+        component: () =>
+            import(/* webpackChunkName: "member_psw" */ "@/views/MemberPsw.vue"),
     },
     {
         path: "/signup",
