@@ -61,7 +61,7 @@
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 #app{
     background-color: $bgColor_default;
 }

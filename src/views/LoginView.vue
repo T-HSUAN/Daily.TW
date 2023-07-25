@@ -158,7 +158,7 @@ export default {
 
 
 <style lang="scss" >
-    @import '@/assets/scss/main.scss';
+    @import '@/assets/scss/baseAndMixin.scss';
     // *{
     //     // outline: 1px solid red;
     // }
