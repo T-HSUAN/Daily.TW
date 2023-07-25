@@ -23,44 +23,43 @@
         <Searchbar :Filter="updateDisplay" />
         <!-- 穿搭列表 -->
         <section class="list">
-            <div class="oott_list" v-if="tripDisplay.length > 0">
+            <div class="oott_list" v-if="oottDisplay.length > 0">
                 <div
-                    class="trip_card"
-                    v-for="(item, index) in tripDisplay"
+                    class="oott_card"
+                    v-for="(item, index) in oottDisplay"
                     :key="item.id"
                 >
-                    <router-link :to="item.link" title="點擊查看行程詳情">
-                        <Trip
-                            :tripCardPhoto="item.img"
-                            :tripCardTags="item.tag"
-                            :tripCardTitle="item.name"
-                            :tripCardDesc="item.desc"
-                            :tripCardAuthor="item.author"
-                            :tripCardDate="item.date"
+                    <router-link :to="item.link" title="點擊查看穿搭詳情">
+                        <Oott
+                        :oottPhoto= "item.img"
+                        :oottCardTags= "item.tag"
+                        :oottCardDate= "item.date"
+                        :oottAuthorPhoto= "item.authorphoto"
+                        :oottCardAuthor= "item.author"
                     /></router-link>
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <router-link to="/"><button class="btn">查看更多</button></router-link>
+            <router-link to="/oott_overview"><button class="btn">查看更多</button></router-link>
         </section>
     </div>
 </template>
 <script>
 import Searchbar from "@/components/Searchbar.vue";
-import Trip from "@/components/TripCard.vue";
-import tripData from "@/store/tripData.js";
+import Oott from "@/components/OottCard.vue";
+import oottData from "@/store/oottData.js";
 export default {
     components: {
         Searchbar,
-        Trip,
+        Oott,
     },
     data() {
         return {
             
-            tripData: tripData,
-            // 從tripData抓取行程資料並呈現(進行搜尋篩選)
+           oottData:oottData,
+            // 從oottData抓取行程資料並呈現(進行搜尋篩選)
 
-            tripDisplay: [],
+           oottDisplay: [],
 
         };
     },
@@ -68,13 +67,13 @@ export default {
         //模糊搜尋
         updateDisplay() {
             if (this.$store.state.filter.searchText === "") {
-                this.tripDisplay = this.tripData;
+                this.oottDisplay = this.oottData;
             } else {
                 const regexText = this.$store.state.filter.searchText
                     .split("")
                     .join(".*");
                 const regex = new RegExp(regexText, "i");
-                this.tripDisplay = this.tripData.filter((item) =>
+                this.oottDisplay = this.oottData.filter((item) =>
                     regex.test(item.name)
                 );
             }
@@ -127,7 +126,7 @@ export default {
     }
 }
 
-.tripOverview{
+.oottOverview{
 
     h2{
         text-align: center;
@@ -145,8 +144,7 @@ export default {
     flex-direction: column;
     align-items: center;
 
-        .trip_list {
-            
+        .oott_list {
             max-width: $xl;
             margin: $sp4 auto;
             display: flex;
@@ -157,9 +155,13 @@ export default {
             @media (min-width: $md){
             }
         
-            .trip_card {
+            .oott_card {
                 position: relative;
                 cursor: pointer;
+                .oott_card_text{
+                    color: $textColor_default;
+                }
+               
             }
     
         }
