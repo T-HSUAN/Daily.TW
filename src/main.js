@@ -9,13 +9,6 @@ router.afterEach((to, from) => {
 });
 
 // package
-// import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Vue.use(BootstrapVue)
-// Vue.use(BootstrapVueIcons)
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -30,9 +23,14 @@ import { faBookmark, faHeart, faClock, faEyeSlash, faCircleXmark, faCartShopping
 import { faLine, faInstagram, faSquareFacebook } from '@fortawesome/free-brands-svg-icons'
 
 import { faBookmark as farBookmark } from '@fortawesome/free-regular-svg-icons'
+//viewuiplus套件
+import 'view-ui-plus/dist/styles/viewuiplus.css'
+import ViewUIPlus from 'view-ui-plus'
+
+import "@/assets/scss/main.scss";//改放這邊，不然會被污染
 
 /* add icons to the library */
 library.add(faBookmark, farBookmark, faHeart, faCartShopping, faMagnifyingGlass, faLine, faInstagram, faSquareFacebook, faClock, faLocationDot, faCloud, faEye, faEyeSlash, faCircleXmark, faArrowLeft, faArrowRight, faArrowUp, faCircleChevronDown, faPen, faTrashCan, faSquarePlus, faSortUp, faCar, faTicket, faUser, faUserTie, faShirt, faBullhorn, faBagShopping, faArrowUpWideShort, faFilter, faSortDown, faChevronRight)
 
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).mount("#app");
+createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).mount("#app");

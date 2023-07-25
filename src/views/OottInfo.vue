@@ -80,6 +80,7 @@
                     :oottPhoto="oott.oottPhoto"
                     :oottCardTags="oott.oottCardTags"
                     :oottCardDate="oott.oottCardDate"
+                    :oottAuthorPhoto="oott.oottAuthorPhoto"
                     :oottCardAuthor="oott.oottCardAuthor"
                 ></oottCard>
             </div>
@@ -126,7 +127,8 @@ import oottCard from "@/components/OottCard.vue";
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
+
 // 麵包屑
 .breadcrumb {
     padding-left: 30px;

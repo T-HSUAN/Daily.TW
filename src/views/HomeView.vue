@@ -23,12 +23,24 @@
                     </a>
                     <div class="coverPic">
                         <img
+                            src="~@/assets/img/index_boy.png"
+                            alt=""
+                            class="boy"
+                        />
+                        <img
+                            src="~@/assets/img/layout/plan_duck.png"
+                            alt=""
+                            class="duck"
+                        />
+                        <img
                             src="~@/assets/img/index_plan_cover_example.png"
                             alt=""
+                            class="mainPic"
                         />
                     </div>
                 </div>
             </section>
+
             <!-- 行程區塊 -->
             <section class="index_trip">
                 <div class="bgCurve">
@@ -90,12 +102,12 @@
                                     />
                                     <h5>第二市場</h5>
                                 </div>
-                                <div class="deco">
-                                    <img
-                                        src="~@/assets/img/trip_deco_footPrint.svg"
-                                        alt=""
-                                    />
-                                </div>
+                            </div>
+                            <div class="deco">
+                                <img
+                                    src="~@/assets/img/trip_deco_footPrint.svg"
+                                    alt=""
+                                />
                             </div>
                             <a href="/trip_info">
                                 <btn class="btn"
@@ -113,6 +125,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- 穿搭區塊 -->
             <section class="index_oott">
                 <div class="bgCurve">
@@ -145,6 +158,7 @@
                                 :oottPhoto="oott.oottPhoto"
                                 :oottCardTags="oott.oottCardTags"
                                 :oottCardDate="oott.oottCardDate"
+                                :oottAuthorPhoto="oott.oottAuthorPhoto"
                                 :oottCardAuthor="oott.oottCardAuthor"
                             ></oottCard>
                         </div>
@@ -298,7 +312,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
+
 #app {
     background-color: $bgColor_default;
 }
@@ -440,8 +455,33 @@ export default {
                     width: 640px;
                 }
 
-                img {
+                .mainPic {
                     width: 100%;
+                }
+
+                .boy {
+                    width: $sp11;
+                    rotate: 0deg;
+                    position: absolute;
+                    top: -$sp10;
+                    left: $sp15;
+                    @media (min-width: 768px) {
+                        rotate: -45deg;
+                        width: $sp15;
+                        top: $sp2;
+                        left: 0;
+                    }
+                }
+
+                .duck {
+                    position: absolute;
+                    width: 104px;
+                    bottom: 0;
+                    left: $sp2;
+                    @media (min-width: 768px) {
+                        width: 248px;
+                        left: -$sp4;
+                    }
                 }
             }
         }
@@ -450,16 +490,22 @@ export default {
     // 行程區塊
     .index_trip {
         position: relative;
-        padding: 160px 0 80px;
+        padding: $sp12 0 $sp8;
+        @media (min-width: $xl) {
+            padding: 160px 0 80px;
+        }
 
         .content {
+            margin: 0 auto;
+
             .wrap {
                 margin: 0 auto 32px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
 
-                @media (min-width: 768px) {
+                @media (min-width: $xl) {
                     margin-top: 64px;
                     width: 80%;
                     flex-direction: row;
@@ -471,24 +517,29 @@ export default {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    z-index: 5;
 
-                    @media (min-width: 768px) {
+                    @media (min-width: $xl) {
                         display: block;
+                        margin-right: -$sp4;
                     }
 
                     .tripTitle {
                         order: 1;
                         position: relative;
                         top: -24px;
-                        padding: 8px 32px;
+                        padding: $sp2 $sp4;
+                        background-color: $default_red;
+                        border-radius: 80% 60% 80% 60%;
+                        color: $textColor_white;
                         font-family: Shippori Mincho;
                         font-size: 20px;
                         font-weight: 800;
                         letter-spacing: 0.03em;
 
-                        @media (min-width: 768px) {
+                        @media (min-width: $xl) {
                             position: absolute;
-                            padding: 8px 32px;
+                            padding: $sp3 $sp6;
                             font-size: 32px;
                             letter-spacing: 0.06em;
                         }
@@ -496,8 +547,8 @@ export default {
                     .tripCover {
                         width: 80%;
 
-                        @media (min-width: 768px) {
-                            width: 60%;
+                        @media (min-width: $xl) {
+                            width: 640px;
                         }
                         img {
                             width: 100%;
@@ -505,18 +556,52 @@ export default {
                     }
                 }
                 .info {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    flex-shrink: 0;
+
+                    @media (min-width: $xl) {
+                        background-image: url("~@/assets/img/index_trip_info_bg.svg");
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        width: 479px;
+                        height: 363px;
+                        margin-left: -$sp4;
+                        justify-content: center;
+                    }
+
                     .tripSpots {
+                        display: flex;
+                        flex-direction: column;
+                        @media (min-width: $xl) {
+                            gap: $sp2;
+                        }
                         .spot {
                             display: flex;
+                            @media (min-width: $xl) {
+                                color: $textColor_white;
+                            }
                         }
                         h5 {
                             font-weight: 400;
                         }
-                        .deco {
-                            width: 24px;
-                            @media (min-width: 768px) {
-                                width: 32px;
-                            }
+                    }
+                    .deco {
+                        width: 24px;
+                        margin-top: $sp2;
+                        @media (min-width: $xl) {
+                            width: 32px;
+                        }
+                    }
+                    a {
+                        margin-top: $sp2;
+
+                        @media (min-width: $xl) {
+                            position: absolute;
+                            right: 0;
+                            bottom: $sp8;
                         }
                     }
                 }
@@ -527,8 +612,11 @@ export default {
     // 穿搭區塊
     .index_oott {
         position: relative;
-        padding: 160px 0 80px;
         background-color: $bgColor_default;
+        padding: $sp12 0 $sp8;
+        @media (min-width: 768px) {
+            padding: 160px 0 80px;
+        }
 
         .content {
             padding-left: 32px;
@@ -562,7 +650,10 @@ export default {
     // 票券區塊
     .index_ticket {
         position: relative;
-        padding: 160px 0;
+        padding: $sp12 0 $sp8;
+        @media (min-width: 768px) {
+            padding: 160px 0 80px;
+        }
 
         .content {
             margin: 0 auto;

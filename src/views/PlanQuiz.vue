@@ -144,15 +144,18 @@
         </router-link>
     </div>
 </div>
+<Sidenav></Sidenav>
 </template>
 
 <script>
 // import Tag from "@/components/Tag.vue";
+import Sidenav from "@/components/Sidenav.vue";
 
 export default {
-    // components: {
+    components: {
     //     Tag,
-    // },
+        Sidenav,
+     },
     data() {
         return {
             placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆", "懷舊"],
@@ -164,7 +167,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 
 #app{
     background-color: $bgColor_default;

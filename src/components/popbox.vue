@@ -59,6 +59,7 @@ export default {};
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/baseAndMixin.scss";
 //popbox
 
 //會員登入xl

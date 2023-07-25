@@ -25,7 +25,7 @@
                                     <li>性別</li>
                                     <li>email</li>
                                 </ul>
-                                <router-link to="./profile_edit" class="btn"
+                                <router-link to="/member_info" class="btn"
                                     >編輯</router-link
                                 >
                             </div>
@@ -94,8 +94,8 @@
                                     <a href="#">刪除</a>
                                 </div>
                             </div>
-                            <button class="btn">所有穿搭</button>
                         </div>
+                        <button class="btn">所有穿搭</button>
                     </div>
                 </div>
                 <!-- 收藏清單 -->
@@ -109,6 +109,7 @@
                         </div>
                         <div class="trip_block">
                             <trip-card
+                                class="trip_box"
                                 v-for="(card, index) in tripCards"
                                 :key="index"
                                 :tripCardPhoto="card.tripCardPhoto"
@@ -118,8 +119,8 @@
                                 :tripCardAuthor="card.tripCardAuthor"
                                 :tripCardDate="card.tripCardDate"
                             />
-                            <button class="btn">所有行程</button>
                         </div>
+                        <button class="btn">所有行程</button>
                     </div>
                     <div class="oott_collect">
                         <div class="oott_title">
@@ -134,11 +135,12 @@
                                     :oottPhoto="oott.oottPhoto"
                                     :oottCardTags="oott.oottCardTags"
                                     :oottCardDate="oott.oottCardDate"
+                                    :oottAuthorPhoto="oott.oottAuthorPhoto"
                                     :oottCardAuthor="oott.oottCardAuthor"
                                 ></oottCard>
-                                <button class="btn">所有穿搭</button>
                             </div>
                         </div>
+                        <button class="btn">所有穿搭</button>
                     </div>
                 </div>
                 <div class="order">
@@ -282,7 +284,7 @@ export default {
                     oottPhoto: require("@/assets/img/oott_card_example.png"),
                     oottCardTags: "#日系 #休閒 #風景",
                     oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/info_name_2.png"),
+                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
                     oottCardAuthor: "Alison",
                 },
                 {
@@ -293,7 +295,7 @@ export default {
                     oottCardAuthor: "Susan",
                 },
                 {
-                    oottPhoto: require("@/assets/img/oott_41.png"),
+                    oottPhoto: require("@/assets/img/oott_card_example.png"),
                     oottCardTags: "#街頭 #潮流",
                     oottCardDate: "2022 / 7 / 6",
                     oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
@@ -305,7 +307,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 .lg_area {
     width: 100%;
     text-align: center;
@@ -325,7 +327,7 @@ export default {
         .sidenav {
             flex-shrink: 0;
             height: 506px;
-            display: none;
+            // display: none;
             @media (min-width: 768px) {
                 margin: $sp3 0;
             }
@@ -442,6 +444,8 @@ export default {
         padding-top: $sp8;
     }
     .oott_container {
+        position: relative;
+
         .my_title {
             display: flex;
             padding: $sp3 0;
@@ -475,14 +479,14 @@ export default {
             }
         }
         .card_list {
-            position: relative;
-            justify-content: center;
             display: flex;
             padding: $sp3 0;
             margin: $sp3;
             border-bottom: 2px solid $textColor_default;
             overflow-x: scroll; //////////////////////scroll_bar
+            overflow-y: visible;
             @media (min-width: 768px) {
+                justify-content: center;
                 margin: 0;
                 overflow: visible; //////////////////////scroll_bar
             }
@@ -492,12 +496,8 @@ export default {
                 padding: 10px;
                 .pic {
                     img {
-                        width: 205px;
-                        height: 256px;
-                        @media (min-width: 768px) {
-                            width: 260px;
-                            height: 347px;
-                        }
+                        width: 260px;
+                        height: 347px;
                     }
                 }
                 .text {
@@ -565,15 +565,15 @@ export default {
                     }
                 }
             }
-            .btn {
+        }
+        .btn {
+            position: absolute;
+            right: 40px;
+            bottom: -22px;
+            @media (min-width: 768px) {
                 position: absolute;
-                right: 40px;
-                bottom: -22px;
-                @media (min-width: 768px) {
-                    position: absolute;
-                    right: 60px;
-                    bottom: -25px;
-                }
+                right: 60px;
+                bottom: -25px;
             }
         }
     }
@@ -606,6 +606,7 @@ export default {
     //行程收藏
     .trip_collect {
         width: 100%;
+        position: relative;
         @media (min-width: 768px) {
             width: 900px;
             padding-top: $sp3;
@@ -633,149 +634,37 @@ export default {
             margin: $sp3;
             border-bottom: 2px solid $textColor_default;
             display: flex;
-            justify-content: center;
+
+            gap: 10px;
             overflow-x: scroll; //////////////////////scroll_bar
             @media (min-width: 768px) {
                 padding: $sp3 0 $sp6 0;
+                justify-content: center;
                 margin: 0;
                 overflow: visible; //////////////////////scroll_bar
             }
-            .trip_card_default {
-                background-color: var(--green-default, #93ae51);
-                border-radius: 5px 20px 20px 5px;
-                margin: 5px;
+            .trip_box {
+                flex-shrink: 0;
                 width: 231px;
-                height: 400px;
                 @media (min-width: 768px) {
-                    width: 276px;
-                    height: 443px;
-                }
-                position: relative;
-                .bookmark {
-                    display: block;
-                    position: absolute;
-                    right: 10px;
-                    top: -5px;
-                    @media (min-width: 768px) {
-                        right: 16px;
-                    }
-                    color: #6a5d4a;
-                    font-size: 50px;
-                    .front_bookmark {
-                        position: absolute;
-                        top: 6px;
-                        right: 3px;
-                        font-size: 42px;
-                        color: #fefff5;
-                        z-index: 5;
-                    }
-                    input {
-                        display: none;
-                        &:checked ~ .front_bookmark {
-                            color: var(--semantic-warning, #db4918);
-                        }
-                    }
-                }
-                .trip_card_img {
-                    padding: 24px;
-                    @media (min-width: 768px) {
-                        padding: 24px;
-                    }
-                    img {
-                        width: 199px;
-                        height: 117px;
-                        @media (min-width: 768px) {
-                            width: 237px;
-                            height: 144px;
-                        }
-                    }
-                }
-
-                .trip_card_text {
-                    margin: 24px;
-                    margin-top: 0;
-                    .trip_card_tags {
-                        color: var(--green-tint, #dae5be);
-                        font-family: Noto Sans CJK TC;
-                        font-size: 16px;
-                        letter-spacing: 0.32px;
-                        display: flex;
-                    }
-                    .trip_card_title {
-                        text-align: left;
-                        margin: 7px 0;
-                        color: var(--text-white, #fefff5);
-                        font-family: Shippori Mincho;
-                        font-weight: 700;
-                        letter-spacing: 0.64px;
-                        font-size: $sm_h3;
-                        @media (min-width: 768px) {
-                            font-size: $xl_h3;
-                        }
-                    }
-                    .trip_card_desc {
-                        height: 89px;
-                        align-self: stretch;
-                        overflow: hidden;
-                        color: var(--text-white, #fefff5);
-                        text-overflow: ellipsis;
-                        line-height: 165%;
-                        letter-spacing: 0.54px;
-                        position: relative;
-                        font-size: $sm_p;
-                        @media (min-width: 768px) {
-                            font-size: $xl_p;
-                        }
-
-                        &::after {
-                            content: "...";
-                            position: absolute;
-                            bottom: 0;
-                            background-color: var(--green-default, #93ae51);
-                            width: 15px;
-                            right: 3px;
-                            @media (min-width: 1200px) {
-                                width: 18px;
-                                right: 15px;
-                            }
-                        }
-                    }
-                    .trip_card_info {
-                        margin-top: 24px;
-                        display: flex;
-                        justify-content: space-between;
-                        color: var(--green-tint, #dae5be);
-                        font-size: 12px;
-                        @media (min-width: 768px) {
-                            font-size: 16px;
-                        }
-                        font-weight: 500;
-                        line-height: 150%;
-                        letter-spacing: 0.32px;
-
-                        span {
-                            display: inline-block;
-                        }
-                        span:first-child {
-                            margin-right: auto;
-                        }
-                    }
+                    width: 285px;
                 }
             }
-            .btn {
+        }
+        .btn {
+            position: absolute;
+            right: 40px;
+            bottom: -22px;
+            @media (min-width: 768px) {
                 position: absolute;
-                right: 40px;
-                bottom: -22px;
-                @media (min-width: 768px) {
-                    position: absolute;
-                    right: 60px;
-                    bottom: -25px;
-                }
+                right: 60px;
+                bottom: -25px;
             }
         }
     }
     //穿搭收藏
     .oott_collect {
+        position: relative;
         width: 100%;
         @media (min-width: 768px) {
             width: 900px;
@@ -803,38 +692,41 @@ export default {
             padding: $sp2 0 $sp6 0;
             margin: $sp3;
             border-bottom: 2px solid $textColor_default;
+            overflow-y: visible;
             overflow-x: scroll; //////////////////////scroll_bar
             @media (min-width: 768px) {
                 padding: $sp3 0 $sp6 0;
                 margin: 0;
+                justify-content: center;
                 overflow: visible; //////////////////////scroll_bar
             }
             .oottCards {
                 display: flex;
                 width: 100%;
-                justify-content: center;
                 @media (min-width: 768px) {
+                    justify-content: center;
                     width: 900px;
                 }
                 .oottCard {
+                    flex-shrink: 0;
                     margin: 5px;
-                    width: 237px;
-                    height: 350px;
+                    width: 256px;
+                    // height: 330px;
                     @media (min-width: 768px) {
-                        width: 256px;
+                        justify-content: center;
                         height: 440px;
                     }
                 }
-                .btn {
-                    position: absolute;
-                    right: 40px;
-                    bottom: -22px;
-                    @media (min-width: 768px) {
-                        position: absolute;
-                        right: 60px;
-                        bottom: -25px;
-                    }
-                }
+            }
+        }
+        .btn {
+            position: absolute;
+            right: 40px;
+            bottom: -22px;
+            @media (min-width: 768px) {
+                position: absolute;
+                right: 60px;
+                bottom: -25px;
             }
         }
     }

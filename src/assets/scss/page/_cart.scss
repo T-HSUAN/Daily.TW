@@ -140,11 +140,14 @@
             }
         }
     }
+    .pay_details {
+        display: none;
+    }
 }
-@media all and (min-width: $sm) {
+@media all and (min-width: $md) {
     .cart_page {
         .cart_items {
-            @include width($sm);
+            @include width($md);
             padding: $sp2 $sp2 $sp4;
             .cart_select_all {
                 padding: $sp2;
@@ -356,12 +359,13 @@
                 }
             }
         }
-        .cart_sidebar {
+        .pay_details {
+            display: block;
             box-sizing: border-box;
             width: 30%;
             height: 100vh;
             margin: 0 $sp2;
-            .cart_sidebar_content {
+            .pay_details_content {
                 position: sticky;
                 top: 200px;
                 margin-top: 100px;
@@ -372,7 +376,7 @@
                     position: absolute;
                     top: -120px;
                 }
-                .cart_title {
+                .Title {
                     margin-bottom: $sp3;
                     font-size: 32px;
                     color: $textColor_white;

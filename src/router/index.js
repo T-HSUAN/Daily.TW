@@ -97,10 +97,24 @@ const routesUser = [
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
     },
     {
-        path: "/login/forgetpsw",
+        path: "/forget_psw",
         name: "forgetpsw",
         component: () =>
             import(/* webpackChunkName: "forgetpsw" */ "@/views/ForgetPsw.vue"),
+    },
+    {
+        path: "/member_info",
+        name: "memberinfo",
+        component: () =>
+            import(
+                /* webpackChunkName: "memberinfo" */ "@/views/MemberInfo.vue"
+            ),
+    },
+    {
+        path: "/member_psw",
+        name: "memberpsw",
+        component: () =>
+            import(/* webpackChunkName: "memberpsw" */ "@/views/MemberPsw.vue"),
     },
     {
         path: "/member",
@@ -125,6 +139,20 @@ const routesUser = [
         name: "cart",
         component: () =>
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
+    },
+    {
+        path: "/payment",
+        name: "payment",
+        component: () =>
+            import(/* webpackChunkName: "payment" */ "@/views/Payment.vue"),
+    },
+    {
+        path: "/pay_success",
+        name: "paysuccess",
+        component: () =>
+            import(
+                /* webpackChunkName: "paysuccess" */ "@/views/Paysuccess.vue"
+            ),
     },
     {
         path: "/OottPostView",

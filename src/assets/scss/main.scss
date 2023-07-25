@@ -1,11 +1,12 @@
+@import "baseAndMixin";
 //base
-@import "base/color";
-@import "base/font";
-@import "base/reset";
-@import "base/var";
+// @import "base/color";
+// @import "base/font";
+// @import "base/reset";
+// @import "base/var";
 
 // mixin
-@import "mixin/all";
+// @import "mixin/all";
 
 // plugin
 // @import '../node_modules/bootstrap/scss/bootstrap';
@@ -35,55 +36,56 @@
 @import "page/ticketinfo";
 @import "page/trip";
 @import "page/cart";
+@import "page/payment";
 
 * {
     margin: 0;
     padding: 0;
 }
-#app {
-    font-family: $fontFamily;
-    color: $textColor_default;
-    // background: $bgColor_tint;
-    @include sm_p;
-}
+// #app {
+//     font-family: $fontFamily;
+//     color: $textColor_default;
+//     background: $bgColor_tint;
+//     @include sm_p;
+// }
 
-h1 {
-    @include sm_h1;
-}
-h2 {
-    @include sm_h2;
-}
-h3 {
-    @include sm_h3;
-}
-h4 {
-    @include sm_h4;
-}
-h5 {
-    @include sm_h5;
-}
-main {
-    color: $textColor_default;
-    background: $bgColor_tint;
-}
-@media all and (min-width: $xl) {
-    #app {
-        @include xl_p;
-    }
+// h1 {
+//     @include sm_h1;
+// }
+// h2 {
+//     @include sm_h2;
+// }
+// h3 {
+//     @include sm_h3;
+// }
+// h4 {
+//     @include sm_h4;
+// }
+// h5 {
+//     @include sm_h5;
+// }
+// main {
+//     color: $textColor_default;
+//     background: $bgColor_tint;
+// }
+// @media all and (min-width: $xl) {
+//     #app {
+//         @include xl_p;
+//     }
 
-    h1 {
-        @include xl_h1;
-    }
-    h2 {
-        @include xl_h2;
-    }
-    h3 {
-        @include xl_h3;
-    }
-    h4 {
-        @include xl_h4;
-    }
-    h5 {
-        @include xl_h5;
-    }
-}
+//     h1 {
+//         @include xl_h1;
+//     }
+//     h2 {
+//         @include xl_h2;
+//     }
+//     h3 {
+//         @include xl_h3;
+//     }
+//     h4 {
+//         @include xl_h4;
+//     }
+//     h5 {
+//         @include xl_h5;
+//     }
+// }

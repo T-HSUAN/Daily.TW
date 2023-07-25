@@ -2,8 +2,6 @@
     <MainHeader></MainHeader>
     <main>
         <router-view />
-
-        <router-link to="/OottEditView">OottEditView</router-link>
     </main>
     <ArrowUp></ArrowUp>
     <MainFooter></MainFooter>
@@ -29,5 +27,4 @@ export default {
 <style lang="scss">
 // @import url('./assets/scss/main.scss');
 // @import './assets/scss/main.scss';
-@import "@/assets/scss/main.scss";
 </style>

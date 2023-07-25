@@ -87,17 +87,21 @@
                 <router-link to="/ticket"
                     ><button class="btn buymore">繼續購買</button></router-link
                 >
-                <button class="btn pay">付款 <span>⇀</span></button>
+                <router-link to="/payment"
+                    ><button class="btn pay">
+                        付款 <span>⇀</span>
+                    </button></router-link
+                >
             </div>
         </div>
-        <div class="cart_sidebar">
-            <div class="cart_sidebar_content">
+        <div class="pay_details">
+            <div class="pay_details_content">
                 <img
                     class="payDuck"
                     src="@/assets/img/duck_pay.png"
                     alt="payDuck"
                 />
-                <p class="cart_title">付款明細</p>
+                <p class="Title">付款明細</p>
                 <!-- 購買內容 -->
                 <div class="item">
                     <div class="details">
@@ -129,7 +133,11 @@
                         <span class="total-price"> {{ total }} </span>
                         元
                     </p>
-                    <button class="btn">付款 <span>⇀</span></button>
+                    <router-link to="/payment"
+                        ><button class="btn">
+                            付款 <span>⇀</span>
+                        </button></router-link
+                    >
                 </div>
             </div>
         </div>
