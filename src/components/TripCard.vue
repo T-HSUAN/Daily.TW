@@ -38,6 +38,7 @@
 </script>
 
 <style lang="scss">
+@import "@/assets/scss/main.scss";
 
 .trip_card_default{
     background-color:var(--green-default, #93AE51);
