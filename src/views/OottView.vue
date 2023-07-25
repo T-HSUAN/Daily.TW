@@ -46,6 +46,22 @@
 		</div>
 		<h2>人氣穿搭</h2>
 	</div>
+    <div class="card_list">
+        <div class="top_wrap">
+            <div class="oottCards">
+                <oottCard
+                class="oottCard"
+                v-for="(oott, index) in ootts"
+                :key="index"
+                :oottPhoto="oott.oottPhoto"
+                :oottCardTags="oott.oottCardTags"
+                :oottCardDate="oott.oottCardDate"
+                :oottAuthorPhoto="oott.oottAuthorPhoto"
+                :oottCardAuthor="oott.oottCardAuthor"
+                ></oottCard>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- 穿搭作家 -->
@@ -113,21 +129,44 @@
 
 <script>
 
-import OottCard from '@/components/OottCard.vue';
+import oottCard from '@/components/OottCard.vue';
 
 export default {
   components: {
-    OottCard,
+    oottCard,
 },
   data(){
     return {
+        ootts:[
+            {
+                oottPhoto: require('@/assets/img/oott_card_example.png'),
+                oottCardTags: "#日系 #休閒 #風景",
+                oottCardDate: "2022 / 12 / 12",
+                oottAuthorPhoto: require('@/assets/img/info_name_2.png'),
+                oottCardAuthor: "Alison",
+            },
+            {
+                oottPhoto: require('@/assets/img/oott_06.png'),
+                oottCardTags: "#復古 #海邊",
+                oottCardDate: "2022 / 7 / 3",
+                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+                oottCardAuthor: "Susan",
+            },
+            {
+                oottPhoto: require('@/assets/img/oott_card_example.png'),
+                oottCardTags: "#街頭 #潮流",
+                oottCardDate: "2022 / 7 / 6",
+                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+                oottCardAuthor: "Max",
+            },
+      ],
     }
   },
   methods: {
     
   },
   components:{
-    OottCard
+    oottCard
 }
 }
 </script>
@@ -339,6 +378,16 @@ export default {
     position: relative;
     padding: 184px 0;
     background-color: $bgColor_default;
+    .card_list{
+        display: flex;
+        width: 100%;
+        .oottCards{
+            display: flex;
+            .oottcard{
+
+            }
+        }
+    }
 }
 
 
