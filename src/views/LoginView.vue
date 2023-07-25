@@ -37,20 +37,20 @@
                     <input type="checkbox" name="remember" id="remember" >
                     <span>記住我</span>
                     </label>
-                    <router-link to="./login/forgetpsw" 
+                    <router-link to="/forget_psw" 
                     v-if="item.tab == 1">
                     忘記密碼?
                 </router-link>
                 </div>
                 <div v-show="item.tab == 2" class="space"></div>
                 <div class="cancel_group">
-                    <router-link to="./login" 
+                    <router-link to="/login" 
                         v-if="item.tab == 1" 
                         @click="handleClick"
                         class="cancel_btn">
                         還不是會員?
                     </router-link>
-                    <div to="./login" 
+                    <div to="/login" 
                         v-if="item.tab == 2" 
                         @click="handleClick"
                         class="cancel_btn">
@@ -59,17 +59,18 @@
                     <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
                     <router-link 
                         v-if="item.tab == 2" 
-                        to="./signup" 
+                        to="/signup" 
                         class="btn">
                         註冊
                     </router-link>
                     <router-link 
                         v-else v-if="item.tab == 1" 
-                        to="./member" 
+                        to="/member" 
                         @click="login" 
                         class="btn"
                         :class="{ btn: isEmailValid && isPasswordValid }"
-                        :disabled="!(isEmailValid && isPasswordValid)">
+                        >
+                        <!-- :disabled="!(isEmailValid && isPasswordValid)" -->
                         登入
                     </router-link>
                 </div>
@@ -83,7 +84,7 @@
                 <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
                 <router-link 
                     v-if="item.tab == 1" 
-                    to="./login" 
+                    to="/login" 
                     @click="handleClick" 
                     class="btn" >
                     註冊
@@ -132,14 +133,16 @@ export default {
             this.isPasswordValid = regex.test(this.psw);
         },
         login() {
-            if (this.isEmailValid && this.isPasswordValid) {
-                if (this.email === "test123@gmail.com" && this.psw === "test123") {
-                    window.alert("登入成功");
-                    // 在这里进行页面跳转逻辑
-                } else {
-                    window.alert("帳號或密碼錯誤，請重新登入");
-                }
+        // if (this.isEmailValid && this.isPasswordValid) {
+            if (this.email === "test123@gmail.com" && this.psw === "test123") {
+            window.alert("登入成功");
+            // 执行页面跳转
+            // this.$router.push({ path: "/member" });
+        } else {
+            window.alert("帳號或密碼錯誤，請重新登入");
+            this.$router.replace({ path: "/login" });
             }
+        // }
         },
       // 切換tab
       updateTab(index){
