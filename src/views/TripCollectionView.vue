@@ -47,16 +47,10 @@
 
         h3{
             margin-bottom: 8px;
-            @media (min-width : 768px) {
-                margin-left: 30px;
-            }
         }
 
         hr{
             margin-bottom: 32px;
-            @media (min-width : 768px) {
-                margin-left: 30px;
-            }
         }
 
         .card_wrap{

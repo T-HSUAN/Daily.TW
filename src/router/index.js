@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
+// imports below will be reomved after the links has been set properly
 import OottPostView from "@/views/OottPostView.vue";
 import TripCollectionView from "@/views/TripCollectionView.vue";
 import OottEditView from "@/views/OottEditView.vue";
+import OottCollectionView from "@/views/OottCollectionView.vue";
+import MyOott from "@/views/MyOott.vue";
 
 const routesUser = [
     {
@@ -124,6 +127,14 @@ const routesUser = [
     {
         path: "/OottEditView",
         component: OottEditView,
+    },
+    {
+        path: "/OottCollectionView",
+        component: OottCollectionView,
+    },
+    {
+        path: "/MyOott",
+        component: MyOott,
     },
 ];
 
