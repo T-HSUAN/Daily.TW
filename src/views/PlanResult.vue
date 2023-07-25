@@ -484,7 +484,11 @@ export default{
 }
 
 .plan_result{
+    padding-top: $sp4;
+    background-color: $bgColor_default;
     .result_banner{
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -497,7 +501,7 @@ export default{
         background-image: url("~@/assets/img/layout/plan_result_bg-sm.png");
         @media (min-width: $md){
             background-image: url("~@/assets/img/layout/plan_result_bg-xl.png");
-            background-position: top 50px center;
+            background-position: top center;
         }
         .main_pic{
             display: flex;
@@ -609,9 +613,10 @@ export default{
         background-size: 100%;
         background-repeat: no-repeat;
         background-position: top center;
+        position: relative;
         @media (min-width: 375px){
             background-image: url(~@/assets/img/layout/bg_wave1_xl.png);
-            height: 96px;
+            height: 135px;
             margin-top: -1%;
         }
     }
@@ -626,7 +631,7 @@ export default{
         position: relative;
         @media (min-width: 375px){
             background-image: url(~@/assets/img/layout/bg_wave2_xl.png);
-            height: 96px;
+            height: 135px;
             margin-top: -1%;
         }
     }
@@ -634,6 +639,13 @@ export default{
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: $bgColor_tint;
+        padding-top: $sp10;
+        margin-top: -140px;
+        @media (min-width: $md){
+            padding-top: $sp15;
+            margin-top: -120px;
+        }
         .result_subtitle{
             display: flex;
             align-items: flex-end;
@@ -779,14 +791,14 @@ export default{
                     flex-direction: column;
                     gap: $sp3;
                     padding-bottom: $sp4;
-                    @media (min-width: $md){
+                    @media (min-width: 1024px){
                         flex-direction: row;
                         padding-bottom: $sp6;
                     }
                     .pic_swiper{
                         position: relative;
                         margin: auto;
-                        @media (min-width: $md){
+                        @media (min-width: 1024px){
                             margin: 0;
                         }
                         .place_pic{
@@ -824,7 +836,7 @@ export default{
                         display: flex;
                         flex-direction: column;
                         gap: $sp2;
-                        @media (min-width: $md){
+                        @media (min-width: 1024px){
                             justify-content: space-between;
                             gap: 0;
                         }
@@ -845,7 +857,6 @@ export default{
                                 text-align: justify;
                                 @media (min-width: $md){
                                     @include xl_p;
-                                    line-height: 180%;
                                 }
                             }
                         }
@@ -856,6 +867,7 @@ export default{
                             @media (min-width: $md){
                                 flex-direction: row;
                                 gap: $sp2;
+                                padding-top: $sp1;
                             }
                             .time{
                                 display: flex;
@@ -871,6 +883,7 @@ export default{
                                     @include sm_p;
                                     @media (min-width: $md){
                                         @include xl_p;
+                                        line-height: 150%;
                                     }
                                 }
                             }
@@ -890,6 +903,7 @@ export default{
                                     @include sm_p;
                                     @media (min-width: $md){
                                         @include xl_p;
+                                        line-height: 150%;
                                     }
                                 }
                             }
@@ -935,8 +949,10 @@ export default{
                         }
                     }
                     table{
-                        table-layout: fixed;
+                        // table-layout: fixed;
                         box-sizing: border-box;
+                        width: 100%;
+                        max-width: 1136px;
                         tr{
                             td{
                                 border-right: 3px solid $textColor_tint;
@@ -986,9 +1002,11 @@ export default{
                     flex-direction: column;
                     align-items: center;
                     gap: $sp2;
-                    @media (min-width: $md){
+                    @media (min-width: 1024px){
                         flex-direction: row;
-                        gap: $sp4;
+                        justify-content: center;
+                        gap: $sp3;
+                        padding-bottom: $sp1;
                     }
                 }
             }

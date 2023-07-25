@@ -144,14 +144,17 @@
         </router-link>
     </div>
 </div>
+<Sidenav></Sidenav>
 </template>
 
 <script>
 // import Tag from "@/components/Tag.vue";
+import Sidenav from "@/components/Sidenav.vue";
 
 export default {
     components: {
     //     Tag,
+        Sidenav,
      },
     data() {
         return {
