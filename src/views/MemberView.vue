@@ -656,9 +656,10 @@ export default {
                     width: 900px;
                 }
                 .oottCard{
+                    flex-shrink: 0;
                     margin: 5px;
                     width: 256px;
-                    height: 330px;
+                    // height: 330px;
                     @media (min-width: 768px) {
                         justify-content: center;
                         height: 440px;

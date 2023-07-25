@@ -490,7 +490,7 @@
 // 駐站旅人
 .tripView_authors{
 	position: relative;
-	padding: 184px 0;
+	padding: 64px 0;
 
     .wrap{
         display: flex;
