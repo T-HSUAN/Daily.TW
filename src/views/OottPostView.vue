@@ -101,8 +101,9 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import '@/assets/scss/baseAndMixin.scss';
+
     .oott_post_wrap{
         width: 257px;
         @media (min-width: 768px) {
