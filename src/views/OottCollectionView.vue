@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
     <div class="collection_wrap">
         <h2>收藏管理</h2>
@@ -141,3 +142,5 @@ export default{
   },
 };
 </script>  
+=======
+>>>>>>> 4db0d762ca81f8cea727cb212351296d718df179

@@ -71,10 +71,8 @@
                                     <span>{{ seasonTag }}</span>
                                 </label>
                         </div>
-                        <div class="button_area">
-                            <button class="cancel_btn">取消編輯</button>
-                            <button class="btn">送出審核</button>
-                        </div>
+                        <button class="cancel_btn">取消編輯</button>
+                        <button class="btn">送出審核</button>
                     </div>
                 </div>
                 <!-- post_button -->
@@ -240,13 +238,6 @@ export default{
             .season_tags{
                 span{
                     margin: 3px;
-                }
-            }
-            .button_area{
-                display: flex;
-                justify-content: end;
-                .btn, .cancel_btn{
-                    margin: 12px;
                 }
             }
         }

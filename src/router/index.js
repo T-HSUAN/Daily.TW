@@ -1,11 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-// imports below will be reomved after the links has been set properly
 import OottPostView from "@/views/OottPostView.vue";
 import TripCollectionView from "@/views/TripCollectionView.vue";
 import OottEditView from "@/views/OottEditView.vue";
-import OottCollectionView from "@/views/OottCollectionView.vue";
-import MyOott from "@/views/MyOott.vue";
 
 const routesUser = [
     {
@@ -77,7 +74,7 @@ const routesUser = [
     },
     {
         path: "/ticket_info",
-        name: "ticket_info",
+        name: "ticketinfo",
         // component: TicketInfo
         component: () =>
             import(
@@ -97,8 +94,8 @@ const routesUser = [
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
     },
     {
-        path: "/forget_psw",
-        name: "forget_psw",
+        path: "/login/forgetpsw",
+        name: "forgetpsw",
         component: () =>
             import(/* webpackChunkName: "forgetpsw" */ "@/views/ForgetPsw.vue"),
     },
@@ -113,18 +110,6 @@ const routesUser = [
         name: "myorder",
         component: () =>
             import(/* webpackChunkName: "myorder" */ "@/views/MyOrder.vue"),
-    },
-    {
-        path: "/member_info",
-        name: "member_info",
-        component: () =>
-            import(/* webpackChunkName: "member_info" */ "@/views/MemberInfo.vue"),
-    },
-    {
-        path: "/member_psw",
-        name: "member_psw",
-        component: () =>
-            import(/* webpackChunkName: "member_psw" */ "@/views/MemberPsw.vue"),
     },
     {
         path: "/signup",
@@ -151,14 +136,6 @@ const routesUser = [
     {
         path: "/OottEditView",
         component: OottEditView,
-    },
-    {
-        path: "/OottCollectionView",
-        component: OottCollectionView,
-    },
-    {
-        path: "/MyOott",
-        component: MyOott,
     },
 ];
 

@@ -78,7 +78,7 @@
         </section>
 
         <!-- 穿搭區塊 -->
-			<section class="index_oott">
+			<section class="tripInfo_oott">
 				<div class="bgCurve">
 					<img src="~@/assets/img/bgCurve_B.png" alt="">
 				</div>
@@ -101,13 +101,10 @@
 							:oottPhoto="oott.oottPhoto"
 							:oottCardTags="oott.oottCardTags"
             				:oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto"
             				:oottCardAuthor="oott.oottCardAuthor"
 							></oottCard>
 						</div>
-					</div>
-					<div class="panel">
-						<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-left" /></button>
-						<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-right" /></button>
 					</div>
 					<a href="/oott">
 						<btn class="btn">查看更多</btn>
@@ -116,7 +113,7 @@
 			</section>
 
 			<!-- 票券區塊 -->
-			<section class="index_ticket">
+			<section class="tripInfo_ticket">
 				<div class="bgCurve">
 					<img src="~@/assets/img/bgCurve_A.png" alt="">
 				</div>
@@ -140,8 +137,9 @@
 							:ticketTitle="ticket.ticketTitle"
 							:ticketLocation="ticket.ticketLocation"
 							:ticketTags="ticket.ticketTags"
-            				:ticketPrice="ticket.ticketAuthor"
+            				:originalPrice="ticket.originalPrice"
             				:FinalPrice="ticket.finalPrice"
+            				:discountTag="ticket.discountTag"
 							></ticketCard>
 						</div>
 					</div>
@@ -152,7 +150,7 @@
 			</section>
 
             <!-- 你可能有興趣 -->
-			<section class="index_oott">
+			<section class="tripInfo_trip">
 				<div class="bgCurve">
 					<img src="~@/assets/img/bgCurve_B.png" alt="">
 				</div>
@@ -167,23 +165,21 @@
 				</div>
 				<div class="content">
 					<div class="wrap">
-						<div class="oottCards">
-							<oottCard
-							class="oottCard"
-							v-for="(oott, index) in ootts"
+						<div class="tripCards">
+							<tripCard
+							class="tripCard"
+							v-for="(trip, index) in trips"
 							:key="index"
-							:oottPhoto="oott.oottPhoto"
-							:oottCardTags="oott.oottCardTags"
-            				:oottCardDate="oott.oottCardDate"
-            				:oottCardAuthor="oott.oottCardAuthor"
-							></oottCard>
+							:tripCardPhoto="trip.tripCardPhoto"
+							:tripCardTags="trip.tripCardTags"
+							:tripCardTitle="trip.tripCardTitle"
+                            :tripCardDesc="trip.tripCardDesc"
+            				:tripCardAuthor="trip.tripCardAuthor"
+            				:tripCardDate="trip.tripCardDate"
+							/>
 						</div>
 					</div>
-					<div class="panel">
-						<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-left" /></button>
-						<button class="arrow"><font-awesome-icon icon="fa-solid fa-arrow-right" /></button>
-					</div>
-					<a href="/oott">
+					<a href="/trip">
 						<btn class="btn">查看更多</btn>
 					</a>
 				</div>
@@ -293,14 +289,22 @@
         position: relative;
         display: flex;
         align-items: flex-start;
+        gap: $sp2;
+        @media (min-width: $md){
         gap: $sp4;
+        }
 
         .trip_article{
-            width: calc((100% - 352px) / 4 * 3 + 256px);
+            @media (min-width: $md){
+                width: calc((100% - 352px) / 4 * 3 + 256px);
+            }
 
             .header{
                 position: relative;
+                margin-bottom: $sp3;
+                @media (min-width: $xl){
                 margin-bottom: $sp6;
+                }
 
                 .trip_title{
                     display: flex;
@@ -310,6 +314,13 @@
                     h2{
                         font-family: 'Shippori Mincho', serif;
                         font-weight: 700;
+                        line-height: 150%;
+                    }
+                    .deco{
+                        display: none;
+                        @media (min-width: $md){
+                        display: block;
+                        }
                     }
                 }
 
@@ -324,16 +335,22 @@
                 }
 
                 .views{
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
+                    margin-top: $sp2;
+                    @media (min-width: $md){
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                    }
                 }
             }
 
             .trip_desc{
                 margin-bottom: $sp6;
                 p{
+                    line-height: 190%;
+                    @media (min-width: $md){
                     line-height: 165%;
+                    }
                 }
             }
 
@@ -351,15 +368,21 @@
                 }
                 .spot_img{
                     width: 100%;
+                    margin-bottom: $sp2;
+                    @media (min-width: $md){
                     margin-bottom: $sp3;
+                    }
 
                     img{
                         width: 100%;
                     }
                 }
                 .spot_desc{
-                    line-height: 165%;
                     margin-bottom: $sp3;
+                    line-height: 190%;
+                    @media (min-width: $md){
+                    line-height: 165%;
+                    }
                 }
                 .spot_loc{
                     display: flex;
@@ -370,75 +393,103 @@
             }
             .trip_tags{
                 display: flex;
-                gap: 16px;
+                flex-wrap: wrap;
+                gap: $sp2 $sp1;
+                margin-bottom: $sp8;
 
                 .tags{
                     color: $textColor_white;
                     background-color: $textColor_default;
                     padding: 8px 20px;
                     border-radius: 50px;
-                    margin-bottom: $sp8;
                 }
             }
         }
         .sidebar{
             position: sticky;
             top: $sp12;
-            width: calc((100% - 352px) / 4 + 64px);
             border-radius: 10px;
             border: 3px solid $textColor_default;
             background-color: $bgColor_default;
+            margin-bottom: $sp8;
+            @media (min-width: $md){
+                width: calc((100% - 352px) / 4 + 64px);
+            }
             .route{
-                padding: $sp3;
-                border-bottom: 3px solid $textColor_default;
+                display: none;
+                @media (min-width: $md){
+                    display: block;
+                    padding: $sp3;
+                    border-bottom: 3px solid $textColor_default;
+            }
             }
             .collect{
+                padding: $sp2;
+                @media (min-width: $md){
                 padding: $sp3;
+                }
             }
         }
     }
     
     // 穿搭區塊
-    .index_oott{
+    .tripInfo_oott{
         position: relative;
-        padding: 160px 0 80px;
         background-color: $bgColor_default;
+        padding: $sp12 0 $sp8;
+        @media (min-width: 768px) {
+        padding: 160px 0 80px;
+        }
+        
     
         .content{
-            padding-left: 32px;
             margin: 0 auto;
             max-width: 1200px;
             text-align: center;
+            @media (min-width: 768px) {
+            padding: 0 32px;
+            }
     
             .wrap{
                 margin-bottom: 16px;
                 overflow-x: scroll;
                 @media (min-width: 768px) {
-                        overflow: visible;
-                        }
+                overflow: visible;
+                }
                 .oottCards{
                     display: flex;
-                    gap: 32px;
+                    gap: $sp4;
+                    margin-bottom: $sp4;
+                    @media (min-width: 768px) {
+                    justify-content: center;
+                    }
                     .oottCard{
                         flex-shrink: 0;
+                        @media (min-width: 768px) {
+                        flex-shrink: 1;
+                        }
+
+                        &:nth-child(2n+1){
+                            rotate: 1.6deg;
+                        }
+                        &:nth-child(2n){
+                            rotate: -1.6deg;
+                        }
     
                     }
                 }
-            }
-            .panel{
-                display: flex;
-                justify-content: center;
-                gap: 64px;
-                margin-bottom: 32px;
             }
         }
     
     }
     
     // 票券區塊
-    .index_ticket{
+    .tripInfo_ticket{
         position: relative;
-        padding: 160px 0;
+        padding: $sp12 0 $sp8;
+        @media (min-width: 768px) {
+        padding: 160px 0 80px;
+        }
     
         .content{
             margin: 0 auto;
@@ -447,11 +498,13 @@
     
             .wrap{
                 margin-bottom: 32px;
+                text-align: left;
                 .ticketCards{
                     display: flex;
                     overflow-x: scroll;
                     @media (min-width: 1260px) {
                     justify-content: space-between;
+                    gap: 32px;
                     overflow: visible;
                     }
     
@@ -468,6 +521,49 @@
         }
     
     }
+
+    // 你可能有興趣
+    .tripInfo_trip{
+        position: relative;
+        background-color: $bgColor_default;
+        padding: $sp12 0 $sp8;
+        @media (min-width: 768px) {
+        padding: 160px 0 80px;
+        }
+        .content{
+            margin: 0 auto;
+            max-width: 1200px;
+            text-align: center;
+            @media (min-width: 768px) {
+            padding: 0 32px;
+            }
+    
+            .wrap{
+                margin-bottom: 16px;
+                overflow-x: scroll;
+                text-align: left;
+                @media (min-width: 768px) {
+                overflow: visible;
+                }
+                .tripCards{
+                    display: flex;
+                    gap: $sp4;
+                    margin-bottom: $sp4;
+                    @media (min-width: 768px) {
+                    justify-content: center;
+                    }
+                    .tripCard{
+                        flex-shrink: 0;
+                        @media (min-width: 768px) {
+                        flex-shrink: 1;
+                        }
+    
+                    }
+                }
+            }
+        }
+    
+    }
 }
 
 
@@ -475,28 +571,109 @@
 
 
 <script>
+import oottCard from '@/components/OottCard.vue'
+import ticketCard from '@/components/TicketVertical.vue'
 import tripCard from '@/components/TripCard.vue'
 
 export default {
+    components: {
+		oottCard,
+		ticketCard,
+        tripCard,
+	},
     data(){
         return {
-            trips:[
+            ootts:[
 				{
-					tripCardPhoto: String,
-					tripCardTags: String,
-					tripCardTitle: String,
-					tripCardDesc: String,
-					tripCardAuthor: String,
-					tripCardDate: String,
-				}
-			]
+					oottPhoto: require('@/assets/img/oott_card_example.png'),
+					oottCardTags: "#日系 #休閒 #風景",
+					oottCardDate: "2022 / 12 / 12",
+					oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-1_member.png"),
+					oottCardAuthor: "Alison",
+				},
+				{
+					oottPhoto: require('@/assets/img/oott_card_example.png'),
+					oottCardTags: "#復古 #海邊",
+					oottCardDate: "2022 / 7 / 3",
+					oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+					oottCardAuthor: "Susan",
+				},
+				{
+					oottPhoto: require('@/assets/img/oott_card_example.png'),
+					oottCardTags: "#街頭 #潮流",
+					oottCardDate: "2022 / 7 / 6",
+					oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+					oottCardAuthor: "Max",
+				},
+			],
+			tickets:[
+				{
+					ticketPhoto: require('@/assets/img/ticketExample.png'),
+					ticketTitle: "斑比斑比斑比斑比山丘門票",
+					ticketLocation: "宜蘭",
+					ticketTags: "#標籤",
+					originalPrice: 800,
+					finalPrice: 599,
+					discountTag: "75折",
+				},
+				{
+					ticketPhoto: require('@/assets/img/ticketExample.png'),
+					ticketTitle: "斑比斑比斑比斑比山丘門票",
+					ticketLocation: "宜蘭",
+					ticketTags: "#標籤",
+					originalPrice: 800,
+					finalPrice: 599,
+					discountTag: "75折",
+				},
+				{
+					ticketPhoto: require('@/assets/img/ticketExample.png'),
+					ticketTitle: "斑比斑比斑比斑比山丘門票",
+					ticketLocation: "宜蘭",
+					ticketTags: "#標籤",
+					originalPrice: 800,
+					finalPrice: 599,
+					discountTag: "75折",
+				},
+				{
+					ticketPhoto: require('@/assets/img/ticketExample.png'),
+					ticketTitle: "斑比斑比斑比斑比山丘門票",
+					ticketLocation: "宜蘭",
+					ticketTags: "#標籤",
+					originalPrice: 800,
+					finalPrice: 599,
+					discountTag: "75折",
+				},
+			],
+            trips:[
+                {
+                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
+                    tripCardTags: "台中・#親子 #情侶 #農場",
+                    tripCardTitle: "台中文青一日遊",
+                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023 / 7 / 9",
+                },
+                {
+                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
+                    tripCardTags: "台中・#親子 #情侶 #農場",
+                    tripCardTitle: "台中文青一日遊",
+                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023 / 7 / 9",
+                },
+                {
+                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
+                    tripCardTags: "台中・#親子 #情侶 #農場",
+                    tripCardTitle: "台中文青一日遊",
+                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023 / 7 / 9",
+                },
+            ]
         }
     },
     methods: {
 
     },
-    components:{
-        tripCard
-    }
 }
 </script>

@@ -83,36 +83,6 @@
                 height: 70px;
                 @media (min-width: 768px) {
                     height: 89px;
-                    }
-            }
-
-            h2{
-               margin: 41px auto 44px auto;
-               text-align: center;
-            }
-
-            h3{
-                margin-bottom: 8px;
-            }
-
-            hr{
-                margin-bottom: 32px;
-            }
-
-            .card_wrap{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-
-                .trip_card_default{
-                    margin: 8px 15px;
-                    width: 283px;
-                    height: 431px;
-                    @media (min-width:768px) {
-                        width: 285px;
-                        height: 485px;
-                    }
-                    
                 }
             }
         }
