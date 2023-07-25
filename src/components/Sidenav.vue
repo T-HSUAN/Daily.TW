@@ -1,7 +1,7 @@
 <template>
     <div class="sidenav">
         <ul>
-            <li @click="showSubtitleMember = !showSubtitleMember">
+            <li @click="toggleSubtitle('member')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img src="~@/assets/img/sidenav_icon_member.svg" alt="">
@@ -9,13 +9,13 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>帳號管理</h4>
-                    <div class="sidenav_subtitle_wrap" v-if="showSubtitleMember">
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.member">
                         <router-link to="/member_info" class="sidenav_subtitle">個人資料修改</router-link>
                         <router-link to="/member_psw" class="sidenav_subtitle">密碼修改</router-link>
                     </div>
                 </div>
             </li>
-            <li @click="showSubtitleOott = !showSubtitleOott">
+            <li @click="toggleSubtitle('oott')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img src="~@/assets/img/sidenav_icon_oott.svg" alt="">
@@ -23,12 +23,12 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>穿搭管理</h4>
-                    <div class="sidenav_subtitle_wrap" v-if="showSubtitleOott">
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.oott">
                         <router-link to="/member_oott" class="sidenav_subtitle">我的穿搭</router-link>
                     </div>
                 </div>
             </li>
-            <li @click="showSubtitleLike = !showSubtitleLike">
+            <li @click="toggleSubtitle('like')">
                 <div class="sidenav_icon">
                     <div class="icon_box">
                         <img src="~@/assets/img/sidenav_icon_like.svg" alt="">
@@ -36,7 +36,7 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>收藏管理</h4>
-                    <div class="sidenav_subtitle_wrap" v-if="showSubtitleLike">
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.like">
                         <router-link to="/member_like_trip" class="sidenav_subtitle">行程收藏</router-link>
                         <router-link to="/member_like_oott" class="sidenav_subtitle">穿搭收藏</router-link>
                     </div>
@@ -63,19 +63,30 @@
 export default{
     data(){
         return{
-            showSubtitleMember: false,
-            showSubtitleOott: false,
-            showSubtitleLike: false,
-            showSubtitleOrder: false,
             showSubtitle: {
-                order: false,
+                member: true,
+                oott: true,
+                like: true,
+                order: true,
             },
-            windowWidth: 1600,
+            windowWidth: 0,
         };
     },
+    mounted() {
+        this.windowWidth =  window.innerWidth;
+        window.addEventListener("resize", this.resizeHandler);
+    },
+    unmounted() {
+        window.removeEventListener("resize", this.resizeHandler);
+    },
     methods: {
+        resizeHandler(e){
+            this.windowWidth =  window.innerWidth;
+        },
         toggleSubtitle(key){
-            if (this.windowWidth > 1024) return;
+            if (this.windowWidth > 767){
+                return;
+            }
             this.showSubtitle[key] = !this.showSubtitle[key];
         },
     }
@@ -83,5 +94,4 @@ export default{
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/baseAndMixin.scss";
 </style>

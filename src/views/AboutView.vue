@@ -458,6 +458,7 @@ export default defineComponent({
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: top center;
+    position: relative;
     @media (min-width: 375px){
         background-image: url(~@/assets/img/layout/bg_wave1_xl.png);
         height: 135px;
@@ -483,7 +484,13 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: $sp4 $sp7;
+    padding: $sp10 $sp7 $sp4 $sp7;
+    margin-top: -140px;
+    background-color: $bgColor_tint;
+    @media (min-width: $md){
+        padding: $sp15 $sp7 $sp4 $sp7;
+        margin-top: -120px;
+    }
     .service_title{
         display: flex;
         align-items: flex-end;
@@ -521,6 +528,7 @@ export default defineComponent({
             flex-wrap: wrap;
             justify-content: center;
             gap: $sp3;
+            width: 1200px;
         }
         .service_card_wrap{
             width: 265px;
@@ -752,11 +760,14 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: $sp4 $sp7;
+    padding: $sp10 $sp7 $sp4 $sp7;
+    margin-top: -140px;
+    background-color: $bgColor_tint;
     @media (min-width: $md){
         flex-direction: row;
         justify-content: center;
-        padding: $sp6 $sp7;
+        padding: $sp15 $sp7 $sp6 $sp7;
+        margin-top: -120px;
     }
     .info_logo img{
         width: 150px;
