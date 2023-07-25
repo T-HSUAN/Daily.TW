@@ -31,38 +31,64 @@
             <div class="social_box">
                 <div class="social_icon">
                     <p>獲得最新行程&穿搭靈感</p>
-                    <a href="#"><font-awesome-icon icon="fa-brands fa-line" /></a>
-                    <a href=""><font-awesome-icon icon="fa-brands fa-instagram" /></a>
-                    <a href=""><font-awesome-icon icon="fa-brands fa-square-facebook" /></a>
+                    <a href="#"
+                        ><font-awesome-icon icon="fa-brands fa-line"
+                    /></a>
+                    <a href=""
+                        ><font-awesome-icon icon="fa-brands fa-instagram"
+                    /></a>
+                    <a href=""
+                        ><font-awesome-icon icon="fa-brands fa-square-facebook"
+                    /></a>
                 </div>
-                <input class="footer_input" type="text" v-model="email" placeholder='請輸入-email'>
+                <input
+                    class="footer_input"
+                    type="text"
+                    v-model="email"
+                    placeholder="請輸入-email"
+                />
             </div>
             <div class="social_box_md">
                 <p>獲得最新行程&穿搭靈感</p>
-                <input class="footer_input" type="text" v-model="email" placeholder='請輸入-email'>
+                <input
+                    class="footer_input"
+                    type="text"
+                    v-model="email"
+                    placeholder="請輸入-email"
+                />
                 <div class="social_icon">
-                    <a href="#"><font-awesome-icon icon="fa-brands fa-line" /></a>
-                    <a href=""><font-awesome-icon icon="fa-brands fa-instagram" /></a>
-                    <a href=""><font-awesome-icon icon="fa-brands fa-square-facebook" /></a>
+                    <a href="#"
+                        ><font-awesome-icon icon="fa-brands fa-line"
+                    /></a>
+                    <a href=""
+                        ><font-awesome-icon icon="fa-brands fa-instagram"
+                    /></a>
+                    <a href=""
+                        ><font-awesome-icon icon="fa-brands fa-square-facebook"
+                    /></a>
                 </div>
             </div>
         </div>
         <div class="footer_notice">
-                <p>本網站為緯育 TibaMe 前端設計工程師班第 83 期學員專題成果作品，本平台僅供學習、展示之用。<br>若有抵觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。<br>若有侵權疑慮，您可以私訊「緯育TibaMe」，後續會由專人協助處理。<br>Copyright © 2023 Daily.TW</p>
+            <p>
+                本網站為緯育 TibaMe 前端設計工程師班第 83
+                期學員專題成果作品，本平台僅供學習、展示之用。<br />若有抵觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。<br />若有侵權疑慮，您可以私訊「緯育TibaMe」，後續會由專人協助處理。<br />Copyright
+                © 2023 Daily.TW
+            </p>
         </div>
     </footer>
 </template>
 
 <script>
 export default {
-    data(){
-        return{
-            email:''
-        }
-    }
+    data() {
+        return {
+            email: "",
+        };
+    },
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/scss/main.scss";
+<style lang="scss">
+@import "@/assets/scss/baseAndMixin.scss";
 </style>

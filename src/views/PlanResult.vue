@@ -478,14 +478,16 @@ export default{
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 #app{
     background-color: $bgColor_default;
 }
 
 .plan_result{
-    padding-top: $sp4;
     background-color: $bgColor_default;
+    @media (min-width: $md){
+        padding-top: $sp4;
+    }
     .result_banner{
         position: relative;
         z-index: 1;
@@ -803,7 +805,7 @@ export default{
                         }
                         .place_pic{
                             width: 279px;
-                            @media (min-width: 375px){
+                            @media (min-width: $md){
                                 width: 381px;
                             }
                             img{
@@ -817,7 +819,7 @@ export default{
                             gap: $sp2;
                             justify-content: center;
                             padding-top: $sp1;
-                            @media (min-width: 375px){
+                            @media (min-width: $md){
                                 width: 381px;
                             }
                             span{

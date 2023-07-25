@@ -1,129 +1,145 @@
+<!-- 景點票券頁面 -->
 <template>
-    <div class="ticket_banner">
-        <img
-            class="banner_xl"
-            :src="require('@/assets/img/ticket_banner.png')"
-            alt="banner"
-        />
-        <img
-            class="banner_sm"
-            :src="require('@/assets/img/ticket_banner_sm.png')"
-            alt="banner"
-        />
-        <h1>{{ banner.title }}</h1>
-    </div>
-    <Searchbar :Filter="updateDisplay" />
-    <!-- 景點票券清單 -->
-    <div class="ticket_list" v-if="ticketDisplay.length > 0">
-        <div
-            class="ticket_card"
-            v-for="(item, index) in ticketDisplay"
-            :key="item.id"
-        >
+    <div class="ticket">
+        <div class="ticket_banner">
             <img
-                class="hover_showDuck"
-                src="@/assets/img/duck_chooseme.svg"
-                alt="hover_showDuck"
+                class="banner_xl"
+                :src="require('@/assets/img/ticket_banner.png')"
+                alt="banner"
             />
-            <router-link :to="item.singlecard_link" title="點擊查看票券詳情">
-                <Ticket
-                    :ticketPhoto="item.img"
-                    :ticketTitle="item.Name"
-                    :ticketLocation="item.location"
-                    :ticketTags="item.tag"
-                    :originalPrice="item.price_adultO"
-                    :FinalPrice="item.price_adultF"
-                    :discountTag="item.discount"
-            /></router-link>
-            <div class="add_cart">
-                <button class="btn" @click="createItem(index)">
-                    + 加入購物車
-                </button>
-            </div>
+            <img
+                class="banner_sm"
+                :src="require('@/assets/img/ticket_banner_sm.png')"
+                alt="banner"
+            />
+            <h1>{{ banner.title }}</h1>
         </div>
-    </div>
-    <div v-else>查無結果</div>
-    <button class="btn more" v-if="ticketDisplay.length === ticketData.length">
-        更多
-    </button>
-    <!-- 購物車清單 -->
-    <!-- <router-link to="/cart"></router-link> -->
-    <div class="cart">
-        <font-awesome-icon
-            icon="fa-solid fa-cart-shopping"
-            class="cart_toggle"
-            @click="toggleCart"
-        />
-        <div class="numTag">{{ itemList.length }}</div>
-    </div>
-    <div class="cart_sidebar" v-show="togglePage">
-        <h2>付款明細</h2>
-        <!-- 購買內容 -->
-        <div class="item">
+        <Searchbar :Filter="updateDisplay" />
+        <!-- 景點票券清單 -->
+        <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div
-                class="details"
-                v-for="(item, index) in itemList"
+                class="ticket_card"
+                v-for="(item, index) in ticketDisplay"
                 :key="item.id"
             >
-                <div class="title">
-                    {{ item.Name }}
-                    <button class="cancel" @click="cancel(index)" title="刪除">
-                        X
+                <img
+                    class="hover_showDuck"
+                    src="@/assets/img/duck_chooseme.svg"
+                    alt="hover_showDuck"
+                />
+                <router-link
+                    :to="item.singlecard_link"
+                    title="點擊查看票券詳情"
+                >
+                    <Ticket
+                        :ticketPhoto="item.img"
+                        :ticketTitle="item.Name"
+                        :ticketLocation="item.location"
+                        :ticketTags="item.tag"
+                        :originalPrice="item.price_adultO"
+                        :FinalPrice="item.price_adultF"
+                        :discountTag="item.discount"
+                /></router-link>
+                <div class="add_cart">
+                    <button class="btn" @click="createItem(index)">
+                        + 加入購物車
                     </button>
-                </div>
-
-                <div class="ticket_adult">
-                    <label for="count_adult">
-                        <p class="name">全票&nbsp;</p>
-                        <p class="price">(NT$ {{ item.price_adultF }} /張)</p>
-                    </label>
-                    <select
-                        v-model="item.count_adult"
-                        name="ticket_count_adult"
-                        class="count_adult"
-                        @change="subTotalPrice(item)"
-                    >
-                        <option value="0" selected>0</option>
-                        <option :value="num" v-for="num in 5" :key="num">
-                            {{ num }}
-                        </option>
-                    </select>
-                </div>
-                <div class="ticket_ex">
-                    <label for="count_ex">
-                        <p class="name">優待票&nbsp;</p>
-                        <p class="price">(NT$ {{ item.price_exF }} /張)</p>
-                    </label>
-                    <select
-                        v-model="item.count_ex"
-                        name="ticket_count_ex"
-                        class="count_ex"
-                        @change="subTotalPrice(item)"
-                    >
-                        <option value="0" selected>0</option>
-                        <option :value="num" v-for="num in 5" :key="num">
-                            {{ num }}
-                        </option>
-                    </select>
-                </div>
-
-                <div class="amount">
-                    小計&nbsp;
-                    <span>NT$ {{ item.subtotal }}</span>
                 </div>
             </div>
         </div>
-        <!-- 票券總計 -->
-        <div class="result">
-            <p>({{ itemList.length }}項票券) 總計</p>
-            <p>
-                NT$&nbsp;
-                <span class="total-price"> {{ totalPrice }} </span>
-                元
-            </p>
-            <button class="btn">結帳</button>
+        <div v-else>查無結果</div>
+        <button
+            class="btn more"
+            v-if="ticketDisplay.length === ticketData.length"
+        >
+            更多
+        </button>
+        <!-- 購物車清單 -->
+        <!-- <router-link to="/cart"></router-link> -->
+        <div class="cart">
+            <font-awesome-icon
+                icon="fa-solid fa-cart-shopping"
+                class="cart_toggle"
+                @click="toggleCart"
+            />
+            <div class="numTag">{{ itemList.length }}</div>
         </div>
-        <div class="close" @click="toggleCart">close</div>
+        <div class="cart_sidebar" v-show="togglePage">
+            <h2>付款明細</h2>
+            <!-- 購買內容 -->
+            <div class="item">
+                <div
+                    class="details"
+                    v-for="(item, index) in itemList"
+                    :key="item.id"
+                >
+                    <div class="title">
+                        {{ item.Name }}
+                        <font-awesome-icon
+                            icon="fa-solid fa-trash-can"
+                            class="cancel"
+                            @click="cancel(index)"
+                            title="刪除"
+                        />
+                    </div>
+
+                    <div class="ticket_adult">
+                        <label for="count_adult">
+                            <p class="name">全票&nbsp;</p>
+                            <p class="price">
+                                (NT$ {{ item.price_adultF }} /張)
+                            </p>
+                        </label>
+                        <select
+                            v-model="item.count_adult"
+                            name="ticket_count_adult"
+                            class="count_adult"
+                            @change="subTotalPrice(item)"
+                        >
+                            <option value="0" selected>0</option>
+                            <option :value="num" v-for="num in 5" :key="num">
+                                {{ num }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="ticket_ex">
+                        <label for="count_ex">
+                            <p class="name">優待票&nbsp;</p>
+                            <p class="price">(NT$ {{ item.price_exF }} /張)</p>
+                        </label>
+                        <select
+                            v-model="item.count_ex"
+                            name="ticket_count_ex"
+                            class="count_ex"
+                            @change="subTotalPrice(item)"
+                        >
+                            <option value="0" selected>0</option>
+                            <option :value="num" v-for="num in 5" :key="num">
+                                {{ num }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="amount">
+                        小計&nbsp;
+                        <span>NT$ {{ item.subtotal }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 票券總計 -->
+            <div class="result">
+                <p>({{ itemList.length }}項票券) 總計</p>
+                <p>
+                    NT$&nbsp;
+                    <span class="total-price"> {{ totalPrice }} </span>
+                    元
+                </p>
+                <router-link to="/cart"
+                    ><button class="btn">結帳</button></router-link
+                >
+            </div>
+            <div class="close" @click="toggleCart">close</div>
+        </div>
     </div>
 </template>
 <script>
@@ -229,5 +245,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 </style>

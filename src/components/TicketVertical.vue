@@ -6,9 +6,7 @@
             <h3 class="ticket_title">{{ ticketTitle }}</h3>
             <p class="ticket_location">
                 {{ ticketLocation }}・
-                <span class="ticket_tags"
-                    >{{ ticketTags }}{{ ticketTags }}{{ ticketTags }}</span
-                >
+                <span class="ticket_tags">{{ ticketTags }}</span>
             </p>
             <div class="ticket_price">
                 <p class="price_original" v-if="originalPrice !== ''">NT$</p>
@@ -96,9 +94,7 @@ data() {
 </script>
 
 <style lang="scss">
-// @import url('./assets/scss/main.scss');
-// @import './assets/scss/main.scss';
-@import "@/assets/scss/main.scss";
+
 .ticketCard{
   margin: 4px;
 }

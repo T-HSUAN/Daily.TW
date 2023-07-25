@@ -149,12 +149,12 @@
 
 <script>
 // import Tag from "@/components/Tag.vue";
-import Sidenav from "@/components/Sidenav.vue";
+// import Sidenav from "@/components/Sidenav.vue";
 
 export default {
     components: {
     //     Tag,
-        Sidenav,
+        // Sidenav,
      },
     data() {
         return {
@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/main.scss";
+@import "@/assets/scss/baseAndMixin.scss";
 
 #app{
     background-color: $bgColor_default;

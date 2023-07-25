@@ -1,6 +1,8 @@
 // 表單欄位
 input[type="text"],
-input[type="password"]{
+input[type="password"],
+input[type="tel"],
+input[type="email"] {
     color: $textColor_default;
     background-color: $textColor_white;
     border-radius: 50px;
@@ -12,15 +14,15 @@ input[type="password"]{
     @media (min-width: 768px) {
         @include xl_p;
     }
-    &::placeholder{
+    &::placeholder {
         color: $textColor_tint;
         transform: translateY(1px);
     }
-    &:focus{
+    &:focus {
         box-shadow: 0px 0px 5px 2px rgba(106, 93, 74, 0.25) inset;
     }
 }
-textarea{
+textarea {
     resize: none;
     color: $textColor_default;
     background-color: $textColor_white;
@@ -32,20 +34,20 @@ textarea{
     @media (min-width: 768px) {
         @include xl_p;
     }
-    &:focus{
+    &:focus {
         box-shadow: 0px 0px 5px 2px rgba(106, 93, 74, 0.25) inset;
     }
 }
-    
+
 // warning status
 input[type="text"].form_warning,
-input[type="password"].form_warning{
+input[type="password"].form_warning {
     border-color: $warningColor;
-    &:focus{
+    &:focus {
         border-color: $textColor_default;
     }
 }
-.form_warning + span{
+.form_warning + span {
     color: $warningColor;
     padding: $sp1 $sp2;
     @include sm_p;

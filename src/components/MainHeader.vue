@@ -1,102 +1,109 @@
 <template>
     <!-- 768px以下顯示側邊欄 -->
     <div class="container_box">
-    <header v-if="viewportWidth <= 768" class="phone">
-        <img
-            class="logo"
-            :src="require('@/assets/img/layout/small.svg')"
-            alt="logo"
-        />
-        <img
-            class="ham"
-            :src="require('@/assets/img/layout/hamburger.svg')"
-            alt="hamburger"
-            @click="toggleSidebar"
-        />
-    </header>
-    <aside v-if="viewportWidth <= 768" :class="{ 'show-sidebar': showSidebar }">
-        <img
-            class="ham_close"
-            :src="require('@/assets/img/layout/hamburger_close.svg')"
-            alt="hamburger"
-            @click="toggleSidebar"
-        />
-        <nav>
-            <router-link
-                v-for="item in menu"
-                :key="item.id"
-                :to="'/' + item.link"
-                @click="flagDisplay(item.id)"
-            >
-                <img
-                    :src="require(`@/assets/img/layout/${item.img}.svg`)"
-                    alt="icon"
-                    :style="{ display: item.display }"
-                />
-                &nbsp;{{ item.name }}
-            </router-link>
-        </nav>
-        <img
-            class="sidebar_logo"
-            :src="require('@/assets/img/layout/sidebar_logo.svg')"
-            alt="logo"
-        />
-    </aside>
+        <header v-if="viewportWidth <= 768" class="phone">
+            <img
+                class="logo"
+                :src="require('@/assets/img/layout/small.svg')"
+                alt="logo"
+            />
+            <img
+                class="ham"
+                :src="require('@/assets/img/layout/hamburger.svg')"
+                alt="hamburger"
+                @click="toggleSidebar"
+            />
+        </header>
+        <aside
+            v-if="viewportWidth <= 768"
+            :class="{ 'show-sidebar': showSidebar }"
+        >
+            <img
+                class="ham_close"
+                :src="require('@/assets/img/layout/hamburger_close.svg')"
+                alt="hamburger"
+                @click="toggleSidebar"
+            />
+            <nav>
+                <router-link
+                    v-for="item in menu"
+                    :key="item.id"
+                    :to="'/' + item.link"
+                    @click="flagDisplay(item.id)"
+                >
+                    <img
+                        :src="require(`@/assets/img/layout/${item.img}.svg`)"
+                        alt="icon"
+                        :style="{ display: item.display }"
+                    />
+                    &nbsp;{{ item.name }}
+                </router-link>
+            </nav>
+            <img
+                class="sidebar_logo"
+                :src="require('@/assets/img/layout/sidebar_logo.svg')"
+                alt="logo"
+            />
+        </aside>
 
-    <!-- 768px以上顯示header -->
-    <header v-else :class="{ sm: showHeader }">
-        <div v-if="!showHeader" class="header_default">
-            <!-- + { _hidden: !showHeader } -->
-            <router-link to="/">
-                <img
-                    class="logo"
-                    :src="require('@/assets/img/layout/logo.png')"
-                    alt="logo"
-                />
-            </router-link>
-            <nav>
-                <router-link
-                    v-for="item in menu"
-                    :key="item.id"
-                    :to="'/' + item.link"
-                    @click="flagDisplay(item.id)"
-                >
+        <!-- 768px以上顯示header -->
+        <header v-else :class="{ sm: showHeader }">
+            <div v-if="!showHeader" class="header_default">
+                <!-- + { _hidden: !showHeader } -->
+                <router-link to="/">
                     <img
-                        :src="require(`@/assets/img/layout/${item.img}.svg`)"
-                        alt="icon"
-                        :style="{ display: item.display }"
+                        class="logo"
+                        :src="require('@/assets/img/layout/logo.png')"
+                        alt="logo"
                     />
-                    &nbsp;{{ item.name }}
                 </router-link>
-            </nav>
-        </div>
-        <div v-else class="header_sm">
-            <!-- + { _display: showHeader } -->
-            <router-link to="/">
-                <img
-                    class="logo"
-                    :src="require('@/assets/img/layout/small.svg')"
-                    alt="logo"
-                />
-            </router-link>
-            <nav>
-                <router-link
-                    v-for="item in menu"
-                    :key="item.id"
-                    :to="'/' + item.link"
-                    @click="flagDisplay(item.id)"
-                >
+                <nav>
+                    <router-link
+                        v-for="item in menu"
+                        :key="item.id"
+                        :to="'/' + item.link"
+                        @click="flagDisplay(item.id)"
+                    >
+                        <img
+                            :src="
+                                require(`@/assets/img/layout/${item.img}.svg`)
+                            "
+                            alt="icon"
+                            :style="{ display: item.display }"
+                        />
+                        &nbsp;{{ item.name }}
+                    </router-link>
+                </nav>
+            </div>
+            <div v-else class="header_sm">
+                <!-- + { _display: showHeader } -->
+                <router-link to="/">
                     <img
-                        :src="require(`@/assets/img/layout/${item.img}.svg`)"
-                        alt="icon"
-                        :style="{ display: item.display }"
+                        class="logo"
+                        :src="require('@/assets/img/layout/small.svg')"
+                        alt="logo"
                     />
-                    &nbsp;{{ item.name }}
                 </router-link>
-            </nav>
-        </div>
-    </header>
-   </div>
+                <nav>
+                    <router-link
+                        v-for="item in menu"
+                        :key="item.id"
+                        :to="'/' + item.link"
+                        @click="flagDisplay(item.id)"
+                    >
+                        <img
+                            :src="
+                                require(`@/assets/img/layout/${item.img}.svg`)
+                            "
+                            alt="icon"
+                            :style="{ display: item.display }"
+                        />
+                        &nbsp;{{ item.name }}
+                    </router-link>
+                </nav>
+            </div>
+        </header>
+    </div>
 </template>
 
 <script>
@@ -191,6 +198,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "@/assets/scss/main.scss";
+<style lang="scss">
+@import "@/assets/scss/baseAndMixin.scss";
 </style>
