@@ -3,6 +3,12 @@
     background-color: $textColor_default;
     border-radius: 5px 5px 0 0;
     padding: $sp2 $sp4 $sp3 $sp4;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    height: 96px;
+    width: 100%;
     @media (min-width: $md){
         background-color: $textColor_white;
         border: 2px solid $textColor_default;
@@ -10,6 +16,10 @@
         border-radius: 10px;
         width: 234px;
         padding: $sp4;
+        position: sticky;
+        top: 80px;
+        left: 0;
+        height: 506px;
     }
     ul{
         display: flex;
