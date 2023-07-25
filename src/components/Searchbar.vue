@@ -58,12 +58,10 @@
 
 <script>
 import tag from "@/components/Tag.vue";
-import Ticket from "@/components/TicketVertical.vue";
 
 export default {
     components: {
         tag,
-        Ticket,
     },
     props: {
         Filter: Function,
@@ -77,7 +75,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
-@import "@/assets/scss/main.scss";
-</style>

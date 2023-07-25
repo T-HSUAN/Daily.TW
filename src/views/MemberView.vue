@@ -14,7 +14,10 @@
                             </div>
                             <div class="text">
                                 <div class="pic">
-                                    <img src="~@/assets/img/member_info.png" alt="">
+                                    <img
+                                        src="~@/assets/img/member_info.png"
+                                        alt=""
+                                    />
                                 </div>
                                 <ul>
                                     <li>用戶暱稱</li>
@@ -22,11 +25,12 @@
                                     <li>性別</li>
                                     <li>email</li>
                                 </ul>
-                                <router-link to="./profile_edit" class="btn" >編輯</router-link>
+                                <router-link to="./profile_edit" class="btn"
+                                    >編輯</router-link
+                                >
                             </div>
                         </div>
                     </div>
-                    
                 </div>
 
                 <!-- 我的穿搭 -->
@@ -39,20 +43,31 @@
                         <div class="card_list">
                             <div class="card">
                                 <div class="pic">
-                                    <a href="#"><img src="~@/assets/img/oott_14.png" alt="卡片照片"></a>
+                                    <a href="#"
+                                        ><img
+                                            src="~@/assets/img/oott_14.png"
+                                            alt="卡片照片"
+                                    /></a>
                                 </div>
                                 <div class="text_warn">
                                     <p>主題標籤</p>
                                     <p class="state">待修改</p>
                                 </div>
                                 <div class="edit">
-                                    <font-awesome-icon class="icon" icon="fa-solid fa-pen" />
+                                    <font-awesome-icon
+                                        class="icon"
+                                        icon="fa-solid fa-pen"
+                                    />
                                     <a href="#">編輯</a>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="pic">
-                                    <a href="#"><img src="~@/assets/img/oott_10.png" alt="卡片照片"></a>
+                                    <a href="#"
+                                        ><img
+                                            src="~@/assets/img/oott_10.png"
+                                            alt="卡片照片"
+                                    /></a>
                                 </div>
                                 <div class="text">
                                     <p>主題標籤</p>
@@ -61,14 +76,21 @@
                             </div>
                             <div class="card">
                                 <div class="pic">
-                                    <a href="#"><img src="~@/assets/img/oott_11.png" alt="卡片照片"></a>
+                                    <a href="#"
+                                        ><img
+                                            src="~@/assets/img/oott_11.png"
+                                            alt="卡片照片"
+                                    /></a>
                                 </div>
                                 <div class="text">
                                     <p>主題標籤</p>
                                     <p class="state">新增日期</p>
                                 </div>
                                 <div class="edit">
-                                    <font-awesome-icon class="icon" icon="fa-solid fa-trash-can" />
+                                    <font-awesome-icon
+                                        class="icon"
+                                        icon="fa-solid fa-trash-can"
+                                    />
                                     <a href="#">刪除</a>
                                 </div>
                             </div>
@@ -86,13 +108,16 @@
                             <h3>行程收藏</h3>
                         </div>
                         <div class="trip_block">
-                            <trip-card v-for="(card, index) in tripCards" :key="index" 
-                            :tripCardPhoto="card.tripCardPhoto" 
-                            :tripCardTags="card.tripCardTags" 
-                            :tripCardTitle="card.tripCardTitle" 
-                            :tripCardDesc="card.tripCardDesc" 
-                            :tripCardAuthor="card.tripCardAuthor" 
-                            :tripCardDate="card.tripCardDate" />
+                            <trip-card
+                                v-for="(card, index) in tripCards"
+                                :key="index"
+                                :tripCardPhoto="card.tripCardPhoto"
+                                :tripCardTags="card.tripCardTags"
+                                :tripCardTitle="card.tripCardTitle"
+                                :tripCardDesc="card.tripCardDesc"
+                                :tripCardAuthor="card.tripCardAuthor"
+                                :tripCardDate="card.tripCardDate"
+                            />
                             <button class="btn">所有行程</button>
                         </div>
                     </div>
@@ -103,12 +128,13 @@
                         <div class="oott_block">
                             <div class="oottCards">
                                 <oottCard
-                                class="oottCard"
-                                v-for="(oott, index) in ootts" :key="index"
-                                :oottPhoto="oott.oottPhoto"
-                                :oottCardTags="oott.oottCardTags"
-                                :oottCardDate="oott.oottCardDate"
-                                :oottCardAuthor="oott.oottCardAuthor"
+                                    class="oottCard"
+                                    v-for="(oott, index) in ootts"
+                                    :key="index"
+                                    :oottPhoto="oott.oottPhoto"
+                                    :oottCardTags="oott.oottCardTags"
+                                    :oottCardDate="oott.oottCardDate"
+                                    :oottCardAuthor="oott.oottCardAuthor"
                                 ></oottCard>
                                 <button class="btn">所有穿搭</button>
                             </div>
@@ -121,62 +147,89 @@
                     </div>
                     <table>
                         <thead>
-                        <tr>
-                            <th>訂單編號</th>
-                            <th>訂購日期</th>
-                            <th>訂單狀態</th>
-                            <th>總計</th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th>訂單編號</th>
+                                <th>訂購日期</th>
+                                <th>訂單狀態</th>
+                                <th>總計</th>
+                                <th></th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2023-07-24</td>
-                            <td>處理中</td>
-                            <td>$100.00</td>
-                            <td><a href="#">前往訂單
-                                <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>2023-07-23</td>
-                            <td>已發貨</td>
-                            <td>$75.50</td>
-                            <td><a href="#">前往訂單
-                                <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>2023-07-22</td>
-                            <td>已完成</td>
-                            <td>$50.25</td>
-                            <td><a href="#">前往訂單
-                                <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>2023-07-21</td>
-                            <td>處理中</td>
-                            <td>$120.75</td>
-                            <td><a href="#">前往訂單
-                                <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                            </a></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>2023-07-20</td>
-                            <td>已取消</td>
-                            <td>$0.00</td>
-                            <td><a href="#">前往訂單
-                                <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                            </a></td>
-                        </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>2023-07-24</td>
+                                <td>處理中</td>
+                                <td>$100.00</td>
+                                <td>
+                                    <a href="#"
+                                        >前往訂單
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-arrow-right"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2023-07-23</td>
+                                <td>已發貨</td>
+                                <td>$75.50</td>
+                                <td>
+                                    <a href="#"
+                                        >前往訂單
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-arrow-right"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>2023-07-22</td>
+                                <td>已完成</td>
+                                <td>$50.25</td>
+                                <td>
+                                    <a href="#"
+                                        >前往訂單
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-arrow-right"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>2023-07-21</td>
+                                <td>處理中</td>
+                                <td>$120.75</td>
+                                <td>
+                                    <a href="#"
+                                        >前往訂單
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-arrow-right"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>2023-07-20</td>
+                                <td>已取消</td>
+                                <td>$0.00</td>
+                                <td>
+                                    <a href="#"
+                                        >前往訂單
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-arrow-right"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
                         </tbody>
-                        <a href="/myorder"><button class="btn">所有訂單</button></a>
+                        <a href="/myorder"
+                            ><button class="btn">所有訂單</button></a
+                        >
                     </table>
                 </div>
             </div>
@@ -196,202 +249,200 @@ export default {
     data() {
         return {
             tripCards: [
-            {
-                tripCardPhoto:"https://picsum.photos/237/191?random=1",
-                tripCardTags: "#懷舊 #文青 #景觀",
-                tripCardTitle: "新竹懷舊之旅",
-                tripCardDesc: "新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳，自然景觀，推薦大家可以一同順遊，除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。",
-                tripCardAuthor: "小編A",
-                tripCardDate: "2023/05/01",
-            },
-            {
-                tripCardPhoto: "https://picsum.photos/237/191?random=2",
-                tripCardTags: "#親子 #農場",
-                tripCardTitle: "宜蘭芬多精一日遊",
-                tripCardDesc: "不知道要去哪裡玩嗎? 精選六個宜蘭知名景點，有吃又有玩，無論是親子出遊、朋友相聚或者是情侶約會保證您都能玩得很盡興。",
-                tripCardAuthor: "小編B",
-                tripCardDate: "2023/05/02",
-            },
-            {
-                tripCardPhoto: "https://picsum.photos/237/191?random=3",
-                tripCardTags: "#藝術 #賞花 #親子",
-                tripCardTitle: "新北藝術一日遊",
-                tripCardDesc: "來去新北一日遊,鶯歌、三峽這裡也有蠻多特色景點,不只是逛老街,也可以安排個鶯歌景點一日遊,順便遊三峽景點。不管是季節限定的賞花景點,還是親子同遊必拍,又或者是IG熱門打卡點,通通好玩報你知。",
-                tripCardAuthor: "小編A",
-                tripCardDate: "2023/05/03",
-            },
+                {
+                    tripCardPhoto: "https://picsum.photos/237/191?random=1",
+                    tripCardTags: "#懷舊 #文青 #景觀",
+                    tripCardTitle: "新竹懷舊之旅",
+                    tripCardDesc:
+                        "新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳，自然景觀，推薦大家可以一同順遊，除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023/05/01",
+                },
+                {
+                    tripCardPhoto: "https://picsum.photos/237/191?random=2",
+                    tripCardTags: "#親子 #農場",
+                    tripCardTitle: "宜蘭芬多精一日遊",
+                    tripCardDesc:
+                        "不知道要去哪裡玩嗎? 精選六個宜蘭知名景點，有吃又有玩，無論是親子出遊、朋友相聚或者是情侶約會保證您都能玩得很盡興。",
+                    tripCardAuthor: "小編B",
+                    tripCardDate: "2023/05/02",
+                },
+                {
+                    tripCardPhoto: "https://picsum.photos/237/191?random=3",
+                    tripCardTags: "#藝術 #賞花 #親子",
+                    tripCardTitle: "新北藝術一日遊",
+                    tripCardDesc:
+                        "來去新北一日遊,鶯歌、三峽這裡也有蠻多特色景點,不只是逛老街,也可以安排個鶯歌景點一日遊,順便遊三峽景點。不管是季節限定的賞花景點,還是親子同遊必拍,又或者是IG熱門打卡點,通通好玩報你知。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023/05/03",
+                },
             ],
-            ootts:[
-            {
-                oottPhoto: require('@/assets/img/oott_card_example.png'),
-                oottCardTags: "#日系 #休閒 #風景",
-                oottCardDate: "2022 / 12 / 12",
-                oottAuthorPhoto: require('@/assets/img/info_name_2.png'),
-                oottCardAuthor: "Alison",
-            },
-            {
-                oottPhoto: require('@/assets/img/oott_06.png'),
-                oottCardTags: "#復古 #海邊",
-                oottCardDate: "2022 / 7 / 3",
-                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
-                oottCardAuthor: "Susan",
-            },
-            {
-                oottPhoto: require('@/assets/img/oott_41.png'),
-                oottCardTags: "#街頭 #潮流",
-                oottCardDate: "2022 / 7 / 6",
-                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
-                oottCardAuthor: "Max",
-            },
+            ootts: [
+                {
+                    oottPhoto: require("@/assets/img/oott_card_example.png"),
+                    oottCardTags: "#日系 #休閒 #風景",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require("@/assets/img/info_name_2.png"),
+                    oottCardAuthor: "Alison",
+                },
+                {
+                    oottPhoto: require("@/assets/img/oott_06.png"),
+                    oottCardTags: "#復古 #海邊",
+                    oottCardDate: "2022 / 7 / 3",
+                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottCardAuthor: "Susan",
+                },
+                {
+                    oottPhoto: require("@/assets/img/oott_41.png"),
+                    oottCardTags: "#街頭 #潮流",
+                    oottCardDate: "2022 / 7 / 6",
+                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottCardAuthor: "Max",
+                },
             ],
-            
-        }
+        };
     },
-        
-}
+};
 </script>
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-.lg_area{
+.lg_area {
     width: 100%;
     text-align: center;
     margin-bottom: $sp8;
-    h1{
+    h1 {
         padding-top: 60px;
     }
-    .bg_area{
+    .bg_area {
         display: flex;
         justify-content: center;
-        .bg_container{
-        width: 100%;
-        @media (min-width: 768px) {
+        .bg_container {
+            width: 100%;
+            @media (min-width: 768px) {
                 width: 900px;
             }
         }
-        .sidenav{
+        .sidenav {
             flex-shrink: 0;
             height: 506px;
             display: none;
             @media (min-width: 768px) {
                 margin: $sp3 0;
             }
-            @media (min-width : 1024px) {
-                display: block;         
+            @media (min-width: 1024px) {
+                display: block;
             }
         }
-        .bg_container{
+        .bg_container {
             @media (min-width: 768px) {
                 margin: 0 $sp3;
                 padding: 0 $sp3 $sp3;
             }
         }
     }
-    
 }
 
 // 會員資料
-.member{
+.member {
     width: 100%;
     text-align: center;
     @media (min-width: 768px) {
         width: 900px;
     }
-   .member_container{
-    display: flex;
-    justify-content: center;
-    @media (min-width: 768px) {
-        padding-top: 80px;
-    }
-    
-    .personal_info{
-        width: 100%;
-        position: relative;
+    .member_container {
+        display: flex;
+        justify-content: center;
         @media (min-width: 768px) {
-            width: 900px;
+            padding-top: 80px;
         }
-        .member_title{
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            padding: $sp3 0;
-            margin: $sp3;
+
+        .personal_info {
+            width: 100%;
+            position: relative;
             @media (min-width: 768px) {
-                padding: $sp3 0;
+                width: 900px;
             }
-            border-bottom: 2px solid $textColor_default;
-            h2{
-                font-size: $sm_h3;
-                @media (min-width: 768px) {
-                font-size: $xl_h2;
-                }
-            }
-            p{
-                font-size: $sm_p;
-                @media (min-width: 768px) {
-                font-size: $xl_p;
-                }
-            }
-        }
-        .text{
-            display: flex;
-            margin: $sp3;
-            padding-bottom: 30px;
-            border-bottom: 2px solid $textColor_default;
-            @media (min-width: 768px) {
-                padding-bottom: 32px;
-                margin: 0;
-            }
-            .pic{
-                width: 98px;
-                @media (min-width: 768px) {
-                    width: 160px;
-                }
-                img{
-                    width: 100%;
-                }
-            }
-            ul{
+            .member_title {
                 display: flex;
-                flex-direction: column;
-                width: 130px;
-                align-items: start;
-                padding-left: $sp2;
-                gap: 15px;
+                align-items: end;
+                justify-content: space-between;
+                padding: $sp3 0;
+                margin: $sp3;
                 @media (min-width: 768px) {
-                    width: 600px;
-                    padding-left: $sp5;
-                    gap: 30px;
+                    padding: $sp3 0;
+                }
+                border-bottom: 2px solid $textColor_default;
+                h2 {
+                    font-size: $sm_h3;
+                    @media (min-width: 768px) {
+                        font-size: $xl_h2;
+                    }
+                }
+                p {
+                    font-size: $sm_p;
+                    @media (min-width: 768px) {
+                        font-size: $xl_p;
+                    }
                 }
             }
-            .btn{
-                position: absolute;
-                right: 70px;
-                bottom:6px;
+            .text {
+                display: flex;
+                margin: $sp3;
+                padding-bottom: 30px;
+                border-bottom: 2px solid $textColor_default;
                 @media (min-width: 768px) {
-                position: absolute;
-                right: 90px;
-                bottom: -18px;
+                    padding-bottom: 32px;
+                    margin: 0;
+                }
+                .pic {
+                    width: 98px;
+                    @media (min-width: 768px) {
+                        width: 160px;
+                    }
+                    img {
+                        width: 100%;
+                    }
+                }
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    width: 130px;
+                    align-items: start;
+                    padding-left: $sp2;
+                    gap: 15px;
+                    @media (min-width: 768px) {
+                        width: 600px;
+                        padding-left: $sp5;
+                        gap: 30px;
+                    }
+                }
+                .btn {
+                    position: absolute;
+                    right: 70px;
+                    bottom: 6px;
+                    @media (min-width: 768px) {
+                        position: absolute;
+                        right: 90px;
+                        bottom: -18px;
+                    }
                 }
             }
         }
-        
     }
-   }
 }
 
 // 我的穿搭
-.my_oott{
+.my_oott {
     padding-top: $sp1;
     width: 100%;
     text-align: center;
     margin: auto;
     @media (min-width: 768px) {
-            width: 900px;
-            padding-top: $sp8;
-        }
-    .oott_container{
-
-       .my_title{
+        width: 900px;
+        padding-top: $sp8;
+    }
+    .oott_container {
+        .my_title {
             display: flex;
             padding: $sp3 0;
             margin: $sp3;
@@ -404,13 +455,13 @@ export default {
             @media (max-width: 768px) {
                 justify-content: space-between;
             }
-            h2{
+            h2 {
                 font-size: $sm_h3;
                 @media (min-width: 768px) {
-                font-size: $xl_h2;
+                    font-size: $xl_h2;
                 }
             }
-            .my_btn{
+            .my_btn {
                 width: 181px;
                 height: 25px;
                 border-radius: 50px;
@@ -418,29 +469,29 @@ export default {
                 background-color: $textColor_tint;
                 margin-left: 30px;
                 @media (min-width: 768px) {
-                width: 234px;
-                height: 35px;
+                    width: 234px;
+                    height: 35px;
                 }
             }
-       }
-       .card_list{
+        }
+        .card_list {
             position: relative;
             justify-content: center;
             display: flex;
             padding: $sp3 0;
-            margin: $sp3 ;
+            margin: $sp3;
             border-bottom: 2px solid $textColor_default;
-            overflow-x: scroll;//////////////////////scroll_bar
+            overflow-x: scroll; //////////////////////scroll_bar
             @media (min-width: 768px) {
                 margin: 0;
-                overflow: visible;//////////////////////scroll_bar
+                overflow: visible; //////////////////////scroll_bar
             }
-            .card{
+            .card {
                 flex-direction: column;
                 display: block;
                 padding: 10px;
-                .pic{
-                    img{
+                .pic {
+                    img {
                         width: 205px;
                         height: 256px;
                         @media (min-width: 768px) {
@@ -449,47 +500,47 @@ export default {
                         }
                     }
                 }
-                .text{
+                .text {
                     display: flex;
                     padding: 5px;
                     background-color: $default_yellow;
                     justify-content: space-between;
-                    p{
+                    p {
                         font-size: $sm_h5;
                         color: white;
                         @media (min-width: 768px) {
                             font-size: $xl_h5;
                         }
                     }
-                    .state{
+                    .state {
                         color: white;
                         font-size: $sm_p;
                         @media (min-width: 768px) {
-                        font-size: $sm_h5;
+                            font-size: $sm_h5;
                         }
                     }
                 }
-                .text_warn{
+                .text_warn {
                     display: flex;
                     background-color: $warningColor;
                     padding: 5px;
                     justify-content: space-between;
-                    p{
+                    p {
                         font-size: $sm_h5;
                         color: white;
                         @media (min-width: 768px) {
                             font-size: $xl_h5;
                         }
                     }
-                    .state{
+                    .state {
                         color: white;
                         font-size: $sm_p;
                         @media (min-width: 768px) {
-                        font-size: $sm_h5;
+                            font-size: $sm_h5;
                         }
                     }
                 }
-                .edit{
+                .edit {
                     justify-content: end;
                     align-items: center;
                     display: flex;
@@ -498,14 +549,14 @@ export default {
                     @media (min-width: 768px) {
                         margin-bottom: $sp4;
                     }
-                    .icon{
+                    .icon {
                         font-size: 12px;
                         padding-right: 5px;
                         @media (min-width: 768px) {
                             font-size: 14px;
                         }
                     }
-                    a{
+                    a {
                         font-size: $sm_p;
                         color: $textColor_default;
                         @media (min-width: 768px) {
@@ -514,28 +565,28 @@ export default {
                     }
                 }
             }
-            .btn{
+            .btn {
                 position: absolute;
                 right: 40px;
                 bottom: -22px;
                 @media (min-width: 768px) {
-                position: absolute;
-                right: 60px;
-                bottom: -25px;
+                    position: absolute;
+                    right: 60px;
+                    bottom: -25px;
                 }
             }
-       }
+        }
     }
 }
 // 收藏清單
-.collect{
+.collect {
     padding-top: $sp1;
     width: 100%;
     @media (min-width: 768px) {
         width: 900px;
         padding-top: $sp6;
     }
-    .big_title{
+    .big_title {
         display: flex;
         align-items: end;
         padding: $sp3 0;
@@ -545,193 +596,21 @@ export default {
             padding: $sp6 0 $sp3 0;
             margin: 0;
         }
-        h2{
+        h2 {
             font-size: $sm_h3;
             @media (min-width: 768px) {
-            font-size: $xl_h2;
+                font-size: $xl_h2;
             }
         }
     }
     //行程收藏
-    .trip_collect{
+    .trip_collect {
         width: 100%;
         @media (min-width: 768px) {
             width: 900px;
             padding-top: $sp3;
         }
-        .trip_title{
-            display: flex;
-            align-items: end;
-            padding: $sp3 0 ;
-            margin: $sp3;
-            border-bottom: 1px solid $textColor_default;
-            @media (min-width: 768px) {
-                padding: $sp3 0;
-                margin: 0;
-            }
-            h3{
-                font-size: $sm_h4;
-                @media (min-width: 768px) {
-                font-size: $xl_h4;
-                }
-            }
-        }
-        .trip_block{
-            position: relative;
-            padding: $sp2 0 $sp6 0;
-            margin: $sp3;
-            border-bottom: 2px solid $textColor_default;
-            display: flex;
-            justify-content: center;
-            overflow-x: scroll;//////////////////////scroll_bar
-            @media (min-width: 768px) {
-                padding: $sp3 0 $sp6 0;
-                margin: 0;
-                overflow: visible;//////////////////////scroll_bar
-            }
-            .trip_card_default{
-                background-color:var(--green-default, #93AE51);
-                border-radius: 5px 20px 20px 5px;
-                margin: 5px;
-                width: 231px;
-                height: 400px;
-                @media (min-width: 768px) {
-                    width: 276px;
-                    height: 443px;
-                }
-                position: relative;
-                .bookmark{
-                    display: block;
-                    position: absolute;
-                    right: 10px;
-                    top: -5px;
-                    @media (min-width: 768px) {
-                        right: 16px;
-                    }
-                    color: #6A5D4A;
-                    font-size: 50px;
-                    .front_bookmark{
-                        position: absolute;
-                        top: 6px;
-                        right: 3px;
-                        font-size: 42px;
-                        color: #FEFFF5;
-                        z-index: 5;
-                    };
-                    input{
-                        display: none;
-                        &:checked ~ .front_bookmark{
-                            color:  var(--semantic-warning, #DB4918)
-                        }
-                    }
-                }
-                .trip_card_img{
-                    padding: 24px;
-                    @media (min-width: 768px) {
-                        padding: 24px;
-                    }
-                    img{
-                       width: 199px;
-                       height: 117px;
-                       @media (min-width: 768px) {
-                        width: 237px;
-                        height: 144px;
-                       }
-                    }
-                }
-
-                .trip_card_text{
-                    margin: 24px;
-                    margin-top: 0;
-                    .trip_card_tags{
-                        color: var(--green-tint, #DAE5BE);
-                        font-family: Noto Sans CJK TC;
-                        font-size: 16px;
-                        letter-spacing: 0.32px;
-                        display: flex;
-                    }
-                    .trip_card_title{
-                        text-align: left;
-                        margin: 7px 0;
-                        color: var(--text-white, #FEFFF5);
-                        font-family: Shippori Mincho;
-                        font-weight: 700;
-                        letter-spacing: 0.64px;
-                        font-size: $sm_h3;
-                        @media (min-width: 768px) {
-                            font-size: $xl_h3;
-                        }
-                    }
-                    .trip_card_desc{
-                        height: 89px;
-                        align-self: stretch;
-                        overflow: hidden;
-                        color: var(--text-white, #FEFFF5);
-                        text-overflow: ellipsis;
-                        line-height: 165%; 
-                        letter-spacing: 0.54px;
-                        position: relative;
-                        font-size: $sm_p;
-                        @media (min-width: 768px) {
-                            font-size: $xl_p;
-                        }
-
-                        &::after{
-                            content: '...';
-                            position: absolute;
-                            bottom: 0;
-                            background-color: var(--green-default, #93AE51);
-                            width: 15px;
-                            right: 3px;
-                            @media (min-width:1200px) {
-                                width: 18px;
-                                right: 15px;
-                            }
-                        }
-                    }
-                    .trip_card_info{
-                        margin-top: 24px;
-                        display: flex;
-                        justify-content: space-between;
-                        color: var(--green-tint, #DAE5BE);
-                        font-size: 12px;
-                        @media (min-width:768px) {
-                            font-size: 16px;
-                        }
-                        font-weight: 500;
-                        line-height: 150%; 
-                        letter-spacing: 0.32px;
-
-                        span{
-                            display: inline-block;
-                        }
-                        span:first-child{
-                            margin-right: auto;
-                        }
-
-                    }
-                }
-            }
-            .btn{
-                position: absolute;
-                right: 40px;
-                bottom: -22px;
-                @media (min-width: 768px) {
-                position: absolute;
-                right: 60px;
-                bottom: -25px;
-                }
-            }
-        }
-    }
-    //穿搭收藏
-    .oott_collect{
-        width: 100%;
-        @media (min-width: 768px) {
-            width: 900px;
-            padding-top: $sp3;
-        }
-        .oott_title{
+        .trip_title {
             display: flex;
             align-items: end;
             padding: $sp3 0;
@@ -741,32 +620,203 @@ export default {
                 padding: $sp3 0;
                 margin: 0;
             }
-            h3{
+            h3 {
                 font-size: $sm_h4;
                 @media (min-width: 768px) {
-                font-size: $xl_h4;
+                    font-size: $xl_h4;
                 }
             }
         }
-        .oott_block{
-                position: relative;
-                padding: $sp2 0 $sp6 0;
-                margin: $sp3;
-                border-bottom: 2px solid $textColor_default;
-                overflow-x: scroll;//////////////////////scroll_bar
+        .trip_block {
+            position: relative;
+            padding: $sp2 0 $sp6 0;
+            margin: $sp3;
+            border-bottom: 2px solid $textColor_default;
+            display: flex;
+            justify-content: center;
+            overflow-x: scroll; //////////////////////scroll_bar
+            @media (min-width: 768px) {
+                padding: $sp3 0 $sp6 0;
+                margin: 0;
+                overflow: visible; //////////////////////scroll_bar
+            }
+            .trip_card_default {
+                background-color: var(--green-default, #93ae51);
+                border-radius: 5px 20px 20px 5px;
+                margin: 5px;
+                width: 231px;
+                height: 400px;
                 @media (min-width: 768px) {
-                    padding: $sp3 0 $sp6 0; 
-                    margin: 0; 
-                    overflow: visible;//////////////////////scroll_bar
+                    width: 276px;
+                    height: 443px;
                 }
-            .oottCards{
+                position: relative;
+                .bookmark {
+                    display: block;
+                    position: absolute;
+                    right: 10px;
+                    top: -5px;
+                    @media (min-width: 768px) {
+                        right: 16px;
+                    }
+                    color: #6a5d4a;
+                    font-size: 50px;
+                    .front_bookmark {
+                        position: absolute;
+                        top: 6px;
+                        right: 3px;
+                        font-size: 42px;
+                        color: #fefff5;
+                        z-index: 5;
+                    }
+                    input {
+                        display: none;
+                        &:checked ~ .front_bookmark {
+                            color: var(--semantic-warning, #db4918);
+                        }
+                    }
+                }
+                .trip_card_img {
+                    padding: 24px;
+                    @media (min-width: 768px) {
+                        padding: 24px;
+                    }
+                    img {
+                        width: 199px;
+                        height: 117px;
+                        @media (min-width: 768px) {
+                            width: 237px;
+                            height: 144px;
+                        }
+                    }
+                }
+
+                .trip_card_text {
+                    margin: 24px;
+                    margin-top: 0;
+                    .trip_card_tags {
+                        color: var(--green-tint, #dae5be);
+                        font-family: Noto Sans CJK TC;
+                        font-size: 16px;
+                        letter-spacing: 0.32px;
+                        display: flex;
+                    }
+                    .trip_card_title {
+                        text-align: left;
+                        margin: 7px 0;
+                        color: var(--text-white, #fefff5);
+                        font-family: Shippori Mincho;
+                        font-weight: 700;
+                        letter-spacing: 0.64px;
+                        font-size: $sm_h3;
+                        @media (min-width: 768px) {
+                            font-size: $xl_h3;
+                        }
+                    }
+                    .trip_card_desc {
+                        height: 89px;
+                        align-self: stretch;
+                        overflow: hidden;
+                        color: var(--text-white, #fefff5);
+                        text-overflow: ellipsis;
+                        line-height: 165%;
+                        letter-spacing: 0.54px;
+                        position: relative;
+                        font-size: $sm_p;
+                        @media (min-width: 768px) {
+                            font-size: $xl_p;
+                        }
+
+                        &::after {
+                            content: "...";
+                            position: absolute;
+                            bottom: 0;
+                            background-color: var(--green-default, #93ae51);
+                            width: 15px;
+                            right: 3px;
+                            @media (min-width: 1200px) {
+                                width: 18px;
+                                right: 15px;
+                            }
+                        }
+                    }
+                    .trip_card_info {
+                        margin-top: 24px;
+                        display: flex;
+                        justify-content: space-between;
+                        color: var(--green-tint, #dae5be);
+                        font-size: 12px;
+                        @media (min-width: 768px) {
+                            font-size: 16px;
+                        }
+                        font-weight: 500;
+                        line-height: 150%;
+                        letter-spacing: 0.32px;
+
+                        span {
+                            display: inline-block;
+                        }
+                        span:first-child {
+                            margin-right: auto;
+                        }
+                    }
+                }
+            }
+            .btn {
+                position: absolute;
+                right: 40px;
+                bottom: -22px;
+                @media (min-width: 768px) {
+                    position: absolute;
+                    right: 60px;
+                    bottom: -25px;
+                }
+            }
+        }
+    }
+    //穿搭收藏
+    .oott_collect {
+        width: 100%;
+        @media (min-width: 768px) {
+            width: 900px;
+            padding-top: $sp3;
+        }
+        .oott_title {
+            display: flex;
+            align-items: end;
+            padding: $sp3 0;
+            margin: $sp3;
+            border-bottom: 1px solid $textColor_default;
+            @media (min-width: 768px) {
+                padding: $sp3 0;
+                margin: 0;
+            }
+            h3 {
+                font-size: $sm_h4;
+                @media (min-width: 768px) {
+                    font-size: $xl_h4;
+                }
+            }
+        }
+        .oott_block {
+            position: relative;
+            padding: $sp2 0 $sp6 0;
+            margin: $sp3;
+            border-bottom: 2px solid $textColor_default;
+            overflow-x: scroll; //////////////////////scroll_bar
+            @media (min-width: 768px) {
+                padding: $sp3 0 $sp6 0;
+                margin: 0;
+                overflow: visible; //////////////////////scroll_bar
+            }
+            .oottCards {
                 display: flex;
                 width: 100%;
                 justify-content: center;
                 @media (min-width: 768px) {
                     width: 900px;
                 }
-                .oottCard{
+                .oottCard {
                     margin: 5px;
                     width: 237px;
                     height: 350px;
@@ -775,24 +825,22 @@ export default {
                         height: 440px;
                     }
                 }
-                .btn{
-                position: absolute;
-                right: 40px;
-                bottom: -22px;
-                @media (min-width: 768px) {
-                position: absolute;
-                right: 60px;
-                bottom: -25px;
+                .btn {
+                    position: absolute;
+                    right: 40px;
+                    bottom: -22px;
+                    @media (min-width: 768px) {
+                        position: absolute;
+                        right: 60px;
+                        bottom: -25px;
+                    }
                 }
             }
-            }
-
         }
-        
     }
 }
 
-.order{
+.order {
     box-sizing: border-box;
     width: 100%;
     display: flex;
@@ -806,7 +854,7 @@ export default {
         width: 900px;
         margin: 0;
     }
-    .big_title{
+    .big_title {
         display: flex;
         align-items: end;
         text-align: start;
@@ -817,10 +865,10 @@ export default {
             padding: $sp6 0 $sp3 0;
             margin: 0;
         }
-        h2{
+        h2 {
             font-size: $sm_h3;
             @media (min-width: 768px) {
-            font-size: $xl_h2;
+                font-size: $xl_h2;
             }
         }
     }
@@ -835,14 +883,14 @@ export default {
         }
     }
 
-    th, td {
+    th,
+    td {
         border-bottom: 3px solid $textColor_tint;
         padding: 8px;
         text-align: center;
         @media (min-width: 768px) {
             padding: 11px;
         }
-        
     }
 
     th {
@@ -853,7 +901,7 @@ export default {
         }
     }
 
-    tr{
+    tr {
         color: $textColor_default;
         @media (min-width: 768px) {
             font-size: $xl_h5;
@@ -861,28 +909,24 @@ export default {
     }
 
     tr:hover {
-      background-color: $textColor_white;
+        background-color: $textColor_white;
     }
 
     a {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      color: $textColor_default;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: $textColor_default;
     }
-    .btn{
+    .btn {
         position: absolute;
         right: 40px;
         bottom: -22px;
         @media (min-width: 768px) {
-        position: absolute;
-        right: 60px;
-        bottom: -25px;
+            position: absolute;
+            right: 60px;
+            bottom: -25px;
         }
     }
 }
-    
-    
-    
-
 </style>

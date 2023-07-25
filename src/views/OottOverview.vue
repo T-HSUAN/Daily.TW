@@ -1,7 +1,6 @@
 <!-- 行程總覽 -->
 <template>
     <div class="oottOverview">
-
         <!-- 麵包屑 -->
         <div class="breadcrumb">
             <router-link to="/">
@@ -41,7 +40,9 @@
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <router-link to="/"><button class="btn">查看更多</button></router-link>
+            <router-link to="/"
+                ><button class="btn">查看更多</button></router-link
+            >
         </section>
     </div>
 </template>
@@ -56,12 +57,10 @@ export default {
     },
     data() {
         return {
-            
             tripData: tripData,
             // 從tripData抓取行程資料並呈現(進行搜尋篩選)
 
             tripDisplay: [],
-
         };
     },
     methods: {
@@ -79,7 +78,6 @@ export default {
                 );
             }
         },
- 
     },
     computed: {},
     created() {
@@ -127,26 +125,24 @@ export default {
     }
 }
 
-.tripOverview{
-
-    h2{
+.tripOverview {
+    h2 {
         text-align: center;
         margin: $sp10 auto $sp5;
     }
 
-    .breadcrumb{
+    .breadcrumb {
         max-width: $xl;
         margin: $sp3 auto;
         padding: 0 $sp2;
     }
-    
-    .list{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .trip_list {
-            
             max-width: $xl;
             margin: $sp4 auto;
             display: flex;
@@ -154,21 +150,17 @@ export default {
             justify-content: center;
             column-gap: $sp4;
             row-gap: $sp6;
-            @media (min-width: $md){
+            @media (min-width: $md) {
             }
-        
+
             .trip_card {
                 position: relative;
                 cursor: pointer;
             }
-    
         }
-        .btn{
+        .btn {
             margin: 0 auto $sp12;
         }
     }
-
-
 }
-
 </style>

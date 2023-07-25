@@ -1,33 +1,28 @@
 <template>
     <MainHeader></MainHeader>
     <main>
-      <router-view />
+        <router-view />
 
-      <router-link to="/OottEditView">OottEditView</router-link>
+        <router-link to="/OottEditView">OottEditView</router-link>
     </main>
     <ArrowUp></ArrowUp>
     <MainFooter></MainFooter>
 </template>
-
 
 <script>
 import MainHeader from "@/components/MainHeader.vue";
 import MainFooter from "@/components/MainFooter.vue";
 import ArrowUp from "@/components/ArrowUp.vue";
 
-
-
 export default {
-  components: {
-    MainHeader,
-    MainFooter,
-    ArrowUp,
-
-},
-data() {
-  return {
-    }
-  }
+    components: {
+        MainHeader,
+        MainFooter,
+        ArrowUp,
+    },
+    data() {
+        return {};
+    },
 };
 </script>
 

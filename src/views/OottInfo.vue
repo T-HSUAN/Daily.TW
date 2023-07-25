@@ -1,6 +1,6 @@
 <!-- 單一穿搭頁面 -->
 <template>
-<!-- 麵包屑 -->
+    <!-- 麵包屑 -->
     <div class="breadcrumb">
         <router-link to="/">
             <span>首頁</span>
@@ -19,25 +19,26 @@
         </router-link>
     </div>
 
-<!-- 穿搭資訊頁 -->
+    <!-- 穿搭資訊頁 -->
     <div class="oott_info_section">
         <div class="pic_md">
-            <img src="@/assets/img/info_name_2.png" alt="作者頭像">
+            <img src="@/assets/img/info_name_2.png" alt="作者頭像" />
             <a href="">Ailson</a>
         </div>
         <div class="pic_block">
             <div class="pic">
-                <img src="@/assets/img/oott_40.png" alt="穿搭照片">
+                <img src="@/assets/img/oott_40.png" alt="穿搭照片" />
                 <font-awesome-icon class="heart" icon="fa-solid fa-heart" />
             </div>
-            
         </div>
         <div class="writer_block">
             <div class="pic_xl">
-                <img src="~@/assets/img/info_name_2.png" alt="作者頭像">
+                <img src="~@/assets/img/info_name_2.png" alt="作者頭像" />
                 <a href="#">Ailson</a>
             </div>
-            <p>小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。</p>
+            <p>
+                小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。
+            </p>
             <div class="tag_block">
                 <label>
                     <input type="checkbox" class="tag" />
@@ -59,27 +60,27 @@
         </div>
     </div>
 
-<!-- 查看更多 -->
+    <!-- 查看更多 -->
     <div class="oott_more">
         <div class="bgCurve">
-            <img src="~@/assets/img/bgCurve_B.png" alt="">
-            </div>
+            <img src="~@/assets/img/bgCurve_B.png" alt="" />
+        </div>
         <div class="title">
             <div class="duckDeco">
-                <img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
+                <img src="~@/assets/img/duck_yellow.png" alt="" class="duck" />
             </div>
             <h2>看看其他穿搭</h2>
         </div>
         <div class="wrap">
             <div class="oottCards">
                 <oottCard
-                class="oottCard"
-                v-for="(oott, index) in ootts"
-                :key="index"
-                :oottPhoto="oott.oottPhoto"
-                :oottCardTags="oott.oottCardTags"
-                :oottCardDate="oott.oottCardDate"
-                :oottCardAuthor="oott.oottCardAuthor"
+                    class="oottCard"
+                    v-for="(oott, index) in ootts"
+                    :key="index"
+                    :oottPhoto="oott.oottPhoto"
+                    :oottCardTags="oott.oottCardTags"
+                    :oottCardDate="oott.oottCardDate"
+                    :oottCardAuthor="oott.oottCardAuthor"
                 ></oottCard>
             </div>
         </div>
@@ -87,48 +88,45 @@
             <a href="/oott_overview"><button class="btn">查看更多</button></a>
         </div>
     </div>
-    
-
 </template>
 <script>
 export default {
-  components: {
-    oottCard,
-  },
-  data() {
-    return {
-        ootts:[
-            {
-                oottPhoto: require('@/assets/img/oott_card_example.png'),
-                oottCardTags: "#日系 #休閒 #風景",
-                oottCardDate: "2022 / 12 / 12",
-                oottAuthorPhoto: require('@/assets/img/info_name_2.png'),
-                oottCardAuthor: "Alison",
-            },
-            {
-                oottPhoto: require('@/assets/img/oott_06.png'),
-                oottCardTags: "#復古 #海邊",
-                oottCardDate: "2022 / 7 / 3",
-                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
-                oottCardAuthor: "Susan",
-            },
-            {
-                oottPhoto: require('@/assets/img/oott_41.png'),
-                oottCardTags: "#街頭 #潮流",
-                oottCardDate: "2022 / 7 / 6",
-                oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
-                oottCardAuthor: "Max",
-            },
-      ],
-    };
-  },
+    components: {
+        oottCard,
+    },
+    data() {
+        return {
+            ootts: [
+                {
+                    oottPhoto: require("@/assets/img/oott_card_example.png"),
+                    oottCardTags: "#日系 #休閒 #風景",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require("@/assets/img/info_name_2.png"),
+                    oottCardAuthor: "Alison",
+                },
+                {
+                    oottPhoto: require("@/assets/img/oott_06.png"),
+                    oottCardTags: "#復古 #海邊",
+                    oottCardDate: "2022 / 7 / 3",
+                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottCardAuthor: "Susan",
+                },
+                {
+                    oottPhoto: require("@/assets/img/oott_41.png"),
+                    oottCardTags: "#街頭 #潮流",
+                    oottCardDate: "2022 / 7 / 6",
+                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottCardAuthor: "Max",
+                },
+            ],
+        };
+    },
 };
-import oottCard from '@/components/OottCard.vue'
+import oottCard from "@/components/OottCard.vue";
 </script>
 
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-
 // 麵包屑
 .breadcrumb {
     padding-left: 30px;
@@ -191,10 +189,9 @@ import oottCard from '@/components/OottCard.vue'
         background: $textColor_default;
         cursor: pointer;
     }
-
 }
 
-.oott_info_section{
+.oott_info_section {
     width: 100%;
     box-sizing: border-box;
 
@@ -202,7 +199,7 @@ import oottCard from '@/components/OottCard.vue'
         display: flex;
         justify-content: center;
     }
-    .pic_md{
+    .pic_md {
         padding-top: 20px;
         width: 75%;
         display: flex;
@@ -211,22 +208,22 @@ import oottCard from '@/components/OottCard.vue'
         @media (min-width: 768px) {
             display: none;
         }
-        img{
+        img {
             width: 48px;
             border-radius: 50px;
-            padding:0 5px;
+            padding: 0 5px;
         }
-        a{
+        a {
             font-size: $sm_h4;
             padding: $sp1;
             color: $textColor_default;
         }
     }
-    .pic_block{
+    .pic_block {
         display: flex;
         justify-content: center;
         padding-top: 20px;
-        .pic{
+        .pic {
             width: 255px;
             height: 343px;
             position: relative;
@@ -234,12 +231,11 @@ import oottCard from '@/components/OottCard.vue'
                 width: 480px;
                 height: 640px;
             }
-            img{
+            img {
                 width: 100%;
             }
-            
         }
-        .heart{
+        .heart {
             font-size: 30px;
             position: absolute;
             top: 5px;
@@ -253,7 +249,7 @@ import oottCard from '@/components/OottCard.vue'
             }
         }
     }
-    .writer_block{
+    .writer_block {
         @media (max-width: 768px) {
             width: 256px;
             display: flex;
@@ -263,29 +259,28 @@ import oottCard from '@/components/OottCard.vue'
         @media (min-width: 768px) {
             padding-left: 30px;
         }
-        .pic_xl{
+        .pic_xl {
             // padding: $sp1;
             @media (max-width: 768px) {
                 display: none;
-                
             }
             @media (min-width: 768px) {
                 width: 120px;
                 padding: 10px;
                 display: flex;
                 align-items: center;
-                img{
+                img {
                     width: 100%;
                     // padding: 10px;
                 }
-                a{
+                a {
                     padding: 5px;
                     font-size: $xl_h3;
                     color: $textColor_default;
                 }
             }
         }
-        p{
+        p {
             margin-top: $sp1;
             width: 256px;
             letter-spacing: 1px;
@@ -297,85 +292,82 @@ import oottCard from '@/components/OottCard.vue'
                 line-height: 30px;
             }
         }
-        .tag_block{
+        .tag_block {
             padding-top: 20px;
             @media (min-width: 768px) {
                 padding-top: 220px;
             }
         }
-        .date{
+        .date {
             padding-top: 20px;
             display: flex;
             justify-content: space-between;
-            span{
+            span {
                 font-size: $sm_p;
                 @media (min-width: 768px) {
                     font-size: $xl_h5;
                 }
-                
             }
-            .number{
+            .number {
                 font-size: $sm_p;
                 color: $textColor_tint;
                 @media (min-width: 768px) {
                     font-size: $xl_h5;
                 }
             }
-
         }
     }
 }
 
 // 查看更多
 
+.bgCurve {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 96px;
 
-.bgCurve{
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 96px;
-
-	img{
-		width: 100%;
-		height: 100%;
-	}
+    img {
+        width: 100%;
+        height: 100%;
+    }
 }
 
-.title{
+.title {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     @media (min-width: 768px) {
-                flex-direction: row;
-            }
-    .duck{
+        flex-direction: row;
+    }
+    .duck {
         width: 90px;
         height: 66px;
         @media (min-width: 768px) {
-                   width: 130px;
-                   height: 100px;
-                }
+            width: 130px;
+            height: 100px;
+        }
     }
 }
-h2{
+h2 {
     font-size: $sm_h2;
     @media (min-width: 768px) {
-                    font-size: $xl_h2;
-                }
+        font-size: $xl_h2;
+    }
 }
 
-.oott_more{
+.oott_more {
     position: relative;
     padding: 120px 0;
     background-color: $bgColor_default;
-    .wrap{
+    .wrap {
         margin-bottom: 16px;
-        overflow-x: scroll;//////////////////////scroll_bar
+        overflow-x: scroll; //////////////////////scroll_bar
         @media (min-width: 768px) {
-                overflow: visible;//////////////////////scroll_bar
-                }
-        .oottCards{
+            overflow: visible; //////////////////////scroll_bar
+        }
+        .oottCards {
             display: flex;
             align-items: center;
             padding-top: 60px;
@@ -386,27 +378,24 @@ h2{
                 justify-content: center;
                 flex-direction: row;
             }
-            .oottCard{
+            .oottCard {
                 flex-shrink: 0;
 
                 .oott_default:nth-child(1) {
                     transform: rotate(-2deg);
-                    }
-
-                    
-                .oott_default:nth-child(2) {
-                transform: rotate(2deg);
                 }
 
-                
+                .oott_default:nth-child(2) {
+                    transform: rotate(2deg);
+                }
+
                 .oott_default:nth-child(3) {
-                transform: rotate(-2deg);
-                
+                    transform: rotate(-2deg);
                 }
             }
         }
     }
-    .look_more{
+    .look_more {
         padding-top: 60px;
         display: flex;
         justify-content: center;
@@ -414,8 +403,8 @@ h2{
             font-size: $sm_h5;
             padding: 8px 24px;
             @media (min-width: 768px) {
-            font-size: $xl_h5;
-            padding: 8px 32px;
+                font-size: $xl_h5;
+                padding: 8px 32px;
             }
             white-space: nowrap;
             color: $textColor_white;
@@ -443,7 +432,4 @@ h2{
         }
     }
 }
-
-
-
 </style>

@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import OottPostView from "@/views/OottPostView.vue";
 import TripCollectionView from "@/views/TripCollectionView.vue";
 import OottEditView from "@/views/OottEditView.vue";
 
@@ -38,7 +37,9 @@ const routesUser = [
         path: "/trip_overview",
         name: "trip_overview",
         component: () =>
-            import(/* webpackChunkName: "tripoverview" */ "@/views/TripOverview.vue"),
+            import(
+                /* webpackChunkName: "tripoverview" */ "@/views/TripOverview.vue"
+            ),
     },
     {
         path: "/trip_info",
@@ -56,7 +57,9 @@ const routesUser = [
         path: "/oott_overview",
         name: "oott_overview",
         component: () =>
-            import(/* webpackChunkName: "oottoverview" */ "@/views/OottOverview.vue"),
+            import(
+                /* webpackChunkName: "oottoverview" */ "@/views/OottOverview.vue"
+            ),
     },
     {
         path: "/oott_info",
@@ -115,9 +118,7 @@ const routesUser = [
         path: "/signup",
         name: "signup",
         component: () =>
-            import(
-                /* webpackChunkName: "signup" */ "@/views/SignUpView.vue"
-            ),
+            import(/* webpackChunkName: "signup" */ "@/views/SignUpView.vue"),
     },
     {
         path: "/cart",
@@ -127,7 +128,11 @@ const routesUser = [
     },
     {
         path: "/OottPostView",
-        component: OottPostView,
+        name: "OottPostView",
+        component: () =>
+            import(
+                /* webpackChunkName: "oottPostView" */ "@/views/OottPostView.vue"
+            ),
     },
     {
         path: "/TripCollectionView",
