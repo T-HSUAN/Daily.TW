@@ -37,7 +37,7 @@
                     <input type="checkbox" name="remember" id="remember" >
                     <span>記住我</span>
                     </label>
-                    <router-link to="./login/forgetpsw" 
+                    <router-link to="./forget_psw" 
                     v-if="item.tab == 1">
                     忘記密碼?
                 </router-link>
@@ -64,7 +64,8 @@
                         註冊
                     </router-link>
                     <router-link 
-                        v-else v-if="item.tab == 1" 
+                        v-else 
+                        v-if="item.tab == 1" 
                         to="./member" 
                         @click="login" 
                         class="btn"
@@ -132,14 +133,15 @@ export default {
             this.isPasswordValid = regex.test(this.psw);
         },
         login() {
-            if (this.isEmailValid && this.isPasswordValid) {
-                if (this.email === "test123@gmail.com" && this.psw === "test123") {
-                    window.alert("登入成功");
-                    // 在这里进行页面跳转逻辑
-                } else {
-                    window.alert("帳號或密碼錯誤，請重新登入");
-                }
+        if (this.isEmailValid && this.isPasswordValid) {
+            if (this.email === "test123@gmail.com" && this.psw === "test123") {
+            window.alert("登入成功");
+            // 执行页面跳转
+            this.$router.push({ path: "/member" });
+            } else {
+            window.alert("帳號或密碼錯誤，請重新登入");
             }
+        }
         },
       // 切換tab
       updateTab(index){
@@ -157,7 +159,7 @@ export default {
 <style lang="scss" >
     @import '@/assets/scss/main.scss';
     // *{
-    //     // outline: 1px solid red;
+    //     outline: 1px solid green;
     // }
     #app{
         background-color: $bgColor_default;
@@ -239,31 +241,6 @@ export default {
                 width: 100%;
                 box-sizing: border-box;
             }
-// //          /* 初始状态下隐藏错误提示 */
-// .error_message {
-//   display: none;
-// }
-
-// /* 错误提示显示的状态 */
-// .error_message.v-if {
-//   display: block;
-
-//   /* 添加过渡效果，使显示和隐藏平滑 */
-//   transition: opacity 0.3s ease-out;
-//   opacity: 1; /* 设置透明度为1，即完全显示 */
-// }
-
-// /* 错误提示隐藏的状态 */
-// .error_message:not(.v-if) {
-//   display: block;
-
-//   /* 添加过渡效果，使显示和隐藏平滑 */
-//   transition: opacity 0.3s ease-out;
-//   opacity: 0; /* 设置透明度为0，即完全隐藏 */
-
-//   /* 如果你希望隐藏的同时保留原来的空间 */
-//   /* visibility: hidden; */
-// }
    
             .login_action{
                 width: 100%;

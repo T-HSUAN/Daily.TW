@@ -44,7 +44,7 @@
             
             
                 <div class="cancel_group">
-                    <router-link to="./" 
+                    <router-link to="./login" 
                         @click="handleClick"
                         class="cancel_btn">
                         取消
@@ -52,7 +52,7 @@
                     <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
                     <router-link 
                         v-if="item.tab == 2" 
-                        to="./forgetpsw"
+                        to="./forget_psw"
                         @click="handleSubmit" 
                         class="btn">
                         送出
@@ -60,7 +60,7 @@
                     <router-link 
                         v-else 
                         v-if="item.tab == 1" 
-                        to="./forgetpsw" 
+                        to="./forget_psw" 
                         @click="handleClick" 
                         class="btn">
                         送出
