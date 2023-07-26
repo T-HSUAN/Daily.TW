@@ -1,5 +1,5 @@
 <template>
-    <div class="oott_collection_wrap">
+    <div class="my_oott_wrap">
         <h2>穿搭管理</h2>
         
         <div class="collection_container">
@@ -54,8 +54,8 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-    .oott_collection_wrap{
+<style lang="scss">
+    .my_oott_wrap{
         width: 90%;
         margin: auto;
 
@@ -121,7 +121,7 @@
                     margin: 12px;
                 }
                 
-                .oott_card_tag{
+                .oott_card_info{
                     width: 104px;
                     white-space: nowrap;
                     overflow: hidden;

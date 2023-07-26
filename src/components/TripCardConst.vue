@@ -1,5 +1,5 @@
 <template>
-    <div class="trip_card_default">
+    <div class="trip_card_const_default">
         <label>
             <input type="checkbox">
             <span></span>
@@ -40,7 +40,7 @@
 
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-.trip_card_default{
+.trip_card_const_default{
     background-color:var(--green-default, #93AE51);
     border-radius: 5px 20px 20px 5px;
     width: 276px;
@@ -108,9 +108,6 @@
 
         }
         .trip_card_title{
-            @media (min-width: 1200px) {
-                height: 70px;
-            }
             line-height: 120%;
             text-align: left;
             margin: 7px 0;
@@ -118,6 +115,12 @@
             font-family: Shippori Mincho;
             font-weight: 700;
             letter-spacing: 0.64px;
+            @media (min-width: 768px) {
+                height: 50px;
+            }
+            @media (min-width: 1200px) {
+                height: 70px;
+            }
         }
         .trip_card_desc{
             height: 89px;
@@ -128,24 +131,24 @@
             line-height: 165%; 
             letter-spacing: 0.54px;
             position: relative;
-            &::after{
-                content: '...';
-                position: absolute;
-                bottom: 0;
-                background-color: var(--green-default, #93AE51);
-                width: 15px;
-                right: 3px;
-                @media (min-width:1200px) {
-                    width: 18px;
-                    right: 15px;
-                }
-            }
+            // &::after{
+            //     content: '...';
+            //     position: absolute;
+            //     bottom: 0;
+            //     background-color: var(--green-default, #93AE51);
+            //     width: 15px;
+            //     right: 3px;
+            //     @media (min-width:1200px) {
+            //         width: 18px;
+            //         right: 15px;
+            //     }
+            // }
         }
         .trip_card_info{
             display: flex;
             justify-content: space-between;
             color: var(--green-tint, #DAE5BE);
-            margin-top: 24px;
+            margin-top: 12px;
             font-size: 12px;
             @media (min-width:768px) {
                 font-size: 16px;

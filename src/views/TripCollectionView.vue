@@ -66,7 +66,7 @@
         flex-wrap: wrap;
         justify-content: center;
 
-        .trip_card_default {
+        .trip_card_const_default {
             margin: 8px 9px;
             width: 283px;
             height: 431px;
@@ -93,23 +93,7 @@
             hr{
                 margin-bottom: 32px;
             }
-
-            .card_wrap{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-
-                .trip_card_default{
-                    margin: 8px 15px;
-                    width: 283px;
-                    height: 431px;
-                    @media (min-width:768px) {
-                        width: 285px;
-                        height: 485px;
-                    }
-                    
-                }
-            }
+            
         
     }
 
