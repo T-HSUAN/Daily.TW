@@ -73,9 +73,11 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>訂單紀錄</h4>
-                    <router-link to="/member_order" class="sidenav_subtitle"
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.order">
+                        <router-link to="/member_order" class="sidenav_subtitle"
                         >我的訂單</router-link
                     >
+                    </div>
                 </div>
             </li>
         </ul>
@@ -86,14 +88,13 @@
 export default {
     data() {
         return {
-            showSubtitleMember: false,
-            showSubtitleOott: false,
-            showSubtitleLike: false,
-            showSubtitleOrder: false,
-            showSubtitle: {
-                order: false,
+            showSubtitle : {
+                member: true,
+                oott: true,
+                like: true,
+                order: true,
             },
-            windowWidth: 1600,
+            windowWidth: 0,
         };
     },
     mounted() {
