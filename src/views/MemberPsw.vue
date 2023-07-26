@@ -61,9 +61,10 @@
         text-align: center;
         @media (min-width: 768px) {
             margin: 40px auto 80px;
-        }
+            }
     }
-    
+
+
     .profile_page{
         display: flex;
         // width: 100%;
@@ -146,21 +147,6 @@
         }
     }
     
-
-
-    
-
-
-
-        /* 等手機板切出來再拿掉(連同上面的class) */
-        .sidenav{
-            flex-shrink: 0;
-            height: 506px;
-            display: none;
-            @media (min-width : 1024px) {
-                display: block;            
-            }
-        }
     }
 </style>
 
