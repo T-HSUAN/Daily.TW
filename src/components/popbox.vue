@@ -1,64 +1,61 @@
-
 <!-- 不知道系統有沒有辦法辨別該用電腦或手機版燈箱，故個版本都有寫
 請尋找對應的燈箱根css,都在這邊,請慢用 -->
-<template> 
-<!-- 會員登入燈箱 -->
+<template>
+    <!-- 會員登入燈箱 -->
 
-<!-- xl -->
-<div class="member_xl">
-    <div class="block">
-        <div class="pic">
-            <img src="~@/assets/img/popbox_exclamation.svg" alt="">
-            <h1>請先登入會員</h1>
-         </div>
-        <div class="button">
-            <button class="cancel">取消</button>
-            <button class="btn">確定</button>
+    <!-- xl -->
+    <div class="member_xl">
+        <div class="block">
+            <div class="pic">
+                <img src="~@/assets/img/popbox_exclamation.svg" alt="" />
+                <h1>請先登入會員</h1>
+            </div>
+            <div class="button">
+                <button class="cancel">取消</button>
+                <button class="btn">確定</button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- sm -->
-<div class="member_sm">
-    <div class="block">
-        <div class="pic">
-            <img src="~@/assets/img/popbox_exclamation.svg" alt="">
-            <h1>請先登入會員</h1>
-         </div>
-        <div class="button">
-            <button class="cancel">取消</button>
-            <button class="btn">確定</button>
+    <!-- sm -->
+    <div class="member_sm">
+        <div class="block">
+            <div class="pic">
+                <img src="~@/assets/img/popbox_exclamation.svg" alt="" />
+                <h1>請先登入會員</h1>
+            </div>
+            <div class="button">
+                <button class="cancel">取消</button>
+                <button class="btn">確定</button>
+            </div>
         </div>
     </div>
-</div>
 
+    <!-- 加入收藏燈箱 -->
 
-<!-- 加入收藏燈箱 -->
-
-<!-- xl -->
-<div class="like_xl">
-    <div class="block">
-        <div class="pic">
-            <img src="~@/assets/img/popbox_check.svg" alt="">
-            <p>已加入收藏清單</p>
-         </div>
+    <!-- xl -->
+    <div class="like_xl">
+        <div class="block">
+            <div class="pic">
+                <img src="~@/assets/img/popbox_check.svg" alt="" />
+                <p>已加入收藏清單</p>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- sm -->
-<div class="like_sm">
-    <div class="block">
-        <div class="pic">
-            <img src="~@/assets/img/popbox_check.svg" alt="">
-            <p>已加入收藏清單</p>
-         </div>
+    <!-- sm -->
+    <div class="like_sm">
+        <div class="block">
+            <div class="pic">
+                <img src="~@/assets/img/popbox_check.svg" alt="" />
+                <p>已加入收藏清單</p>
+            </div>
+        </div>
     </div>
-</div>
 </template>
-    
+
 <script>
-export default {
-} 
+export default {};
 </script>
 
 <style lang="scss">
@@ -66,7 +63,7 @@ export default {
 //popbox
 
 //會員登入xl
-.member_xl{
+.member_xl {
     display: flex;
     width: 410px;
     height: 243px;
@@ -74,29 +71,29 @@ export default {
     background-color: $textColor_white;
     border-radius: 20px;
     justify-content: center;
-    
-    .block{
+
+    .block {
         width: 300px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        .pic{
+        .pic {
             margin-top: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            img{
-            width: 34px;
+            img {
+                width: 34px;
             }
-            h1{
+            h1 {
                 padding: 10px;
                 font-size: $sm_h3;
             }
         }
-        .button{
+        .button {
             margin-left: auto;
-            .cancel{
+            .cancel {
                 font-size: $xl_h5;
                 color: $textColor_default;
                 border-bottom: 1px solid $textColor_default;
@@ -107,8 +104,8 @@ export default {
                 padding: 8px 24px;
                 box-shadow: 1px 1px 1px 1px #0005;
                 @media (min-width: 768px) {
-                font-size: $xl_h5;
-                padding: 8px 32px;
+                    font-size: $xl_h5;
+                    padding: 8px 32px;
                 }
                 white-space: nowrap;
                 color: $textColor_white;
@@ -139,7 +136,7 @@ export default {
 }
 
 // sm
-.member_sm{
+.member_sm {
     display: flex;
     width: 273px;
     height: 194px;
@@ -147,29 +144,29 @@ export default {
     background-color: $textColor_white;
     border-radius: 20px;
     justify-content: center;
-    
-    .block{
+
+    .block {
         width: 200px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        .pic{
+        .pic {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-            img{
-            width: 28px;
+            img {
+                width: 28px;
             }
-            h1{
+            h1 {
                 padding: 10px;
                 font-size: $sm_h4;
             }
         }
-        .button{
+        .button {
             margin-left: auto;
-            .cancel{
+            .cancel {
                 font-size: $sm_h5;
                 color: $textColor_default;
                 border-bottom: 1px solid $textColor_default;
@@ -210,7 +207,7 @@ export default {
 // 加入收藏燈箱
 
 // xl
-.like_xl{
+.like_xl {
     width: 410px;
     height: 102px;
     border: 3px solid $textColor_default;
@@ -219,11 +216,11 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    .block{
-        .pic{
+    .block {
+        .pic {
             display: flex;
             align-items: center;
-            p{
+            p {
                 font-size: $xl_h4;
                 padding: 10px;
             }
@@ -231,9 +228,8 @@ export default {
     }
 }
 
-
 //sm
-.like_sm{
+.like_sm {
     width: 276px;
     height: 78px;
     border: 3px solid $textColor_default;
@@ -242,14 +238,14 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    .block{
-        .pic{
+    .block {
+        .pic {
             display: flex;
             align-items: center;
-            img{
+            img {
                 width: 28px;
             }
-            p{
+            p {
                 font-size: $sm_h4;
                 padding: 10px;
             }

@@ -71,7 +71,7 @@ $xl: 1200px;
         //以下置中
     } @else {
         width: 100%;
-        max-width: $w + px;
+        max-width: $w;
         margin: auto;
         @content;
     }

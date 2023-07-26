@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 
-
 const routesUser = [
     {
         path: "/",
@@ -36,7 +35,9 @@ const routesUser = [
         path: "/trip_overview",
         name: "trip_overview",
         component: () =>
-            import(/* webpackChunkName: "tripoverview" */ "@/views/TripOverview.vue"),
+            import(
+                /* webpackChunkName: "tripoverview" */ "@/views/TripOverview.vue"
+            ),
     },
     {
         path: "/trip_info",
@@ -54,7 +55,9 @@ const routesUser = [
         path: "/oott_overview",
         name: "oott_overview",
         component: () =>
-            import(/* webpackChunkName: "oottoverview" */ "@/views/OottOverview.vue"),
+            import(
+                /* webpackChunkName: "oottoverview" */ "@/views/OottOverview.vue"
+            ),
     },
     {
         path: "/oott_info",
@@ -101,7 +104,9 @@ const routesUser = [
         path: "/member_info",
         name: "memberinfo",
         component: () =>
-            import(/* webpackChunkName: "memberinfo" */ "@/views/MemberInfo.vue"),
+            import(
+                /* webpackChunkName: "memberinfo" */ "@/views/MemberInfo.vue"
+            ),
     },
     {
         path: "/member_psw",
@@ -125,9 +130,7 @@ const routesUser = [
         path: "/signup",
         name: "signup",
         component: () =>
-            import(
-                /* webpackChunkName: "signup" */ "@/views/SignUpView.vue"
-            ),
+            import(/* webpackChunkName: "signup" */ "@/views/SignUpView.vue"),
     },
     {
         path: "/cart",
@@ -136,34 +139,56 @@ const routesUser = [
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
     },
     {
+        path: "/payment",
+        name: "payment",
+        component: () =>
+            import(/* webpackChunkName: "payment" */ "@/views/Payment.vue"),
+    },
+    {
+        path: "/pay_success",
+        name: "paysuccess",
+        component: () =>
+            import(
+                /* webpackChunkName: "paysuccess" */ "@/views/Paysuccess.vue"
+            ),
+    },
+    {
         path: "/oott_post_view",
         name: "OottPostView",
         component: () =>
-        import(/* webpackChunkName: "OottPostView" */ "@/views/OottPostView.vue"),
+            import(
+                /* webpackChunkName: "OottPostView" */ "@/views/OottPostView.vue"
+            ),
     },
     {
         path: "/trip_collection_view",
         name: "TripCollectionView",
         component: () =>
-        import(/* webpackChunkName: "TripCollectionView" */ "@/views/TripCollectionView.vue"),
+            import(
+                /* webpackChunkName: "TripCollectionView" */ "@/views/TripCollectionView.vue"
+            ),
     },
     {
         path: "/oott_edit_view",
         name: "OottEditView",
         component: () =>
-        import(/* webpackChunkName: "OottEditView" */ "@/views/OottEditView.vue"),
+            import(
+                /* webpackChunkName: "OottEditView" */ "@/views/OottEditView.vue"
+            ),
     },
     {
         path: "/my_oott",
         name: "OottEditView",
         component: () =>
-        import(/* webpackChunkName: "MyOott" */ "@/views/MyOott.vue"),
+            import(/* webpackChunkName: "MyOott" */ "@/views/MyOott.vue"),
     },
     {
         path: "/oott_collection_view",
         name: "OottEditView",
         component: () =>
-        import(/* webpackChunkName: "OottCollectionView" */ "@/views/OottCollectionView.vue"),
+            import(
+                /* webpackChunkName: "OottCollectionView" */ "@/views/OottCollectionView.vue"
+            ),
     },
 ];
 

@@ -173,8 +173,8 @@
                     }
                     .member_img{
                         border: 2px solid $textColor_default;
-                        width: 60px;
-                        height: 60px;
+                        width: 100px;
+                        height: 100px;
                         border-radius: 50%;
                         padding: 20px;
                         margin: $sp5 0 $sp2;
@@ -184,8 +184,8 @@
                         align-items: center;
                         cursor: pointer;
                         @media (min-width: 768px) {
-                            width: 100px;
-                            height: 100px;
+                            width: 150px;
+                            height: 150px;
                             padding: $sp5;
                             margin: 40px 0 $sp4;
                             flex-direction: row;
@@ -302,7 +302,7 @@
                     }
                 }
                 .checkbox_container:nth-of-type(3) {
-                    width: 30%;
+                    width: 40%;
                 }
                 
             }

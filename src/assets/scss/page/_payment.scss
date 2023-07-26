@@ -1,0 +1,318 @@
+.payment_page {
+    @include width($sm);
+    padding: $sp4 $sp4 $sp8;
+    .pay_details {
+        box-sizing: border-box;
+        width: 100%;
+        margin: $sp10 auto $sp3;
+        .pay_details_content {
+            padding: $sp3 $sp4;
+            position: relative;
+            color: $textColor_default;
+            background: $textColor_tint;
+            border-radius: 5px;
+            .payDuck {
+                position: absolute;
+                top: -120px;
+                left: $sp1;
+            }
+            .Title {
+                margin-bottom: $sp2;
+                color: $textColor_white;
+                text-align: left;
+            }
+            // 付款明系列表
+            .item {
+                height: 300px;
+                padding: $sp3 0;
+                overflow-y: auto;
+
+                .details {
+                    padding: $sp2 $sp4;
+                    display: flex;
+                    flex-direction: column;
+                    border-bottom: 2px solid $textColor_default;
+                    .title {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: $sp2;
+                        color: $textColor_white;
+                        font-weight: bold;
+                    }
+                    // 張數&票價
+                    .ticket_adult,
+                    .ticket_ex {
+                        display: flex;
+                        justify-content: space-between;
+                        margin: $sp1 0;
+                        font-size: 14px;
+                    }
+                    // 小計
+                    .amount {
+                        margin: $sp2 0;
+                        text-align: right;
+                        span {
+                            font-size: 16px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .result {
+                position: relative;
+                margin: $sp3 0;
+                p {
+                    font-size: 20px;
+                    text-align: right;
+                }
+                .total-price {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: $textColor_white;
+                }
+            }
+        }
+    }
+    .methods,
+    .order_info,
+    .recipient_info {
+        box-sizing: border-box;
+        margin: $sp2 auto;
+        padding: $sp3 $sp4;
+        display: flex;
+        flex-direction: column;
+        background: $bgColor_default;
+        border: 2px solid $textColor_tint;
+        border-radius: 5px;
+        h3 {
+            margin-bottom: $sp2;
+        }
+        label {
+            width: 100%;
+            margin: $sp1 0;
+            display: inline-flex;
+            font-size: 20px;
+            font-weight: 700;
+            input {
+                width: 20px;
+                height: 20px;
+                margin-right: $sp1;
+            }
+        }
+    }
+    .order_info {
+        .name,
+        .phone_num,
+        .email {
+            display: flex;
+            margin: $sp1 0;
+            .title {
+                width: 80px;
+                font-size: 20px;
+                font-weight: 700;
+            }
+        }
+    }
+    .recipient_info {
+        padding-bottom: $sp8;
+    }
+    .result {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        button {
+            margin: $sp2;
+        }
+    }
+}
+@media all and (min-width: $md) {
+    .payment_page {
+        @include width($md);
+        padding: $sp4 $sp4 $sp8;
+        .pay_details {
+            width: 100%;
+            margin: $sp10 auto $sp5;
+            .pay_details_content {
+                padding: $sp3 $sp4;
+                .payDuck {
+                    top: -120px;
+                    left: $sp1;
+                }
+                .Title {
+                    font-size: 24px;
+                    margin-bottom: $sp2;
+                }
+                // 付款明系列表
+                .item {
+                    height: 300px;
+                    padding: $sp3 0;
+
+                    .details {
+                        padding: $sp2 $sp4;
+                        .title {
+                            font-size: 20px;
+                            margin-bottom: $sp2;
+                        }
+                        // 張數&票價
+                        .ticket_adult,
+                        .ticket_ex {
+                            margin: $sp1 0;
+                            font-size: 16px;
+                        }
+                        // 小計
+                        .amount {
+                            margin: $sp2 0;
+                            span {
+                                font-size: 18px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+                .result {
+                    margin: $sp3 0;
+                    p {
+                        font-size: 24px;
+                    }
+                    .total-price {
+                        font-size: 28px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .methods,
+        .order_info,
+        .recipient_info {
+            margin: $sp2 auto;
+            padding: $sp3 $sp4;
+            h3 {
+                margin-bottom: $sp2;
+            }
+            label {
+                margin: $sp1 0;
+                font-size: 16px;
+                input {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: $sp1;
+                }
+            }
+        }
+        .order_info {
+            .name,
+            .phone_num,
+            .email {
+                margin: $sp1 0;
+                .title {
+                    width: 80px;
+                }
+            }
+        }
+        .recipient_info {
+            padding-bottom: $sp8;
+        }
+        .result {
+            button {
+                margin: $sp2;
+            }
+        }
+    }
+}
+@media all and (min-width: $xl) {
+    .payment_page {
+        @include width($xl);
+        padding: $sp4 $sp4 $sp8;
+        .pay_details {
+            width: 100%;
+            margin: $sp10 auto $sp6;
+            .pay_details_content {
+                padding: $sp3 $sp4;
+                .payDuck {
+                    top: -120px;
+                    left: $sp1;
+                }
+                .Title {
+                    margin-bottom: $sp2;
+                    font-size: 32px;
+                }
+                // 付款明系列表
+                .item {
+                    height: 300px;
+                    padding: $sp3 0;
+
+                    .details {
+                        padding: $sp2 $sp4;
+                        .title {
+                            margin-bottom: $sp2;
+                            font-size: 24px;
+                        }
+                        // 張數&票價
+                        .ticket_adult,
+                        .ticket_ex {
+                            margin: $sp2 0;
+                            font-size: 18px;
+                        }
+                        // 小計
+                        .amount {
+                            margin: $sp3 0;
+                            span {
+                                font-size: 20px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+                .result {
+                    margin: $sp3 0;
+                    p {
+                        font-size: 24px;
+                    }
+                    .total-price {
+                        font-size: 28px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .methods,
+        .order_info,
+        .recipient_info {
+            margin: $sp2 auto;
+            padding: $sp4;
+            h3 {
+                margin-bottom: $sp2;
+            }
+            label {
+                margin: $sp3 0;
+                font-size: 24px;
+                font-weight: 700;
+                input {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: $sp2;
+                }
+            }
+        }
+        .order_info {
+            .name,
+            .phone_num,
+            .email {
+                margin: $sp2 0;
+                .title {
+                    width: 130px;
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+            }
+        }
+        .recipient_info {
+            padding-bottom: $sp8;
+        }
+        .result {
+            button {
+                margin: $sp3;
+            }
+        }
+    }
+}

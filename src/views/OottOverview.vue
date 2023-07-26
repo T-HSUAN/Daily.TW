@@ -1,7 +1,6 @@
 <!-- 行程總覽 -->
 <template>
     <div class="oottOverview">
-
         <!-- 麵包屑 -->
         <div class="breadcrumb">
             <router-link to="/">
@@ -31,16 +30,18 @@
                 >
                     <router-link :to="item.link" title="點擊查看穿搭詳情">
                         <Oott
-                        :oottPhoto= "item.img"
-                        :oottCardTags= "item.tag"
-                        :oottCardDate= "item.date"
-                        :oottAuthorPhoto= "item.authorphoto"
-                        :oottCardAuthor= "item.author"
+                            :oottPhoto="item.img"
+                            :oottCardTags="item.tag"
+                            :oottCardDate="item.date"
+                            :oottAuthorPhoto="item.authorphoto"
+                            :oottCardAuthor="item.author"
                     /></router-link>
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <router-link to="/oott_overview"><button class="btn">查看更多</button></router-link>
+            <router-link to="/oott_overview"
+                ><button class="btn">查看更多</button></router-link
+            >
         </section>
     </div>
 </template>
@@ -55,12 +56,10 @@ export default {
     },
     data() {
         return {
-            
-           oottData:oottData,
+            oottData: oottData,
             // 從oottData抓取行程資料並呈現(進行搜尋篩選)
 
-           oottDisplay: [],
-
+            oottDisplay: [],
         };
     },
     methods: {
@@ -78,7 +77,6 @@ export default {
                 );
             }
         },
- 
     },
     computed: {},
     created() {
@@ -126,23 +124,22 @@ export default {
     }
 }
 
-.oottOverview{
-
-    h2{
+.oottOverview {
+    h2 {
         text-align: center;
         margin: $sp10 auto $sp5;
     }
 
-    .breadcrumb{
+    .breadcrumb {
         max-width: $xl;
         margin: $sp3 auto;
         padding: 0 $sp2;
     }
-    
-    .list{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .oott_list {
             max-width: $xl;
@@ -152,25 +149,20 @@ export default {
             justify-content: center;
             column-gap: $sp4;
             row-gap: $sp6;
-            @media (min-width: $md){
+            @media (min-width: $md) {
             }
-        
+
             .oott_card {
                 position: relative;
                 cursor: pointer;
-                .oott_card_text{
+                .oott_card_text {
                     color: $textColor_default;
                 }
-               
             }
-    
         }
-        .btn{
+        .btn {
             margin: 0 auto $sp12;
         }
     }
-
-
 }
-
 </style>
