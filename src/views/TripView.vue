@@ -384,7 +384,11 @@
 // 熱門行程
 .tripView_topTrip{
 	position: relative;
-	padding: 184px 0;
+    background-color: $bgColor_tint;
+	padding: $sp12 0 $sp8;
+    @media (min-width: $xl) {
+        padding: 160px 0 80px;
+    }
 
     .content{
         margin: 0 auto;
@@ -433,8 +437,11 @@
 // 精選行程
 .tripView_selectTrip{
 	position: relative;
-	padding: 184px 0;
 	background-color: $bgColor_default;
+	padding: $sp12 0 $sp8;
+    @media (min-width: $xl) {
+        padding: 160px 0 80px;
+    }
 
     .content{
         margin: 0 auto;
@@ -490,7 +497,11 @@
 // 駐站旅人
 .tripView_authors{
 	position: relative;
-	padding: 64px 0;
+    background-color: $bgColor_tint;
+	padding: $sp12 0 $sp8;
+    @media (min-width: $xl) {
+        padding: 160px 0 80px;
+    }
 
     .wrap{
         display: flex;
