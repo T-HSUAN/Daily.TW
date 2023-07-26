@@ -10,7 +10,7 @@
             <div class="member_img">
                 <img src="../assets/img/photo_stickers.png" alt="上傳照片">
             </div>
-            <button class="btn photo" @click="toggleHiddenBlock">上傳大頭貼</button>
+            <button class="btn push" @click="toggleHiddenBlock">上傳大頭貼</button>
         </div>
 
         <form class="form" >
@@ -233,18 +233,25 @@ export default{
     }
 
 .registerview{
-    padding: 30px 0 10px;
+    margin: 150px 0 60px;
+    @media all and (min-width: $md){
+        margin: 130px 0;
+    }
     .canvas{
         width: 83%;
         background-color: $mid_green;
         padding: $sp8 27px;
         box-sizing: border-box;
-        margin: 150px auto;
+        margin: auto;
         border-radius: 30px;
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
+        @media all and (min-width: $md){
+            max-width: 1000px;
+            padding: $sp12 0;
+        }
         .joinus_sm{
             position: absolute;
             top: -130px;
@@ -252,6 +259,9 @@ export default{
             left: 50%;
             transform: translateX(-50%);
             overflow: hidden;
+            @media all and (min-width: $md){
+                display: none;
+            }
             img{
                 display: block;
                 height: 100%;
@@ -266,42 +276,54 @@ export default{
             font-weight: 900;
             line-height: 150%; /* 42px */
             letter-spacing: 0.84px;
+            @media all and (min-width: $md){
+                font-size: $xl_h2;
+            }
         }
         .photo_group{
             display: flex;
             flex-direction: column;
             align-items: center;
+            @media (min-width: 768px) {
+                flex-direction: row;
+            }
             .member_img{
-                border: 2px solid $textColor_default;
                 width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                padding: 20px;
                 margin: 0 0 $sp2;
-                background-color: $textColor_white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 cursor: pointer;
+                @media (min-width: 768px) {
+                    width: 150px;
+                }
                 img{
+                    border: 2px solid $textColor_default;
+                    border-radius: 50%;
                     width: 100%;
                     height: 100%;
                     display: block;
                 }
             }
-            .photo{
+            .push{
                 margin: 0 0 $sp4;
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
+                @media (min-width: 768px) {
+                    margin: 0 $sp5;
+                }
             }
         }
         .form{
             width: 100%;
+            @media (min-width: 768px) {
+                width: 60%;
+            }
             label{
                 width: 100%;
                 color: $textColor_default;
                 font-size: $sm_h4;
                 font-weight: 700;
                 letter-spacing: 0.72px;
+                @media (min-width: 768px) {
+                    font-size: $xl_h4;
+                }
             }
             input{
                 width: 100%;
@@ -313,6 +335,11 @@ export default{
                 font-size: $sm_p;
                 margin: $sp1 0 $sp2;
                 border: 2px solid $textColor_default;
+                @media (min-width: 768px) {
+                    padding: $sp1 20px;
+                    font-size: $xl_p;
+                    margin: $sp1 0 $sp3;
+                }
             }
             .date_group{
                 width: 100%;
@@ -336,6 +363,10 @@ export default{
                     padding: 6px $sp2;
                     margin: 0 4px 0 0;
                     cursor: pointer;
+                    @media (min-width: 768px) {
+                        font-size: $xl_p;
+                        padding: $sp1 20px;
+                    }
                     &:hover {
                         color: $textColor_default;
                         background: $textColor_white;
@@ -357,7 +388,11 @@ export default{
                     display: inline-block;
                     cursor: pointer;
                     font-size: $sm_h4;
-                    margin: $sp1 0 $sp2;
+                    margin: $sp1 0 $sp3;
+                    @media (min-width: 768px) {
+                        font-size: $xl_h4;
+                        margin: $sp1 0 $sp4;
+                    }
                     // 隱藏原本的checkbox
                     input {
                         display: none;
@@ -373,6 +408,11 @@ export default{
                         border-radius: 50%;
                         background-color: $textColor_white;
                         outline: 2px solid $textColor_default;
+                        @media (min-width: 768px) {
+                            margin: 4px 0;
+                            height: 24px;
+                            width: 24px;
+                        }
                     } 
                     // 當checkbox選中時變更背景顏色
                     input:checked ~ .checkmark {
@@ -380,6 +420,9 @@ export default{
                     }
                     .content {
                         padding-left: 20px;
+                        @media (min-width: 768px) {
+                            padding-left: 30px;
+                        }
                     }
                 }
                 .checkbox_container:nth-of-type(3) {
@@ -393,6 +436,9 @@ export default{
             align-items: center;
             justify-content: flex-end;
             margin: $sp2 0;
+            @media (min-width: 768px) {
+                justify-content: center; 
+            }
             a:first-child{
                 margin: 0 $sp2;
             }
@@ -404,68 +450,4 @@ export default{
     }
 }
 
-@media all and (min-width: $xl) {
-    
-.registerview{
-    padding: 30px 0 10px;
-    .canvas{
-        max-width: 1000px;
-        padding: $sp12 0;
-        .joinus_sm{
-            display: none;
-        }
-        h2{
-            font-size: $xl_h2;
-        }
-        .photo_group{
-            flex-direction: row;
-            .member_img{
-                width: 150px;
-                height: 150px;
-                padding: $sp5;
-            }
-            .photo{
-                margin: 0 $sp5;
-            }
-        }
-        .form{
-            width: 60%;
-            label{
-                font-size: $xl_h4;
-            }
-            input{
-                padding: $sp1 20px;
-                font-size: $xl_p;
-                margin: $sp1 0 $sp3;
-            }
-            .date_group{
-                select {
-                    font-size: $xl_p;
-                    padding: $sp1 20px;
-                }
-            }
-            .gender_group{
-                .checkbox_container {
-                    font-size: $xl_h4;
-                    margin: $sp1 0 $sp3;
-                    .checkmark {
-                        margin: 4px 0;
-                        height: 24px;
-                        width: 24px;
-                    } 
-                    .content {
-                        padding-left: 30px;
-                    }
-                }
-                .checkbox_container:nth-of-type(3) {
-                    width: 30%;
-                }
-            }
-        }
-        .btn_group{
-            justify-content: center;           
-        }
-    }
-}
-}
 </style>

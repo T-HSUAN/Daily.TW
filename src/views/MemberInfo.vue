@@ -1,8 +1,10 @@
 <!-- 帳號管理的個人資料修改頁面 -->
 <template>
+
+    
     <section class="profile">
         <h2>帳號管理</h2>
-        
+
         <div class="profile_page">
             <Sidenav class="sidenav"></Sidenav>
             <!-- 個人資料修改 -->
@@ -85,19 +87,20 @@
         to="/member" 
         class="cancel_btn">
         取消編輯
-    </router-link>
-    <router-link
-    to="/member" 
-    class="btn">
-    儲存
-</router-link>
+        </router-link>
+        <router-link
+        to="/member" 
+        class="btn">
+        儲存
+        </router-link>
     
 </div>
 </div>
 </div>
 </div>
 
-</section>
+    </section>
+
 </template>
 
 <style lang="scss">
@@ -117,9 +120,10 @@
         margin: 40px auto;
         text-align: center;
         @media (min-width: 768px) {
-            margin: 40px auto 80px;
+            margin: 40px auto ;
         }
     }
+    
     .profile_page{
         display: flex;
         // width: 100%;
@@ -172,25 +176,15 @@
                         flex-direction: row;
                     }
                     .member_img{
-                        border: 2px solid $textColor_default;
                         width: 100px;
-                        height: 100px;
-                        border-radius: 50%;
-                        padding: 20px;
                         margin: $sp5 0 $sp2;
-                        background-color: $textColor_white;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
                         cursor: pointer;
                         @media (min-width: 768px) {
                             width: 150px;
-                            height: 150px;
-                            padding: $sp5;
-                            margin: 40px 0 $sp4;
-                            flex-direction: row;
-                        } 
+                        }
                         img{
+                            border: 2px solid $textColor_default;
+                            border-radius: 50%;
                             width: 100%;
                             height: 100%;
                             display: block;
@@ -198,11 +192,13 @@
                     }
                     .push{
                         margin: 0 0 $sp4;
+                        box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
                         @media (min-width: 768px) {
                             margin: 0 $sp5;
                         }
                     }
                 }
+                
                 label{
                     font-size: $sm_h4;
                     font-weight: 700;
@@ -222,7 +218,7 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
-                padding: $sp1 0 $sp4;
+                padding: $sp1 0 $sp3;
                 select {
                     // 隱藏原本的下拉箭頭
                     width: 33%;
@@ -268,6 +264,7 @@
                     font-size: $sm_h4;
                     margin: $sp1 0 $sp3;
                     @media (min-width: 768px) {
+                        margin: $sp1 0 $sp4;
                         font-size: $xl_h4;
                     }
                     // 隱藏原本的checkbox
@@ -327,21 +324,6 @@
         }
     }
     
-
-
-    
-
-
-
-        /* 等手機板切出來再拿掉(連同上面的class) */
-        .sidenav{
-            flex-shrink: 0;
-            height: 506px;
-            display: none;
-            @media (min-width : 1024px) {
-                display: block;            
-            }
-        }
     }
 </style>
 
