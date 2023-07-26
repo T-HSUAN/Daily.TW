@@ -5,8 +5,8 @@
             <p>票券將於<span> 7個工作天 </span>內寄出</p>
             <p>請留意訂單狀態，謝謝！</p>
             <router-link to="/myorder"><button class="btn">我的訂單</button></router-link>
-            <img class="duck" src="@/assets/img/duck_paysuccess.png" alt="" />
-            <img class="trace" src="@/assets/img/duck_trace3.png" alt="" />
+            <img class="duck" src="@/assets/img/duck_paysuccess.png" alt="decorate" />
+            <img class="trace" src="@/assets/img/duck_trace3.png" alt="decorate" />
         </div>
     </div>
 </template>

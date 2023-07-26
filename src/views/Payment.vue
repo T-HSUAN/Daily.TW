@@ -2,7 +2,7 @@
     <div class="payment_page">
         <div class="pay_details">
             <div class="pay_details_content">
-                <img class="payDuck" src="@/assets/img/duck_pay.png" alt="payDuck" />
+                <img class="payDuck" src="@/assets/img/duck_pay.png" alt="decorate" />
                 <h3 class="Title">付款明細</h3>
                 <!-- 購買內容 -->
                 <div class="item">
