@@ -537,7 +537,6 @@ export default defineComponent({
             @media (min-width: $md){
                 width: 486px;
                 height: 300px;
-                cursor: pointer;
             }
             .service_card{
                 position:relative;
