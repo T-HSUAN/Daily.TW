@@ -390,7 +390,8 @@
                         :key="index"
                         :tripCardPhoto="trip.tripCardPhoto"
                         :tripCardTags="trip.tripCardTags"
-                        :tripCardTitle="trip.tripCardTitle"
+                        :tripCardTitle="trip.tripCardTitle" 
+                        :tripCardDesc:="trip.tripCardDesc"
                         :tripCardAuthor="trip.tripCardAuthor"
                         :tripCardDate="trip.tripCardDate"
                         >
@@ -469,6 +470,7 @@ export default defineComponent({
 					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
 					tripCardTags: "台中・#親子 #情侶 #農場",
 					tripCardTitle: "台中文青一日遊",
+                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
@@ -476,6 +478,7 @@ export default defineComponent({
 					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
 					tripCardTags: "台中・#親子 #情侶 #農場",
 					tripCardTitle: "台中文青一日遊",
+                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
@@ -483,6 +486,7 @@ export default defineComponent({
 					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
 					tripCardTags: "台中・#親子 #情侶 #農場",
 					tripCardTitle: "台中文青一日遊",
+                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
@@ -1184,5 +1188,16 @@ export default defineComponent({
             }
         }
     }
+    // .result_content{
+    //     .content_desc:nth-child(3),
+    //     .content_desc:nth-child(4){
+    //         .place_desc{
+    //             display: none !important;
+    //             @media (min-width: $md){
+    //                 display: flex !important;
+    //             }
+    //         }
+    //     }
+    // }
 }
 </style>
