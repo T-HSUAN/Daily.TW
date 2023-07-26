@@ -273,8 +273,8 @@ export default{
             align-items: center;
             .member_img{
                 border: 2px solid $textColor_default;
-                width: 60px;
-                height: 60px;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
                 padding: 20px;
                 margin: 0 0 $sp2;
@@ -420,8 +420,8 @@ export default{
         .photo_group{
             flex-direction: row;
             .member_img{
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
                 padding: $sp5;
             }
             .photo{
