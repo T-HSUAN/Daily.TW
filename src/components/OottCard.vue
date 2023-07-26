@@ -1,10 +1,11 @@
 <template>
     <div class="oott_default">
-        <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
-        <label class="heart">
-            <input type="checkbox" />
-            <font-awesome-icon icon="fa-solid fa-heart" />
-            <font-awesome-icon icon="fa-solid fa-heart" class="front_heart" />
+        <router-link to="/oottInfo">
+            <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+        </router-link>
+        <label>
+            <input type="checkbox">
+            <span></span>
         </label>
         <div class="oott_card_text">
             <div class="oott_card_info">
@@ -51,40 +52,59 @@ export default {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     @media (min-width: 768px) {
         width: 311px;
         height: 522px;
+        gap: 16px;
+    }
+
+    label{
+        position: absolute;
+        top: 32px;
+        right: 64px;
+        @media (min-width: $md){
+                top: 32px;
+                right: 72px;
+            }
+
+        input[type="checkbox"]{
+            display: none;
+        }
+        input[type="checkbox"] + span::before{
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-image: url(~@/assets/img/heart_default.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            
+            cursor: pointer;
+            @media (min-width: $md){
+                width: 48px;
+                height: 48px;
+            }
+        }
+        input[type="checkbox"]:checked + span::before{
+            content: '';
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-image: url(~@/assets/img/heart_clicked.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            @media (min-width: $md){
+                width: 48px;
+                height: 48px;
+            }
+        }
     }
 
     .oott_card_pic {
         width: 100%;
-    }
-
-    .heart {
-        display: block;
-        position: absolute;
-        right: 32px;
-        top: 32px;
-        @media (min-width: 768px) {
-            right: 30px;
-        }
-        color: #6a5d4a;
-        font-size: 50px;
-        .front_heart {
-            position: absolute;
-            top: 7px;
-            right: 3px;
-            font-size: 42px;
-            color: #fefff5;
-            z-index: 5;
-        }
-        input {
-            display: none;
-            &:checked ~ .front_bookmark {
-                color: var(--semantic-warning, $default_red);
-            }
-        }
     }
 
     .oott_card_text {
