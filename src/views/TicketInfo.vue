@@ -1,17 +1,9 @@
 <!-- 單一票券的內容區塊 -->
 <template>
     <div class="ticket_info_page">
-        <TicketSingleCard
-            :ticketPhoto="img"
-            :ticketTitle="Name"
-            :ticketLocation="location"
-            :ticketTags="tag"
-            :ticketDetails="ticket_details"
-            :showAddr="true"
-            :ticketAddr="ticket_addr"
-            :ticketAddrLink="ticket_addr_link"
-            :discountTag="discount"
-        />
+        <TicketSingleCard :ticketPhoto="img" :ticketTitle="Name" :ticketLocation="location" :ticketTags="tag"
+            :ticketDetails="ticket_details" :showAddr="true" :ticketAddr="ticket_addr" :ticketAddrLink="ticket_addr_link"
+            :discountTag="discount" />
         <!-- 票券資訊區 -->
         <div class="ticket_info">
             <div class="ticket_desc">
@@ -28,12 +20,8 @@
                 <h3>選擇門票數量</h3>
                 <div class="ticket_item">
                     <div class="ticket_adult">
-                        <select
-                            name="ticket_count_adult"
-                            class="count_adult"
-                            v-model="count_adult"
-                            @change="subTotalPrice()"
-                        >
+                        <select name="ticket_count_adult" class="count_adult" v-model="count_adult"
+                            @change="subTotalPrice()">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
@@ -50,12 +38,7 @@
                         </label>
                     </div>
                     <div class="ticket_ex">
-                        <select
-                            name="ticket_count_ex"
-                            class="count_ex"
-                            v-model="count_ex"
-                            @change="subTotalPrice()"
-                        >
+                        <select name="ticket_count_ex" class="count_ex" v-model="count_ex" @change="subTotalPrice()">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
@@ -92,9 +75,7 @@
                     </p>
                     <div class="buy_btn">
                         <button class="btn">加入購物車</button>
-                        <router-link to="/cart"
-                            ><button class="btn">直接購買</button></router-link
-                        >
+                        <router-link to="/cart"><button class="btn">直接購買</button></router-link>
                     </div>
                 </div>
             </div>
@@ -115,13 +96,14 @@
                     </dd>
                 </dl>
             </div>
+            <div class="buy_btn_phone">
+                <button class="btn">加入購物車</button>
+                <router-link to="/cart"><button class="btn">直接購買</button></router-link>
+            </div>
         </div>
         <!-- 購物車清單 -->
         <div class="cart">
-            <font-awesome-icon
-                icon="fa-solid fa-cart-shopping"
-                class="cart_toggle"
-            />
+            <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" />
             <div class="numTag">0</div>
         </div>
     </div>

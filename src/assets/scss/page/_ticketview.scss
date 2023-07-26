@@ -69,9 +69,18 @@
             }
         }
     }
-    .more {
-        display: block;
-        margin: $sp4 auto;
+    .page_link {
+        display: flex;
+        justify-content: center;
+        .page {
+            display: block;
+            margin: $sp4 $sp1;
+            text-align: center;
+            color: $textColor_default;
+            &:hover {
+                color: $default_blue;
+            }
+        }
     }
     .cart {
         width: 80px;
@@ -185,7 +194,7 @@
                 }
             }
         }
-        .result {
+        .total {
             position: relative;
             margin: $sp3 0;
             p {
@@ -242,9 +251,11 @@
                 margin: $sp1 auto;
             }
         }
-        .more {
-            display: block;
-            margin: $sp7 auto;
+        .page_link {
+            .page {
+                margin: $sp7 $sp1;
+                color: $textColor_default;
+            }
         }
         .cart {
             width: 100px;
@@ -316,7 +327,7 @@
                     }
                 }
             }
-            .result {
+            .total {
                 margin: $sp4 0;
                 p {
                     font-size: 20px;

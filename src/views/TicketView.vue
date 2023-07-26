@@ -48,12 +48,18 @@
             </div>
         </div>
         <div v-else>查無結果</div>
-        <button
-            class="btn more"
-            v-if="ticketDisplay.length === ticketData.length"
-        >
-            更多
-        </button>
+        <div class="page_link">
+            <a class="page" v-if="ticketDisplay.length === ticketData.length"
+                >1</a
+            >
+            <a class="page" v-if="ticketDisplay.length === ticketData.length"
+                >2</a
+            >
+            <a class="page" v-if="ticketDisplay.length === ticketData.length"
+                >3</a
+            >
+        </div>
+
         <!-- 購物車清單 -->
         <!-- <router-link to="/cart"></router-link> -->
         <div class="cart">
@@ -127,7 +133,7 @@
                 </div>
             </div>
             <!-- 票券總計 -->
-            <div class="result">
+            <div class="total">
                 <p>({{ itemList.length }}項票券) 總計</p>
                 <p>
                     NT$&nbsp;

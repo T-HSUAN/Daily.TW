@@ -58,10 +58,13 @@
                     }
                 }
             }
-            .result {
+            .total {
                 position: relative;
                 margin: $sp3 0;
+                text-align: right;
                 p {
+                    display: inline-flex;
+                    align-items: center;
                     font-size: 20px;
                     text-align: right;
                 }
@@ -73,67 +76,88 @@
             }
         }
     }
-    .methods,
-    .order_info,
-    .recipient_info {
-        box-sizing: border-box;
-        margin: $sp2 auto;
-        padding: $sp3 $sp4;
-        display: flex;
-        flex-direction: column;
-        background: $bgColor_default;
-        border: 2px solid $textColor_tint;
-        border-radius: 5px;
-        h3 {
-            margin-bottom: $sp2;
-        }
-        label {
-            width: 100%;
-            margin: $sp1 0;
-            display: inline-flex;
-            font-size: 20px;
-            font-weight: 700;
-            input {
-                width: 20px;
-                height: 20px;
-                margin-right: $sp1;
-            }
-        }
-    }
-    .order_info {
-        .name,
-        .phone_num,
-        .email {
+    .pay_info {
+        width: 100%;
+        .methods,
+        .order_info,
+        .recipient_info {
+            box-sizing: border-box;
+            margin: $sp2 auto;
+            padding: $sp3 $sp4;
             display: flex;
-            margin: $sp1 0;
-            .title {
-                width: 80px;
-                font-size: 20px;
+            flex-direction: column;
+            background: $bgColor_default;
+            border: 2px solid $textColor_tint;
+            border-radius: 5px;
+            h3 {
+                margin-bottom: $sp3;
+            }
+            label {
+                width: 100%;
+                margin: $sp1 0;
+                display: inline-flex;
+                font-size: 18px;
                 font-weight: 700;
+                input {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: $sp1;
+                }
             }
         }
-    }
-    .recipient_info {
-        padding-bottom: $sp8;
-    }
-    .result {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        button {
-            margin: $sp2;
+        .order_info {
+            .name,
+            .phone_num,
+            .email {
+                display: flex;
+                margin: $sp1 0;
+                .title {
+                    width: 100px;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+                .content {
+                    font-size: 16px;
+                }
+            }
+        }
+        .recipient_info {
+            padding-bottom: $sp8;
+            label {
+                font-size: 18px;
+                .same_check {
+                    &:checked + span {
+                        font-size: 16px;
+                        color: $default_red;
+                    }
+                }
+            }
+        }
+        .result {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            button {
+                margin: $sp2;
+            }
         }
     }
 }
 @media all and (min-width: $md) {
     .payment_page {
         @include width($md);
-        padding: $sp4 $sp4 $sp8;
+        padding: $sp4 $sp3 $sp8;
+        display: flex;
+        justify-content: center;
         .pay_details {
-            width: 100%;
-            margin: $sp10 auto $sp5;
+            width: 30%;
+            height: 100vh;
+            margin: $sp10 $sp3 0 0;
             .pay_details_content {
+                margin-top: 100px;
                 padding: $sp3 $sp4;
+                position: sticky;
+                top: 100px;
                 .payDuck {
                     top: -120px;
                     left: $sp1;
@@ -148,7 +172,7 @@
                     padding: $sp3 0;
 
                     .details {
-                        padding: $sp2 $sp4;
+                        padding: $sp2 0;
                         .title {
                             font-size: 20px;
                             margin-bottom: $sp2;
@@ -156,7 +180,7 @@
                         // 張數&票價
                         .ticket_adult,
                         .ticket_ex {
-                            margin: $sp1 0;
+                            margin: $sp2 0;
                             font-size: 16px;
                         }
                         // 小計
@@ -169,7 +193,7 @@
                         }
                     }
                 }
-                .result {
+                .total {
                     margin: $sp3 0;
                     p {
                         font-size: 24px;
@@ -181,40 +205,55 @@
                 }
             }
         }
-        .methods,
-        .order_info,
-        .recipient_info {
-            margin: $sp2 auto;
-            padding: $sp3 $sp4;
-            h3 {
-                margin-bottom: $sp2;
-            }
-            label {
-                margin: $sp1 0;
-                font-size: 16px;
-                input {
-                    width: 16px;
-                    height: 16px;
-                    margin-right: $sp1;
+        .pay_info {
+            width: 60%;
+            .methods,
+            .order_info,
+            .recipient_info {
+                margin: $sp2 auto;
+                padding: $sp3 $sp4;
+                h3 {
+                    margin-bottom: $sp3;
+                }
+                label {
+                    margin: $sp1 0;
+                    font-size: 18px;
+                    input {
+                        width: 18px;
+                        height: 18px;
+                        margin-right: $sp1;
+                    }
                 }
             }
-        }
-        .order_info {
-            .name,
-            .phone_num,
-            .email {
-                margin: $sp1 0;
-                .title {
-                    width: 80px;
+            .order_info {
+                .name,
+                .phone_num,
+                .email {
+                    margin: $sp1 0;
+                    .title {
+                        width: 100px;
+                    }
+                    .content {
+                        font-size: 18px;
+                    }
                 }
             }
-        }
-        .recipient_info {
-            padding-bottom: $sp8;
-        }
-        .result {
-            button {
-                margin: $sp2;
+            .recipient_info {
+                padding-bottom: $sp8;
+                label {
+                    font-size: 20px;
+                    .same_check {
+                        &:checked + span {
+                            font-size: 18px;
+                            color: $default_red;
+                        }
+                    }
+                }
+            }
+            .result {
+                button {
+                    margin: $sp2;
+                }
             }
         }
     }
@@ -224,10 +263,11 @@
         @include width($xl);
         padding: $sp4 $sp4 $sp8;
         .pay_details {
-            width: 100%;
-            margin: $sp10 auto $sp6;
+            width: 30%;
+            margin: $sp10 $sp4 0 0;
             .pay_details_content {
                 padding: $sp3 $sp4;
+                top: 110px;
                 .payDuck {
                     top: -120px;
                     left: $sp1;
@@ -263,7 +303,7 @@
                         }
                     }
                 }
-                .result {
+                .total {
                     margin: $sp3 0;
                     p {
                         font-size: 24px;
@@ -275,43 +315,55 @@
                 }
             }
         }
-        .methods,
-        .order_info,
-        .recipient_info {
-            margin: $sp2 auto;
-            padding: $sp4;
-            h3 {
-                margin-bottom: $sp2;
-            }
-            label {
-                margin: $sp3 0;
-                font-size: 24px;
-                font-weight: 700;
-                input {
-                    width: 24px;
-                    height: 24px;
-                    margin-right: $sp2;
+        .pay_info {
+            width: 60%;
+            .methods,
+            .order_info,
+            .recipient_info {
+                margin: $sp2 auto;
+                padding: $sp4;
+                h3 {
+                    margin-bottom: $sp3;
                 }
-            }
-        }
-        .order_info {
-            .name,
-            .phone_num,
-            .email {
-                margin: $sp2 0;
-                .title {
-                    width: 130px;
+                label {
+                    margin: $sp2 0;
                     font-size: 24px;
                     font-weight: 700;
+                    input {
+                        width: 24px;
+                        height: 24px;
+                        margin-right: $sp2;
+                    }
                 }
             }
-        }
-        .recipient_info {
-            padding-bottom: $sp8;
-        }
-        .result {
-            button {
-                margin: $sp3;
+            .order_info {
+                .name,
+                .phone_num,
+                .email {
+                    margin: $sp2 0;
+                    .title {
+                        width: 130px;
+                        font-size: 24px;
+                        font-weight: 700;
+                    }
+                }
+            }
+            .recipient_info {
+                padding-bottom: $sp8;
+                label {
+                    font-size: 24px;
+                    .same_check {
+                        &:checked + span {
+                            font-size: 20px;
+                            color: $default_red;
+                        }
+                    }
+                }
+            }
+            .result {
+                button {
+                    margin: $sp3;
+                }
             }
         }
     }

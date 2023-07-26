@@ -42,6 +42,13 @@
                 font-size: 14px;
             }
         }
+        .buy_btn_phone {
+            margin: auto;
+            text-align: center;
+            .btn {
+                margin: 0 $sp3 $sp5;
+            }
+        }
     }
     .cart {
         width: 80px;
@@ -180,20 +187,23 @@
                     }
                 }
             }
-        }
-        .ticket_notice {
-            margin: $sp5 0;
-            padding: $sp3 $sp4;
-            dl {
-                font-size: 18px;
+            .ticket_notice {
+                margin: $sp5 0;
+                padding: $sp3 $sp4;
+                dl {
+                    font-size: 18px;
+                }
+                dt {
+                    margin: $sp2 0;
+                    font-size: 16px;
+                }
+                dd {
+                    margin: $sp1 0;
+                    font-size: 16px;
+                }
             }
-            dt {
-                margin: $sp2 0;
-                font-size: 16px;
-            }
-            dd {
-                margin: $sp1 0;
-                font-size: 16px;
+            .buy_btn_phone {
+                display: none;
             }
         }
     }
@@ -294,22 +304,22 @@
                     }
                 }
             }
-        }
-        .ticket_notice {
-            box-sizing: border-box;
-            width: 60%;
-            margin: $sp5 0;
-            padding: $sp3 $sp4;
-            dl {
-                font-size: 20px;
-            }
-            dt {
-                margin: $sp2 0;
-                font-size: 16px;
-            }
-            dd {
-                margin: $sp1 0;
-                font-size: 16px;
+            .ticket_notice {
+                box-sizing: border-box;
+                width: 60%;
+                margin: $sp5 0;
+                padding: $sp3 $sp4;
+                dl {
+                    font-size: 20px;
+                }
+                dt {
+                    margin: $sp2 0;
+                    font-size: 16px;
+                }
+                dd {
+                    margin: $sp1 0;
+                    font-size: 16px;
+                }
             }
         }
         .cart {
