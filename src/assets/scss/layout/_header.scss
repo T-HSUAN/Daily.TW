@@ -25,9 +25,13 @@ header {
     );
     display: flex;
     justify-content: space-between;
-    .logo {
-        width: 160px;
-        margin: 0 $sp4;
+    a{
+        display: inline-flex;
+        align-items: center;
+        .logo {
+            width: 160px;
+            margin: 0 $sp4;
+        }
     }
     .ham {
         width: 40px;
@@ -58,30 +62,43 @@ header {
             //logo
             a {
                 .logo {
-                    width: 190px;
-                    margin: 0 $sp4;
+                    width: 130px;
+                    margin-left: $sp2;
+                    @media screen and (min-width: 1024px){
+                        width: 190px;
+                        margin: 0 $sp4;
+                    }
                 }
             }
 
             nav {
+                box-sizing: border-box;
                 display: flex;
+                padding-right: $sp2;
                 a {
+                    width: 92px;
                     display: flex;
-                    margin-right: $sp5;
-                    padding-top: $sp2;
-                    font-size: 20px;
+                    justify-content: end;
+                    margin-left: $sp1;
+                    font-size: 16px;
                     text-align: center;
                     color: $textColor_default;
+                    @media screen and (min-width: 1024px){
+                        width: 110px;
+                        justify-content: start;
+                        margin-left: $sp2;
+                        font-size: 20px;
+                        img{
+                            width: 20px;
+                        }
+                    }                    
                     img {
-                        width: 20px;
+                        width: 16px;
                     }
                     &.router-link-exact-active {
                         color: $default_yellow;
                     }
                 }
-            }
-            &_hidden {
-                display: none;
             }
         }
         main{

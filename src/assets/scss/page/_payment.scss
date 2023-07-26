@@ -149,15 +149,15 @@
         padding: $sp4 $sp4 $sp8;
         display: flex;
         justify-content: center;
+        align-items: stretch;
         .pay_details {
             width: 35%;
-            height: 100vh;
-            margin: $sp10 $sp3 0 0;
+            margin: $sp10 $sp3 88px 0;
             .pay_details_content {
                 margin-top: 100px;
                 padding: $sp3 $sp4;
                 position: sticky;
-                top: 100px;
+                top: 300px;
                 .payDuck {
                     top: -120px;
                     left: $sp1;
@@ -264,10 +264,10 @@
         padding: $sp4 $sp4 $sp8;
         .pay_details {
             width: 35%;
-            margin: $sp10 $sp4 0 0;
+            margin: $sp10 $sp4 104px 0;
             .pay_details_content {
                 padding: $sp3 $sp4;
-                top: 110px;
+                top: 250px;
                 .payDuck {
                     top: -120px;
                     left: $sp1;

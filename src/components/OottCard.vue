@@ -1,6 +1,6 @@
 <template>
     <div class="oott_default">
-        <router-link to="/oottInfo">
+        <router-link to="/oott_info">
             <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
         </router-link>
         <label>
@@ -19,11 +19,8 @@
                     </div>
                     <h4 class="oott_card_author_name">{{ oottCardAuthor }}</h4>
                 </div>
-                <img
-                    :src="require('@/assets/img/oott_card_deco_footprint.png')"
-                    alt="腳印裝飾"
-                    class="oott_card_deco_footprint"
-                />
+                <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                    class="oott_card_deco_footprint" />
             </div>
         </div>
     </div>
@@ -43,6 +40,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
+
 .oott_default {
     width: 257px;
     height: 440px;
@@ -53,25 +51,28 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
     @media (min-width: 768px) {
         width: 311px;
         height: 522px;
         gap: 16px;
     }
 
-    label{
+    label {
         position: absolute;
         top: 32px;
         right: 64px;
-        @media (min-width: $md){
-                top: 32px;
-                right: 72px;
-            }
 
-        input[type="checkbox"]{
+        @media (min-width: $md) {
+            top: 32px;
+            right: 72px;
+        }
+
+        input[type="checkbox"] {
             display: none;
         }
-        input[type="checkbox"] + span::before{
+
+        input[type="checkbox"]+span::before {
             content: '';
             display: inline-block;
             width: 40px;
@@ -80,14 +81,16 @@ export default {
             background-size: 100%;
             background-repeat: no-repeat;
             position: absolute;
-            
+
             cursor: pointer;
-            @media (min-width: $md){
+
+            @media (min-width: $md) {
                 width: 48px;
                 height: 48px;
             }
         }
-        input[type="checkbox"]:checked + span::before{
+
+        input[type="checkbox"]:checked+span::before {
             content: '';
             display: inline-block;
             width: 40px;
@@ -96,7 +99,8 @@ export default {
             background-size: 100%;
             background-repeat: no-repeat;
             cursor: pointer;
-            @media (min-width: $md){
+
+            @media (min-width: $md) {
                 width: 48px;
                 height: 48px;
             }
@@ -119,6 +123,7 @@ export default {
             color: $tint_yellow;
             font-size: 14px;
             letter-spacing: 0.02em;
+
             @media (min-width: 768px) {
                 font-size: 16px;
             }
@@ -153,6 +158,7 @@ export default {
                     }
                 }
             }
+
             .oott_card_deco_footprint {
                 width: 32px;
             }

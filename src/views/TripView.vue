@@ -1,6 +1,5 @@
 <!-- 出遊特輯 -->
 <template>
-
     <!-- banner -->
     <section class="tripView_banner">
         <div class="content">
@@ -34,8 +33,8 @@
                         <img src="~@/assets/img/trip_deco_footPrint.svg" alt="">
                     </div>
                     <a href="/trip_info">
-                        <btn class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
-                        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown"></btn>
+                        <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
+                            <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown"></button>
                     </a>
                 </div>
             </div>
@@ -57,17 +56,10 @@
         <div class="content">
             <div class="wrap">
                 <div class="tripCards">
-                    <tripCard
-                    class="tripCard"
-                    v-for="(trip, index) in topTrips"
-                    :key="index"
-                    :tripCardPhoto="trip.tripCardPhoto"
-                    :tripCardTags="trip.tripCardTags"
-                    :tripCardTitle="trip.tripCardTitle"
-                    :tripCardDesc="trip.tripCardDesc"
-                    :tripCardAuthor="trip.tripCardAuthor"
-                    :tripCardDate="trip.tripCardDate"
-                    />
+                    <tripCard class="tripCard" v-for="(trip, index) in topTrips" :key="index"
+                        :tripCardPhoto="trip.tripCardPhoto" :tripCardTags="trip.tripCardTags"
+                        :tripCardTitle="trip.tripCardTitle" :tripCardDesc="trip.tripCardDesc"
+                        :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate" />
                 </div>
             </div>
             <router-link to="/trip_overview">
@@ -91,17 +83,10 @@
         <div class="content">
             <div class="wrap">
                 <div class="tripCards">
-                    <tripCard
-                    class="tripCard"
-                    v-for="(trip, index) in selectTrips"
-                    :key="index"
-                    :tripCardPhoto="trip.tripCardPhoto"
-                    :tripCardTags="trip.tripCardTags"
-                    :tripCardTitle="trip.tripCardTitle"
-                    :tripCardDesc="trip.tripCardDesc"
-                    :tripCardAuthor="trip.tripCardAuthor"
-                    :tripCardDate="trip.tripCardDate"
-                    />
+                    <tripCard class="tripCard" v-for="(trip, index) in selectTrips" :key="index"
+                        :tripCardPhoto="trip.tripCardPhoto" :tripCardTags="trip.tripCardTags"
+                        :tripCardTitle="trip.tripCardTitle" :tripCardDesc="trip.tripCardDesc"
+                        :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate" />
                 </div>
             </div>
             <router-link to="/trip_overview">
@@ -109,7 +94,7 @@
             </router-link>
         </div>
     </section>
-    
+
     <!-- 精選行程 -->
     <section class="tripView_authors">
         <div class="bgCurve">
@@ -177,99 +162,105 @@
 
 // 全頁設定
 
-#app{
-	background-color: $bgColor_default;
+#app {
+    background-color: $bgColor_default;
 }
 
-.bgCurve{
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: 48px;
+.bgCurve {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 48px;
 
-		@media (min-width: 768px) {
-		height: 96px;
-        }
-		
-		img{
-			width: 100%;
-			height: 100%;
-		}
-	}
-	
-	.title{
-		margin: 0 auto 24px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 8px;
+    @media (min-width: 768px) {
+        height: 96px;
+    }
 
-		@media (min-width: 768px) {
-		margin: 0 auto 32px;
-		max-width: 1200px;
-		flex-direction: row;
-		align-items: center;
-		}
-		
-		.duckDeco{
-			position: relative;
-			
-			.trace{
-				display: none;
-				
-				@media (min-width: 768px) {
-				display: block;
-				width: 192px;
-				position: absolute;
-				left: -160px;
-				bottom: -8px;
-				}
-			}
-			
-			.duck{
-				width: 80px;
-	
-				@media (min-width: 768px) {
-				width: 120px;
-				}
-			}
-		}
-	}
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
 
-    .btn{
+.title {
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    @media (min-width: 768px) {
+        margin: 0 auto 32px;
+        max-width: 1200px;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .duckDeco {
         position: relative;
-        img{
-            width: 40px;
-            @media (min-width: $md){
-                width: 45px;
+
+        .trace {
+            display: none;
+
+            @media (min-width: 768px) {
+                display: block;
+                width: 192px;
+                position: absolute;
+                left: -160px;
+                bottom: -8px;
             }
         }
-        .arrow_white{
-            position: absolute;
-            right: 24px;
-            @media (min-width: $md){
-                right: 32px;
-            }
-        }
-        &:hover{
-            .arrow_white{
-                display: none;
+
+        .duck {
+            width: 80px;
+
+            @media (min-width: 768px) {
+                width: 120px;
             }
         }
     }
+}
 
-	a{
-		color: inherit;
-	}
+.btn {
+    position: relative;
+
+    img {
+        width: 40px;
+
+        @media (min-width: $md) {
+            width: 45px;
+        }
+    }
+
+    .arrow_white {
+        position: absolute;
+        right: 24px;
+
+        @media (min-width: $md) {
+            right: 32px;
+        }
+    }
+
+    &:hover {
+        .arrow_white {
+            display: none;
+        }
+    }
+}
+
+a {
+    color: inherit;
+}
 
 // banner
-.tripView_banner{
-	background-color: $bgColor_default;
+.tripView_banner {
+    background-color: $bgColor_default;
     padding: $sp12 0 $sp8;
-    .content{
+
+    .content {
         margin: 0 auto;
 
-        .wrap{
+        .wrap {
             margin: 0 auto 32px;
             display: flex;
             flex-direction: column;
@@ -277,12 +268,12 @@
             justify-content: center;
 
             @media (min-width: $xl) {
-            margin-top: 64px;
-            width: 80%;
-            flex-direction: row;
+                margin-top: 64px;
+                width: 80%;
+                flex-direction: row;
             }
 
-            .head{
+            .head {
                 position: relative;
                 text-align: center;
                 display: flex;
@@ -291,11 +282,11 @@
                 z-index: 5;
 
                 @media (min-width: $xl) {
-                display: block;
-                margin-right: -$sp4;
+                    display: block;
+                    margin-right: -$sp4;
                 }
 
-                .tripTitle{
+                .tripTitle {
                     order: 1;
                     position: relative;
                     top: -24px;
@@ -309,25 +300,28 @@
                     letter-spacing: 0.03em;
 
                     @media (min-width: $xl) {
-                    position: absolute;
-                    padding: $sp3 $sp6;
-                    font-size: 32px;
-                    letter-spacing: 0.06em;
+                        position: absolute;
+                        padding: $sp3 $sp6;
+                        font-size: 32px;
+                        letter-spacing: 0.06em;
                     }
                 }
-                .tripCover{
+
+                .tripCover {
                     width: 80%;
 
                     @media (min-width: $xl) {
-                    width: 640px;
-                        
+                        width: 640px;
+
                     }
-                    img{
+
+                    img {
                         width: 100%;
                     }
                 }
             }
-            .info{
+
+            .info {
                 position: relative;
                 display: flex;
                 flex-direction: column;
@@ -335,44 +329,52 @@
                 flex-shrink: 0;
 
                 @media (min-width: $xl) {
-                background-image: url('~@/assets/img/index_trip_info_bg.svg');
-                background-size: contain;background-repeat: no-repeat;
-                width: 479px;
-                height: 363px;
-                margin-left: -$sp4;
-                justify-content: center;
+                    background-image: url('~@/assets/img/index_trip_info_bg.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 479px;
+                    height: 363px;
+                    margin-left: -$sp4;
+                    justify-content: center;
                 }
 
-                .tripSpots{
+                .tripSpots {
                     display: flex;
                     flex-direction: column;
+
                     @media (min-width: $xl) {
-                    gap: $sp2;
+                        gap: $sp2;
                     }
-                    .spot{
+
+                    .spot {
                         display: flex;
+
                         @media (min-width: $xl) {
-                        color: $textColor_white;
+                            color: $textColor_white;
                         }
                     }
-                    h5{
+
+                    h5 {
                         font-weight: 400;
                     }
                 }
-                .deco{
+
+                .deco {
                     width: 24px;
-                    margin-top: $sp2;
-                    @media (min-width: $xl) {
-                    width: 32px;
-                    }
-                }
-                a{
                     margin-top: $sp2;
 
                     @media (min-width: $xl) {
-                    position: absolute;
-                    right: 0;
-                    bottom: $sp8;
+                        width: 32px;
+                    }
+                }
+
+                a {
+                    margin-top: $sp2;
+
+                    @media (min-width: $xl) {
+                        position: absolute;
+                        right: 0;
+                        bottom: $sp8;
                     }
                 }
             }
@@ -382,49 +384,52 @@
 }
 
 // 熱門行程
-.tripView_topTrip{
-	position: relative;
+.tripView_topTrip {
+    position: relative;
     background-color: $bgColor_tint;
-	padding: $sp12 0 $sp8;
+    padding: $sp12 0 $sp8;
+
     @media (min-width: $xl) {
         padding: 160px 0 80px;
     }
 
-    .content{
+    .content {
         margin: 0 auto;
         max-width: 1200px;
         text-align: center;
-        
-        .wrap{
+
+        .wrap {
             margin-bottom: 32px;
-            .tripCards{
+
+            .tripCards {
                 display: flex;
                 overflow-x: scroll;
+
                 @media (min-width: 768px) {
                     flex-wrap: wrap;
                     gap: 32px;
                     overflow-x: visible;
-                    
+
                 }
-                
-                .tripCard{
-                    
+
+                .tripCard {
+
                     box-sizing: border-box;
                     flex-shrink: 0;
                     margin-left: 32px;
                     background-color: $default_red;
 
                     @media (min-width: 768px) {
-                    margin-left: 0;
+                        margin-left: 0;
 
-                    &:nth-child(-n+3){
-                    width: calc((100% - 352px) / 3 + 96px);
-                    }
+                        &:nth-child(-n+3) {
+                            width: calc((100% - 352px) / 3 + 96px);
+                        }
 
-                    &:nth-child(n+4):nth-child(-n+7){
-                    background-color: $mid_red;
-                    width: calc((100% - 352px) / 4 + 64px);
-                    }
+                        &:nth-child(n+4):nth-child(-n+7) {
+                            background-color: $mid_red;
+                            width: calc((100% - 352px) / 4 + 64px);
+                        }
                     }
 
                 }
@@ -435,55 +440,59 @@
 }
 
 // 精選行程
-.tripView_selectTrip{
-	position: relative;
-	background-color: $bgColor_default;
-	padding: $sp12 0 $sp8;
+.tripView_selectTrip {
+    position: relative;
+    background-color: $bgColor_default;
+    padding: $sp12 0 $sp8;
+
     @media (min-width: $xl) {
         padding: 160px 0 80px;
     }
 
-    .content{
+    .content {
         margin: 0 auto;
         max-width: 1200px;
         text-align: center;
 
-        .wrap{
+        .wrap {
             margin-bottom: 32px;
-            .tripCards{
+
+            .tripCards {
                 display: flex;
                 overflow-x: scroll;
+
                 @media (min-width: 768px) {
-                max-height: 664px;
-                flex-direction: column;
-                flex-wrap: wrap;
-                gap: 32px;
-                overflow-x: hidden;
+                    max-height: 664px;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    gap: 32px;
+                    overflow-x: hidden;
                 }
 
-                .tripCard{
-                    
+                .tripCard {
+
                     box-sizing: border-box;
                     flex-shrink: 0;
                     margin-left: 32px;
                     background-color: $default_green;
 
                     @media (min-width: 768px) {
-                    margin-left: 0;
+                        margin-left: 0;
 
-                    &:nth-child(1){
-                    width: calc((100% - 352px) / 12 * 5 + 128px);
-                    }
-
-                    &:nth-child(n+2):nth-child(-n+4){
-                    background-color: $mid_green;
-                    width: calc((100% - 352px) / 12 * 7 + 192px);
-                    flex-direction: row;
-                        .trip_card_img{
-                            display: none;
+                        &:nth-child(1) {
+                            width: calc((100% - 352px) / 12 * 5 + 128px);
                         }
-                        
-                    }
+
+                        &:nth-child(n+2):nth-child(-n+4) {
+                            background-color: $mid_green;
+                            width: calc((100% - 352px) / 12 * 7 + 192px);
+                            flex-direction: row;
+
+                            .trip_card_img {
+                                display: none;
+                            }
+
+                        }
                     }
 
                 }
@@ -495,41 +504,46 @@
 }
 
 // 駐站旅人
-.tripView_authors{
-	position: relative;
+.tripView_authors {
+    position: relative;
     background-color: $bgColor_tint;
-	padding: $sp12 0 $sp8;
+    padding: $sp12 0 $sp8;
+
     @media (min-width: $xl) {
         padding: 160px 0 80px;
     }
 
-    .wrap{
+    .wrap {
         display: flex;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    .heading{
+    .heading {
         display: flex;
         flex-direction: column;
         gap: $sp2;
         width: 280px;
     }
-    .content{
+
+    .content {
         width: 100%;
         display: flex;
         gap: $sp5;
         overflow-x: scroll;
         overflow-y: hidden;
-        .author{
+
+        .author {
             width: 128px;
             text-align: center;
-            .profilePic{
+
+            .profilePic {
                 width: 128px;
                 height: 128px;
                 border-radius: 55% 60% 55% 50%;
                 overflow: hidden;
-                img{
+
+                img {
                     width: 100%;
                 }
             }
@@ -537,16 +551,15 @@
     }
 
 }
-
 </style>
 
 <script>
 import tripCard from '@/components/TripCard.vue'
 
 export default {
-    data(){
+    data() {
         return {
-            topTrips:[
+            topTrips: [
                 {
                     tripCardPhoto: require('@/assets/img/trip_card_example.png'),
                     tripCardTags: "台中・#親子 #情侶 #農場",
@@ -604,7 +617,7 @@ export default {
                     tripCardDate: "2023 / 7 / 9",
                 },
             ],
-            selectTrips:[
+            selectTrips: [
                 {
                     tripCardPhoto: require('@/assets/img/trip_card_example.png'),
                     tripCardTags: "台中・#親子 #情侶 #農場",
@@ -643,7 +656,7 @@ export default {
     methods: {
 
     },
-    components:{
+    components: {
         tripCard
     }
 }

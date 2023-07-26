@@ -10,9 +10,9 @@
                         煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
                     </p>
                     <a href="/plan">
-                        <btn class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                        <button class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
                             <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                        </btn>
+                        </button>
                     </a>
                     <div class="coverPic">
                         <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
@@ -65,9 +65,9 @@
                                 <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                             </div>
                             <a href="/trip_info">
-                                <btn class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
                                     <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                                </btn>
+                                </button>
                             </a>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                         </button>
                     </div>
                     <a href="/oott">
-                        <btn class="btn">查看更多</btn>
+                        <button class="btn">查看更多</button>
                     </a>
                 </div>
             </section>
@@ -134,13 +134,12 @@
                         </div>
                     </div>
                     <a href="/ticket">
-                        <btn class="btn">查看更多</btn>
+                        <button class="btn">查看更多</button>
                     </a>
                 </div>
             </section>
         </main>
     </div>
-    <router-link to="/frontbackstage">test</router-link>
 </template>
 
 <script>
