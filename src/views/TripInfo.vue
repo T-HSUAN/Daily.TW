@@ -36,9 +36,77 @@
                 <div class="trip_desc">
                     <p>新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳、自然景觀，推薦大家可以一同順遊。除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。</p>
                 </div>
-                <section class="spot">
+                <section class="spot" id="spot1">
                     <div class="spot_title">
                         <h3>合興車站</h3>
+                        <div class="time">
+                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
+                            <h5>停留30分鐘</h5>
+                        </div>
+                    </div>
+                    <div class="spot_img">
+                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                    </div>
+                    <p class="spot_desc">位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。</p>
+                    <div class="spot_loc">
+                        <font-awesome-icon icon="fa-solid fa-location-dot" />
+                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                    </div>
+                </section>
+                <section class="spot" id="spot2">
+                    <div class="spot_title">
+                        <h3>內灣愛情故事館</h3>
+                        <div class="time">
+                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
+                            <h5>停留30分鐘</h5>
+                        </div>
+                    </div>
+                    <div class="spot_img">
+                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                    </div>
+                    <p class="spot_desc">位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。</p>
+                    <div class="spot_loc">
+                        <font-awesome-icon icon="fa-solid fa-location-dot" />
+                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                    </div>
+                </section>
+                <section class="spot" id="spot3">
+                    <div class="spot_title">
+                        <h3>內灣老街</h3>
+                        <div class="time">
+                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
+                            <h5>停留30分鐘</h5>
+                        </div>
+                    </div>
+                    <div class="spot_img">
+                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                    </div>
+                    <p class="spot_desc">位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。</p>
+                    <div class="spot_loc">
+                        <font-awesome-icon icon="fa-solid fa-location-dot" />
+                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                    </div>
+                </section>
+                <section class="spot" id="spot4">
+                    <div class="spot_title">
+                        <h3>劉興欽漫畫館</h3>
+                        <div class="time">
+                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
+                            <h5>停留30分鐘</h5>
+                        </div>
+                    </div>
+                    <div class="spot_img">
+                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                    </div>
+                    <p class="spot_desc">位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。</p>
+                    <div class="spot_loc">
+                        <font-awesome-icon icon="fa-solid fa-location-dot" />
+                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                    </div>
+                </section>
+                <section class="spot" id="spot5">
+                    <div class="spot_title">
+                        <h3>內灣隱藏版咖啡</h3>
                         <div class="time">
                             <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
                             <h5>停留30分鐘</h5>
@@ -61,19 +129,22 @@
                 </section>
             </article>
             <div class="sidebar">
-                <nav class="route">
-                    <ol>
-                        <li>合興車站</li>
-                        <li>內灣愛情故事館</li>
-                        <li>內灣老街</li>
-                        <li>劉興欽漫畫館</li>
-                        <li>內灣隱藏版咖啡</li>
-                    </ol>
-                </nav>
-                <div class="collect">
-                    <font-awesome-icon icon="fa-solid fa-bookmark" />
-                    <label for="">加入收藏清單</label>
+                <div class="route">
+                    <Anchor show-ink>
+                        <AnchorLink href="#spot1" title="合興車站" />
+                        <AnchorLink href="#spot2" title="內灣愛情故事館" />
+                        <AnchorLink href="#spot3" title="內灣老街" />
+                        <AnchorLink href="#spot4" title="劉興欽漫畫館" />
+                        <AnchorLink href="#spot5" title="內灣隱藏版咖啡" />
+                    </Anchor>
                 </div>
+                <label class="collect">
+                    <input type="checkbox" class="trip_tag" />
+                    <span>
+                        <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark"/>
+                        加入收藏
+                    </span>
+                </label>
             </div>
         </section>
 
@@ -409,24 +480,104 @@
             position: sticky;
             top: $sp12;
             border-radius: 10px;
-            border: 3px solid $textColor_default;
+            border: 2px solid $textColor_default;
             background-color: $bgColor_default;
             margin-bottom: $sp8;
+            overflow: hidden;
+            padding: 0 16px;
             @media (min-width: $md){
+                border: 3px solid $textColor_default;
                 width: calc((100% - 352px) / 4 + 64px);
+                padding: 0;
             }
             .route{
                 display: none;
+                a:hover{
+                    color: $textColor_tint;
+                }
                 @media (min-width: $md){
                     display: block;
                     padding: $sp3;
                     border-bottom: 3px solid $textColor_default;
-            }
+                    font-size: 16px;
+                }
+                @media (min-width: $xl){
+                    font-size: 20px;
+                }
+                .ivu-affix{
+                    position: relative;
+                }
+                .ivu-anchor-ink-ball {
+                    border: 2px solid $textColor_default;
+                    background-color: $textColor_default;
+                    width: 10px;
+                    height: 10px;
+                }
+                .ivu-anchor-ink{
+                    left: 4px;
+                }
+                .ivu-anchor-ink:before{
+                    background-color: $textColor_default;
+                }
+                .ivu-anchor-link-title{
+                    color: $textColor_default;
+                }
+                .ivu-anchor-link-active>.ivu-anchor-link-title{
+                    color: $textColor_default;
+                    font-weight: 600;
+                    @media (min-width: $md){
+                    font-size: 18px;
+                    }
+                    @media (min-width: $xl){
+                    font-size: 24px;
+                    }
+                    
+                }
             }
             .collect{
-                padding: $sp2;
-                @media (min-width: $md){
-                padding: $sp3;
+                display: flex;
+                // align-items: center;
+                justify-content: center;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                
+                .trip_tag {
+                    position: absolute;
+                    display: none;
+                    // width: 100%;
+                    // height: 100%;
+                    + span {
+                        padding: 16px;
+                        // width: 100%;
+                        // height: 100%;
+                        // @include sm_p;
+                        font-size: 14px;
+                        // padding: 4px 12px;
+                        writing-mode: vertical-lr;
+                        @media (min-width: $md){
+                        font-size: 18px;
+                        writing-mode: horizontal-tb;
+                        }
+                        @media (min-width: $xl){
+                        font-size: 24px;
+                        }
+                        // display: inline-flex;
+                        // justify-content: center;
+                        // align-items: center;
+                        // background: $bgColor_default;
+                        cursor: pointer;
+                    }
+                    &:checked + span {
+                        color: $textColor_white;
+                        font-weight: bold;
+                        background: $textColor_default;
+                    }
+                }
+                .bookmark{
+                    @media (min-width: $md){
+                        padding-right: $sp1;
+                    }
                 }
             }
         }
