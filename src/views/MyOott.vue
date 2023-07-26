@@ -1,5 +1,5 @@
 <template>
-    <div class="collection_wrap">
+    <div class="oott_collection_wrap">
         <h2>穿搭管理</h2>
         
         <div class="collection_container">
@@ -54,20 +54,21 @@
     </div>
 </template>
 
-<style lang="scss" scope>
-    .collection_wrap{
+<style lang="scss" scoped>
+    .oott_collection_wrap{
         width: 90%;
         margin: auto;
 
         .collection_container{
             display: flex;
+            gap: 30px;
         }
 
 
-        @media (min-width : 1250px) {
+        @media (min-width: 1200px) {
             box-sizing: border-box;
-                width: 1200px;            
-            }
+            width: 1175px;
+        }
 
         h2{
            margin: 41px auto 44px auto;
@@ -85,9 +86,6 @@
         // status bar
         .status_bar{
             margin-bottom: 39px;
-            @media (min-width: 768px) {
-            margin-left: 30px;
-            }
 
             .status_message{
                 color: var(--yellow-tint, #FBEDC8);
@@ -114,12 +112,13 @@
 
             .oott_default{
                 box-sizing: border-box;
-                margin: 16px;
+                margin: 6px;
                 width: 257px;
                 height: 440px;
                 @media (min-width:768px) {
                     width: 276px;
                     height: 463px;
+                    margin: 12px;
                 }
                 
                 .oott_card_tag{
