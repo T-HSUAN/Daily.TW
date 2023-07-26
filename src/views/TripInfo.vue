@@ -549,7 +549,7 @@
                     // height: 100%;
                     + span {
                         padding: 16px;
-                        // width: 100%;
+                        width: 100%;
                         // height: 100%;
                         // @include sm_p;
                         font-size: 14px;

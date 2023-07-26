@@ -490,6 +490,7 @@ export default {
     // 行程區塊
     .index_trip {
         position: relative;
+        background-color: $bgColor_tint;
         padding: $sp12 0 $sp8;
         @media (min-width: $xl) {
             padding: 160px 0 80px;
@@ -651,6 +652,7 @@ export default {
     .index_ticket {
         position: relative;
         padding: $sp12 0 $sp8;
+        background-color: $bgColor_tint;
         @media (min-width: 768px) {
             padding: 160px 0 80px;
         }
