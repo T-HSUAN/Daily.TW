@@ -145,12 +145,12 @@
 }
 @media all and (min-width: $md) {
     .payment_page {
-        @include width($md);
-        padding: $sp4 $sp3 $sp8;
+        @include width($xl);
+        padding: $sp4 $sp4 $sp8;
         display: flex;
         justify-content: center;
         .pay_details {
-            width: 30%;
+            width: 35%;
             height: 100vh;
             margin: $sp10 $sp3 0 0;
             .pay_details_content {
@@ -206,7 +206,7 @@
             }
         }
         .pay_info {
-            width: 60%;
+            width: 65%;
             .methods,
             .order_info,
             .recipient_info {
@@ -263,7 +263,7 @@
         @include width($xl);
         padding: $sp4 $sp4 $sp8;
         .pay_details {
-            width: 30%;
+            width: 35%;
             margin: $sp10 $sp4 0 0;
             .pay_details_content {
                 padding: $sp3 $sp4;
@@ -316,7 +316,7 @@
             }
         }
         .pay_info {
-            width: 60%;
+            width: 65%;
             .methods,
             .order_info,
             .recipient_info {

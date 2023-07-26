@@ -10,33 +10,14 @@
                         煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
                     </p>
                     <a href="/plan">
-                        <btn class="btn"
-                            >立即體驗<img
-                                src="~@/assets/img/btn_arrow.png"
-                                alt=""
-                                class="arrow_white" />
-                            <img
-                                src="~@/assets/img/btn_arrow_hover.png"
-                                alt=""
-                                class="arrow_brown"
-                        /></btn>
+                        <btn class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                            <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                        </btn>
                     </a>
                     <div class="coverPic">
-                        <img
-                            src="~@/assets/img/index_boy.png"
-                            alt=""
-                            class="boy"
-                        />
-                        <img
-                            src="~@/assets/img/layout/plan_duck.png"
-                            alt=""
-                            class="duck"
-                        />
-                        <img
-                            src="~@/assets/img/index_plan_cover_example.png"
-                            alt=""
-                            class="mainPic"
-                        />
+                        <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
+                        <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
+                        <img src="~@/assets/img/index_plan_cover_example.png" alt="" class="mainPic" />
                     </div>
                 </div>
             </section>
@@ -48,16 +29,8 @@
                 </div>
                 <div class="title">
                     <div class="duckDeco">
-                        <img
-                            src="~@/assets/img/duck_trace.png"
-                            alt=""
-                            class="trace"
-                        />
-                        <img
-                            src="~@/assets/img/duck_green.png"
-                            alt=""
-                            class="duck"
-                        />
+                        <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                        <img src="~@/assets/img/duck_green.png" alt="" class="duck" />
                     </div>
                     <h2>精選出遊特輯</h2>
                 </div>
@@ -66,60 +39,35 @@
                         <div class="head">
                             <div class="tripTitle">台中文青一日遊</div>
                             <div class="tripCover">
-                                <img
-                                    src="~@/assets/img/index_trip_cover_example.png"
-                                    alt=""
-                                />
+                                <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
                             </div>
                         </div>
                         <div class="info">
                             <div class="tripSpots">
                                 <div class="spot spot1">
-                                    <img
-                                        src="~@/assets/img/trip_flag_white.svg"
-                                        alt=""
-                                    />
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
                                     <h5>屯區藝文中心</h5>
                                 </div>
                                 <div class="spot spot2">
-                                    <img
-                                        src="~@/assets/img/trip_flag_white.svg"
-                                        alt=""
-                                    />
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
                                     <h5>太平買菸場</h5>
                                 </div>
                                 <div class="spot spot3">
-                                    <img
-                                        src="~@/assets/img/trip_flag_white.svg"
-                                        alt=""
-                                    />
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
                                     <h5>新盛綠川水岸廊道</h5>
                                 </div>
                                 <div class="spot spot4">
-                                    <img
-                                        src="~@/assets/img/trip_flag_white.svg"
-                                        alt=""
-                                    />
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
                                     <h5>第二市場</h5>
                                 </div>
                             </div>
                             <div class="deco">
-                                <img
-                                    src="~@/assets/img/trip_deco_footPrint.svg"
-                                    alt=""
-                                />
+                                <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                             </div>
                             <a href="/trip_info">
-                                <btn class="btn"
-                                    >馬上出發<img
-                                        src="~@/assets/img/btn_arrow.png"
-                                        alt=""
-                                        class="arrow_white" />
-                                    <img
-                                        src="~@/assets/img/btn_arrow_hover.png"
-                                        alt=""
-                                        class="arrow_brown"
-                                /></btn>
+                                <btn class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                                </btn>
                             </a>
                         </div>
                     </div>
@@ -134,16 +82,8 @@
                 <div class="title">
                     <div class="duck">
                         <div class="duckDeco">
-                            <img
-                                src="~@/assets/img/duck_trace.png"
-                                alt=""
-                                class="trace"
-                            />
-                            <img
-                                src="~@/assets/img/duck_yellow.png"
-                                alt=""
-                                class="duck"
-                            />
+                            <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                            <img src="~@/assets/img/duck_yellow.png" alt="" class="duck" />
                         </div>
                     </div>
                     <h2>人氣穿搭特輯</h2>
@@ -151,16 +91,10 @@
                 <div class="content">
                     <div class="wrap">
                         <div class="oottCards">
-                            <oottCard
-                                class="oottCard"
-                                v-for="(oott, index) in ootts"
-                                :key="index"
-                                :oottPhoto="oott.oottPhoto"
-                                :oottCardTags="oott.oottCardTags"
-                                :oottCardDate="oott.oottCardDate"
-                                :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                :oottCardAuthor="oott.oottCardAuthor"
-                            ></oottCard>
+                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
+                                :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                         </div>
                     </div>
                     <div class="panel">
@@ -184,16 +118,8 @@
                 <div class="title">
                     <div class="duck">
                         <div class="duckDeco">
-                            <img
-                                src="~@/assets/img/duck_trace.png"
-                                alt=""
-                                class="trace"
-                            />
-                            <img
-                                src="~@/assets/img/duck_blue.png"
-                                alt=""
-                                class="duck"
-                            />
+                            <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                            <img src="~@/assets/img/duck_blue.png" alt="" class="duck" />
                         </div>
                     </div>
                     <h2>景點票券優惠</h2>
@@ -201,17 +127,10 @@
                 <div class="content">
                     <div class="wrap">
                         <div class="ticketCards">
-                            <ticketCard
-                                class="ticketCard"
-                                v-for="(ticket, index) in tickets"
-                                :key="index"
-                                :ticketPhoto="ticket.ticketPhoto"
-                                :ticketTitle="ticket.ticketTitle"
-                                :ticketLocation="ticket.ticketLocation"
-                                :ticketTags="ticket.ticketTags"
-                                :ticketPrice="ticket.ticketAuthor"
-                                :FinalPrice="ticket.finalPrice"
-                            ></ticketCard>
+                            <ticketCard class="ticketCard" v-for="(ticket, index) in tickets" :key="index"
+                                :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
+                                :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
+                                :ticketPrice="ticket.ticketAuthor" :FinalPrice="ticket.finalPrice"></ticketCard>
                         </div>
                     </div>
                     <a href="/ticket">
@@ -221,6 +140,7 @@
             </section>
         </main>
     </div>
+    <router-link to="/frontbackstage">test</router-link>
 </template>
 
 <script>
@@ -317,6 +237,7 @@ export default {
 #app {
     background-color: $bgColor_default;
 }
+
 .index {
     // 全頁設定
 
@@ -377,19 +298,24 @@ export default {
 
     .btn {
         position: relative;
+
         img {
             width: 40px;
+
             @media (min-width: $md) {
                 width: 45px;
             }
         }
+
         .arrow_white {
             position: absolute;
             right: 24px;
+
             @media (min-width: $md) {
                 right: 32px;
             }
         }
+
         &:hover {
             .arrow_white {
                 display: none;
@@ -465,6 +391,7 @@ export default {
                     position: absolute;
                     top: -$sp10;
                     left: $sp15;
+
                     @media (min-width: 768px) {
                         rotate: -45deg;
                         width: $sp15;
@@ -478,6 +405,7 @@ export default {
                     width: 104px;
                     bottom: 0;
                     left: $sp2;
+
                     @media (min-width: 768px) {
                         width: 248px;
                         left: -$sp4;
@@ -492,6 +420,7 @@ export default {
         position: relative;
         background-color: $bgColor_tint;
         padding: $sp12 0 $sp8;
+
         @media (min-width: $xl) {
             padding: 160px 0 80px;
         }
@@ -545,17 +474,20 @@ export default {
                             letter-spacing: 0.06em;
                         }
                     }
+
                     .tripCover {
                         width: 80%;
 
                         @media (min-width: $xl) {
                             width: 640px;
                         }
+
                         img {
                             width: 100%;
                         }
                     }
                 }
+
                 .info {
                     position: relative;
                     display: flex;
@@ -576,26 +508,33 @@ export default {
                     .tripSpots {
                         display: flex;
                         flex-direction: column;
+
                         @media (min-width: $xl) {
                             gap: $sp2;
                         }
+
                         .spot {
                             display: flex;
+
                             @media (min-width: $xl) {
                                 color: $textColor_white;
                             }
                         }
+
                         h5 {
                             font-weight: 400;
                         }
                     }
+
                     .deco {
                         width: 24px;
                         margin-top: $sp2;
+
                         @media (min-width: $xl) {
                             width: 32px;
                         }
                     }
+
                     a {
                         margin-top: $sp2;
 
@@ -615,6 +554,7 @@ export default {
         position: relative;
         background-color: $bgColor_default;
         padding: $sp12 0 $sp8;
+
         @media (min-width: 768px) {
             padding: 160px 0 80px;
         }
@@ -628,17 +568,21 @@ export default {
             .wrap {
                 margin-bottom: 16px;
                 overflow-x: scroll;
+
                 @media (min-width: 768px) {
                     overflow: visible;
                 }
+
                 .oottCards {
                     display: flex;
                     gap: 32px;
+
                     .oottCard {
                         flex-shrink: 0;
                     }
                 }
             }
+
             .panel {
                 display: flex;
                 justify-content: center;
@@ -653,6 +597,7 @@ export default {
         position: relative;
         padding: $sp12 0 $sp8;
         background-color: $bgColor_tint;
+
         @media (min-width: 768px) {
             padding: 160px 0 80px;
         }
@@ -664,9 +609,11 @@ export default {
 
             .wrap {
                 margin-bottom: 32px;
+
                 .ticketCards {
                     display: flex;
                     overflow-x: scroll;
+
                     @media (min-width: 1260px) {
                         justify-content: space-between;
                         overflow: visible;
@@ -675,6 +622,7 @@ export default {
                     .ticketCard {
                         flex-shrink: 0;
                         margin-left: 32px;
+
                         @media (min-width: 1260px) {
                             margin-left: 0;
                         }

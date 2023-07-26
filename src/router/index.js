@@ -7,6 +7,14 @@ const routesUser = [
         name: "home",
         component: HomeView,
     },
+    // {
+    //     path: "/",
+    //     name: "frontbackstage",
+    //     component: () =>
+    //         import(
+    //             /* webpackChunkName: "frontbackstage" */ "@/views/FrontBackStage.vue"
+    //         ),
+    // },
     {
         path: "/plan",
         name: "plan",
