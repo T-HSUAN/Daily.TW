@@ -292,7 +292,7 @@ export default defineComponent({
         h2{
             @include sm_h2;
             line-height: 150%;
-            animation: fadeIn 1s ease-in;
+            animation: fadeInDown 1s ease-in;
             @media (min-width: $md){
                 @include xl_h1;
             }
@@ -303,7 +303,7 @@ export default defineComponent({
             white-space: nowrap;
             display: flex;
             flex-direction: column;
-            animation: fadeIn 1s ease-in;
+            animation: fadeInDown 1s ease-in;
             @media (min-width: $md){
                 @include xl_h2;
                 flex-direction: row;
@@ -828,7 +828,7 @@ export default defineComponent({
         }
     }
 }
-@keyframes fadeIn{
+@keyframes fadeInDown{
     0%{opacity: 0; transform: translate(0, -100%);}
     100%{opacity: 1; transform: translate(0, 0);}
 }

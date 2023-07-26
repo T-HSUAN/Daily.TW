@@ -186,13 +186,13 @@ const routesUser = [
     },
     {
         path: "/my_oott",
-        name: "OottEditView",
+        name: "MyOott",
         component: () =>
             import(/* webpackChunkName: "MyOott" */ "@/views/MyOott.vue"),
     },
     {
         path: "/oott_collection_view",
-        name: "OottEditView",
+        name: "OottCollectionView",
         component: () =>
             import(
                 /* webpackChunkName: "OottCollectionView" */ "@/views/OottCollectionView.vue"

@@ -201,6 +201,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center center;
     background-image: url("~@/assets/img/layout/plan_bg_sm.png");
+    animation: fadeIn .5s ease-in;
     @media (min-width: $md){
         background-image: url("~@/assets/img/layout/plan_bg_xl.png");
     }
@@ -260,6 +261,7 @@ export default {
                     position: relative;
                     right: 80px;
                     top: 40px;
+                    animation: float 1s linear infinite alternate;
                     img{
                         width: 145px;
                     }
@@ -268,6 +270,7 @@ export default {
                     position: relative;
                     right: 30px;
                     top: 100px;
+                    animation: float 1s .5s linear infinite alternate;
                     img{
                         width: 126px;
                     }
@@ -279,6 +282,7 @@ export default {
                 position: relative;
                 left: 20px;
                 top: 30px;
+                animation: float 1s .5s linear infinite alternate;
                 @media (min-width: $md){
                     left: 30px;
                     top: 0;
@@ -294,6 +298,7 @@ export default {
                 position: relative;
                 left: 30px;
                 top: 40px;
+                animation: float 1s linear infinite alternate;
                 @media (min-width: $md){
                     top: 50px;
                     left: 60px;
@@ -614,6 +619,14 @@ export default {
                 }
             }
         }
+    }
+    @keyframes float{
+        0%{transform: translateY(0);}
+        100%{transform: translateY(10px);}
+    }
+    @keyframes fadeIn{
+        0%{opacity: 0;}
+        100%{opacity: 1;}
     }
 }
 </style>

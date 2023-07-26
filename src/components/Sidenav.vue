@@ -34,7 +34,7 @@
                 <div class="sidenav_title">
                     <h4>穿搭管理</h4>
                     <div class="sidenav_subtitle_wrap" v-if="showSubtitle.oott">
-                        <router-link to="/member_oott" class="sidenav_subtitle"
+                        <router-link to="/my_oott" class="sidenav_subtitle"
                             >我的穿搭</router-link
                         >
                     </div>
@@ -50,12 +50,12 @@
                     <h4>收藏管理</h4>
                     <div class="sidenav_subtitle_wrap" v-if="showSubtitle.like">
                         <router-link
-                            to="/member_like_trip"
+                            to="/trip_collection_view"
                             class="sidenav_subtitle"
                             >行程收藏</router-link
                         >
                         <router-link
-                            to="/member_like_oott"
+                            to="/oott_collection_view"
                             class="sidenav_subtitle"
                             >穿搭收藏</router-link
                         >
@@ -74,7 +74,7 @@
                 <div class="sidenav_title">
                     <h4>訂單紀錄</h4>
                     <div class="sidenav_subtitle_wrap" v-if="showSubtitle.order">
-                        <router-link to="/member_order" class="sidenav_subtitle"
+                        <router-link to="/myorder" class="sidenav_subtitle"
                         >我的訂單</router-link
                     >
                     </div>
