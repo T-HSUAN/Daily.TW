@@ -113,7 +113,7 @@ export default {
                     oottCardAuthor: "Susan",
                 },
                 {
-                    oottPhoto: require("@/assets/img/oott_41.png"),
+                    oottPhoto: require("@/assets/img/oott_card_example.png"),
                     oottCardTags: "#街頭 #潮流",
                     oottCardDate: "2022 / 7 / 6",
                     oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),

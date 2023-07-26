@@ -73,9 +73,11 @@
                 </div>
                 <div class="sidenav_title">
                     <h4>訂單紀錄</h4>
-                    <router-link to="/member_order" class="sidenav_subtitle"
+                    <div class="sidenav_subtitle_wrap" v-if="showSubtitle.order">
+                        <router-link to="/member_order" class="sidenav_subtitle"
                         >我的訂單</router-link
                     >
+                    </div>
                 </div>
             </li>
         </ul>
@@ -86,20 +88,50 @@
 export default {
     data() {
         return {
-            showSubtitleMember: false,
-            showSubtitleOott: false,
-            showSubtitleLike: false,
-            showSubtitleOrder: false,
-            showSubtitle: {
-                order: false,
+            showSubtitle : {
+                member: true,
+                oott: true,
+                like: true,
+                order: true,
             },
-            windowWidth: 1600,
+            windowWidth: 0,
         };
     },
+    mounted() {
+        this.windowWidth =  window.innerWidth;
+        window.addEventListener("resize", this.resizeHandler);
+        // Set the initial showSubtitle values based on the window's width
+        this.updateShowSubtitle();
+    },
+    unmounted() {
+        window.removeEventListener("resize", this.resizeHandler);
+    },
     methods: {
-        toggleSubtitle(key) {
-            if (this.windowWidth > 1024) return;
+        resizeHandler(e){
+            this.windowWidth =  window.innerWidth;
+            this.updateShowSubtitle(); // Update showSubtitle when window is resized
+        },
+        toggleSubtitle(key){
+            if (this.windowWidth > 767){
+                return;
+            }
             this.showSubtitle[key] = !this.showSubtitle[key];
+        },
+        updateShowSubtitle() {
+            // Set all the showSubtitle values to false when the window's width is less than 768px
+            if (this.windowWidth < 768) {
+                for (const key in this.showSubtitle) {
+                    this.showSubtitle[key] = false;
+                }
+            } else {
+                // Restore the original values when the window's width is greater than or equal to 768px
+                this.showSubtitle = {
+                    member: true,
+                    oott: true,
+                    like: true,
+                    order: true,
+                };
+            }
         },
     },
 };

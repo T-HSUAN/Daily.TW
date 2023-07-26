@@ -1,168 +1,186 @@
 <!-- 專屬旅著題目 -->
 <template>
-<!-- 第一題 -->
-<div class="question">
-    <div class="title">
-        <div class="number">Q1</div>
-        <h2>現在想去哪裡玩呢？</h2>
-    </div>
-    <div class="pic">
-        <div class="place">
-            <div class="place_bubble">
-                <img src="~@/assets/img/layout/plan_q1-2.png" alt="">
+<div class="question_container">
+    <!-- 第一題 -->
+    <div v-if="currentQuestionIndex === 0" class="question">
+        <div class="title">
+            <div class="number">Q1</div>
+            <h2>現在想去哪裡玩呢？</h2>
+        </div>
+        <div class="pic">
+            <div class="place">
+                <div class="place_bubble">
+                    <img src="~@/assets/img/layout/plan_q1-2.png" alt="">
+                </div>
+                <div class="place_bubble">
+                    <img src="~@/assets/img/layout/plan_q1-3.png" alt="">
+                </div>
             </div>
-            <div class="place_bubble">
-                <img src="~@/assets/img/layout/plan_q1-3.png" alt="">
+            <div class="taiwan">
+                <img src="~@/assets/img/layout/plan_q1-1.png" alt="">
             </div>
-        </div>
-        <div class="taiwan">
-            <img src="~@/assets/img/layout/plan_q1-1.png" alt="">
-        </div>
-        <div class="place">
-            <div class="place_bubble">
-                <img src="~@/assets/img/layout/plan_q1-4.png" alt="">
-            </div>
-            <div class="place_bubble">
-                <img src="~@/assets/img/layout/plan_q1-5.png" alt="">
-            </div>
-        </div>
-    </div>
-    <div class="selection">
-        <div class="boy">
-            <img src="~@/assets/img/layout/plan_q1-6.png" alt="">
-        </div>
-        <select name="" id="selection_main">
-            <option value="">請選擇1~3個地區</option>
-            <option value="">台北</option>
-            <option value="">台中</option>
-            <option value="">高雄</option>
-        </select>
-    </div>
-    <button class="btn">
-        下一題
-        <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
-        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
-    </button>
-</div>
-<!-- 第二題 -->
-<div class="question">
-    <div class="title">
-        <div class="number">Q2</div>
-        <h2>看到下列景點標籤，<br>哪些是你感興趣的呢？</h2>
-    </div>
-    <div class="question_main">
-        <div class="wheel">
-            <img src="~@/assets/img/layout/plan_q2-2.png" alt="">
-        </div>
-        <div class="tags_container">
-            <span class="hint">* 請選擇至少3個</span>
-            <div class="tags_wrap">
-                <label v-for="(placeTag, placeIndex) in placeTags" :key="placeIndex">
-                    <input type="checkbox" class="tag" />
-                    <span># {{ placeTag }}</span>
-                </label>
+            <div class="place">
+                <div class="place_bubble">
+                    <img src="~@/assets/img/layout/plan_q1-4.png" alt="">
+                </div>
+                <div class="place_bubble">
+                    <img src="~@/assets/img/layout/plan_q1-5.png" alt="">
+                </div>
             </div>
         </div>
-        <div class="rabbit">
-            <img src="~@/assets/img/layout/plan_q2-3.png" alt="">
+        <div class="selection">
+            <div class="boy">
+                <img src="~@/assets/img/layout/plan_q1-6.png" alt="">
+            </div>
+            <select name="" id="selection_main">
+                <option value="">請選擇1~3個地區</option>
+                <option value="">台北</option>
+                <option value="">台中</option>
+                <option value="">高雄</option>
+            </select>
         </div>
-        <div class="luggage">
-            <img src="~@/assets/img/layout/plan_q2-4.png" alt="">
-        </div>
-    </div>
-    <div class="btn_wrap">
-        <button class="cancel_btn">回到上一題</button>
-        <button class="btn">
+        <button @click="nextQuestion" class="btn">
             下一題
             <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
             <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
         </button>
     </div>
-</div>
-<!-- 第三題 -->
-<div class="question">
-    <div class="title">
-        <div class="number">Q3</div>
-        <h2>穿搭風格百百款，<br>選出你愛的 #oott！</h2>
-        <span>( Outfit of the trip )</span>
-    </div>
-    <div class="question_oott">
-        <div class="tags_qa">
-            <div class="subtitle">
-                <h4>平常習慣穿</h4>
-            </div>
-            <div class="tags_wrap">
-                <label v-for="(sexTag, sexIndex) in sexTags" :key="sexIndex">
-                    <input type="checkbox" class="tag" />
-                    <span># {{ sexTag }}</span>
-                </label>
-            </div>
+    <!-- 第二題 -->
+    <div v-if="currentQuestionIndex === 1" class="question">
+        <div class="title">
+            <div class="number">Q2</div>
+            <h2>看到下列景點標籤，<br>哪些是你感興趣的呢？</h2>
         </div>
-        <div class="dashed_line">
-            <img src="~@/assets/img/layout/plan_q3-6.png" alt="">
-        </div>
-        <div class="tags_qa">
-            <div class="subtitle">
-                <h4>喜歡風格有</h4>
-                <span>* 請選擇至少3個</span>
+        <div class="question_main">
+            <div class="wheel">
+                <img src="~@/assets/img/layout/plan_q2-2.png" alt="">
             </div>
-            <div class="tags_wrap">
-                <label v-for="(styleTag, styleIndex) in styleTags" :key="styleIndex">
-                    <input type="checkbox" class="tag" />
-                    <span># {{ styleTag }}</span>
-                </label>
+            <div class="tags_container">
+                <span class="hint">* 請選擇至少3個</span>
+                <div class="tags_wrap">
+                    <label v-for="(placeTag, placeIndex) in placeTags" :key="placeIndex">
+                        <input type="checkbox" class="tag" />
+                        <span># {{ placeTag }}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="rabbit">
+                <img src="~@/assets/img/layout/plan_q2-3.png" alt="">
+            </div>
+            <div class="luggage">
+                <img src="~@/assets/img/layout/plan_q2-4.png" alt="">
             </div>
         </div>
-    </div>
-    <div class="pic">
-        <div class="boy_q3">
-            <img src="~@/assets/img/layout/plan_q3-1.png" alt="">
-        </div>
-        <div class="sunglasses_pants">
-            <div class="sunglasses">
-                <img src="~@/assets/img/layout/plan_q3-2.png" alt="">
-            </div>
-            <div class="pants">
-                <img src="~@/assets/img/layout/plan_q3-3.png" alt="">
-            </div>
-        </div>
-        <div class="shoes">
-            <img src="~@/assets/img/layout/plan_q3-4.png" alt="">
-        </div>
-        <div class="vest">
-            <img src="~@/assets/img/layout/plan_q3-5.png" alt="">
-        </div>
-    </div>
-    <div class="btn_wrap">
-        <button class="cancel_btn">回到上一題</button>
-        <router-link to="/plan_result">
-            <button class="btn">
-                看結果
+        <div class="btn_wrap">
+            <button @click="prevQuestion" class="cancel_btn">回到上一題</button>
+            <button @click="nextQuestion" class="btn">
+                下一題
                 <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
                 <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
             </button>
-        </router-link>
+        </div>
+    </div>
+    <!-- 第三題 -->
+    <div v-if="currentQuestionIndex === 2" class="question">
+        <div class="title">
+            <div class="number">Q3</div>
+            <h2>穿搭風格百百款，<br>選出你愛的 #oott！</h2>
+            <span>( Outfit of the trip )</span>
+        </div>
+        <div class="question_oott">
+            <div class="tags_qa">
+                <div class="subtitle">
+                    <h4>平常習慣穿</h4>
+                </div>
+                <div class="tags_wrap">
+                    <label v-for="(sexTag, sexIndex) in sexTags" :key="sexIndex">
+                        <input type="checkbox" class="tag" />
+                        <span># {{ sexTag }}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="dashed_line">
+                <img src="~@/assets/img/layout/plan_q3-6.png" alt="">
+            </div>
+            <div class="tags_qa">
+                <div class="subtitle">
+                    <h4>喜歡風格有</h4>
+                    <span>* 請選擇至少3個</span>
+                </div>
+                <div class="tags_wrap">
+                    <label v-for="(styleTag, styleIndex) in styleTags" :key="styleIndex">
+                        <input type="checkbox" class="tag" />
+                        <span># {{ styleTag }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="pic">
+            <div class="boy_q3">
+                <img src="~@/assets/img/layout/plan_q3-1.png" alt="">
+            </div>
+            <div class="sunglasses_pants">
+                <div class="sunglasses">
+                    <img src="~@/assets/img/layout/plan_q3-2.png" alt="">
+                </div>
+                <div class="pants">
+                    <img src="~@/assets/img/layout/plan_q3-3.png" alt="">
+                </div>
+            </div>
+            <div class="shoes">
+                <img src="~@/assets/img/layout/plan_q3-4.png" alt="">
+            </div>
+            <div class="vest">
+                <img src="~@/assets/img/layout/plan_q3-5.png" alt="">
+            </div>
+        </div>
+        <div class="btn_wrap">
+            <button @click="prevQuestion" class="cancel_btn">回到上一題</button>
+            <router-link to="/plan_result">
+                <button class="btn">
+                    看結果
+                    <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
+                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
+                </button>
+            </router-link>
+        </div>
     </div>
 </div>
-<Sidenav></Sidenav>
 </template>
 
 <script>
-// import Tag from "@/components/Tag.vue";
-// import Sidenav from "@/components/Sidenav.vue";
-
 export default {
-    components: {
-    //     Tag,
-        // Sidenav,
-     },
     data() {
         return {
+            currentQuestionIndex: 0,
             placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆", "懷舊"],
             sexTags: ["男裝", "女裝", "不限"],
             styleTags: ["日系", "韓系", "美式", "中性", "休閒", "簡約", "復古", "文青", "運動", "潮流", "街頭", "性感", "甜美", "可愛", "氣質"],
         }
-    }
+    },
+    mounted() {
+        this.currentQuestionIndex = 0;
+    },
+    methods: {
+        nextQuestion() {
+            if (this.currentQuestionIndex < 2) {
+            this.currentQuestionIndex++;
+            this.scrollToTop();
+            }
+        },
+        prevQuestion() {
+            if (this.currentQuestionIndex > 0) {
+            this.currentQuestionIndex--;
+            this.scrollToTop();
+            }
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'auto',
+            })
+        },
+    },
 };
 </script>
 
