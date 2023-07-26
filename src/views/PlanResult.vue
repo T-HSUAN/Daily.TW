@@ -44,14 +44,14 @@
                     </div>
                     <div class="plan_place">
                         <div class="pic_swiper">
-                            <div class="place_pic">
-                                <img src="~@/assets/img/layout/plan_result_place.png" alt="">
-                            </div>
-                            <div class="swiper_btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
@@ -72,14 +72,14 @@
                     </div>
                     <div class="plan_place">
                         <div class="pic_swiper">
-                            <div class="place_pic">
-                                <img src="~@/assets/img/layout/plan_result_place.png" alt="">
-                            </div>
-                            <div class="swiper_btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
@@ -100,14 +100,14 @@
                     </div>
                     <div class="plan_place">
                         <div class="pic_swiper">
-                            <div class="place_pic">
-                                <img src="~@/assets/img/layout/plan_result_place.png" alt="">
-                            </div>
-                            <div class="swiper_btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
@@ -128,14 +128,14 @@
                     </div>
                     <div class="plan_place">
                         <div class="pic_swiper">
-                            <div class="place_pic">
-                                <img src="~@/assets/img/layout/plan_result_place.png" alt="">
-                            </div>
-                            <div class="swiper_btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
@@ -301,14 +301,14 @@
                     </div>
                     <div class="plan_place">
                         <div class="pic_swiper">
-                            <div class="place_pic">
-                                <img src="~@/assets/img/layout/plan_result_place.png" alt="">
-                            </div>
-                            <div class="swiper_btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
@@ -321,7 +321,7 @@
                                     <span>停留 1.5 小時</span>
                                 </div>
                                 <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
                                     <a href="#">台中市西區民生路368巷</a>
                                 </div>
                             </div>
@@ -348,14 +348,14 @@
                     </div>
                     <div class="plan_place">
                         <div class="pic_swiper">
-                            <div class="place_pic">
-                                <img src="~@/assets/img/layout/plan_result_place.png" alt="">
-                            </div>
-                            <div class="swiper_btn">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
@@ -368,7 +368,7 @@
                                     <span>停留 1.5 小時</span>
                                 </div>
                                 <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
                                     <a href="#">台中市西區民生路368巷</a>
                                 </div>
                             </div>
@@ -385,16 +385,17 @@
                 <div class="title_footprint"></div>
             </div>
             <div class="result_trip">
-                <TripCard
-                    v-for="(trip, index) in trips"
-                    :key="index"
-                    :tripCardPhoto="trip.tripCardPhoto"
-                    :tripCardTags="trip.tripCardTags"
-                    :tripCardTitle="trip.tripCardTitle"
-                    :tripCardAuthor="trip.tripCardAuthor"
-                    :tripCardDate="trip.tripCardDate"
-                    >
-                </TripCard>
+                <router-link to="/trip_info" v-for="(trip, index) in trips">
+                    <TripCard
+                        :key="index"
+                        :tripCardPhoto="trip.tripCardPhoto"
+                        :tripCardTags="trip.tripCardTags"
+                        :tripCardTitle="trip.tripCardTitle"
+                        :tripCardAuthor="trip.tripCardAuthor"
+                        :tripCardDate="trip.tripCardDate"
+                        >
+                    </TripCard>
+                </router-link>
             </div>
             <a href="/trip">
                 <button class="btn">查看更多</button>
@@ -404,18 +405,32 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
+import { Carousel, Pagination, Slide } from 'vue3-carousel'
+
+import 'vue3-carousel/dist/carousel.css'
+
 import OottCard from "@/components/OottCard.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import TripCard from "@/components/TripCard.vue";
 
-export default{
+export default defineComponent({
+    name: 'Autoplay',
     components: {
+        Carousel,
+        Slide,
+        Pagination,
         OottCard,
         Ticket,
         TripCard,
     },
     data() {
         return {
+            resultPic: [
+                {src: require('@/assets/img/layout/plan_result_place.png')},
+                {src: require('@/assets/img/layout/plan_result_place-2.png')},
+                {src: require('@/assets/img/layout/plan_result_place-3.png')}
+            ],
             ootts:[
 				{
 					oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
@@ -474,7 +489,7 @@ export default{
 			],
         }
     }
-};
+});
 </script>
 
 <style lang="scss">
@@ -800,38 +815,22 @@ export default{
                     .pic_swiper{
                         position: relative;
                         margin: auto;
+                        width: 279px;
+                        flex-shrink: 0;
+                        @media (min-width: $md){
+                            width: 381px;
+                        }
                         @media (min-width: 1024px){
                             margin: 0;
                         }
-                        .place_pic{
-                            width: 279px;
-                            @media (min-width: $md){
-                                width: 381px;
-                            }
-                            img{
-                                width: 100%;
-                            }
+                        img{
+                            width: 100%;
                         }
-                        .swiper_btn{
-                            width: 279px;
-                            position: absolute;
-                            display: flex;
-                            gap: $sp2;
-                            justify-content: center;
-                            padding-top: $sp1;
-                            @media (min-width: $md){
-                                width: 381px;
-                            }
-                            span{
-                                display: inline-block;
-                                width: 15px;
-                                height: 15px;
-                                background-color: $tint_green;
-                                border-radius: 30px;
-                            }
-                            span:nth-child(1){
-                                background-color: $mid_green;
-                            }
+                        .carousel__pagination-button::after{
+                            background-color: $tint_green !important;
+                        }
+                        .carousel__pagination-button--active::after{
+                            background-color: $mid_green !important;
                         }
                     }
                     .place_desc{
