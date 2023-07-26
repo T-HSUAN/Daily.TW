@@ -1,5 +1,6 @@
 <!-- 會員總覽 -->
 <template>
+<div class="member_view">
     <div class="lg_area">
         <h1>會員中心</h1>
         <div class="bg_area">
@@ -237,6 +238,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 <script>
 import Sidenav from "@/components/Sidenav.vue";
@@ -306,39 +308,33 @@ export default {
     },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scope>
 @import "@/assets/scss/baseAndMixin.scss";
+.member_view{
+    max-width: 1175px;
+    box-sizing: border-box;
+    margin: auto;
 .lg_area {
     width: 100%;
     text-align: center;
-    margin-bottom: $sp8;
+    align-items: center;
+    // padding: $sp8 $sp3;
+    
     h1 {
-        padding-top: 60px;
+        margin: 30.5px auto;
+        text-align: center;
+        @media (min-width: 768px) {
+            // margin: 40px auto 80px;
+        }
     }
     .bg_area {
         display: flex;
         justify-content: center;
         .bg_container {
+            margin-bottom: 60px;
             width: 100%;
             @media (min-width: 768px) {
-                width: 900px;
-            }
-        }
-        .sidenav {
-            flex-shrink: 0;
-            height: 506px;
-            // display: none;
-            @media (min-width: 768px) {
-                margin: $sp3 0;
-            }
-            @media (min-width: 1024px) {
-                display: block;
-            }
-        }
-        .bg_container {
-            @media (min-width: 768px) {
-                margin: 0 $sp3;
-                padding: 0 $sp3 $sp3;
+                padding-left: 30px;
             }
         }
     }
@@ -348,30 +344,21 @@ export default {
 .member {
     width: 100%;
     text-align: center;
-    @media (min-width: 768px) {
-        width: 900px;
-    }
     .member_container {
         display: flex;
         justify-content: center;
-        @media (min-width: 768px) {
-            padding-top: 80px;
-        }
-
         .personal_info {
             width: 100%;
             position: relative;
-            @media (min-width: 768px) {
-                width: 900px;
-            }
             .member_title {
                 display: flex;
                 align-items: end;
                 justify-content: space-between;
-                padding: $sp3 0;
-                margin: $sp3;
+                padding: 0 0 $sp3 0;
+                margin: 0 $sp3 $sp3 $sp3;
                 @media (min-width: 768px) {
-                    padding: $sp3 0;
+                    padding: 0 $sp3 $sp3 0;
+                    margin: 0 0 $sp3 0;
                 }
                 border-bottom: 2px solid $textColor_default;
                 h2 {
@@ -440,7 +427,7 @@ export default {
     text-align: center;
     margin: auto;
     @media (min-width: 768px) {
-        width: 900px;
+        // width: 900px;
         padding-top: $sp8;
     }
     .oott_container {
@@ -583,7 +570,6 @@ export default {
     padding-top: $sp1;
     width: 100%;
     @media (min-width: 768px) {
-        width: 900px;
         padding-top: $sp6;
     }
     .big_title {
@@ -608,7 +594,6 @@ export default {
         width: 100%;
         position: relative;
         @media (min-width: 768px) {
-            width: 900px;
             padding-top: $sp3;
         }
         .trip_title {
@@ -667,7 +652,6 @@ export default {
         position: relative;
         width: 100%;
         @media (min-width: 768px) {
-            width: 900px;
             padding-top: $sp3;
         }
         .oott_title {
@@ -705,7 +689,6 @@ export default {
                 width: 100%;
                 @media (min-width: 768px) {
                     justify-content: center;
-                    width: 900px;
                 }
                 .oottCard {
                     flex-shrink: 0;
@@ -743,7 +726,6 @@ export default {
     border-bottom: 2px solid $textColor_default;
     @media (min-width: 768px) {
         padding: $sp3 0 $sp6 0;
-        width: 900px;
         margin: 0;
     }
     .big_title {
@@ -820,5 +802,6 @@ export default {
             bottom: -25px;
         }
     }
+}
 }
 </style>

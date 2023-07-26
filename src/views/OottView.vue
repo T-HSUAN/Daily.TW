@@ -31,7 +31,57 @@
 		</div>
 		<h2>主題穿搭</h2>
 	</div>
+    <div class="content">
+        <div class="wrap">
+            <div class="oottCards">
+                <h2>#主題</h2>
+                <div class="theme_block">
+                    <oottCard
+                        class="oottCard"
+                        v-for="(oott, index) in ootts"
+                        :key="index"
+                        :oottPhoto="oott.oottPhoto"
+                        :oottCardTags="oott.oottCardTags"
+                        :oottCardDate="oott.oottCardDate"
+                        :oottAuthorPhoto="oott.oottAuthorPhoto"
+                        :oottCardAuthor="oott.oottCardAuthor"
+                    ></oottCard>
+                </div>
+            </div>
+            <div class="oottCards">
+                <h2>#主題</h2>
+                <div class="theme_block">
+                    <oottCard
+                        class="oottCard"
+                        v-for="(oott, index) in ootts"
+                        :key="index"
+                        :oottPhoto="oott.oottPhoto"
+                        :oottCardTags="oott.oottCardTags"
+                        :oottCardDate="oott.oottCardDate"
+                        :oottAuthorPhoto="oott.oottAuthorPhoto"
+                        :oottCardAuthor="oott.oottCardAuthor"
+                    ></oottCard>
+                </div>
+            </div>
+            
+        </div>
+        <div class="panel">
+            <button class="arrow">
+                <font-awesome-icon icon="fa-solid fa-arrow-left" />
+            </button>
+            <button class="arrow">
+                <font-awesome-icon icon="fa-solid fa-arrow-right" />
+            </button>
+        </div>
+        <a href="/oott">
+            <btn class="btn">查看更多</btn>
+        </a>
+    </div>
 </div>
+    
+
+    
+
 
 
 <!-- 人氣穿搭 -->
@@ -46,21 +96,44 @@
 		</div>
 		<h2>人氣穿搭</h2>
 	</div>
-    <div class="card_list">
-        <div class="top_wrap">
+    <div class="content">
+        <div class="wrap">
             <div class="oottCards">
                 <oottCard
-                class="oottCard"
-                v-for="(oott, index) in ootts"
-                :key="index"
-                :oottPhoto="oott.oottPhoto"
-                :oottCardTags="oott.oottCardTags"
-                :oottCardDate="oott.oottCardDate"
-                :oottAuthorPhoto="oott.oottAuthorPhoto"
-                :oottCardAuthor="oott.oottCardAuthor"
+                    class="oottCard"
+                    v-for="(oott, index) in ootts"
+                    :key="index"
+                    :oottPhoto="oott.oottPhoto"
+                    :oottCardTags="oott.oottCardTags"
+                    :oottCardDate="oott.oottCardDate"
+                    :oottAuthorPhoto="oott.oottAuthorPhoto"
+                    :oottCardAuthor="oott.oottCardAuthor"
+                ></oottCard>
+            </div>
+            <div class="oottCards">
+                <oottCard
+                    class="oottCard"
+                    v-for="(oott, index) in ootts"
+                    :key="index"
+                    :oottPhoto="oott.oottPhoto"
+                    :oottCardTags="oott.oottCardTags"
+                    :oottCardDate="oott.oottCardDate"
+                    :oottAuthorPhoto="oott.oottAuthorPhoto"
+                    :oottCardAuthor="oott.oottCardAuthor"
                 ></oottCard>
             </div>
         </div>
+        <div class="panel">
+            <button class="arrow">
+                <font-awesome-icon icon="fa-solid fa-arrow-left" />
+            </button>
+            <button class="arrow">
+                <font-awesome-icon icon="fa-solid fa-arrow-right" />
+            </button>
+        </div>
+        <a href="/oott">
+            <btn class="btn">查看更多</btn>
+        </a>
     </div>
 </div>
 
@@ -159,6 +232,8 @@ export default {
                 oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
                 oottCardAuthor: "Max",
             },
+            
+            
       ],
     }
   },
@@ -386,6 +461,48 @@ export default {
 .theme{
     position: relative;
     padding: 184px 0;
+    background-color: $bgColor_tint;
+    .content {
+        padding-left: 32px;
+        margin: 0 auto;
+        max-width: 1200px;
+        text-align: center;
+
+        .wrap {
+            display: flex;
+            margin-bottom: 16px;
+            overflow-x: scroll;
+            gap: 32px;
+            @media (min-width: 768px) {
+                overflow: visible;
+            }
+            .oottCards {
+                padding-top: 60px;
+                display: flex;
+                flex-direction: column;
+                h2{
+                    padding: 10px;
+                    text-align: start;
+                }
+                .theme_block{
+                    display: flex;
+                    gap: 32px;
+                }
+                .oottCard {
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+    .panel {
+        display: flex;
+        justify-content: center;
+        gap: 64px;
+        margin-bottom: 32px;
+        .btn{
+            justify-items: center;
+        }
+    }
     
 }
 
@@ -393,23 +510,47 @@ export default {
 //人氣穿搭
 .top_oott{
     position: relative;
-    padding: 184px 0;
+    padding: 184px 0 80px 0;
     background-color: $bgColor_default;
-    .card_list{
-        display: flex;
-        width: 100%;
-        .oottCards{
+    .content {
+        padding-left: 32px;
+        margin: 0 auto;
+        max-width: 1200px;
+        text-align: center;
+
+        .wrap {
             display: flex;
-            
+            margin-bottom: 16px;
+            overflow-x: scroll;
+            gap: 32px;
+            @media (min-width: 768px) {
+                overflow: visible;
+            }
+            .oottCards {
+                padding-top: 60px;
+                display: flex;
+                gap: 32px;
+                .oottCard {
+                    flex-shrink: 0;
+                }
+            }
+        }
+        .panel {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            margin-bottom: 32px;
         }
     }
+    
 }
 
 
 //穿搭作家
 .writer_oott{
     position: relative;
-    padding: 184px 0;
+    padding: 184px 0 80px 0;
+    background-color: $bgColor_tint;
     .wrap{
         display: flex;
         max-width: 1200px;
