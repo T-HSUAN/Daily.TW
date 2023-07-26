@@ -1,31 +1,26 @@
 <template>
-    <div class="trip_card_default">
-        <!-- 書籤 -->
+    <div class="trip_card_const_default">
         <label>
             <input type="checkbox">
             <span></span>
         </label>
-
-        <!-- <label class="bookmark">
-            <input type="checkbox" />
-            <font-awesome-icon icon="fa-solid fa-bookmark" />
-            <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
-        </label> -->
-        <div class="trip_card_img">
-            <img
-                :src= "tripCardPhoto"
-                alt="景點照片"
-            />
-        </div>
-        <div class="trip_card_text">
-            <span class="trip_card_tags">{{ tripCardTags }}</span>
-            <h3 class="trip_card_title">{{tripCardTitle}}</h3>
-            <p class="trip_card_desc">{{tripCardDesc}}</p>
-            <div class="trip_card_info">
-                <span>{{tripCardAuthor}}</span>
-                <span>{{tripCardDate}}</span>
+        <a href="#">
+            <div class="trip_card_img">
+                <img
+                    :src= "tripCardPhoto"
+                    alt="景點照片"
+                />
             </div>
-        </div>
+            <div class="trip_card_text">
+                <span class="trip_card_tags">{{ tripCardTags }}</span>
+                <h3 class="trip_card_title">{{tripCardTitle}}</h3>
+                <p class="trip_card_desc">{{tripCardDesc}}</p>
+                <div class="trip_card_info">
+                    <span>{{tripCardAuthor}}</span>
+                    <span>{{tripCardDate}}</span>
+                </div>
+            </div>
+        </a>
     </div>
 </template>
 
@@ -45,18 +40,14 @@
 
 <style lang="scss">
 @import "@/assets/scss/main.scss";
-
-.trip_card_default{
+.trip_card_const_default{
     background-color:var(--green-default, #93AE51);
     border-radius: 5px 20px 20px 5px;
-    padding: $sp2;
     width: 276px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+    height: 332px;
     @media (min-width: 768px) {
-        padding: $sp3;
         width: 378px;
+        height: 521px;
     }
     position: relative;
     label{
@@ -97,44 +88,49 @@
         }
     }
     .trip_card_img{
-        width: 100%;
+        padding: 24px;
+        @media (min-width: 768px) {
+            padding: 24px;
+        }
         img{
             width: 100%;
         }
     }
 
     .trip_card_text{
-        margin-top: $sp2;
-        text-align: left;
-        @media (min-width:768px) {
-        margin-top: $sp3; 
-        }
+        margin: 24px;
+        margin-top: 0;
         .trip_card_tags{
             color: var(--green-tint, #DAE5BE);
             font-family: Noto Sans CJK TC;
             font-size: 16px;
             letter-spacing: 0.32px;
+
         }
         .trip_card_title{
+            line-height: 120%;
             text-align: left;
             margin: 7px 0;
             color: var(--text-white, #FEFFF5);
             font-family: Shippori Mincho;
             font-weight: 700;
             letter-spacing: 0.64px;
+            @media (min-width: 768px) {
+                height: 50px;
+            }
+            @media (min-width: 1200px) {
+                height: 70px;
+            }
         }
         .trip_card_desc{
-            max-height: 72px;
+            height: 89px;
             align-self: stretch;
             overflow: hidden;
-            color: $textColor_white;
+            color: var(--text-white, #FEFFF5);
             text-overflow: ellipsis;
-            line-height: 180%; 
-            position: relative;
-            @media (min-width:768px) {
-            max-height: 89px;
             line-height: 165%; 
-            }
+            letter-spacing: 0.54px;
+            position: relative;
             // &::after{
             //     content: '...';
             //     position: absolute;
@@ -149,14 +145,19 @@
             // }
         }
         .trip_card_info{
-            margin-top: 24px;
             display: flex;
             justify-content: space-between;
             color: var(--green-tint, #DAE5BE);
+            margin-top: 12px;
             font-size: 12px;
             @media (min-width:768px) {
                 font-size: 16px;
+                margin-top: 36px;
             }
+            @media (min-width:1200px) {
+                margin-top: 12px;
+            }
+
             font-weight: 500;
             line-height: 150%; 
             letter-spacing: 0.32px;

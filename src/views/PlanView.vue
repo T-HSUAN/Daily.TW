@@ -48,16 +48,6 @@
 </template>
 
 <script>
-// export default {
-//   data(){
-//     return {
-     
-//     }
-//   },
-//   methods: {
-    
-//   }
-// }
 </script>
 
 <style lang="scss">
@@ -70,7 +60,6 @@
     flex-direction: column;
     align-items: center;
     background-color: $bgColor_default;
-    // padding-top: $sp4;
     overflow: hidden;
     background-size: contain;
     background-repeat: no-repeat;
@@ -82,6 +71,7 @@
     .plan_title{
         width: 300px;
         padding-bottom: $sp3;
+        animation: fadeIn .8s ease-in;
         @media (min-width: $md){
             width: 1440px;
         }
@@ -152,6 +142,7 @@
                 bottom: 16px;
                 left: 16px;
                 background-image: url("~@/assets/img/layout/plan_bubble1.png");
+                animation: float 1s linear infinite alternate;
                 @media (min-width: $md){
                     left: 0;
                     bottom: 40px;
@@ -170,6 +161,7 @@
                 right: -30px;
                 z-index: 1;
                 background-image: url("~@/assets/img/layout/plan_bubble3.png");
+                animation: float 1s .5s linear infinite alternate;
                 @media (min-width: $md){
                     left: 50px;
                     bottom: 40px;
@@ -188,6 +180,7 @@
                 bottom: 12px;
                 left: 0;
                 background-image: url("~@/assets/img/layout/plan_bubble2.png");
+                animation: float 1s .5s linear infinite alternate;
                 @media (min-width: $md){
                     bottom: 40px;
                 }
@@ -207,6 +200,7 @@
                 top: 24px;
                 left: -30px;
                 background-image: url("~@/assets/img/layout/plan_bubble4.png");
+                animation: float 1s linear infinite alternate;
                 @media (min-width: $md){
                     left: -60px;
                 }
@@ -223,6 +217,7 @@
                     position: relative;
                     top: 140px;
                     left: 0;
+                    animation: bounce .8s cubic-bezier(1,.01,.83,1.41) 1;
                     img{
                         width: 300px;
                     }
@@ -249,6 +244,7 @@
                     position: relative;
                     right: 30px;
                     top: 60px;
+                    animation: bounce .8s cubic-bezier(1,.01,.83,1.41) 1;
                     img{
                         width: 283px;
                     }
@@ -265,11 +261,12 @@
     .banner_deco{
         position: relative;
         .plan_duck{
-            padding-left: $sp1;
+            // padding-left: $sp1;
             position: absolute;
             bottom: 20%;
-            left: 0;
+            left: -20%;
             width: 100%;
+            animation: walk 7s linear infinite;
             img{
                 width: 20%;
                 min-width: 136px;
@@ -285,6 +282,22 @@
                 vertical-align: bottom;
             }
         }
+    }
+    @keyframes float{
+        0%{transform: translateY(0);}
+        100%{transform: translateY(10px);}
+    }
+    @keyframes bounce{
+        0%{transform: scale(0);}
+        100%{transform: scale(1);}
+    }
+    @keyframes walk{
+        0%{transform: translateX(120%);}
+        100%{transform: translateX(0%);}
+    }
+    @keyframes fadeIn{
+        0%{opacity: 0;}
+        100%{opacity: 1;}
     }
 }
 </style>

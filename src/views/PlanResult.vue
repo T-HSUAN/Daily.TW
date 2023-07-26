@@ -385,18 +385,15 @@
                 <div class="title_footprint"></div>
             </div>
             <div class="result_trip">
-                <router-link to="/trip_info" v-for="(trip, index) in trips">
-                    <TripCard
-                        :key="index"
-                        :tripCardPhoto="trip.tripCardPhoto"
-                        :tripCardTags="trip.tripCardTags"
-                        :tripCardTitle="trip.tripCardTitle" 
-                        :tripCardDesc:="trip.tripCardDesc"
-                        :tripCardAuthor="trip.tripCardAuthor"
-                        :tripCardDate="trip.tripCardDate"
-                        >
-                    </TripCard>
-                </router-link>
+                <TripCard v-for="(trip, index) in trips"
+                    :key="index"
+                    :tripCardPhoto="trip.tripCardPhoto"
+                    :tripCardTags="trip.tripCardTags"
+                    :tripCardTitle="trip.tripCardTitle" 
+                    :tripCardAuthor="trip.tripCardAuthor"
+                    :tripCardDate="trip.tripCardDate"
+                    >
+                </TripCard>
             </div>
             <a href="/trip">
                 <button class="btn">查看更多</button>
@@ -427,6 +424,7 @@ export default defineComponent({
     },
     data() {
         return {
+            // showResultContent: false,
             resultPic: [
                 {src: require('@/assets/img/layout/plan_result_place.png')},
                 {src: require('@/assets/img/layout/plan_result_place-2.png')},
@@ -470,7 +468,6 @@ export default defineComponent({
 					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
 					tripCardTags: "台中・#親子 #情侶 #農場",
 					tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
@@ -478,7 +475,6 @@ export default defineComponent({
 					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
 					tripCardTags: "台中・#親子 #情侶 #農場",
 					tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
@@ -486,13 +482,31 @@ export default defineComponent({
 					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
 					tripCardTags: "台中・#親子 #情侶 #農場",
 					tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
 			],
         }
-    }
+    },
+    // methods: {
+    //     checkScroll() {
+    //         const resultContent = document.querySelector('.result_content');
+    //         if (resultContent) {
+    //             const scrollPosition = window.scrollY;
+    //             const resultContentOffset = resultContent.offsetTop;
+    //             const windowHeight = window.innerHeight;
+    //             if (scrollPosition > resultContentOffset - windowHeight / 2) {
+    //             this.showResultContent = true;
+    //             } else {
+    //             this.showResultContent = false;
+    //             }
+    //         }
+    //     },
+    // },
+    // mounted() {
+    //     window.addEventListener('scroll', this.checkScroll);
+    //     this.checkScroll();
+    // },
 });
 </script>
 
@@ -564,6 +578,7 @@ export default defineComponent({
             }
             h1{
                 display: inline-block;
+                animation: fadeInDown 1s ease-in;
                 @include sm_h1;
                 @media (min-width: $md){
                     @include xl_h1;
@@ -590,6 +605,7 @@ export default defineComponent({
                 position: absolute;
                 top: 72px;
                 left: 100%;
+                animation: fadeInDown 1s ease-in;
                 @media (min-width: $md){
                     position: relative;
                     top: 0;
@@ -609,6 +625,7 @@ export default defineComponent({
                 width: 17px;
                 margin: auto;
                 padding-top: $sp2;
+                animation: fadeInDownLittle 1.2s 1s ease-in infinite;
                 img{
                     width: 100%;
                     height: 79px;
@@ -619,6 +636,7 @@ export default defineComponent({
                 display: block;
                 text-align: center;
                 padding-top: $sp1;
+                animation: fadeInDownLittle 1.2s 1s ease-in infinite;
                 @include sm_p;
                 @media (min-width: $md){
                     @include xl_p;
@@ -720,7 +738,7 @@ export default defineComponent({
                     @media (min-width: $md){
                         flex-direction: row;
                         gap: 0;
-                        padding-bottom: $sp3;
+                        padding-bottom: $sp4;
                     }
                     h3{
                         font-family: 'Shippori Mincho', 'Noto Sans TC', sans-serif;
@@ -810,11 +828,11 @@ export default defineComponent({
                 .plan_place{
                     display: flex;
                     flex-direction: column;
-                    gap: $sp3;
                     padding-bottom: $sp4;
                     @media (min-width: 1024px){
                         flex-direction: row;
-                        padding-bottom: $sp6;
+                        padding-bottom: $sp3;
+                        gap: $sp2;
                     }
                     .pic_swiper{
                         position: relative;
@@ -843,7 +861,7 @@ export default defineComponent({
                         gap: $sp2;
                         @media (min-width: 1024px){
                             justify-content: space-between;
-                            gap: 0;
+                            padding-bottom: $sp3;
                         }
                         .place_content{
                             h4{
@@ -1083,7 +1101,7 @@ export default defineComponent({
                             }
                             p{
                                 display: none;
-                                @media (min-width: $xl){
+                                @media (min-width: 1240px){
                                     display: block;
                                     @include xl_p;
                                     color: $textColor_white;
@@ -1187,6 +1205,14 @@ export default defineComponent({
                 margin: $sp5 0 $sp15 0;
             }
         }
+    }
+    @keyframes fadeInDown{
+        0%{opacity: 0; transform: translate(0, -100%);}
+        100%{opacity: 1; transform: translate(0, 0);}
+    }
+    @keyframes fadeInDownLittle{
+        0%{opacity: 0; transform: translate(0, -20%);}
+        100%{opacity: 1; transform: translate(0, 0);}
     }
     // .result_content{
     //     .content_desc:nth-child(3),

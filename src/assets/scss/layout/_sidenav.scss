@@ -40,9 +40,11 @@
         align-items: center;
         gap: $sp1;
         position: relative;
+        cursor: pointer;
         @media (min-width: $md){
             flex-direction: row;
             align-items: flex-start;
+            cursor: default;
         }
         .icon_box{
             width: 32px;

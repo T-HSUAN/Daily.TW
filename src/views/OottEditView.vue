@@ -98,8 +98,10 @@
                                     <span>{{ seasonTag }}</span>
                                 </label>
                         </div>
-                        <button class="cancel_btn">取消編輯</button>
-                        <button class="btn">送出審核</button>
+                        <div class="button_area">
+                            <button class="cancel_btn">取消編輯</button>
+                            <button class="btn">送出審核</button>
+                        </div>
                     </div>
                 </div>
                 <!-- post_button -->
@@ -127,16 +129,16 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-    @import '@/assets/scss/baseAndMixin.scss';
+    @import '@/assets/scss/main.scss';
     .oott_edit_wrap{
         width: 257px;
         margin: 0 auto;
         @media (min-width: 768px) {
             width: 735px;
         }
-        @media (min-width : 1200px) {
+        @media (min-width : 1250px) {
             box-sizing: border-box;
-            width: 1100px;            
+            width: 1200px;            
         }
         .oott_edit_container{
             display: flex;
@@ -259,6 +261,13 @@ export default{
             .season_tags{
                 span{
                     margin: 3px;
+                }
+            }
+            .button_area{
+                display: flex;
+                justify-content: end;
+                .btn, .cancel_btn{
+                    margin: 12px;
                 }
             }
         }

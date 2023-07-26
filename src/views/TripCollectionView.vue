@@ -1,5 +1,5 @@
 <template>
-    <div class="collection_wrap">
+    <div class="trip_collection_wrap">
         <h2>收藏管理</h2>
 
         <div class="collection_container">
@@ -14,7 +14,7 @@
                         v-for="trip in tripData"
                         key="tripCollection"
                     >
-                        <TripCard
+                        <TripCardConst
                             :tripCardPhoto="trip.place_img1"
                             :tripCardTags="
                                 combineTags(
@@ -34,17 +34,18 @@
     </div>
 </template>
 
-<style lang="scss" scope>
-.collection_wrap {
-    .collection_container {
-        display: flex;
-    }
-
+<style lang="scss" scoped>
+.trip_collection_wrap {
     width: 90%;
     margin: auto;
+    .collection_container {
+        display: flex;
+        gap: 30px;
+    }
+
     @media (min-width: 1200px) {
         box-sizing: border-box;
-        width: 1200px;
+        width: 1175px;
     }
 
     h2 {
@@ -54,16 +55,10 @@
 
     h3 {
         margin-bottom: 8px;
-        @media (min-width: 768px) {
-            margin-left: 30px;
-        }
     }
 
     hr {
         margin-bottom: 32px;
-        @media (min-width: 768px) {
-            margin-left: 30px;
-        }
     }
 
     .card_wrap {
@@ -71,8 +66,8 @@
         flex-wrap: wrap;
         justify-content: center;
 
-        .trip_card_default {
-            margin: 8px 15px;
+        .trip_card_const_default {
+            margin: 8px 9px;
             width: 283px;
             height: 431px;
             @media (min-width: 768px) {
@@ -83,9 +78,23 @@
                 height: 70px;
                 @media (min-width: 768px) {
                     height: 89px;
-                }
+                    }
             }
         }
+            h2{
+               margin: 41px auto 44px auto;
+               text-align: center;
+            }
+
+            h3{
+                margin-bottom: 8px;
+            }
+
+            hr{
+                margin-bottom: 32px;
+            }
+            
+        
     }
 
     /* 等手機板切出來再拿掉(連同上面的class) */
@@ -101,12 +110,12 @@
 </style>
 
 <script>
-import TripCard from "@/components/TripCard.vue";
+import TripCardConst from "@/components/TripCardConst.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
 export default {
     components: {
-        TripCard,
+        TripCardConst,
         Sidenav,
     },
     data() {

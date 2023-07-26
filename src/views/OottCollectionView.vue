@@ -1,5 +1,5 @@
 <template>
-    <div class="collection_wrap">
+    <div class="oott_collection_wrap">
         <h2>收藏管理</h2>
         
         <div class="collection_container">
@@ -9,7 +9,7 @@
                 <h3>穿搭收藏</h3>
                 <hr>
                 <div class="card_wrap">
-                    <div class="card" av-for="oott in oottDta" key="oott.oottCardAuthor">
+                    <div class="card" v-for="oott in oottData" key="oott.oottCardAuthor">
                         <OottCard
                         :oottPhoto= "oott.oottPhoto"
                         :oottCardTags= "oott.oottCardTags"
@@ -26,26 +26,20 @@
     </div>
 </template>
 
-<style lang="scss" scope>
-    .collection_wrap{
+<style lang="scss">
+    .oott_collection_wrap{
         width: 90%;
         margin: auto;
-
         .collection_container{
             display: flex;
-        }
-
-        .collection_content{
-            @media (min-width : 768px) {
-                margin-left: 30px;
-            }
+            gap: 30px;
         }
 
 
-        @media (min-width : 1220px) {
+        @media (min-width: 1200px) {
             box-sizing: border-box;
-                width: 1200px;            
-            }
+            width: 1175px;
+        }
 
         h2{
            margin: 41px auto 44px auto;
@@ -74,6 +68,7 @@
                 @media (min-width:768px) {
                     width: 276px;
                     height: 463px;
+                    margin: 12px;
                 }
                 
                 .oott_card_tag{

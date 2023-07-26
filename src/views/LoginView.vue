@@ -159,16 +159,17 @@ export default {
 
 <style lang="scss" >
     @import '@/assets/scss/baseAndMixin.scss';
-    // *{
-    //     outline: 1px solid red;
-    // }
+
     #app{
         background-color: $bgColor_default;
     }
-    //手機板
+
 
 .loginview{
-    padding: 200px 0 150px;
+    margin: 150px 0 60px;
+    @media all and (min-width: $md){
+        margin: 130px 0;
+    }
     .canvas{  
         width: 83%;
         background-color: $textColor_tint;
@@ -176,10 +177,19 @@ export default {
         border-radius: $sp3;
         position: relative;
         z-index: 2;
+        @media all and (min-width: $md){
+            max-width: 1000px;
+            display: flex;
+            justify-content: center;
+            margin: $sp10 auto;
+        }
         // 變換背景色
         .active {
             border-radius: $sp3;
             background-color: $default_green;
+            @media all and (min-width: $md){
+                border-radius: $sp3 0 0 $sp3;
+            }
         }
         .joinus_sm{
             position: absolute;
@@ -188,6 +198,9 @@ export default {
             left: 50%;
             transform: translateX(-50%);
             overflow: hidden;
+            @media all and (min-width: $md){
+                display: none;
+            }
             img{
                 display: block;
                 height: 100%;
@@ -200,6 +213,11 @@ export default {
             display: flex;
             flex-direction: column;
             align-items: center;
+            @media all and (min-width: $md){
+                width: 50%;
+                border-right: 2px solid $textColor_white;
+                padding: $sp6 0;
+            }
             h2{
                 color: $textColor_white;
                 font-size: $sm_h2;
@@ -207,6 +225,9 @@ export default {
                 font-weight: 900;
                 line-height: 150%; /* 42px */
                 letter-spacing: 0.84px;
+                @media all and (min-width: $md){
+                    font-size: $xl_h2;
+                }
             }
             .login_way{
                 width: 100%;
@@ -219,14 +240,22 @@ export default {
                 border-radius: 5px;
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
                 cursor: pointer;
+                @media all and (min-width: $md){
+                    // width: 410px;
+                    padding: $sp2 $sp3;
+                    width: 80%;
+                }
                 &:hover{
                     background: $tint_yellow;
                 }
                 p{
-                    font-size: $sm_h5;
+                    font-size: $sm_p;
                     margin-left: $sp2;
                     font-weight: 500;
                     letter-spacing: 0.6px;
+                    @media all and (min-width: $md){
+                        font-size: $xl_p;
+                }
                 }
             }
             label{
@@ -237,10 +266,22 @@ export default {
                 letter-spacing: 0.72px;
                 padding: 4px 0;
                 position: relative;
+                @media all and (min-width: $md){
+                    width: 80%;
+                    padding: 0;
+                    font-size: $xl_h4;
+                }
+
             }
             input{
                 width: 100%;
                 box-sizing: border-box;
+                margin: 4px 0 16px;
+                @media all and (min-width: $md){
+                    width: 80%;
+                    padding: $sp1 20px;
+                    margin: $sp1 0 $sp3;
+                }
             }
    
             .login_action{
@@ -249,6 +290,9 @@ export default {
                 justify-content: space-between;
                 align-items: center;
                 margin: 0 0 $sp4;
+                @media all and (min-width: $md){
+                    width: 80%;
+                }
                 label{
                     width: 100px;
                     font-weight: 400;
@@ -257,6 +301,9 @@ export default {
                     flex-direction: row;
                     align-items: center;
                     cursor: pointer;
+                    @media all and (min-width: $md){
+                        font-size: $xl_p;
+                    }
                     &:hover{
                         color: $tint_blue;
                     }
@@ -269,21 +316,34 @@ export default {
                 a{
                     font-size: $sm_p;
                     color: $textColor_white;
+                    @media all and (min-width: $md){
+                        font-size: $xl_p;
+                    }
                     &:hover{
                         color: $tint_blue;
                     }
                 }
             }
+            //加入旅著頁面撐出空間
             .space{
                 padding: 13px 0;
+                @media all and (min-width: $md){
+                    padding: $sp2;
+                }
             }
             .cancel_group{
                 width: 100%;
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+                @media all and (min-width: $md){
+                    justify-content: center;
+                }
                 a:first-child{
                     padding: 0 $sp2;
+                    @media all and (min-width: $md){
+                        display: none;
+                    }
                 }
                 div{
                     padding: $sp1 $sp2;
@@ -295,58 +355,8 @@ export default {
         }
         
         .register{
-            display: none;    
-        }
-        
-    }
-
-}
-    //平板
-    @media all and (min-width: $md){
-    .loginview{
-        padding: 50px 0;
-        .canvas{
-            max-width: 1000px;
-            display: flex;
-            justify-content: center;
-            margin: $sp10 auto;
-            .joinus_sm{
-                display: none;
-            }
-            .active {
-            border-radius: $sp3 0 0 $sp3;
-            }
-            .login{
-                width: 50%;
-                border-right: 2px solid $textColor_white;
-                padding: $sp6 0;
-                h2{
-                    letter-spacing: 2px;
-                }
-                .login_way{
-                    width: 80%;               
-                }
-                label{
-                    width: 80%;
-                }
-                input{
-                    width: 80%;
-                    padding: $sp1 $sp3;
-                }
-                .login_action{
-                    width: 80%;
-                }
-                .space{
-                    padding: $sp2;
-                }
-                .cancel_group{
-                    justify-content: center;
-                    a:first-child{
-                        display: none;
-                    }
-                }
-            }
-            .register{
+            display: none;
+            @media all and (min-width: $md){
                 width: 50%;
                 padding: $sp6 0 0px;
                 display: flex;
@@ -359,97 +369,43 @@ export default {
                     padding: 0 0 $sp5;
                     font-weight: 900;
                     letter-spacing: 2px;
+                    @media all and (min-width: $md){
+                        font-size: $xl_h2;
+                    }
                 }
                 p{
                     font-size: $sm_h4;
                     color:$textColor_white;
                     font-weight: 700;
                     letter-spacing: 0.72px;
+                    @media all and (min-width: $md){
+                        font-size: $xl_h4;
+                    }
                 }
                 .joinus_md{
-                    width: 300px;
+                    max-width: 400px;
                     height: 300px;
-                    overflow: hidden;
-                    margin: $sp4 0 90px;
+                    margin: $sp5 0 65px;
                     img{
-                        display: block;
+                        // display: block;
                         height: 100%;
                         width: 100%;
-                        object-fit: cover;
                     }
                 }
                 .welcome{
                     font-size: $sm_h4;
                     color:$textColor_white;
-                }      
-            }
-        }
-    }
-    }
-    //桌機板
-    @media all and (min-width: $xl){
-    .loginview{
-        .canvas{
-            .login{
-                h2{
-                    font-size: $xl_h2;
-                }
-                .login_way{
-                    width: 410px;
-                    padding: $sp2 $sp3;
-                    p{
-                        font-size: $xl_h5;
+                    @media all and (min-width: $md){
+                        font-size: $xl_h4;
                     }
-                }
-                label{
-                    width: 410px;
-                }
-                input{
-                    width: 410px;
-                    font-size: $xl_p;
-                    margin: $sp1 0 $sp2 0;
-                }
-                .error_message{
-                    color: $warningColor;
-                    font-size: $xl_p;
-                }
-                .login_action{
-                    width: 410px;
-                    label{
-                        font-size: $xl_p;   
-                    }
-                    a{
-                        font-size: $xl_p;
-                    }
-                }
-                .space{
-                    padding: 26px 0 0;
-                }//42px-16px
-                .cancel_group{
-                    padding: 10px 0 10px;
-                    div{
-                        font-size: $xl_p;
-                    }
-                }
-                
-            }
-            .register{
-                h2{
-                    font-size: $xl_h2;
-                }
-                p{
-                    font-size: $xl_h4;
-                }
-                .joinus_md{
-                    width: 380px;
-                }
-                .welcome{
-                    font-size: $xl_h4;
                 }  
-            }
+            }    
         }
+        
     }
-    } 
+
+}
+
 </style>
 
 
