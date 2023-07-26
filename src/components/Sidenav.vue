@@ -75,6 +75,8 @@ export default{
     mounted() {
         this.windowWidth =  window.innerWidth;
         window.addEventListener("resize", this.resizeHandler);
+        // Set the initial showSubtitle values based on the window's width
+        this.updateShowSubtitle();
     },
     unmounted() {
         window.removeEventListener("resize", this.resizeHandler);
@@ -82,12 +84,29 @@ export default{
     methods: {
         resizeHandler(e){
             this.windowWidth =  window.innerWidth;
+            this.updateShowSubtitle(); // Update showSubtitle when window is resized
         },
         toggleSubtitle(key){
             if (this.windowWidth > 767){
                 return;
             }
             this.showSubtitle[key] = !this.showSubtitle[key];
+        },
+        updateShowSubtitle() {
+            // Set all the showSubtitle values to false when the window's width is less than 768px
+            if (this.windowWidth < 768) {
+                for (const key in this.showSubtitle) {
+                    this.showSubtitle[key] = false;
+                }
+            } else {
+                // Restore the original values when the window's width is greater than or equal to 768px
+                this.showSubtitle = {
+                    member: true,
+                    oott: true,
+                    like: true,
+                    order: true,
+                };
+            }
         },
     }
 }
