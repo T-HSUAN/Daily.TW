@@ -1,5 +1,5 @@
 <template>
-    <div class="collection_wrap">
+    <div class="oott_collection_wrap">
         <h2>收藏管理</h2>
         
         <div class="collection_container">
@@ -26,8 +26,8 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-    .collection_wrap{
+<style lang="scss">
+    .oott_collection_wrap{
         width: 90%;
         margin: auto;
         .collection_container{
