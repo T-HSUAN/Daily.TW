@@ -268,10 +268,6 @@ export default {
         .btn_md{
             font-size: $sm_h5;
             padding: 8px 24px;
-            @media (min-width: 768px) {
-            font-size: $xl_h5;
-            padding: 8px 32px;
-            }
             white-space: nowrap;
             color: $textColor_white;
             text-align: center;
@@ -356,9 +352,30 @@ export default {
                 margin-bottom: $sp3;
             }
             .btn{
-                margin: $sp4 0 $sp10 0;
-                @media (min-width: $md){
-                margin: $sp6 0 $sp15 0;
+                font-size: $xl_h5;
+                padding: 8px 32px;
+                white-space: nowrap;
+                color: $textColor_white;
+                text-align: center;
+                font-family: $fontFamily;
+                letter-spacing: 0.6px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 50px;
+                border: 2px solid $textColor_default;
+                background: $textColor_default;
+                cursor: pointer;
+                &:hover {
+                    color: $textColor_default;
+                    background: $textColor_white;
+                    box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+                &:active {
+                    color: $textColor_tint;
+                    border: 2px solid $textColor_tint;
+                    background: $textColor_white;
                 }
             }
         }
@@ -383,9 +400,7 @@ export default {
         width: 100%;
         .oottCards{
             display: flex;
-            .oottcard{
-
-            }
+            
         }
     }
 }

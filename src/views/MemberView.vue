@@ -310,10 +310,17 @@ export default {
 @import "@/assets/scss/baseAndMixin.scss";
 .lg_area {
     width: 100%;
+    margin: auto;
     text-align: center;
-    margin-bottom: $sp8;
-    h1 {
-        padding-top: 60px;
+    padding: $sp8 $sp3;
+    @media (min-width: 768px) {
+        max-width: 1200px;
+    }
+    h1{
+        margin: 40px auto;
+        @media (min-width: 768px) {
+            margin: 40px auto 80px;
+        }
     }
     .bg_area {
         display: flex;
@@ -324,18 +331,7 @@ export default {
                 width: 900px;
             }
         }
-        .sidenav {
-            flex-shrink: 0;
-            height: 506px;
-            // display: none;
-            @media (min-width: 768px) {
-                margin: $sp3 0;
-            }
-            @media (min-width: 1024px) {
-                display: block;
-            }
-        }
-        .bg_container {
+        .bg_container{
             @media (min-width: 768px) {
                 margin: 0 $sp3;
                 padding: 0 $sp3 $sp3;
@@ -351,9 +347,16 @@ export default {
     @media (min-width: 768px) {
         width: 900px;
     }
-    .member_container {
-        display: flex;
-        justify-content: center;
+   .member_container{
+    display: flex;
+    justify-content: center;
+    @media (min-width: 768px) {
+        // padding-top: 80px;
+    }
+    
+    .personal_info{
+        width: 100%;
+        position: relative;
         @media (min-width: 768px) {
             padding-top: 80px;
         }
@@ -362,7 +365,8 @@ export default {
             width: 100%;
             position: relative;
             @media (min-width: 768px) {
-                width: 900px;
+                padding: $sp3 0;
+                margin: $sp3 0;
             }
             .member_title {
                 display: flex;
@@ -820,5 +824,6 @@ export default {
             bottom: -25px;
         }
     }
+}
 }
 </style>
