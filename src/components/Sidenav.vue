@@ -74,7 +74,7 @@
                 <div class="sidenav_title">
                     <h4>訂單紀錄</h4>
                     <div class="sidenav_subtitle_wrap" v-if="showSubtitle.order">
-                        <router-link to="/member_order" class="sidenav_subtitle"
+                        <router-link to="/myorder" class="sidenav_subtitle"
                         >我的訂單</router-link
                     >
                     </div>
