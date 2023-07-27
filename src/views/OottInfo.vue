@@ -401,6 +401,7 @@ import oottCard from "@/components/OottCard.vue";
         padding: 120px 0;
         background-color: $bgColor_default;
         .wrap {
+            padding: 0 5%;
             margin-bottom: 16px;
             overflow-x: scroll; //////////////////////scroll_bar
             @media (min-width: 768px) {

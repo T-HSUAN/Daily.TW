@@ -37,22 +37,47 @@
                     <div class="oottCards">
                         <h2>#主題</h2>
                         <div class="theme_block">
-                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                            <div class="card_list">
+                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
+                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                            </div>
                         </div>
                     </div>
                     <div class="oottCards">
                         <h2>#主題</h2>
                         <div class="theme_block">
-                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                            <div class="card_list">
+                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
+                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                            </div>
                         </div>
                     </div>
-
+                    <div class="oottCards">
+                        <h2>#主題</h2>
+                        <div class="theme_block">
+                            <div class="card_list">
+                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
+                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oottCards">
+                        <h2>#主題</h2>
+                        <div class="theme_block">
+                            <div class="card_list">
+                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
+                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel">
                     <button class="arrow">
@@ -97,6 +122,21 @@
                             :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
                             :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                     </div>
+                    <div class="oottCards">
+                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                    </div>
+                    <div class="oottCards">
+                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                    </div>
+                    <div class="oottCards">
+                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                    </div>
                 </div>
                 <div class="panel">
                     <button class="arrow">
@@ -124,8 +164,8 @@
                         <img src="~@/assets/img/duck_yellow.png" alt="" class="duck">
                     </div>
                     <div class="heading">
-                        <h2>人氣穿搭</h2>
-                        <p>看看他們怎麼玩 /</p>
+                        <h2>風格旅人</h2>
+                        <p>看看他們的#oott/</p>
                     </div>
                 </div>
                 <div class="content">
@@ -134,32 +174,32 @@
                         <h4>Alison</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/layout/plan_result_oott-2_member.png" alt=""></div>
+                        <h4>Susan</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/oott_13.png" alt=""></div>
+                        <h4>DuckLord</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/layout/plan_result_oott-3_member.png" alt=""></div>
+                        <h4>Max</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/oott_01.png" alt=""></div>
+                        <h4>Jeffery</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/oott_11.png" alt=""></div>
+                        <h4>Kay</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/oott_kid.png" alt=""></div>
+                        <h4>Kid</h4>
                     </div>
                     <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
+                        <div class="profilePic"><img src="@/assets/img/oott_03.png" alt=""></div>
+                        <h4>DazzleQueen</h4>
                     </div>
                     <div class="author">
                         <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
@@ -468,19 +508,22 @@ export default {
         background-color: $bgColor_tint;
 
         .content {
-            overflow: hidden;
             padding-left: 32px;
             margin: 0 auto;
             max-width: 1200px;
             text-align: center;
 
+            @media (min-width: 768px) {
+                // overflow: hidden;
+            }
+
             .wrap {
-                display: flex;
                 margin-bottom: 16px;
                 gap: 32px;
 
                 @media (min-width: 768px) {
                     overflow: visible;
+                    display: flex;
                 }
 
                 .oottCards {
@@ -498,22 +541,67 @@ export default {
                         gap: 32px;
                     }
 
-                    .oottCard {
-                        flex-shrink: 0;
+                    .card_list {
+                        display: flex;
+                        gap: 12px;
+                        overflow: scroll;
+
+                        @media (min-width: 768px) {
+                            overflow: visible;
+                            flex-shrink: 0;
+                            width: 300px;
+                            position: relative;
+                            transition: all .5s linear;
+                            height: 560px;
+
+                            &:hover {
+                                width: 960px;
+                                cursor: pointer;
+
+                                .oottCard:nth-child(3) {
+                                    right: 640px;
+                                }
+
+                                .oottCard:nth-child(2) {
+                                    right: 320px;
+                                }
+                            }
+                        }
+
                     }
+
+                    .oottCard {
+                        // width: 279px;
+                        flex-shrink: 0;
+
+                        @media (min-width: 768px) {
+                            margin: 10px;
+                            position: absolute;
+                            right: 0;
+                            transition: all .5s linear;
+
+                        }
+
+                    }
+
                 }
             }
         }
 
         .panel {
-            display: flex;
+            display: none;
             justify-content: center;
             gap: 64px;
             margin-bottom: 32px;
 
-            .btn {
-                justify-items: center;
+            @media (min-width: 768px) {
+                display: flex;
             }
+        }
+
+        .btn {
+            justify-items: center;
+            margin-top: 40px;
         }
 
     }
@@ -536,6 +624,19 @@ export default {
                 display: flex;
                 margin-bottom: 16px;
                 gap: 32px;
+                flex-shrink: 0;
+
+                .oottCard:nth-child(1) {
+                    transform: rotate(-2deg);
+                }
+
+                .oottCard:nth-child(2) {
+                    transform: rotate(2deg);
+                }
+
+                .oottCard:nth-child(3) {
+                    transform: rotate(-2deg);
+                }
 
                 @media (min-width: 768px) {
                     overflow: visible;
@@ -550,13 +651,24 @@ export default {
                         flex-shrink: 0;
                     }
                 }
+
             }
 
             .panel {
                 display: flex;
                 justify-content: center;
                 gap: 64px;
-                margin-bottom: 32px;
+                margin: 32px;
+
+                @media (max-width: 768px) {
+                    display: none;
+                }
+            }
+
+            .btn {
+                justify-items: center;
+                margin-top: 40px;
+
             }
         }
 
@@ -573,6 +685,10 @@ export default {
             display: flex;
             max-width: 1200px;
             margin: 0 auto;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
         }
 
         .heading {
@@ -580,18 +696,25 @@ export default {
             flex-direction: column;
             gap: $sp2;
             width: 280px;
+            text-align: center;
+
+            @media (min-width: 768px) {
+                text-align: start;
+            }
         }
 
         .content {
             width: 100%;
             display: flex;
             gap: $sp5;
+            margin: 0 2%;
             overflow-x: scroll;
             overflow-y: hidden;
 
             .author {
                 width: 128px;
                 text-align: center;
+                margin: $sp1;
 
                 .profilePic {
                     width: 128px;
@@ -606,4 +729,5 @@ export default {
             }
         }
     }
-}</style>
+}
+</style>

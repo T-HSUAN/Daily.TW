@@ -163,8 +163,6 @@ export default {
             column-gap: $sp4;
             row-gap: $sp6;
 
-            @media (min-width: $md) {}
-
             .oott_card {
                 position: relative;
                 cursor: pointer;
@@ -179,4 +177,5 @@ export default {
             margin: 0 auto $sp12;
         }
     }
-}</style>
+}
+</style>
