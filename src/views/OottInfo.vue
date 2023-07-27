@@ -413,26 +413,25 @@ import oottCard from "@/components/OottCard.vue";
                 padding-top: 60px;
                 margin: auto;
                 gap: 30px;
+                flex-shrink: 0;
+
+                .oottCard:nth-child(1) {
+                    transform: rotate(-2deg);
+                }
+
+                .oottCard:nth-child(2) {
+                    transform: rotate(2deg);
+                }
+
+                .oottCard:nth-child(3) {
+                    transform: rotate(-2deg);
+                }
                 @media (min-width: 768px) {
                     display: flex;
                     justify-content: center;
                     flex-direction: row;
                 }
-                .oottCard {
-                    flex-shrink: 0;
-
-                    .oott_default:nth-child(1) {
-                        transform: rotate(-2deg);
-                    }
-
-                    .oott_default:nth-child(2) {
-                        transform: rotate(2deg);
-                    }
-
-                    .oott_default:nth-child(3) {
-                        transform: rotate(-2deg);
-                    }
-                }
+               
             }
         }
         .look_more {
