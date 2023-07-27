@@ -1,6 +1,6 @@
 <template>
     <div class="oott_default">
-        <router-link to="/oottInfo">
+        <router-link to="/oott_Info">
             <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
         </router-link>
         <label>
