@@ -129,13 +129,18 @@ export default {
         },
         saveMenuState() {
             // 使用LocalStorage保存菜单状态
-            localStorage.setItem('menuState', JSON.stringify(this.menu));
+            sessionStorage.setItem('menuState', JSON.stringify(this.menu));
         },
         loadMenuState() {
             // 从LocalStorage中加载菜单状态
-            const savedMenuState = localStorage.getItem('menuState');
+            const savedMenuState = sessionStorage.getItem('menuState');
             if (savedMenuState) {
                 this.menu = JSON.parse(savedMenuState);
+            } else {
+                // 如果LocalStorage中没有保存的菜单状态，则初始化为初始状态
+                this.menu.forEach((item) => {
+                    item.display = "none";
+                })
             }
         },
         handleResize() {

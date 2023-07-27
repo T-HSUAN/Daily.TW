@@ -1,7 +1,7 @@
 <template>
-    <label>
+    <label v-for="item in tagTexts" :key="item">
         <input type="checkbox" class="tag" />
-        <span>{{ tagTexts }}</span>
+        <span>{{ item.default }}</span>
     </label>
 </template>
 

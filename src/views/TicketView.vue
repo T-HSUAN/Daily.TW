@@ -6,7 +6,7 @@
             <img class="banner_sm" :src="require('@/assets/img/ticket_banner_sm.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="updateDisplay" />
+        <Searchbar :Filter="updateDisplay" :tagTexts="tagText" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -112,9 +112,20 @@ export default {
                 title: "景點票券一次購夠GO",
                 img: "",
             },
-            // filter: {
-            //     searchText: "",
-            // },
+            tagText: [
+                { default: " #親子" },
+                { default: " #情侶" },
+                { default: " #小資" },
+                { default: " #風景" },
+                { default: " #樂園" },
+                { default: " #農場" },
+                { default: " #藝文" },
+                { default: " #山林" },
+                { default: " #海邊" },
+                { default: " #放鬆" },
+                { default: " #懷舊" },
+            ]
+            ,
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
             },

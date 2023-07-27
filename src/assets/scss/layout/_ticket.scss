@@ -13,6 +13,10 @@
         width: 276px;
         height: 533px;
     }
+    @media (min-width: $xl) {
+        width: 280px;
+        height: 550px;
+    }
     img {
         width: 100%;
         height: 165px;
@@ -20,6 +24,10 @@
         @media (min-width: 768px) {
             height: 177px;
             margin: 41px 0px;
+        }
+        @media (min-width: $xl) {
+            height: 180px;
+            margin: 41px 0px 32px;
         }
     }
     .ticket_text {
@@ -29,7 +37,7 @@
         height: 150px;
         @media (min-width: 768px) {
             margin: 9px 23px;
-            height: 170px;
+            height: 208px;
         }
         h3 {
             color: $textColor_white;
