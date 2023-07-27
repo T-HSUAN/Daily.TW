@@ -159,9 +159,9 @@ export default {
 
 <style lang="scss" >
     @import '@/assets/scss/baseAndMixin.scss';
-*{
-    outline: 1px solid red;
-}
+// *{
+//     outline: 1px solid red;
+// }
     #app{
         background-color: $bgColor_default;
     }
