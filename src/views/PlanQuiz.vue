@@ -32,12 +32,34 @@
             <div class="boy">
                 <img src="~@/assets/img/layout/plan_q1-6.png" alt="">
             </div>
-            <select name="" id="selection_main">
+            <div class="select_box">
+                <Select v-model="model" multiple>
+                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+            </div>
+            <!-- <select name="" id="selection_main">
                 <option value="">請選擇1~3個地區</option>
-                <option value="">台北</option>
-                <option value="">台中</option>
-                <option value="">高雄</option>
-            </select>
+                <option value="taipei">台北</option>
+                <option value="newtaipei">新北</option>
+                <option value="keelung">基隆</option>
+                <option value="yilan">宜蘭</option>
+                <option value="taoyuan">桃園</option>
+                <option value="hsinchu">新竹</option>
+                <option value="miaoli">苗栗</option>
+                <option value="taichung">台中</option>
+                <option value="changhua">彰化</option>
+                <option value="nantou">南投</option>
+                <option value="yunlin">雲林</option>
+                <option value="chiayi">嘉義</option>
+                <option value="tainan">台南</option>
+                <option value="kaohsiung">高雄</option>
+                <option value="pingtung">屏東</option>
+                <option value="hualien">花蓮</option>
+                <option value="taitung">台東</option>
+                <option value="kinmen">金門</option>
+                <option value="matsu">馬祖</option>
+                <option value="penghu">澎湖</option>
+            </select> -->
         </div>
         <button @click="nextQuestion" class="btn">
             下一題
@@ -153,6 +175,89 @@ export default {
     data() {
         return {
             currentQuestionIndex: 0,
+            cityList: [
+                {
+                    value: 'taipei',
+                    label: '台北'
+                },
+                {
+                    value: 'newtaipei',
+                    label: '新北'
+                },
+                {
+                    value: 'keelung',
+                    label: '基隆'
+                },
+                {
+                    value: 'yilan',
+                    label: '宜蘭'
+                },
+                {
+                    value: 'taoyuan',
+                    label: '桃園'
+                },
+                {
+                    value: 'hsinchu',
+                    label: '新竹'
+                },
+                {
+                    value: 'miaoli',
+                    label: '苗栗'
+                },
+                {
+                    value: 'taichung',
+                    label: '台中'
+                },
+                {
+                    value: 'changhua',
+                    label: '彰化'
+                },
+                {
+                    value: 'nantou',
+                    label: '南投'
+                },
+                {
+                    value: 'yunlin',
+                    label: '雲林'
+                },
+                {
+                    value: 'chiayi',
+                    label: '嘉義'
+                },
+                {
+                    value: 'tainan',
+                    label: '台南'
+                },
+                {
+                    value: 'kaohsiung',
+                    label: '高雄'
+                },
+                {
+                    value: 'pingtung',
+                    label: '屏東'
+                },
+                {
+                    value: 'hualien',
+                    label: '花蓮'
+                },
+                {
+                    value: 'taitung',
+                    label: '台東'
+                },
+                {
+                    value: 'kinmen',
+                    label: '金門'
+                },
+                {
+                    value: 'matsu',
+                    label: '馬祖'
+                },
+                {
+                    value: 'penghu',
+                    label: '澎湖'
+                }
+            ],
+            model: [],
             placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆", "懷舊"],
             sexTags: ["男裝", "女裝", "不限"],
             styleTags: ["日系", "韓系", "美式", "中性", "休閒", "簡約", "復古", "文青", "運動", "潮流", "街頭", "性感", "甜美", "可愛", "氣質"],
@@ -317,10 +422,10 @@ export default {
         position: relative;
         .boy{
             position: absolute;
-            bottom: 64px;
+            bottom: 70px;
             right: 50px;
             @media (min-width: $md){
-                bottom: 72px;
+                bottom: 70px;
                 right: 0;
             }
             img{
@@ -330,14 +435,29 @@ export default {
                 }
             }
         }
-        select{
-            position: relative;
-            z-index: 1;
-            width: 311px;
-            @media (min-width: $md){
-                width: 375px;
+        .select_box{
+            span.ivu-select-placeholder{
+                display: none;
+            }
+            .ivu-select-selection{
+                height: 40px;
+                border: 3px solid $textColor_default !important;
+                border-radius: 10px !important;
+                box-shadow: none !important;
+                width: 311px;
+                @media (min-width: $md){
+                    width: 375px;
+                }
             }
         }
+        // select{
+        //     position: relative;
+        //     z-index: 1;
+        //     width: 311px;
+        //     @media (min-width: $md){
+        //         width: 375px;
+        //     }
+        // }
     }
     .btn{
         margin-bottom: $sp12;
