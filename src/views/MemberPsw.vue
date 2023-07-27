@@ -9,7 +9,7 @@
             <div class="profile_card">
                 <div class="member_title">
                     <h3>密碼修改</h3>
-                    <p>會員編號</p>
+                    <!-- <p>會員編號</p> -->
                 </div>
                 <div class="member_data">
                     <div v-for="(item, index) in tabItems" 
