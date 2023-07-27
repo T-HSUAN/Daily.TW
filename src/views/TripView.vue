@@ -42,7 +42,7 @@
     </section>
 
     <!-- 熱門行程 -->
-    <section class="tripView_topTrip">
+    <section class="tripView_topTrip" id="tripView_topTrip">
         <div class="bgCurve">
             <img src="@/assets/img/bgCurve_A.png" alt="">
         </div>
@@ -69,7 +69,7 @@
     </section>
 
     <!-- 精選行程 -->
-    <section class="tripView_selectTrip">
+    <section class="tripView_selectTrip" id="tripView_selectTrip">
         <div class="bgCurve">
             <img src="~@/assets/img/bgCurve_B.png" alt="">
         </div>

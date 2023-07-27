@@ -65,10 +65,11 @@ footer {
         margin: auto;
             p{
                 @include sm_p;
+                line-height: 1.2;
                 letter-spacing: 1px;
-                text-align: left;
+                text-align: center;
                 a{
-                    color: $textColor_tint;
+                    color: $textColor_white;
                 }
             }
           }
@@ -124,11 +125,12 @@ footer {
             justify-content: center;
             p{  
                 @include sm_p;
+                line-height: 1.2;
                 padding: $sp2;
                 letter-spacing: 1px;
                 text-align: center;
                 a{
-                    color: $textColor_tint;
+                    color: $textColor_white
                 }
             }
         }

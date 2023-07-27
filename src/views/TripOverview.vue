@@ -20,24 +20,15 @@
         <!-- 標題 -->
         <h2>行程總覽</h2>
         <!-- 搜尋篩選欄 -->
-        <Searchbar :Filter="updateDisplay" />
+        <Searchbar :Filter="updateDisplay" :tagTexts="tagText" />
         <!-- 行程列表 -->
         <section class="list">
             <div class="trip_list" v-if="tripDisplay.length > 0">
-                <div
-                    class="trip_card"
-                    v-for="(item, index) in tripDisplay"
-                    :key="item.id"
-                >
+                <div class="trip_card" v-for="(item, index) in tripDisplay" :key="item.id">
                     <router-link :to="item.link" title="點擊查看行程詳情">
-                        <Trip
-                            :tripCardPhoto="item.img"
-                            :tripCardTags="item.tag"
-                            :tripCardTitle="item.name"
-                            :tripCardDesc="item.desc"
-                            :tripCardAuthor="item.author"
-                            :tripCardDate="item.date"
-                    /></router-link>
+                        <Trip :tripCardPhoto="item.img" :tripCardTags="item.tag" :tripCardTitle="item.name"
+                            :tripCardDesc="item.desc" :tripCardAuthor="item.author" :tripCardDate="item.date" />
+                    </router-link>
                 </div>
             </div>
             <div v-else>查無結果</div>
@@ -56,11 +47,25 @@ export default {
     },
     data() {
         return {
-            
+
             tripData: tripData,
             // 從tripData抓取行程資料並呈現(進行搜尋篩選)
 
             tripDisplay: [],
+            // 可以自己加tag內容
+            tagText: [
+                { default: " #親子" },
+                { default: " #情侶" },
+                { default: " #小資" },
+                { default: " #風景" },
+                { default: " #樂園" },
+                { default: " #農場" },
+                { default: " #藝文" },
+                { default: " #山林" },
+                { default: " #海邊" },
+                { default: " #放鬆" },
+                { default: " #懷舊" },
+            ]
 
         };
     },
@@ -79,7 +84,7 @@ export default {
                 );
             }
         },
- 
+
     },
     computed: {},
     created() {
@@ -90,26 +95,26 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
 
-.tripOverview{
+.tripOverview {
 
-    h2{
+    h2 {
         text-align: center;
         margin: $sp10 auto $sp5;
     }
 
-    .breadcrumb{
+    .breadcrumb {
         max-width: $xl;
         margin: $sp3 auto;
         padding: 0 $sp2;
     }
-    
-    .list{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .trip_list {
-            
+
             max-width: $xl;
             margin: $sp4 auto;
             display: flex;
@@ -117,21 +122,21 @@ export default {
             justify-content: center;
             column-gap: $sp4;
             row-gap: $sp6;
-            @media (min-width: $md){
-            }
-        
+
+            @media (min-width: $md) {}
+
             .trip_card {
                 position: relative;
                 cursor: pointer;
             }
-    
+
         }
-        .btn{
+
+        .btn {
             margin: 0 auto $sp12;
         }
     }
 
 
 }
-
 </style>

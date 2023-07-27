@@ -3,29 +3,39 @@
         <div class="footer_section">
             <div class="footer_block">
                 <div class="footer_list">
-                    <h4>專屬旅著</h4>
-                    <a href="#">立即規劃</a>
+                    <router-link to="/plan">
+                        <h4>專屬旅著</h4>
+                    </router-link>
+                    <a href="/plan">立即規劃</a>
                 </div>
                 <div class="footer_list">
-                    <h4>出遊特輯</h4>
-                    <a href="#">熱門行程</a>
-                    <a href="#">精選行程</a>
-                    <a href="#">行程總覽</a>
+                    <router-link to="/trip">
+                        <h4>出遊特輯</h4>
+                    </router-link>
+                    <router-link to="/trip#tripView_topTrip">熱門行程</router-link>
+                    <a href="/trip#tripView_selectTrip">精選行程</a>
+                    <a href="/trip_overview">行程總覽</a>
                 </div>
                 <div class="footer_list">
-                    <h4>穿搭特輯</h4>
-                    <a href="#">主題穿搭</a>
-                    <a href="#">人氣穿搭</a>
-                    <a href="#">穿搭總覽</a>
+                    <router-link to="/oott">
+                        <h4>穿搭特輯</h4>
+                    </router-link>
+                    <a href="/oott#theme">主題穿搭</a>
+                    <a href="/oott#top_oott">人氣穿搭</a>
+                    <a href="/oott_overview">穿搭總覽</a>
                 </div>
                 <div class="footer_list">
-                    <h4>景點票券</h4>
-                    <a href="#">票券總覽</a>
+                    <router-link to="/ticket">
+                        <h4>景點票券</h4>
+                    </router-link>
+                    <a href="/ticket">票券總覽</a>
                 </div>
                 <div class="footer_list">
-                    <h4>關於我們</h4>
-                    <a href="#">服務介紹</a>
-                    <a href="#">聯絡我們</a>
+                    <router-link to="/about">
+                        <h4>關於我們</h4>
+                    </router-link>
+                    <a href="/about#about_service">服務介紹</a>
+                    <a href="/about#about_info">聯絡我們</a>
                 </div>
             </div>
             <div class="social_box">
