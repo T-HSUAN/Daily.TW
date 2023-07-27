@@ -10,7 +10,7 @@
             <div class="profile_card">
                 <div class="member_title">
                     <h3>個人資料修改</h3>
-                    <p>會員編號</p>
+                    <!-- <p>會員編號</p> -->
                 </div>
                 <div class="member_data">
                     <div class="photo_group">
@@ -136,10 +136,7 @@
                 padding: 0 0 $sp1;
                 
                 h2{ 
-                    margin: 0;
-                    // font-size: $sm_h3;
-                    // 
-                    
+                    margin: 0; 
                 }
                 p{
                     font-size: $sm_p;

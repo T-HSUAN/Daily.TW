@@ -42,7 +42,7 @@
                     忘記密碼?
                 </router-link>
                 </div>
-                <div v-show="item.tab == 2" class="space"></div>
+                <!-- <div v-show="item.tab == 2" class="space"></div> -->
                 <div class="cancel_group">
                     <router-link to="/login" 
                         v-if="item.tab == 1" 
@@ -159,7 +159,9 @@ export default {
 
 <style lang="scss" >
     @import '@/assets/scss/baseAndMixin.scss';
-
+*{
+    outline: 1px solid red;
+}
     #app{
         background-color: $bgColor_default;
     }
