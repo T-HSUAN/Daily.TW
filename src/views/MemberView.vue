@@ -11,7 +11,7 @@
                         <div class="personal_info">
                             <div class="member_title">
                                 <h2>個人資料</h2>
-                                <p>會員編號</p>
+                                <!-- <p>會員編號</p> -->
                             </div>
                             <div class="text">
                                 <div class="pic">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn">所有穿搭</button>
+                        <router-link to="/my_oott" class="btn">所有穿搭</router-link>
                     </div>
                 </div>
                 <!-- 收藏清單 -->
@@ -119,7 +119,7 @@
                                 :tripCardDate="card.tripCardDate"
                             />
                         </div>
-                        <button class="btn">所有行程</button>
+                        <router-link to="/trip_collection_view" class="btn">所有行程</router-link>
                     </div>
                     <div class="oott_collect">
                         <div class="oott_title">
@@ -139,7 +139,7 @@
                                 ></oottCard>
                             </div>
                         </div>
-                        <button class="btn">所有穿搭</button>
+                        <router-link to="/oott_collection_view" class="btn">所有穿搭</router-link>
                     </div>
                 </div>
                 <div class="order">
@@ -163,12 +163,7 @@
                                 <td>處理中</td>
                                 <td>$100.00</td>
                                 <td>
-                                    <a href="#"
-                                        >前往訂單
-                                        <font-awesome-icon
-                                            icon="fa-solid fa-arrow-right"
-                                        />
-                                    </a>
+                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
                                 </td>
                             </tr>
                             <tr>
@@ -177,12 +172,7 @@
                                 <td>已發貨</td>
                                 <td>$75.50</td>
                                 <td>
-                                    <a href="#"
-                                        >前往訂單
-                                        <font-awesome-icon
-                                            icon="fa-solid fa-arrow-right"
-                                        />
-                                    </a>
+                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
                                 </td>
                             </tr>
                             <tr>
@@ -191,12 +181,7 @@
                                 <td>已完成</td>
                                 <td>$50.25</td>
                                 <td>
-                                    <a href="#"
-                                        >前往訂單
-                                        <font-awesome-icon
-                                            icon="fa-solid fa-arrow-right"
-                                        />
-                                    </a>
+                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
                                 </td>
                             </tr>
                             <tr>
@@ -205,12 +190,7 @@
                                 <td>處理中</td>
                                 <td>$120.75</td>
                                 <td>
-                                    <a href="#"
-                                        >前往訂單
-                                        <font-awesome-icon
-                                            icon="fa-solid fa-arrow-right"
-                                        />
-                                    </a>
+                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
                                 </td>
                             </tr>
                             <tr>
@@ -219,18 +199,11 @@
                                 <td>已取消</td>
                                 <td>$0.00</td>
                                 <td>
-                                    <a href="#"
-                                        >前往訂單
-                                        <font-awesome-icon
-                                            icon="fa-solid fa-arrow-right"
-                                        />
-                                    </a>
+                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
                                 </td>
                             </tr>
                         </tbody>
-                        <a href="/myorder"
-                            ><button class="btn">所有訂單</button></a
-                        >
+                        <a href="/myorder"><button class="btn">所有訂單</button></a>
                     </table>
                 </div>
             </div>
@@ -552,12 +525,12 @@ export default {
         }
         .btn {
             position: absolute;
-            right: 40px;
-            bottom: -22px;
+            right: 80px;
+            bottom: -18px;
             @media (min-width: 768px) {
                 position: absolute;
-                right: 60px;
-                bottom: -25px;
+                right: 88px;
+                bottom: -18px;
             }
         }
     }
@@ -592,6 +565,7 @@ export default {
         position: relative;
         @media (min-width: 768px) {
             padding-top: $sp3;
+            margin-bottom: $sp3;
         }
         .trip_title {
             display: flex;
@@ -635,12 +609,12 @@ export default {
         }
         .btn {
             position: absolute;
-            right: 40px;
-            bottom: -22px;
+            right: 80px;
+            bottom: -18px;
             @media (min-width: 768px) {
                 position: absolute;
-                right: 60px;
-                bottom: -25px;
+                right: 88px;
+                bottom: -18px;
             }
         }
     }
@@ -650,6 +624,7 @@ export default {
         width: 100%;
         @media (min-width: 768px) {
             padding-top: $sp3;
+            margin-bottom: $sp3;
         }
         .oott_title {
             display: flex;
@@ -701,12 +676,12 @@ export default {
         }
         .btn {
             position: absolute;
-            right: 40px;
-            bottom: -22px;
+            right: 80px;
+            bottom: -18px;
             @media (min-width: 768px) {
                 position: absolute;
-                right: 60px;
-                bottom: -25px;
+                right: 88px;
+                bottom: -18px;
             }
         }
     }
@@ -791,12 +766,12 @@ export default {
     }
     .btn {
         position: absolute;
-        right: 40px;
-        bottom: -22px;
+        right: 80px;
+        bottom: -18px;
         @media (min-width: 768px) {
             position: absolute;
-            right: 60px;
-            bottom: -25px;
+            right: 88px;
+            bottom: -18px;
         }
     }
 }

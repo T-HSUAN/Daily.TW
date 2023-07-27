@@ -145,12 +145,10 @@ export default {
                 justify-content: center;
                 column-gap: $sp4;
                 row-gap: $sp6;
-                @media (min-width: $md) {
-                }
-
                 .oott_card {
                     position: relative;
                     cursor: pointer;
+                    
                     .oott_card_text {
                         color: $textColor_default;
                     }

@@ -17,7 +17,7 @@
                     <div>{{ order.orderStatus }}</div>
                     <div>{{ order.total }}</div>
                     <div class="details_button_lg" @click="toggleOrder(order.orderNumber)">
-                        {{ order.expanded ? '收合明細' : '查看明細' }}
+                        <span>{{ order.expanded ? '收合明細' : '查看明細' }}</span>
                     </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 </div>
                 </div>
                 <div class="details_button_md" @click="toggleOrder(order.orderNumber)">
-                    {{ order.expanded ? '收合明細' : '查看明細' }}
+                    <span>{{ order.expanded ? '收合明細' : '查看明細' }}</span>
                 </div>
             </div>
         </div>
@@ -153,8 +153,8 @@ export default {
             }
         }
         .bg_area {
-        display: flex;
-        justify-content: center;
+            display: flex;
+            justify-content: center;
         .bg_container {
             width: 100%;
             @media (min-width: 768px) {
@@ -163,19 +163,19 @@ export default {
         }
         h2{
             display: flex;
+            padding: $sp3 0;
+            margin: $sp3;
+            border-bottom: 2px solid $textColor_default;
+            @media (min-width: 768px) {
                 padding: $sp3 0;
-                margin: $sp3;
-                border-bottom: 2px solid $textColor_default;
-                @media (min-width: 768px) {
-                    padding: $sp3 0;
-                    margin: 0;
-                }
+                margin: 0;
+            }
         }
         
         .bg_container {
             @media (min-width: 768px) {
-            margin: 0 $sp3;
-            padding: 0 $sp3 $sp3;
+                margin: 0 $sp3;
+                padding: 0 $sp3 $sp3;
             }
         }
         .bg_order{
@@ -183,7 +183,7 @@ export default {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-        }
+            }
         }
         
         }
@@ -209,6 +209,9 @@ export default {
                     padding: 5px;
                     text-align: end;
                     margin-right: 10%;
+                    span{
+                        cursor: pointer;
+                    }
                 }
             }
             .order_list{
@@ -239,7 +242,7 @@ export default {
             border: 3px solid $textColor_tint;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             align-items: center;
-            cursor: pointer;
+            // cursor: pointer;
             padding: 10px;
             color: $textColor_default;
             @media (max-width:768px) {
@@ -260,7 +263,10 @@ export default {
                 }
             }
             .details_button_lg {
-            text-align: right;
+                text-align: right;
+                span{
+                    cursor: pointer;
+                }
             }
         }
         .order_details {
