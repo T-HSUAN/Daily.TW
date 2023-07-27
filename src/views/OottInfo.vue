@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="look_more">
-                <a href="/oott_overview"><button class="btn">查看更多</button></a>
+                <router-link to="/oott_overview" class="btn">查看更多</router-link>
             </div>
         </div>
     </div>
