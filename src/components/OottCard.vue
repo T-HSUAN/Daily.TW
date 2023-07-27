@@ -1,36 +1,42 @@
 <template>
-    <div class="oott_default">
-        <router-link to="/oott_Info" class="link">
-            <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
-        </router-link>
-        <label class="heart">
-            <input type="checkbox">
-            <span></span>
-        </label>
-        <router-link to="/oott_info">
-            <div class="oott_card_text">
-                <div class="oott_card_info">
-                    <span class="oott_card_tag">{{ oottCardTags }}</span>
-                    <span class="oott_card_date">{{ oottCardDate }}</span>
-                </div>
-                <div class="oott_card_foot">
-                    <div class="oott_card_author">
-                        <div class="oott_card_author_proPic">
-                            <img :src="oottAuthorPhoto" alt="作者照片" />
-                        </div>
-                        <h4 class="oott_card_author_name">{{ oottCardAuthor }}</h4>
+    <div class="oott_card">
+        <div class="oott_rank">
+            {{ oottRank }}
+        </div>
+        <div class="oott_default">
+            <router-link to="/oott_Info" class="link">
+                <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+            </router-link>
+            <label class="heart">
+                <input type="checkbox">
+                <span></span>
+            </label>
+            <router-link to="/oott_info">
+                <div class="oott_card_text">
+                    <div class="oott_card_info">
+                        <span class="oott_card_tag">{{ oottCardTags }}</span>
+                        <span class="oott_card_date">{{ oottCardDate }}</span>
                     </div>
-                    <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
-                        class="oott_card_deco_footprint" />
+                    <div class="oott_card_foot">
+                        <div class="oott_card_author">
+                            <div class="oott_card_author_proPic">
+                                <img :src="oottAuthorPhoto" alt="作者照片" />
+                            </div>
+                            <h4 class="oott_card_author_name">{{ oottCardAuthor }}</h4>
+                        </div>
+                        <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                            class="oott_card_deco_footprint" />
+                    </div>
                 </div>
-            </div>
-        </router-link>
+            </router-link>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     props: {
+        oottRank: String,
         oottPhoto: String,
         oottCardTags: String,
         oottCardDate: String,
@@ -42,6 +48,17 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
+
+.oott_rank{
+    text-align: left;
+    font-family: 'Baloo 2', 'Noto Sans TC', sans-serif;
+    font-size: 40px;
+    letter-spacing: 0.02rem;
+
+    @media (min-width: $md){
+        font-size: 64px;
+    }
+}
 
 .oott_default {
     width: 257px;

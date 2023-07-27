@@ -18,11 +18,11 @@ header {
     @include width(100);
     height: 75px;
     z-index: 99;
-    background: linear-gradient(
-        180deg,
-        $bgColor_default,
-        rgba(254, 240, 209, 0)
-    );
+    // background: linear-gradient(
+    //     180deg,
+    //     $bgColor_default,
+    //     rgba(254, 240, 209, 0)
+    // );
     display: flex;
     justify-content: space-between;
     a{

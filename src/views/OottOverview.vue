@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <a href="/oott_info"><button class="btn">查看更多</button></a>
+            <router-link to="/oott_info"><button class="btn">查看更多</button></router-link>
 
         </section>
     </div>

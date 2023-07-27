@@ -163,7 +163,7 @@
                                 <td>處理中</td>
                                 <td>$100.00</td>
                                 <td>
-                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
+                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
                             </tr>
                             <tr>
@@ -172,7 +172,7 @@
                                 <td>已發貨</td>
                                 <td>$75.50</td>
                                 <td>
-                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
+                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
                             </tr>
                             <tr>
@@ -181,7 +181,7 @@
                                 <td>已完成</td>
                                 <td>$50.25</td>
                                 <td>
-                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
+                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
                             </tr>
                             <tr>
@@ -190,7 +190,7 @@
                                 <td>處理中</td>
                                 <td>$120.75</td>
                                 <td>
-                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
+                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
                             </tr>
                             <tr>
@@ -199,11 +199,11 @@
                                 <td>已取消</td>
                                 <td>$0.00</td>
                                 <td>
-                                    <a href="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></a>
+                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
                             </tr>
                         </tbody>
-                        <a href="/myorder"><button class="btn">所有訂單</button></a>
+                        <router-link to="/myorder"><button class="btn">所有訂單</button></router-link>
                     </table>
                 </div>
             </div>
