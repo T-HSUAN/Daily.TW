@@ -6,7 +6,7 @@
             <img class="banner_sm" :src="require('@/assets/img/ticket_banner_sm.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="updateDisplay" :tagTexts="tagText" />
+        <Searchbar :Filter="updateDisplay" :tagTexts="tagFilter" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -112,7 +112,7 @@ export default {
                 title: "景點票券一次購夠GO",
                 img: "",
             },
-            tagText: [
+            tagFilter: [
                 { default: " #親子" },
                 { default: " #情侶" },
                 { default: " #小資" },
@@ -139,7 +139,7 @@ export default {
             //toggle購物車頁面
             totalPrice: 0,
             togglePage: false,
-        };
+        }
     },
     methods: {
         //模糊搜尋
@@ -156,7 +156,11 @@ export default {
                 );
             }
         },
+        // updateTagsFilter() {
+        //     this.ticketDisplay = this.ticketData.filter((item) =>
+        //         item.location.includes(this.tagFilter.default))
 
+        // }
         createItem(index) {
             let cartItem = this.ticketDisplay[index];
             // 檢查商品是否已經存在於購物車中
@@ -207,6 +211,8 @@ export default {
         this.TotalPrice();
     },
 };
+
+
 </script>
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
