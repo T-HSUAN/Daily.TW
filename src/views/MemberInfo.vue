@@ -1,16 +1,15 @@
 <!-- 帳號管理的個人資料修改頁面 -->
 <template>
 
-    
     <section class="profile">
         <h2>帳號管理</h2>
-
-        <div class="profile_page">
+        
+        <div class="profile_container">
             <Sidenav class="sidenav"></Sidenav>
             <!-- 個人資料修改 -->
             <div class="profile_card">
                 <div class="member_title">
-                    <h2>個人資料修改</h2>
+                    <h3>個人資料修改</h3>
                     <p>會員編號</p>
                 </div>
                 <div class="member_data">
@@ -25,11 +24,10 @@
                         <label :for="item.id">{{ item.text }}</label>
                         <input type="text" 
                         :id="item.id"
-                    v-model="item.tag" 
-                    :placeholder="item.placeholder"/>
+                        v-model="item.tag" 
+                        :placeholder="item.placeholder"/>
                     </div>
-                    
-                    <label for="year">生日</label>
+                    <label for="year">生日</label> 
                     <div class="date_group">
                         <select v-model="selectedYear" @change="onYearChange" id="year">
                             <option 
@@ -37,68 +35,66 @@
                             :key="index" 
                             :value="year">
                             {{ year }}
-                        </option>
-                    </select>
-                    <select v-model="selectedMonth" @change="onMonthChange" id="month">
-                        <option 
-                        v-for="(month, index) in monthList" 
-                        :key="index" 
-                        :value="month">
-                        {{ month }}
-                    </option>
-                </select>
-                <select v-model="selectedDate" @change="onDayChange" id="selectDate">
-                    <option 
-                    v-for="(date, index) in dateList" 
-                    :key="index" 
-                    :value="date">
-                    {{ date }}
-                </option>
-            </select>
+                            </option>
+                        </select>
+                        <select v-model="selectedMonth" @change="onMonthChange" id="month">
+                            <option 
+                            v-for="(month, index) in monthList" 
+                            :key="index" 
+                            :value="month">
+                            {{ month }}
+                            </option>
+                        </select>
+                        <select v-model="selectedDate" @change="onDayChange" id="selectDate">
+                            <option 
+                            v-for="(date, index) in dateList" 
+                            :key="index" 
+                            :value="date">
+                            {{ date }}
+                            </option>
+                        </select>
+                    </div>
+                    <label for="gender">性別</label>
+                    <div class="gender_group">
+                        <label class="checkbox_container" @click="toggleCheckbox('isMan')">
+                            <input type="checkbox" v-model="isMan" class="myCheckbox">
+                            <span class="checkmark"></span>
+                            <span class="content" >男</span>
+                        </label>
+                        <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
+                            <input type="checkbox" v-model="isWomen" class="myCheckbox">
+                            <span class="checkmark"></span>
+                            <span class="content" >女</span>
+                        </label>
+                        <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
+                            <input type="checkbox" v-model="isSecret" class="myCheckbox">
+                            <span class="checkmark"></span>
+                            <span class="content" >不告訴你</span>
+                        </label>  
+                    </div>
+                    <div v-for="(way, index) in contact" 
+                    :key="index">
+                    <label :for="way.id">{{ way.name }}</label>
+                    <input type="text"
+                    :id="way.id" 
+                    v-model="way.tag"
+                    :placeholder="way.placeholder"/>
+                    </div>
+                    <div class="btn_group">
+                    <router-link
+                    to="/member" 
+                    class="cancel_btn">
+                    取消編輯
+                    </router-link>
+                    <router-link
+                    to="/member" 
+                    class="btn">
+                    儲存
+                    </router-link>
+                    </div>
+                </div>
+            </div>
         </div>
-        <label for="gender">性別</label>
-        <div class="gender_group">
-            <label class="checkbox_container" @click="toggleCheckbox('isMan')">
-                <input type="checkbox" v-model="isMan" class="myCheckbox">
-                <span class="checkmark"></span>
-                <span class="content" >男</span>
-            </label>
-            <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
-                <input type="checkbox" v-model="isWomen" class="myCheckbox">
-                <span class="checkmark"></span>
-                <span class="content" >女</span>
-            </label>
-            <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
-                <input type="checkbox" v-model="isSecret" class="myCheckbox">
-                <span class="checkmark"></span>
-                <span class="content" >不告訴你</span>
-            </label>  
-        </div>
-        <div v-for="(way, index) in contact" 
-        :key="index">
-        <label :for="way.id">{{ way.name }}</label>
-        <input type="text"
-        :id="way.id" 
-        v-model="way.tag"
-        :placeholder="way.placeholder"/>
-    </div>
-    <div class="btn_group">
-        <router-link
-        to="/member" 
-        class="cancel_btn">
-        取消編輯
-        </router-link>
-        <router-link
-        to="/member" 
-        class="btn">
-        儲存
-        </router-link>
-    
-</div>
-</div>
-</div>
-</div>
-
     </section>
 
 </template>
@@ -108,50 +104,42 @@
 // *{
 //     outline: 1px solid green;
 // }
+
 .profile{
-    width: 83%;
+    width: 90%;
     margin: 0 auto;
-    box-sizing: border-box;
-    padding: $sp8 $sp3;
-    @media (min-width: 768px) {
-        max-width: 1200px;
+
+    @media (min-width: 1200px) {
+        box-sizing: border-box;
+        width: 1175px;
     }
     h2{
-        margin: 40px auto;
+        margin: 41px auto 44px;
         text-align: center;
-        @media (min-width: 768px) {
-            margin: 40px auto ;
-        }
     }
     
-    .profile_page{
+    .profile_container{
         display: flex;
-        // width: 100%;
+        gap: 30px;
         
         .profile_card{
             width: 100%;
             display: flex;
             flex-direction: column;
-            @media (min-width: 768px) {
-            // width: 80%;
-            margin: 0 0 0 80px;
-            }
+            
             .member_title{
                 width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                border-bottom: 2px solid $textColor_default;
+                border-bottom: 1px solid $textColor_default;
                 padding: 0 0 $sp1;
-                @media (min-width: 768px) {
-                    padding: 0 0 $sp2;
-                }
+                
                 h2{ 
                     margin: 0;
-                    font-size: $sm_h3;
-                    @media (min-width: 768px) {
-                        font-size: $xl_h3;
-                    }
+                    // font-size: $sm_h3;
+                    // 
+                    
                 }
                 p{
                     font-size: $sm_p;
@@ -165,7 +153,7 @@
                 @media (min-width: 768px) {
                     max-width: 435px;
                     box-sizing: border-box;
-                    margin: 0 200px 0 100px;
+                    margin: 0 200px 0 150px;
                 }
                 .photo_group{
                     width: 100%;
@@ -325,6 +313,7 @@
     }
     
     }
+
 </style>
 
 <script>
