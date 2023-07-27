@@ -23,11 +23,7 @@
         <!-- 穿搭列表 -->
         <section class="list">
             <div class="oott_list" v-if="oottDisplay.length > 0">
-                <div
-                    class="oott_card"
-                    v-for="(item, index) in oottDisplay"
-                    :key="item.id"
-                >
+                <div class="oott_card" v-for="(item, index) in oottDisplay" :key="item.id">
                     <router-link :to="item.link" title="點擊查看穿搭詳情">
                         <Oott
                             :oottPhoto="item.img"
@@ -39,9 +35,8 @@
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <router-link to="/oott_overview"
-                ><button class="btn">查看更多</button></router-link
-            >
+            <a href="/oott_info"><button class="btn">查看更多</button></a>
+            
         </section>
     </div>
 </template>
@@ -86,83 +81,84 @@ export default {
 </script>
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    gap: 4px;
-    @media (min-width: 768px) {
-        font-size: 18px;
-        gap: $sp1;
-    }
-    a {
-        color: $textColor_default;
-        letter-spacing: 0.6px;
-    }
-    a:last-child {
-        color: $default_yellow;
-        padding-bottom: 2px;
-        @media (min-width: 768px) {
-            padding-bottom: $sp1;
-        }
-        &::before {
-            content: "";
-            display: inline-block;
-            width: 13px;
-            height: 16px;
-            background-image: url("~@/assets/img/layout/flag_oott.svg");
-            background-size: 100%;
-            background-repeat: no-repeat;
-            padding-right: 4px;
-            transform: translateY(1px);
-            @media (min-width: 768px) {
-                width: 20px;
-                height: 24px;
-                transform: translateY(3px);
-            }
-        }
-    }
-}
-
 .oottOverview {
-    h2 {
-        text-align: center;
-        margin: $sp10 auto $sp5;
-    }
-
     .breadcrumb {
-        max-width: $xl;
-        margin: $sp3 auto;
-        padding: 0 $sp2;
-    }
-
-    .list {
         display: flex;
-        flex-direction: column;
         align-items: center;
-
-        .oott_list {
-            max-width: $xl;
-            margin: $sp4 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            column-gap: $sp4;
-            row-gap: $sp6;
-            @media (min-width: $md) {
+        font-size: 16px;
+        gap: 4px;
+        @media (min-width: 768px) {
+            font-size: 18px;
+            gap: $sp1;
+        }
+        a {
+            color: $textColor_default;
+            letter-spacing: 0.6px;
+        }
+        a:last-child {
+            color: $default_yellow;
+            padding-bottom: 2px;
+            @media (min-width: 768px) {
+                padding-bottom: $sp1;
             }
-
-            .oott_card {
-                position: relative;
-                cursor: pointer;
-                .oott_card_text {
-                    color: $textColor_default;
+            &::before {
+                content: "";
+                display: inline-block;
+                width: 13px;
+                height: 16px;
+                background-image: url("~@/assets/img/layout/flag_oott.svg");
+                background-size: 100%;
+                background-repeat: no-repeat;
+                padding-right: 4px;
+                transform: translateY(1px);
+                @media (min-width: 768px) {
+                    width: 20px;
+                    height: 24px;
+                    transform: translateY(3px);
                 }
             }
         }
-        .btn {
-            margin: 0 auto $sp12;
-        }
     }
+
+
+        h2 {
+            text-align: center;
+            margin: $sp10 auto $sp5;
+        }
+
+        .breadcrumb {
+            max-width: $xl;
+            margin: $sp3 auto;
+            padding: 0 $sp2;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .oott_list {
+                max-width: $xl;
+                margin: $sp4 auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                column-gap: $sp4;
+                row-gap: $sp6;
+                @media (min-width: $md) {
+                }
+
+                .oott_card {
+                    position: relative;
+                    cursor: pointer;
+                    .oott_card_text {
+                        color: $textColor_default;
+                    }
+                }
+            }
+            .btn {
+                margin: 0 auto $sp12;
+            }
+        }
 }
 </style>

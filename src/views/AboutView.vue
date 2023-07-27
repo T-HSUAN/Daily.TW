@@ -67,80 +67,88 @@
         </div>
         <div class="service_container">
             <div class="service_card_wrap">
-                <div class="service_card">
-                    <div class="card_front">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>專屬旅著</h3>
-                            <img src="~@/assets/img/layout/about_icon_duck.png" alt="">
+                <router-link to="/plan">
+                    <div class="service_card">
+                        <div class="card_front">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>專屬旅著</h3>
+                                <img src="~@/assets/img/layout/about_icon_duck.png" alt="">
+                            </div>
+                        </div>
+                        <div class="card_back">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>專屬旅著</h3>
+                                <p>我們將依據您的需求客製化<br>推薦專屬的旅遊行程與穿搭</p>
+                                <img src="~@/assets/img/layout/about_service1.png" alt="">
+                            </div>
                         </div>
                     </div>
-                    <div class="card_back">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>專屬旅著</h3>
-                            <p>我們將依據您的需求客製化<br>推薦專屬的旅遊行程與穿搭</p>
-                            <img src="~@/assets/img/layout/about_service1.png" alt="">
-                        </div>
-                    </div>
-                </div>
+                </router-link>
             </div>
             <div class="service_card_wrap">
-                <div class="service_card">
-                    <div class="card_front">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>出遊特輯</h3>
-                            <img src="~@/assets/img/layout/about_icon_map.png" alt="">
+                <router-link to="/trip">
+                    <div class="service_card">
+                        <div class="card_front">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>出遊特輯</h3>
+                                <img src="~@/assets/img/layout/about_icon_map.png" alt="">
+                            </div>
+                        </div>
+                        <div class="card_back">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>出遊特輯</h3>
+                                <p>由駐站旅人及小編規劃行程<br>不知道要去哪裡就能跟著走</p>
+                                <img src="~@/assets/img/layout/about_service2.png" alt="">
+                            </div>
                         </div>
                     </div>
-                    <div class="card_back">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>出遊特輯</h3>
-                            <p>由駐站旅人及小編規劃行程<br>不知道要去哪裡就能跟著走</p>
-                            <img src="~@/assets/img/layout/about_service2.png" alt="">
-                        </div>
-                    </div>
-                </div>
+                </router-link>
             </div>
             <div class="service_card_wrap">
-                <div class="service_card">
-                    <div class="card_front">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>穿搭特輯</h3>
-                            <img src="~@/assets/img/layout/about_icon_wear.png" alt="">
+                <router-link to="/oott">
+                    <div class="service_card">
+                        <div class="card_front">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>穿搭特輯</h3>
+                                <img src="~@/assets/img/layout/about_icon_wear.png" alt="">
+                            </div>
+                        </div>
+                        <div class="card_back">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>穿搭特輯</h3>
+                                <p>風格旅人分享出遊衣著搭配<br>展現獨特穿搭提供穿搭靈感</p>
+                                <img src="~@/assets/img/layout/about_service3.png" alt="">
+                            </div>
                         </div>
                     </div>
-                    <div class="card_back">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>穿搭特輯</h3>
-                            <p>風格旅人分享出遊衣著搭配<br>展現獨特穿搭提供穿搭靈感</p>
-                            <img src="~@/assets/img/layout/about_service3.png" alt="">
-                        </div>
-                    </div>
-                </div>
+                </router-link>
             </div>
             <div class="service_card_wrap">
-                <div class="service_card">
-                    <div class="card_front">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>景點票券</h3>
-                            <img src="~@/assets/img/layout/about_icon_ticket.png" alt="">
+                <router-link to="/ticket">
+                    <div class="service_card">
+                        <div class="card_front">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>景點票券</h3>
+                                <img src="~@/assets/img/layout/about_icon_ticket.png" alt="">
+                            </div>
+                        </div>
+                        <div class="card_back">
+                            <div class="card_side_deco"></div>
+                            <div class="card_main">
+                                <h3>景點票券</h3>
+                                <p>囊括全台各地優惠景點門票<br>方便您一次購買到旅遊所需</p>
+                                <img src="~@/assets/img/layout/about_service4.png" alt="">
+                            </div>
                         </div>
                     </div>
-                    <div class="card_back">
-                        <div class="card_side_deco"></div>
-                        <div class="card_main">
-                            <h3>景點票券</h3>
-                            <p>囊括全台各地優惠景點門票<br>方便您一次購買到旅遊所需</p>
-                            <img src="~@/assets/img/layout/about_service4.png" alt="">
-                        </div>
-                    </div>
-                </div>
+                </router-link>
             </div>
         </div>
         <div class="service_action">
@@ -150,7 +158,7 @@
                 <span>找日日旅著就對了！！！</span>
             </div>
             <router-link to="/plan">
-                <div class="btn">立即體驗</div>
+                <button class="btn">立即體驗</button>
             </router-link>
             
         </div>
@@ -180,7 +188,7 @@
                     <span class="count_hint">0 / 限 200 字</span>
                 </label>
             </form>
-            <div class="btn">送出</div>
+            <button class="btn">送出</button>
         </div>
     </div>
     <div class="about_message_wave"></div>
@@ -624,6 +632,7 @@ export default defineComponent({
                         position: relative;
                         top: 14px;
                         z-index: 1;
+                        color: $textColor_default;
                         @media (min-width: $md){
                             @include xl_h5;
                             top: 40px;
@@ -831,18 +840,6 @@ export default defineComponent({
     0%{opacity: 0; transform: translate(0, -100%);}
     100%{opacity: 1; transform: translate(0, 0);}
 }
-// @keyframes form{
-//     0%{transform: rotate(0deg);}
-//     100%{transform: rotate(-10deg);}
-// }
-// @keyframes pen{
-//     0%{transform: translate(0px, 0px);}
-//     100%{transform: translate(-6px, 25px);}
-// }
-// @keyframes search{
-//     0%{transform: translate(0px, 0px) rotate(65deg);}
-//     100%{transform: translate(-40px, 60px) rotate(0deg);}
-// }
 @keyframes shine{
     0%{transform: scale(1);}
     100%{transform: scale(1.2);}

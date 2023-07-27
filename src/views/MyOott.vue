@@ -3,20 +3,26 @@
         <h2>穿搭管理</h2>
         
         <div class="collection_container">
-            <Sidenav class="sidenav"></Sidenav>
+            <Sidenav></Sidenav>
 
             <div class="collection_content">
                 <h3>我的穿搭</h3>
                 <hr>
                 <div class="status_bar">
-                    <div class="status_message">
-                        <h5>您有 </h5>
-                        <h5 class="status_number">1</h5>
-                        <h5> 則貼文待修改</h5>
-                        <h5 class="status_number">1</h5>
-                        <h5> 則貼文審核中</h5>
-                        <h5 class="status_number">12</h5>
-                        <h5> 則貼文已發布</h5>
+                    <div class="status_container">
+                        
+                        <div class="status">
+                            <h5>您有 </h5>
+                            <h5 class="status_number">1</h5>
+                            <h5> 則貼文待修改</h5>
+                            <h5 class="status_number">1</h5>
+                            <h5> 則貼文審核中</h5>
+                        </div>
+
+                        <div class="status">
+                            <h5 class="status_number">12</h5>
+                            <h5> 則貼文已發布</h5>
+                        </div>
                     </div>
                     <div class="status_sorting">
                         <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
@@ -38,12 +44,13 @@
                 </div>
                 <div class="card_wrap">
                     <div class="card" v-for="oott in oottData" key="oott.oottCardAuthor">
-                        <OottCard
+                        <MyOottCard
                         :oottPhoto= "oott.oottPhoto"
                         :oottCardTags= "oott.oottCardTags"
                         :oottCardDate= "oott.oottCardDate"
                         :oottAuthorPhoto= "oott.oottAuthorPhoto"
                         :oottCardAuthor= "oott.oottCardAuthor"
+                        :oottStatus ="oott.oottStatus"
                         />
                     </div>
                 </div>
@@ -87,12 +94,33 @@
         .status_bar{
             margin-bottom: 39px;
 
-            .status_message{
+            .status_container{
                 color: var(--yellow-tint, #FBEDC8);
                 background: var(--yellow-default, #E3C451);
-                padding: 16px 32px;
-                display: flex;
-                gap:16px;
+                padding: 8px 16px;
+                display: block;
+                gap:4px;
+                line-height: 150%;
+                font-size: 16px;
+                @media (min-width: 500px) {
+                    display: flex;
+                }
+                @media (min-width: 768px) {
+                    font-size: 20px;
+                    gap:10px;
+                    padding: 16px 32px;
+                }
+                .status{
+                    display: flex;
+                    gap:4px;
+                    @media (min-width: 768px) {
+                    gap:10px;
+                }
+                }
+                .status_number{
+                    color: var(--text-white, #FEFFF5);
+                }
+
             }
             .status_sorting{
                 background: var(--yellow-tint, #FBEDC8);
@@ -109,36 +137,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-
-            .oott_default{
-                box-sizing: border-box;
-                margin: 6px;
-                width: 257px;
-                height: 440px;
-                @media (min-width:768px) {
-                    width: 276px;
-                    height: 463px;
-                    margin: 12px;
-                }
-                
-                .oott_card_info{
-                    width: 104px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-            }
         }
 
-        /* 等手機板切出來再拿掉(連同上面的class) */
-        .sidenav{
-            flex-shrink: 0;
-            height: 506px;
-            display: none;
-            @media (min-width : 1024px) {
-                display: block;            
-            }
-        }
     }
 
 
@@ -147,12 +147,12 @@
 
 
 <script>
-import OottCard from "@/components/OottCard.vue";
+import MyOottCard from "@/components/MyOottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
 export default{
     components:{
-        OottCard,
+        MyOottCard,
         Sidenav,
     },
     data() {

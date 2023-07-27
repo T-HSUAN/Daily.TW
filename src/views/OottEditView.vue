@@ -136,26 +136,21 @@ export default{
         @media (min-width: 768px) {
             width: 735px;
         }
-        @media (min-width : 1250px) {
+        @media (min-width: 1200px) {
             box-sizing: border-box;
-            width: 1200px;            
+            width: 1175px;
         }
         .oott_edit_container{
             display: flex;
-            gap: 71px;
+            gap: 30px;
+            @media (min-width: 1200px) {
+                box-sizing: border-box;
+                width: 1175px;
+            }
         }
         .text_area{
             @media (min-width: 1024px) {
-                width: 735px;
-            }
-        }
-        /* sidenav等手機板切出來再拿掉(連同上面的class) */
-        .sidenav{
-            flex-shrink: 0;
-            height: 506px;
-            display: none;
-            @media (min-width : 1200px) {
-                display: block;            
+                min-width: 610px;
             }
         }
 
@@ -181,6 +176,7 @@ export default{
         } 
         // 內容區域
         .post_content_wrap{
+
             .breadcrumb{
                 display: none;
                 @media (min-width: 1024px) {
@@ -227,16 +223,21 @@ export default{
                 width: 257px;
                 height: 224px;
                 @media (min-width: 768px) {
-                    width: 735px;
+                    width: 100%;
                 }
                 box-sizing: border-box;
             }
             .edit_subtitle{
                 margin: 24px 0px 8px 0px;
-                display: flex;
-                justify-content: space-between;
+                @media (min-width: 768px) {
+                    display: flex;
+                    justify-content: space-between;
+                }
                 .edit_header{
                     display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    line-height: 240%;
                     .edit_instruction{
                         margin-left: 8px;
                         @media (min-width: 1024px) {
@@ -244,12 +245,11 @@ export default{
                         }
                     }
                 }
-                // span{
-                //     flex-grow: 1;
-
-                // }
                 .text_limit{
                     margin-left: 0px;
+                }
+                .review_feedback{
+                    margin-left: 5px;
                 }
 
             }

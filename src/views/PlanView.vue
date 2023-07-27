@@ -261,12 +261,14 @@
     .banner_deco{
         position: relative;
         .plan_duck{
-            // padding-left: $sp1;
             position: absolute;
             bottom: 20%;
-            left: -20%;
+            left: -30%;
             width: 100%;
-            animation: walk 7s linear infinite;
+            animation: walk 7s linear infinite, shake .5s linear infinite;
+            @media (min-width: $md){
+                animation: walk 10s linear infinite, shake .5s linear infinite;
+            }
             img{
                 width: 20%;
                 min-width: 136px;
@@ -292,8 +294,13 @@
         100%{transform: scale(1);}
     }
     @keyframes walk{
-        0%{transform: translateX(120%);}
-        100%{transform: translateX(0%);}
+        0%{left: 110%;}
+        100%{left: -30%;}
+    }
+    @keyframes shake{
+        0%{transform: rotate(0deg);}
+        50%{transform: rotate(-5deg);}
+        100%{transform: rotate(0deg);}
     }
     @keyframes fadeIn{
         0%{opacity: 0;}
