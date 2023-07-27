@@ -31,11 +31,10 @@
                     <div class="plan_title">
                         <h3>台中文青一日遊</h3>
                         <div class="place_tags">
-                            <span># 審計新村</span>
                             <span># 屯區藝文中心</span>
                             <span># 太平買菸場</span>
-                            <span># 新盛綠川水岸廊道</span>
-                            <span># 第二市場</span>
+                            <span># 審計新村</span>
+                            <span># 紙箱王創意園區</span>
                         </div>
                         <label>
                             <input type="checkbox">
@@ -45,7 +44,63 @@
                     <div class="plan_place">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic" :key="item.index">
+                                <Slide v-for="item in resultPic1" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
+                        </div>
+                        <div class="place_desc">
+                            <div class="place_content">
+                                <h4>屯區藝文中心</h4>
+                                <p>於99年7月正式成立，99年12月25日縣市合併後改名為臺中市立屯區藝文中心，嗣因組織整併，又於102年1月1日更改為今名。其以表演藝術與音樂為主軸，兼具美術展示與文化推廣功能。積極辦理各項藝文展演活動，促進國際文化藝術交流。</p>
+                            </div>
+                            <div class="place_time_address">
+                                <div class="time">
+                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                    <span>停留 1.5 小時</span>
+                                </div>
+                                <div class="address">
+                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                    <a href="#">台中市太平區大興路201號</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan_place">
+                        <div class="pic_swiper">
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic2" :key="item.index">
+                                    <img :src="item.src" alt="">
+                                </Slide>
+                                <template #addons>
+                                    <Pagination />
+                                </template>
+                            </Carousel>
+                        </div>
+                        <div class="place_desc">
+                            <div class="place_content">
+                                <h4>太平買菸場</h4>
+                                <p>興建於1955年，是公賣局向菸農鑑定、收購菸葉的場所，1994年裁撤後閒置良久，因見證太平菸葉發展歷程，加上建築構造特殊，整體空間具有再利用潛力，經兩年修繕營造出結合歷史與藝術文化的新場域。</p>
+                            </div>
+                            <div class="place_time_address">
+                                <div class="time">
+                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                    <span>停留 1.5 小時</span>
+                                </div>
+                                <div class="address">
+                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                    <a href="#">台中市太平區東平路464號</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan_place">
+                        <div class="pic_swiper">
+                            <Carousel :autoplay="3000" :wrap-around="true">
+                                <Slide v-for="item in resultPic3" :key="item.index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -56,7 +111,7 @@
                         <div class="place_desc">
                             <div class="place_content">
                                 <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
+                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
@@ -73,7 +128,7 @@
                     <div class="plan_place">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic" :key="item.index">
+                                <Slide v-for="item in resultPic4" :key="item.index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -83,8 +138,8 @@
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
-                                <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
+                                <h4>紙箱王創意園區</h4>
+                                <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
@@ -93,63 +148,7 @@
                                 </div>
                                 <div class="address">
                                     <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市西區民生路368巷</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="plan_place">
-                        <div class="pic_swiper">
-                            <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic" :key="item.index">
-                                    <img :src="item.src" alt="">
-                                </Slide>
-                                <template #addons>
-                                    <Pagination />
-                                </template>
-                            </Carousel>
-                        </div>
-                        <div class="place_desc">
-                            <div class="place_content">
-                                <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
-                            </div>
-                            <div class="place_time_address">
-                                <div class="time">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
-                                </div>
-                                <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市西區民生路368巷</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="plan_place">
-                        <div class="pic_swiper">
-                            <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic" :key="item.index">
-                                    <img :src="item.src" alt="">
-                                </Slide>
-                                <template #addons>
-                                    <Pagination />
-                                </template>
-                            </Carousel>
-                        </div>
-                        <div class="place_desc">
-                            <div class="place_content">
-                                <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
-                            </div>
-                            <div class="place_time_address">
-                                <div class="time">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
-                                </div>
-                                <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市西區民生路368巷</a>
+                                    <a href="#">台中市北屯區東山路二段2巷2號</a>
                                 </div>
                             </div>
                         </div>
@@ -178,47 +177,53 @@
                                 <td><span>08/03</span></td>
                             </tr>
                             <tr>
+                                <!-- <td>
+                                    <img src="weatherData.forecast.forecastday[0].day.condition.icon" alt="">
+                                    <span>最高 {{ weatherData.forecast.forecastday[0].day.maxtemp_c }}℃</span><br>
+                                    <span>最低 {{ weatherData.forecast.forecastday[0].day.mintemp_c }}℃</span><br>
+                                    <span>降雨機率 {{ weatherData.forecast.forecastday[0].day.daily_chance_of_rain }}%</span>
+                                </td> -->
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 28℃</span><br>
+                                    <span>最低 25℃</span><br>
+                                    <span>降雨機率 88%</span>
                                 </td>
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 34℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 89%</span>
                                 </td>
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 25℃</span><br>
+                                    <span>降雨機率 89%</span>
                                 </td>
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 26℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 89%</span>
                                 </td>
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 30℃</span><br>
+                                    <span>最低 23℃</span><br>
+                                    <span>降雨機率 65%</span>
                                 </td>
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 78%</span>
                                 </td>
                                 <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="">
-                                    <span>最高 33℃</span><br>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/302.png" alt="">
+                                    <span>最高 32℃</span><br>
                                     <span>最低 26℃</span><br>
-                                    <span>降雨機率 10%</span>
+                                    <span>降雨機率 80%</span>
                                 </td>
                                 
                             </tr>
@@ -248,24 +253,24 @@
                         </div>
                         <div class="ticket_desc">
                             <div class="ticket_content">
-                                <h4>斑比山丘門票</h4>
-                                <span>宜蘭・</span>
-                                <span>#親子 #情侶 #農場</span>
-                                <p>大受歡迎的親子景點，園區內有多種動物，可以與梅花鹿、水豚、羊咩咩來場親密的互動。美美子咖啡廳的冰淇淋十分美味，推薦給所有人到店購買品嚐。</p>
+                                <h4>紙箱王創意園區門票</h4>
+                                <span>台中・</span>
+                                <span>#親子 #小資 #藝文</span>
+                                <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
                             </div>
                             <div class="ticket_price">
                                 <div class="price_box">
-                                    <span>NT$ 800</span>
-                                    <span>NT$ 599</span>
+                                    <span>NT$ 200</span>
+                                    <span>NT$ 200</span>
                                 </div>
                                 <div class="ticket_link">
                                     <a href="/ticket_info">查看詳情</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="sale_tag">
+                        <!-- <div class="sale_tag">
                             <span>75折</span>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="ticket_card">
                         <a href="/ticket_info">
@@ -275,9 +280,8 @@
                             :ticketPhoto="ticket.ticketPhoto"
                             :ticketTitle="ticket.ticketTitle"
                             :ticketTags="ticket.ticketTags"
-                            :originalPrice="ticket.originalPrice"
-                            :FinalPrice="ticket.FinalPrice"
-                            :discountTag="ticket.discountTag">
+                            :originalPrice="ticket.originalPrice" 
+                            :FinalPrice="ticket.FinalPrice">
                             </Ticket>
                         </a>
                     </div>
@@ -286,13 +290,12 @@
             <div class="content_desc">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>台中文青一日遊</h3>
+                        <h3>基隆探索大自然之旅</h3>
                         <div class="place_tags">
-                            <span># 審計新村</span>
-                            <span># 屯區藝文中心</span>
-                            <span># 太平買菸場</span>
-                            <span># 新盛綠川水岸廊道</span>
-                            <span># 第二市場</span>
+                            <span># 正濱漁港彩色屋</span>
+                            <span># 望幽谷濱海步道</span>
+                            <span># 基隆潮境智能海洋館</span>
+                            <span># 深澳鐵道自行車</span>
                         </div>
                         <label>
                             <input type="checkbox">
@@ -302,7 +305,7 @@
                     <div class="plan_place">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic" :key="item.index">
+                                <Slide v-for="item in resultPic5" :key="item.index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -312,17 +315,17 @@
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
-                                <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
+                                <h4>正濱漁港彩色屋</h4>
+                                <p>正濱漁港的16棟屋子彩繪成彩色屋，讓原本寂靜的漁村，變成年輕人必訪的景點，最佳的拍攝點就在基隆市中正區正濱路58號~88號前的觀景平台　「涂大的吉古拉」非常好找，就在正濱漁港港邊，遠遠就能聞到一股碳烤香氣，基隆在地的美味，黃金色的吉古拉在彩色屋的陪襯下，顯得格外醒目，記得要先預訂才吃的到！</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
                                     <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
+                                    <span>停留 0.5 小時</span>
                                 </div>
                                 <div class="address">
                                     <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市西區民生路368巷</a>
+                                    <a href="#">基隆市中正區正濱路27號</a>
                                 </div>
                             </div>
                         </div>
@@ -333,13 +336,12 @@
             <div class="content_desc">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>台中文青一日遊</h3>
+                        <h3>南投約會一日遊</h3>
                         <div class="place_tags">
-                            <span># 審計新村</span>
-                            <span># 屯區藝文中心</span>
-                            <span># 太平買菸場</span>
-                            <span># 新盛綠川水岸廊道</span>
-                            <span># 第二市場</span>
+                            <span># 中興新村</span>
+                            <span># 星月天空景觀餐廳</span>
+                            <span># 猴探井天空之橋</span>
+                            <span># 埔里酒廠</span>
                         </div>
                         <label>
                             <input type="checkbox">
@@ -349,7 +351,7 @@
                     <div class="plan_place">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic" :key="item.index">
+                                <Slide v-for="item in resultPic6" :key="item.index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -359,8 +361,8 @@
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
-                                <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
+                                <h4>中興新村</h4>
+                                <p>走進仿英國花園城鎮建造的「舊省府所在地」，時光彷彿停在純樸的5、60年代。除了有郵票牆、荷花池、大會堂等打卡景點；冰磚、牛肉麵、餡餅小米粥也是必吃喔！</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
@@ -369,7 +371,7 @@
                                 </div>
                                 <div class="address">
                                     <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市西區民生路368巷</a>
+                                    <a href="#">南投縣南投市省府路</a>
                                 </div>
                             </div>
                         </div>
@@ -425,12 +427,41 @@ export default defineComponent({
     data() {
         return {
             // showResultContent: false,
-            resultPic: [
-                {src: require('@/assets/img/layout/plan_result_place.png')},
-                {src: require('@/assets/img/layout/plan_result_place-2.png')},
-                {src: require('@/assets/img/layout/plan_result_place-3.png')}
+            resultPic1: [
+                {src: require('@/assets/img/layout/plan_result_place_1-1.png')},
+                {src: require('@/assets/img/layout/plan_result_place_1-2.png')},
+                {src: require('@/assets/img/layout/plan_result_place_1-3.png')}
             ],
-            ootts:[
+            resultPic2: [
+                {src: require('@/assets/img/layout/plan_result_place_2-1.png')},
+                {src: require('@/assets/img/layout/plan_result_place_2-2.png')},
+                {src: require('@/assets/img/layout/plan_result_place_2-3.png')}
+            ],
+            resultPic3: [
+                {src: require('@/assets/img/layout/plan_result_place_3-1.png')},
+                {src: require('@/assets/img/layout/plan_result_place_3-2.png')},
+                {src: require('@/assets/img/layout/plan_result_place_3-3.png')}
+            ],
+            resultPic4: [
+                {src: require('@/assets/img/layout/plan_result_place_4-1.png')},
+                {src: require('@/assets/img/layout/plan_result_place_4-2.png')}
+            ],
+            resultPic5: [
+                {src: require('@/assets/img/layout/plan_result_place_5-1.png')},
+                {src: require('@/assets/img/layout/plan_result_place_5-2.png')}
+            ],
+            resultPic6: [
+                {src: require('@/assets/img/layout/plan_result_place_6-1.png')},
+                {src: require('@/assets/img/layout/plan_result_place_6-2.png')}
+            ],
+            // weather: {
+            //     loading: false,
+            //     weatherData: {},
+            //     location: 'Taichung',
+            //     lang:'zh_tw',
+            //     token:'713d2a4d5d6d47dca9a15517232207',
+            // },
+            ootts: [
 				{
 					oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
 					oottCardTags: "#日系 #休閒 #風景",
@@ -453,42 +484,55 @@ export default defineComponent({
 					oottCardAuthor: "Max",
 				},
 			],
-            tickets:[
+            tickets: [
                 {
                 ticketPhoto:require("@/assets/img/layout/plan_result_ticket.png"),
-                ticketTitle:"班比山丘門票",
-                ticketTags:"宜蘭・#親子 #情侶 #農場",
-                originalPrice: "800",
-                FinalPrice: "599",
-                discountTag: "75折",
+                ticketTitle:"紙箱王創意園區門票",
+                ticketTags:"台中・#親子 #小資 #藝文",
+                originalPrice: "200",
+                FinalPrice: "200",
                 },
             ],
-            trips:[
+            trips: [
 				{
-					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
-					tripCardTags: "台中・#親子 #情侶 #農場",
-					tripCardTitle: "台中文青一日遊",
+					tripCardPhoto: require("@/assets/img/layout/plan_result_place_7.png"),
+					tripCardTags: "新竹・#情侶 #風景 #藝文",
+					tripCardTitle: "新竹懷舊一日遊",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
 				{
-					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
-					tripCardTags: "台中・#親子 #情侶 #農場",
-					tripCardTitle: "台中文青一日遊",
+					tripCardPhoto: require("@/assets/img/layout/plan_result_place_8.png"),
+					tripCardTags: "新北・#情侶 #小資 #風景",
+					tripCardTitle: "新北藝術一日遊",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
 				{
-					tripCardPhoto: require("@/assets/img/layout/plan_result_place.png"),
-					tripCardTags: "台中・#親子 #情侶 #農場",
-					tripCardTitle: "台中文青一日遊",
+					tripCardPhoto: require("@/assets/img/layout/plan_result_place_9.png"),
+					tripCardTags: "宜蘭・#情侶 #風景 #藝文",
+					tripCardTitle: "宜蘭芬多精一日遊",
 					tripCardAuthor: "小編A",
 					tripCardDate: "2023 / 7 / 12",
 				},
 			],
         }
     },
+    // created(){
+    //     this.fetchWeather();
+    // },
     // methods: {
+    //     fetchWeather(){
+    //         this.loading = true
+    //         fetch(`https://api.weatherapi.com/v1/forecast.json?q=Taichung&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
+    //         .then(res=> {
+    //             return res.json()
+    //         })
+    //         .then(json=> {
+    //             this.weatherData = json
+    //             this.loading = false
+    //         })
+    //     }
     //     checkScroll() {
     //         const resultContent = document.querySelector('.result_content');
     //         if (resultContent) {
@@ -625,7 +669,7 @@ export default defineComponent({
                 width: 17px;
                 margin: auto;
                 padding-top: $sp2;
-                animation: fadeInDownLittle 1.2s 1s ease-in infinite;
+                animation: fadeInDown 1s ease-in 1, fadeInDownLittle 1.2s 1s ease-in infinite;
                 img{
                     width: 100%;
                     height: 79px;
@@ -636,7 +680,7 @@ export default defineComponent({
                 display: block;
                 text-align: center;
                 padding-top: $sp1;
-                animation: fadeInDownLittle 1.2s 1s ease-in infinite;
+                animation: fadeInDown 1s ease-in 1, fadeInDownLittle 1.2s 1s ease-in infinite;
                 @include sm_p;
                 @media (min-width: $md){
                     @include xl_p;
@@ -847,6 +891,7 @@ export default defineComponent({
                         }
                         img{
                             width: 100%;
+                            border-radius: 5px;
                         }
                         .carousel__pagination-button::after{
                             background-color: $tint_green !important;
@@ -1044,7 +1089,7 @@ export default defineComponent({
                 }
                 .ticket_box{
                     display: none;
-                    @media (min-width: $md){
+                    @media (min-width: 900px){
                         width: 100%;
                         display: flex;
                         position: relative;
@@ -1175,7 +1220,7 @@ export default defineComponent({
                 .ticket_card{
                     display: flex;
                     justify-content: center;
-                    @media (min-width: $md){
+                    @media (min-width: 900px){
                         display: none;
                     }
                 }
