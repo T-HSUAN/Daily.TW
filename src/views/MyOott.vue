@@ -38,7 +38,7 @@
                 </div>
                 <div class="card_wrap">
                     <div class="card" v-for="oott in oottData" key="oott.oottCardAuthor">
-                        <OottCard
+                        <MyOottCard
                         :oottPhoto= "oott.oottPhoto"
                         :oottCardTags= "oott.oottCardTags"
                         :oottCardDate= "oott.oottCardDate"
@@ -110,18 +110,14 @@
             flex-wrap: wrap;
             justify-content: center;
 
-            .oott_default{
-                box-sizing: border-box;
-                margin: 6px;
-                width: 257px;
-                height: 440px;
+            .my_oott_card{
                 @media (min-width:768px) {
                     width: 276px;
-                    height: 463px;
+                    height: 395px;
                     margin: 12px;
                 }
                 
-                .oott_card_info{
+                .oott_card_tag{
                     width: 104px;
                     white-space: nowrap;
                     overflow: hidden;
@@ -147,12 +143,12 @@
 
 
 <script>
-import OottCard from "@/components/OottCard.vue";
+import MyOottCard from "@/components/MyOottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
 export default{
     components:{
-        OottCard,
+        MyOottCard,
         Sidenav,
     },
     data() {
