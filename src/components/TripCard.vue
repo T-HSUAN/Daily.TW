@@ -74,6 +74,7 @@
         position: absolute;
         top: -2px;
         right: 32px;
+        z-index: 5;
         input[type="checkbox"]{
             display: none;
         }

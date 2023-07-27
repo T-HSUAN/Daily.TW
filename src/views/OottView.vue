@@ -87,9 +87,9 @@
                         <font-awesome-icon icon="fa-solid fa-arrow-right" />
                     </button>
                 </div>
-                <a href="oott_overview">
+                <router-link to="oott_overview">
                     <btn class="btn">查看更多</btn>
-                </a>
+                </router-link>
             </div>
         </div>
 
@@ -114,26 +114,13 @@
                 <div class="wrap">
                     <div class="oottCards">
                         <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottRank="oott.oottRank"
                             :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
                             :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                     </div>
                     <div class="oottCards">
                         <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                    </div>
-                    <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                    </div>
-                    <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                    </div>
-                    <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottRank="oott.oottRank"
                             :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
                             :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                     </div>
@@ -146,9 +133,9 @@
                         <font-awesome-icon icon="fa-solid fa-arrow-right" />
                     </button>
                 </div>
-                <a href="oott_overview">
+                <router-link to="oott_overview">
                     <btn class="btn">查看更多</btn>
-                </a>
+                </router-link>
             </div>
         </div>
 
@@ -227,6 +214,7 @@ export default {
         return {
             ootts: [
                 {
+                    oottRank: "#01",
                     oottPhoto: require('@/assets/img/oott_02.png'),
                     oottCardTags: "#日系 #休閒 #風景",
                     oottCardDate: "2022 / 12 / 12",
@@ -234,6 +222,7 @@ export default {
                     oottCardAuthor: "Alison",
                 },
                 {
+                    oottRank: "#02",
                     oottPhoto: require('@/assets/img/oott_06.png'),
                     oottCardTags: "#復古 #海邊",
                     oottCardDate: "2022 / 7 / 3",
@@ -241,12 +230,29 @@ export default {
                     oottCardAuthor: "Susan",
                 },
                 {
+                    oottRank: "#03",
                     oottPhoto: require('@/assets/img/oott_41.png'),
                     oottCardTags: "#街頭 #潮流",
                     oottCardDate: "2022 / 7 / 6",
                     oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
                     oottCardAuthor: "Max",
                 },
+                {
+                    oottRank: "#04",
+                    oottPhoto: require('@/assets/img/oott_01.png'),
+                    oottCardTags: "#藝文 #放鬆 #懷舊",
+                    oottCardDate: "2022 / 01 / 12",
+                    oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
+                    oottCardAuthor: "Jeffery",
+                },
+                {
+                    oottRank: "#05",
+                    oottPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardTags: "#復古 #性感",
+                    oottCardDate: "2023 / 07 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
+                    oottCardAuthor: "DazzleQueen",
+                }
 
 
             ],

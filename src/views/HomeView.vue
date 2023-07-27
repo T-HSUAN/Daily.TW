@@ -96,6 +96,7 @@
                     <div class="wrap">
                         <div class="oottCards">
                             <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
+                                :oottRank="oott.oottRank"
                                 :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                 :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                 :oottCardAuthor="oott.oottCardAuthor"></oottCard>
@@ -178,7 +179,8 @@ export default {
             ],
 
             ootts: [
-                {
+                {   
+                    oottRank: "#01",
                     oottPhoto: require('@/assets/img//oott_02.png'),
                     oottCardTags: "#日系 #休閒 #風景",
                     oottCardDate: "2022 / 12 / 12",
@@ -186,6 +188,7 @@ export default {
                     oottCardAuthor: "Alison",
                 },
                 {
+                    oottRank: "#02",
                     oottPhoto: require('@/assets/img/oott_06.png'),
                     oottCardTags: "#簡約 #休閒 #氣質",
                     oottCardDate: "2022 / 12 / 12",
@@ -193,6 +196,7 @@ export default {
                     oottCardAuthor: "Susan",
                 },
                 {
+                    oottRank: "#03",
                     oottPhoto: require('@/assets/img/oott_41.png'),
                     oottCardTags: "#簡約 #運動 #休閒",
                     oottCardDate: "2022 / 12 / 12",
@@ -200,6 +204,7 @@ export default {
                     oottCardAuthor: "Max",
                 },
                 {
+                    oottRank: "#04",
                     oottPhoto: require('@/assets/img/oott_01.png'),
                     oottCardTags: "#藝文 #放鬆 #懷舊",
                     oottCardDate: "2022 / 01 / 12",
@@ -207,6 +212,7 @@ export default {
                     oottCardAuthor: "Jeffery",
                 },
                 {
+                    oottRank: "#05",
                     oottPhoto: require('@/assets/img/oott_03.png'),
                     oottCardTags: "#復古 #性感",
                     oottCardDate: "2023 / 07 / 12",
@@ -214,6 +220,7 @@ export default {
                     oottCardAuthor: "DazzleQueen",
                 },
                 {
+                    oottRank: "#06",
                     oottPhoto: require('@/assets/img/oott_05.png'),
                     oottCardTags: "#休閒",
                     oottCardDate: "2022 / 08 / 31",
@@ -221,6 +228,7 @@ export default {
                     oottCardAuthor: "DuckLord",
                 },
                 {
+                    oottRank: "#07",
                     oottPhoto: require('@/assets/img/oott_10.png'),
                     oottCardTags: "#休閒 #美式",
                     oottCardDate: "2022 / 06 / 24",
@@ -228,6 +236,7 @@ export default {
                     oottCardAuthor: "Kay",
                 },
                 {
+                    oottRank: "#08",
                     oottPhoto: require('@/assets/img/oott_11.png'),
                     oottCardTags: "#休閒 #美式",
                     oottCardDate: "2022 / 09 / 06",
@@ -235,6 +244,7 @@ export default {
                     oottCardAuthor: "Kay",
                 },
                 {
+                    oottRank: "#09",
                     oottPhoto: require('@/assets/img/oott_12.png'),
                     oottCardTags: "#兒童 #休閒 #自然",
                     oottCardDate: "2022 / 01 / 08",
@@ -242,6 +252,7 @@ export default {
                     oottCardAuthor: "Kid",
                 },
                 {
+                    oottRank: "#10",
                     oottPhoto: require('@/assets/img/oott_40.png'),
                     oottCardTags: "#韓系 #休閒",
                     oottCardDate: "2022 / 06 / 12",
@@ -350,6 +361,7 @@ export default {
 
             .duck {
                 width: 80px;
+                animation: duck_shake 1s linear infinite;
                 
                 @media (min-width: 768px) {
                     width: 120px;
@@ -406,23 +418,38 @@ export default {
             }
 
             h1 {
+                opacity: 0;
                 position: relative;
                 width: 70%;
                 color: $default_yellow;
                 line-height: 150%;
                 text-align: left;
                 z-index: 10;
+                animation: index_h1 1.5s 0.2s 1 forwards;
 
                 @media (min-width: 768px) {
                     line-height: 140%;
                 }
+
+                @keyframes index_h1 {
+                    0%{
+                        left: -$sp12;
+                        opacity: 0;
+                    }
+                    100%{
+                        left: 0;
+                        opacity: 1;
+                    }
+                }
             }
 
             p {
+                opacity: 0;
                 position: relative;
                 margin: 160px 0 32px;
                 line-height: 180%;
                 z-index: 10;
+                animation: index_p 1.5s 0.4s 1 forwards;
 
                 @media (min-width: $md) {
                     margin: 24px 0 48px;
@@ -434,6 +461,17 @@ export default {
                     max-width: 100%;
                 }
 
+                @keyframes index_p {
+                    0%{
+                        left: -$sp8;
+                        opacity: 0;
+                    }
+                    100%{
+                        left: 0;
+                        opacity: 1;
+                    }
+                }
+
                 br{
                     display: none;
                     @media (min-width: $xl) {
@@ -442,12 +480,28 @@ export default {
                 }
             }
 
+            
+            .btn{
+                opacity: 0;
+                animation: index_btn 1.5s 1s 1 forwards;
+                @keyframes index_btn {
+                    0%{
+                        opacity: 0;
+                    }
+                    100%{
+                        opacity: 1;
+                    }
+                }
+            }
+
             .swiper_wrap {
                 position: absolute;
+                opacity: 0;
                 top: $sp10;
                 right: -30%;
                 z-index: 1;
                 width: 320px;
+                animation: index_btn 1.5s 0.8s 1 forwards;
 
                 @media (min-width: $md) {
                     right: -20%;
@@ -457,6 +511,17 @@ export default {
 
                 @media (min-width: $xl) {
                     width: 640px;
+                }
+
+                @keyframes index_btn {
+                    0%{
+                        // left: -$sp6;
+                        opacity: 0;
+                    }
+                    100%{
+                        // left: 0;
+                        opacity: 1;
+                    }
                 }
 
                 img{

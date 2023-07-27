@@ -24,7 +24,7 @@
         <div class="oott_info_section">
             <div class="pic_md">
                 <img src="@/assets/img/info_name_2.png" alt="作者頭像" />
-                <a href="">Ailson</a>
+                <router-link to="">Ailson</router-link>
             </div>
             <div class="pic_block">
                 <div class="pic">

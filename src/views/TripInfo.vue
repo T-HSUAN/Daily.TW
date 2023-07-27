@@ -809,27 +809,26 @@ export default {
     data() {
         return {
             ootts: [
-                {
-                    oottPhoto: require('@/assets/img/oott_card_example.png'),
+            {   
+                    oottPhoto: require('@/assets/img//oott_02.png'),
                     oottCardTags: "#日系 #休閒 #風景",
                     oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-1_member.png"),
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
                     oottCardAuthor: "Alison",
                 },
                 {
-                    oottPhoto: require('@/assets/img/oott_card_example.png'),
-                    oottCardTags: "#復古 #海邊",
-                    oottCardDate: "2022 / 7 / 3",
-                    oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+                    oottPhoto: require('@/assets/img/oott_06.png'),
+                    oottCardTags: "#簡約 #休閒 #氣質",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-2_member.png'),
                     oottCardAuthor: "Susan",
                 },
                 {
-                    oottPhoto: require('@/assets/img/oott_card_example.png'),
-                    oottCardTags: "#街頭 #潮流",
-                    oottCardDate: "2022 / 7 / 6",
-                    oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
-                    oottCardAuthor: "Max",
-                },
+                    oottPhoto: require('@/assets/img/oott_41.png'),
+                    oottCardTags: "#簡約 #運動 #休閒",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
+                }
             ],
             tickets: [
                 {
@@ -879,20 +878,20 @@ export default {
                     tripCardDate: "2023 / 7 / 9",
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
-                    tripCardTags: "台中・#親子 #情侶 #農場",
-                    tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 9",
+                    tripCardPhoto: require('@/assets/img/place/place_006-1.png'),
+                    tripCardTags: "宜蘭・#親子 #情侶 #風景",
+                    tripCardTitle: "宜蘭芬多精一日遊",
+                    tripCardDesc: "不知道要去哪裡玩嗎？精選六個宜蘭知名景點，有吃又有玩，無論",
+                    tripCardAuthor: "小編B",
+                    tripCardDate: "2023 / 7 / 12",
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
-                    tripCardTags: "台中・#親子 #情侶 #農場",
-                    tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
+                    tripCardPhoto: require('@/assets/img/place/place_012.png'),
+                    tripCardTags: "新北・#親子 #情侶 #風景 #海邊 #放鬆",
+                    tripCardTitle: "新北藝術一日遊",
+                    tripCardDesc: "來去新北一日遊，鶯歌、三峽這裡也有蠻多特色景點，不只是逛老街，也可以安排個鶯歌景點一日遊，順便遊三峽景點。不管是季節限定的賞花景點，還是親子同遊必拍，又或者是IG熱門打卡點，通通好玩報你知。",
                     tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 9",
+                    tripCardDate: "2023 / 7 / 13",
                 },
             ]
         }
