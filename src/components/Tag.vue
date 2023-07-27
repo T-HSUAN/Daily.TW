@@ -1,7 +1,7 @@
 <template>
-    <label v-for="item in tagTexts" :key="item">
+    <label>
         <input type="checkbox" class="tag" />
-        <span>{{ item.default }}</span>
+        <span>{{ tagTexts }}</span>
     </label>
 </template>
 
@@ -10,7 +10,7 @@ export default {
     name: "tag",
     props: {
         tagTexts: {
-            type: String,
+            String,
             default: "#標籤",
         },
     },
