@@ -3,12 +3,12 @@
     <section class="profile">
         <h2>帳號管理</h2>
         
-        <div class="profile_page">
+        <div class="profile_container">
             <Sidenav class="sidenav"></Sidenav>
             <!-- 個人資料修改 -->
             <div class="profile_card">
                 <div class="member_title">
-                    <h2>密碼修改</h2>
+                    <h3>密碼修改</h3>
                     <p>會員編號</p>
                 </div>
                 <div class="member_data">
@@ -49,50 +49,38 @@
 //     outline: 1px solid red;
 // }
 .profile{
-    width: 83%;
+    width: 90%;
     margin: 0 auto;
-    box-sizing: border-box;
-    padding: $sp8 $sp3;
-    @media (min-width: 768px) {
-        max-width: 1200px;
+
+    @media (min-width: 1200px) {
+        box-sizing: border-box;
+        width: 1175px;
     }
     h2{
-        margin: 40px auto;
+        margin: 41px auto;
         text-align: center;
-        @media (min-width: 768px) {
-            margin: 40px auto 80px;
-            }
     }
 
 
-    .profile_page{
+    .profile_container{
         display: flex;
-        // width: 100%;
+        gap: 30px;
         
         .profile_card{
             width: 100%;
             display: flex;
             flex-direction: column;
-            @media (min-width: 768px) {
-            // width: 80%;
-            margin: 0 0 0 80px;
-            }
+            
             .member_title{
                 width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                border-bottom: 2px solid $textColor_default;
+                border-bottom: 1px solid $textColor_default;
                 padding: 0 0 $sp1;
-                @media (min-width: 768px) {
-                    padding: 0 0 $sp2;
-                }
+                
                 h2{ 
                     margin: 0;
-                    font-size: $sm_h3;
-                    @media (min-width: 768px) {
-                        font-size: $xl_h3;
-                    }
                 }
                 p{
                     font-size: $sm_p;
@@ -107,7 +95,7 @@
                 @media (min-width: 768px) {
                     width: 435px;
                     box-sizing: border-box;
-                    margin: 32px 200px 40px 100px;
+                    margin: 32px 200px 0 150px;
                 }
                 
                 label{
