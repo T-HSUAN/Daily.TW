@@ -26,9 +26,7 @@
                                     <li>性別</li>
                                     <li>email</li>
                                 </ul>
-                                <router-link to="/member_info" class="btn"
-                                    >編輯</router-link
-                                >
+                                <router-link to="/member_info" class="btn">編輯</router-link>
                             </div>
                         </div>
                     </div>
@@ -308,7 +306,7 @@ export default {
     },
 };
 </script>
-<style lang="scss" scope>
+<style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
 .member_view{
     max-width: 1175px;
@@ -329,7 +327,6 @@ export default {
     }
     .bg_area {
         display: flex;
-        justify-content: center;
         .bg_container {
             margin-bottom: 60px;
             width: 100%;
