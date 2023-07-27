@@ -248,32 +248,36 @@
                 </div>
                 <div class="ticket_container">
                     <h3>景點票券優惠</h3>
-                    <div class="ticket_box">
-                        <div class="ticket_pic">
-                        </div>
-                        <div class="ticket_desc">
-                            <div class="ticket_content">
-                                <h4>紙箱王創意園區門票</h4>
-                                <span>台中・</span>
-                                <span>#親子 #小資 #藝文</span>
-                                <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                    <router-link to="/ticket_info">
+                        <div class="ticket_box">
+                            <div class="ticket_pic">
                             </div>
-                            <div class="ticket_price">
-                                <div class="price_box">
-                                    <span>NT$ 200</span>
-                                    <span>NT$ 200</span>
+                            <div class="ticket_desc">
+                                <div class="ticket_content">
+                                    <h4>紙箱王創意園區門票</h4>
+                                    <span>台中・</span>
+                                    <span>#親子 #小資 #藝文</span>
+                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
                                 </div>
-                                <div class="ticket_link">
-                                    <a href="/ticket_info">查看詳情</a>
+                                <div class="ticket_price">
+                                    <div class="price_box">
+                                        <span>NT$ 200</span>
+                                        <span>NT$ 200</span>
+                                    </div>
+                                    <div class="ticket_link">
+                                        <router-link to="/ticket_info">
+                                            查看詳情
+                                        </router-link>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- <div class="sale_tag">
+                                <span>75折</span>
+                            </div> -->
                         </div>
-                        <!-- <div class="sale_tag">
-                            <span>75折</span>
-                        </div> -->
-                    </div>
+                    </router-link>
                     <div class="ticket_card">
-                        <a href="/ticket_info">
+                        <router-link to="/ticket_info">
                             <Ticket
                             v-for="(ticket, index) in tickets"
                             :key="index"
@@ -283,7 +287,7 @@
                             :originalPrice="ticket.originalPrice" 
                             :FinalPrice="ticket.FinalPrice">
                             </Ticket>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -397,9 +401,9 @@
                     >
                 </TripCard>
             </div>
-            <a href="/trip">
+            <router-link to="/trip">
                 <button class="btn">查看更多</button>
-            </a>
+            </router-link>
         </div>
     </div>
 </template>
