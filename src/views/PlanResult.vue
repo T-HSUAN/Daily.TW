@@ -391,15 +391,16 @@
                 <div class="title_footprint"></div>
             </div>
             <div class="result_trip">
-                <TripCard v-for="(trip, index) in trips"
-                    :key="index"
-                    :tripCardPhoto="trip.tripCardPhoto"
-                    :tripCardTags="trip.tripCardTags"
-                    :tripCardTitle="trip.tripCardTitle" 
-                    :tripCardAuthor="trip.tripCardAuthor"
-                    :tripCardDate="trip.tripCardDate"
-                    >
-                </TripCard>
+                <router-link to="/trip_info" v-for="(trip, index) in trips" :key="index">
+                    <TripCard
+                        :tripCardPhoto="trip.tripCardPhoto"
+                        :tripCardTags="trip.tripCardTags"
+                        :tripCardTitle="trip.tripCardTitle" 
+                        :tripCardAuthor="trip.tripCardAuthor"
+                        :tripCardDate="trip.tripCardDate"
+                        >
+                    </TripCard>
+                </router-link>
             </div>
             <router-link to="/trip">
                 <button class="btn">查看更多</button>
