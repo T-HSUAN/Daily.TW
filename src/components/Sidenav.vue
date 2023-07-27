@@ -112,19 +112,19 @@ export default {
             this.updateShowSubtitle(); // Update showSubtitle when window is resized
         },
         toggleSubtitle(key){
-            if (this.windowWidth > 767){
+            if (this.windowWidth > 1023){
                 return;
             }
             this.showSubtitle[key] = !this.showSubtitle[key];
         },
         updateShowSubtitle() {
-            // Set all the showSubtitle values to false when the window's width is less than 768px
-            if (this.windowWidth < 768) {
+            // Set all the showSubtitle values to false when the window's width is less than 1024px
+            if (this.windowWidth < 1024) {
                 for (const key in this.showSubtitle) {
                     this.showSubtitle[key] = false;
                 }
             } else {
-                // Restore the original values when the window's width is greater than or equal to 768px
+                // Restore the original values when the window's width is greater than or equal to 1024px
                 this.showSubtitle = {
                     member: true,
                     oott: true,

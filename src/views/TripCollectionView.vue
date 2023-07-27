@@ -3,7 +3,7 @@
         <h2>收藏管理</h2>
 
         <div class="collection_container">
-            <Sidenav class="sidenav"></Sidenav>
+            <Sidenav></Sidenav>
 
             <div class="collection_content">
                 <h3>行程收藏</h3>
@@ -97,15 +97,6 @@
         
     }
 
-    /* 等手機板切出來再拿掉(連同上面的class) */
-    .sidenav {
-        flex-shrink: 0;
-        height: 506px;
-        display: none;
-        @media (min-width: 1024px) {
-            display: block;
-        }
-    }
 }
 </style>
 
