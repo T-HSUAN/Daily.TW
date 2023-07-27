@@ -45,14 +45,16 @@
                         </div>
                     </div>
                     <div class="spot_img">
-                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                        <img src="~@/assets/img/place/place_001.png" alt="景點照片">
                     </div>
                     <p class="spot_desc">
                         位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。
                     </p>
                     <div class="spot_loc">
                         <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        <a href="https://goo.gl/maps/Nekbh1wSTguR5KDf7" target="_blank">
+                            <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        </a>
                     </div>
                 </section>
                 <section class="spot" id="spot2">
@@ -60,18 +62,20 @@
                         <h3>內灣愛情故事館</h3>
                         <div class="time">
                             <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留30分鐘</h5>
+                            <h5>停留1小時</h5>
                         </div>
                     </div>
                     <div class="spot_img">
-                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                        <img src="~@/assets/img/place/place_002.png" alt="景點照片">
                     </div>
                     <p class="spot_desc">
-                        位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。
+                        浴火重生，強勢回歸~以全新的面貌再次登場，這回的內灣愛情故事館，可以說是進階版的愛情故事館，不只拍照的場景變多了，還有許多浪漫新元素，而且連餐點都變好吃了，想要揪好姐妹或另一半來浪漫拍照，就來全新的內灣愛情故事館走走吧。
                     </p>
                     <div class="spot_loc">
                         <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        <a href="https://goo.gl/maps/tL1NkkwnjHRej8Mr8" target="_blank">
+                            <h5> 新竹縣內灣鄉內灣村中正路200號</h5>
+                        </a>
                     </div>
                 </section>
                 <section class="spot" id="spot3">
@@ -79,18 +83,20 @@
                         <h3>內灣老街</h3>
                         <div class="time">
                             <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留30分鐘</h5>
+                            <h5>停留2小時</h5>
                         </div>
                     </div>
                     <div class="spot_img">
-                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                        <img src="~@/assets/img/place/place_003.png" alt="景點照片">
                     </div>
                     <p class="spot_desc">
-                        位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。
+                        一個充滿學生回憶的地方。內灣老街的小吃攤販很多，走一圈差不多就可以吃飽了，其中內灣戲院生意極好，用餐尖峰時間都要候位才排得到座位。
                     </p>
                     <div class="spot_loc">
                         <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        <a href="https://goo.gl/maps/xdGrkv3sFKemu5Xz5" target="_blank">
+                            <h5>新竹縣橫山鄉中正路</h5>
+                        </a>
                     </div>
                 </section>
                 <section class="spot" id="spot4">
@@ -98,18 +104,21 @@
                         <h3>劉興欽漫畫館</h3>
                         <div class="time">
                             <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留30分鐘</h5>
+                            <h5>停留3小時</h5>
                         </div>
                     </div>
                     <div class="spot_img">
-                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                        <img src="~@/assets/img/place/place_004.png" alt="景點照片">
                     </div>
                     <p class="spot_desc">
-                        位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。
+                        一直以來，我覺得漫畫館是比較靜態復古的展覽，對劉興欽大師的畫，又比較不是這麼熟悉，所以激不起我的興趣。
+                        可是後來了好客好品希望工場進駐，經過文創團隊的改造後，裡頭不只有漫畫館，還多了品客好客生活餐飲、及台灣水色工作坊。將園區打造的相當的有趣味性。
                     </p>
                     <div class="spot_loc">
                         <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        <a href="https://goo.gl/maps/DChj9k95D33TXvsKA" target="_blank">
+                            <h5>新竹縣橫山鄉內灣村3鄰110號</h5>
+                        </a>
                     </div>
                 </section>
                 <section class="spot" id="spot5">
@@ -117,25 +126,30 @@
                         <h3>內灣隱藏版咖啡</h3>
                         <div class="time">
                             <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留30分鐘</h5>
+                            <h5>停留1.5小時</h5>
                         </div>
                     </div>
                     <div class="spot_img">
-                        <img src="~@/assets/img/place_001.png" alt="景點照片">
+                        <img src="~@/assets/img/place/place_005.png" alt="景點照片">
                     </div>
                     <p class="spot_desc">
-                        位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。
+                        位於內灣老街附近的遷徏咖啡，除了是民宿，白天也是咖啡廳，文青風的室內環境，復古卻很有味道。
                     </p>
                     <div class="spot_loc">
                         <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        <a href="https://goo.gl/maps/bu6AU3sz2Dua7L3T7" target="_blank">
+                            <h5>新竹縣橫山鄉和平街18號</h5>
+                        </a>
                     </div>
                 </section>
                 <section class="trip_tags">
                     <div class="tags">#新竹</div>
+                    <div class="tags">#親子</div>
+                    <div class="tags">#情侶</div>
+                    <div class="tags">#風景</div>
+                    <div class="tags">#藝文</div>
                     <div class="tags">#放鬆</div>
                     <div class="tags">#懷舊</div>
-                    <div class="tags">#情侶</div>
                 </section>
             </article>
             <div class="sidebar">
@@ -203,11 +217,15 @@
             <div class="content">
                 <div class="wrap">
                     <div class="ticketCards">
-                        <ticketCard class="ticketCard" v-for="(ticket, index) in tickets" :key="index"
-                            :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                            :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                            :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
-                            :discountTag="ticket.discountTag"></ticketCard>
+                        <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
+                            <router-link to="/ticket_info">
+                                <ticketCard
+                                    :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
+                                    :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
+                                    :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
+                                    :discountTag="ticket.discountTag"></ticketCard>
+                            </router-link>
+                        </div>
                     </div>
                 </div>
                 <a href="/ticket">
@@ -425,6 +443,14 @@
             }
 
             .spot {
+
+                a{
+                    color: inherit;
+                    &:hover{
+                        color: $textColor_tint;
+                    }
+                }
+
                 .spot_title {
                     display: flex;
                     justify-content: space-between;
@@ -462,7 +488,7 @@
                 .spot_loc {
                     display: flex;
                     gap: $sp1;
-                    margin-bottom: $sp5;
+                    margin-bottom: $sp8;
                 }
 
             }
@@ -566,7 +592,7 @@
                     position: absolute;
                     display: none;
 
-                    // width: 100%;
+                    width: 100%;
                     // height: 100%;
                     +span {
                         padding: 16px;
@@ -639,8 +665,9 @@
 
                 .oottCards {
                     display: flex;
-                    gap: $sp4;
+                    // gap: $sp4;
                     margin-bottom: $sp4;
+                    margin-right: 32px;
 
                     @media (min-width: 768px) {
                         justify-content: center;
@@ -648,8 +675,9 @@
 
                     .oottCard {
                         flex-shrink: 0;
+                        margin-left: 32px;
 
-                        @media (min-width: 768px) {
+                        @media (min-width: $xl) {
                             flex-shrink: 1;
                         }
 
@@ -741,8 +769,9 @@
 
                 .tripCards {
                     display: flex;
-                    gap: $sp4;
+                    // gap: $sp4;
                     margin-bottom: $sp4;
+                    margin-right: 32px;
 
                     @media (min-width: 768px) {
                         justify-content: center;
@@ -750,6 +779,7 @@
 
                     .tripCard {
                         flex-shrink: 0;
+                        margin-left: 32px;
 
                         @media (min-width: 768px) {
                             flex-shrink: 1;

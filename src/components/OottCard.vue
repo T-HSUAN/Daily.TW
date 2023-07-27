@@ -1,28 +1,30 @@
 <template>
     <div class="oott_default">
-        <router-link to="/oott_Info">
+        <router-link to="/oott_Info" class="link">
             <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
         </router-link>
-        <label>
+        <label class="heart">
             <input type="checkbox">
             <span></span>
         </label>
-        <div class="oott_card_text">
-            <div class="oott_card_info">
-                <span class="oott_card_tag">{{ oottCardTags }}</span>
-                <span class="oott_card_date">{{ oottCardDate }}</span>
-            </div>
-            <div class="oott_card_foot">
-                <div class="oott_card_author">
-                    <div class="oott_card_author_proPic">
-                        <img :src="oottAuthorPhoto" alt="作者照片" />
-                    </div>
-                    <h4 class="oott_card_author_name">{{ oottCardAuthor }}</h4>
+        <router-link to="/oott_info">
+            <div class="oott_card_text">
+                <div class="oott_card_info">
+                    <span class="oott_card_tag">{{ oottCardTags }}</span>
+                    <span class="oott_card_date">{{ oottCardDate }}</span>
                 </div>
-                <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
-                    class="oott_card_deco_footprint" />
+                <div class="oott_card_foot">
+                    <div class="oott_card_author">
+                        <div class="oott_card_author_proPic">
+                            <img :src="oottAuthorPhoto" alt="作者照片" />
+                        </div>
+                        <h4 class="oott_card_author_name">{{ oottCardAuthor }}</h4>
+                    </div>
+                    <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                        class="oott_card_deco_footprint" />
+                </div>
             </div>
-        </div>
+        </router-link>
     </div>
 </template>
 
@@ -52,13 +54,25 @@ export default {
     flex-direction: column;
     gap: 8px;
 
+    a{
+        color: inherit;
+        &:hover{
+            color: inherit;
+        }
+    }
+
+    &:hover{
+        background-color: $mid_yellow;
+        transform: rotate(0.5deg) scale(1.01);
+    }
+
     @media (min-width: 768px) {
         width: 311px;
         height: 522px;
         gap: 16px;
     }
 
-    label {
+    .heart {
         position: absolute;
         top: 32px;
         right: 64px;
@@ -107,8 +121,17 @@ export default {
         }
     }
 
+    .link{
+        overflow: hidden;
+    }
+
     .oott_card_pic {
+        overflow: hidden;
         width: 100%;
+        transition: 0.5s;
+        &:hover{
+            transform: scale(1.1);
+        }
     }
 
     .oott_card_text {
