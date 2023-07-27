@@ -9,15 +9,19 @@
                     <p>
                         煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
                     </p>
-                    <a href="/plan">
+                    <router-link to="/plan">
                         <button class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
                             <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
                         </button>
-                    </a>
-                    <div class="coverPic">
+                    </router-link>
+                    <div class="swiper_wrap">
                         <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
                         <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
-                        <img src="~@/assets/img/index_plan_cover_example.png" alt="" class="mainPic" />
+                        <Carousel :autoplay="3000" :wrap-around="true">
+                            <Slide v-for="item in planPic" :key="item.index">
+                                <img :src="item.src" alt="">
+                            </Slide>
+                        </Carousel>
                     </div>
                 </div>
             </section>
@@ -64,11 +68,11 @@
                             <div class="deco">
                                 <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                             </div>
-                            <a href="/trip_info">
+                            <router-link to="/trip_info">
                                 <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
                                     <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
                                 </button>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -105,9 +109,9 @@
                             <font-awesome-icon icon="fa-solid fa-arrow-right" />
                         </button>
                     </div>
-                    <a href="/oott">
+                    <router-link to="/oott">
                         <button class="btn">查看更多</button>
-                    </a>
+                    </router-link>
                 </div>
             </section>
             <!-- 票券區塊 -->
@@ -127,15 +131,18 @@
                 <div class="content">
                     <div class="wrap">
                         <div class="ticketCards">
-                            <ticketCard class="ticketCard" v-for="(ticket, index) in tickets" :key="index"
-                                :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                                :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                                :ticketPrice="ticket.ticketAuthor" :FinalPrice="ticket.finalPrice"></ticketCard>
-                        </div>
+                            <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
+                                <router-link to="/ticket_info" title="點擊查看票券詳情">
+                                    <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
+                                    :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
+                                    :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice" :discountTag="ticket.discountTag" />
+                                </router-link>
+                            </div>
                     </div>
-                    <a href="/ticket">
+                    </div>
+                    <router-link to="/ticket">
                         <button class="btn">查看更多</button>
-                    </a>
+                    </router-link>
                 </div>
             </section>
         </main>
@@ -146,49 +153,100 @@
 // @ is an alias to /src
 import oottCard from "@/components/OottCard.vue";
 import ticketCard from "@/components/TicketVertical.vue";
+import { Carousel, Pagination, Slide } from 'vue3-carousel';
+
+import 'vue3-carousel/dist/carousel.css';
 
 export default {
+    name: 'Autoplay',
     components: {
         oottCard,
         ticketCard,
+
+        Carousel,
+        Slide,
+        Pagination,
     },
     data() {
         return {
+
+            planPic: [
+                {src: require('@/assets/img/index_plan_1.png')},
+                {src: require('@/assets/img/index_plan_2.png')},
+                {src: require('@/assets/img/index_plan_3.png')},
+                {src: require('@/assets/img/index_plan_4.png')},
+            ],
+
             ootts: [
                 {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
+                    oottPhoto: require('@/assets/img//oott_02.png'),
                     oottCardTags: "#日系 #休閒 #風景",
                     oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
                     oottCardAuthor: "Alison",
                 },
                 {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
-                    oottCardTags: "#復古 #海邊",
-                    oottCardDate: "2022 / 7 / 3",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottPhoto: require('@/assets/img/oott_06.png'),
+                    oottCardTags: "#簡約 #休閒 #氣質",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-2_member.png'),
                     oottCardAuthor: "Susan",
                 },
                 {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
-                    oottCardTags: "#街頭 #潮流",
-                    oottCardDate: "2022 / 7 / 6",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
+                    oottPhoto: require('@/assets/img/oott_41.png'),
+                    oottCardTags: "#簡約 #運動 #休閒",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
                     oottCardAuthor: "Max",
                 },
                 {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
-                    oottCardTags: "#兒童 #休閒 #自然",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Alison",
+                    oottPhoto: require('@/assets/img/oott_01.png'),
+                    oottCardTags: "#藝文 #放鬆 #懷舊",
+                    oottCardDate: "2022 / 01 / 12",
+                    oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
+                    oottCardAuthor: "Jeffery",
                 },
                 {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
+                    oottPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardTags: "#復古 #性感",
+                    oottCardDate: "2023 / 07 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
+                    oottCardAuthor: "DazzleQueen",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_05.png'),
+                    oottCardTags: "#休閒",
+                    oottCardDate: "2022 / 08 / 31",
+                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
+                    oottCardAuthor: "DuckLord",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_10.png'),
+                    oottCardTags: "#休閒 #美式",
+                    oottCardDate: "2022 / 06 / 24",
+                    oottAuthorPhoto: require('@/assets/img/duck_red.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_11.png'),
+                    oottCardTags: "#休閒 #美式",
+                    oottCardDate: "2022 / 09 / 06",
+                    oottAuthorPhoto: require('@/assets/img/duck_red.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_12.png'),
                     oottCardTags: "#兒童 #休閒 #自然",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Alison",
+                    oottCardDate: "2022 / 01 / 08",
+                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
+                    oottCardAuthor: "Kid",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_40.png'),
+                    oottCardTags: "#韓系 #休閒",
+                    oottCardDate: "2022 / 06 / 12",
+                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
+                    oottCardAuthor: "Kid",
                 },
             ],
             tickets: [
@@ -199,6 +257,7 @@ export default {
                     ticketTags: "#標籤",
                     originalPrice: 800,
                     finalPrice: 599,
+                    discountTag: "75折"
                 },
                 {
                     ticketPhoto: require("@/assets/img/ticketExample.png"),
@@ -207,6 +266,7 @@ export default {
                     ticketTags: "#標籤",
                     originalPrice: 800,
                     finalPrice: 599,
+                    discountTag: "75折"
                 },
                 {
                     ticketPhoto: require("@/assets/img/ticketExample.png"),
@@ -215,6 +275,7 @@ export default {
                     ticketTags: "#標籤",
                     originalPrice: 800,
                     finalPrice: 599,
+                    discountTag: "75折"
                 },
                 {
                     ticketPhoto: require("@/assets/img/ticketExample.png"),
@@ -223,6 +284,7 @@ export default {
                     ticketTags: "#標籤",
                     originalPrice: 800,
                     finalPrice: 599,
+                    discountTag: "75折"
                 },
             ],
         };
@@ -232,6 +294,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
+
 
 #app {
     background-color: $bgColor_default;
@@ -287,7 +350,7 @@ export default {
 
             .duck {
                 width: 80px;
-
+                
                 @media (min-width: 768px) {
                     width: 120px;
                 }
@@ -357,32 +420,49 @@ export default {
 
             p {
                 position: relative;
-                margin: 176px 0 32px;
+                margin: 160px 0 32px;
                 line-height: 180%;
                 z-index: 10;
 
-                @media (min-width: 768px) {
+                @media (min-width: $md) {
                     margin: 24px 0 48px;
                     line-height: 165%;
+                    max-width: 50%;
+                }
+
+                @media (min-width: $xl) {
+                    max-width: 100%;
+                }
+
+                br{
+                    display: none;
+                    @media (min-width: $xl) {
+                        display: inline-block;
+                    }
                 }
             }
 
-            .coverPic {
+            .swiper_wrap {
                 position: absolute;
-                top: 112px;
+                top: $sp10;
                 right: -30%;
                 z-index: 1;
-                width: 80%;
+                width: 320px;
 
-                @media (min-width: 768px) {
+                @media (min-width: $md) {
                     right: -20%;
-                    top: -100px;
+                    top: -40px;
+                    width: 480px;
+                }
+
+                @media (min-width: $xl) {
                     width: 640px;
                 }
 
-                .mainPic {
+                img{
                     width: 100%;
                 }
+                
 
                 .boy {
                     width: $sp11;
@@ -390,24 +470,113 @@ export default {
                     position: absolute;
                     top: -$sp10;
                     left: $sp15;
+                    animation: boy_move_sm 1s 0.5s linear forwards;
 
-                    @media (min-width: 768px) {
+                    @media (min-width: $md) {
                         rotate: -45deg;
+                        width: $sp13;
+                        top: -$sp1;
+                        left: -$sp1;
+                        animation: boy_move_md 2s 0.5s linear forwards;
+                    }
+
+                    @media (min-width: $xl) {
                         width: $sp15;
                         top: $sp2;
                         left: 0;
+                        animation: boy_move_xl 2s 0.5s linear forwards;
+
+                    }
+
+                    @keyframes boy_move_sm{
+                        0%{
+                            top: 0;
+                        }
+                        100%{
+                            top: -$sp10;
+                        }
+                    }
+
+                    @keyframes boy_move_md{
+                        0%{
+                            top: $sp5;
+                            left: $sp5
+                        }
+                        100%{
+                            top: -$sp1;
+                            left: -$sp1;
+                        }
+                    }
+
+                    @keyframes boy_move_xl{
+                        0%{
+                            top: $sp7;
+                            left: $sp5
+                        }
+                        100%{
+                            top: $sp2;
+                            left: 0;
+                        }
                     }
                 }
 
                 .duck {
                     position: absolute;
-                    width: 104px;
+                    width: 120px;
                     bottom: 0;
-                    left: $sp2;
+                    left: -3%;
+                    z-index: 5;
+                    animation: duck_move 8s 0.5s infinite linear;
 
-                    @media (min-width: 768px) {
+                    @media (min-width: $md) {
+                        width: 200px;
+                        left: -$sp4;
+                    }
+
+                    @media (min-width: $xl) {
                         width: 248px;
                         left: -$sp4;
+                    }
+
+                    @keyframes duck_move{
+                        0%{
+                            left:-3%;
+                            bottom: 0;
+                            rotate: 5deg;
+                        }
+                        10%{
+                            rotate: -5deg;
+                        }
+                        20%{
+                            rotate: 5deg;
+                        }
+                        30%{
+                            rotate: -5deg;
+                        }
+                        40%{
+                            rotate: 5deg;
+                        }
+                        50%{
+                            bottom: -1%;
+                            rotate: -5deg;
+                        }
+                        60%{
+                            rotate: 5deg;
+                        }
+                        70%{
+                            rotate: -5deg;
+                        }
+                        80%{
+                            rotate: 5deg;
+                        }
+                        90%{
+                            rotate: -5deg;
+                        }
+                        100%{
+                            bottom: 0;
+                            rotate: 5deg;
+                            left:-100%;
+                        }
                     }
                 }
             }
@@ -568,7 +737,7 @@ export default {
                 margin-bottom: 16px;
                 overflow-x: scroll;
 
-                @media (min-width: 768px) {
+                @media (min-width: $xl) {
                     overflow: visible;
                 }
 
@@ -619,6 +788,7 @@ export default {
                     }
 
                     .ticketCard {
+                        text-align: left;
                         flex-shrink: 0;
                         margin-left: 32px;
 

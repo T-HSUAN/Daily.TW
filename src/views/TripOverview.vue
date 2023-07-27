@@ -29,19 +29,22 @@
                     v-for="(item, index) in tripDisplay"
                     :key="item.id"
                 >
-                    <router-link :to="item.link" title="點擊查看行程詳情">
-                        <Trip
-                            :tripCardPhoto="item.img"
-                            :tripCardTags="item.tag"
-                            :tripCardTitle="item.name"
-                            :tripCardDesc="item.desc"
-                            :tripCardAuthor="item.author"
-                            :tripCardDate="item.date"
-                    /></router-link>
+                <Trip
+                    :tripCardPhoto="item.img"
+                    :tripCardTags="item.tag"
+                    :tripCardTitle="item.name"
+                    :tripCardDesc="item.desc"
+                    :tripCardAuthor="item.author"
+                    :tripCardDate="item.date"
+                />
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <router-link to="/"><button class="btn">查看更多</button></router-link>
+            <div class="page_link">
+                <a class="page" v-if="tripDisplay.length === tripData.length">1</a>
+                <a class="page" v-if="tripDisplay.length === tripData.length">2</a>
+                <a class="page" v-if="tripDisplay.length === tripData.length">3</a>
+            </div>
         </section>
     </div>
 </template>
@@ -123,11 +126,27 @@ export default {
             .trip_card {
                 position: relative;
                 cursor: pointer;
+
+                .bookmark{
+                    right: -$sp3;
+                }
             }
     
         }
         .btn{
-            margin: 0 auto $sp12;
+        }
+        .page_link {
+            display: flex;
+            justify-content: center;
+            .page {
+                display: block;
+                margin: $sp4 $sp1 $sp8;
+                text-align: center;
+                color: $textColor_default;
+                &:hover {
+                    color: $default_blue;
+                }
+            }
         }
     }
 

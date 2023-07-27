@@ -1,7 +1,7 @@
 <template>
     <div class="trip_card_default">
         <!-- 書籤 -->
-        <label>
+        <label class="bookmark">
             <input type="checkbox">
             <span></span>
         </label>
@@ -12,19 +12,24 @@
             <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
         </label> -->
         <div class="trip_card_img">
-            <img
-                :src= "tripCardPhoto"
-                alt="景點照片"
-            />
+            <router-link to="/trip_info">
+                <img
+                    :src= "tripCardPhoto"
+                    alt="景點照片"
+                />
+            </router-link>
         </div>
         <div class="trip_card_text">
-            <span class="trip_card_tags">{{ tripCardTags }}</span>
-            <h3 class="trip_card_title">{{tripCardTitle}}</h3>
-            <p class="trip_card_desc">{{tripCardDesc}}</p>
-            <div class="trip_card_info">
-                <span>{{tripCardAuthor}}</span>
-                <span>{{tripCardDate}}</span>
-            </div>
+            <router-link to="/trip_info">
+
+                <span class="trip_card_tags">{{ tripCardTags }}</span>
+                <h3 class="trip_card_title">{{tripCardTitle}}</h3>
+                <p class="trip_card_desc">{{tripCardDesc}}</p>
+                <div class="trip_card_info">
+                    <span>{{tripCardAuthor}}</span>
+                    <span>{{tripCardDate}}</span>
+                </div>
+            </router-link>
         </div>
     </div>
 </template>
@@ -47,19 +52,28 @@
 @import "@/assets/scss/main.scss";
 
 .trip_card_default{
-    background-color:var(--green-default, #93AE51);
+    background-color: $default-green;
     border-radius: 5px 20px 20px 5px;
     padding: $sp2;
     width: 276px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    position: relative;
     @media (min-width: 768px) {
         padding: $sp3;
         width: 378px;
     }
-    position: relative;
-    label{
+
+    &:hover{
+        background-color: $mid-green;
+        transform: rotate(0.5deg) scale(1.01);
+    }
+
+    .bookmark{
+        position: absolute;
+        top: -2px;
+        right: 32px;
         input[type="checkbox"]{
             display: none;
         }
@@ -72,13 +86,11 @@
             background-size: 100%;
             background-repeat: no-repeat;
             position: absolute;
-            top: -2px;
-            right: 32px;
+            
             cursor: pointer;
             @media (min-width: $md){
                 width: 32px;
                 height: 48px;
-                right: 32px;
             }
         }
         input[type="checkbox"]:checked + span::before{
@@ -98,8 +110,14 @@
     }
     .trip_card_img{
         width: 100%;
+        overflow: hidden;
         img{
             width: 100%;
+            transition: 0.5s;
+
+            &:hover{
+                transform: scale(1.1);
+            }
         }
     }
 
