@@ -111,10 +111,8 @@
                     <font-awesome-icon icon="fa-solid fa-arrow-right" />
                 </button>
             </div>
-            <a href="oott_overview">
-                <btn class="btn">查看更多</btn>
-            </a>
-        </div>
+                <router-link to="/oott_overview" class="btn">查看更多</router-link>
+            </div>
     </div>
         
 
@@ -205,9 +203,7 @@
                     <font-awesome-icon icon="fa-solid fa-arrow-right" />
                 </button>
             </div>
-            <a href="oott_overview">
-                <btn class="btn">查看更多</btn>
-            </a>
+            <router-link to="/oott_overview" class="btn">查看更多</router-link>
         </div>
     </div>
 
