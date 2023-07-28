@@ -124,14 +124,14 @@ export default {
         }
     },
     methods: {
-        validateEmail() {
-            const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-            this.isEmailValid = regex.test(this.email);
-        },
-        validatePassword() {
-            const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-            this.isPasswordValid = regex.test(this.psw);
-        },
+        // validateEmail() {
+        //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        //     this.isEmailValid = regex.test(this.email);
+        // },
+        // validatePassword() {
+        //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
+        //     this.isPasswordValid = regex.test(this.psw);
+        // },
         login() {
         // if (this.isEmailValid && this.isPasswordValid) {
             if (this.email === "test123" && this.psw === "test123") {
