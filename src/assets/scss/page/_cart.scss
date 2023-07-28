@@ -133,6 +133,7 @@
             justify-content: center;
             .buymore,
             .pay {
+                height: 44px;
                 margin: $sp3;
                 span {
                     font-size: 24px;
@@ -373,8 +374,10 @@
                 color: $textColor_default;
                 background: $textColor_tint;
                 .payDuck {
+                    width: 142px;
                     position: absolute;
                     top: -120px;
+                    left: 0;
                 }
                 .Title {
                     margin-bottom: $sp3;

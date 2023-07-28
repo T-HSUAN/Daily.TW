@@ -52,7 +52,7 @@
                 <p class="subtotal">小計 NT${{ subtotal }}</p>
             </div>
             <div class="result">
-                <img class="payDuck" src="@/assets/img/duck_pay.png" alt="payDuck" />
+                <img class="payDuck" src="@/assets/img/duck_pay.svg" alt="payDuck" />
                 <p>
                     <span>(1項票券)</span>總計<br />
                     NT${{ total }}
@@ -67,7 +67,7 @@
         </div>
         <div class="pay_details">
             <div class="pay_details_content">
-                <img class="payDuck" src="@/assets/img/duck_pay.png" alt="decorate" />
+                <img class="payDuck" src="@/assets/img/duck_pay.svg" alt="decorate" />
                 <p class="Title">付款明細</p>
                 <!-- 購買內容 -->
                 <div class="item">
