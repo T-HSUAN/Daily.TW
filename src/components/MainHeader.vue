@@ -1,13 +1,16 @@
 <template>
     <!-- 768px以下顯示側邊欄 -->
     <div class="container_box">
+        <!-- 手機版 -->
         <header v-if="viewportWidth < 768" class="phone">
+            <!-- logo -->
             <router-link to="/" @click="homeClick">
                 <img class="logo" :src="require('@/assets/img/layout/small.svg')" alt="logo" />
             </router-link>
-
+            <!-- 漢堡條 -->
             <img class="ham" :src="require('@/assets/img/layout/hamburger.svg')" alt="hamburger" @click="toggleSidebar" />
         </header>
+        <!-- 漢堡nav -->
         <aside v-if="viewportWidth < 768" :class="{ 'show-sidebar': showSidebar }">
             <img class="ham_close" :src="require('@/assets/img/layout/hamburger_close.svg')" alt="hamburger"
                 @click="toggleSidebar" />
@@ -28,6 +31,7 @@
                 <router-link to="/" @click="homeClick">
                     <img class="logo" :src="require('@/assets/img/layout/logo.png')" alt="logo" />
                 </router-link>
+                <!-- nav選單 -->
                 <nav>
                     <router-link v-for="item in menu" :key="item.id" :to="'/' + item.link" @click="flagDisplay(item.id)">
                         <img :src="require(`@/assets/img/layout/${item.img}.svg`)
@@ -36,6 +40,7 @@
                     </router-link>
                 </nav>
             </div>
+            <!-- 小nav -->
             <div v-else class="header_sm">
                 <!-- + { _display: showHeader } -->
                 <router-link to="/" @click="homeClick">

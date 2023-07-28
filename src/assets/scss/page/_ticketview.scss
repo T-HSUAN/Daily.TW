@@ -14,10 +14,15 @@
             }
         }
         .banner_man{
+            width: 250px;
             position: absolute;
             right: 0;
-            bottom: -330px;
+            bottom: -220px;
             animation: appear 3.5s both;
+            @media all and (min-width: 576px){
+                width: 350px;
+                bottom: -310px;
+            }
         }
         @keyframes appear {
             0% {
@@ -261,6 +266,31 @@
         }
     }
 }
+@media all and (min-width: $md){
+    .ticket_page {
+        .ticket_banner {
+            width: 100%;
+            .banner_xl {
+                display: block;
+                width: 100%;
+                max-width: $xl;
+            }
+            .banner_sm {
+                display: none;
+            }
+            .banner_man{
+                width: 280px;
+                bottom: -260px;
+            }
+            h1 {
+                top: 25%;
+                left: 0;
+                right: 100px;
+                margin: 0 auto;
+            }
+        }
+    }
+}
 @media all and (min-width: $xl) {
     .ticket_page {
         .ticket_banner {
@@ -276,13 +306,14 @@
             .banner_sm {
                 display: none;
             }
-            // .banner_man{
-            //      display: none;
-            // }
+            .banner_man{
+                width: 300px;
+                right: 16px;
+            }
             h1 {
-                top: 170px;
+                top: 130px;
                 left: 0;
-                right: 400px;
+                right: 0px;
                 margin: 0 auto;
             }
         }
