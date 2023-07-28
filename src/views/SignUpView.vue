@@ -8,18 +8,21 @@
         <h2>加入旅著</h2>
         <div class="photo_group">
             <div class="member_img">
-                <img src="../assets/img/photo_stickers.png" alt="上傳照片">
+                <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
             </div>
-            <button class="btn push" @click="toggleHiddenBlock">上傳大頭貼</button>
+            <button class="btn push" @click="togglePreview" >上傳大頭貼</button>
         </div>
-
+        <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
+            
+        </div> -->
         <form class="form" >
             <div v-for="(item, index) in tabItems" 
                 :key="index">
-                <label for="member">{{ item.text }}</label>
+                <label :for="'member-' + index">{{ item.text }}</label>
                 <input type="text" 
-                    v-model="member" 
-                    :placeholder="item.placeholder"/>
+                    v-model="inputValues[index]" 
+                    :placeholder="item.placeholder"
+                    :id="'member-' + index"/>
             </div>
             <label for="year">生日</label>
             <div class="date_group">
@@ -111,6 +114,7 @@ export default{
                     placeholder:'請輸入暱稱'
                 },
             },
+            inputValues: ['', '', ''],
             member:'',
             selectedYear: '', // 用於存儲選擇的年份值
             yearList: [], // 用於存儲年份選項的數組
@@ -123,6 +127,7 @@ export default{
             isSecret: false,
             phone: '',
             showHiddenBlock: false,
+            showPreview: true
         }
     },
     methods: {
@@ -176,9 +181,19 @@ export default{
             // 使用正則表達式過濾非數字字符
             this.phone = this.phone.replace(/\D/g, '');
         },
-        toggleHiddenBlock() {
-      this.showHiddenBlock = !this.showHiddenBlock;
-    },
+    //     toggleHiddenBlock() {
+    //         this.showHiddenBlock = !this.showHiddenBlock;
+    //     },
+    //     togglePreview() {
+    //   this.showPreview = !this.showPreview;
+    // },
+    // hidePreview(event) {
+    //   // 如果點擊到了「preview」區塊的內容，不要隱藏「preview」區塊
+    //   if (event.target.classList.contains('preview')) {
+    //     return;
+    //   }
+    //   this.showPreview = false;
+    // }
         
         
         
@@ -309,6 +324,14 @@ export default{
                     margin: 0 $sp5;
                 }
             }
+        }
+        .preview{
+            // display: none;
+            width: 87%;
+            height: 367px;
+            background-color: $tint_green;
+            position: absolute;
+            z-index: 3;
         }
         .form{
             width: 100%;
