@@ -787,6 +787,7 @@ export default {
         position: relative;
         background-color: $bgColor_default;
         padding: $sp12 0 $sp8;
+        overflow: hidden;
 
         @media (min-width: 768px) {
             padding: 160px 0 80px;
@@ -847,7 +848,7 @@ export default {
                     display: flex;
                     overflow-x: scroll;
 
-                    @media (min-width: 1260px) {
+                    @media (min-width: $xl) {
                         justify-content: space-between;
                         overflow: visible;
                     }
@@ -857,7 +858,7 @@ export default {
                         flex-shrink: 0;
                         margin-left: 32px;
 
-                        @media (min-width: 1260px) {
+                        @media (min-width: $xl) {
                             margin-left: 0;
                         }
                     }
