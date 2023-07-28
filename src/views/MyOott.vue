@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="card_wrap">
-                    <div class="card" v-for="oott in oottData" key="oott.oottCardAuthor">
+                    <div class="card" v-for="oott in oottDataForUser" key="oott.oottCardAuthor">
                         <MyOottCard
                         :oottPhoto= "oott.oottPhoto"
                         :oottCardTags= "oott.oottCardTags"
@@ -150,6 +150,8 @@
 import MyOottCard from "@/components/MyOottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
+import oottDataForUser from "@/store/oottDataForUser.js";
+
 export default{
     components:{
         MyOottCard,
@@ -157,32 +159,37 @@ export default{
     },
     data() {
         return {
-            oottData : [],// Initialize oottData as an empty array
+            oottDataForUser:oottDataForUser,
         }
     },
-    mounted() {
-        // Fetch data from the JSON file when the component is mounted
-        this.fetchOottData();
-    },
-    methods: {
-    async fetchOottData() {
-      try {
-        // Use the Fetch API to fetch the data from the JSON file
-        const response = await fetch("/fake/OottData.json"); // Adjust the path based on your project structure
+//     data() {
+//         return {
+//             oottData : [],// Initialize oottData as an empty array
+//         }
+//     },
+//     mounted() {
+//         // Fetch data from the JSON file when the component is mounted
+//         this.fetchOottData();
+//     },
+//     methods: {
+//     async fetchOottData() {
+//       try {
+//         // Use the Fetch API to fetch the data from the JSON file
+//         const response = await fetch("/fake/OottData.json"); // Adjust the path based on your project structure
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+//         if (!response.ok) {
+//           throw new Error("Network response was not ok");
+//         }
 
-        // Parse the JSON data
-        const data = await response.json();
+//         // Parse the JSON data
+//         const data = await response.json();
 
-        // Set the fetched data as OottData
-        this.oottData = data;
-      } catch (error) {
-        console.error("Error fetching oott data:", error);
-      }
-    },
-  },
+//         // Set the fetched data as OottData
+//         this.oottData = data;
+//       } catch (error) {
+//         console.error("Error fetching oott data:", error);
+//       }
+//     },
+//   },
 };
 </script>  

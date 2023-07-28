@@ -16,7 +16,7 @@
                         v-model="email"
                         @input="validateEmail" 
                         placeholder='請輸入EMAIL'>
-                    <div v-if="showError" class="error_message">請輸入有效的...@gmail.com格式</div>
+                    <!-- <div v-if="showError" class="error_message">請輸入有效的...@gmail.com格式</div> -->
                     <div v-if="item.tab == 1" class="space_forget"></div>
                 </label>
                 <div class="psw_group"

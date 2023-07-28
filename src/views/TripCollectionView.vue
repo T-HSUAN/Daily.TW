@@ -11,7 +11,7 @@
                 <div class="card_wrap">
                     <div
                         class="card"
-                        v-for="trip in tripData"
+                        v-for="trip in tripDataForUser"
                         key="tripCollection"
                     >
                         <TripCardConst
@@ -104,11 +104,28 @@
 import TripCardConst from "@/components/TripCardConst.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
+import tripDataForUser from "@/store/tripDataForUser.js";
+
 export default {
     components: {
         TripCardConst,
         Sidenav,
     },
+    data() {
+        return {
+            tripDataForUser:tripDataForUser,
+        }
+    },
+    methods: {
+        combineTags(regionName, placeTagName) {
+            // Combine regionName and placeTagName with a space between them
+            return `${regionName} ${placeTagName}`;
+        },
+    }
+
+
+    /* 以下使用 fetch 但上線前失敗了*/
+    /*
     data() {
         return {
             tripData: [], // Initialize tripData as an empty array
@@ -142,5 +159,6 @@ export default {
             return `${regionName} ${placeTagName}`;
         },
     },
+    */
 };
 </script>
