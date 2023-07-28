@@ -1,11 +1,14 @@
+<!-- 帳號管理的我的訂單頁面 -->
+
 <template>
     <div class="myorder">
         <div class="lg_area">
-        <h1>訂單記錄</h1>
+        <h2>訂單記錄</h2>
+
         <div class="bg_area">
             <Sidenav class="sidenav"></Sidenav>
             <div class="bg_container">
-                <h2>我的訂單</h2>
+                <h3>我的訂單</h3>
             <div class="bg_order">
             <div v-for="order in orders" :key="order.orderNumber" class="order">
                 <!-- 订单头部信息 -->
@@ -142,44 +145,44 @@ export default {
 
   .myorder{
     .lg_area {
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
         text-align: center;
-        padding: 20px;
-        margin-bottom: $sp8;
-        h1 {
-            padding: $sp3 0;
-            @media (min-width: 768px) {
-                padding: $sp8 0;
-            }
+        @media (min-width: 1200px) {
+            width: 1175px;
+        }
+        h2 {
+            margin: 41px auto;
+            text-align: center;
+            
+            
         }
         .bg_area {
             display: flex;
             justify-content: center;
-        .bg_container {
+            gap: 30px;
+            .bg_container {
             width: 100%;
-            @media (min-width: 768px) {
-            width: 900px;
+
+            @media (min-width: 1200px) {
+                box-sizing: border-box;
+                
             }
         }
-        h2{
+        h3{
             display: flex;
-            padding: $sp3 0;
-            margin: $sp3;
-            border-bottom: 2px solid $textColor_default;
-            @media (min-width: 768px) {
-                padding: $sp3 0;
-                margin: 0;
-            }
+            padding: 4px 0;
+            border-bottom: 1px solid $textColor_default;
+            // @media (min-width: 768px) {
+            //     // padding: $sp3 0;
+            //     // margin: 0;
+            // }
         }
-        
-        .bg_container {
-            @media (min-width: 768px) {
-                margin: 0 $sp3;
-                padding: 0 $sp3 $sp3;
-            }
-        }
+
         .bg_order{
+            padding: 0 0 100px;
             @media (max-width:768px) {
+                padding: 40px 0;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -187,8 +190,7 @@ export default {
         }
         
         }
-
-    
+ 
         .order {
             box-sizing: border-box;
             @media (min-width:768px) {
@@ -199,11 +201,9 @@ export default {
             }
             @media (max-width:768px) {
                 width: 100%;
-                // display: flex;
                 display: grid;
                 flex-direction: column;
                 align-content: center;
-                // margin: auto;
                 .details_button_md{
                     display: block;
                     padding: 5px;
