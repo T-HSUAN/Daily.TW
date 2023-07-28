@@ -718,7 +718,7 @@
                     display: flex;
                     overflow-x: scroll;
 
-                    @media (min-width: 1260px) {
+                    @media (min-width: $xl) {
                         justify-content: space-between;
                         gap: 32px;
                         overflow: visible;
@@ -728,7 +728,7 @@
                         flex-shrink: 0;
                         margin-left: 32px;
 
-                        @media (min-width: 1260px) {
+                        @media (min-width: $xl) {
                             margin-left: 0;
                         }
                     }
