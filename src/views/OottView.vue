@@ -237,22 +237,22 @@ export default {
                     oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
                     oottCardAuthor: "Max",
                 },
-                {
-                    oottRank: "#04",
-                    oottPhoto: require('@/assets/img/oott_01.png'),
-                    oottCardTags: "#藝文 #放鬆 #懷舊",
-                    oottCardDate: "2022 / 01 / 12",
-                    oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
-                    oottCardAuthor: "Jeffery",
-                },
-                {
-                    oottRank: "#05",
-                    oottPhoto: require('@/assets/img/oott_03.png'),
-                    oottCardTags: "#復古 #性感",
-                    oottCardDate: "2023 / 07 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
-                    oottCardAuthor: "DazzleQueen",
-                }
+                // {
+                //     oottRank: "#04",
+                //     oottPhoto: require('@/assets/img/oott_01.png'),
+                //     oottCardTags: "#藝文 #放鬆 #懷舊",
+                //     oottCardDate: "2022 / 01 / 12",
+                //     oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
+                //     oottCardAuthor: "Jeffery",
+                // },
+                // {
+                //     oottRank: "#05",
+                //     oottPhoto: require('@/assets/img/oott_03.png'),
+                //     oottCardTags: "#復古 #性感",
+                //     oottCardDate: "2023 / 07 / 12",
+                //     oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
+                //     oottCardAuthor: "DazzleQueen",
+                // }
 
 
             ],
@@ -561,7 +561,7 @@ export default {
                             height: 560px;
 
                             &:hover {
-                                width: 960px;
+                                width: 1080px;
                                 cursor: pointer;
 
                                 .oottCard:nth-child(3) {
@@ -570,6 +570,10 @@ export default {
 
                                 .oottCard:nth-child(2) {
                                     right: 320px;
+                                }
+
+                                .oottCard:nth-child(1) {
+                                    right: 0;
                                 }
                             }
                         }
@@ -727,7 +731,7 @@ export default {
                     height: 128px;
                     border-radius: 55% 60% 55% 50%;
                     overflow: hidden;
-
+                    cursor: pointer;
                     img {
                         width: 100%;
                     }

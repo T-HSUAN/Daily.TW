@@ -142,6 +142,7 @@
                         <router-link to="/oott_collection_view" class="btn">所有穿搭</router-link>
                     </div>
                 </div>
+                <!-- 我的訂單 -->
                 <div class="order">
                     <div class="big_title">
                         <h2>我的訂單</h2>
@@ -644,7 +645,8 @@ export default {
             }
         }
         .oott_block {
-            position: relative;
+            // position: relative;
+            box-sizing: border-box;
             padding: $sp2 0 $sp6 0;
             margin: $sp3;
             border-bottom: 2px solid $textColor_default;
@@ -665,12 +667,6 @@ export default {
                 .oottCard {
                     flex-shrink: 0;
                     margin: 5px;
-                    width: 256px;
-                    // height: 330px;
-                    @media (min-width: 768px) {
-                        justify-content: center;
-                        height: 440px;
-                    }
                 }
             }
         }

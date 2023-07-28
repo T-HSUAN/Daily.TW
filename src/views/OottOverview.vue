@@ -31,8 +31,11 @@
                 </div>
             </div>
             <div v-else>查無結果</div>
-            <router-link to="/oott_info"><button class="btn">查看更多</button></router-link>
-
+            <div class="page_link">
+                <a class="page" v-if="oottDisplay.length === oottData.length">1</a>
+                <a class="page" v-if="oottDisplay.length === oottData.length">2</a>
+                <a class="page" v-if="oottDisplay.length === oottData.length">3</a>
+            </div>
         </section>
     </div>
 </template>
@@ -173,8 +176,18 @@ export default {
             }
         }
 
-        .btn {
-            margin: 0 auto $sp12;
+        .page_link {
+            display: flex;
+            justify-content: center;
+            .page {
+                display: block;
+                margin: $sp4 $sp1 $sp8;
+                text-align: center;
+                color: $textColor_default;
+                &:hover {
+                    color: $default_blue;
+                }
+            }
         }
     }
 }
