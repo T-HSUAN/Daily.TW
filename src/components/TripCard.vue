@@ -17,15 +17,7 @@
             </router-link>
         </div>
         <div class="trip_card_text">
-            <span class="trip_card_tags">{{ tripCardTags }}</span>
-            <h3 class="trip_card_title">{{ tripCardTitle }}</h3>
-            <p class="trip_card_desc">{{ tripCardDesc }}</p>
-            <div class="trip_card_info">
-                <span>{{ tripCardAuthor }}</span>
-                <span>{{ tripCardDate }}</span>
-            </div>
             <router-link to="/trip_info">
-
                 <span class="trip_card_tags">{{ tripCardTags }}</span>
                 <h3 class="trip_card_title">{{ tripCardTitle }}</h3>
                 <p class="trip_card_desc">{{ tripCardDesc }}</p>
