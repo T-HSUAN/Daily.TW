@@ -1,11 +1,13 @@
 <!-- 單一票券的內容區塊 -->
 <template>
     <div class="ticket_info_page">
+        <!-- 票券造型呈現，768以下無造型 -->
         <TicketSingleCard :ticketPhoto="img" :ticketTitle="Name" :ticketLocation="location" :ticketTags="tag"
             :ticketDetails="ticket_details" :showAddr="true" :ticketAddr="ticket_addr" :ticketAddrLink="ticket_addr_link"
             :discountTag="discount" />
         <!-- 票券資訊區 -->
         <div class="ticket_info">
+            <!-- 內容描述 -->
             <div class="ticket_desc">
                 <h3>票券描述</h3>
                 <ol class="content">
@@ -16,9 +18,11 @@
                     <li>5歲以下孩童免購票。</li>
                 </ol>
             </div>
+            <!-- 選擇門票數量 -->
             <div class="ticket_select">
                 <h3>選擇門票數量</h3>
                 <div class="ticket_item">
+                    <!-- 成人票項目 -->
                     <div class="ticket_adult">
                         <select name="ticket_count_adult" class="count_adult" v-model="count_adult"
                             @change="subTotalPrice()">
@@ -37,6 +41,7 @@
                             </div>
                         </label>
                     </div>
+                    <!-- 優惠票項目 -->
                     <div class="ticket_ex">
                         <select name="ticket_count_ex" class="count_ex" v-model="count_ex" @change="subTotalPrice()">
                             <option value="0" selected>0</option>
@@ -64,15 +69,15 @@
                         全票 (NT$ {{ price_adultF }} / 張) x {{ count_adult
                         }}<span>NT$ {{ price_adultF * count_adult }}</span>
                     </p>
-
                     <p>
                         半票 (NT$ {{ price_exF }} / 張) x {{ count_ex
                         }}<span>NT$ {{ price_exF * count_ex }}</span>
                     </p>
-
+                    <!-- 總計 -->
                     <p class="total">
                         總計 <span>NT${{ subtotal }}</span>
                     </p>
+                    <!-- 購物車&購買按鈕 -->
                     <div class="buy_btn">
                         <button class="btn">加入購物車</button>
                         <router-link to="/cart"><button class="btn">直接購買</button></router-link>

@@ -23,7 +23,7 @@
         margin: $sp3 auto;
         @media (min-width: $md) {
             width: 100%;
-            max-width: 305px;
+            max-width: 300px;
             height: 100%;
             margin: 0 $sp6;
         }
@@ -33,6 +33,7 @@
             margin: 0 $sp9;
         }
     }
+    // 票券內文
     .ticket_text {
         width: 80%;
         display: flex;
@@ -60,6 +61,7 @@
                 @include xl_h3;
             }
         }
+        // 地區&標籤
         .ticket_location {
             display: inline-block;
             color: $textColor_tint;
@@ -80,12 +82,13 @@
                 letter-spacing: 0.32px;
             }
         }
+        // 介紹
         .ticket_details {
             line-height: 25px;
             margin: $sp2 0;
             color: $textColor_default;
             @media (min-width: $md) {
-                line-height: 25px;
+                line-height: 20px;
                 margin: $sp1 $sp2 10px 0;
                 color: $textColor_white;
             }
@@ -94,6 +97,7 @@
                 margin: $sp2 $sp5 $sp7 0;
             }
         }
+        // 地址連結
         .ticket_addr {
             display: block;
             color: $textColor_default;
@@ -109,6 +113,7 @@
             }
         }
     }
+    // 右上角折扣標籤
     .discount_tag {
         display: none;
         @media (min-width: $md) {

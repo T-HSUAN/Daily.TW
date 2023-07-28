@@ -1,9 +1,10 @@
 <!-- 景點票券頁面 -->
 <template>
-    <div class="ticket">
+    <div class="ticket_page">
         <div class="ticket_banner">
             <img class="banner_xl" :src="require('@/assets/img/ticket_banner.png')" alt="banner" />
             <img class="banner_sm" :src="require('@/assets/img/ticket_banner_sm.png')" alt="banner" />
+            <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
         <Searchbar :Filter="updateDisplay" :tagTexts="tagFilter" />
@@ -31,21 +32,22 @@
         </div>
 
         <!-- 購物車清單 -->
-        <!-- <router-link to="/cart"></router-link> -->
         <div class="cart">
             <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" @click="toggleCart" />
             <div class="numTag">{{ itemList.length }}</div>
         </div>
+        <!-- 付款明細 -->
         <div class="cart_sidebar" v-show="togglePage">
             <h2>付款明細</h2>
-            <!-- 購買內容 -->
+            <!-- 購物明細 -->
             <div class="item">
                 <div class="details" v-for="(item, index) in itemList" :key="item.id">
+                    <!-- 標題&垃圾桶 -->
                     <div class="title">
                         {{ item.Name }}
                         <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="cancel(index)" title="刪除" />
                     </div>
-
+                    <!-- 成人票券項目 -->
                     <div class="ticket_adult">
                         <label for="count_adult">
                             <p class="name">全票&nbsp;</p>
@@ -61,6 +63,7 @@
                             </option>
                         </select>
                     </div>
+                    <!-- 優惠票券項目 -->
                     <div class="ticket_ex">
                         <label for="count_ex">
                             <p class="name">優待票&nbsp;</p>
@@ -74,7 +77,7 @@
                             </option>
                         </select>
                     </div>
-
+                    <!-- 小計 -->
                     <div class="amount">
                         小計&nbsp;
                         <span>NT$ {{ item.subtotal }}</span>
@@ -84,11 +87,11 @@
             <!-- 票券總計 -->
             <div class="total">
                 <p>({{ itemList.length }}項票券) 總計</p>
-                <p>
-                    NT$&nbsp;
+                <p> NT$&nbsp;
                     <span class="total-price"> {{ totalPrice }} </span>
                     元
                 </p>
+                <!-- 結帳按鈕，跳轉至購物車 -->
                 <router-link to="/cart"><button class="btn">結帳</button></router-link>
             </div>
             <div class="close" @click="toggleCart">close</div>
@@ -211,8 +214,6 @@ export default {
         this.TotalPrice();
     },
 };
-
-
 </script>
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";

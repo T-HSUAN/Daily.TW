@@ -1,10 +1,11 @@
 #app {
     background: $bgColor_tint;
 }
-.ticket {
+.ticket_page {
     .ticket_banner {
         width: 100%;
         position: relative;
+        overflow: hidden;
         .banner_xl {
             display: none;
         }
@@ -12,6 +13,40 @@
             @include width($sm) {
             }
         }
+        .banner_man{
+            position: absolute;
+            right: 0;
+            bottom: -330px;
+            animation: appear 3.5s both;
+        }
+        @keyframes appear {
+            0% {
+                transform: translateY(0%) rotate(0deg);
+            }
+            20%{
+                transform: translateY(-50%) rotate(0deg);
+            }
+            40%{
+                transform: translateY(-100%) rotate(10deg);
+            }
+            70%{
+                transform: translateY(-100%) rotate(-10deg);
+            }
+            100% {
+                transform: translateY(-100%) rotate(0deg);
+            }
+        }
+        // @keyframes rotate {
+        //     0% {
+        //         transform: rotate(-10deg);
+        //     }
+        //     50% {
+        //         transform: rotate(0deg);
+        //     }
+        //     100% {
+        //         transform: rotate(10deg);
+        //     }
+        // }
         h1 {
             position: absolute;
             top: 42%;
@@ -69,6 +104,7 @@
             }
         }
     }
+    //底部頁數
     .page_link {
         display: flex;
         justify-content: center;
@@ -225,10 +261,12 @@
     }
 }
 @media all and (min-width: $xl) {
-    .ticket {
+    .ticket_page {
         .ticket_banner {
             width: 100%;
+            max-width: 1200px;
             height: 400px;
+            margin: auto;
             .banner_xl {
                 display: block;
                 width: 1200px;
@@ -237,6 +275,9 @@
             .banner_sm {
                 display: none;
             }
+            // .banner_man{
+            //      display: none;
+            // }
             h1 {
                 top: 170px;
                 left: 0;

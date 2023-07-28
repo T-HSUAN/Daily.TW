@@ -52,27 +52,27 @@
             bottom: 100px;
             margin: 0 auto;
             animation: shake 4s ease-in-out infinite;
+        }
 
-            @keyframes shake {
-                0% {
-                    transform: rotate(0);
-                }
+        @keyframes shake {
+            0% {
+                transform: rotate(0);
+            }
 
-                25% {
-                    transform: rotate(-10deg);
-                }
+            25% {
+                transform: rotate(-10deg);
+            }
 
-                50% {
-                    transform: rotate(10deg);
-                }
+            50% {
+                transform: rotate(10deg);
+            }
 
-                75% {
-                    transform: rotate(-10deg);
-                }
+            75% {
+                transform: rotate(-10deg);
+            }
 
-                100% {
-                    transform: rotate(0);
-                }
+            100% {
+                transform: rotate(0);
             }
         }
 
