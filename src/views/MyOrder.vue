@@ -148,9 +148,13 @@ export default {
         width: 90%;
         margin: 0 auto;
         text-align: center;
+        @media (min-width: 1200px) {
+            width: 1175px;
+        }
         h2 {
             margin: 41px auto;
             text-align: center;
+            
             
         }
         .bg_area {
@@ -162,7 +166,7 @@ export default {
 
             @media (min-width: 1200px) {
                 box-sizing: border-box;
-                width: 1175px;
+                
             }
         }
         h3{
