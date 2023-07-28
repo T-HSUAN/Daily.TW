@@ -28,7 +28,7 @@
                         <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
                         <!-- 排序依據 -->
                         <span>排序依據</span>
-                        <select name="my_oott_sorting" id="my_oott_sorting">
+                        <select name="my_oott_sorting" id="selection_main" >
                             <option value="">由新到舊</option>
                             <option value="">由舊到新</option>
                             <option value="">瀏覽人氣</option>
