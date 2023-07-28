@@ -561,7 +561,7 @@ export default {
                             height: 560px;
 
                             &:hover {
-                                width: 1080px;
+                                width: 960px;
                                 cursor: pointer;
 
                                 .oottCard:nth-child(3) {
