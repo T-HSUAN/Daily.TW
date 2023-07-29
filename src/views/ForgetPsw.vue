@@ -1,176 +1,111 @@
-<!-- 忘記密碼/重設密碼頁面 -->
+<!-- 忘記密碼頁面 -->
 <template>
     <section class="forgetpsw">
-        <div v-for="(item, key) in tabItems" 
-        :class="{active: key == tabActive}" >
-        <div v-if="tabActive == item.tab" class="canvas" >
+        
+        <div  class="canvas" >
             <div class="joinus_sm">
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
-            <div class="forget" :class="{ active: isActive }">
-                <h2>{{ item.title }}</h2>
-                <p v-if="item.tab == 1" >請輸入註冊時的EMAIL，<br> 我們將寄送給您重置密碼的連結</p>
-                <label v-if="item.tab == 1" for="email">Email
-                    <input v-if="item.tab == 1"
-                        type="text" 
+            <form class="forget" ref="form" @submit.prevent="sendEmail">
+                <h2>忘記密碼</h2>
+                <p  >請輸入註冊時的EMAIL，<br> 我們將寄送給您重置密碼的連結</p>
+                <label>Email
+                    <input 
+                        type="email"
                         v-model="email"
-                        @input="validateEmail" 
+                        name="user_email" 
                         placeholder='請輸入EMAIL'>
-                    <!-- <div v-if="showError" class="error_message">請輸入有效的...@gmail.com格式</div> -->
-                    <div v-if="item.tab == 1" class="space_forget"></div>
-                </label>
-                <div class="psw_group"
-                v-if="item.tab == 2">
-                <label for="newpsw">
-                    新密碼
-                </label>
-                <input 
-                type="password" 
-                v-model="newpsw" 
-                @input="validatePassword"
-                :placeholder="passwordPlaceholder">
-                <label for="repeatpsw">
-                    密碼
-                </label>
-                <input 
-                type="password" 
-                v-model="repeatpsw"
-                @input="validatePassword"
-                :placeholder="passwordPlaceholder">
-                <div v-if="!isPasswordValid" class="error_message">請輸入英數混合的6-12位密碼且兩次輸入值要相同</div>
-                <div v-if="item.tab == 2" class="space_reset"></div>
-                <button v-if="isPasswordValid" @click="handleSubmit">送出</button>
-            </div>
-            
-            
+                        <div class="space_forget"></div>
+                </label>    
+                
+    
                 <div class="cancel_group">
                     <router-link to="/" 
-                        @click="handleClick"
                         class="cancel_btn">
                         取消
                     </router-link>
-                    <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
-                    <router-link 
-                        v-if="item.tab == 2" 
-                        to="/forget_psw"
-                        @click="handleSubmit" 
-                        class="btn">
-                        送出
-                    </router-link>
-                    <router-link 
-                        v-else 
-                        v-if="item.tab == 1" 
-                        to="/forget_psw" 
-                        @click="handleClick" 
-                        class="btn">
-                        送出
-                    </router-link>
+                    <input type="submit"
+                    value="送出"
+                    class="btn">
                 </div>
-            </div>
-            <div class="register" :class="{ active: isActive }">
-                <h2>{{ item.subtitle }}</h2>
+            </form>
+            <div class="register">
+                <h2>Forget</h2>
                 <div class="joinus_md">
-                    <img v-if="item.tab == 1" src="../assets/img/forget_md.png" alt="">
-                    <img v-if="item.tab == 2" src="../assets/img/reset_md.png" alt="">
-
+                    <img  src="../assets/img/forget_md.png" alt="">
                 </div>
-                <div class="welcome">{{ item.text}}</div>
-                
-            </div>       
+                <div class="welcome">Please enter your EMAIL</div>
+            </div>
+            
+            
         </div>
+        <!-- 成功送出郵件後的彈窗 -->
+    <div class="member_sm" v-if="isPopBoxVisible">
+      <div class="block">
+        <div class="pic">
+          <img src="~@/assets/img/popbox_check.svg" alt="">
+          <h3>信件已送出，請至信箱查看！</h3>
         </div>
+        <button class="btn" @click="closePopBox">確定</button>
+      </div>
+    </div>
+        <!-- 寄送失敗後的彈窗 -->
+    <div class="member_sm" v-if="isPopBoxFalse">
+      <div class="block">
+        <div class="pic">
+          <img src="~@/assets/img/popbox_exclamation.svg" alt="">
+          <h3>EMAIL信箱不能為空白</h3>
+        </div>
+        <button class="btn" @click="closePopBox">確定</button>
+      </div>
+    </div>
+
     </section>
 </template>
+
+
+
+
 <script>
+import emailjs from 'emailjs-com';
+
 export default {
     data(){
         return {
-            tabActive: 1,
-            tabItems:{
-                1:{
-                    title: '忘記密碼',
-                    tab: 1,
-                    goNext: 2,
-                    subtitle:"Forget",
-                    text:"Please enter your EMAIL",
-                    img:""
-                },
-                2:{
-                    title: '重設密碼',
-                    tab: 2,
-                    goNext:1,
-                    subtitle:"Reset",
-                    text:"Please enter your password"
-                },
-            },
             email: '',
-            psw:'',
-            isActive: false,
-            showError: false,
-            newpsw: "",
-            repeatpsw: "",
+            isPopBoxVisible: false,
+            isPopBoxFalse:false,
         }
     },
-    computed: {
-    isPasswordValid() {
-      // 密码校验逻辑
-      const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-      return (
-        regex.test(this.newpsw) &&
-        regex.test(this.repeatpsw) &&
-        this.newpsw === this.repeatpsw
-      );
-    },
-    passwordPlaceholder() {
-      return this.isPasswordValid
-        ? "請輸入密碼 (英數混合6-12碼)"
-        : "密碼不合法或兩次輸入不一致";
-    },
-  },
     methods: {
-    validateEmail() {
-      const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-      if (!regex.test(this.email)) {
-        // 輸入格式不正確，顯示錯誤提示
-        this.showError = true;
+        sendEmail() {
+      if (this.email === '') {
+ 
+        this.isPopBoxFalse = true;
       } else {
-        // 輸入格式正確，隱藏錯誤提示
-        this.showError = false;
+ 
+        emailjs.sendForm('zhang', 'Contact Form', this.$refs.form, '21inWh_x_4Gcz3eYO')
+          .then((result) => {
+            // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
+            this.isPopBoxVisible = true;
+          })
+          .catch((error) => {
+            this.isPopBoxVisible = false;
+            alert('信件未送出，請稍後再試');
+          });
       }
     },
-      login(){
-        if(this.email === '123@gmail.com' && this.psw === 'test'){
-          window.alert('登入成功')
-        }
-        else{
-          window.alert('登入失敗，請重新登入');
-        }
-      },
-      // 切換tab
-      updateTab(index){
-          this.tabActive = index
-      },
-      handleClick() {
-          this.updateTab(this.tabItems[this.tabActive].goNext);
-          this.isActive = !this.isActive;
-      },
-      handleSubmit() {
-      // 在这里处理表单提交逻辑
-      // 可以通过this.newpsw和this.repeatpsw获取密码值
-      console.log("密码正确，执行提交操作");
-    },
-    validatePassword() {
-      // 在用户输入时动态验证密码
-      this.passwordPlaceholder = this.isPasswordValid
-        ? "請輸入密碼 (英數混合6-12碼)"
-        : "密碼不合法或兩次輸入不一致";
-    },
+      closePopBox() {
+        this.isPopBoxVisible = false;
+        this.isPopBoxFalse = false,
+        this.email= '';
     }
-    
+    }   
 }
 </script>
 <style lang="scss">
 @import '@/assets/scss/baseAndMixin.scss';
+
 
 #app{
     background-color: $bgColor_default;
@@ -286,7 +221,151 @@ export default {
         
     }
 
+    //popbox
+
+.member_sm{
+            display: flex;
+            width: 273px;
+            height: 194px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+
+            position: absolute;
+            z-index: 10;
+            top: 300px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            .block{
+                width: 250px;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pic{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 20px;
+                    img{
+                    width: 28px;
+                    }
+                    h3{
+                        padding: 10px;
+                        font-size: $sm_h4;
+                    }
+                }
+
+                    .btn {
+                        font-size: $sm_h5;
+                        padding: 8px 24px;
+                        box-shadow: 1px 1px 1px 1px #0005;
+                        white-space: nowrap;
+                        color: $textColor_white;
+                        text-align: center;
+                        font-family: $fontFamily;
+                        letter-spacing: 0.6px;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: 50px;
+                        border: 2px solid $textColor_default;
+                        background: $textColor_default;
+                        cursor: pointer;
+                        &:hover {
+                            color: $textColor_default;
+                            background: $textColor_white;
+                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        }
+                        &:active {
+                            color: $textColor_tint;
+                            border: 2px solid $textColor_tint;
+                            background: $textColor_white;
+                        }
+                    }
+                // }
+            }
+            // 電腦版
+            @media (min-width: 768px) {
+            display: flex;
+                top: 500px;
+            width: 410px;
+            height: 243px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+            justify-content: center;
+            
+            position: absolute;
+            z-index: 10;
+
+            .block{
+                width: 100%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pic{
+                    margin-top: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    img{
+                    width: 34px;
+                    }
+                    h3{
+                        text-align: center;
+                        font-size: $sm_h3;
+                        line-height: 150%;
+                        margin-top: 15px;
+                    }
+                }
+                .btn {
+                    font-size: $sm_h5;
+                    padding: 8px 24px;
+                    box-shadow: 1px 1px 1px 1px #0005;
+                    @media (min-width: 768px) {
+                        font-size: $xl_h5;
+                        padding: 8px 32px;
+                    }
+                    white-space: nowrap;
+                    color: $textColor_white;
+                    text-align: center;
+                    font-family: $fontFamily;
+                    letter-spacing: 0.6px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    border-radius: 50px;
+                    border: 2px solid $textColor_default;
+                    background: $textColor_default;
+                    cursor: pointer;
+                    &:hover {
+                        color: $textColor_default;
+                        background: $textColor_white;
+                        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        }
+                        
+                        &:active {
+                            color: $textColor_tint;
+                            border: 2px solid $textColor_tint;
+                            background: $textColor_white;
+                        }
+                    }
+                }
+            }
+        }
 }
+
+
+
+
 
 @media all and (min-width: $md){
     // *{

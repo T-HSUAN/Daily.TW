@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 
 const routesUser = [
-    {
+    {//首頁
         path: "/",
         name: "home",
         component: HomeView,
@@ -109,6 +109,12 @@ const routesUser = [
             import(/* webpackChunkName: "forgetpsw" */ "@/views/ForgetPsw.vue"),
     },
     {
+        path: "/reset_psw",
+        name: "resetpsw",
+        component: () =>
+            import(/* webpackChunkName: "resetpsw" */ "@/views/ResetPsw.vue"),
+    },
+    {
         path: "/member_info",
         name: "memberinfo",
         component: () =>
@@ -196,6 +202,14 @@ const routesUser = [
         component: () =>
             import(
                 /* webpackChunkName: "OottCollectionView" */ "@/views/OottCollectionView.vue"
+            ),
+    },
+    {
+        path: "/email",
+        name: "test",
+        component: () =>
+            import(
+                /* webpackChunkName: "OottCollectionView" */ "@/views/email.vue"
             ),
     },
 ];
