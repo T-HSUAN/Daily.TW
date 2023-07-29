@@ -18,20 +18,25 @@
                     <p>使用FACEBOOK登入</p>
                 </div>
                 <label for="email">Email</label>
-                    <input type="text" 
+                <!-- ref="emailInput" -->
+                    <input type="text"
+                         
                         v-model="email"
-                        @input="validateEmail"
-                        :class="{ form_warning: !isEmailValid }" 
+                        @blur="validateEmail"
+                        :class="{ form_warning: email.length > 0 && isEmailValid }" 
                         placeholder='請輸入EMAIL'>
-                    <!-- <span class="error_message" v-if="!isPasswordValid">
-                        請輸入@gmail.com格式</span> -->
+                    <!-- <span class="error_message" v-if="isEmailValid">
+                        請輸入有效的電子郵件地址</span> -->
+
+
+
                 <label for="psw">密碼</label>
                 <input type="password" 
                     v-model="psw"
-                    @input="validatePassword"
-                    :class="{ form_warning: !isPasswordValid }" 
-                    placeholder='請輸入密碼 (英數混合6-12碼)'
+                    @blur="validatePassword"
+                    placeholder='請輸入密碼'
                     >
+
                 <div class="login_action">
                     <label for="remember" v-if="item.tab == 1">
                     <input type="checkbox" name="remember" id="remember" >
@@ -63,16 +68,14 @@
                         class="btn">
                         註冊
                     </router-link>
-                    <router-link 
-                        v-else v-if="item.tab == 1" 
-                        to="/member" 
+                    <button 
+                        v-if="item.tab == 1" 
                         @click="login" 
                         class="btn"
                         :class="{ btn: isEmailValid && isPasswordValid }"
                         >
-                        <!-- :disabled="!(isEmailValid && isPasswordValid)" -->
                         登入
-                    </router-link>
+                    </button>
                 </div>
             </div>
             <div class="register" :class="{ active: isActive }">
@@ -82,8 +85,8 @@
                     <img src="@/assets/img/joinus_md.png" alt="joinus">
                 </div>
                 <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
-                <router-link 
-                    v-if="item.tab == 1" 
+                <router-link
+                    v-if="item.tab == 1"
                     to="/login" 
                     @click="handleClick" 
                     class="btn" >
@@ -95,6 +98,7 @@
   </section>
 </template>
 <script>
+    import { bus } from '@/main.js'; // 導入事件總線
 export default {
     data(){
         return {
@@ -117,33 +121,45 @@ export default {
             },
             email: '',
             psw:'',
-            isEmailValid: true,
-            isPasswordValid: true,
+            isEmailValid: false,
+            isPasswordValid: false,
             isActive: false,
             showError: false,
         }
     },
     methods: {
-        // validateEmail() {
-        //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-        //     this.isEmailValid = regex.test(this.email);
-        // },
-        // validatePassword() {
-        //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-        //     this.isPasswordValid = regex.test(this.psw);
-        // },
-        login() {
-        // if (this.isEmailValid && this.isPasswordValid) {
-            if (this.email === "test123" && this.psw === "test123") {
-            window.alert("登入成功");
-            // 执行页面跳转
-            // this.$router.push({ path: "/member" });
-        } else {
-            window.alert("帳號或密碼錯誤，請重新登入");
-            this.$router.replace({ path: "/login" });
-            }
-        // }
-        },
+        
+    //     validateEmail() {
+    //         // Email validation logic
+    //         const emailRegex = /^[^\s@]+@gmail\.com$/;
+    //         this.isEmailValid = !emailRegex.test(this.email);
+    //     },
+        
+    //     validatePassword() {
+    //   // Password validation logic
+    //   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
+    //   this.isPasswordValid = passwordRegex.test(this.psw);
+    // },
+    
+    login() {
+        if (this.email.length > 0 && this.psw.length > 0 && this.email === 'test123@gmail.com' && this.psw === 'test123') {
+            window.alert('登入成功');
+            this.$router.push('/member'); // Redirect to the member page if login is successful
+        } 
+        else if (this.email.length === 0 && this.psw.length === 0) {
+            alert('帳號密碼不能為空白!');
+            this.isEmailValid = true;
+        }
+        else {
+            window.alert('帳號或密碼錯誤，請重新登入');
+            this.$router.replace({ path: '/login' });
+            this.email = '';
+            this.psw = '';
+            this.isEmailValid = true;
+        }
+    },
+
+
       // 切換tab
       updateTab(index){
           this.tabActive = index
@@ -159,6 +175,7 @@ export default {
 
 <style lang="scss" >
     @import '@/assets/scss/baseAndMixin.scss';
+
 // *{
 //     outline: 1px solid red;
 // }
@@ -259,6 +276,13 @@ export default {
                         font-size: $xl_p;
                 }
                 }
+            }
+            .error_message{
+                position: absolute;
+                top: 315px;
+                padding: 0;
+                color: $warningColor;
+
             }
             label{
                 width: 100%;
