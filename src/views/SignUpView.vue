@@ -78,12 +78,22 @@
                 class="cancel_btn">
                 取消
             </router-link>
-            <router-link
-                to="./" 
-                class="btn">
+            <button 
+                class="btn"
+                @click="showPopbox">
             註冊
-            </router-link>
+            </button>
         </div>
+        <div class="member_sm" v-if="isPopBoxVisible">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_check.svg" alt="">
+                    <h3>註冊成功！</h3>
+                 </div>
+                    <button class="btn" @click="redirectToOtherPage">確定</button>
+            </div>
+        </div>
+        <!-- <h2>{{ message }}</h2> -->
     </div>
 </section>   
 </template>
@@ -127,9 +137,15 @@ export default{
             isSecret: false,
             phone: '',
             showHiddenBlock: false,
-            showPreview: true
+            showPreview: true,
+            isPopBoxVisible: false,
         }
     },
+    // computed:{
+    //     message(){
+    //         return this.$store.state.msg;
+    //     }
+    // },
     methods: {
         onYearChange() {
             // 在這裡處理年份選項變化後的相關邏輯
@@ -181,19 +197,16 @@ export default{
             // 使用正則表達式過濾非數字字符
             this.phone = this.phone.replace(/\D/g, '');
         },
-    //     toggleHiddenBlock() {
-    //         this.showHiddenBlock = !this.showHiddenBlock;
-    //     },
-    //     togglePreview() {
-    //   this.showPreview = !this.showPreview;
-    // },
-    // hidePreview(event) {
-    //   // 如果點擊到了「preview」區塊的內容，不要隱藏「preview」區塊
-    //   if (event.target.classList.contains('preview')) {
-    //     return;
-    //   }
-    //   this.showPreview = false;
-    // }
+        showPopbox(){
+            this.isPopBoxVisible = !this.isPopBoxVisible;
+        },
+        redirectToOtherPage() {
+            this.$router.push('/member'); 
+    }
+    //     setTimeout(() => {
+    //     this.isPopBoxVisible = true;
+    //   }, 2000); 
+
         
         
         
@@ -470,7 +483,155 @@ export default{
             }
             
         }
+        //popbox
+
+        .member_sm{
+            display: flex;
+            width: 273px;
+            height: 194px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+
+            position: absolute;
+            z-index: 10;
+            top: 900px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            .block{
+                width: 250px;
+                left: 50%;
+                transform: translate(-50%, 0%);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pic{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 20px;
+                    img{
+                    width: 28px;
+                    }
+                    h3{
+                        padding: 10px;
+                        font-size: $sm_h4;
+                    }
+                }
+                // .button{
+                    // margin-left: auto;
+                    // .cancel{
+                    //     font-size: $sm_h5;
+                    //     color: $textColor_default;
+                    //     border-bottom: 1px solid $textColor_default;
+                    //     margin-right: 20px;
+                    // }
+                    .btn {
+                        font-size: $sm_h5;
+                        padding: 8px 24px;
+                        box-shadow: 1px 1px 1px 1px #0005;
+                        white-space: nowrap;
+                        color: $textColor_white;
+                        text-align: center;
+                        font-family: $fontFamily;
+                        letter-spacing: 0.6px;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: 50px;
+                        border: 2px solid $textColor_default;
+                        background: $textColor_default;
+                        cursor: pointer;
+                        &:hover {
+                            color: $textColor_default;
+                            background: $textColor_white;
+                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        }
+                        &:active {
+                            color: $textColor_tint;
+                            border: 2px solid $textColor_tint;
+                            background: $textColor_white;
+                        }
+                    }
+                // }
+            }
+            // 電腦版
+            @media (min-width: 768px) {
+            display: flex;
+
+            width: 410px;
+            height: 243px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+            justify-content: center;
+            
+            position: absolute;
+            z-index: 10;
+
+            .block{
+                width: 100%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pic{
+                    margin-top: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    img{
+                    width: 34px;
+                    }
+                    h3{
+                        text-align: center;
+                        font-size: $sm_h3;
+                        line-height: 150%;
+                        margin-top: 15px;
+                    }
+                }
+                .btn {
+                    font-size: $sm_h5;
+                    padding: 8px 24px;
+                    box-shadow: 1px 1px 1px 1px #0005;
+                    @media (min-width: 768px) {
+                        font-size: $xl_h5;
+                        padding: 8px 32px;
+                    }
+                    white-space: nowrap;
+                    color: $textColor_white;
+                    text-align: center;
+                    font-family: $fontFamily;
+                    letter-spacing: 0.6px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    border-radius: 50px;
+                    border: 2px solid $textColor_default;
+                    background: $textColor_default;
+                    cursor: pointer;
+                    &:hover {
+                        color: $textColor_default;
+                        background: $textColor_white;
+                        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        }
+                        
+                        &:active {
+                            color: $textColor_tint;
+                            border: 2px solid $textColor_tint;
+                            background: $textColor_white;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
-
+    
+    
 </style>
