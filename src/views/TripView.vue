@@ -95,7 +95,7 @@
         </div>
     </section>
 
-    <!-- 精選行程 -->
+    <!-- 駐站旅人 -->
     <section class="tripView_authors">
         <div class="bgCurve">
             <img src="~@/assets/img/bgCurve_A.png" alt="">
@@ -518,6 +518,10 @@ a {
         display: flex;
         max-width: 1200px;
         margin: 0 auto;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
     }
 
     .heading {
@@ -525,6 +529,11 @@ a {
         flex-direction: column;
         gap: $sp2;
         width: 280px;
+        text-align: center;
+
+        @media (min-width: 768px) {
+            text-align: start;
+        }
     }
 
     .content {
