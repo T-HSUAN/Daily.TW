@@ -33,7 +33,8 @@
                 <img src="~@/assets/img/layout/plan_q1-6.png" alt="">
             </div>
             <div class="select_box">
-                <Select v-model="model" multiple>
+                <span>* 請選擇1~3個</span>
+                <Select v-model="selectValue" multiple @on-select="changeTag">
                     <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </div>
@@ -257,7 +258,7 @@ export default {
                     label: '澎湖'
                 }
             ],
-            model: [],
+            selectValue: [],
             placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆", "懷舊"],
             sexTags: ["男裝", "女裝", "不限"],
             styleTags: ["日系", "韓系", "美式", "中性", "休閒", "簡約", "復古", "文青", "運動", "潮流", "街頭", "性感", "甜美", "可愛", "氣質"],
@@ -283,6 +284,18 @@ export default {
             window.scrollTo({
                 top: 0,
                 behavior: 'auto',
+            })
+        },
+        changeTag() {
+            if (this.selectValue.length < 3) {
+                return false;
+            }
+            const data = this.selectValue;
+            this.$nextTick(() => {
+                if (this.selectValue.length < data.length) {
+                    return false;
+                }
+                this.selectValue = data;
             })
         },
     },
@@ -436,6 +449,15 @@ export default {
             }
         }
         .select_box{
+            display: flex;
+            flex-direction: column;
+            span{
+                @include sm_p;
+                margin-bottom: $sp1;
+                @media (min-width: $md){
+                    @include xl_p;
+                }
+            }
             span.ivu-select-placeholder{
                 display: none;
             }
@@ -445,9 +467,26 @@ export default {
                 border-radius: 10px !important;
                 box-shadow: none !important;
                 width: 311px;
+                padding: 0 $sp1;
                 @media (min-width: $md){
                     width: 375px;
                 }
+            }
+            .ivu-tag{
+                border: none;
+                background: $textColor_default;
+                height: 28px;
+            }
+            .ivu-tag-text{
+                color: $textColor_white;
+                font-size: 14px;
+                line-height: 28px;
+            }
+            .ivu-icon-ios-close{
+                color: $textColor_white;
+                font-size: 14px;
+                line-height: 21px;
+                font-weight: 700;
             }
         }
         // select{
