@@ -39,28 +39,28 @@
                     </Select>
                 </div>
                 <!-- <select name="" id="selection_main">
-                <option value="">請選擇1~3個地區</option>
-                <option value="taipei">台北</option>
-                <option value="newtaipei">新北</option>
-                <option value="keelung">基隆</option>
-                <option value="yilan">宜蘭</option>
-                <option value="taoyuan">桃園</option>
-                <option value="hsinchu">新竹</option>
-                <option value="miaoli">苗栗</option>
-                <option value="taichung">台中</option>
-                <option value="changhua">彰化</option>
-                <option value="nantou">南投</option>
-                <option value="yunlin">雲林</option>
-                <option value="chiayi">嘉義</option>
-                <option value="tainan">台南</option>
-                <option value="kaohsiung">高雄</option>
-                <option value="pingtung">屏東</option>
-                <option value="hualien">花蓮</option>
-                <option value="taitung">台東</option>
-                <option value="kinmen">金門</option>
-                <option value="matsu">馬祖</option>
-                <option value="penghu">澎湖</option>
-            </select> -->
+                    <option value="">請選擇1~3個地區</option>
+                    <option value="taipei">台北</option>
+                    <option value="newtaipei">新北</option>
+                    <option value="keelung">基隆</option>
+                    <option value="yilan">宜蘭</option>
+                    <option value="taoyuan">桃園</option>
+                    <option value="hsinchu">新竹</option>
+                    <option value="miaoli">苗栗</option>
+                    <option value="taichung">台中</option>
+                    <option value="changhua">彰化</option>
+                    <option value="nantou">南投</option>
+                    <option value="yunlin">雲林</option>
+                    <option value="chiayi">嘉義</option>
+                    <option value="tainan">台南</option>
+                    <option value="kaohsiung">高雄</option>
+                    <option value="pingtung">屏東</option>
+                    <option value="hualien">花蓮</option>
+                    <option value="taitung">台東</option>
+                    <option value="kinmen">金門</option>
+                    <option value="matsu">馬祖</option>
+                    <option value="penghu">澎湖</option>
+                </select> -->
             </div>
             <button @click="nextQuestion" class="btn">
                 下一題
@@ -170,7 +170,7 @@
         </div>
     </div>
 </template>
-
+    
 <script>
 export default {
     data() {
@@ -301,7 +301,7 @@ export default {
     },
 };
 </script>
-
+    
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
 
@@ -507,6 +507,25 @@ export default {
                 @media (min-width: $md) {
                     width: 375px;
                 }
+            }
+
+            .ivu-tag {
+                border: none;
+                background: $textColor_default;
+                height: 28px;
+            }
+
+            .ivu-tag-text {
+                color: $textColor_white;
+                font-size: 14px;
+                line-height: 28px;
+            }
+
+            .ivu-icon-ios-close {
+                color: $textColor_white;
+                font-size: 14px;
+                line-height: 21px;
+                font-weight: 700;
             }
         }
 
@@ -883,4 +902,5 @@ export default {
             opacity: 1;
         }
     }
-}</style>
+}
+</style>

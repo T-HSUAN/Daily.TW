@@ -100,7 +100,6 @@ export default {
 @import '@/assets/scss/baseAndMixin.scss';
 
 
-
 #app {
     background-color: $bgColor_default;
 }

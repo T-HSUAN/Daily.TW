@@ -20,7 +20,7 @@
                     <input type="text" v-model="email" @input="validateEmail" :class="{ form_warning: !isEmailValid }"
                         placeholder='請輸入EMAIL'>
                     <!-- <span class="error_message" v-if="!isPasswordValid">
-                        請輸入@gmail.com格式</span> -->
+                          請輸入@gmail.com格式</span> -->
                     <label for="psw">密碼</label>
                     <input type="password" v-model="psw" @input="validatePassword"
                         :class="{ form_warning: !isPasswordValid }" placeholder='請輸入密碼 (英數混合6-12碼)'>
@@ -128,8 +128,8 @@ export default {
     }
 }
 </script>
-
-
+  
+  
 <style lang="scss" >
 @import '@/assets/scss/baseAndMixin.scss';
 
@@ -427,7 +427,4 @@ export default {
 
     }
 
-}
-</style>
-
-
+}</style>
