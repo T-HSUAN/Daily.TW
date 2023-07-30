@@ -101,5 +101,9 @@
         @media (min-width: 768px) {
             gap: $sp1;
         }
+        label {
+            width: 92px;
+            height: 45px;
+        }
     }
 }

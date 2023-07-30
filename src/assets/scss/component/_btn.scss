@@ -53,13 +53,12 @@
         border: 2px solid $textColor_default;
         background: $textColor_white;
         cursor: pointer;
+        white-space: nowrap;
     }
     &:checked + span {
         color: $textColor_white;
         border: 2px solid $textColor_default;
         background: $textColor_default;
-    }
-    span{
         white-space: nowrap;
     }
 }

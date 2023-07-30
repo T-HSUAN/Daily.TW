@@ -94,9 +94,4 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
-
-label {
-    width: 92px;
-    height: 45px;
-}
 </style>
