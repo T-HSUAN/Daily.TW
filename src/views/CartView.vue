@@ -60,7 +60,7 @@
             </div>
             <div class="btn_buy-pay">
                 <router-link to="/ticket"><button class="btn buymore">繼續購買</button></router-link>
-                <router-link to="/payment"><button class="btn pay">
+                <router-link to="/ticket_payment"><button class="btn pay">
                         付款 <span>⇀</span>
                     </button></router-link>
             </div>
@@ -100,7 +100,7 @@
                         <span class="total-price"> {{ total }} </span>
                         元
                     </p>
-                    <router-link to="/payment"><button class="btn">
+                    <router-link to="/ticket_payment"><button class="btn">
                             付款 <span>⇀</span>
                         </button></router-link>
                 </div>
@@ -137,3 +137,7 @@ export default {
     },
 };
 </script>
+<style lang="scss" scoped>
+@import "@/assets/scss/baseAndMixin.scss";
+@import "@/assets/scss/page/cart.scss";
+</style>

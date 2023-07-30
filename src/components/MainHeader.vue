@@ -1,3 +1,4 @@
+<!-- 舊版header 先不刪 -->
 <template>
     <!-- 768px以下顯示側邊欄 -->
     <div class="container_box">
@@ -171,4 +172,245 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
+
+.container_box {
+    height: 75px;
+    background: linear-gradient(180deg,
+            $bgColor_default 59.9%,
+            rgba(254, 240, 209, 0) 100%);
+
+    @media (min-width: 768px) {
+        height: 190px;
+    }
+}
+
+header {
+    display: none;
+}
+
+// header手機版
+.phone {
+    position: fixed;
+    display: block;
+    @include width(100);
+    height: 75px;
+    z-index: 99;
+    background: linear-gradient(180deg,
+            $bgColor_default,
+            rgba(254, 240, 209, 0));
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        display: inline-flex;
+        align-items: center;
+
+        .logo {
+            width: 160px;
+            margin: 0 $sp4;
+        }
+    }
+
+    .ham {
+        width: 40px;
+        margin: 0 $sp4;
+        cursor: pointer;
+    }
+}
+
+// 768 up
+@media screen and (min-width: $md) {
+    header {
+        display: block;
+        background: linear-gradient(180deg,
+                $bgColor_default 59.9%,
+                rgba(254, 240, 209, 0) 100%);
+
+        .header_default {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            width: 100%;
+            max-width: 1200px;
+            height: 200px;
+            padding-top: $sp4;
+            margin: 0 auto;
+            z-index: 99;
+
+            //logo
+            a {
+                .logo {
+                    width: 130px;
+                    margin-left: $sp2;
+
+                    @media screen and (min-width: 1024px) {
+                        width: 190px;
+                        margin: 0 $sp4;
+                    }
+                }
+            }
+
+            nav {
+                box-sizing: border-box;
+                display: flex;
+                padding-right: $sp2;
+
+                a {
+                    width: 92px;
+                    display: flex;
+                    justify-content: end;
+                    margin-left: $sp1;
+                    font-size: 16px;
+                    text-align: center;
+                    color: $textColor_default;
+
+                    @media screen and (min-width: 1024px) {
+                        width: 110px;
+                        justify-content: start;
+                        margin-left: $sp2;
+                        font-size: 20px;
+
+                        img {
+                            width: 20px;
+                        }
+                    }
+
+                    img {
+                        width: 16px;
+                    }
+
+                    &.router-link-exact-active {
+                        color: $default_yellow;
+                    }
+                }
+            }
+        }
+
+        main {
+            margin-top: 75px;
+        }
+
+        .header_sm {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            height: 100px;
+            background: linear-gradient(180deg,
+                    $bgColor_default 59.9%,
+                    rgba(254, 240, 209, 0) 100%);
+
+            //logo
+            a {
+                .logo {
+                    width: 200px;
+                    margin: 0 $sp4;
+                }
+            }
+
+            nav {
+                display: flex;
+
+                a {
+                    display: flex;
+                    margin-right: $sp3;
+                    font-size: 16px;
+                    color: $textColor_default;
+
+                    img {
+                        display: none;
+                        width: 20px;
+                    }
+
+                    &.router-link-exact-active {
+                        color: $default_yellow;
+
+                        img {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            &_display {
+                display: block;
+            }
+        }
+    }
+
+    //header sm版
+    .sm {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(180deg,
+                $bgColor_default 59.9%,
+                rgba(254, 240, 209, 0) 100%);
+        z-index: 99;
+    }
+
+    //header phone版
+    .phone {
+        display: none;
+    }
+}
+
+/* 新增側邊欄樣式 */
+aside {
+    width: 250px;
+    height: 600px;
+    // border: 1px solid $textColor_default;
+    flex-direction: column;
+    border-radius: 50px 0 0 0;
+    box-shadow: 0 2px 3px 3px #0005;
+    background-color: $tint_yellow;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: left .8s ease-in-out;
+    box-sizing: border-box;
+}
+
+.show-sidebar {
+    right: 0;
+    z-index: 100;
+
+    .ham_close {
+        width: 25px;
+        padding: 5px;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        border: 1px solid $textColor_default;
+        border-radius: 50px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 75px;
+
+        a {
+            font-size: $sm_h4;
+            color: $textColor_default;
+            padding: 10px;
+            display: flex;
+            text-align: center;
+        }
+    }
+
+    .sidebar_logo {
+        padding-top: $sp9;
+        display: flex;
+        margin: auto;
+    }
+}
 </style>

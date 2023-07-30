@@ -114,14 +114,12 @@
                 <div class="wrap">
                     <div class="oottCards">
                         <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottRank="oott.oottRank"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottRank="oott.oottRank" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
                             :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                     </div>
                     <div class="oottCards">
                         <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottRank="oott.oottRank"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottRank="oott.oottRank" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
                             :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                     </div>
                 </div>
@@ -732,6 +730,7 @@ export default {
                     border-radius: 55% 60% 55% 50%;
                     overflow: hidden;
                     cursor: pointer;
+
                     img {
                         width: 100%;
                     }

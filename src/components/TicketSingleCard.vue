@@ -12,13 +12,7 @@
                 {{ ticketDetails }}
             </p>
             <!-- if true顯示 false不顯示 -->
-            <a
-                class="ticket_addr"
-                :href="ticketAddrLink"
-                target="_blank"
-                title="點擊查看地圖"
-                v-if="showAddr === true"
-            >
+            <a class="ticket_addr" :href="ticketAddrLink" target="_blank" title="點擊查看地圖" v-if="showAddr === true">
                 <font-awesome-icon icon="fa-solid fa-location-dot" />&nbsp;
                 {{ ticketAddr }}
             </a>
@@ -36,7 +30,6 @@
 
 <script>
 import { stringifyQuery } from "vue-router";
-
 export default {
     props: {
         ticketPhoto: String,

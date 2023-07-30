@@ -83,7 +83,7 @@ const routesUser = [
     },
     {
         path: "/ticket_info",
-        name: "ticketinfo",
+        name: "ticket_info",
         // component: TicketInfo
         component: () =>
             import(
@@ -153,17 +153,17 @@ const routesUser = [
             import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
     },
     {
-        path: "/payment",
-        name: "payment",
+        path: "/ticket_payment",
+        name: "ticket_payment",
         component: () =>
-            import(/* webpackChunkName: "payment" */ "@/views/Payment.vue"),
+            import(/* webpackChunkName: "ticket_payment" */ "@/views/TicketPayment.vue"),
     },
     {
-        path: "/pay_success",
-        name: "paysuccess",
+        path: "/ticket_pay_success",
+        name: "ticket_pay_success",
         component: () =>
             import(
-                /* webpackChunkName: "paysuccess" */ "@/views/Paysuccess.vue"
+                /* webpackChunkName: "ticket_pay_success" */ "@/views/TicketPaySuccess.vue"
             ),
     },
     {

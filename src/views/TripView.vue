@@ -542,8 +542,9 @@ a {
         gap: $sp5;
         overflow-x: scroll;
         overflow-y: hidden;
+
         @media (min-width: $xl) {
-        overflow: visible;
+            overflow: visible;
         }
 
         .author {
@@ -573,7 +574,7 @@ export default {
     data() {
         return {
             topTrips: [
-            {
+                {
                     tripCardPhoto: require('@/assets/img/trip_card_example.png'),
                     tripCardTags: "台中・#親子 #情侶 #農場",
                     tripCardTitle: "台中文青一日遊",

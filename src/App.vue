@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import MainHeader from "@/components/MainHeader.vue";
+import MainHeader from "@/components/Header.vue";
 import MainFooter from "@/components/MainFooter.vue";
 import ArrowUp from "@/components/ArrowUp.vue";
 
@@ -27,4 +27,5 @@ export default {
 <style lang="scss">
 // @import url('./assets/scss/main.scss');
 // @import './assets/scss/main.scss';
+// @import "@/assets/scss/main.scss";
 </style>

@@ -95,8 +95,7 @@
                 <div class="content">
                     <div class="wrap">
                         <div class="oottCards">
-                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                :oottRank="oott.oottRank"
+                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottRank="oott.oottRank"
                                 :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                 :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                 :oottCardAuthor="oott.oottCardAuthor"></oottCard>
@@ -135,11 +134,12 @@
                             <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
                                 <router-link to="/ticket_info" title="點擊查看票券詳情">
                                     <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                                    :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                                    :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice" :discountTag="ticket.discountTag" />
+                                        :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
+                                        :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
+                                        :discountTag="ticket.discountTag" />
                                 </router-link>
                             </div>
-                    </div>
+                        </div>
                     </div>
                     <router-link to="/ticket">
                         <button class="btn">查看更多</button>
@@ -172,14 +172,14 @@ export default {
         return {
 
             planPic: [
-                {src: require('@/assets/img/index_plan_1.png')},
-                {src: require('@/assets/img/index_plan_2.png')},
-                {src: require('@/assets/img/index_plan_3.png')},
-                {src: require('@/assets/img/index_plan_4.png')},
+                { src: require('@/assets/img/index_plan_1.png') },
+                { src: require('@/assets/img/index_plan_2.png') },
+                { src: require('@/assets/img/index_plan_3.png') },
+                { src: require('@/assets/img/index_plan_4.png') },
             ],
 
             ootts: [
-                {   
+                {
                     oottRank: "#01",
                     oottPhoto: require('@/assets/img//oott_02.png'),
                     oottCardTags: "#日系 #休閒 #風景",
@@ -303,7 +303,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
 
@@ -362,7 +362,7 @@ export default {
             .duck {
                 width: 80px;
                 animation: duck_shake 1s linear infinite;
-                
+
                 @media (min-width: 768px) {
                     width: 120px;
                 }
@@ -432,11 +432,12 @@ export default {
                 }
 
                 @keyframes index_h1 {
-                    0%{
+                    0% {
                         left: -$sp12;
                         opacity: 0;
                     }
-                    100%{
+
+                    100% {
                         left: 0;
                         opacity: 1;
                     }
@@ -462,33 +463,37 @@ export default {
                 }
 
                 @keyframes index_p {
-                    0%{
+                    0% {
                         left: -$sp8;
                         opacity: 0;
                     }
-                    100%{
+
+                    100% {
                         left: 0;
                         opacity: 1;
                     }
                 }
 
-                br{
+                br {
                     display: none;
+
                     @media (min-width: $xl) {
                         display: inline-block;
                     }
                 }
             }
 
-            
-            .btn{
+
+            .btn {
                 opacity: 0;
                 animation: index_btn 1.5s 1s 1 forwards;
+
                 @keyframes index_btn {
-                    0%{
+                    0% {
                         opacity: 0;
                     }
-                    100%{
+
+                    100% {
                         opacity: 1;
                     }
                 }
@@ -514,20 +519,21 @@ export default {
                 }
 
                 @keyframes index_btn {
-                    0%{
+                    0% {
                         // left: -$sp6;
                         opacity: 0;
                     }
-                    100%{
+
+                    100% {
                         // left: 0;
                         opacity: 1;
                     }
                 }
 
-                img{
+                img {
                     width: 100%;
                 }
-                
+
 
                 .boy {
                     width: $sp11;
@@ -553,32 +559,35 @@ export default {
 
                     }
 
-                    @keyframes boy_move_sm{
-                        0%{
+                    @keyframes boy_move_sm {
+                        0% {
                             top: 0;
                         }
-                        100%{
+
+                        100% {
                             top: -$sp10;
                         }
                     }
 
-                    @keyframes boy_move_md{
-                        0%{
+                    @keyframes boy_move_md {
+                        0% {
                             top: $sp5;
                             left: $sp5
                         }
-                        100%{
+
+                        100% {
                             top: -$sp1;
                             left: -$sp1;
                         }
                     }
 
-                    @keyframes boy_move_xl{
-                        0%{
+                    @keyframes boy_move_xl {
+                        0% {
                             top: $sp7;
                             left: $sp5
                         }
-                        100%{
+
+                        100% {
                             top: $sp2;
                             left: 0;
                         }
@@ -603,44 +612,54 @@ export default {
                         left: -$sp4;
                     }
 
-                    @keyframes duck_move{
-                        0%{
-                            left:-3%;
+                    @keyframes duck_move {
+                        0% {
+                            left: -3%;
                             bottom: 0;
                             rotate: 5deg;
                         }
-                        10%{
+
+                        10% {
                             rotate: -5deg;
                         }
-                        20%{
+
+                        20% {
                             rotate: 5deg;
                         }
-                        30%{
+
+                        30% {
                             rotate: -5deg;
                         }
-                        40%{
+
+                        40% {
                             rotate: 5deg;
                         }
-                        50%{
+
+                        50% {
                             bottom: -1%;
                             rotate: -5deg;
                         }
-                        60%{
+
+                        60% {
                             rotate: 5deg;
                         }
-                        70%{
+
+                        70% {
                             rotate: -5deg;
                         }
-                        80%{
+
+                        80% {
                             rotate: 5deg;
                         }
-                        90%{
+
+                        90% {
                             rotate: -5deg;
                         }
-                        100%{
+
+                        100% {
                             bottom: 0;
                             rotate: 5deg;
-                            left:-100%;
+                            left: -100%;
                         }
                     }
                 }
