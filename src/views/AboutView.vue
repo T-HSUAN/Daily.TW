@@ -996,4 +996,5 @@ export default defineComponent({
     100% {
         transform: translateX(10px) rotate(5deg);
     }
-}</style>
+}
+</style>

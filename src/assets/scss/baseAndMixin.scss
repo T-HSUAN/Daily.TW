@@ -7,44 +7,55 @@
 @import "mixin/all";
 
 #app {
+    padding-top: 74px; //讓header不會蓋住內容
+    @include sm_p;
     font-family: $fontFamily;
     color: $textColor_default;
-    // background: $bgColor_tint;
-    @include sm_p;
+    // overflow: hidden;
 }
 
 h1 {
     @include sm_h1;
 }
+
 h2 {
     @include sm_h2;
 }
+
 h3 {
     @include sm_h3;
 }
+
 h4 {
     @include sm_h4;
 }
+
 h5 {
     @include sm_h5;
 }
+
 @media all and (min-width: $xl) {
     #app {
+        padding-top: 200px;
         @include xl_p;
     }
 
     h1 {
         @include xl_h1;
     }
+
     h2 {
         @include xl_h2;
     }
+
     h3 {
         @include xl_h3;
     }
+
     h4 {
         @include xl_h4;
     }
+
     h5 {
         @include xl_h5;
     }

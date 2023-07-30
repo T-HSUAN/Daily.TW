@@ -55,7 +55,8 @@
                         <div class="place_desc">
                             <div class="place_content">
                                 <h4>屯區藝文中心</h4>
-                                <p>於99年7月正式成立，99年12月25日縣市合併後改名為臺中市立屯區藝文中心，嗣因組織整併，又於102年1月1日更改為今名。其以表演藝術與音樂為主軸，兼具美術展示與文化推廣功能。積極辦理各項藝文展演活動，促進國際文化藝術交流。</p>
+                                <p>於99年7月正式成立，99年12月25日縣市合併後改名為臺中市立屯區藝文中心，嗣因組織整併，又於102年1月1日更改為今名。其以表演藝術與音樂為主軸，兼具美術展示與文化推廣功能。積極辦理各項藝文展演活動，促進國際文化藝術交流。
+                                </p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
@@ -83,7 +84,8 @@
                         <div class="place_desc">
                             <div class="place_content">
                                 <h4>太平買菸場</h4>
-                                <p>興建於1955年，是公賣局向菸農鑑定、收購菸葉的場所，1994年裁撤後閒置良久，因見證太平菸葉發展歷程，加上建築構造特殊，整體空間具有再利用潛力，經兩年修繕營造出結合歷史與藝術文化的新場域。</p>
+                                <p>興建於1955年，是公賣局向菸農鑑定、收購菸葉的場所，1994年裁撤後閒置良久，因見證太平菸葉發展歷程，加上建築構造特殊，整體空間具有再利用潛力，經兩年修繕營造出結合歷史與藝術文化的新場域。
+                                </p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
@@ -157,7 +159,7 @@
                         <label>
                             <input type="checkbox" class="tag" />
                             <span>
-                                <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark"/>
+                                <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark" />
                                 加入收藏
                             </span>
                         </label>
@@ -225,7 +227,7 @@
                                     <span>最低 26℃</span><br>
                                     <span>降雨機率 80%</span>
                                 </td>
-                                
+
                             </tr>
                         </table>
                     </div>
@@ -233,16 +235,9 @@
                 <div class="oott_container">
                     <h3>出遊穿搭推薦</h3>
                     <div class="oott_card_wrap">
-                        <OottCard
-							class="oott_card"
-							v-for="(oott, index) in ootts"
-							:key="index"
-							:oottPhoto="oott.oottPhoto"
-							:oottCardTags="oott.oottCardTags"
-            				:oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto"
-            				:oottCardAuthor="oott.oottCardAuthor"
-							>
+                        <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor">
                         </OottCard>
                     </div>
                 </div>
@@ -278,14 +273,9 @@
                     </router-link>
                     <div class="ticket_card">
                         <router-link to="/ticket_info">
-                            <Ticket
-                            v-for="(ticket, index) in tickets"
-                            :key="index"
-                            :ticketPhoto="ticket.ticketPhoto"
-                            :ticketTitle="ticket.ticketTitle"
-                            :ticketTags="ticket.ticketTags"
-                            :originalPrice="ticket.originalPrice" 
-                            :FinalPrice="ticket.FinalPrice">
+                            <Ticket v-for="(ticket, index) in tickets" :key="index" :ticketPhoto="ticket.ticketPhoto"
+                                :ticketTitle="ticket.ticketTitle" :ticketTags="ticket.ticketTags"
+                                :originalPrice="ticket.originalPrice" :FinalPrice="ticket.FinalPrice">
                             </Ticket>
                         </router-link>
                     </div>
@@ -320,7 +310,8 @@
                         <div class="place_desc">
                             <div class="place_content">
                                 <h4>正濱漁港彩色屋</h4>
-                                <p>正濱漁港的16棟屋子彩繪成彩色屋，讓原本寂靜的漁村，變成年輕人必訪的景點，最佳的拍攝點就在基隆市中正區正濱路58號~88號前的觀景平台　「涂大的吉古拉」非常好找，就在正濱漁港港邊，遠遠就能聞到一股碳烤香氣，基隆在地的美味，黃金色的吉古拉在彩色屋的陪襯下，顯得格外醒目，記得要先預訂才吃的到！</p>
+                                <p>正濱漁港的16棟屋子彩繪成彩色屋，讓原本寂靜的漁村，變成年輕人必訪的景點，最佳的拍攝點就在基隆市中正區正濱路58號~88號前的觀景平台　「涂大的吉古拉」非常好找，就在正濱漁港港邊，遠遠就能聞到一股碳烤香氣，基隆在地的美味，黃金色的吉古拉在彩色屋的陪襯下，顯得格外醒目，記得要先預訂才吃的到！
+                                </p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
@@ -391,13 +382,9 @@
                 <div class="title_footprint"></div>
             </div>
             <div class="result_trip">
-                <TripCard v-for="(trip, index) in trips" :key="index"
-                    :tripCardPhoto="trip.tripCardPhoto"
-                    :tripCardTags="trip.tripCardTags"
-                    :tripCardTitle="trip.tripCardTitle" 
-                    :tripCardAuthor="trip.tripCardAuthor"
-                    :tripCardDate="trip.tripCardDate"
-                    >
+                <TripCard v-for="(trip, index) in trips" :key="index" :tripCardPhoto="trip.tripCardPhoto"
+                    :tripCardTags="trip.tripCardTags" :tripCardTitle="trip.tripCardTitle"
+                    :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate">
                 </TripCard>
             </div>
             <router-link to="/trip">
@@ -431,31 +418,31 @@ export default defineComponent({
         return {
             // showResultContent: false,
             resultPic1: [
-                {src: require('@/assets/img/layout/plan_result_place_1-1.png')},
-                {src: require('@/assets/img/layout/plan_result_place_1-2.png')},
-                {src: require('@/assets/img/layout/plan_result_place_1-3.png')}
+                { src: require('@/assets/img/layout/plan_result_place_1-1.png') },
+                { src: require('@/assets/img/layout/plan_result_place_1-2.png') },
+                { src: require('@/assets/img/layout/plan_result_place_1-3.png') }
             ],
             resultPic2: [
-                {src: require('@/assets/img/layout/plan_result_place_2-1.png')},
-                {src: require('@/assets/img/layout/plan_result_place_2-2.png')},
-                {src: require('@/assets/img/layout/plan_result_place_2-3.png')}
+                { src: require('@/assets/img/layout/plan_result_place_2-1.png') },
+                { src: require('@/assets/img/layout/plan_result_place_2-2.png') },
+                { src: require('@/assets/img/layout/plan_result_place_2-3.png') }
             ],
             resultPic3: [
-                {src: require('@/assets/img/layout/plan_result_place_3-1.png')},
-                {src: require('@/assets/img/layout/plan_result_place_3-2.png')},
-                {src: require('@/assets/img/layout/plan_result_place_3-3.png')}
+                { src: require('@/assets/img/layout/plan_result_place_3-1.png') },
+                { src: require('@/assets/img/layout/plan_result_place_3-2.png') },
+                { src: require('@/assets/img/layout/plan_result_place_3-3.png') }
             ],
             resultPic4: [
-                {src: require('@/assets/img/layout/plan_result_place_4-1.png')},
-                {src: require('@/assets/img/layout/plan_result_place_4-2.png')}
+                { src: require('@/assets/img/layout/plan_result_place_4-1.png') },
+                { src: require('@/assets/img/layout/plan_result_place_4-2.png') }
             ],
             resultPic5: [
-                {src: require('@/assets/img/layout/plan_result_place_5-1.png')},
-                {src: require('@/assets/img/layout/plan_result_place_5-2.png')}
+                { src: require('@/assets/img/layout/plan_result_place_5-1.png') },
+                { src: require('@/assets/img/layout/plan_result_place_5-2.png') }
             ],
             resultPic6: [
-                {src: require('@/assets/img/layout/plan_result_place_6-1.png')},
-                {src: require('@/assets/img/layout/plan_result_place_6-2.png')}
+                { src: require('@/assets/img/layout/plan_result_place_6-1.png') },
+                { src: require('@/assets/img/layout/plan_result_place_6-2.png') }
             ],
             // weather: {
             //     loading: false,
@@ -465,60 +452,60 @@ export default defineComponent({
             //     token:'713d2a4d5d6d47dca9a15517232207',
             // },
             ootts: [
-				{
-					oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
-					oottCardTags: "#日系 #休閒 #風景",
-					oottCardDate: "2023 / 7 / 12",
-					oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-1_member.png"),
-					oottCardAuthor: "Alison",
-				},
-				{
-					oottPhoto: require("@/assets/img/layout/plan_result_oott-2.png"),
-					oottCardTags: "#復古 #海邊",
-					oottCardDate: "2023 / 7 / 3",
-					oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-2_member.png"),
-					oottCardAuthor: "Susan",
-				},
-				{
-					oottPhoto: require("@/assets/img/layout/plan_result_oott-3.png"),
-					oottCardTags: "#街頭 #潮流",
-					oottCardDate: "2023 / 6 / 6",
-					oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-3_member.png"),
-					oottCardAuthor: "Max",
-				},
-			],
+                {
+                    oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
+                    oottCardTags: "#日系 #休閒 #風景",
+                    oottCardDate: "2023 / 7 / 12",
+                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-1_member.png"),
+                    oottCardAuthor: "Alison",
+                },
+                {
+                    oottPhoto: require("@/assets/img/layout/plan_result_oott-2.png"),
+                    oottCardTags: "#復古 #海邊",
+                    oottCardDate: "2023 / 7 / 3",
+                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-2_member.png"),
+                    oottCardAuthor: "Susan",
+                },
+                {
+                    oottPhoto: require("@/assets/img/layout/plan_result_oott-3.png"),
+                    oottCardTags: "#街頭 #潮流",
+                    oottCardDate: "2023 / 6 / 6",
+                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-3_member.png"),
+                    oottCardAuthor: "Max",
+                },
+            ],
             tickets: [
                 {
-                ticketPhoto:require("@/assets/img/layout/plan_result_ticket.png"),
-                ticketTitle:"紙箱王創意園區門票",
-                ticketTags:"台中・#親子 #小資 #藝文",
-                originalPrice: "200",
-                FinalPrice: "200",
+                    ticketPhoto: require("@/assets/img/layout/plan_result_ticket.png"),
+                    ticketTitle: "紙箱王創意園區門票",
+                    ticketTags: "台中・#親子 #小資 #藝文",
+                    originalPrice: "200",
+                    FinalPrice: "200",
                 },
             ],
             trips: [
-				{
-					tripCardPhoto: require("@/assets/img/layout/plan_result_place_7.png"),
-					tripCardTags: "新竹・#情侶 #風景 #藝文",
-					tripCardTitle: "新竹懷舊一日遊",
-					tripCardAuthor: "小編A",
-					tripCardDate: "2023 / 7 / 12",
-				},
-				{
-					tripCardPhoto: require("@/assets/img/layout/plan_result_place_8.png"),
-					tripCardTags: "新北・#情侶 #小資 #風景",
-					tripCardTitle: "新北藝術一日遊",
-					tripCardAuthor: "小編A",
-					tripCardDate: "2023 / 7 / 12",
-				},
-				{
-					tripCardPhoto: require("@/assets/img/layout/plan_result_place_9.png"),
-					tripCardTags: "宜蘭・#情侶 #風景 #藝文",
-					tripCardTitle: "宜蘭芬多精一日遊",
-					tripCardAuthor: "小編A",
-					tripCardDate: "2023 / 7 / 12",
-				},
-			],
+                {
+                    tripCardPhoto: require("@/assets/img/layout/plan_result_place_7.png"),
+                    tripCardTags: "新竹・#情侶 #風景 #藝文",
+                    tripCardTitle: "新竹懷舊一日遊",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023 / 7 / 12",
+                },
+                {
+                    tripCardPhoto: require("@/assets/img/layout/plan_result_place_8.png"),
+                    tripCardTags: "新北・#情侶 #小資 #風景",
+                    tripCardTitle: "新北藝術一日遊",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023 / 7 / 12",
+                },
+                {
+                    tripCardPhoto: require("@/assets/img/layout/plan_result_place_9.png"),
+                    tripCardTags: "宜蘭・#情侶 #風景 #藝文",
+                    tripCardTitle: "宜蘭芬多精一日遊",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023 / 7 / 12",
+                },
+            ],
         }
     },
     // created(){
@@ -559,16 +546,19 @@ export default defineComponent({
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
-#app{
+
+#app {
     background-color: $bgColor_default;
 }
 
-.plan_result{
+.plan_result {
     background-color: $bgColor_default;
-    @media (min-width: $md){
+
+    @media (min-width: $md) {
         padding-top: $sp4;
     }
-    .result_banner{
+
+    .result_banner {
         position: relative;
         z-index: 1;
         display: flex;
@@ -581,59 +571,76 @@ export default defineComponent({
         background-repeat: no-repeat;
         background-position: center center;
         background-image: url("~@/assets/img/layout/plan_result_bg-sm.png");
-        @media (min-width: $md){
+
+        @media (min-width: $md) {
             background-image: url("~@/assets/img/layout/plan_result_bg-xl.png");
             background-position: top center;
         }
-        .main_pic{
+
+        .main_pic {
             display: flex;
             align-items: flex-end;
             padding: $sp15 0 $sp2 0;
-            @media (min-width: $md){
+
+            @media (min-width: $md) {
                 padding: 184px 0 $sp2 0;
             }
-            .boy{
+
+            .boy {
                 margin-right: -24px;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     margin-right: -40px;
                 }
-                img{
+
+                img {
                     width: 146px;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         width: 251px;
                     }
                 }
             }
-            .duck{
+
+            .duck {
                 margin-right: 20px;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     margin-right: -10px;
                 }
-                img{
+
+                img {
                     width: 123px;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         width: 211px;
                     }
                 }
             }
         }
-        .result_title{
+
+        .result_title {
             width: 200px;
             position: relative;
-            @media (min-width: $md){
+
+            @media (min-width: $md) {
                 width: 573px;
             }
-            h1{
+
+            h1 {
                 display: inline-block;
                 animation: fadeInDown 1s ease-in;
                 @include sm_h1;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     @include xl_h1;
                 }
+
                 -webkit-text-stroke: 5px $textColor_default;
                 position: relative;
                 letter-spacing: 6px;
                 line-height: 150%;
+
                 &::before {
                     content: '專屬旅著已產生...';
                     position: absolute;
@@ -643,55 +650,65 @@ export default defineComponent({
                     -webkit-text-stroke: 0;
                     color: $textColor_tint;
                     letter-spacing: 6px;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         @include xl_h1;
                     }
                 }
             }
-            .location_icon{
+
+            .location_icon {
                 position: absolute;
                 top: 72px;
                 left: 100%;
                 animation: fadeInDown 1s ease-in;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     position: relative;
                     top: 0;
                     left: 0;
                     display: inline-block;
                 }
-                img{
+
+                img {
                     width: 30px;
                 }
-                @media (min-width: $md){
-                    img{
+
+                @media (min-width: $md) {
+                    img {
                         width: 50px;
                     }
                 }
             }
-            .result_arrow{
+
+            .result_arrow {
                 width: 17px;
                 margin: auto;
                 padding-top: $sp2;
                 animation: fadeInDown 1s ease-in 1, fadeInDownLittle 1.2s 1s ease-in infinite;
-                img{
+
+                img {
                     width: 100%;
                     height: 79px;
                 }
             }
-            span{
+
+            span {
                 color: $textColor_default;
                 display: block;
                 text-align: center;
                 padding-top: $sp1;
                 animation: fadeInDown 1s ease-in 1, fadeInDownLittle 1.2s 1s ease-in infinite;
                 @include sm_p;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     @include xl_p;
                 }
             }
         }
     }
-    .result_wave{
+
+    .result_wave {
         margin-top: -3%;
         background-image: url(~@/assets/img/layout/bg_wave1_sm.png);
         width: 100%;
@@ -700,13 +717,15 @@ export default defineComponent({
         background-repeat: no-repeat;
         background-position: top center;
         position: relative;
-        @media (min-width: 375px){
+
+        @media (min-width: 375px) {
             background-image: url(~@/assets/img/layout/bg_wave1_xl.png);
             height: 135px;
             margin-top: -1%;
         }
     }
-    .result_content_wave{
+
+    .result_content_wave {
         margin-top: -3%;
         background-image: url(~@/assets/img/layout/bg_wave2_sm.png);
         width: 100%;
@@ -715,38 +734,46 @@ export default defineComponent({
         background-repeat: no-repeat;
         background-position: top center;
         position: relative;
-        @media (min-width: 375px){
+
+        @media (min-width: 375px) {
             background-image: url(~@/assets/img/layout/bg_wave2_xl.png);
             height: 135px;
             margin-top: -1%;
         }
     }
-    .result_content{
+
+    .result_content {
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: $bgColor_tint;
         padding-top: $sp10;
         margin-top: -140px;
-        @media (min-width: $md){
+
+        @media (min-width: $md) {
             padding-top: $sp15;
             margin-top: -120px;
         }
-        .result_subtitle{
+
+        .result_subtitle {
             display: flex;
             align-items: flex-end;
             gap: $sp1;
             padding-bottom: $sp4;
-            @media (min-width: $md){
+
+            @media (min-width: $md) {
                 padding-bottom: $sp6;
             }
-            h2{
+
+            h2 {
                 @include sm_h2;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     @include xl_h2;
                 }
             }
-            .title_footprint{
+
+            .title_footprint {
                 width: 20px;
                 height: 14px;
                 background-image: url(~@/assets/img/layout/title_footprint.png);
@@ -754,13 +781,15 @@ export default defineComponent({
                 background-repeat: no-repeat;
                 position: relative;
                 bottom: -4px;
-                @media (min-width: $md){
+
+                @media (min-width: $md) {
                     width: 29px;
                     height: 20px;
                 }
             }
         }
-        .content_desc{
+
+        .content_desc {
             width: 83.333%;
             max-width: 1200px;
             border-radius: 5px 20px 20px 5px;
@@ -769,56 +798,69 @@ export default defineComponent({
             margin-bottom: $sp3;
             box-shadow: 0px 3px 3px 0px rgba(106, 93, 74, 0.20);
             position: relative;
-            @media (min-width: $md){
+
+            @media (min-width: $md) {
                 padding: $sp4;
                 margin-bottom: $sp5;
             }
-            .plan_container{
+
+            .plan_container {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                .plan_title{
+
+                .plan_title {
                     padding-bottom: $sp1;
                     display: flex;
                     flex-direction: column;
                     gap: $sp2;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         flex-direction: row;
                         gap: 0;
                         padding-bottom: $sp4;
                     }
-                    h3{
+
+                    h3 {
                         font-family: 'Shippori Mincho', 'Noto Sans TC', sans-serif;
                         font-size: 24px;
                         font-weight: 700;
                         white-space: nowrap;
-                        @media (min-width: $md){
+
+                        @media (min-width: $md) {
                             font-size: 32px;
                             line-height: 42px;
                             padding-right: $sp2;
                         }
                     }
-                    .place_tags{
+
+                    .place_tags {
                         display: flex;
                         gap: $sp1;
                         margin-right: 0;
                         overflow-x: scroll;
-                        &::-webkit-scrollbar{
+
+                        &::-webkit-scrollbar {
                             height: 4px;
                         }
-                        &::-webkit-scrollbar-track{
+
+                        &::-webkit-scrollbar-track {
                             background-color: $tint_red;
                         }
-                        &::-webkit-scrollbar-thumb{
+
+                        &::-webkit-scrollbar-thumb {
                             background-color: $mid_red;
                         }
-                        @media (min-width: $md){
+
+                        @media (min-width: $md) {
                             margin-right: $sp9;
-                            &::-webkit-scrollbar{
+
+                            &::-webkit-scrollbar {
                                 height: 12px;
                             }
                         }
-                        span{
+
+                        span {
                             display: inline-block;
                             background-color: $default_red;
                             border-radius: 50px;
@@ -828,17 +870,20 @@ export default defineComponent({
                             padding: 0 $sp2;
                             margin-bottom: $sp1;
                             flex-shrink: 0;
-                            @media (min-width: $md){
+
+                            @media (min-width: $md) {
                                 @include xl_p;
                                 line-height: 42px;
                             }
                         }
                     }
-                    label{
-                        input[type="checkbox"]{
+
+                    label {
+                        input[type="checkbox"] {
                             display: none;
                         }
-                        input[type="checkbox"] + span::before{
+
+                        input[type="checkbox"]+span::before {
                             content: '';
                             display: inline-block;
                             width: 29px;
@@ -850,13 +895,15 @@ export default defineComponent({
                             top: 0;
                             right: 16px;
                             cursor: pointer;
-                            @media (min-width: $md){
+
+                            @media (min-width: $md) {
                                 width: 51px;
                                 height: 77px;
                                 right: 32px;
                             }
                         }
-                        input[type="checkbox"]:checked + span::before{
+
+                        input[type="checkbox"]:checked+span::before {
                             content: '';
                             display: inline-block;
                             width: 29px;
@@ -865,114 +912,141 @@ export default defineComponent({
                             background-size: 100%;
                             background-repeat: no-repeat;
                             cursor: pointer;
-                            @media (min-width: $md){
+
+                            @media (min-width: $md) {
                                 width: 51px;
                                 height: 77px;
                             }
                         }
                     }
                 }
-                .plan_place{
+
+                .plan_place {
                     display: flex;
                     flex-direction: column;
                     padding-bottom: $sp4;
-                    @media (min-width: 1024px){
+
+                    @media (min-width: 1024px) {
                         flex-direction: row;
                         padding-bottom: $sp3;
                         gap: $sp2;
                     }
-                    .pic_swiper{
+
+                    .pic_swiper {
                         position: relative;
                         margin: auto;
                         width: 279px;
                         flex-shrink: 0;
-                        @media (min-width: $md){
+
+                        @media (min-width: $md) {
                             width: 381px;
                         }
-                        @media (min-width: 1024px){
+
+                        @media (min-width: 1024px) {
                             margin: 0;
                         }
-                        img{
+
+                        img {
                             width: 100%;
                             border-radius: 5px;
                         }
-                        .carousel__pagination-button::after{
+
+                        .carousel__pagination-button::after {
                             background-color: $tint_green !important;
                         }
-                        .carousel__pagination-button--active::after{
+
+                        .carousel__pagination-button--active::after {
                             background-color: $mid_green !important;
                         }
                     }
-                    .place_desc{
+
+                    .place_desc {
                         display: flex;
                         flex-direction: column;
                         gap: $sp2;
-                        @media (min-width: 1024px){
+
+                        @media (min-width: 1024px) {
                             justify-content: space-between;
                             padding-bottom: $sp3;
                         }
-                        .place_content{
-                            h4{
+
+                        .place_content {
+                            h4 {
                                 @include sm_h4;
                                 color: $default_green;
                                 padding-top: $sp2;
                                 padding-bottom: $sp2;
-                                @media (min-width: $md){
+
+                                @media (min-width: $md) {
                                     @include xl_h4;
                                     padding-top: 0;
                                 }
                             }
-                            p{
+
+                            p {
                                 @include sm_p;
                                 line-height: 150%;
                                 text-align: justify;
-                                @media (min-width: $md){
+
+                                @media (min-width: $md) {
                                     @include xl_p;
                                 }
                             }
                         }
-                        .place_time_address{
+
+                        .place_time_address {
                             display: flex;
                             flex-direction: column;
                             gap: $sp1;
-                            @media (min-width: $md){
+
+                            @media (min-width: $md) {
                                 flex-direction: row;
                                 gap: $sp2;
                                 padding-top: $sp1;
                             }
-                            .time{
+
+                            .time {
                                 display: flex;
                                 align-items: center;
                                 gap: $sp1;
-                                img{
+
+                                img {
                                     width: 22px;
-                                    @media (min-width: $md){
+
+                                    @media (min-width: $md) {
                                         width: 27px;
                                     }
                                 }
-                                span{
+
+                                span {
                                     @include sm_p;
-                                    @media (min-width: $md){
+
+                                    @media (min-width: $md) {
                                         @include xl_p;
                                         line-height: 150%;
                                     }
                                 }
                             }
-                            .address{
+
+                            .address {
                                 display: flex;
                                 align-items: center;
                                 gap: $sp1;
-                                img{
+
+                                img {
                                     width: 19px;
-                                    @media (min-width: $md){
+
+                                    @media (min-width: $md) {
                                         width: 23px;
                                     }
                                 }
-                                a{
+
+                                a {
                                     color: $textColor_default;
                                     text-decoration: underline;
                                     @include sm_p;
-                                    @media (min-width: $md){
+
+                                    @media (min-width: $md) {
                                         @include xl_p;
                                         line-height: 150%;
                                     }
@@ -981,99 +1055,122 @@ export default defineComponent({
                         }
                     }
                 }
-                .btn_bookmark{
-                    label{
-                        span{
-                            .bookmark{
+
+                .btn_bookmark {
+                    label {
+                        span {
+                            .bookmark {
                                 padding-right: $sp1;
                             }
                         }
                     }
                 }
             }
-            .weather_container{
+
+            .weather_container {
                 padding-top: $sp5;
-                h3{
+
+                h3 {
                     @include sm_h3;
                     padding-bottom: $sp3;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         @include xl_h3;
                     }
                 }
-                .table_wrap{
+
+                .table_wrap {
                     border-radius: 10px;
                     border: 3px solid $textColor_default;
                     background-color: $textColor_white;
                     overflow-x: scroll;
-                    &::-webkit-scrollbar{
+
+                    &::-webkit-scrollbar {
                         height: 4px;
                     }
-                    &::-webkit-scrollbar-track{
+
+                    &::-webkit-scrollbar-track {
                         background-color: $textColor_default;
                     }
-                    &::-webkit-scrollbar-thumb{
+
+                    &::-webkit-scrollbar-thumb {
                         background-color: $textColor_tint;
                     }
-                    @media (min-width: $md){
-                        &::-webkit-scrollbar{
+
+                    @media (min-width: $md) {
+                        &::-webkit-scrollbar {
                             height: 12px;
                         }
                     }
-                    table{
+
+                    table {
                         // table-layout: fixed;
                         box-sizing: border-box;
                         width: 100%;
                         max-width: 1136px;
-                        tr{
-                            td{
+
+                        tr {
+                            td {
                                 border-right: 3px solid $textColor_tint;
                                 padding: $sp1;
-                                @media (min-width: $md){
+
+                                @media (min-width: $md) {
                                     padding: $sp2 $sp1;
                                 }
-                                span{
+
+                                span {
                                     @include sm_h5;
                                     white-space: nowrap;
                                     line-height: 150%;
-                                    @media (min-width: $md){
+
+                                    @media (min-width: $md) {
                                         @include xl_h5;
                                     }
                                 }
-                                img{
+
+                                img {
                                     display: block;
                                     margin: auto;
                                     width: 76px;
                                 }
                             }
-                            td:last-child{
+
+                            td:last-child {
                                 border-right: none;
                             }
                         }
-                        tr:nth-child(1){
+
+                        tr:nth-child(1) {
                             border-bottom: 3px solid $textColor_tint;
-                            td{
+
+                            td {
                                 text-align: center;
                             }
-                            
+
                         }
                     }
                 }
             }
-            .oott_container{
+
+            .oott_container {
                 padding-top: $sp5;
-                h3{
+
+                h3 {
                     @include sm_h3;
                     padding-bottom: $sp3;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         @include xl_h3;
                     }
                 }
-                .oott_card_wrap{
+
+                .oott_card_wrap {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     gap: $sp2;
-                    @media (min-width: 1024px){
+
+                    @media (min-width: 1024px) {
                         flex-direction: row;
                         justify-content: center;
                         gap: $sp3;
@@ -1081,18 +1178,23 @@ export default defineComponent({
                     }
                 }
             }
-            .ticket_container{
+
+            .ticket_container {
                 padding-top: $sp5;
-                h3{
+
+                h3 {
                     @include sm_h3;
                     padding-bottom: $sp3;
-                    @media (min-width: $md){
+
+                    @media (min-width: $md) {
                         @include xl_h3;
                     }
                 }
-                .ticket_box{
+
+                .ticket_box {
                     display: none;
-                    @media (min-width: 900px){
+
+                    @media (min-width: 900px) {
                         width: 100%;
                         display: flex;
                         position: relative;
@@ -1102,10 +1204,12 @@ export default defineComponent({
                         background-size: 100%;
                         gap: $sp5;
                     }
-                    @media (min-width: 1024px){
+
+                    @media (min-width: 1024px) {
                         gap: $sp9;
                     }
-                    .ticket_pic{
+
+                    .ticket_pic {
                         width: 45%;
                         aspect-ratio: calc(511/360);
                         background-image: url(~@/assets/img/layout/plan_result_ticket.png);
@@ -1113,43 +1217,53 @@ export default defineComponent({
                         background-repeat: no-repeat;
                         margin-left: $sp6;
                         flex-shrink: 0;
-                        @media (min-width: 1024px){
+
+                        @media (min-width: 1024px) {
                             margin-left: $sp8;
                         }
                     }
-                    .ticket_desc{
+
+                    .ticket_desc {
                         width: 100%;
                         padding: $sp3 $sp5 $sp3 0;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
-                        @media (min-width: 1024px){
+
+                        @media (min-width: 1024px) {
                             padding: $sp5 $sp8 $sp3 0;
                         }
-                        .ticket_content{
-                            h4{
+
+                        .ticket_content {
+                            h4 {
                                 font-size: 24px;
                                 font-weight: 900;
                                 color: $textColor_white;
                                 padding-bottom: $sp2;
-                                @media (min-width: $md){
+
+                                @media (min-width: $md) {
                                     font-size: 32px;
                                 }
                             }
-                            span{
+
+                            span {
                                 font-size: 14px;
                                 font-weight: 400;
                                 color: $tint_blue;
-                                @media (min-width: $md){
+
+                                @media (min-width: $md) {
                                     font-size: 16px;
                                 }
                             }
-                            span:nth-child(3){
+
+                            span:nth-child(3) {
                                 font-weight: 100;
                             }
-                            p{
+
+                            p {
                                 display: none;
-                                @media (min-width: 1240px){
+
+                                @media (min-width: 1240px) {
                                     display: block;
                                     @include xl_p;
                                     color: $textColor_white;
@@ -1159,50 +1273,58 @@ export default defineComponent({
                                 }
                             }
                         }
-                        .ticket_price{
+
+                        .ticket_price {
                             width: 100%;
                             display: flex;
                             flex-direction: column;
                             gap: $sp2;
-                            @media (min-width: 1024px){
+
+                            @media (min-width: 1024px) {
                                 flex-direction: row;
                                 justify-content: space-between;
                                 align-items: flex-end;
                                 gap: 0;
                             }
-                            .price_box{
+
+                            .price_box {
                                 display: flex;
                                 flex-direction: column;
                                 gap: $sp1;
-                                @media (min-width: $xl){
+
+                                @media (min-width: $xl) {
                                     flex-direction: row;
                                     align-items: center;
                                     gap: $sp2;
                                 }
-                                span:nth-child(1){
+
+                                span:nth-child(1) {
                                     font-size: 16px;
                                     font-weight: 700;
                                     color: $tint_blue;
                                     text-decoration: line-through;
                                 }
-                                span:nth-child(2){
+
+                                span:nth-child(2) {
                                     font-size: 36px;
                                     font-weight: 900;
                                     color: #E8F66A;
                                 }
                             }
-                            .ticket_link{
-                                a{
+
+                            .ticket_link {
+                                a {
                                     color: $textColor_white;
                                     text-decoration: underline;
                                     font-size: 20px;
                                     font-weight: 500;
                                 }
-                                
+
                             }
                         }
                     }
-                    .sale_tag{
+
+                    .sale_tag {
                         width: 80px;
                         height: 80px;
                         border-radius: 80px;
@@ -1212,7 +1334,8 @@ export default defineComponent({
                         top: -24px;
                         right: -8px;
                         transform: rotate(15deg);
-                        span{
+
+                        span {
                             font-size: 24px;
                             font-weight: 900;
                             color: $textColor_white;
@@ -1220,48 +1343,72 @@ export default defineComponent({
                         }
                     }
                 }
-                .ticket_card{
+
+                .ticket_card {
                     display: flex;
                     justify-content: center;
-                    @media (min-width: 900px){
+
+                    @media (min-width: 900px) {
                         display: none;
                     }
                 }
             }
         }
     }
-    .result_bottom{
+
+    .result_bottom {
         background-color: $bgColor_default;
         padding-top: $sp10;
         margin-top: -90px;
         overflow: hidden;
-        @media (min-width: $md){
+
+        @media (min-width: $md) {
             padding-top: $sp15;
             margin-top: -90px;
         }
-        .result_trip{
+
+        .result_trip {
             display: flex;
             flex-direction: column;
             gap: $sp2;
-            @media (min-width: $xl){
+
+            @media (min-width: $xl) {
                 flex-direction: row;
                 gap: $sp4;
             }
         }
-        a{
-            button{
+
+        a {
+            button {
                 margin: $sp5 0 $sp15 0;
             }
         }
     }
-    @keyframes fadeInDown{
-        0%{opacity: 0; transform: translate(0, -100%);}
-        100%{opacity: 1; transform: translate(0, 0);}
+
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translate(0, -100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
     }
-    @keyframes fadeInDownLittle{
-        0%{opacity: 0; transform: translate(0, -20%);}
-        100%{opacity: 1; transform: translate(0, 0);}
+
+    @keyframes fadeInDownLittle {
+        0% {
+            opacity: 0;
+            transform: translate(0, -20%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
     }
+
     // .result_content{
     //     .content_desc:nth-child(3),
     //     .content_desc:nth-child(4){

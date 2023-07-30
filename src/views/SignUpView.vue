@@ -1,121 +1,105 @@
 <!-- 會員註冊資料頁面 -->
 <template>
-<section class="registerview">
-    <div class="canvas" >
-        <div class="joinus_sm">
-            <img src="@/assets/img/joinus_sm.png" alt="joinus">
-        </div>
-        <h2>加入旅著</h2>
-        <div class="photo_group">
-            <div class="member_img">
-                <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
+    <section class="registerview">
+        <div class="canvas">
+            <div class="joinus_sm">
+                <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
-            <button class="btn push" @click="togglePreview" >上傳大頭貼</button>
-        </div>
-        <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
+            <h2>加入旅著</h2>
+            <div class="photo_group">
+                <div class="member_img">
+                    <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
+                </div>
+                <button class="btn push" @click="togglePreview">上傳大頭貼</button>
+            </div>
+            <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
             
         </div> -->
-        <form class="form" >
-            <div v-for="(item, index) in tabItems" 
-                :key="index">
-                <label :for="'member-' + index">{{ item.text }}</label>
-                <input type="text" 
-                    v-model="inputValues[index]" 
-                    :placeholder="item.placeholder"
-                    :id="'member-' + index"/>
-            </div>
-            <label for="year">生日</label>
-            <div class="date_group">
-                <select v-model="selectedYear" @change="onYearChange" id="year">
-                    <option 
-                        v-for="(year, index) in yearList" 
-                        :key="index" 
-                        :value="year">
+            <form class="form">
+                <div v-for="(item, index) in tabItems" :key="index">
+                    <label :for="'member-' + index">{{ item.text }}</label>
+                    <input type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
+                        :id="'member-' + index" />
+                </div>
+                <label for="year">生日</label>
+                <div class="date_group">
+                    <select v-model="selectedYear" @change="onYearChange" id="year">
+                        <option v-for="(year, index) in yearList" :key="index" :value="year">
                             {{ year }}
-                    </option>
-                </select>
-                <select v-model="selectedMonth" @change="onMonthChange" id="month">
-                    <option 
-                        v-for="(month, index) in monthList" 
-                        :key="index" 
-                        :value="month">
-                        {{ month }}
-                    </option>
-                </select>
-                <select v-model="selectedDate" @change="onDayChange" id="selectDate">
-                    <option 
-                        v-for="(date, index) in dateList" 
-                        :key="index" 
-                        :value="date">
-                        {{ date }}
-                    </option>
-                </select>
+                        </option>
+                    </select>
+                    <select v-model="selectedMonth" @change="onMonthChange" id="month">
+                        <option v-for="(month, index) in monthList" :key="index" :value="month">
+                            {{ month }}
+                        </option>
+                    </select>
+                    <select v-model="selectedDate" @change="onDayChange" id="selectDate">
+                        <option v-for="(date, index) in dateList" :key="index" :value="date">
+                            {{ date }}
+                        </option>
+                    </select>
+                </div>
+                <label for="gender">性別</label>
+                <div class="gender_group">
+                    <label class="checkbox_container" @click="toggleCheckbox('isMan')">
+                        <input type="checkbox" v-model="isMan" class="myCheckbox">
+                        <span class="checkmark"></span>
+                        <span class="content">男</span>
+                    </label>
+                    <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
+                        <input type="checkbox" v-model="isWomen" class="myCheckbox">
+                        <span class="checkmark"></span>
+                        <span class="content">女</span>
+                    </label>
+                    <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
+                        <input type="checkbox" v-model="isSecret" class="myCheckbox">
+                        <span class="checkmark"></span>
+                        <span class="content">不告訴你</span>
+                    </label>
+                </div>
+                <label for="phone">電話</label>
+                <input type="text" v-model="phone" @input="filterNonNumeric" placeholder="請輸入電話">
+            </form>
+            <div class="btn_group">
+                <router-link to="./login" class="cancel_btn">
+                    取消
+                </router-link>
+                <router-link to="./" class="btn">
+                    註冊
+                </router-link>
             </div>
-            <label for="gender">性別</label>
-            <div class="gender_group">
-                <label class="checkbox_container" @click="toggleCheckbox('isMan')">
-                    <input type="checkbox" v-model="isMan" class="myCheckbox">
-                    <span class="checkmark"></span>
-                    <span class="content" >男</span>
-                </label>
-                <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
-                    <input type="checkbox" v-model="isWomen" class="myCheckbox">
-                    <span class="checkmark"></span>
-                    <span class="content" >女</span>
-                </label>
-                <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
-                    <input type="checkbox" v-model="isSecret" class="myCheckbox">
-                    <span class="checkmark"></span>
-                    <span class="content" >不告訴你</span>
-                </label>  
-            </div>
-            <label for="phone">電話</label>
-            <input type="text" v-model="phone" @input="filterNonNumeric" placeholder="請輸入電話">
-        </form>
-        <div class="btn_group">
-            <router-link
-                to="./login" 
-                class="cancel_btn">
-                取消
-            </router-link>
-            <router-link
-                to="./" 
-                class="btn">
-            註冊
-            </router-link>
         </div>
-    </div>
-</section>   
+    </section>
 </template>
 
 <script>
-export default{
-    data(){
-        return{
-            tabItems:{
-                1:{
-                    text:'Email',
-                    placeholder:'請輸入EMAIL'
+export default {
+    data() {
+        return {
+            tabItems: {
+                1: {
+                    text: 'Email',
+                    placeholder: '請輸入EMAIL'
                 },
-                2:{
-                    text:'密碼',
-                    placeholder:'英數混合6-12碼'
+                2: {
+                    text: '密碼',
+                    placeholder: '英數混合6-12碼'
                 },
-                3:{
-                    text:'確認密碼',
-                    placeholder:'請再輸入一次密碼'
+                3: {
+                    text: '確認密碼',
+                    placeholder: '請再輸入一次密碼'
                 },
-                4:{
-                    text:'姓名',
-                    placeholder:'請輸入姓名'
+                4: {
+                    text: '姓名',
+                    placeholder: '請輸入姓名'
                 },
-                5:{
-                    text:'暱稱',
-                    placeholder:'請輸入暱稱'
+                5: {
+                    text: '暱稱',
+                    placeholder: '請輸入暱稱'
                 },
             },
             inputValues: ['', '', ''],
-            member:'',
+            member: '',
             selectedYear: '', // 用於存儲選擇的年份值
             yearList: [], // 用於存儲年份選項的數組
             selectedMonth: '',
@@ -135,21 +119,21 @@ export default{
             // 在這裡處理年份選項變化後的相關邏輯
             // 例如，您可以根據選擇的年份值做進一步處理
         },
-        onMonthChange() {},
-        onDayChange() {},
+        onMonthChange() { },
+        onDayChange() { },
         populateYearList() {
             const currentYear = new Date().getFullYear();
             const startYear = 1970;
 
             for (let year = startYear; year <= currentYear; year++) {
-              this.yearList.push(year.toString());
+                this.yearList.push(year.toString());
             }
             // 將預設選擇設置為當前年份
             this.selectedYear = startYear.toString();
         },
         populateMonthList() {
             const currentMonth = new Date().getMonth() + 1;
-            
+
             for (let month = 1; month <= 12; month++) {
                 // 將月份值轉換為兩位數的字符串，例如：01、02、...、12
                 const formattedMonth = month.toString().padStart(2, '0');
@@ -181,22 +165,22 @@ export default{
             // 使用正則表達式過濾非數字字符
             this.phone = this.phone.replace(/\D/g, '');
         },
-    //     toggleHiddenBlock() {
-    //         this.showHiddenBlock = !this.showHiddenBlock;
-    //     },
-    //     togglePreview() {
-    //   this.showPreview = !this.showPreview;
-    // },
-    // hidePreview(event) {
-    //   // 如果點擊到了「preview」區塊的內容，不要隱藏「preview」區塊
-    //   if (event.target.classList.contains('preview')) {
-    //     return;
-    //   }
-    //   this.showPreview = false;
-    // }
-        
-        
-        
+        //     toggleHiddenBlock() {
+        //         this.showHiddenBlock = !this.showHiddenBlock;
+        //     },
+        //     togglePreview() {
+        //   this.showPreview = !this.showPreview;
+        // },
+        // hidePreview(event) {
+        //   // 如果點擊到了「preview」區塊的內容，不要隱藏「preview」區塊
+        //   if (event.target.classList.contains('preview')) {
+        //     return;
+        //   }
+        //   this.showPreview = false;
+        // }
+
+
+
     },
     watch: {
         selectedYear(newVal) {
@@ -224,7 +208,7 @@ export default{
                 this.isSecret = true;
             }
         },
-        
+
     },
     created() {
         this.populateYearList();
@@ -234,25 +218,27 @@ export default{
         // 將日期選擇設置為當前日期
         this.selectedDate = new Date().getDate().toString();
     },
-    
+
 };
 
 
 </script>
 
 <style lang="scss" >
-    @import '@/assets/scss/baseAndMixin.scss';
-    
-    #app{
-        background-color: $bgColor_default;
-    }
+@import '@/assets/scss/baseAndMixin.scss';
 
-.registerview{
+#app {
+    background-color: $bgColor_default;
+}
+
+.registerview {
     margin: 150px 0 60px;
-    @media all and (min-width: $md){
+
+    @media all and (min-width: $md) {
         margin: 130px 0;
     }
-    .canvas{
+
+    .canvas {
         width: 83%;
         background-color: $mid_green;
         padding: $sp8 27px;
@@ -263,53 +249,65 @@ export default{
         display: flex;
         flex-direction: column;
         align-items: center;
-        @media all and (min-width: $md){
+
+        @media all and (min-width: $md) {
             max-width: 1000px;
             padding: $sp12 0;
         }
-        .joinus_sm{
+
+        .joinus_sm {
             position: absolute;
             top: -130px;
             width: 150px;
             left: 50%;
             transform: translateX(-50%);
             overflow: hidden;
-            @media all and (min-width: $md){
+
+            @media all and (min-width: $md) {
                 display: none;
             }
-            img{
+
+            img {
                 display: block;
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
             }
         }
-        h2{
+
+        h2 {
             color: $textColor_white;
             font-size: $sm_h2;
             padding: 0 0 $sp4;
             font-weight: 900;
-            line-height: 150%; /* 42px */
+            line-height: 150%;
+            /* 42px */
             letter-spacing: 0.84px;
-            @media all and (min-width: $md){
+
+            @media all and (min-width: $md) {
                 font-size: $xl_h2;
             }
         }
-        .photo_group{
+
+        .photo_group {
             display: flex;
             flex-direction: column;
             align-items: center;
+
             @media (min-width: 768px) {
                 flex-direction: row;
             }
-            .member_img{
+
+            .member_img {
                 width: 100px;
                 margin: 0 0 $sp2;
                 cursor: pointer;
+
                 @media (min-width: 768px) {
                     width: 150px;
                 }
-                img{
+
+                img {
                     border: 2px solid $textColor_default;
                     border-radius: 50%;
                     width: 100%;
@@ -317,15 +315,18 @@ export default{
                     display: block;
                 }
             }
-            .push{
+
+            .push {
                 margin: 0 0 $sp4;
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
+
                 @media (min-width: 768px) {
                     margin: 0 $sp5;
                 }
             }
         }
-        .preview{
+
+        .preview {
             // display: none;
             width: 87%;
             height: 367px;
@@ -333,22 +334,27 @@ export default{
             position: absolute;
             z-index: 3;
         }
-        .form{
+
+        .form {
             width: 100%;
+
             @media (min-width: 768px) {
                 width: 60%;
             }
-            label{
+
+            label {
                 width: 100%;
                 color: $textColor_default;
                 font-size: $sm_h4;
                 font-weight: 700;
                 letter-spacing: 0.72px;
+
                 @media (min-width: 768px) {
                     font-size: $xl_h4;
                 }
             }
-            input{
+
+            input {
                 width: 100%;
                 padding: $sp1 20px;
                 background: $textColor_white;
@@ -358,17 +364,20 @@ export default{
                 font-size: $sm_p;
                 margin: $sp1 0 $sp2;
                 border: 2px solid $textColor_default;
+
                 @media (min-width: 768px) {
                     padding: $sp1 20px;
                     font-size: $xl_p;
                     margin: $sp1 0 $sp3;
                 }
             }
-            .date_group{
+
+            .date_group {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
                 padding: $sp1 0 $sp4;
+
                 select {
                     // 隱藏原本的下拉箭頭
                     width: 33%;
@@ -386,15 +395,18 @@ export default{
                     padding: 6px $sp2;
                     margin: 0 4px 0 0;
                     cursor: pointer;
+
                     @media (min-width: 768px) {
                         font-size: $xl_p;
                         padding: $sp1 20px;
                     }
+
                     &:hover {
                         color: $textColor_default;
                         background: $textColor_white;
                         border: 2px solid $textColor_default;
                     }
+
                     &:active {
                         color: $textColor_tint;
                         border: 2px solid $textColor_default;
@@ -402,9 +414,11 @@ export default{
                     }
                 }
             }
-            .gender_group{
+
+            .gender_group {
                 width: 100%;
                 display: flex;
+
                 .checkbox_container {
                     width: 20%;
                     position: relative;
@@ -412,14 +426,17 @@ export default{
                     cursor: pointer;
                     font-size: $sm_h4;
                     margin: $sp1 0 $sp3;
+
                     @media (min-width: 768px) {
                         font-size: $xl_h4;
                         margin: $sp1 0 $sp4;
                     }
+
                     // 隱藏原本的checkbox
                     input {
                         display: none;
                     }
+
                     //圓形按鈕
                     .checkmark {
                         position: absolute;
@@ -431,46 +448,54 @@ export default{
                         border-radius: 50%;
                         background-color: $textColor_white;
                         outline: 2px solid $textColor_default;
+
                         @media (min-width: 768px) {
                             margin: 4px 0;
                             height: 24px;
                             width: 24px;
                         }
-                    } 
+                    }
+
                     // 當checkbox選中時變更背景顏色
-                    input:checked ~ .checkmark {
+                    input:checked~.checkmark {
                         background-color: $textColor_default;
                     }
+
                     .content {
                         padding-left: 20px;
+
                         @media (min-width: 768px) {
                             padding-left: 30px;
                         }
                     }
                 }
+
                 .checkbox_container:nth-of-type(3) {
                     width: 30%;
                 }
             }
         }
-        .btn_group{
+
+        .btn_group {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: flex-end;
             margin: $sp2 0;
+
             @media (min-width: 768px) {
-                justify-content: center; 
+                justify-content: center;
             }
-            a:first-child{
+
+            a:first-child {
                 margin: 0 $sp2;
             }
-            .btn{
+
+            .btn {
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
             }
-            
+
         }
     }
 }
-
 </style>

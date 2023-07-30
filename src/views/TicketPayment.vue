@@ -89,7 +89,7 @@
                 <router-link to="/ticket">
                     <button class="cancel_btn">取消</button>
                 </router-link>
-                <router-link to="/pay_success">
+                <router-link to="/ticket_pay_success">
                     <button class="btn">確認付款</button>
                 </router-link>
             </div>
@@ -152,3 +152,7 @@ export default {
     // }
 };
 </script>
+<style lang="scss">
+@import "@/assets/scss/baseAndMixin.scss";
+@import "@/assets/scss/page/ticketpayment.scss";
+</style>

@@ -1,22 +1,27 @@
 #app {
     background: $bgColor_tint;
 }
+
 .cart_page {
     width: 100%;
+
     .cart_items {
         box-sizing: border-box;
         @include width($sm);
         padding: $sp2 $sp2 $sp4;
+
         .cart_select_all {
             padding: $sp2;
             font-size: 20px;
             border: 2px solid $textColor_tint;
             border-radius: 5px;
+
             #select_all {
                 width: 20px;
                 height: 20px;
             }
         }
+
         // 票券項目
         .cart_item {
             box-sizing: border-box;
@@ -28,16 +33,19 @@
             background: $bgColor_default;
             border: 2px solid $textColor_tint;
             border-radius: 5px;
+
             // 票券標題
             .ticket_title {
                 width: 100%;
                 font-size: 20px;
                 font-weight: 700;
+
                 #select {
                     width: 20px;
                     height: 20px;
                 }
             }
+
             //刪除項目
             .fa-trash-can {
                 width: 20px;
@@ -46,36 +54,44 @@
                 top: $sp2;
                 right: $sp2;
             }
+
             // 票券圖片
             img {
                 width: 80%;
                 margin: $sp1 20px;
             }
+
             //票券選擇
             .ticket_select {
                 margin: $sp2 0;
+
                 .ticket_item {
                     display: flex;
                     flex-direction: column;
+
                     .ticket_adult,
                     .ticket_ex {
                         width: 90%;
                         display: flex;
                         margin: $sp1 0;
+
                         label {
                             margin: 0 $sp1;
                             display: flex;
                             flex-direction: column;
                             justify-content: space-between;
+
                             .name {
                                 font-size: 16px;
                                 font-weight: 700;
                             }
+
                             .price {
                                 width: 100%;
                                 font-size: 12px;
                             }
                         }
+
                         // 選擇數量
                         select {
                             width: 65px;
@@ -87,6 +103,7 @@
                             border: 2px solid $textColor_default;
                             border-radius: 50px;
                         }
+
                         // 小計
                         .subtotal_adult,
                         .subtotal_ex {
@@ -99,6 +116,7 @@
                     }
                 }
             }
+
             // 小計
             .subtotal {
                 box-sizing: border-box;
@@ -114,64 +132,78 @@
                 border-top: 2px solid $textColor_tint;
             }
         }
+
         .result {
             display: flex;
             justify-content: end;
             align-items: end;
+
             p {
                 margin: $sp2;
                 font-size: 24px;
                 font-weight: bold;
                 text-align: right;
+
                 span {
                     font-size: 18px;
                 }
             }
         }
+
         .btn_buy-pay {
             display: flex;
             justify-content: center;
+
             .buymore,
             .pay {
                 height: 44px;
                 margin: $sp3;
+
                 span {
                     font-size: 24px;
                 }
             }
         }
     }
+
     .pay_details {
         display: none;
     }
 }
+
 @media all and (min-width: $md) {
     .cart_page {
         .cart_items {
             @include width($md);
             padding: $sp2 $sp2 $sp4;
+
             .cart_select_all {
                 padding: $sp2;
                 font-size: 24px;
+
                 #select_all {
                     width: 24px;
                     height: 24px;
                 }
             }
+
             // 票券項目
             .cart_item {
                 margin: $sp2 0;
                 padding: $sp2 $sp2 $sp8;
+
                 // 票券標題
                 .ticket_title {
                     width: 100%;
                     font-size: 24px;
                     font-weight: 700;
+
                     #select {
                         width: 24px;
                         height: 24px;
                     }
                 }
+
                 //刪除項目
                 .fa-trash-can {
                     width: 24px;
@@ -179,30 +211,38 @@
                     top: $sp2;
                     right: $sp2;
                 }
+
                 // 票券圖片
                 img {
                     width: 80%;
                     margin: $sp1 20px;
                 }
+
                 //票券選擇
                 .ticket_select {
                     margin: $sp2 0;
+
                     .ticket_item {
+
                         .ticket_adult,
                         .ticket_ex {
                             width: 90%;
                             margin: $sp1 0;
+
                             label {
                                 margin: 0 $sp1;
+
                                 .name {
                                     font-size: 18px;
                                     font-weight: 700;
                                 }
+
                                 .price {
                                     width: 100%;
                                     font-size: 14px;
                                 }
                             }
+
                             // 選擇數量
                             select {
                                 width: 65px;
@@ -210,6 +250,7 @@
                                 margin: 0 $sp1;
                                 font-size: 24px;
                             }
+
                             // 小計
                             .subtotal_adult,
                             .subtotal_ex {
@@ -220,6 +261,7 @@
                         }
                     }
                 }
+
                 // 小計
                 .subtotal {
                     width: 100%;
@@ -228,17 +270,21 @@
                     font-weight: 700;
                 }
             }
+
             .result {
                 p {
                     margin: $sp2;
                     font-size: 28px;
                     font-weight: bold;
+
                     span {
                         font-size: 20px;
                     }
                 }
             }
+
             .btn_buy-pay {
+
                 .buymore,
                 .pay {
                     margin: $sp3;
@@ -247,6 +293,7 @@
         }
     }
 }
+
 @media all and (min-width: $xl) {
     .cart_page {
         box-sizing: border-box;
@@ -254,44 +301,53 @@
         justify-content: center;
         @include width($xl);
         padding: $sp2 $sp2 $sp4;
+
         .cart_items {
             width: 70%;
             max-width: 60%;
             margin: 0;
+
             .cart_select_all {
                 box-sizing: border-box;
                 padding: $sp2;
                 font-size: 24px;
+
                 #select_all {
                     width: 24px;
                     height: 24px;
                 }
             }
+
             // 票券項目
             .cart_item {
                 display: flex;
                 flex-direction: row;
                 margin: $sp2 0;
                 padding: $sp2 $sp2 $sp10;
+
                 .ticket_title-photo {
                     display: flex;
                     flex-direction: column;
+
                     // 票券標題
                     .ticket_title {
                         width: 100%;
                         font-size: 24px;
                         font-weight: 700;
+
                         #select {
                             width: 24px;
                             height: 24px;
                         }
                     }
+
                     // 票券圖片
                     img {
                         width: 280px;
                         margin: $sp1 20px;
                     }
                 }
+
                 //刪除項目
                 .fa-trash-can {
                     width: 24px;
@@ -299,29 +355,36 @@
                     top: $sp2;
                     right: $sp2;
                 }
+
                 //票券選擇
                 .ticket_select {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     margin: $sp2 0;
+
                     .ticket_item {
+
                         .ticket_adult,
                         .ticket_ex {
                             width: 100%;
                             display: flex;
                             margin: $sp1 0;
+
                             label {
                                 margin: 0 $sp1;
+
                                 .name {
                                     font-size: 18px;
                                     font-weight: 700;
                                 }
+
                                 .price {
                                     width: 100%;
                                     font-size: 14px;
                                 }
                             }
+
                             // 選擇數量
                             select {
                                 width: 65px;
@@ -329,6 +392,7 @@
                                 margin: 0 $sp1;
                                 font-size: 24px;
                             }
+
                             // 小計
                             .subtotal_adult,
                             .subtotal_ex {
@@ -339,6 +403,7 @@
                         }
                     }
                 }
+
                 // 小計
                 .subtotal {
                     width: 100%;
@@ -347,25 +412,31 @@
                     font-weight: 700;
                 }
             }
+
             .result {
                 display: none;
             }
+
             .btn_buy-pay {
                 justify-content: end;
+
                 .buymore {
                     display: block;
                 }
+
                 .pay {
                     display: none;
                 }
             }
         }
+
         .pay_details {
             display: block;
             box-sizing: border-box;
             width: 30%;
             height: 100vh;
             margin: 0 $sp2;
+
             .pay_details_content {
                 position: sticky;
                 top: 200px;
@@ -373,18 +444,21 @@
                 padding: $sp3 $sp4;
                 color: $textColor_default;
                 background: $textColor_tint;
+
                 .payDuck {
                     width: 142px;
                     position: absolute;
                     top: -120px;
                     left: 0;
                 }
+
                 .Title {
                     margin-bottom: $sp3;
                     font-size: 32px;
                     color: $textColor_white;
                     text-align: left;
                 }
+
                 // 付款明系列表
                 .item {
                     height: 300px;
@@ -396,6 +470,7 @@
                         display: flex;
                         flex-direction: column;
                         border-bottom: 2px solid $textColor_default;
+
                         .title {
                             display: flex;
                             justify-content: space-between;
@@ -403,6 +478,7 @@
                             font-size: 24px;
                             font-weight: bold;
                         }
+
                         // 張數&票價
                         .ticket_adult,
                         .ticket_ex {
@@ -411,10 +487,12 @@
                             margin: $sp3 0;
                             font-size: 18px;
                         }
+
                         // 小計
                         .amount {
                             margin: $sp2;
                             text-align: right;
+
                             span {
                                 font-size: 20px;
                                 font-weight: bold;
@@ -422,21 +500,26 @@
                         }
                     }
                 }
+
                 .result {
                     position: relative;
                     margin: $sp3 0;
+
                     p {
                         font-size: 20px;
                     }
+
                     .total-price {
                         font-size: 32px;
                         font-weight: bold;
                         color: $textColor_white;
                     }
+
                     button {
                         position: absolute;
                         bottom: -8px;
                         right: -8px;
+
                         span {
                             font-size: 24px;
                         }
