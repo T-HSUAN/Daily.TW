@@ -157,7 +157,7 @@
     </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
 // 全頁設定

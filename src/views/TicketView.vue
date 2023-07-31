@@ -99,7 +99,7 @@
     </div>
 </template>
 <script>
-import Sidebar from "./MainSidebar.vue";
+import Sidebar from "@/components/MainSidebar.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import ticketData from "@/store/ticketData.js";

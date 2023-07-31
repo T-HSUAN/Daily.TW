@@ -15,6 +15,7 @@
 
 .paysucess_page {
     width: 100%;
+    padding-top: 74px;
 
     .msg {
         width: 100%;
@@ -90,6 +91,7 @@
 @media all and (min-width: $md) {
     .paysucess_page {
         width: 100%;
+        padding-top: 200px;
 
         .msg {
             width: 100%;

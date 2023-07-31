@@ -39,6 +39,7 @@ export default {
     padding: 1rem;
     transition: right 1s ease-in-out;
     text-align: right;
+
     &.active {
         right: 0;
     }
@@ -48,6 +49,7 @@ export default {
         height: 2rem;
         border-radius: 2rem;
     }
+
     &_content {
         text-align: left;
     }

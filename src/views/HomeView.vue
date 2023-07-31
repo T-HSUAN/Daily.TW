@@ -1,152 +1,149 @@
 <!-- home的內容區塊 -->
 <template>
     <div class="index">
-        <main>
-            <!-- 專屬旅著區塊 -->
-            <section class="index_plan">
-                <div class="container">
-                    <h1>一日行程 + 穿搭建議<br />規劃你的說走就走 !</h1>
-                    <p>
-                        煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
-                    </p>
-                    <router-link to="/plan">
-                        <button class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                            <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                        </button>
-                    </router-link>
-                    <div class="swiper_wrap">
-                        <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
-                        <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
-                        <Carousel :autoplay="3000" :wrap-around="true">
-                            <Slide v-for="item in planPic" :key="item.index">
-                                <img :src="item.src" alt="">
-                            </Slide>
-                        </Carousel>
-                    </div>
+        <!-- 專屬旅著區塊 -->
+        <section class="index_plan">
+            <div class="container">
+                <h1>一日行程 + 穿搭建議<br />規劃你的說走就走 !</h1>
+                <p>
+                    煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
+                </p>
+                <router-link to="/plan">
+                    <button class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                    </button>
+                </router-link>
+                <div class="swiper_wrap">
+                    <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
+                    <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
+                    <Carousel :autoplay="3000" :wrap-around="true">
+                        <Slide v-for="item in planPic" :key="item.index">
+                            <img :src="item.src" alt="">
+                        </Slide>
+                    </Carousel>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- 行程區塊 -->
-            <section class="index_trip">
-                <div class="bgCurve">
-                    <img src="~@/assets/img/bgCurve_A.png" alt="" />
+        <!-- 行程區塊 -->
+        <section class="index_trip">
+            <div class="bgCurve">
+                <img src="~@/assets/img/bgCurve_A.png" alt="" />
+            </div>
+            <div class="title">
+                <div class="duckDeco">
+                    <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                    <img src="~@/assets/img/duck_green.png" alt="" class="duck" />
                 </div>
-                <div class="title">
-                    <div class="duckDeco">
-                        <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
-                        <img src="~@/assets/img/duck_green.png" alt="" class="duck" />
+                <h2>精選出遊特輯</h2>
+            </div>
+            <div class="content">
+                <div class="wrap">
+                    <div class="head">
+                        <div class="tripTitle">台中文青一日遊</div>
+                        <div class="tripCover">
+                            <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
+                        </div>
                     </div>
-                    <h2>精選出遊特輯</h2>
-                </div>
-                <div class="content">
-                    <div class="wrap">
-                        <div class="head">
-                            <div class="tripTitle">台中文青一日遊</div>
-                            <div class="tripCover">
-                                <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
+                    <div class="info">
+                        <div class="tripSpots">
+                            <div class="spot spot1">
+                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                <h5>屯區藝文中心</h5>
+                            </div>
+                            <div class="spot spot2">
+                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                <h5>太平買菸場</h5>
+                            </div>
+                            <div class="spot spot3">
+                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                <h5>新盛綠川水岸廊道</h5>
+                            </div>
+                            <div class="spot spot4">
+                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                <h5>第二市場</h5>
                             </div>
                         </div>
-                        <div class="info">
-                            <div class="tripSpots">
-                                <div class="spot spot1">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>屯區藝文中心</h5>
-                                </div>
-                                <div class="spot spot2">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>太平買菸場</h5>
-                                </div>
-                                <div class="spot spot3">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>新盛綠川水岸廊道</h5>
-                                </div>
-                                <div class="spot spot4">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>第二市場</h5>
-                                </div>
-                            </div>
-                            <div class="deco">
-                                <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
-                            </div>
-                            <router-link to="/trip_info">
-                                <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                                </button>
+                        <div class="deco">
+                            <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
+                        </div>
+                        <router-link to="/trip_info">
+                            <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                            </button>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 穿搭區塊 -->
+        <section class="index_oott">
+            <div class="bgCurve">
+                <img src="~@/assets/img/bgCurve_B.png" alt="" />
+            </div>
+            <div class="title">
+                <div class="duck">
+                    <div class="duckDeco">
+                        <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                        <img src="~@/assets/img/duck_yellow.png" alt="" class="duck" />
+                    </div>
+                </div>
+                <h2>人氣穿搭特輯</h2>
+            </div>
+            <div class="content">
+                <div class="wrap">
+                    <div class="oottCards">
+                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottRank="oott.oottRank"
+                            :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                    </div>
+                </div>
+                <div class="panel">
+                    <button class="arrow">
+                        <font-awesome-icon icon="fa-solid fa-arrow-left" />
+                    </button>
+                    <button class="arrow">
+                        <font-awesome-icon icon="fa-solid fa-arrow-right" />
+                    </button>
+                </div>
+                <router-link to="/oott">
+                    <button class="btn">查看更多</button>
+                </router-link>
+            </div>
+        </section>
+        <!-- 票券區塊 -->
+        <section class="index_ticket">
+            <div class="bgCurve">
+                <img src="~@/assets/img/bgCurve_A.png" alt="" />
+            </div>
+            <div class="title">
+                <div class="duck">
+                    <div class="duckDeco">
+                        <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                        <img src="~@/assets/img/duck_blue.png" alt="" class="duck" />
+                    </div>
+                </div>
+                <h2>景點票券優惠</h2>
+            </div>
+            <div class="content">
+                <div class="wrap">
+                    <div class="ticketCards">
+                        <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
+                            <router-link to="/ticket_info" title="點擊查看票券詳情">
+                                <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
+                                    :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
+                                    :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
+                                    :discountTag="ticket.discountTag" />
                             </router-link>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- 穿搭區塊 -->
-            <section class="index_oott">
-                <div class="bgCurve">
-                    <img src="~@/assets/img/bgCurve_B.png" alt="" />
-                </div>
-                <div class="title">
-                    <div class="duck">
-                        <div class="duckDeco">
-                            <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
-                            <img src="~@/assets/img/duck_yellow.png" alt="" class="duck" />
-                        </div>
-                    </div>
-                    <h2>人氣穿搭特輯</h2>
-                </div>
-                <div class="content">
-                    <div class="wrap">
-                        <div class="oottCards">
-                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottRank="oott.oottRank"
-                                :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <button class="arrow">
-                            <font-awesome-icon icon="fa-solid fa-arrow-left" />
-                        </button>
-                        <button class="arrow">
-                            <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                        </button>
-                    </div>
-                    <router-link to="/oott">
-                        <button class="btn">查看更多</button>
-                    </router-link>
-                </div>
-            </section>
-            <!-- 票券區塊 -->
-            <section class="index_ticket">
-                <div class="bgCurve">
-                    <img src="~@/assets/img/bgCurve_A.png" alt="" />
-                </div>
-                <div class="title">
-                    <div class="duck">
-                        <div class="duckDeco">
-                            <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
-                            <img src="~@/assets/img/duck_blue.png" alt="" class="duck" />
-                        </div>
-                    </div>
-                    <h2>景點票券優惠</h2>
-                </div>
-                <div class="content">
-                    <div class="wrap">
-                        <div class="ticketCards">
-                            <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
-                                <router-link to="/ticket_info" title="點擊查看票券詳情">
-                                    <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                                        :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                                        :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
-                                        :discountTag="ticket.discountTag" />
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
-                    <router-link to="/ticket">
-                        <button class="btn">查看更多</button>
-                    </router-link>
-                </div>
-            </section>
-        </main>
+                <router-link to="/ticket">
+                    <button class="btn">查看更多</button>
+                </router-link>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -306,13 +303,10 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
-
-#app {
-    background-color: $bgColor_default;
-}
-
 .index {
     // 全頁設定
+    padding-top: 74px;
+    background: $bgColor_default;
 
     .bgCurve {
         position: absolute;

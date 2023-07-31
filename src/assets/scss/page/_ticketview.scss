@@ -1,8 +1,7 @@
-#app {
-    background: $bgColor_tint;
-}
-
 .ticket_page {
+    padding-top: 74px;
+    background: $bgColor_tint;
+
     .ticket_banner {
         width: 100%;
         position: relative;
@@ -312,6 +311,8 @@
 
 @media all and (min-width: $md) {
     .ticket_page {
+        padding-top: 200px;
+
         .ticket_banner {
             width: 100%;
 

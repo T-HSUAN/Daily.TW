@@ -1,8 +1,6 @@
-#app {
-    background: $bgColor_tint;
-}
-
 .ticket_info_page {
+    padding-top: 74px;
+
     .ticket_info {
         max-width: $sm;
         width: 80%;
@@ -106,6 +104,8 @@
 
 @media all and (min-width: $md) {
     .ticket_info_page {
+        padding-top: 200px;
+
         .ticket_info {
             box-sizing: border-box;
             max-width: $md;

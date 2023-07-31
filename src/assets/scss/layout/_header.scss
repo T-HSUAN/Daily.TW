@@ -16,7 +16,7 @@ header {
         justify-content: space-between;
         align-items: center;
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
 
         .logo_sm {
             height: 45px;
@@ -26,7 +26,8 @@ header {
         // open/close icon
         .ham_toggle {
             margin: 0 $sp4;
-            z-index: 3;
+            z-index: 9999;
+            cursor: pointer;
         }
 
         //nav hide
@@ -47,7 +48,6 @@ header {
 
             ul {
                 margin-top: 136px;
-                z-index: 2;
 
                 a {
                     li {
@@ -65,7 +65,6 @@ header {
 
             .sidebar_logo {
                 margin-top: $sp5;
-                z-index: 2;
             }
         }
 

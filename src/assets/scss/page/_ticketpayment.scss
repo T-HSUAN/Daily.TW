@@ -1,27 +1,32 @@
 .payment_page {
     @include width($sm);
-    padding: $sp4 $sp4 $sp8;
+    padding: 74px $sp4 $sp8;
+
     .pay_details {
         box-sizing: border-box;
         width: 100%;
         margin: $sp10 auto $sp3;
+
         .pay_details_content {
             padding: $sp3 $sp4;
             position: relative;
             color: $textColor_default;
             background: $textColor_tint;
             border-radius: 5px;
+
             .payDuck {
                 width: 150px;
                 position: absolute;
                 top: -120px;
                 left: $sp1;
             }
+
             .Title {
                 margin-bottom: $sp2;
                 color: $textColor_white;
                 text-align: left;
             }
+
             // 付款明系列表
             .item {
                 height: 300px;
@@ -33,6 +38,7 @@
                     display: flex;
                     flex-direction: column;
                     border-bottom: 2px solid $textColor_default;
+
                     .title {
                         display: flex;
                         justify-content: space-between;
@@ -40,6 +46,7 @@
                         color: $textColor_white;
                         font-weight: bold;
                     }
+
                     // 張數&票價
                     .ticket_adult,
                     .ticket_ex {
@@ -48,10 +55,12 @@
                         margin: $sp1 0;
                         font-size: 14px;
                     }
+
                     // 小計
                     .amount {
                         margin: $sp2 0;
                         text-align: right;
+
                         span {
                             font-size: 16px;
                             font-weight: bold;
@@ -59,16 +68,19 @@
                     }
                 }
             }
+
             .total {
                 position: relative;
                 margin: $sp3 0;
                 text-align: right;
+
                 p {
                     display: inline-flex;
                     align-items: center;
                     font-size: 20px;
                     text-align: right;
                 }
+
                 .total-price {
                     font-size: 24px;
                     font-weight: bold;
@@ -77,8 +89,10 @@
             }
         }
     }
+
     .pay_info {
         width: 100%;
+
         .methods,
         .order_info,
         .recipient_info {
@@ -90,15 +104,18 @@
             background: $bgColor_default;
             border: 2px solid $textColor_tint;
             border-radius: 5px;
+
             h3 {
                 margin-bottom: $sp3;
             }
+
             label {
                 width: 100%;
                 margin: $sp1 0;
                 display: inline-flex;
                 font-size: 18px;
                 font-weight: 700;
+
                 input {
                     width: 18px;
                     height: 18px;
@@ -106,67 +123,82 @@
                 }
             }
         }
+
         .order_info {
+
             .name,
             .phone_num,
             .email {
                 display: flex;
                 margin: $sp1 0;
+
                 .title {
                     width: 100px;
                     font-size: 20px;
                     font-weight: 700;
                 }
+
                 .content {
                     font-size: 16px;
                 }
             }
         }
+
         .recipient_info {
             padding-bottom: $sp8;
+
             label {
                 font-size: 18px;
+
                 .same_check {
-                    &:checked + span {
+                    &:checked+span {
                         font-size: 16px;
                         color: $default_red;
                     }
                 }
             }
         }
+
         .result {
             display: flex;
             justify-content: end;
             align-items: center;
+
             button {
                 margin: $sp2;
             }
         }
     }
 }
+
 @media all and (min-width: $md) {
     .payment_page {
         @include width($xl);
-        padding: $sp4 $sp4 $sp8;
+        padding: 200px $sp4 $sp8;
         display: flex;
         justify-content: center;
         align-items: stretch;
+
         .pay_details {
             width: 35%;
             margin: $sp10 $sp3 88px 0;
+
             .pay_details_content {
                 margin-top: 100px;
                 padding: $sp3 $sp4;
                 position: sticky;
                 top: 300px;
+
                 .payDuck {
                     top: -120px;
                     left: $sp1;
                 }
+
                 .Title {
                     font-size: 24px;
                     margin-bottom: $sp2;
                 }
+
                 // 付款明系列表
                 .item {
                     height: 300px;
@@ -174,19 +206,23 @@
 
                     .details {
                         padding: $sp2 0;
+
                         .title {
                             font-size: 20px;
                             margin-bottom: $sp2;
                         }
+
                         // 張數&票價
                         .ticket_adult,
                         .ticket_ex {
                             margin: $sp2 0;
                             font-size: 16px;
                         }
+
                         // 小計
                         .amount {
                             margin: $sp2 0;
+
                             span {
                                 font-size: 18px;
                                 font-weight: bold;
@@ -194,11 +230,14 @@
                         }
                     }
                 }
+
                 .total {
                     margin: $sp3 0;
+
                     p {
                         font-size: 24px;
                     }
+
                     .total-price {
                         font-size: 28px;
                         font-weight: bold;
@@ -206,19 +245,24 @@
                 }
             }
         }
+
         .pay_info {
             width: 65%;
+
             .methods,
             .order_info,
             .recipient_info {
                 margin: $sp2 auto;
                 padding: $sp3 $sp4;
+
                 h3 {
                     margin-bottom: $sp3;
                 }
+
                 label {
                     margin: $sp1 0;
                     font-size: 18px;
+
                     input {
                         width: 18px;
                         height: 18px;
@@ -226,31 +270,39 @@
                     }
                 }
             }
+
             .order_info {
+
                 .name,
                 .phone_num,
                 .email {
                     margin: $sp1 0;
+
                     .title {
                         width: 100px;
                     }
+
                     .content {
                         font-size: 18px;
                     }
                 }
             }
+
             .recipient_info {
                 padding-bottom: $sp8;
+
                 label {
                     font-size: 20px;
+
                     .same_check {
-                        &:checked + span {
+                        &:checked+span {
                             font-size: 18px;
                             color: $default_red;
                         }
                     }
                 }
             }
+
             .result {
                 button {
                     margin: $sp2;
@@ -259,24 +311,30 @@
         }
     }
 }
+
 @media all and (min-width: $xl) {
     .payment_page {
         @include width($xl);
-        padding: $sp4 $sp4 $sp8;
+        padding: 200px $sp4 $sp8;
+
         .pay_details {
             width: 35%;
             margin: $sp10 $sp4 104px 0;
+
             .pay_details_content {
                 padding: $sp3 $sp4;
                 top: 250px;
+
                 .payDuck {
                     top: -120px;
                     left: $sp1;
                 }
+
                 .Title {
                     margin-bottom: $sp2;
                     font-size: 32px;
                 }
+
                 // 付款明系列表
                 .item {
                     height: 300px;
@@ -284,19 +342,23 @@
 
                     .details {
                         padding: $sp2 $sp4;
+
                         .title {
                             margin-bottom: $sp2;
                             font-size: 24px;
                         }
+
                         // 張數&票價
                         .ticket_adult,
                         .ticket_ex {
                             margin: $sp2 0;
                             font-size: 18px;
                         }
+
                         // 小計
                         .amount {
                             margin: $sp3 0;
+
                             span {
                                 font-size: 20px;
                                 font-weight: bold;
@@ -304,11 +366,14 @@
                         }
                     }
                 }
+
                 .total {
                     margin: $sp3 0;
+
                     p {
                         font-size: 24px;
                     }
+
                     .total-price {
                         font-size: 28px;
                         font-weight: bold;
@@ -316,20 +381,25 @@
                 }
             }
         }
+
         .pay_info {
             width: 65%;
+
             .methods,
             .order_info,
             .recipient_info {
                 margin: $sp2 auto;
                 padding: $sp4;
+
                 h3 {
                     margin-bottom: $sp3;
                 }
+
                 label {
                     margin: $sp2 0;
                     font-size: 24px;
                     font-weight: 700;
+
                     input {
                         width: 24px;
                         height: 24px;
@@ -337,11 +407,14 @@
                     }
                 }
             }
+
             .order_info {
+
                 .name,
                 .phone_num,
                 .email {
                     margin: $sp2 0;
+
                     .title {
                         width: 130px;
                         font-size: 24px;
@@ -349,18 +422,22 @@
                     }
                 }
             }
+
             .recipient_info {
                 padding-bottom: $sp8;
+
                 label {
                     font-size: 24px;
+
                     .same_check {
-                        &:checked + span {
+                        &:checked+span {
                             font-size: 20px;
                             color: $default_red;
                         }
                     }
                 }
             }
+
             .result {
                 button {
                     margin: $sp3;
