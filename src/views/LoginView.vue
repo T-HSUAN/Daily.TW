@@ -23,8 +23,7 @@
                         @input="validateEmail"
                         :class="{ form_warning: !isEmailValid }" 
                         placeholder='請輸入EMAIL'>
-                    <!-- <span class="error_message" v-if="!isPasswordValid">
-                        請輸入@gmail.com格式</span> -->
+
                 <label for="psw">密碼</label>
                 <input type="password" 
                     v-model="psw"
@@ -124,35 +123,27 @@ export default {
         }
     },
     methods: {
-        // validateEmail() {
-        //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-        //     this.isEmailValid = regex.test(this.email);
-        // },
-        // validatePassword() {
-        //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-        //     this.isPasswordValid = regex.test(this.psw);
-        // },
+        
         login() {
-        // if (this.isEmailValid && this.isPasswordValid) {
             if (this.email === "test123" && this.psw === "test123") {
-            window.alert("登入成功");
-            // 执行页面跳转
-            // this.$router.push({ path: "/member" });
-        } else {
-            window.alert("帳號或密碼錯誤，請重新登入");
-            this.$router.replace({ path: "/login" });
+                window.alert("登入成功");
+                // 执行页面跳转
+                // this.$router.push({ path: "/member" });
+            } else {
+                window.alert("帳號或密碼錯誤，請重新登入");
+                this.$router.replace({ path: "/login" });
             }
-        // }
         },
-      // 切換tab
-      updateTab(index){
-          this.tabActive = index
-      },
-      handleClick() {
-          this.updateTab(this.tabItems[this.tabActive].goNext);
-          this.isActive = !this.isActive;
-      }
+        // 切換tab
+        updateTab(index){
+            this.tabActive = index
+        },
+        handleClick() {
+            this.updateTab(this.tabItems[this.tabActive].goNext);
+            this.isActive = !this.isActive;
+        }
     }
+    
 }
 </script>
 

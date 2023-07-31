@@ -212,6 +212,7 @@ const routesUser = [
                 /* webpackChunkName: "OottCollectionView" */ "@/views/email.vue"
             ),
     },
+    
 ];
 
 const router = createRouter({

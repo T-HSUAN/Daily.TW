@@ -12,9 +12,39 @@
             </div>
             <button class="btn push" @click="togglePreview" >上傳大頭貼</button>
         </div>
-        <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
-            
-        </div> -->
+
+
+        <!-- <input type="file" @change="handleFileChange">
+    <img v-if="imageUrl" :src="imageUrl" alt="Selected Image">
+  </div> -->
+  <!-- <div class="preview_circle">
+      <span>預覽圖片</span>
+  </div> -->
+        <div class="preview" v-if="isShowPreview">
+            <div class="preview_block">
+                <input type="file" class="preview_circle" @change="handleFileChange" >
+                
+                <!-- <img src="../assets/img/oott_11.png" alt=""> -->
+                <div v-if="imageUrl" class="select_img">
+                    <img :src="imageUrl" alt="Selected Image">
+                </div>
+                
+            </div>
+            <div class="pre_btn_group">
+                <button
+                @click="closepreview"
+                class="cancel_btn">
+                取消編輯
+                </button>
+                <button 
+                class="btn"
+                @click="showpreviewbox">
+                確定送出
+                </button>
+            </div>
+        </div>
+
+
         <form class="form" >
             <div v-for="(item, index) in tabItems" 
                 :key="index">
@@ -26,7 +56,7 @@
             </div>
             <label for="year">生日</label>
             <div class="date_group">
-                <select v-model="selectedYear" @change="onYearChange" id="year">
+                <select v-model="selectedYear" id="year">
                     <option 
                         v-for="(year, index) in yearList" 
                         :key="index" 
@@ -34,7 +64,7 @@
                             {{ year }}
                     </option>
                 </select>
-                <select v-model="selectedMonth" @change="onMonthChange" id="month">
+                <select v-model="selectedMonth" id="month">
                     <option 
                         v-for="(month, index) in monthList" 
                         :key="index" 
@@ -42,7 +72,7 @@
                         {{ month }}
                     </option>
                 </select>
-                <select v-model="selectedDate" @change="onDayChange" id="selectDate">
+                <select v-model="selectedDate" id="selectDate">
                     <option 
                         v-for="(date, index) in dateList" 
                         :key="index" 
@@ -84,6 +114,7 @@
             註冊
             </button>
         </div>
+        <!-- 註冊成功後的彈窗 -->
         <div class="member_sm" v-if="isPopBoxVisible">
             <div class="block">
                 <div class="pic">
@@ -93,7 +124,6 @@
                     <button class="btn" @click="redirectToOtherPage">確定</button>
             </div>
         </div>
-        <!-- <h2>{{ message }}</h2> -->
     </div>
 </section>   
 </template>
@@ -136,23 +166,41 @@ export default{
             isWomen: false,
             isSecret: false,
             phone: '',
-            showHiddenBlock: false,
-            showPreview: true,
             isPopBoxVisible: false,
+            isShowPreview: true,
+            imageUrl: null,
         }
     },
-    // computed:{
-    //     message(){
-    //         return this.$store.state.msg;
-    //     }
-    // },
+
     methods: {
-        onYearChange() {
-            // 在這裡處理年份選項變化後的相關邏輯
-            // 例如，您可以根據選擇的年份值做進一步處理
+        // 預覽大頭貼
+        togglePreview(){
+            this.isShowPreview = !this.isShowPreview;
         },
-        onMonthChange() {},
-        onDayChange() {},
+        closepreview(){
+            this.isShowPreview = false;
+        },
+        showpreviewbox(){
+            this.isShowPreview = false;
+
+        },
+        handleFileChange(event) {
+            const file = event.target.files[0]; // 获取用户选择的文件
+            if (file) {
+                // 创建 FileReader 对象来读取文件内容为 URL
+                const reader = new FileReader();
+                
+                // 监听 FileReader 的 load 事件，在文件读取完成后执行回调
+                reader.onload = () => {
+                    this.imageUrl = reader.result; // 将读取到的文件内容赋值给 imageUrl
+                };
+                // 读取文件为 URL 格式
+                reader.readAsDataURL(file);
+                
+            }
+        },
+        
+        
         populateYearList() {
             const currentYear = new Date().getFullYear();
             const startYear = 1970;
@@ -200,12 +248,14 @@ export default{
         showPopbox(){
             this.isPopBoxVisible = !this.isPopBoxVisible;
         },
+        
         redirectToOtherPage() {
             this.$router.push('/member'); 
-    }
+        },
     //     setTimeout(() => {
     //     this.isPopBoxVisible = true;
-    //   }, 2000); 
+    //   }, 2000);
+        
 
         
         
@@ -277,7 +327,7 @@ export default{
         flex-direction: column;
         align-items: center;
         @media all and (min-width: $md){
-            max-width: 1000px;
+            max-width: 900px;
             padding: $sp12 0;
         }
         .joinus_sm{
@@ -343,9 +393,87 @@ export default{
             width: 87%;
             height: 367px;
             background-color: $tint_green;
+            border-radius: 10px;
+            border: 2px solid $textColor_default;
+            padding: 24px;
             position: absolute;
             z-index: 3;
+            @media all and (min-width: $md){
+                max-width: 400px;
+            }
+            .preview_block{
+                width: 100%;
+                height: 250px;
+                background-color: $textColor_white;
+                display: flex;
+                // text-align: center;
+                // align-items: center;
+                .preview_circle {
+                    width: 170px;
+                    height: 170px;
+                    border-radius: 50%;
+                    border: 2px solid $textColor_default;
+                    margin: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    overflow: hidden;
+                    position: relative;
+                    
+                          &:hover::before {
+                            content: "點擊選擇圖片";
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.5);
+                            color: #fff;
+                            font-size: 14px;
+                            cursor: pointer;
+                          }
+                }
+                .select_img{
+                    position: relative;
+                    width: 170px;
+                    height: 170px;
+                    border-radius: 50%;
+                    border: 2px solid $textColor_default;
+                    margin: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    img {
+                        // position: absolute;
+                        // top: 0;
+                        // left: 0;
+                        // right: 0;
+                        // bottom: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }   
+                }
+                     
+            }
+                
+            
+            .pre_btn_group{
+                display: flex;
+                justify-content: center;
+                button{
+                    margin: 25px 10px;
+                }
+                
+            }
         }
+
         .form{
             width: 100%;
             @media (min-width: 768px) {
@@ -520,14 +648,6 @@ export default{
                         font-size: $sm_h4;
                     }
                 }
-                // .button{
-                    // margin-left: auto;
-                    // .cancel{
-                    //     font-size: $sm_h5;
-                    //     color: $textColor_default;
-                    //     border-bottom: 1px solid $textColor_default;
-                    //     margin-right: 20px;
-                    // }
                     .btn {
                         font-size: $sm_h5;
                         padding: 8px 24px;

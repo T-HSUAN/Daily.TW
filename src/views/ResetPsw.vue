@@ -37,7 +37,6 @@
                         class="cancel_btn">
                         取消
                     </router-link>
-                    <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
                     <router-link 
                         to="/forget_psw"
                         @click="handleSubmit" 
@@ -65,28 +64,8 @@
 export default {
     data(){
         return {
-            tabActive: 1,
-            tabItems:{
-                1:{
-                    title: '忘記密碼',
-                    tab: 1,
-                    goNext: 2,
-                    subtitle:"Forget",
-                    text:"Please enter your EMAIL",
-                    img:""
-                },
-                2:{
-                    title: '重設密碼',
-                    tab: 2,
-                    goNext:1,
-                    subtitle:"Reset",
-                    text:"Please enter your password"
-                },
-            },
             email: '',
             psw:'',
-            isActive: false,
-            showError: false,
             newpsw: "",
             repeatpsw: "",
         }
@@ -118,22 +97,7 @@ export default {
         this.showError = false;
       }
     },
-      login(){
-        if(this.email === '123@gmail.com' && this.psw === 'test'){
-          window.alert('登入成功')
-        }
-        else{
-          window.alert('登入失敗，請重新登入');
-        }
-      },
-      // 切換tab
-      updateTab(index){
-          this.tabActive = index
-      },
-      handleClick() {
-          this.updateTab(this.tabItems[this.tabActive].goNext);
-          this.isActive = !this.isActive;
-      },
+      
       handleSubmit() {
       // 在这里处理表单提交逻辑
       // 可以通过this.newpsw和this.repeatpsw获取密码值
