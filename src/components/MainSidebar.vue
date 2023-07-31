@@ -1,5 +1,5 @@
 <template>
-    <div class="sidebar" :class="{ active: sidebarOpen }">
+    <div class="cart_sidebar" v-show="togglePage">
         <button @click="closeSidebar">X</button>
         <div>
             <slot name="slotheader"></slot>
@@ -17,9 +17,11 @@ export default {
     },
     methods: {
         closeSidebar() {
-            console.log("子層close");
             // emit: 觸發父層的function或js
             this.$emit("close");
+        },
+        toggleCart() {
+            this.togglePage = !this.togglePage;
         },
     },
 };
@@ -33,7 +35,7 @@ export default {
     width: 15rem;
     height: 100vh;
     right: -15rem;
-    top: 0;
+    top: 300px;
     z-index: 100;
     background-color: #fff;
     padding: 1rem;

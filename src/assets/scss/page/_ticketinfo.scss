@@ -1,6 +1,18 @@
 .ticket_info_page {
     padding-top: 74px;
 
+    .breadcrumb {
+        max-width: $sm;
+        width: 80%;
+        margin: 0 auto;
+
+        a:last-child {
+            &::before {
+                background-image: url("~@/assets/img/layout/flag_ticket.svg");
+            }
+        }
+    }
+
     .ticket_info {
         max-width: $sm;
         width: 80%;
@@ -71,7 +83,7 @@
         height: 80px;
         position: fixed;
         right: 0px;
-        top: 150px;
+        top: 180px;
         background: $textColor_tint;
         border-radius: 50% 0 0 50%;
 
@@ -98,6 +110,148 @@
             color: $textColor_white;
             background: $warningColor;
             border-radius: 50%;
+        }
+    }
+
+    .cart_sidebar {
+        box-sizing: border-box;
+        @include width(100);
+        height: 100vh;
+        padding: $sp3 $sp4;
+        position: fixed;
+        top: 150px;
+        right: 0;
+        color: $textColor_default;
+        background: $textColor_tint;
+        z-index: 9999;
+
+        h2 {
+            margin-bottom: $sp3;
+            font-size: 24px;
+            color: $textColor_white;
+            text-align: left;
+        }
+
+        // 付款明系列表
+        .item {
+            height: 500px;
+            padding: $sp3 0;
+            overflow-y: auto;
+
+            .item_null {
+                height: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                font-size: 24px;
+                text-align: center;
+
+                img {
+                    width: 250px;
+                }
+            }
+
+            .details {
+                margin: $sp2 0;
+                display: flex;
+                flex-direction: column;
+                border-bottom: 2px solid $textColor_default;
+
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    color: $textColor_white;
+                    font-size: 20px;
+                    font-weight: bold;
+
+                    .cancel {
+                        margin: 0 $sp1;
+                        font-weight: bolder;
+                        color: $textColor_default;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: $textColor_white;
+                        }
+                    }
+                }
+
+                // 張數&票價
+                .ticket_adult,
+                .ticket_ex {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: $sp1 0;
+                    font-size: 20px;
+
+                    label {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        font-size: 14px;
+                    }
+
+                    // select
+                    .count_adult,
+                    .count_ex {
+                        width: 60px;
+                        height: 36px;
+                        font-size: 16px;
+                        color: $textColor_default;
+                        text-align: center;
+                        border: 2px solid $textColor_default;
+                        border-radius: 50px;
+                    }
+                }
+
+                // 小計
+                .amount {
+                    margin: $sp2;
+                    text-align: right;
+
+                    span {
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+        .total {
+            position: relative;
+            margin: $sp3 0;
+
+            p {
+                font-size: 16px;
+            }
+
+            .total-price {
+                font-size: 24px;
+                font-weight: bold;
+                color: $textColor_white;
+            }
+
+            button {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: $sp5;
+            top: $sp4;
+            font-size: 24px;
+            color: $textColor_white;
+            cursor: pointer;
+
+            &:hover {
+                color: $bgColor_tint;
+            }
         }
     }
 }
@@ -255,6 +409,13 @@
 
 @media all and (min-width: $xl) {
     .ticket_info_page {
+        .breadcrumb {
+            max-width: $xl;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 $sp4;
+        }
+
         .ticket_info {
             box-sizing: border-box;
             max-width: $xl;
@@ -394,7 +555,7 @@
             width: 100px;
             height: 100px;
             right: 0px;
-            top: 120px;
+            top: 180px;
 
             .cart_toggle {
                 width: 36px;

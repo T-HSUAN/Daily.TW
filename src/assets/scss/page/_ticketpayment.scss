@@ -2,10 +2,20 @@
     @include width($sm);
     padding: 74px $sp4 $sp8;
 
+    .breadcrumb {
+        @include width($sm);
+
+        a:last-child {
+            &::before {
+                background-image: url("~@/assets/img/layout/flag_ticket.svg");
+            }
+        }
+    }
+
     .pay_details {
         box-sizing: border-box;
         width: 100%;
-        margin: $sp10 auto $sp3;
+        margin: 150px auto $sp3;
 
         .pay_details_content {
             padding: $sp3 $sp4;
@@ -175,13 +185,17 @@
     .payment_page {
         @include width($xl);
         padding: 200px $sp4 $sp8;
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
+
+        // align-items: stretch;
+        .breadcrumb {
+            @include width($xl);
+        }
 
         .pay_details {
             width: 35%;
+            height: 100vh;
             margin: $sp10 $sp3 88px 0;
+            float: left;
 
             .pay_details_content {
                 margin-top: 100px;
@@ -247,7 +261,7 @@
         }
 
         .pay_info {
-            width: 65%;
+            width: 90%;
 
             .methods,
             .order_info,
@@ -383,7 +397,7 @@
         }
 
         .pay_info {
-            width: 65%;
+            width: 90%;
 
             .methods,
             .order_info,

@@ -129,6 +129,12 @@
         }
     }
 
+    .no_result {
+        margin: $sp5 auto;
+        text-align: center;
+        font-size: 24px;
+    }
+
     //底部頁數
     .page_link {
         display: flex;
@@ -154,6 +160,7 @@
         top: 150px;
         background: $textColor_tint;
         border-radius: 50% 0 0 50%;
+        z-index: 9999;
 
         .cart_toggle {
             width: 28px;
@@ -187,11 +194,11 @@
         height: 100vh;
         padding: $sp3 $sp4;
         position: fixed;
-        top: 0;
+        top: 150px;
         right: 0;
         color: $textColor_default;
         background: $textColor_tint;
-        z-index: 999;
+        z-index: 9999;
 
         h2 {
             margin-bottom: $sp3;
@@ -205,6 +212,21 @@
             height: 500px;
             padding: $sp3 0;
             overflow-y: auto;
+
+            .item_null {
+                height: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                font-size: 24px;
+                text-align: center;
+
+                img {
+                    width: 250px;
+                }
+            }
 
             .details {
                 margin: $sp2 0;
@@ -396,7 +418,7 @@
             width: 100px;
             height: 100px;
             right: 0px;
-            top: 120px;
+            top: 150px;
 
             .cart_toggle {
                 width: 36px;
@@ -415,7 +437,7 @@
         }
 
         .cart_sidebar {
-            top: 120px;
+            top: 150px;
             right: 0;
             width: 400px;
             height: 784px;

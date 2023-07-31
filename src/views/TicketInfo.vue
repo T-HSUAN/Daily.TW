@@ -1,6 +1,19 @@
 <!-- 單一票券的內容區塊 -->
 <template>
     <div class="ticket_info_page">
+        <div class="breadcrumb">
+            <router-link to="/">
+                <span>首頁</span>
+            </router-link>
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
+            <router-link to="/ticket">
+                <span>景點票券</span>
+            </router-link>
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
+            <router-link to="/ticket_info">
+                <span>票券詳情</span>
+            </router-link>
+        </div>
         <!-- 票券造型呈現，768以下無造型 -->
         <TicketSingleCard :ticketPhoto="img" :ticketTitle="Name" :ticketLocation="location" :ticketTags="tag"
             :ticketDetails="ticket_details" :showAddr="true" :ticketAddr="ticket_addr" :ticketAddrLink="ticket_addr_link"
@@ -25,7 +38,7 @@
                     <!-- 成人票項目 -->
                     <div class="ticket_adult">
                         <select name="ticket_count_adult" class="count_adult" v-model="count_adult"
-                            @change="subTotalPrice()">
+                            @change="subTotalprice()">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
@@ -43,7 +56,7 @@
                     </div>
                     <!-- 優惠票項目 -->
                     <div class="ticket_ex">
-                        <select name="ticket_count_ex" class="count_ex" v-model="count_ex" @change="subTotalPrice()">
+                        <select name="ticket_count_ex" class="count_ex" v-model="count_ex" @change="subTotalprice()">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
@@ -84,6 +97,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 注意事項 -->
             <div class="ticket_notice">
                 <h4>注意事項</h4>
                 <dl>
@@ -101,22 +115,88 @@
                     </dd>
                 </dl>
             </div>
+            <!-- 購買按鈕(手機) -->
             <div class="buy_btn_phone">
                 <button class="btn">加入購物車</button>
                 <router-link to="/cart"><button class="btn">直接購買</button></router-link>
             </div>
         </div>
-        <!-- 購物車清單 -->
-        <div class="cart">
+        <!-- 購物車清單(側邊) -->
+        <div class="cart" @click="toggleCart">
             <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" />
-            <div class="numTag">0</div>
+            <div class="numTag">{{ itemList.length }}</div>
         </div>
+        <!-- 付款明細(側邊攔) -->
+        <div class="cart_sidebar" v-show="togglePage">
+            <h2>付款明細</h2>
+            <!-- 購物明細 -->
+            <div class="item">
+                <div class="item_null" v-if="itemList.length === 0">
+                    <p>您的購物車目前是空的</p>
+                    <img src="@/assets/img/cart_scare.svg" alt="decorate">
+                </div>
+                <div class="details" v-for="(item, index) in itemList" :key="item.id">
+                    <!-- 標題&垃圾桶 -->
+                    <div class="title">
+                        {{ item.Name }}
+                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="cancel(index)" title="刪除" />
+                    </div>
+                    <!-- 成人票券項目 -->
+                    <div class="ticket_adult">
+                        <label for="count_adult">
+                            <p class="name">全票&nbsp;</p>
+                            <p class="price">
+                                (NT$ {{ item.price_adultF }} /張)
+                            </p>
+                        </label>
+                        <select v-model="item.count_adult" name="ticket_count_adult" class="count_adult"
+                            @change="subTotalPrice(item)">
+                            <option value="0" selected>0</option>
+                            <option :value="num" v-for="num in 5" :key="num">
+                                {{ num }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- 優惠票券項目 -->
+                    <div class="ticket_ex">
+                        <label for="count_ex">
+                            <p class="name">優待票&nbsp;</p>
+                            <p class="price">(NT$ {{ item.price_exF }} /張)</p>
+                        </label>
+                        <select v-model="item.count_ex" name="ticket_count_ex" class="count_ex"
+                            @change="subTotalPrice(item)">
+                            <option value="0" selected>0</option>
+                            <option :value="num" v-for="num in 5" :key="num">
+                                {{ num }}
+                            </option>
+                        </select>
+                    </div>
+                    <!-- 小計 -->
+                    <div class="amount">
+                        小計&nbsp;
+                        <span>NT$ {{ item.subtotal }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 票券總計 -->
+            <div class="total">
+                <p>({{ itemList.length }}項票券) 總計</p>
+                <p> NT$&nbsp;
+                    <span class="total-price"> {{ totalPrice }} </span>
+                    元
+                </p>
+                <!-- 結帳按鈕，跳轉至購物車 -->
+                <router-link to="/cart"><button class="btn">結帳</button></router-link>
+            </div>
+            <div class="close" @click="toggleCart">close</div>
+        </div>
+
     </div>
 </template>
 
 <script>
 import TicketSingleCard from "@/components/TicketSingleCard.vue";
-
+import itemList from "@/store/cart.js";
 export default {
     components: {
         TicketSingleCard,
@@ -139,17 +219,55 @@ export default {
             count_adult: 0,
             count_ex: 0,
             subtotal: 0,
+            totalPrice: 0,
+            itemList: itemList,
+            togglePage: false,
         };
     },
     methods: {
         //小計
-        subTotalPrice() {
+        subTotalprice() {
             const subtotalAdult = this.price_adultF * this.count_adult;
             const subtotalEx = this.price_exF * this.count_ex;
 
             this.subtotal = subtotalAdult + subtotalEx;
         },
+        // 刪除項目
+        cancel: function (index) {
+            console.log(this);
+            this.itemList.splice(index, 1);
+        },
+        // 點擊關閉購物車
+        close() {
+            this.style.display = "none";
+        },
+        // toggle購物車
+        toggleCart() {
+            this.togglePage = !this.togglePage;
+        },
+        //小計
+        subTotalPrice(item) {
+            const countAdult = item.count_adult;
+            const countEx = item.count_ex;
+            const priceAdultF = item.price_adultF;
+            const priceExF = item.price_exF;
+
+            item.subtotal = countAdult * priceAdultF + countEx * priceExF;
+            this.TotalPrice();
+        },
+        //總計
+        TotalPrice() {
+            if (this.itemList.length === 0) return 0;
+            for (let i = 0; i < this.itemList.length; i++) {
+                const item = this.itemList[i];
+                this.totalPrice += item.subtotal;
+            }
+            return this.totalPrice;
+        },
     },
+    created() {
+        this.TotalPrice();
+    }
 };
 </script>
 <style lang="scss" scoped>
