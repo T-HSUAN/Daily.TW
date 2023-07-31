@@ -88,7 +88,7 @@
             text-align: center;
             -webkit-text-stroke: 5px $textColor_default;
             position: relative;
-            letter-spacing: 6px;
+            letter-spacing: 6px !important;
             line-height: 150%;
 
             &::before {
@@ -99,13 +99,13 @@
                 @include sm_h1;
                 -webkit-text-stroke: 0;
                 color: $textColor_tint;
-                letter-spacing: 6px;
-
+                letter-spacing: 6px !important;
                 @media (min-width: $md) {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
                     @include xl_h1;
+                    white-space: nowrap;
                 }
             }
         }

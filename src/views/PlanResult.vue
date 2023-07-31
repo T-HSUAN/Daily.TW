@@ -544,7 +544,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
 
 .plan_result {
@@ -629,11 +629,12 @@ export default defineComponent({
 
                 @media (min-width: $md) {
                     @include xl_h1;
+                    white-space: nowrap;
                 }
 
                 -webkit-text-stroke: 5px $textColor_default;
                 position: relative;
-                letter-spacing: 6px;
+                letter-spacing: 6px !important;
                 line-height: 150%;
 
                 &::before {
@@ -644,10 +645,11 @@ export default defineComponent({
                     @include sm_h1;
                     -webkit-text-stroke: 0;
                     color: $textColor_tint;
-                    letter-spacing: 6px;
+                    letter-spacing: 6px !important;
 
                     @media (min-width: $md) {
                         @include xl_h1;
+                        white-space: nowrap;
                     }
                 }
             }
@@ -660,8 +662,8 @@ export default defineComponent({
 
                 @media (min-width: $md) {
                     position: relative;
-                    top: 0;
-                    left: 0;
+                    top: -80px;
+                    left: 580px;
                     display: inline-block;
                 }
 
