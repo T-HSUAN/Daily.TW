@@ -280,12 +280,17 @@ export default {
     },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 .member_view{
     max-width: 1175px;
     box-sizing: border-box;
     margin: auto;
+    background: $bgColor_tint;
+    padding-top: 74px;
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
 .lg_area {
     width: 100%;
     text-align: center;

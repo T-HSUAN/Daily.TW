@@ -131,10 +131,15 @@ export default {
 import oottCard from "@/components/OottCard.vue";
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
 .oott_info{
+    background: $bgColor_tint;
+    padding-top: 74px;
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
     // 麵包屑
     .breadcrumb {
         padding-left: 30px;
@@ -142,6 +147,7 @@ import oottCard from "@/components/OottCard.vue";
         align-items: center;
         font-size: 14px;
         gap: 4px;
+        background-color: $bgColor_tint;
         @media (min-width: 768px) {
             font-size: 18px;
             gap: $sp1;
@@ -202,7 +208,7 @@ import oottCard from "@/components/OottCard.vue";
     .oott_info_section {
         width: 100%;
         box-sizing: border-box;
-
+        background-color: $bgColor_tint;
         @media (min-width: 768px) {
             display: flex;
             justify-content: center;

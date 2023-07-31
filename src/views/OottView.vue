@@ -5,7 +5,7 @@
         <!-- 投稿部分 -->
         <div class="post_section">
             <div class="post_area">
-                <a href="#" class="btn_md">投稿</a>
+                <router-link to="/oott_post_view" class="btn_md">投稿</router-link>
                 <div class="post_pic"><img :src="require('@/assets/img/oott_view_first.png')" alt="post"></div>
                 <div class="post_block">
                     <div class="post_man">
@@ -153,6 +153,7 @@
                         <p>看看他們的#oott/</p>
                     </div>
                 </div>
+                
                 <div class="content">
                     <div class="author">
                         <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
@@ -264,10 +265,15 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
 .oott_view {
+    background: $bgColor_default;
+    padding-top: 74px;
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
     // 全頁設定
 
     #app {
@@ -372,8 +378,8 @@ export default {
             }
 
             .btn_md {
-                font-size: $sm_h5;
-                padding: 8px 24px;
+                font-size: $xl_h5;
+                padding: 15px 40px;
                 white-space: nowrap;
                 color: $textColor_white;
                 text-align: center;
@@ -387,7 +393,7 @@ export default {
                 border: 2px solid $textColor_default;
                 background: $textColor_default;
                 cursor: pointer;
-
+                box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
                 &:hover {
                     color: $textColor_default;
                     background: $textColor_white;
@@ -718,7 +724,9 @@ export default {
             margin: 0 2%;
             overflow-x: scroll;
             overflow-y: hidden;
-
+            @media (min-width: 768px) {
+                overflow: visible;
+            }
             .author {
                 width: 128px;
                 text-align: center;

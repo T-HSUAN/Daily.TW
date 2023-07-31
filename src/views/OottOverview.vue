@@ -92,10 +92,15 @@ export default {
     },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
 .oottOverview {
+    background: $bgColor_tint;
+    padding-top: 74px;
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
     .breadcrumb {
         display: flex;
         align-items: center;
@@ -150,6 +155,7 @@ export default {
         max-width: $xl;
         margin: $sp3 auto;
         padding: 0 $sp2;
+        background-color: $bgColor_tint;
     }
 
     .list {
@@ -169,10 +175,8 @@ export default {
             .oott_card {
                 position: relative;
                 cursor: pointer;
+                color: $textColor_default;
 
-                .oott_card_text {
-                    color: $textColor_default;
-                }
             }
         }
 

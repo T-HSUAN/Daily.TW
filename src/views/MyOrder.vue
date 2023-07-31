@@ -140,10 +140,15 @@ export default {
   };
   </script>
   
-  <style lang="scss">
+  <style lang="scss" scoped>
   @import "@/assets/scss/baseAndMixin.scss";
 
   .myorder{
+    background: $bgColor_tint;
+    padding-top: 74px;
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
     .lg_area {
         width: 90%;
         margin: 0 auto;
