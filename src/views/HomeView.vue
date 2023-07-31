@@ -308,6 +308,10 @@ export default {
     padding-top: 74px;
     background: $bgColor_default;
 
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
+
     .bgCurve {
         position: absolute;
         top: 0;
@@ -844,6 +848,7 @@ export default {
         position: relative;
         padding: $sp12 0 $sp8;
         background-color: $bgColor_tint;
+        overflow: hidden;
 
         @media (min-width: 768px) {
             padding: 160px 0 80px;

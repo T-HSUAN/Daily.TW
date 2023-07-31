@@ -1,13 +1,22 @@
-#app {
-    background: $bgColor_tint;
-}
-
 .cart_page {
     width: 100%;
+    padding-top: 74px;
+
+    .breadcrumb {
+        @include width($sm);
+        padding: 0 $sp2;
+
+        a:last-child {
+            &::before {
+                background-image: url("~@/assets/img/layout/flag_ticket.svg");
+            }
+        }
+    }
 
     .cart_items {
         box-sizing: border-box;
         @include width($sm);
+        margin-top: $sp2;
         padding: $sp2 $sp2 $sp4;
 
         .cart_select_all {
@@ -173,8 +182,16 @@
 
 @media all and (min-width: $md) {
     .cart_page {
+        margin: auto;
+        padding-top: 200px;
+
+        .breadcrumb {
+            @include width($md);
+        }
+
         .cart_items {
             @include width($md);
+            margin-top: $sp3;
             padding: $sp2 $sp2 $sp4;
 
             .cart_select_all {
@@ -297,15 +314,18 @@
 @media all and (min-width: $xl) {
     .cart_page {
         box-sizing: border-box;
-        display: flex;
-        justify-content: center;
         @include width($xl);
-        padding: $sp2 $sp2 $sp4;
+        padding: 200px $sp2 $sp4;
+
+        .breadcrumb {
+            @include width($xl);
+        }
 
         .cart_items {
             width: 70%;
             max-width: 60%;
             margin: 0;
+            float: left;
 
             .cart_select_all {
                 box-sizing: border-box;
@@ -432,6 +452,7 @@
 
         .pay_details {
             display: block;
+            float: right;
             box-sizing: border-box;
             width: 30%;
             height: 100vh;
@@ -440,7 +461,7 @@
             .pay_details_content {
                 position: sticky;
                 top: 200px;
-                margin-top: 100px;
+                margin: 100px 0;
                 padding: $sp3 $sp4;
                 color: $textColor_default;
                 background: $textColor_tint;

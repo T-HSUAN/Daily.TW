@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div v-else>查無結果</div>
+        <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
         <div class="page_link">
             <a class="page" v-if="ticketDisplay.length === ticketData.length">1</a>
             <a class="page" v-if="ticketDisplay.length === ticketData.length">2</a>
@@ -32,8 +32,8 @@
         </div>
 
         <!-- 購物車清單 -->
-        <div class="cart">
-            <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" @click="toggleCart" />
+        <div class="cart" @click="toggleCart">
+            <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" />
             <div class="numTag">{{ itemList.length }}</div>
         </div>
         <!-- 付款明細 -->
@@ -41,6 +41,10 @@
             <h2>付款明細</h2>
             <!-- 購物明細 -->
             <div class="item">
+                <div class="item_null" v-if="itemList.length === 0">
+                    <p>您的購物車目前是空的</p>
+                    <img src="@/assets/img/cart_scare.svg" alt="decorate">
+                </div>
                 <div class="details" v-for="(item, index) in itemList" :key="item.id">
                     <!-- 標題&垃圾桶 -->
                     <div class="title">
@@ -99,13 +103,12 @@
     </div>
 </template>
 <script>
-// import Sidebar from "@/components/MainSidebar.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import ticketData from "@/store/ticketData.js";
+import itemList from "@/store/cart.js";
 export default {
     components: {
-        Sidebar,
         Searchbar,
         Ticket,
     },
@@ -137,8 +140,7 @@ export default {
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
             // 購物車清單
-
-            itemList: [],
+            itemList: itemList,
             //toggle購物車頁面
             totalPrice: 0,
             togglePage: false,
@@ -170,15 +172,15 @@ export default {
             if (!this.itemList.includes(cartItem)) {
                 this.itemList.push(cartItem);
             } else {
-                window.alert(
-                    "票券已加入購物車，請點擊確認全票與優待票購買數量。"
-                );
+                window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。")
             }
+            this.saveCartData();
         },
         // 刪除項目
         cancel: function (index) {
-            console.log(this);
+            // console.log(this);
             this.itemList.splice(index, 1);
+            this.saveCartData();
         },
         // 點擊關閉購物車
         close() {
@@ -194,7 +196,6 @@ export default {
             const countEx = item.count_ex;
             const priceAdultF = item.price_adultF;
             const priceExF = item.price_exF;
-
             item.subtotal = countAdult * priceAdultF + countEx * priceExF;
             this.TotalPrice();
         },
@@ -207,11 +208,24 @@ export default {
             }
             return this.totalPrice;
         },
+        // 儲存購物車資料到 sessionStorage
+        saveCartData() {
+            sessionStorage.setItem("cartItems", JSON.stringify(this.itemList));
+        },
+        // 從 sessionStorage 中讀取購物車資料
+        loadCartData() {
+            const cartItems = sessionStorage.getItem("cartItems");
+            if (cartItems) {
+                this.itemList = JSON.parse(cartItems);
+            }
+        },
     },
     computed: {},
     created() {
         this.updateDisplay();
         this.TotalPrice();
+        // 在 Vue 組件被建立時，從 sessionStorage 中讀取購物車資料
+        this.loadCartData();
     },
 };
 </script>

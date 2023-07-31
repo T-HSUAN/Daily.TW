@@ -1,6 +1,19 @@
 <!-- 購物車 -->
 <template>
     <div class="cart_page">
+        <div class="breadcrumb">
+            <router-link to="/">
+                <span>首頁</span>
+            </router-link>
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
+            <router-link to="/ticket">
+                <span>景點票券</span>
+            </router-link>
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
+            <router-link to="/ticket_info">
+                <span>購物車</span>
+            </router-link>
+        </div>
         <div class="cart_items">
             <div class="cart_select_all">
                 <label for="select_all"><input type="checkbox" id="select_all" />&nbsp;全選</label>

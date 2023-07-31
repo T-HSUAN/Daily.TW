@@ -35,7 +35,6 @@ export default {
     color: $textColor_default;
     background: $bgColor_tint;
 
-    // overflow: hidden;
     h1 {
         @include sm_h1;
     }
