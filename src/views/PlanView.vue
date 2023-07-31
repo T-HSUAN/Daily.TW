@@ -53,10 +53,6 @@
 <style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
 
-#app {
-    background-color: $bgColor_default;
-}
-
 .plan_view {
     display: flex;
     flex-direction: column;
@@ -67,9 +63,10 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-image: url("~@/assets/img/layout/plan_bg_sm.png");
-
+    padding-top:96px;
     @media (min-width: $md) {
         background-image: url("~@/assets/img/layout/plan_bg_xl.png");
+        padding-top:240px;
     }
 
     .plan_title {

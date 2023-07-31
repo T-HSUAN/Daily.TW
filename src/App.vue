@@ -58,7 +58,7 @@ export default {
 
 }
 
-@media all and (min-width: $xl) {
+@media all and (min-width: $md) {
     #app {
         @include xl_p;
 
