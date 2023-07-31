@@ -10,7 +10,7 @@
                 <h2>忘記密碼</h2>
                 <p>請輸入註冊時的EMAIL，<br> 我們將寄送給您重置密碼的連結</p>
                 <label>Email
-                    <input type="email" v-model="email" name="user_email" placeholder='請輸入EMAIL'>
+                    <input type="text" v-model="email" name="email" placeholder='請輸入EMAIL'>
                     <div class="space_forget"></div>
                 </label>
 
@@ -77,7 +77,7 @@ export default {
                 this.isPopBoxFalse = true;
             } else {
 
-                emailjs.sendForm('zhang', 'Contact Form', this.$refs.form, '21inWh_x_4Gcz3eYO')
+                emailjs.sendForm('daily', 'daily', this.$refs.form, 'av3wEk3CDkczylGAe')
                     .then((result) => {
                         // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
                         this.isPopBoxVisible = true;
