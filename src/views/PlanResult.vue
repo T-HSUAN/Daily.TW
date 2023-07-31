@@ -544,20 +544,15 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
-
-#app {
-    background-color: $bgColor_default;
-}
 
 .plan_result {
     background-color: $bgColor_default;
-
+    padding-top:88px;
     @media (min-width: $md) {
-        padding-top: $sp4;
+        padding-top:200px;
     }
-
     .result_banner {
         position: relative;
         z-index: 1;
