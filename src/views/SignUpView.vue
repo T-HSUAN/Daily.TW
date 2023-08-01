@@ -1,6 +1,7 @@
 <!-- 會員註冊資料頁面 -->
 <template>
-    <section class="registerview">
+<section class="signupview">
+    <section class="register">
         <div class="canvas">
             <div class="joinus_sm">
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
@@ -80,6 +81,7 @@
             <!-- <h2>{{ message }}</h2> -->
         </div>
     </section>
+</section>
 </template>
 
 <script>
@@ -237,14 +239,19 @@ export default {
 
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 @import '@/assets/scss/baseAndMixin.scss';
 
-#app {
-    background-color: $bgColor_default;
-}
+// #app {
+//     background-color: $bgColor_default;
+// }
+.signupview{
+    padding-top: 74px;
 
-.registerview {
+    @media all and (min-width: $md) {
+        padding-top: 200px;
+    }
+.register {
     margin: 150px 0 60px;
 
     @media all and (min-width: $md) {
@@ -674,4 +681,6 @@ export default {
             }
         }
     }
-}</style>
+}
+}
+</style>

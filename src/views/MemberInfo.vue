@@ -1,6 +1,6 @@
 <!-- 帳號管理的個人資料修改頁面 -->
 <template>
-
+<section class="memberInfo">
     <section class="profile">
         <h2>帳號管理</h2>
         
@@ -96,15 +96,18 @@
             </div>
         </div>
     </section>
-
+</section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
-// *{
-//     outline: 1px solid green;
-// }
 
+.memberInfo{
+    padding-top: 74px;
+    @media all and (min-width: $md) {
+        padding-top: 200px;
+        
+    }
 .profile{
     width: 90%;
     margin: 0 auto;
@@ -310,7 +313,7 @@
     }
     
     }
-
+}
 </style>
 
 <script>
