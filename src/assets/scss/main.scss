@@ -54,21 +54,23 @@
 @media all and (min-width: $md) {
     #app {
         @include xl_p;
+        
+        h1 {
+            @include xl_h1;
+        }
+        h2 {
+            @include xl_h2;
+        }
+        h3 {
+            @include xl_h3;
+        }
+        h4 {
+            @include xl_h4;
+        }
+        h5 {
+            @include xl_h5;
+        }
     }
 
-    h1 {
-        @include xl_h1;
-    }
-    h2 {
-        @include xl_h2;
-    }
-    h3 {
-        @include xl_h3;
-    }
-    h4 {
-        @include xl_h4;
-    }
-    h5 {
-        @include xl_h5;
-    }
+    
 }
