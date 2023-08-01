@@ -1,6 +1,7 @@
 <!-- home的內容區塊 -->
 <template>
     <div class="index">
+        <main>
         <!-- 專屬旅著區塊 -->
         <section class="index_plan">
             <div class="container">
