@@ -159,26 +159,31 @@
                     <h2>人氣穿搭特輯</h2>
                 </div>
                 <div class="content">
-                    <div class="wrap">
-                        <div class="oottCards">
-                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottRank="oott.oottRank"
+                    <Carousel class="wrap" v-bind="settings" :breakpoints="breakpoints">
+                        <Slide v-for="(oott, index) in ootts" :key="index">
+                            <oottCard class="oottCard"
+                                :oottRank="oott.oottRank"
                                 :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                 :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                 :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                        </div>
-                    </div>
-                    <div class="panel">
+                        </Slide>
+                        <template #addons>
+                            <Navigation />
+                        </template>
+                    </Carousel>
+                    <!-- <div class="panel">
                         <button class="arrow">
                             <font-awesome-icon icon="fa-solid fa-arrow-left" />
                         </button>
                         <button class="arrow">
                             <font-awesome-icon icon="fa-solid fa-arrow-right" />
                         </button>
-                    </div>
+                    </div> -->
                     <router-link to="/oott">
                         <button class="btn">查看更多</button>
                     </router-link>
                 </div>
+                
             </section>
             <!-- 票券區塊 -->
             <section class="index_ticket">
@@ -235,6 +240,7 @@ export default {
         Pagination,
         Navigation,
     },
+    
     data() {
         return {
 
@@ -258,6 +264,23 @@ export default {
             //         tripLink: "/trip_info",
             //     },
             // ],
+
+            settings: {
+                itemsToShow: 1,
+                snapAlign: 'center',
+                },
+                breakpoints: {
+                // 700px and up
+                768: {
+                    itemsToShow: 2,
+                    snapAlign: 'start',
+                },
+                // 1024 and up
+                1200: {
+                    itemsToShow: 3,
+                    snapAlign: 'start',
+                },
+                },
 
             ootts: [
                 {
@@ -384,7 +407,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
 
 .index {
@@ -893,6 +916,46 @@ export default {
         @media (min-width: 768px) {
             padding: 160px 0 80px;
         }
+        
+        .carousel__viewport {
+            overflow: visible;
+        }
+
+        .carousel__track {
+            gap: $sp4;
+        }
+
+        .carousel__slide{
+            flex-shrink: 1;
+        }
+
+        .carousel__prev, .carousel__next {
+            display: none;
+            @media (min-width: $md){
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50px;
+                border: 2px solid $textColor_default;
+                background-color: $textColor_white;
+                width: 40px;
+                height: 40px;
+                top: 640px;
+                .carousel__icon {
+                    width: 40px;
+                    height: auto;
+                    fill: $textColor_default;
+                }
+            }
+        }
+
+        .carousel__prev {
+            left: calc(50% - 80px);
+        }
+
+        .carousel__next {
+            right: calc(50% - 80px);
+        }
 
         .content {
             padding-left: 32px;
@@ -902,10 +965,10 @@ export default {
 
             .wrap {
                 margin-bottom: 16px;
-                overflow-x: scroll;
 
-                @media (min-width: $xl) {
-                    overflow: visible;
+                @media (min-width: $md) {
+                    margin-bottom: 120px;
+
                 }
 
                 .oottCards {
