@@ -12,7 +12,7 @@
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
-                <router-link :to="item.singlecard_link" title="點擊查看票券詳情">
+                <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
                     <Ticket :ticketPhoto="item.img" :ticketTitle="item.Name" :ticketLocation="item.location"
                         :ticketTags="item.tag" :originalPrice="item.price_adultO" :FinalPrice="item.price_adultF"
                         :discountTag="item.discount" />

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
+import TicketInfo from "@/views/TicketInfo.vue";
 
 const routesUser = [
     {//首頁
@@ -82,13 +83,10 @@ const routesUser = [
             import(/* webpackChunkName: "ticket" */ "@/views/TicketView.vue"),
     },
     {
-        path: "/ticket_info",
+        path: "/ticket/:id",
         name: "ticket_info",
-        // component: TicketInfo
-        component: () =>
-            import(
-                /* webpackChunkName: "ticketinfo" */ "@/views/TicketInfo.vue"
-            ),
+        component: TicketInfo,
+        props: true,
     },
     {
         path: "/about",
