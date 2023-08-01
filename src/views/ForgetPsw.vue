@@ -1,5 +1,6 @@
 <!-- 忘記密碼頁面 -->
 <template>
+<section class="forget">
     <section class="forgetpsw">
 
         <div class="canvas">
@@ -54,6 +55,7 @@
         </div>
 
     </section>
+</section>
 </template>
 
 
@@ -96,19 +98,24 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/baseAndMixin.scss';
 
 
-#app {
-    background-color: $bgColor_default;
-}
 
 //手機板
+.forget{
+    padding-top: 74px;
+    @media all and (min-width: $md) {
+        padding-top: 200px;
+        
+    }
 
 .forgetpsw {
-    padding: 200px 0 150px;
-
+    padding: 150px 0 60px;
+    @media all and (min-width: $md) {
+        margin: 130px 0;
+    }
     .canvas {
         width: 83%;
         background-color: $default_yellow;
@@ -388,7 +395,7 @@ export default {
         }
     }
 }
-
+}
 
 
 
