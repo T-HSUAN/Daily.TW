@@ -101,12 +101,14 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '@/assets/scss/main.scss';
     .oott_post_wrap{
         width: 257px;
+        padding-top: 74px;
         @media (min-width: 768px) {
             width: 735px;
+            padding-top: 200px;
         }
         @media (min-width: 1024px) {
             width: 1000px;
