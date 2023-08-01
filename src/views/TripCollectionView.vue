@@ -34,10 +34,14 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .trip_collection_wrap {
     width: 90%;
     margin: auto;
+    padding-top: 74px;
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
     .collection_container {
         display: flex;
         gap: 30px;
