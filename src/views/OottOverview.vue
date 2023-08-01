@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             oottData: oottData,
-            // 從oottData抓取行程資料並呈現(進行搜尋篩選)
+            // 從oottData抓取資料並呈現(進行搜尋篩選)
 
             oottDisplay: [],
             //請自己更改標籤內容就可以
@@ -173,7 +173,7 @@ export default {
             row-gap: $sp6;
 
             .oott_card {
-                position: relative;
+                // position: relative;
                 cursor: pointer;
                 color: $textColor_default;
 

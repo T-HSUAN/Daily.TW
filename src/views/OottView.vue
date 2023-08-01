@@ -35,44 +35,44 @@
             <div class="content">
                 <div class="wrap">
                     <div class="oottCards">
-                        <h2>#主題</h2>
+                        <h2>#休閒</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts1" :key="index"
+                                    :oottRank="oott.oottRank"  :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                     :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                     :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                             </div>
                         </div>
                     </div>
                     <div class="oottCards">
-                        <h2>#主題</h2>
+                        <h2>#復古</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts2" :key="index"
+                                    :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                     :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                     :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                             </div>
                         </div>
                     </div>
                     <div class="oottCards">
-                        <h2>#主題</h2>
+                        <h2>#潮流</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts3" :key="index"
+                                    :oottRank="oott.oottRank"  :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                     :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                     :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                             </div>
                         </div>
                     </div>
                     <div class="oottCards">
-                        <h2>#主題</h2>
+                        <h2>#藝文</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index"
-                                    :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts4" :key="index"
+                                    :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
                                     :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
                                     :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                             </div>
@@ -113,12 +113,7 @@
             <div class="content">
                 <div class="wrap">
                     <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottRank="oott.oottRank" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                    </div>
-                    <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                        <oottCard class="oottCard" v-for="(oott, index) in top_ootts" :key="index" :oottPhoto="oott.oottPhoto"
                             :oottRank="oott.oottRank" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
                             :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
                     </div>
@@ -175,7 +170,7 @@
                         <div class="profilePic"><img src="@/assets/img/oott_01.png" alt=""></div>
                         <h4>Jeffery</h4>
                     </div>
-                    <div class="author">
+                    <!-- <div class="author">
                         <div class="profilePic"><img src="@/assets/img/oott_11.png" alt=""></div>
                         <h4>Kay</h4>
                     </div>
@@ -194,7 +189,7 @@
                     <div class="author">
                         <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
                         <h4>Alison</h4>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -211,7 +206,99 @@ export default {
     },
     data() {
         return {
-            ootts: [
+            theme_ootts1: [
+                {
+                    oottPhoto: require('@/assets/img/oott_05.png'),
+                    oottCardTags: "#休閒",
+                    oottCardDate: "2022 / 08 / 31",
+                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
+                    oottCardAuthor: "DuckLord",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_10.png'),
+                    oottCardTags: "#休閒 #美式",
+                    oottCardDate: "2022 / 06 / 24",
+                    oottAuthorPhoto: require('@/assets/img/oott_11.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_02.png'),
+                    oottCardTags: "#日系 #休閒 #風景",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require('@/assets/img/info_name_2.png'),
+                    oottCardAuthor: "Alison",
+                },
+            ],
+            theme_ootts2: [
+                {
+                    oottPhoto: require('@/assets/img/oott_06.png'),
+                    oottCardTags: "#復古 #海邊",
+                    oottCardDate: "2022 / 7 / 3",
+                    oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
+                    oottCardAuthor: "Susan",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardTags: "#復古 #性感",
+                    oottCardDate: "2023 / 07 / 12",
+                    oottAuthorPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardAuthor: "DazzleQueen",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_12.png'),
+                    oottCardTags: "#可愛 #日系 #運動",
+                    oottCardDate: "2022 / 01 / 08",
+                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
+                    oottCardAuthor: "Kid",
+                },
+            ],
+            theme_ootts3: [
+                {
+                    oottPhoto: require('@/assets/img/oott_40.png'),
+                    oottCardTags: "#韓系 #休閒",
+                    oottCardDate: "2022 / 06/ 12",
+                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
+                    oottCardAuthor: "Kid",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_10.png'),
+                    oottCardTags: "#休閒 #美式",
+                    oottCardDate: "2022 / 06 / 24",
+                    oottAuthorPhoto: require('@/assets/img/oott_11.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_41.png'),
+                    oottCardTags: "#街頭 #潮流",
+                    oottCardDate: "2022 / 7 / 6",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
+                    oottCardAuthor: "Max",
+                },
+            ],
+            theme_ootts4: [
+                {
+                    oottPhoto: require('@/assets/img/oott_18.png'),
+                    oottCardTags: "#休閒",
+                    oottCardDate: "2022 / 11 / 27",
+                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
+                    oottCardAuthor: "DuckLord",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_14.png'),
+                    oottCardTags: "#簡約 #休閒",
+                    oottCardDate: "2022 / 07 / 29",
+                    oottAuthorPhoto: require('@/assets/img/oott_11.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_01.png'),
+                    oottCardTags: "#藝文 #放鬆 #懷舊",
+                    oottCardDate: "2022 / 01 / 12",
+                    oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
+                    oottCardAuthor: "Jeffery",
+                },
+            ],
+            top_ootts: [
                 {
                     oottRank: "#01",
                     oottPhoto: require('@/assets/img/oott_02.png'),
@@ -236,14 +323,14 @@ export default {
                     oottAuthorPhoto: require('@/assets/img/oott_card_proPic_example.png'),
                     oottCardAuthor: "Max",
                 },
-                // {
-                //     oottRank: "#04",
-                //     oottPhoto: require('@/assets/img/oott_01.png'),
-                //     oottCardTags: "#藝文 #放鬆 #懷舊",
-                //     oottCardDate: "2022 / 01 / 12",
-                //     oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
-                //     oottCardAuthor: "Jeffery",
-                // },
+                {
+                    oottRank: "#04",
+                    oottPhoto: require('@/assets/img/oott_01.png'),
+                    oottCardTags: "#藝文 #放鬆 #懷舊",
+                    oottCardDate: "2022 / 01 / 12",
+                    oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
+                    oottCardAuthor: "Jeffery",
+                },
                 // {
                 //     oottRank: "#05",
                 //     oottPhoto: require('@/assets/img/oott_03.png'),
@@ -569,15 +656,15 @@ export default {
                                 cursor: pointer;
 
                                 .oottCard:nth-child(3) {
-                                    right: 640px;
+                                    left: 640px;
                                 }
 
                                 .oottCard:nth-child(2) {
-                                    right: 320px;
+                                    left: 320px;
                                 }
 
                                 .oottCard:nth-child(1) {
-                                    right: 0;
+                                    left: 0;
                                 }
                             }
                         }
@@ -591,7 +678,7 @@ export default {
                         @media (min-width: 768px) {
                             margin: 10px;
                             position: absolute;
-                            right: 0;
+                            left: 0;
                             transition: all .5s linear;
 
                         }
