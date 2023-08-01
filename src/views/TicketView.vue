@@ -190,7 +190,7 @@ export default {
         toggleCart() {
             this.togglePage = !this.togglePage;
         },
-        //小計
+        //購物車小計
         subTotalPrice(item) {
             const countAdult = item.count_adult;
             const countEx = item.count_ex;
@@ -199,7 +199,7 @@ export default {
             item.subtotal = countAdult * priceAdultF + countEx * priceExF;
             this.TotalPrice();
         },
-        //總計
+        //購物車總計
         TotalPrice() {
             if (this.itemList.length === 0) return 0;
             for (let i = 0; i < this.itemList.length; i++) {
