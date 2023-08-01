@@ -180,10 +180,10 @@
                             </tr>
                             <tr>
                                 <!-- <td>
-                                    <img src="weatherData.forecast.forecastday[0].day.condition.icon" alt="">
-                                    <span>最高 {{ weatherData.forecast.forecastday[0].day.maxtemp_c }}℃</span><br>
-                                    <span>最低 {{ weatherData.forecast.forecastday[0].day.mintemp_c }}℃</span><br>
-                                    <span>降雨機率 {{ weatherData.forecast.forecastday[0].day.daily_chance_of_rain }}%</span>
+                                    <img :src="weatherData[0].day.condition.icon" alt="">
+                                    <span>最高 {{ weatherData['0'].day.maxtemp_c }}℃</span><br>
+                                    <span>最低 {{ weatherData['0'].day.mintemp_c }}℃</span><br>
+                                    <span>降雨機率 {{ weatherData['0'].day.daily_chance_of_rain }}%</span>
                                 </td> -->
                                 <td>
                                     <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
@@ -444,13 +444,13 @@ export default defineComponent({
                 { src: require('@/assets/img/layout/plan_result_place_6-1.png') },
                 { src: require('@/assets/img/layout/plan_result_place_6-2.png') }
             ],
-            // weather: {
-            //     loading: false,
-            //     weatherData: {},
-            //     location: 'Taichung',
-            //     lang:'zh_tw',
-            //     token:'713d2a4d5d6d47dca9a15517232207',
-            // },
+            weather: {
+                loading: false,
+                weatherData: {},
+                location: 'Taichung',
+                lang:'zh_tw',
+                token:'713d2a4d5d6d47dca9a15517232207',
+            },
             ootts: [
                 {
                     oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
@@ -508,21 +508,21 @@ export default defineComponent({
             ],
         }
     },
-    // created(){
-    //     this.fetchWeather();
-    // },
-    // methods: {
-    //     fetchWeather(){
-    //         this.loading = true
-    //         fetch(`https://api.weatherapi.com/v1/forecast.json?q=Taichung&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
-    //         .then(res=> {
-    //             return res.json()
-    //         })
-    //         .then(json=> {
-    //             this.weatherData = json
-    //             this.loading = false
-    //         })
-    //     }
+    created(){
+        this.fetchWeather();
+    },
+    methods: {
+        fetchWeather(){
+            this.loading = true
+            fetch(`https://api.weatherapi.com/v1/forecast.json?q=Taichung&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
+            .then(res=> {
+                return res.json()
+            })
+            .then(json=> {
+                this.weatherData = json.forecast.forecastday
+                this.loading = false
+            })
+        }
     //     checkScroll() {
     //         const resultContent = document.querySelector('.result_content');
     //         if (resultContent) {
@@ -536,7 +536,7 @@ export default defineComponent({
     //             }
     //         }
     //     },
-    // },
+    },
     // mounted() {
     //     window.addEventListener('scroll', this.checkScroll);
     //     this.checkScroll();
