@@ -1,15 +1,5 @@
 @import "base/reset";
 @import "baseAndMixin";
-//base
-// @import "base/color";
-// @import "base/font";
-// @import "base/var";
-
-// mixin
-// @import "mixin/all";
-
-// plugin
-// @import '../node_modules/bootstrap/scss/bootstrap';
 
 // component
 @import "component/arrow";
@@ -33,51 +23,56 @@
 @import "page/schedule";
 @import "page/trip";
 
+#app {
+    @include sm_p;
+    font-family: $fontFamily;
+    color: $textColor_default;
+    background: $bgColor_tint;
 
-// #app {
-//     font-family: $fontFamily;
-//     color: $textColor_default;
-//     background: $bgColor_tint;
-//     @include sm_p;
-// }
+    h1 {
+        @include sm_h1;
+    }
 
-// h1 {
-//     @include sm_h1;
-// }
-// h2 {
-//     @include sm_h2;
-// }
-// h3 {
-//     @include sm_h3;
-// }
-// h4 {
-//     @include sm_h4;
-// }
-// h5 {
-//     @include sm_h5;
-// }
-// main {
-//     color: $textColor_default;
-//     background: $bgColor_tint;
-// }
-// @media all and (min-width: $xl) {
-//     #app {
-//         @include xl_p;
-//     }
+    h2 {
+        @include sm_h2;
+    }
 
-//     h1 {
-//         @include xl_h1;
-//     }
-//     h2 {
-//         @include xl_h2;
-//     }
-//     h3 {
-//         @include xl_h3;
-//     }
-//     h4 {
-//         @include xl_h4;
-//     }
-//     h5 {
-//         @include xl_h5;
-//     }
-// }
+    h3 {
+        @include sm_h3;
+    }
+
+    h4 {
+        @include sm_h4;
+    }
+
+    h5 {
+        @include sm_h5;
+    }
+
+}
+
+@media all and (min-width: $md) {
+    #app {
+        @include xl_p;
+
+        h1 {
+            @include xl_h1;
+        }
+
+        h2 {
+            @include xl_h2;
+        }
+
+        h3 {
+            @include xl_h3;
+        }
+
+        h4 {
+            @include xl_h4;
+        }
+
+        h5 {
+            @include xl_h5;
+        }
+    }
+}

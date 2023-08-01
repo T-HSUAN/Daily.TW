@@ -166,9 +166,9 @@ export default {
         //         item.location.includes(this.tagFilter.default))
 
         // }
+        // 檢查商品是否已經存在於購物車中
         createItem(index) {
             let cartItem = this.ticketDisplay[index];
-            // 檢查商品是否已經存在於購物車中
             if (!this.itemList.includes(cartItem)) {
                 this.itemList.push(cartItem);
             } else {
@@ -176,7 +176,7 @@ export default {
             }
             this.saveCartData();
         },
-        // 刪除項目
+        // 刪除購物車項目
         cancel: function (index) {
             // console.log(this);
             this.itemList.splice(index, 1);
