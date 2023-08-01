@@ -25,125 +25,193 @@
             </div>
         </section>
 
-        <!-- 行程區塊 -->
-        <section class="index_trip">
-            <div class="bgCurve">
-                <img src="~@/assets/img/bgCurve_A.png" alt="" />
-            </div>
-            <div class="title">
-                <div class="duckDeco">
-                    <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
-                    <img src="~@/assets/img/duck_green.png" alt="" class="duck" />
+            <!-- 行程區塊 -->
+            <section class="index_trip">
+                <div class="bgCurve">
+                    <img src="~@/assets/img/bgCurve_A.png" alt="" />
                 </div>
-                <h2>精選出遊特輯</h2>
-            </div>
-            <div class="content">
-                <div class="wrap">
-                    <div class="head">
-                        <div class="tripTitle">台中文青一日遊</div>
-                        <div class="tripCover">
-                            <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
-                        </div>
-                    </div>
-                    <div class="info">
-                        <div class="tripSpots">
-                            <div class="spot spot1">
-                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                <h5>屯區藝文中心</h5>
-                            </div>
-                            <div class="spot spot2">
-                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                <h5>太平買菸場</h5>
-                            </div>
-                            <div class="spot spot3">
-                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                <h5>新盛綠川水岸廊道</h5>
-                            </div>
-                            <div class="spot spot4">
-                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                <h5>第二市場</h5>
-                            </div>
-                        </div>
-                        <div class="deco">
-                            <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
-                        </div>
-                        <router-link to="/trip_info">
-                            <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                                <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                            </button>
-                        </router-link>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 穿搭區塊 -->
-        <section class="index_oott">
-            <div class="bgCurve">
-                <img src="~@/assets/img/bgCurve_B.png" alt="" />
-            </div>
-            <div class="title">
-                <div class="duck">
+                <div class="title">
                     <div class="duckDeco">
                         <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
-                        <img src="~@/assets/img/duck_yellow.png" alt="" class="duck" />
+                        <img src="~@/assets/img/duck_green.png" alt="" class="duck" />
                     </div>
+                    <h2>精選出遊特輯</h2>
                 </div>
-                <h2>人氣穿搭特輯</h2>
-            </div>
-            <div class="content">
-                <div class="wrap">
-                    <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottRank="oott.oottRank"
-                            :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                    </div>
-                </div>
-                <div class="panel">
-                    <button class="arrow">
-                        <font-awesome-icon icon="fa-solid fa-arrow-left" />
-                    </button>
-                    <button class="arrow">
-                        <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                    </button>
-                </div>
-                <router-link to="/oott">
-                    <button class="btn">查看更多</button>
-                </router-link>
-            </div>
-        </section>
-        <!-- 票券區塊 -->
-        <section class="index_ticket">
-            <div class="bgCurve">
-                <img src="~@/assets/img/bgCurve_A.png" alt="" />
-            </div>
-            <div class="title">
-                <div class="duck">
-                    <div class="duckDeco">
-                        <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
-                        <img src="~@/assets/img/duck_blue.png" alt="" class="duck" />
-                    </div>
-                </div>
-                <h2>景點票券優惠</h2>
-            </div>
-            <div class="content">
-                <div class="wrap">
-                    <div class="ticketCards">
-                        <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
-                            <router-link to="/ticket_info" title="點擊查看票券詳情">
-                                <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                                    :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                                    :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
-                                    :discountTag="ticket.discountTag" />
+                <Carousel class="content">
+                    <Slide class="wrap">
+                        <div class="head">
+                            <div class="tripTitle">台中文青一日遊</div>
+                            <div class="tripCover">
+                                <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="tripSpots">
+                                <div class="spot spot1">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>屯區藝文中心</h5>
+                                </div>
+                                <div class="spot spot2">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>太平買菸場</h5>
+                                </div>
+                                <div class="spot spot3">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>新盛綠川水岸廊道</h5>
+                                </div>
+                                <div class="spot spot4">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>第二市場</h5>
+                                </div>
+                            </div>
+                            <div class="deco">
+                                <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
+                            </div>
+                            <router-link to="/trip_info">
+                                <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                                </button>
                             </router-link>
                         </div>
-                    </div>
+                    </Slide>
+                    <Slide class="wrap">
+                        <div class="head">
+                            <div class="tripTitle">台北文青一日遊</div>
+                            <div class="tripCover">
+                                <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="tripSpots">
+                                <div class="spot spot1">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>屯區藝文中心</h5>
+                                </div>
+                                <div class="spot spot2">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>太平買菸場</h5>
+                                </div>
+                                <div class="spot spot3">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>新盛綠川水岸廊道</h5>
+                                </div>
+                                <div class="spot spot4">
+                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                    <h5>第二市場</h5>
+                                </div>
+                            </div>
+                            <div class="deco">
+                                <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
+                            </div>
+                            <router-link to="/trip_info">
+                                <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                                </button>
+                            </router-link>
+                        </div>
+                    </Slide>
+                    <template #addons>
+                        <Navigation />
+                    </template>
+                </Carousel>
+                <!-- <Carousel :autoplay="false" :wrap-around="truwe">
+                        <Slide v-for="(trip, index) in trips" :key="index" class="wrap">
+                            <div class="head">
+                                <div class="tripTitle">{{ trip.tripTitle }}</div>
+                                <div class="tripCover">
+                                    <img :src="tripCover" alt="">
+                                </div>
+                            </div>
+                            <div class="info">
+                                <div class="tripSpots">
+                                    <div v-for="(spot, index) in tripSpots" :key="index" class="spot">
+                                        <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                        <h5>{{ spot.name }}</h5>
+                                    </div>
+                                    
+                                </div>
+                                <div class="deco">
+                                    <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
+                                </div>
+                                <router-link :to="trip.tripLink">
+                                    <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                                    </button>
+                                </router-link>
+                            </div>
+                        </Slide>
+                    </Carousel> -->
+            </section>
+
+            <!-- 穿搭區塊 -->
+            <section class="index_oott">
+                <div class="bgCurve">
+                    <img src="~@/assets/img/bgCurve_B.png" alt="" />
                 </div>
-                <router-link to="/ticket">
-                    <button class="btn">查看更多</button>
-                </router-link>
-            </div>
-        </section>
+                <div class="title">
+                    <div class="duck">
+                        <div class="duckDeco">
+                            <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                            <img src="~@/assets/img/duck_yellow.png" alt="" class="duck" />
+                        </div>
+                    </div>
+                    <h2>人氣穿搭特輯</h2>
+                </div>
+                <div class="content">
+                    <div class="wrap">
+                        <div class="oottCards">
+                            <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottRank="oott.oottRank"
+                                :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <button class="arrow">
+                            <font-awesome-icon icon="fa-solid fa-arrow-left" />
+                        </button>
+                        <button class="arrow">
+                            <font-awesome-icon icon="fa-solid fa-arrow-right" />
+                        </button>
+                    </div>
+                    <router-link to="/oott">
+                        <button class="btn">查看更多</button>
+                    </router-link>
+                </div>
+            </section>
+            <!-- 票券區塊 -->
+            <section class="index_ticket">
+                <div class="bgCurve">
+                    <img src="~@/assets/img/bgCurve_A.png" alt="" />
+                </div>
+                <div class="title">
+                    <div class="duck">
+                        <div class="duckDeco">
+                            <img src="~@/assets/img/duck_trace.png" alt="" class="trace" />
+                            <img src="~@/assets/img/duck_blue.png" alt="" class="duck" />
+                        </div>
+                    </div>
+                    <h2>景點票券優惠</h2>
+                </div>
+                <div class="content">
+                    <div class="wrap">
+                        <div class="ticketCards">
+                            <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
+                                <router-link to="/ticket_info" title="點擊查看票券詳情">
+                                    <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
+                                        :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
+                                        :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
+                                        :discountTag="ticket.discountTag" />
+                                </router-link>
+                            </div>
+                        </div>
+                    </div>
+                    <router-link to="/ticket">
+                        <button class="btn">查看更多</button>
+                    </router-link>
+                </div>
+            </section>
+        </main>
     </div>
 </template>
 
@@ -151,7 +219,7 @@
 // @ is an alias to /src
 import oottCard from "@/components/OottCard.vue";
 import ticketCard from "@/components/TicketVertical.vue";
-import { Carousel, Pagination, Slide } from 'vue3-carousel';
+import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
 
 import 'vue3-carousel/dist/carousel.css';
 
@@ -164,6 +232,7 @@ export default {
         Carousel,
         Slide,
         Pagination,
+        Navigation,
     },
     data() {
         return {
@@ -174,6 +243,20 @@ export default {
                 { src: require('@/assets/img/index_plan_3.png') },
                 { src: require('@/assets/img/index_plan_4.png') },
             ],
+
+            // trips: [
+            //     {
+            //         tripTitle: "台中文青一日遊",
+            //         tripCover: request('@/assets/img/index_trip_cover_example.png'),
+            //         tripSpots: [
+            //             {name: "屯區藝文中心"},
+            //             {name: "太平買菸場"},
+            //             {name: "新盛綠川水岸廊道"},
+            //             {name: "第二市場"}
+            //         ],
+            //         tripLink: "/trip_info",
+            //     },
+            // ],
 
             ootts: [
                 {

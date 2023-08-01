@@ -1,0 +1,310 @@
+.ticket_info {
+    max-width: $sm;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    h3 {
+        margin-bottom: $sp3;
+        text-align: left;
+    }
+    .ticket_desc {
+        margin: $sp1 0;
+        .content {
+            padding-left: $sp3;
+            list-style: number;
+            li {
+                line-height: 30px;
+                letter-spacing: 0.54px;
+            }
+        }
+    }
+    //目前選擇
+    .ticket_select {
+        display: none;
+    }
+    .ticket_amount {
+        display: none;
+    }
+    .ticket_notice {
+        margin: $sp5 0;
+        padding: $sp2;
+        border: 1px solid $textColor_default;
+        dl {
+            font-size: 16px;
+        }
+        dt {
+            margin: $sp2 0;
+            font-size: 14px;
+        }
+        dd {
+            margin: $sp1 0;
+            font-size: 14px;
+        }
+    }
+}
+.cart {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    right: 0px;
+    top: 150px;
+    background: $textColor_tint;
+    border-radius: 50% 0 0 50%;
+    .cart_toggle {
+        width: 28px;
+        height: 28px;
+        padding: 17px;
+        position: absolute;
+        top: 9px;
+        left: 10px;
+        background: $textColor_white;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .numTag {
+        display: inline-block;
+        width: 20px;
+        line-height: 20px;
+        position: absolute;
+        right: 7px;
+        top: 7px;
+        text-align: center;
+        color: $textColor_white;
+        background: $warningColor;
+        border-radius: 50%;
+    }
+}
+
+@media all and (min-width: $md) {
+    .ticket_info {
+        box-sizing: border-box;
+        max-width: $md;
+        margin: 0 auto;
+        padding: $sp2;
+        h3 {
+            margin-bottom: $sp3;
+        }
+        .ticket_desc {
+            width: 45%;
+            margin: $sp4 0 $sp5;
+            .content {
+                padding-left: $sp3;
+                li {
+                    line-height: 30px;
+                }
+            }
+        }
+        //目前選擇
+        .ticket_select {
+            display: block;
+            width: 55%;
+            margin: $sp5 0 $sp4;
+            .ticket_item {
+                display: flex;
+                flex-direction: column;
+                .ticket_adult,
+                .ticket_ex {
+                    display: flex;
+                    margin: $sp1 0;
+                    select {
+                        width: 65px;
+                        height: 50px;
+                        font-size: 20px;
+                        color: $textColor_default;
+                        text-align: center;
+                        border: 2px solid $textColor_default;
+                        border-radius: 50px;
+                    }
+                    label {
+                        width: 120px;
+                        margin: 0 $sp3;
+                        .name {
+                            font-size: $xl_h5;
+                        }
+                        .price {
+                            .final {
+                                width: 100%;
+                                font-size: 24px;
+                            }
+                            .origin {
+                                color: $textColor_tint;
+                                font-size: 16px;
+                                text-decoration: line-through;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .ticket_amount {
+            display: block;
+            width: 320px;
+            height: 404px;
+            position: absolute;
+            top: $sp6;
+            right: 0;
+            .content {
+                padding: $sp3;
+                display: flex;
+                flex-direction: column;
+                position: sticky;
+                top: 100px;
+                font-size: $xl_p;
+                background: $bgColor_default;
+                p {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    margin: $sp2 0;
+                }
+                .total {
+                    margin: $sp3 0;
+                    font-size: 20px;
+                    text-align: right;
+                    span {
+                        font-size: 28px;
+                        font-weight: 700;
+                    }
+                }
+                .buy_btn {
+                    margin-top: $sp2;
+                    display: flex;
+                    justify-content: space-between;
+                    .btn {
+                        padding: $sp1 20px;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+    .ticket_notice {
+        margin: $sp5 0;
+        padding: $sp3 $sp4;
+        dl {
+            font-size: 18px;
+        }
+        dt {
+            margin: $sp2 0;
+            font-size: 16px;
+        }
+        dd {
+            margin: $sp1 0;
+            font-size: 16px;
+        }
+    }
+}
+@media all and (min-width: $xl) {
+    .ticket_info {
+        box-sizing: border-box;
+        max-width: $xl;
+        width: 100%;
+        margin: 0 auto;
+        padding: $sp3 $sp4;
+        h3 {
+            margin-bottom: $sp3;
+        }
+        .ticket_desc {
+            width: 60%;
+            margin: $sp5 0;
+            .content {
+                padding-left: $sp3;
+                li {
+                    line-height: 30px;
+                }
+            }
+        }
+        //目前選擇
+        .ticket_select {
+            display: block;
+            width: 60%;
+            margin: $sp5 0;
+            .ticket_item {
+                flex-direction: row;
+                justify-content: space-between;
+                .ticket_adult,
+                .ticket_ex {
+                    display: flex;
+                    margin: 0;
+                    select {
+                        width: 100px;
+                        height: 75px;
+                        font-size: 24px;
+                    }
+                    label {
+                        width: 140px;
+                        margin: 0 $sp4;
+                        .name {
+                            font-size: $xl_h5;
+                        }
+                        .price {
+                            .final {
+                                width: 100%;
+                                font-size: 32px;
+                            }
+                            .origin {
+                                color: $textColor_tint;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .ticket_amount {
+            width: 400px;
+            height: calc(100% - 128px);
+            position: absolute;
+            top: $sp8;
+            right: $sp4;
+            .content {
+                height: 516px;
+                padding: $sp4;
+                display: flex;
+                flex-direction: column;
+                position: sticky;
+                top: 110px;
+                right: $sp3;
+                font-size: $xl_p;
+                background: $bgColor_default;
+                p {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    margin: $sp3 0;
+                }
+                .total {
+                    margin: $sp6 0;
+                    font-size: 20px;
+                    text-align: right;
+                    span {
+                        font-size: 32px;
+                        font-weight: 700;
+                    }
+                }
+                .buy_btn {
+                    margin-top: $sp10;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+    .ticket_notice {
+        box-sizing: border-box;
+        width: 60%;
+        margin: $sp5 0;
+        padding: $sp3 $sp4;
+        dl {
+            font-size: 20px;
+        }
+        dt {
+            margin: $sp2 0;
+            font-size: 16px;
+        }
+        dd {
+            margin: $sp1 0;
+            font-size: 16px;
+        }
+    }
+}
