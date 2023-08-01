@@ -128,13 +128,15 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '@/assets/scss/main.scss';
     .oott_edit_wrap{
         width: 257px;
         margin: 0 auto;
+        padding-top: 74px;
         @media (min-width: 768px) {
             width: 735px;
+            padding-top: 200px;
         }
         @media (min-width: 1200px) {
             box-sizing: border-box;

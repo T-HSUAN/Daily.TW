@@ -1,6 +1,32 @@
 <template>
     <div class="oott_post_wrap">
         <div class="breadcrumb"></div>
+<!-- test  -->
+
+            <vue-cropper 
+            ref="cropper"
+            :img="currentImg"
+            @img-upload="handleUpload"
+            >
+            </vue-cropper>
+            <section class="control">
+            <el-upload
+                class="upload-demo"
+                :auto-upload="false"
+                action=""
+                @change="handleChange"
+                :show-file-list="false"
+            >
+                <template #trigger>
+                <el-button type="primary">选择图片</el-button>
+                </template>
+            </el-upload>
+            <el-button :loading="loading" @click="click">获取截图</el-button>
+            </section>
+
+
+
+<!-- test  -->
         <div class="post_title">
             <h2>穿搭投稿</h2>
             <img class="foot_print" src="@/assets/img/oott_card_deco_footprint.png" alt="">
@@ -101,12 +127,14 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import '@/assets/scss/main.scss';
     .oott_post_wrap{
         width: 257px;
+        padding-top: 74px;
         @media (min-width: 768px) {
             width: 735px;
+            padding-top: 200px;
         }
         @media (min-width: 1024px) {
             width: 1000px;
