@@ -51,8 +51,7 @@
                                     ！待修改：勿使用不雅文字
                                 </div>
                             </div>
-                            <textarea name="" id="" cols="5" rows="10">
-                            </textarea>
+                            <textarea name="" id="" cols="5" rows="10"></textarea>
                         </div>
                         <div class="style_tags">
                             <div class="edit_subtitle">
@@ -99,7 +98,9 @@
                                 </label>
                         </div>
                         <div class="button_area">
-                            <button class="cancel_btn">取消編輯</button>
+                            <button class="cancel_btn">
+                                <router-link to="/my_oott" >取消編輯</router-link>
+                            </button>
                             <button class="btn">送出審核</button>
                         </div>
                     </div>
@@ -270,6 +271,11 @@ export default{
                 justify-content: end;
                 .btn, .cancel_btn{
                     margin: 12px;
+                }
+                .cancel_btn{
+                    a{
+                        color: #6A5D4A;
+                    }
                 }
             }
         }
