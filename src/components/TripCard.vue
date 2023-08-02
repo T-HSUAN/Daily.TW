@@ -70,7 +70,7 @@ export default {
     .bookmark {
         position: absolute;
         top: -2px;
-        right: 32px;
+        right: 64px;
         z-index: 5;
 
         input[type="checkbox"] {
@@ -139,6 +139,11 @@ export default {
             font-family: Noto Sans CJK TC;
             font-size: 16px;
             letter-spacing: 0.32px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
         }
 
         .trip_card_title {
@@ -148,6 +153,11 @@ export default {
             font-family: Shippori Mincho;
             font-weight: 700;
             letter-spacing: 0.64px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
         }
 
         .trip_card_desc {
@@ -155,13 +165,17 @@ export default {
             align-self: stretch;
             overflow: hidden;
             color: $textColor_white;
-            text-overflow: ellipsis;
             line-height: 180%;
             position: relative;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
 
             @media (min-width:768px) {
                 max-height: 89px;
                 line-height: 165%;
+                overflow: hidden;
             }
 
             // &::after{
