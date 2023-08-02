@@ -6,9 +6,18 @@ export default createStore({
         filter: {
             searchText: "",
         },
+        name:'登入/註冊',
+        isLogin: false,
     },
     getters: {},
-    mutations: {},
+    mutations: {
+        setName (state, payload) {
+            state.name = payload
+        },
+        setIsLogin(state, value) {
+            state.isLogin = value;
+        },
+    },
     actions: {},
     modules: {},
 });
