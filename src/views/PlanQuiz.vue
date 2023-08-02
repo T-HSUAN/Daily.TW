@@ -524,6 +524,14 @@ export default {
                     }
                 }
 
+                .ivu-select-item {
+                    color: $textColor_default;
+                }
+                .ivu-select-item-selected,
+                .ivu-select-item-selected::after{
+                    color: $default_red;
+                }
+
                 .ivu-tag {
                     border: none;
                     background: $textColor_default;
