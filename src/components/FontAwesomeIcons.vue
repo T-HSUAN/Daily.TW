@@ -18,6 +18,7 @@
         <font-awesome-icon icon="fa-solid fa-arrow-left" />
         <font-awesome-icon icon="fa-solid fa-arrow-right" />
         <font-awesome-icon icon="fa-solid fa-arrow-up" />
+        <font-awesome-icon icon="fa-solid fa-chevron-down" />
         <font-awesome-icon icon="fa-solid fa-circle-chevron-down" />
         <font-awesome-icon icon="fa-solid fa-chevron-right" />
         <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
