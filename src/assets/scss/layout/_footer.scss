@@ -6,6 +6,7 @@ footer{
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-radius: 10px 10px 0px 0px;
     margin-top: -8px;
     position: relative;
@@ -14,6 +15,8 @@ footer{
         padding: $sp5 $sp15;
     }
     .footer_section{
+        width: 100%;
+        max-width: 1200px;
         border-bottom: 1px solid $textColor_default;
         display: flex;
         justify-content: space-between;
@@ -78,6 +81,7 @@ footer{
     }
     .footer_notice{
         width: 100%;
+        max-width: 1200px;
         padding: $sp1 $sp1 0 $sp1;
         display: flex;
         justify-content: center;
