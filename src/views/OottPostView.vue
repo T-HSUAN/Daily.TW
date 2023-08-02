@@ -77,7 +77,7 @@
             <button class="btn" @click="showPopbox">確定送出</button>
         </div>
 
-        <!-- xl pop_box-->
+        <!-- pop_box-->
         <div class="member_sm" v-if="isPopBoxVisible">
             <div class="block">
                 <div class="pic">
@@ -87,7 +87,7 @@
                     貼文狀態</h3>
                  </div>
                 <div class="button">
-                    <button class="cancel" @click="showPopbox">取消</button>
+                    <!-- <button class="cancel" @click="showPopbox">取消</button> -->
                     <button class="btn" @click="showPopbox">確定</button>
                 </div>
             </div>
