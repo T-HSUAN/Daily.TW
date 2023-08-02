@@ -13,6 +13,21 @@
                     <router-link v-for=" item in menu " :key="item.id" :to="'/' + item.link" @click="toggleSidebar">
                         <li>{{ item.name }}</li>
                     </router-link>
+                    <!-- 登入後顯示 -->
+                    <div v-if="isLogin">
+                        <div @click="toggleUser">
+                            會員中心,
+                        </div>
+                        <div @click="handleLogout">
+                            登出
+                        </div>
+                    </div>
+                    <!-- 未登入狀態 -->
+                    <div v-else>
+                        <router-link to="/login">
+                            <li>{{ $store.state.name }}</li>
+                        </router-link>
+                    </div>
                 </ul>
                 <router-link to="/">
                     <img class="sidebar_logo" :src="LOGO.sidebar" alt="logo" @click="hideSidebar">
@@ -31,9 +46,28 @@
                     <router-link v-for=" item in menu " :key="item.id" :to="'/' + item.link">
                         <li>{{ item.name }}</li>
                     </router-link>
+                    <!-- 登入後顯示 -->
+                    <div v-if="isLogin">
+                        <div @click="toggleUser">
+                            會員中心,
+                        </div>
+                        <div @click="handleLogout">
+                            登出
+                        </div>
+                    </div>
+                    <!-- 未登入狀態 -->
+                    <div v-else>
+                        <router-link to="/login">
+                            <li>{{ $store.state.name }}</li>
+                        </router-link>
+                    </div>
                 </ul>
             </nav>
         </div>
+        
+        
+
+
     </header>
 </template>
 <script>
@@ -77,13 +111,13 @@ export default {
                     display: "none",
                 },
 
-                {
-                    id: 6,
-                    name: "登入|註冊",
-                    link: "login",
-                    img: "flag_login-reg",
-                    display: "none",
-                },
+                // {
+                //     id: 6,
+                //     name: "登入|註冊",
+                //     link: "login",
+                //     img: "flag_login-reg",
+                //     display: "none",
+                // },
             ],
             LOGO: {
                 sidebar: require('@/assets/img/layout/sidebar_logo.svg'),
@@ -127,7 +161,21 @@ export default {
                 this.LOGO.size = 'xl'
             }
         },
+        toggleUser() {
+            this.$router.push({ path: "/member" });
+        },
+        handleLogout() {
+            //登出
+            this.$store.commit('setName', "登入/註冊");
+            this.$store.commit('setIsLogin', false);
+            this.$router.push("/");
+        },
 
+    },
+    computed: {
+        isLogin() {
+            return this.$store.state.isLogin;
+        },
     },
     mounted() {
         this.Resize();
