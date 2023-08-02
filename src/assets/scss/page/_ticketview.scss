@@ -152,53 +152,53 @@
         }
     }
 
-    .cart {
-        width: 80px;
-        height: 80px;
-        position: fixed;
-        right: 0px;
-        top: 150px;
-        background: $textColor_tint;
-        border-radius: 50% 0 0 50%;
-        z-index: 9999;
-
-        .cart_toggle {
-            width: 28px;
-            height: 28px;
-            padding: 17px;
-            position: absolute;
-            top: 9px;
-            left: 10px;
-            background: $textColor_white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .numTag {
-            display: inline-block;
-            width: 20px;
-            line-height: 20px;
-            position: absolute;
-            right: 7px;
-            top: 7px;
-            text-align: center;
-            color: $textColor_white;
-            background: $warningColor;
-            border-radius: 50%;
-        }
-    }
-
     .cart_sidebar {
         box-sizing: border-box;
-        @include width(100);
+        width: 80%;
         height: 100vh;
         padding: $sp3 $sp4;
         position: fixed;
         top: 150px;
-        right: 0;
+        right: -80%;
         color: $textColor_default;
         background: $textColor_tint;
-        z-index: 9999;
+        transition: right .5s ease-in-out;
+        z-index: 9998;
+
+        .cart_icon {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            left: -79px;
+            top: 0px;
+            background: $textColor_tint;
+            border-radius: 50% 0 0 50%;
+
+            .cart_switch {
+                width: 28px;
+                height: 28px;
+                padding: 17px;
+                position: absolute;
+                top: 9px;
+                left: 10px;
+                background: $textColor_white;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .numTag {
+                display: inline-block;
+                width: 20px;
+                line-height: 20px;
+                position: absolute;
+                right: 7px;
+                top: 7px;
+                text-align: center;
+                color: $textColor_white;
+                background: $warningColor;
+                border-radius: 50%;
+            }
+        }
 
         h2 {
             margin-bottom: $sp3;
@@ -224,7 +224,7 @@
                 text-align: center;
 
                 img {
-                    width: 250px;
+                    width: 200px;
                 }
             }
 
@@ -329,6 +329,11 @@
             }
         }
     }
+
+    .showCartSidebar {
+        right: 7px;
+        transition: right .5s ease-in-out;
+    }
 }
 
 @media all and (min-width: $md) {
@@ -414,34 +419,34 @@
             }
         }
 
-        .cart {
-            width: 100px;
-            height: 100px;
-            right: 0px;
-            top: 150px;
-
-            .cart_toggle {
-                width: 36px;
-                height: 36px;
-                padding: 21px;
-                top: 11px;
-                left: 13px;
-            }
-
-            .numTag {
-                width: 25px;
-                line-height: 25px;
-                right: $sp1;
-                top: $sp1;
-            }
-        }
-
         .cart_sidebar {
             top: 150px;
-            right: 0;
+            right: -400px;
             width: 400px;
             height: 784px;
             padding: $sp4 $sp5;
+
+            .cart_icon {
+                width: 100px;
+                height: 100px;
+                left: -100px;
+                top: 0px;
+
+                .cart_switch {
+                    width: 36px;
+                    height: 36px;
+                    padding: 21px;
+                    top: 11px;
+                    left: 13px;
+                }
+
+                .numTag {
+                    width: 25px;
+                    line-height: 25px;
+                    right: $sp1;
+                    top: $sp1;
+                }
+            }
 
             h2 {
                 margin-bottom: $sp3;
@@ -521,6 +526,10 @@
                     color: $bgColor_tint;
                 }
             }
+        }
+
+        .showCartSidebar {
+            right: 0px;
         }
     }
 }
