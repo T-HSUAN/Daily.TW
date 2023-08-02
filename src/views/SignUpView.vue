@@ -19,7 +19,7 @@
             <form class="form">
                 <div v-for="(item, index) in tabItems" :key="index">
                     <label :for="'member-' + index">{{ item.text }}</label>
-                    <input type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
+                    <input ref="inputEls" type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
                         :id="'member-' + index" />
                 </div>
                 <label for="year">生日</label>
@@ -127,11 +127,11 @@ export default {
             isPopBoxVisible: false,
         }
     },
-    // computed:{
-    //     message(){
-    //         return this.$store.state.msg;
-    //     }
-    // },
+    computed:{
+        inputEls(){
+            return Array.from(this.$refs.inputEls) ?? [];
+        }
+    },
     methods: {
         onYearChange() {
             // 在這裡處理年份選項變化後的相關邏輯
@@ -184,7 +184,8 @@ export default {
             this.phone = this.phone.replace(/\D/g, '');
         },
         showPopbox() {
-            this.isPopBoxVisible = !this.isPopBoxVisible;
+            this.inputEls[2].focus();
+            // this.isPopBoxVisible = !this.isPopBoxVisible;
         },
         redirectToOtherPage() {
             this.$router.push('/member');

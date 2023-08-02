@@ -6,8 +6,6 @@ export default createStore({
         filter: {
             searchText: "",
         },
-        name:'登入註冊',
-        isLogin:false,
     },
     getters: {},
     mutations: {},

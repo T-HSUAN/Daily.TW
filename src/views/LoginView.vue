@@ -1,7 +1,6 @@
 <!-- 登入/註冊 -->
 <template>
-<section class="canva">
-<section class="loginwrap">
+<section class="logincard">
     <section class="loginview">
         <div v-for="(item, key) in tabItems" :class="{ active: key == tabActive }">
             <div v-if="tabActive == item.tab" class="canvas">
@@ -44,13 +43,14 @@
                             取消
                         </div>
                         <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
-                        <button v-if="item.tab == 2" @click="signup" class="btn">
+                        <router-link v-if="item.tab == 2" to="/signup" class="btn">
                             註冊
-                        </button>
-                        <button v-else v-if="item.tab == 1" to="/member" @click="login" class="btn"
+                        </router-link>
+                        <router-link v-else v-if="item.tab == 1" to="/member" @click="login" class="btn"
                             :class="{ btn: isEmailValid && isPasswordValid }">
+                            <!-- :disabled="!(isEmailValid && isPasswordValid)" -->
                             登入
-                        </button>
+                        </router-link>
                     </div>
                 </div>
                 <div class="register" :class="{ active: isActive }">
@@ -60,19 +60,17 @@
                         <img src="@/assets/img/joinus_md.png" alt="joinus">
                     </div>
                     <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
-                    <button v-if="item.tab == 1" to="/login" @click="handleClick" class="btn">
+                    <router-link v-if="item.tab == 1" to="/login" @click="handleClick" class="btn">
                         註冊
-                    </button>
+                    </router-link>
                 </div>
             </div>
         </div>
     </section>
 </section>
-</section>
 </template>
 <script>
 export default {
-    name:"login",
     data() {
         return {
             tabActive: 1,
@@ -110,16 +108,16 @@ export default {
         //     this.isPasswordValid = regex.test(this.psw);
         // },
         login() {
-
+            // if (this.isEmailValid && this.isPasswordValid) {
             if (this.email === "test123" && this.psw === "test123") {
                 window.alert("登入成功");
-                this.$store.commit('setName', this.email); 
-                this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                // this.$router.push('/about');
+                // 执行页面跳转
+                // this.$router.push({ path: "/member" });
             } else {
                 window.alert("帳號或密碼錯誤，請重新登入");
-                // this.$router.replace({ path: "/login" });
+                this.$router.replace({ path: "/login" });
             }
+            // }
         },
         // 切換tab
         updateTab(index) {
@@ -128,9 +126,6 @@ export default {
         handleClick() {
             this.updateTab(this.tabItems[this.tabActive].goNext);
             this.isActive = !this.isActive;
-        },
-        signup(){
-            this.$router.push('/signup');
         }
     }
 }
@@ -143,14 +138,17 @@ export default {
 // *{
 //     outline: 1px solid red;
 // }
+#app {
+    background-color: $bgColor_default;
+}
 
-.loginwrap{
-    background-color: $bgColor_tint;
+.logincard{
     padding-top: 74px;
+
     @media all and (min-width: $md) {
         padding-top: 200px;
-        
     }
+
 .loginview {
     margin: 150px 0 60px;
 
