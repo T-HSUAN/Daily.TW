@@ -105,10 +105,11 @@
 </style>
 
 <script>
+import {GET} from '@/plugin/axios'
 import TripCardConst from "@/components/TripCardConst.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
-import tripDataForUser from "@/store/tripDataForUser.js";
+// import tripDataForUser from "@/store/tripDataForUser.js";
 
 export default {
     components: {
@@ -117,7 +118,7 @@ export default {
     },
     data() {
         return {
-            tripDataForUser:tripDataForUser,
+            tripDataForUser:[],
         }
     },
     methods: {
@@ -125,7 +126,12 @@ export default {
             // Combine regionName and placeTagName with a space between them
             return `${regionName} ${placeTagName}`;
         },
-    }
+    },
+    created() {
+        GET('/fake/TripData.json').then(res => {
+            this.tripDataForUser = res
+        })
+    },
 
 
     /* 以下使用 fetch 但上線前失敗了*/
