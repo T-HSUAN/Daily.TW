@@ -22,11 +22,11 @@
         </div>
         <div class="result_wave"></div>
         <div class="result_content">
-            <div class="result_subtitle">
+            <div class="result_subtitle" v-show="showResultContent">
                 <h2>你的一日專屬旅著</h2>
                 <div class="title_footprint"></div>
             </div>
-            <div class="content_desc">
+            <div class="content_desc" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
                         <h3>台中文青一日遊</h3>
@@ -256,19 +256,14 @@
                                 </div>
                                 <div class="ticket_price">
                                     <div class="price_box">
+                                        <!-- <span>NT$ 200</span> -->
                                         <span>NT$ 200</span>
-                                        <span>NT$ 200</span>
-                                    </div>
-                                    <div class="ticket_link">
-                                        <router-link to="/ticket_info">
-                                            查看詳情
-                                        </router-link>
                                     </div>
                                 </div>
                             </div>
                             <!-- <div class="sale_tag">
                                 <span>75折</span>
-                            </div> -->
+                            </div>  -->
                         </div>
                     </router-link>
                     <div class="ticket_card">
@@ -281,7 +276,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content_desc">
+            <div class="content_desc" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
                         <h3>基隆探索大自然之旅</h3>
@@ -310,7 +305,7 @@
                         <div class="place_desc">
                             <div class="place_content">
                                 <h4>正濱漁港彩色屋</h4>
-                                <p>正濱漁港的16棟屋子彩繪成彩色屋，讓原本寂靜的漁村，變成年輕人必訪的景點，最佳的拍攝點就在基隆市中正區正濱路58號~88號前的觀景平台　「涂大的吉古拉」非常好找，就在正濱漁港港邊，遠遠就能聞到一股碳烤香氣，基隆在地的美味，黃金色的吉古拉在彩色屋的陪襯下，顯得格外醒目，記得要先預訂才吃的到！
+                                <p>正濱漁港的16棟屋子彩繪成彩色屋，讓原本寂靜的漁村，變成年輕人必訪的景點，最佳的拍攝點就在基隆市中正區正濱路58號~88號前的觀景平台。「涂大的吉古拉」非常好找，就在正濱漁港港邊，遠遠就能聞到一股碳烤香氣，基隆在地的美味，黃金色的吉古拉在彩色屋的陪襯下，顯得格外醒目，記得要先預訂才吃的到！
                                 </p>
                             </div>
                             <div class="place_time_address">
@@ -328,7 +323,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content_desc">
+            <div class="content_desc" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
                         <h3>南投約會一日遊</h3>
@@ -375,8 +370,8 @@
                 </div>
             </div>
         </div>
-        <div class="result_content_wave"></div>
-        <div class="result_content result_bottom">
+        <div class="result_content_wave" v-show="showResultContent"></div>
+        <div class="result_content result_bottom" v-show="showResultContent">
             <div class="result_subtitle">
                 <h2>駐站旅人帶你玩</h2>
                 <div class="title_footprint"></div>
@@ -401,6 +396,7 @@ import { Carousel, Pagination, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 
 import OottCard from "@/components/OottCard.vue";
+import TicketSingleCard from "@/components/TicketSingleCard.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import TripCard from "@/components/TripCard.vue";
 
@@ -411,12 +407,13 @@ export default defineComponent({
         Slide,
         Pagination,
         OottCard,
+        TicketSingleCard,
         Ticket,
         TripCard,
     },
     data() {
         return {
-            // showResultContent: false,
+            showResultContent: false,
             resultPic1: [
                 { src: require('@/assets/img/layout/plan_result_place_1-1.png') },
                 { src: require('@/assets/img/layout/plan_result_place_1-2.png') },
@@ -479,7 +476,7 @@ export default defineComponent({
                     ticketPhoto: require("@/assets/img/layout/plan_result_ticket.png"),
                     ticketTitle: "紙箱王創意園區門票",
                     ticketTags: "台中・#親子 #小資 #藝文",
-                    originalPrice: "200",
+                    originalPrice: "",
                     FinalPrice: "200",
                 },
             ],
@@ -522,25 +519,35 @@ export default defineComponent({
                 this.weatherData = json.forecast.forecastday
                 this.loading = false
             })
-        }
-    //     checkScroll() {
-    //         const resultContent = document.querySelector('.result_content');
-    //         if (resultContent) {
-    //             const scrollPosition = window.scrollY;
-    //             const resultContentOffset = resultContent.offsetTop;
-    //             const windowHeight = window.innerHeight;
-    //             if (scrollPosition > resultContentOffset - windowHeight / 2) {
-    //             this.showResultContent = true;
-    //             } else {
-    //             this.showResultContent = false;
-    //             }
-    //         }
-    //     },
+        },
+        checkScroll() {
+            const resultBanner = document.querySelector('.result_banner');
+            if (resultBanner) {
+                const scrollPosition = window.scrollY;
+                const resultBannerHeight = resultBanner.clientHeight;
+                if (window.innerWidth >= 1024){
+                    if (scrollPosition >= resultBannerHeight / 2) {
+                        this.showResultContent = true;
+                        window.removeEventListener('scroll', this.checkScroll);
+                    }
+                }else{
+                    if (scrollPosition >= resultBannerHeight / 4) {
+                        this.showResultContent = true;
+                        window.removeEventListener('scroll', this.checkScroll);
+                    }
+                }
+            }
+        },
     },
-    // mounted() {
-    //     window.addEventListener('scroll', this.checkScroll);
-    //     this.checkScroll();
-    // },
+    mounted() {
+        // Add the event listener when the component is mounted
+        window.addEventListener('scroll', this.checkScroll);
+        this.checkScroll();
+    },
+    beforeUnmount() {
+        // Remove the event listener when the component is about to be unmounted
+        window.removeEventListener('scroll', this.checkScroll);
+    },
 });
 </script>
 
@@ -757,6 +764,7 @@ export default defineComponent({
             align-items: flex-end;
             gap: $sp1;
             padding-bottom: $sp4;
+            animation: fadeIn 1s ease-in;
 
             @media (min-width: $md) {
                 padding-bottom: $sp6;
@@ -795,7 +803,7 @@ export default defineComponent({
             margin-bottom: $sp3;
             box-shadow: 0px 3px 3px 0px rgba(106, 93, 74, 0.20);
             position: relative;
-
+            animation: fadeIn 1s ease-in;
             @media (min-width: $md) {
                 padding: $sp4;
                 margin-bottom: $sp5;
@@ -1030,10 +1038,12 @@ export default defineComponent({
                                 display: flex;
                                 align-items: center;
                                 gap: $sp1;
-
+                                padding-left: 2px;
+                                @media (min-width: $md) {
+                                    padding-left: 0;
+                                }
                                 img {
                                     width: 19px;
-
                                     @media (min-width: $md) {
                                         width: 23px;
                                     }
@@ -1041,9 +1051,10 @@ export default defineComponent({
 
                                 a {
                                     color: $textColor_default;
-                                    text-decoration: underline;
                                     @include sm_p;
-
+                                    &:hover{
+                                        color: $textColor_tint;
+                                    }
                                     @media (min-width: $md) {
                                         @include xl_p;
                                         line-height: 150%;
@@ -1171,11 +1182,12 @@ export default defineComponent({
 
                     @media (min-width: $md) {
                         flex-direction: row;
-                        overflow: scroll;
+                        overflow-x: scroll;
                         padding-bottom: $sp1;
                     }
                     @media (min-width: 1200px) {
                         justify-content: center;
+                        overflow-x: auto;
                     }
                 }
             }
@@ -1276,40 +1288,41 @@ export default defineComponent({
                         }
 
                         .ticket_price {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            gap: $sp2;
+                            // width: 100%;
+                            // display: flex;
+                            // flex-direction: column;
+                            // gap: $sp2;
 
-                            @media (min-width: 1024px) {
-                                flex-direction: row;
-                                justify-content: space-between;
-                                align-items: flex-end;
-                                gap: 0;
-                            }
+                            // @media (min-width: 1024px) {
+                            //     flex-direction: row;
+                            //     justify-content: space-between;
+                            //     align-items: flex-end;
+                            //     gap: 0;
+                            // }
 
                             .price_box {
-                                display: flex;
-                                flex-direction: column;
-                                gap: $sp1;
+                                // display: flex;
+                                // flex-direction: column;
+                                // gap: $sp1;
 
-                                @media (min-width: $xl) {
-                                    flex-direction: row;
-                                    align-items: center;
-                                    gap: $sp2;
-                                }
+                                // @media (min-width: $xl) {
+                                //     flex-direction: row;
+                                //     justify-content: flex-end;
+                                //     align-items: center;
+                                //     gap: $sp2;
+                                // }
 
-                                span:nth-child(1) {
-                                    font-size: 16px;
-                                    font-weight: 700;
-                                    color: $tint_blue;
-                                    text-decoration: line-through;
-                                }
-
-                                span:nth-child(2) {
+                                // span:nth-child(1) {
+                                //     font-size: 16px;
+                                //     font-weight: 700;
+                                //     color: $tint_blue;
+                                //     text-decoration: line-through;
+                                // }
+                                text-align: right;
+                                span{
                                     font-size: 36px;
                                     font-weight: 900;
-                                    color: #E8F66A;
+                                    color: $textColor_white;
                                 }
                             }
 
@@ -1383,6 +1396,16 @@ export default defineComponent({
             button {
                 margin: $sp5 0 $sp15 0;
             }
+        }
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
         }
     }
 
