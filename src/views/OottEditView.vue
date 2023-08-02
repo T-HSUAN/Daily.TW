@@ -12,7 +12,7 @@
                 <!-- 麵包屑 -->
                 <div class="breadcrumb">
                     <font-awesome-icon icon="fa-solid fa-chevron-left" />  
-                    <router-link to="/oott">
+                    <router-link to="/my_oott">
                         <span>我的穿搭</span>
                     </router-link>
                 </div>

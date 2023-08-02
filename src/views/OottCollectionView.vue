@@ -91,10 +91,11 @@
 
 
 <script>
+import {GET} from '@/plugin/axios'
 import OottCard from "@/components/OottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
-import oottDataForUser from "@/store/oottDataForUser.js";
+// import oottDataForUser from "@/store/oottDataForUser.js";
 
 export default{
     components:{
@@ -103,39 +104,14 @@ export default{
     },
     data() {
         return {
-            oottDataForUser:oottDataForUser,
+           oottDataForUser:[],
         }
     },
+    created() {
+        GET('/fake/OottData.json').then(res => {
+            this.oottDataForUser = res
+        })
+    },
 
-/* 以下使用 fetch 但上線前失敗了*/
-//     data() {
-//         return {
-//             oottData : [],// Initialize oottData as an empty array
-//         }
-//     },
-//     mounted() {
-//         // Fetch data from the JSON file when the component is mounted
-//         this.fetchOottData();
-//     },
-//     methods: {
-//     async fetchOottData() {
-//       try {
-//         // Use the Fetch API to fetch the data from the JSON file
-//         const response = await fetch("/fake/OottData.json"); // Adjust the path based on your project structure
-
-//         if (!response.ok) {
-//           throw new Error("Network response was not ok");
-//         }
-
-//         // Parse the JSON data
-//         const data = await response.json();
-
-//         // Set the fetched data as OottData
-//         this.oottData = data;
-//       } catch (error) {
-//         console.error("Error fetching oott data:", error);
-//       }
-//     },
-//   },
 };
 </script>  

@@ -155,10 +155,11 @@
 
 
 <script>
+import {GET} from '@/plugin/axios';
 import MyOottCard from "@/components/MyOottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
-import oottDataForUser from "@/store/oottDataForUser.js";
+// import oottDataForUser from "@/store/oottDataForUser.js";
 
 export default{
     components:{
@@ -167,17 +168,21 @@ export default{
     },
     data() {
         return {
-            oottDataForUser:oottDataForUser,
+            oottDataForUser:[],
             PAGE_SIZE: 10,
             currentPageNum: 1,
         }
     },
     computed: {
     currentList() {
-        return this.oottDataForUser.slice((this.currentPageNum - 1) * this.PAGE_SIZE, this.currentPageNum * this.PAGE_SIZE);
-    }
-    
-},
+            return this.oottDataForUser.slice((this.currentPageNum - 1) * this.PAGE_SIZE, this.currentPageNum * this.PAGE_SIZE);
+        }
+    },
+    created() {
+        GET('/fake/OottData.json').then(res => {
+            this.oottDataForUser = res
+        })
+    },
 //     data() {
 //         return {
 //             oottData : [],// Initialize oottData as an empty array
