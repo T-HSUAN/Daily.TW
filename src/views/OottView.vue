@@ -45,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="oottCards">
                         <h2>#復古</h2>
                         <div class="theme_block">
@@ -79,23 +80,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel">
+                <!-- <div class="panel">
                     <button class="arrow">
                         <font-awesome-icon icon="fa-solid fa-arrow-left" />
                     </button>
                     <button class="arrow">
                         <font-awesome-icon icon="fa-solid fa-arrow-right" />
                     </button>
-                </div>
+                </div> -->
                 <router-link to="oott_overview">
                     <btn class="btn">查看更多</btn>
                 </router-link>
             </div>
         </div>
-
-
-
-
 
 
         <!-- 人氣穿搭 -->
@@ -111,21 +108,26 @@
                 <h2>人氣穿搭</h2>
             </div>
             <div class="content">
-                <div class="wrap">
-                    <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in top_ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottRank="oott.oottRank" :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
-                    </div>
-                </div>
-                <div class="panel">
+                <Carousel class="wrap" v-bind="settings" :breakpoints="breakpoints">
+                    <Slide v-for="(oott, index) in top_ootts" :key="index">
+                        <oottCard class="oottCard"
+                            :oottRank="oott.oottRank"
+                            :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                            :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                            :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                    </Slide>
+                    <template #addons>
+                        <Navigation />
+                    </template>
+                </Carousel>
+                <!-- <div class="panel">
                     <button class="arrow">
                         <font-awesome-icon icon="fa-solid fa-arrow-left" />
                     </button>
                     <button class="arrow">
                         <font-awesome-icon icon="fa-solid fa-arrow-right" />
                     </button>
-                </div>
+                </div> -->
                 <router-link to="oott_overview">
                     <btn class="btn">查看更多</btn>
                 </router-link>
@@ -197,12 +199,20 @@
 </template>
 
 <script>
-
 import oottCard from '@/components/OottCard.vue';
+import { Carousel, Slide, Navigation } from 'vue3-carousel';
+
+import 'vue3-carousel/dist/carousel.css';
+
 
 export default {
+    name: 'Autoplay',
     components: {
         oottCard,
+
+        Carousel,
+        Slide,
+        Navigation,
     },
     data() {
         return {
@@ -298,6 +308,24 @@ export default {
                     oottCardAuthor: "Jeffery",
                 },
             ],
+
+            settings: {
+                itemsToShow: 1,
+                snapAlign: 'center',
+                },
+                breakpoints: {
+                // 700px and up
+                768: {
+                    itemsToShow: 2,
+                    snapAlign: 'start',
+                },
+                // 1024 and up
+                1200: {
+                    itemsToShow: 3,
+                    snapAlign: 'start',
+                },
+            },
+
             top_ootts: [
                 {
                     oottRank: "#01",
@@ -331,14 +359,30 @@ export default {
                     oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
                     oottCardAuthor: "Jeffery",
                 },
-                // {
-                //     oottRank: "#05",
-                //     oottPhoto: require('@/assets/img/oott_03.png'),
-                //     oottCardTags: "#復古 #性感",
-                //     oottCardDate: "2023 / 07 / 12",
-                //     oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
-                //     oottCardAuthor: "DazzleQueen",
-                // }
+                {
+                    oottRank: "#05",
+                    oottPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardTags: "#復古 #性感",
+                    oottCardDate: "2023 / 07 / 12",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
+                    oottCardAuthor: "DazzleQueen",
+                },
+                {
+                    oottRank: "#06",
+                    oottPhoto: require('@/assets/img/oott_05.png'),
+                    oottCardTags: "#休閒",
+                    oottCardDate: "2022 / 08 / 31",
+                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
+                    oottCardAuthor: "DuckLord",
+                },
+                {
+                    oottRank: "#07",
+                    oottPhoto: require('@/assets/img/oott_10.png'),
+                    oottCardTags: "#休閒 #美式",
+                    oottCardDate: "2022 / 06 / 24",
+                    oottAuthorPhoto: require('@/assets/img/duck_red.png'),
+                    oottCardAuthor: "Kay",
+                },
 
 
             ],
@@ -347,12 +391,9 @@ export default {
     methods: {
 
     },
-    components: {
-        oottCard
-    }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";
 
 .oott_view {
@@ -609,13 +650,14 @@ export default {
             margin: 0 auto;
             max-width: 1200px;
             text-align: center;
-
             @media (min-width: 768px) {
                 // overflow: hidden;
             }
 
             .wrap {
                 margin-bottom: 16px;
+
+                // justify-content: center;
                 gap: 32px;
 
                 @media (min-width: 768px) {
@@ -660,11 +702,11 @@ export default {
                                 }
 
                                 .oottCard:nth-child(2) {
-                                    left: 320px;
+                                   left: 320px;
                                 }
 
                                 .oottCard:nth-child(1) {
-                                    left: 0;
+                                   left: 0;
                                 }
                             }
                         }
@@ -678,7 +720,7 @@ export default {
                         @media (min-width: 768px) {
                             margin: 10px;
                             position: absolute;
-                            left: 0;
+                           left: 0;
                             transition: all .5s linear;
 
                         }
@@ -711,36 +753,80 @@ export default {
     //人氣穿搭
     .top_oott {
         position: relative;
-        padding: 184px 0 80px 0;
+        padding: $sp12 0 $sp8;
         background-color: $bgColor_default;
+        overflow: hidden;
+        @media (min-width: 768px) {
+            padding: 160px 0 80px;
+        }
+
+        .carousel__viewport {
+            overflow: visible;
+        }
+
+        .carousel__track {
+            gap: $sp4;
+        }
+
+        .carousel__slide{
+            flex-shrink: 1;
+        }
+
+        .carousel__prev, .carousel__next {
+            display: none;
+            @media (min-width: $md){
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50px;
+                border: 2px solid $textColor_default;
+                background-color: $textColor_white;
+                width: 40px;
+                height: 40px;
+                top: 640px;
+                .carousel__icon {
+                    width: 40px;
+                    height: auto;
+                    fill: $textColor_default;
+                }
+            }
+        }
+
+        .carousel__prev {
+            left: calc(50% - 80px);
+        }
+
+        .carousel__next {
+            right: calc(50% - 80px);
+        }
+
 
         .content {
             padding-left: 32px;
             margin: 0 auto;
             max-width: 1200px;
             text-align: center;
-            overflow: hidden;
 
             .wrap {
                 display: flex;
-                margin-bottom: 16px;
+                margin-bottom: 48px;
                 gap: 32px;
                 flex-shrink: 0;
 
-                .oottCard:nth-child(1) {
-                    transform: rotate(-2deg);
-                }
+                // .oottCard:nth-child(1) {
+                //     transform: rotate(-2deg);
+                // }
 
-                .oottCard:nth-child(2) {
-                    transform: rotate(2deg);
-                }
+                // .oottCard:nth-child(2) {
+                //     transform: rotate(2deg);
+                // }
 
-                .oottCard:nth-child(3) {
-                    transform: rotate(-2deg);
-                }
+                // .oottCard:nth-child(3) {
+                //     transform: rotate(-2deg);
+                // }
 
                 @media (min-width: 768px) {
-                    overflow: visible;
+                    margin-bottom: 120px;
                 }
 
                 .oottCards {
@@ -755,16 +841,16 @@ export default {
 
             }
 
-            .panel {
-                display: flex;
-                justify-content: center;
-                gap: 64px;
-                margin: 32px;
+            // .panel {
+            //     display: flex;
+            //     justify-content: center;
+            //     gap: 64px;
+            //     margin: 32px;
 
-                @media (max-width: 768px) {
-                    display: none;
-                }
-            }
+            //     @media (max-width: 768px) {
+            //         display: none;
+            //     }
+            // }
 
             .btn {
                 justify-items: center;
