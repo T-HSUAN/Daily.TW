@@ -1,7 +1,6 @@
 const ticketData = [
     {
-        id: 1,
-        Name: "斑比山丘",
+        id: 1,        Name: "斑比山丘",
         img: require("@/assets/img/ticketExample.png"),
         location: "宜蘭",
         tag: "#親子#情侶#農場",
@@ -16,7 +15,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 2,
@@ -35,7 +34,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 3,
@@ -53,7 +52,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 4,
@@ -72,7 +71,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 5,
@@ -91,7 +90,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 6,
@@ -110,7 +109,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 7,
@@ -129,7 +128,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 8,
@@ -149,7 +148,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 9,
@@ -169,7 +168,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 10,
@@ -189,7 +188,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 11,
@@ -209,7 +208,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },
     {
         id: 12,
@@ -229,7 +228,7 @@ const ticketData = [
         count_adult: 0,
         count_ex: 0,
         subtotal: 0,
-        singlecard_link: "/ticket_info",
+        singlecard_link: "/ticket/:id",
     },		
 ];
 export default ticketData;

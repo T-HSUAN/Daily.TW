@@ -25,10 +25,6 @@ import { faLine, faInstagram, faSquareFacebook } from '@fortawesome/free-brands-
 
 import { faBookmark as farBookmark } from '@fortawesome/free-regular-svg-icons'
 
-// vue-cropper 套件
-import VueCropper from 'vue-cropper'; 
-import 'vue-cropper/dist/index.css'
-
 //viewuiplus套件
 import 'view-ui-plus/dist/styles/viewuiplus.css'
 import ViewUIPlus from 'view-ui-plus'
@@ -41,4 +37,4 @@ import "@/assets/scss/main.scss";//改放這邊，不然會被污染
 library.add(faBookmark, farBookmark, faHeart, faCartShopping, faMagnifyingGlass, faLine, faInstagram, faSquareFacebook, faClock, faLocationDot, faCloud, faEye, faEyeSlash, faCircleXmark, faArrowLeft, faArrowRight, faArrowUp, faCircleChevronDown, faPen, faTrashCan, faSquarePlus, faSortUp, faCar, faTicket, faUser, faUserTie, faShirt, faBullhorn, faBagShopping, faArrowUpWideShort, faFilter, faSortDown, faChevronRight)
 
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).use(VueCropper).mount("#app");
+createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).mount("#app");

@@ -170,26 +170,34 @@
                 <h2>有任何建議都<br>歡迎留言給我們</h2>
             </div>
             <div class="message_form">
-                <form action="">
+                <form @submit.prevent="handleSubmit" action="">
                     <label for="user_name">
                         <span>姓名</span>
-                        <input type="text" name="" id="user_name" placeholder="請輸入姓名">
+                        <input v-model="userName" type="text" name="user_name" id="user_name" placeholder="請輸入姓名">
                     </label><br>
                     <label for="user_email">
                         <span>email</span>
-                        <input type="text" name="" id="user_email" placeholder="請輸入email">
+                        <input v-model="userEmail" type="text" name="user_email" id="user_email" placeholder="請輸入email">
                     </label><br>
                     <label for="user_title">
                         <span>主旨</span>
-                        <input type="text" name="" id="user_title" placeholder="請輸入主旨">
+                        <input v-model="userTitle" type="text" name="user_title" id="user_title" placeholder="請輸入主旨">
                     </label><br>
                     <label for="user_content">
                         <span>內容說明</span>
-                        <textarea name="" id="user_content" rows="10"></textarea>
-                        <span class="count_hint">0 / 限 200 字</span>
+                        <textarea v-model="userContent" name="user_content" id="user_content" rows="9" @input="handleContentChange"></textarea>
+                        <span class="count_hint">{{ userContent.length }} / 限 200 字</span>
                     </label>
                 </form>
-                <button class="btn">送出</button>
+                <button :disabled="!formValid" class="btn" @click="simulateSubmit">送出</button>
+            </div>
+        </div>
+        <div v-if="showPopBox" class="about_popbox">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_check.svg" alt="" />
+                    <p>已送出，感謝您的建議 !</p>
+                </div>
             </div>
         </div>
         <div class="about_message_wave"></div>
@@ -242,8 +250,60 @@ export default defineComponent({
             { src: require('@/assets/img/layout/about_pic1.png') },
             { src: require('@/assets/img/layout/about_pic2.png') },
             { src: require('@/assets/img/layout/about_pic3.png') }
-        ]
-    })
+        ],
+
+        userName: '',
+        userEmail: '',
+        userTitle: '',
+        userContent: '',
+        showPopBox: false,
+    }),
+    computed: {
+        formValid() {
+            return (
+                this.userName.trim() !== '' &&
+                this.userEmail.trim() !== '' &&
+                this.userTitle.trim() !== '' &&
+                this.userContent.trim() !== '' &&
+                this.userContent.length <= 200
+            );
+        },
+    },
+    methods: {
+        handleContentChange() {
+        // Limit the number of characters in userContent to 200
+            if (this.userContent.length > 200) {
+                this.userContent = this.userContent.slice(0, 200);
+            }
+        },
+        handleSubmit() {
+            if (this.formValid) {
+                // Form is valid, proceed with form submission logic
+                // ...
+
+                // Show the popbox
+                this.showPopBox = true;
+                // Automatically hide the popbox after 3 seconds
+                setTimeout(() => {
+                    this.showPopBox = false;
+                }, 2000);
+
+                // Reset form fields' values
+                this.resetForm();
+            }
+        },
+        resetForm() {
+            // Reset form fields' values
+            this.userName = '';
+            this.userEmail = '';
+            this.userTitle = '';
+            this.userContent = '';
+        },
+        // 測試用，未進資料庫
+        simulateSubmit() {
+            this.handleSubmit();
+        },
+    },
 })
 </script>
 
@@ -874,19 +934,71 @@ export default defineComponent({
             }
         }
     }
-
+    .about_popbox{
+        width: 100%;
+        height: 100vh;
+        background-color: #6A5D4A80;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .block {
+            height: 78px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+            padding: 0 $sp4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .pic {
+                display: flex;
+                align-items: center;
+                img {
+                    width: 28px;
+                }
+                p {
+                    font-size: $sm_h4;
+                    padding: 10px;
+                }
+            }
+        }
+        @media (min-width: $md){
+            .block {
+                width: 410px;
+                height: 102px;
+                border: 3px solid $textColor_default;
+                background-color: $textColor_white;
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .pic {
+                    display: flex;
+                    align-items: center;
+                    p {
+                        font-size: $xl_h4;
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
     .about_info {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: $sp10 $sp7 $sp4 $sp7;
+        padding: $sp10 $sp7 $sp6 $sp7;
         margin-top: -130px;
         background-color: $bgColor_tint;
 
         @media (min-width: $md) {
             flex-direction: row;
             justify-content: center;
-            padding: $sp15 $sp7 $sp6 $sp7;
+            padding: $sp15 $sp7 $sp10 $sp7;
             margin-top: -120px;
         }
 

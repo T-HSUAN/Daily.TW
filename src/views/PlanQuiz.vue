@@ -38,31 +38,8 @@
                         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
                     </Select>
                 </div>
-                <!-- <select name="" id="selection_main">
-                    <option value="">請選擇1~3個地區</option>
-                    <option value="taipei">台北</option>
-                    <option value="newtaipei">新北</option>
-                    <option value="keelung">基隆</option>
-                    <option value="yilan">宜蘭</option>
-                    <option value="taoyuan">桃園</option>
-                    <option value="hsinchu">新竹</option>
-                    <option value="miaoli">苗栗</option>
-                    <option value="taichung">台中</option>
-                    <option value="changhua">彰化</option>
-                    <option value="nantou">南投</option>
-                    <option value="yunlin">雲林</option>
-                    <option value="chiayi">嘉義</option>
-                    <option value="tainan">台南</option>
-                    <option value="kaohsiung">高雄</option>
-                    <option value="pingtung">屏東</option>
-                    <option value="hualien">花蓮</option>
-                    <option value="taitung">台東</option>
-                    <option value="kinmen">金門</option>
-                    <option value="matsu">馬祖</option>
-                    <option value="penghu">澎湖</option>
-                </select> -->
             </div>
-            <button @click="nextQuestion" class="btn">
+            <button @click="nextQuestion" class="btn" :disabled="isNextButtonDisabled">
                 下一題
                 <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
                 <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
@@ -82,7 +59,7 @@
                     <span class="hint">* 請選擇至少3個</span>
                     <div class="tags_wrap">
                         <label v-for="(placeTag, placeIndex) in placeTags" :key="placeIndex">
-                            <input type="checkbox" class="tag" />
+                            <input type="checkbox" class="tag"/>
                             <span># {{ placeTag }}</span>
                         </label>
                     </div>
@@ -259,15 +236,50 @@ export default {
                 }
             ],
             selectValue: [],
-            placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆", "懷舊"],
+            placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆","懷舊"],
+            // checkedTags: [],
             sexTags: ["男裝", "女裝", "不限"],
             styleTags: ["日系", "韓系", "美式", "中性", "休閒", "簡約", "復古", "文青", "運動", "潮流", "街頭", "性感", "甜美", "可愛", "氣質"],
         }
     },
     mounted() {
         this.currentQuestionIndex = 0;
+        // this.placeTags = [
+        // "親子",
+        // "情侶",
+        // "小資",
+        // "風景",
+        // "山林",
+        // "海邊",
+        // "樂園",
+        // "農場",
+        // "藝文",
+        // "放鬆",
+        // "懷舊",
+        // ];
+        // this.checkedTags = Array(this.placeTags.length).fill(false);
+    },
+    computed: {
+        isNextButtonDisabled() {
+            if (this.currentQuestionIndex === 0) {
+                return this.selectValue.length < 1;
+            } 
+            // else if (this.currentQuestionIndex === 1) {
+            //     return this.getSelectedTagCount() < 3;
+            // } 
+            else {
+                return false;
+            }
+        },
     },
     methods: {
+        // getSelectedTagCount() {
+        //     return this.checkedTags.filter((checked) => checked).length;
+        // },
+        // toggleTag(index) {
+        //     this.checkedTags.splice(index, 1, !this.checkedTags[index]);
+        //     this.changeTag();
+        // },
         nextQuestion() {
             if (this.currentQuestionIndex < 2) {
                 this.currentQuestionIndex++;
@@ -286,6 +298,7 @@ export default {
                 behavior: 'auto',
             })
         },
+        // view ui 限制最多選3個
         changeTag() {
             if (this.selectValue.length < 3) {
                 return false;

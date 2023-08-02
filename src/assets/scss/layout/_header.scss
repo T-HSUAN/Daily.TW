@@ -4,8 +4,8 @@ header {
     top: 0;
     left: 0;
     background: linear-gradient(180deg,
-            $bgColor_default 59.9%,
-            rgba(254, 240, 209, 0) 100%);
+            $bgColor_default 60%,
+            rgba(254, 240, 209, 10%) 100%);
     z-index: 9999;
 
     .header_phone {
@@ -53,6 +53,10 @@ header {
                     li {
                         margin: $sp3 0;
                         color: $textColor_default;
+
+                        &:hover {
+                            color: $default_yellow;
+                        }
                     }
 
                     &.router-link-exact-active {
@@ -87,6 +91,65 @@ header {
             align-items: center;
 
             .logo_xl {
+                width: 160px;
+                margin: 0 $sp5;
+            }
+
+            .menu {
+                margin-right: $sp2;
+
+                ul {
+                    display: flex;
+
+                    a {
+                        li {
+                            margin: 0 9px;
+                            font-size: 16px;
+                            color: $textColor_default;
+
+                            &:hover {
+                                color: $default_yellow;
+                            }
+
+                            &.router-link-exact-active {
+                                li {
+                                    color: $default_yellow;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            .header_short {
+                max-width: $xl;
+                height: 130px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .logo_sm {
+                    width: 160px;
+                    margin: 0 $sp5;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $xl) {
+    header {
+        .header_desktop {
+            max-width: $xl;
+            height: 200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .logo_xl {
                 width: 185px;
                 margin: 0 $sp5;
             }
@@ -102,6 +165,10 @@ header {
                             margin: 0 $sp3 ;
                             font-size: 20px;
                             color: $textColor_default;
+
+                            &:hover {
+                                color: $default_yellow;
+                            }
                         }
 
                         &.router-link-exact-active {
@@ -117,7 +184,7 @@ header {
 
         .header_short {
             max-width: $xl;
-            height: 100px;
+            height: 130px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
