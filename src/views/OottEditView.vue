@@ -10,9 +10,12 @@
             <!-- 內容區域 -->
             <div class="post_content_wrap">
                 <!-- 麵包屑 -->
-                <h5 class="breadcrumb">
-                   &lt 我的穿搭
-                </h5>
+                <div class="breadcrumb">
+                    <font-awesome-icon icon="fa-solid fa-chevron-left" />  
+                    <router-link to="/oott">
+                        <span>我的穿搭</span>
+                    </router-link>
+                </div>
                 
                 <div class="post_edit_title">
                     <h3>貼文編輯</h3>
@@ -51,8 +54,7 @@
                                     ！待修改：勿使用不雅文字
                                 </div>
                             </div>
-                            <textarea name="" id="" cols="5" rows="10">
-                            </textarea>
+                            <textarea name="" id="" cols="5" rows="10"></textarea>
                         </div>
                         <div class="style_tags">
                             <div class="edit_subtitle">
@@ -99,15 +101,27 @@
                                 </label>
                         </div>
                         <div class="button_area">
-                            <button class="cancel_btn">取消編輯</button>
-                            <button class="btn">送出審核</button>
+                            <button class="cancel_btn">
+                                <router-link to="/my_oott" >取消編輯</router-link>
+                            </button>
+                            <button class="btn" @click="showPopbox">送出審核</button>
                         </div>
                     </div>
                 </div>
-                <!-- post_button -->
+                
             </div>
-
         </div>
+
+        <!-- pop_box-->
+        <div class="member_sm" v-if="isPopBoxVisible">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_check.svg" alt="">
+                    <h3>完成送出，請耐心<br>等候審核結果</h3>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </template>
@@ -117,6 +131,7 @@ import Sidenav from "@/components/Sidenav.vue";
 export default{
     data(){
         return{
+            isPopBoxVisible: false,
             styleTags : [  "日系",  "復古",  "韓系",  "簡約",  "美式",  "運動",  "休閒",  "甜美",  "可愛",  "氣質",  "文青",  "潮流",  "街頭",  "中性",  "性感"],
             placeTags : [  "親子",  "情侶",  "小資",  "風景",  "樂園",  "藝文",  "山林",  "海邊",  "放鬆",  "懷舊"],
             seasonTags : ["春季","夏季","秋季","冬季"],
@@ -124,7 +139,12 @@ export default{
     },
     components:{
         Sidenav, 
-    }
+    },
+    methods: {
+        showPopbox(){
+            this.isPopBoxVisible = !this.isPopBoxVisible;
+        },
+    },
 }
 </script>
 
@@ -182,7 +202,7 @@ export default{
             .breadcrumb{
                 display: none;
                 @media (min-width: 1024px) {
-                display: block;
+                display: inline-block;
                 margin-bottom: 22px;
                 }
             }
@@ -268,8 +288,171 @@ export default{
             .button_area{
                 display: flex;
                 justify-content: end;
+                margin-top: 32px;
+                @media (min-width: 768px) {
+                    margin-top: 72px;
+                }
+
+                margin-bottom: 280px;
                 .btn, .cancel_btn{
                     margin: 12px;
+                }
+                .cancel_btn{
+                    a{
+                        color: #6A5D4A;
+                    }
+                }
+            }
+        }
+
+        .member_sm{
+            display: flex;
+            width: 273px;
+            height: 150px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+            justify-content: center;
+
+            position: absolute;
+            z-index: 10;
+            top: 900px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+
+            .block{
+                width: 250px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pic{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 20px;
+                    img{
+                    width: 28px;
+                    }
+                    h3{
+                        padding: 10px;
+                        font-size: $sm_h4;
+                    }
+                }
+                .button{
+                    margin-left: auto;
+                    .cancel{
+                        font-size: $sm_h5;
+                        color: $textColor_default;
+                        border-bottom: 1px solid $textColor_default;
+                        margin-right: 20px;
+                    }
+                    .btn {
+                        font-size: $sm_h5;
+                        padding: 8px 24px;
+                        box-shadow: 1px 1px 1px 1px #0005;
+                        white-space: nowrap;
+                        color: $textColor_white;
+                        text-align: center;
+                        font-family: $fontFamily;
+                        letter-spacing: 0.6px;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: 50px;
+                        border: 2px solid $textColor_default;
+                        background: $textColor_default;
+                        cursor: pointer;
+                        &:hover {
+                            color: $textColor_default;
+                            background: $textColor_white;
+                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        }
+                        &:active {
+                            color: $textColor_tint;
+                            border: 2px solid $textColor_tint;
+                            background: $textColor_white;
+                        }
+                    }
+                }
+            }
+            // 電腦版
+            @media (min-width: 768px) {
+            display: flex;
+
+            width: 410px;
+            height: 200px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+            justify-content: center;
+            
+            position: absolute;
+            z-index: 10;
+
+            .block{
+                width: 300px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .pic{
+                    margin-top: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    img{
+                    width: 34px;
+                    }
+                    h3{
+                        text-align: center;
+                        font-size: $sm_h3;
+                        line-height: 150%;
+                        margin-top: 15px;
+                    }
+                }
+                .button{
+                    margin-left: auto;
+                    .cancel{
+                        font-size: $xl_h5;
+                        color: $textColor_default;
+                        border-bottom: 1px solid $textColor_default;
+                        margin-right: 20px;
+                    }
+                    .btn {
+                        font-size: $sm_h5;
+                        padding: 8px 24px;
+                        box-shadow: 1px 1px 1px 1px #0005;
+                        @media (min-width: 768px) {
+                        font-size: $xl_h5;
+                        padding: 8px 32px;
+                        }
+                        white-space: nowrap;
+                        color: $textColor_white;
+                        text-align: center;
+                        font-family: $fontFamily;
+                        letter-spacing: 0.6px;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+                        border-radius: 50px;
+                        border: 2px solid $textColor_default;
+                        background: $textColor_default;
+                        cursor: pointer;
+                        &:hover {
+                            color: $textColor_default;
+                            background: $textColor_white;
+                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        }
+                        &:active {
+                            color: $textColor_tint;
+                            border: 2px solid $textColor_tint;
+                            background: $textColor_white;
+                            }
+                        }
+                    }
                 }
             }
         }

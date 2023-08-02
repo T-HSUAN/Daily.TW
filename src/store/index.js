@@ -8,6 +8,8 @@ export default createStore({
         ticketInfo:[],
         //購物車
         cartItems: [],
+        name:'登入/註冊',
+        isLogin: false,
     },
     getters: {
         cartItems: state => state.cartItems,
@@ -21,7 +23,14 @@ export default createStore({
               } else {
                 window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。");
               }
-            },
+            
+        setName (state, payload) {
+            state.name = payload
+        },
+        setIsLogin(state, value) {
+            state.isLogin = value;
+        },
+    },
             removeFromCart(state, index) {
                 // 從購物車中移除指定 ID 的票券
                 state.cartItems.splice(index, 1);

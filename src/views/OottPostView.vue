@@ -1,32 +1,19 @@
 <template>
     <div class="oott_post_wrap">
-        <div class="breadcrumb"></div>
-<!-- test  -->
-
-            <vue-cropper 
-            ref="cropper"
-            :img="currentImg"
-            @img-upload="handleUpload"
-            >
-            </vue-cropper>
-            <section class="control">
-            <el-upload
-                class="upload-demo"
-                :auto-upload="false"
-                action=""
-                @change="handleChange"
-                :show-file-list="false"
-            >
-                <template #trigger>
-                <el-button type="primary">选择图片</el-button>
-                </template>
-            </el-upload>
-            <el-button :loading="loading" @click="click">获取截图</el-button>
-            </section>
-
-
-
-<!-- test  -->
+        <div class="breadcrumb">
+            <router-link to="/">
+                <span>首頁</span>
+            </router-link>
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
+            <router-link to="/oott">
+                <span>穿搭特輯</span>
+            </router-link>
+            <font-awesome-icon icon="fa-solid fa-chevron-right" />
+            <router-link to="/oott">
+                <span>穿搭投稿</span>
+            </router-link>
+        </div>
+        
         <div class="post_title">
             <h2>穿搭投稿</h2>
             <img class="foot_print" src="@/assets/img/oott_card_deco_footprint.png" alt="">
@@ -37,22 +24,24 @@
                 <div class="post_subtitle">
                     <h5>*穿搭照片</h5>
                 </div>
-                <div class="photo_preview">
-                    <label for="postPhoto">
-                        <input type="file" name="postPhoto" id="postPhoto">
+                <label for="postPhoto" class="photo_preview">
+                    <input 
+                    type="file" 
+                    name="postPhoto" 
+                    id="postPhoto"
+                    @change="handlePhotoSelected">
                         + <br> 點此選擇照片上傳
-                    </label>
-                </div>
+                </label>
+                
             </div>
             <!-- 右方的文字和標籤 -->
             <div class="text_area">
                 <div class="post_desc">
                     <div class="post_subtitle">
                         <h5>*穿搭描述</h5>
-                        <span class="text_limit">*已超過字數上限 200/200</span>
+                        <span class="text_limit">{{ oottDesc.length }} 字 / 上限 200 字</span>
                     </div>
-                    <textarea name="" id="" cols="5" rows="10">
-                    </textarea>
+                    <textarea name="oottDesc" id="oottDesc" cols="5" rows="10" v-model="oottDesc" @input="handleDescChange"></textarea>
                 </div>
                 <div class="style_tags">
                     <div class="post_subtitle">
@@ -60,7 +49,12 @@
                         <span>請選擇1~3個</span>
                     </div>
                         <label v-for="(styleTag, index) in styleTags" :key="styleTag.index">
-                            <input type="checkbox" class="tag" :id="`styleTag-${index}`"/>
+                            <input 
+                                type="checkbox" 
+                                class="tag" 
+                                :id="`styleTag-${index}`" 
+                                v-model="checkedStyleTags[index]"
+                                @change="handleTagsChange('style', index)"/>
                             <span># {{ styleTag }}</span>
                         </label>
                 </div>
@@ -70,7 +64,12 @@
                         <span>請選擇1~3個</span>
                     </div>
                         <label v-for="(placeTag, index) in placeTags" :key="placeTag.index">
-                            <input type="checkbox" class="tag" />
+                            <input 
+                                type="checkbox" 
+                                class="tag" 
+                                :id="`placeTag-${index}`"
+                                v-model="checkedPlaceTags[index]"
+                                @change="handleTagsChange('place',index)"/>
                             <span># {{ placeTag }}</span>
                         </label>
                 </div>
@@ -79,7 +78,12 @@
                         <h5>*穿搭季節</h5>
                     </div>
                         <label v-for="(seasonTag, index) in seasonTags" :key="seasonTag.index">
-                            <input type="checkbox" class="tag" />
+                            <input 
+                                type="checkbox" 
+                                class="tag" 
+                                :id="`seasonTag-${index}`"
+                                v-model="checkedSeasonTags[index]"
+                                @change="handleTagsChange('season', index)"/>
                             <span>{{ seasonTag }}</span>
                         </label>
                 </div>
@@ -87,19 +91,25 @@
         </div>
         <!-- post_button -->
         <div class="post_button_area">
-            <button class="btn" @click="showPopbox">確定送出</button>
+            <button 
+                class="btn" 
+                @click="showPopbox"
+                :disabled="!formValid">
+                    確定送出
+            </button>
         </div>
 
-        <!-- xl pop_box-->
-        <div class="member_sm" v-if="isPopBoxVisible">
+        <!-- pop_box-->
+        <div class="post_popbox" v-if="isPopBoxVisible">
             <div class="block">
                 <div class="pic">
                     <img src="~@/assets/img/popbox_exclamation.svg" alt="">
                     <h3>穿搭貼文審核中<br>
-                    請留意會員中心貼文狀態</h3>
+                    請留意會員中心<br>
+                    貼文狀態</h3>
                  </div>
                 <div class="button">
-                    <button class="cancel" @click="showPopbox">取消</button>
+                    <!-- <button class="cancel" @click="showPopbox">取消</button> -->
                     <button class="btn" @click="showPopbox">確定</button>
                 </div>
             </div>
@@ -109,19 +119,108 @@
 
 </template>
 
+<!-- <script setup>
+    import { ref } from 'vue';
+
+    const isPopBoxVisible = ref(false);
+    const styleTags = ref(["日系", "復古", "韓系", "簡約", "美式", "運動", "休閒", "甜美", "可愛", "氣質", "文青", "潮流", "街頭", "中性", "性感"]);
+    const placeTags = ref(["親子", "情侶", "小資", "風景", "樂園", "藝文", "山林", "海邊", "放鬆", "懷舊"]);
+    const seasonTags = ref(["春季", "夏季", "秋季", "冬季"]);
+    //   燈箱開關
+    const showPopbox = () => {
+        isPopBoxVisible.value = !isPopBoxVisible.value;
+    }
+
+    // 圖片裁切
+
+    const cropper = ref();
+    const loading = ref(false)
+    const click = () => {
+      loading.value = true;
+      cropper.value.getCropData().then(res => {
+        open(res)
+      }).finally(() => {
+        loading.value = false;
+      })
+    }
+</script> -->
+
 <script>
 export default{
     data(){
         return{
-            isPopBoxVisible: false,
+            // 圖片的上傳狀態
+            isPhotoSelected: false,
+
+            //圖片描述
+            oottDesc:'',
+
             styleTags : [  "日系",  "復古",  "韓系",  "簡約",  "美式",  "運動",  "休閒",  "甜美",  "可愛",  "氣質",  "文青",  "潮流",  "街頭",  "中性",  "性感"],
             placeTags : [  "親子",  "情侶",  "小資",  "風景",  "樂園",  "藝文",  "山林",  "海邊",  "放鬆",  "懷舊"],
             seasonTags : ["春季","夏季","秋季","冬季"],
+            // 打勾的 Tags
+            checkedStyleTags :[],
+            checkedPlaceTags :[],
+            checkedSeasonTags :[],
+
+
+            
+            // 送出後的彈窗
+            isPopBoxVisible: false,
+
+        }
+    },
+    computed:{
+        formValid(){
+            return(
+                this.isPhotoSelected !== false &&
+                this.oottDesc.trim() !== '' &&
+                this.oottDesc.length <= 200 &&
+                this.checkedStyleTags !==[] &&
+                this.checkedPlaceTags !==[] &&
+                this.checkedSeasonTags !==[]
+            )
         }
     },
     methods: {
+// 控制彈出視窗
         showPopbox(){
             this.isPopBoxVisible = !this.isPopBoxVisible;
+        },
+// 確認穿搭描述字數
+        handleDescChange(){
+            if(this.oottDesc.length>200){
+                this.oottDesc = this.oottDesc.slice(0,200);
+            }
+        },
+// 限制勾選的 tags 只能有三個
+        handleTagsChange(tagList,index){
+            let checkedArray = []; // 辨識打勾選到的 array
+            let tagsLimit = 0;     // 選到 array 的 tags 上限。
+
+            if(tagList === 'style'){
+                checkedArray = this.checkedStyleTags;
+                tagsLimit = 3;
+            } else if (tagList === 'place'){
+                checkedArray = this.checkedPlaceTags;
+                tagsLimit = 3;
+            } else if (tagList === 'season'){
+                checkedArray = this.checkedSeasonTags
+                tagsLimit = 1;
+            }
+
+            if(checkedArray[index]){          // 確認勾到的有在資料裡面        
+                if(this.countCheckedTags(checkedArray)>tagsLimit){
+                    checkedArray[index] = false; // 取消勾選
+                }
+            }
+        },
+        countCheckedTags(checkedArray){
+            return checkedArray.filter(tag => tag).length; // 計算有勾選的長度
+        },
+// 確認照片上傳
+        handlePhotoSelected(event){
+            this.isPhotoSelected = event.target.files.length > 0; 
         }
     },
 }
@@ -146,8 +245,8 @@ export default{
             margin-top: 48px;
             margin-bottom: 40px;
             @media (min-width: 1024px) {
-                    margin-top: 65px;
-                    margin-bottom: 67px;
+                    margin-top: 7px;
+                    margin-bottom: 44px;
                 }
             text-align: center;
             h2{
@@ -245,12 +344,12 @@ export default{
 
         //popbox
 
-        .member_sm{
+        .post_popbox{
             display: flex;
-            width: 273px;
-            height: 194px;
+            width: 100%;
+            height: 100vh;
             border: 3px solid $textColor_default;
-            background-color: $textColor_white;
+            background-color: #6A5D4A80;
             border-radius: 20px;
             justify-content: center;
 
@@ -322,7 +421,7 @@ export default{
             display: flex;
 
             width: 410px;
-            height: 243px;
+            height: 300px;
             border: 3px solid $textColor_default;
             background-color: $textColor_white;
             border-radius: 20px;
@@ -332,7 +431,8 @@ export default{
             z-index: 10;
 
             .block{
-                width: 300px;
+                width: 410px;
+                height: 300px;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;

@@ -1,158 +1,106 @@
-footer {
+footer{
     box-sizing: border-box;
     width: 100%;
-    padding: $sp2;
+    padding: $sp3 $sp4;
     background-color: $default_yellow;
     text-align: center;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    .footer_section{
-        border-bottom: 1px solid $textColor_default;
-        .footer_input{
-            border-radius: 50px;
-            border: 2px solid $textColor_default;
-            letter-spacing: 2px;
-            // color: $textColor_default;
-            text-indent: 10px;
-            height: 40px;
-        }
+    align-items: center;
+    border-radius: 10px 10px 0px 0px;
+    margin-top: -8px;
+    position: relative;
+    z-index: 99;
+    @media screen and (min-width: 768px){
+        padding: $sp5 $sp15;
     }
-    
-}
-//手機版
-// @media screen and (max-width: 768px) {
     .footer_section{
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: initial;
-        align-items: center;
-        .footer_block{
-            display: none;
-          }
-          .social_box{
-            display: none;
-          }
-          .social_box_md{
-            p{
-                @include sm_h5;
-                padding: $sp1 ;
-            }
-            .footer_input{
-                width: 300px;
-                margin: $sp1;
-            }
-            .social_icon{
-                display: flex;
-                width: 300px;
-                margin: auto;
-                justify-content: end;
-                a{
-                    
-                    color: $textColor_default;
-                    font-size: 25px;
-                    padding: 5px 3px;
-                    
-                }
-            }
-          }
-          
-    }
-    .footer_notice{
-        padding: $sp1;
-        width: 350px;
-        display: flex;
-        margin: auto;
-            p{
-                @include sm_p;
-                line-height: 1.2;
-                letter-spacing: 1px;
-                text-align: center;
-                a{
-                    color: $textColor_white;
-                }
-            }
-          }
-// }
-//電腦版
-@media screen and (min-width: 768px) {
-    .footer_section {
+        width: 100%;
         max-width: 1200px;
+        border-bottom: 1px solid $textColor_default;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin: auto;
-        padding: $sp2;
+        justify-content: space-between;
+        padding-bottom: $sp2;
         .footer_block{
-            display: flex;
-            .footer_list{
+            display: none;
+            @media screen and (min-width: 990px){
                 display: flex;
-                flex-direction: column;
-                h4{
-                    @include sm_h5;
-                    padding: 8px 0;
+                gap: $sp2;
+                @media screen and (min-width: 1200px){
+                    gap: $sp4;
                 }
-                a{
-                    @include sm_p;
-                    color: $textColor_default;
-                    padding: 8px 6px;
+                .footer_list{
+                    display: flex;
+                    flex-direction: column;
+                    h4{
+                        font-size: 16px !important;
+                        font-weight: 500 !important;
+                        padding-bottom: 8px;
+                    }
+                    a{
+                        font-size: 16px !important;
+                        font-weight: 400 !important;
+                        color: $textColor_default;
+                        padding-bottom: 16px;
+                    }
                 }
-                
-            }
-        }
-        .social_box{
-            width: 380px;
-            display: flex;
-            flex-direction: column;
-            .social_icon{
-                display: flex;
-                p{
-                    @include xl_h5;
-                    padding: 5px 15px 15px 5px;
-                }
-                a{
-                    font-size: 25px;
-                    padding: 0 5px;
-                    color: $textColor_default;
-                }
-                   
             }
             
         }
-     }
-        .footer_notice{
-            width: 100%;
-            justify-content: center;
-            p{  
-                @include sm_p;
-                line-height: 1.2;
-                padding: $sp2;
-                letter-spacing: 1px;
-                text-align: center;
-                a{
-                    color: $textColor_white
-                }
+        .social_box{
+            display: flex;
+            flex-direction: column;
+            gap: $sp1;
+            margin: auto;
+            @media (min-width: 990px){
+                margin: 0;
             }
-        }
-        .social_box_md{
-            display: none;
-        }
-    }
-    @media screen and (min-width: 912px){
-        .footer_section{
-            .footer_block{
-                .footer_list{
-                    h4{
-                        @include sm_h5;
-                        padding: 10px;
+            .social_icon{
+                display: flex;
+                align-items: center;
+                @media (min-width: 990px){
+                    align-items: flex-start;
+                }
+                p{
+                    @include sm_h5;
+                    padding-right: $sp1;
+                    @media (min-width: 400px){
+                        @include xl_h5;
+                        padding-right: $sp2;
                     }
+                }
+                .icon_wrap{
                     a{
-                        @include sm_p;
                         color: $textColor_default;
-                        padding: 10px;
+                        font-size: 25px;
+                        padding-right: $sp1;
                     }
-                    
                 }
             }
         }
     }
+    .footer_notice{
+        width: 100%;
+        max-width: 1200px;
+        padding: $sp1 $sp1 0 $sp1;
+        display: flex;
+        justify-content: center;
+        @media screen and (min-width: 990px){
+            padding: $sp3 $sp3 0 $sp3;
+        }
+        p{
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.6px;
+            text-align: center;
+            @media (min-width: 400px){
+                font-size: 14px;
+                line-height: 1.5;
+            }
+            a{
+                color: $tint_yellow;
+            }
+        }
+    }
+}

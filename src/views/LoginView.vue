@@ -1,5 +1,6 @@
 <!-- 登入/註冊 -->
 <template>
+<section class="logincard">
     <section class="loginview">
         <div v-for="(item, key) in tabItems" :class="{ active: key == tabActive }">
             <div v-if="tabActive == item.tab" class="canvas">
@@ -45,11 +46,11 @@
                         <router-link v-if="item.tab == 2" to="/signup" class="btn">
                             註冊
                         </router-link>
-                        <router-link v-else v-if="item.tab == 1" to="/member" @click="login" class="btn"
+                        <button v-else v-if="item.tab == 1" @click="login" class="btn"
                             :class="{ btn: isEmailValid && isPasswordValid }">
                             <!-- :disabled="!(isEmailValid && isPasswordValid)" -->
                             登入
-                        </router-link>
+                        </button>
                     </div>
                 </div>
                 <div class="register" :class="{ active: isActive }">
@@ -66,6 +67,7 @@
             </div>
         </div>
     </section>
+</section>
 </template>
 <script>
 export default {
@@ -109,12 +111,14 @@ export default {
             // if (this.isEmailValid && this.isPasswordValid) {
             if (this.email === "test123" && this.psw === "test123") {
                 window.alert("登入成功");
-                // 执行页面跳转
-                // this.$router.push({ path: "/member" });
+                this.$store.commit('setName', this.email); 
+                this.$store.commit('setIsLogin', true);
+                this.$router.push({ path: "/" });
             } else {
                 window.alert("帳號或密碼錯誤，請重新登入");
-                this.$router.replace({ path: "/login" });
+                // this.$router.replace({ path: "/login" });
             }
+            
             // }
         },
         // 切換tab
@@ -140,6 +144,12 @@ export default {
     background-color: $bgColor_default;
 }
 
+.logincard{
+    padding-top: 74px;
+
+    @media all and (min-width: $md) {
+        padding-top: 200px;
+    }
 
 .loginview {
     margin: 150px 0 60px;
@@ -427,5 +437,6 @@ export default {
 
     }
 
+}
 }
 </style>

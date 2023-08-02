@@ -13,7 +13,7 @@
                         
                         <div class="status">
                             <h5>您有 </h5>
-                            <h5 class="status_number">1</h5>
+                            <h5 class="edit_status_number">1</h5>
                             <h5> 則貼文待修改</h5>
                             <h5 class="status_number">1</h5>
                             <h5> 則貼文審核中</h5>
@@ -53,6 +53,7 @@
                         :oottStatus ="oott.oottStatus"
                         />
                     </div>
+                    <Page :total="18" />
                 </div>
             </div>
 
@@ -123,6 +124,10 @@
                 .status_number{
                     color: var(--text-white, #FEFFF5);
                 }
+                
+                .edit_status_number{
+                    color: #DB4918;
+                }
 
             }
             .status_sorting{
@@ -163,8 +168,16 @@ export default{
     data() {
         return {
             oottDataForUser:oottDataForUser,
+            PAGE_SIZE: 10,
+            currentPageNum: 1,
         }
     },
+    computed: {
+    currentList() {
+        return this.oottDataForUser.slice((this.currentPageNum - 1) * this.PAGE_SIZE, this.currentPageNum * this.PAGE_SIZE);
+    }
+    
+},
 //     data() {
 //         return {
 //             oottData : [],// Initialize oottData as an empty array
@@ -176,9 +189,10 @@ export default{
 //     },
 //     methods: {
 //     async fetchOottData() {
+    // const url = process.env.NODE_ENV === 'production' ? "/g5/fake/OottData.json" : "/fake/OottData.json";
 //       try {
 //         // Use the Fetch API to fetch the data from the JSON file
-//         const response = await fetch("/fake/OottData.json"); // Adjust the path based on your project structure
+//         const response = await fetch(url); // Adjust the path based on your project structure
 
 //         if (!response.ok) {
 //           throw new Error("Network response was not ok");

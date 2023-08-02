@@ -1,6 +1,7 @@
 <!-- 重設密碼頁面 -->
 <template>
-    <section class="forgetpsw">
+<section class="reset">
+    <section class="resetpsw">
 
         <div class="canvas" >
             <div class="joinus_sm">
@@ -60,6 +61,7 @@
         </div>
 
     </section>
+</section>
 </template>
 <script>
 export default {
@@ -149,16 +151,24 @@ export default {
     
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/scss/baseAndMixin.scss';
 
-#app{
-    background-color: $bgColor_default;
-}
-//手機板
 
-.forgetpsw{
-    padding: 200px 0 150px;
+//手機板
+.reset{
+    padding-top: 74px;
+    @media all and (min-width: $md) {
+        padding-top: 200px;
+        
+    }
+.resetpsw{
+    margin: 150px 0 60px;
+
+    @media all and (min-width: $md) {
+        margin: 130px 0;
+    }
+
     .canvas{  
         width: 83%;
         background-color: $default_yellow;
@@ -267,12 +277,12 @@ export default {
     }
 
 }
-
+}
 @media all and (min-width: $md){
     // *{
     //     outline: 1px solid red;
     // }
-.forgetpsw{
+.resetpsw{
     padding: 50px 0;
     .canvas{
         max-width: 1000px;

@@ -1,6 +1,7 @@
 <!-- 會員註冊資料頁面 -->
 <template>
-    <section class="registerview">
+<section class="signupview">
+    <section class="register">
         <div class="canvas">
             <div class="joinus_sm">
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
@@ -18,7 +19,7 @@
             <form class="form">
                 <div v-for="(item, index) in tabItems" :key="index">
                     <label :for="'member-' + index">{{ item.text }}</label>
-                    <input type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
+                    <input ref="inputEls" type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
                         :id="'member-' + index" />
                 </div>
                 <label for="year">生日</label>
@@ -80,6 +81,7 @@
             <!-- <h2>{{ message }}</h2> -->
         </div>
     </section>
+</section>
 </template>
 
 <script>
@@ -125,11 +127,11 @@ export default {
             isPopBoxVisible: false,
         }
     },
-    // computed:{
-    //     message(){
-    //         return this.$store.state.msg;
-    //     }
-    // },
+    computed:{
+        inputEls(){
+            return Array.from(this.$refs.inputEls) ?? [];
+        }
+    },
     methods: {
         onYearChange() {
             // 在這裡處理年份選項變化後的相關邏輯
@@ -182,7 +184,8 @@ export default {
             this.phone = this.phone.replace(/\D/g, '');
         },
         showPopbox() {
-            this.isPopBoxVisible = !this.isPopBoxVisible;
+            this.inputEls[2].focus();
+            // this.isPopBoxVisible = !this.isPopBoxVisible;
         },
         redirectToOtherPage() {
             this.$router.push('/member');
@@ -237,14 +240,19 @@ export default {
 
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 @import '@/assets/scss/baseAndMixin.scss';
 
-#app {
-    background-color: $bgColor_default;
-}
+// #app {
+//     background-color: $bgColor_default;
+// }
+.signupview{
+    padding-top: 74px;
 
-.registerview {
+    @media all and (min-width: $md) {
+        padding-top: 200px;
+    }
+.register {
     margin: 150px 0 60px;
 
     @media all and (min-width: $md) {
@@ -674,4 +682,6 @@ export default {
             }
         }
     }
-}</style>
+}
+}
+</style>

@@ -218,10 +218,10 @@
                             <font-awesome-icon icon="fa-brands fa-line" />
                         </a>
                         <a href="#">
-                            <font-awesome-icon icon="fa-brands fa-instagram" />
+                            <font-awesome-icon icon="fa-brands fa-square-facebook" />
                         </a>
                         <a href="#">
-                            <font-awesome-icon icon="fa-brands fa-square-facebook" />
+                            <font-awesome-icon icon="fa-brands fa-instagram" />
                         </a>
                     </div>
                 </div>
@@ -991,14 +991,14 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: $sp10 $sp7 $sp4 $sp7;
+        padding: $sp10 $sp7 $sp6 $sp7;
         margin-top: -130px;
         background-color: $bgColor_tint;
 
         @media (min-width: $md) {
             flex-direction: row;
             justify-content: center;
-            padding: $sp15 $sp7 $sp6 $sp7;
+            padding: $sp15 $sp7 $sp10 $sp7;
             margin-top: -120px;
         }
 
