@@ -70,102 +70,112 @@
                             </div>
                         </div>
                     </div>
-                    <div class="plan_place">
-                        <div class="pic_swiper">
-                            <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic2" :key="item.index">
-                                    <img :src="item.src" alt="">
-                                </Slide>
-                                <template #addons>
-                                    <Pagination />
-                                </template>
-                            </Carousel>
-                        </div>
-                        <div class="place_desc">
-                            <div class="place_content">
-                                <h4>太平買菸場</h4>
-                                <p>興建於1955年，是公賣局向菸農鑑定、收購菸葉的場所，1994年裁撤後閒置良久，因見證太平菸葉發展歷程，加上建築構造特殊，整體空間具有再利用潛力，經兩年修繕營造出結合歷史與藝術文化的新場域。
-                                </p>
-                            </div>
-                            <div class="place_time_address">
-                                <div class="time">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
-                                </div>
-                                <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市太平區東平路464號</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="plan_place">
-                        <div class="pic_swiper">
-                            <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic3" :key="item.index">
-                                    <img :src="item.src" alt="">
-                                </Slide>
-                                <template #addons>
-                                    <Pagination />
-                                </template>
-                            </Carousel>
-                        </div>
-                        <div class="place_desc">
-                            <div class="place_content">
-                                <h4>審計新村</h4>
-                                <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
-                            </div>
-                            <div class="place_time_address">
-                                <div class="time">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
-                                </div>
-                                <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市西區民生路368巷</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="plan_place">
-                        <div class="pic_swiper">
-                            <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic4" :key="item.index">
-                                    <img :src="item.src" alt="">
-                                </Slide>
-                                <template #addons>
-                                    <Pagination />
-                                </template>
-                            </Carousel>
-                        </div>
-                        <div class="place_desc">
-                            <div class="place_content">
-                                <h4>紙箱王創意園區</h4>
-                                <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
-                            </div>
-                            <div class="place_time_address">
-                                <div class="time">
-                                    <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
-                                </div>
-                                <div class="address">
-                                    <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市北屯區東山路二段2巷2號</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn_bookmark">
-                        <label>
-                            <input type="checkbox" class="tag" />
+                    <div class="show_result_btn" v-if="!showPlan1">
+                        <div class="btn" @click="showPlan1 = true; showPlan2 = false; showPlan3 = false;">
                             <span>
-                                <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark" />
-                                加入收藏
+                                展開行程
+                                <font-awesome-icon icon="fa-solid fa-chevron-down" />
                             </span>
-                        </label>
+                        </div>
+                    </div>
+                    <div class="show_result_wrap" v-if="showPlan1">
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic2" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>太平買菸場</h4>
+                                    <p>興建於1955年，是公賣局向菸農鑑定、收購菸葉的場所，1994年裁撤後閒置良久，因見證太平菸葉發展歷程，加上建築構造特殊，整體空間具有再利用潛力，經兩年修繕營造出結合歷史與藝術文化的新場域。
+                                    </p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1.5 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">台中市太平區東平路464號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic3" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>審計新村</h4>
+                                    <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1.5 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">台中市西區民生路368巷</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic4" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>紙箱王創意園區</h4>
+                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1.5 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">台中市北屯區東山路二段2巷2號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn_bookmark">
+                            <label>
+                                <input type="checkbox" class="tag" />
+                                <span>
+                                    <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark" />
+                                    加入收藏
+                                </span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="weather_container">
+                <div class="weather_container" v-if="showPlan1">
                     <h3>一週天氣預報 | 台中</h3>
                     <div class="table_wrap">
                         <table>
@@ -232,7 +242,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="oott_container">
+                <div class="oott_container" v-if="showPlan1">
                     <h3>出遊穿搭推薦</h3>
                     <div class="oott_card_wrap">
                         <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
@@ -241,7 +251,7 @@
                         </OottCard>
                     </div>
                 </div>
-                <div class="ticket_container">
+                <div class="ticket_container" v-if="showPlan1">
                     <h3>景點票券優惠</h3>
                     <router-link to="/ticket_info">
                         <div class="ticket_box">
@@ -319,7 +329,219 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="show_result_btn" v-if="!showPlan2">
+                        <div class="btn" @click="showPlan2 = true; showPlan1 = false; showPlan3 = false;">
+                            <span>
+                                展開行程
+                                <font-awesome-icon icon="fa-solid fa-chevron-down" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="show_result_wrap" v-if="showPlan2">
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic2" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>望幽谷濱海步道</h4>
+                                    <p>這幾年整修後變的超美麗，延伸到湛藍海岸的步道，變成最夢幻的IG打卡秘境，也有基隆版宮崎駿楓之谷的美稱，台灣最美的海濱公園就在基隆，每次去都會多了新的亮點，巨人椅子、大鳥、飛魚裝飾、甜甜圈、鸚鵡螺溜滑梯都很好拍，如果東北角要選一個不能錯過的景點，那一定是八斗子潮境公園~</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">基隆市中正區北寧路21號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic3" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>基隆潮境智能海洋館</h4>
+                                    <p>基隆也有水族館了，最新基隆景點「潮境智能海洋館」，座落在最美的潮境公園裡面，結合4K投影、VR互動、七米高大洋缸，讓你能近距離觀賞海洋生物，也能跟他們互動。四大主題展區各具特色，其中復育海中生物的海洋中心，看到愛護海洋的重要，在潮境智能海洋館不只玩還學到了豐富的知識，很值得來看看!</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 2 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">基隆市中正區北寧路369巷61號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic4" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>深澳鐵道自行車</h4>
+                                    <p>終於來朝聖了，號稱最美的海岸鐵道自行車，除了靠近海邊，還要介紹鐵道自行車光雕，愛心型隧道真的是美翻了，河豚車車殼全面換新，趕快看這篇最詳細的介紹，從交通、兒童規定、報到流程，介紹到沿途風景，趕快收藏起來吧!</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 2 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">新北市瑞芳區建基路2段121號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn_bookmark">
+                            <label>
+                                <input type="checkbox" class="tag" />
+                                <span>
+                                    <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark" />
+                                    加入收藏
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather_container" v-if="showPlan2">
+                    <h3>一週天氣預報 | 台中</h3>
+                    <div class="table_wrap">
+                        <table>
+                            <tr>
+                                <td><span>07/28</span></td>
+                                <td><span>07/29</span></td>
+                                <td><span>07/30</span></td>
+                                <td><span>07/31</span></td>
+                                <td><span>08/01</span></td>
+                                <td><span>08/02</span></td>
+                                <td><span>08/03</span></td>
+                            </tr>
+                            <tr>
+                                <!-- <td>
+                                    <img :src="weatherData[0].day.condition.icon" alt="">
+                                    <span>最高 {{ weatherData['0'].day.maxtemp_c }}℃</span><br>
+                                    <span>最低 {{ weatherData['0'].day.mintemp_c }}℃</span><br>
+                                    <span>降雨機率 {{ weatherData['0'].day.daily_chance_of_rain }}%</span>
+                                </td> -->
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 28℃</span><br>
+                                    <span>最低 25℃</span><br>
+                                    <span>降雨機率 88%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 34℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 89%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 25℃</span><br>
+                                    <span>降雨機率 89%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 26℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 89%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 30℃</span><br>
+                                    <span>最低 23℃</span><br>
+                                    <span>降雨機率 65%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 78%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/302.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 26℃</span><br>
+                                    <span>降雨機率 80%</span>
+                                </td>
 
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="oott_container" v-if="showPlan2">
+                    <h3>出遊穿搭推薦</h3>
+                    <div class="oott_card_wrap">
+                        <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor">
+                        </OottCard>
+                    </div>
+                </div>
+                <div class="ticket_container" v-if="showPlan2">
+                    <h3>景點票券優惠</h3>
+                    <router-link to="/ticket_info">
+                        <div class="ticket_box">
+                            <div class="ticket_pic">
+                            </div>
+                            <div class="ticket_desc">
+                                <div class="ticket_content">
+                                    <h4>紙箱王創意園區門票</h4>
+                                    <span>台中・</span>
+                                    <span>#親子 #小資 #藝文</span>
+                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                </div>
+                                <div class="ticket_price">
+                                    <div class="price_box">
+                                        <!-- <span>NT$ 200</span> -->
+                                        <span>NT$ 200</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="sale_tag">
+                                <span>75折</span>
+                            </div>  -->
+                        </div>
+                    </router-link>
+                    <div class="ticket_card">
+                        <router-link to="/ticket_info">
+                            <Ticket v-for="(ticket, index) in tickets" :key="index" :ticketPhoto="ticket.ticketPhoto"
+                                :ticketTitle="ticket.ticketTitle" :ticketTags="ticket.ticketTags"
+                                :originalPrice="ticket.originalPrice" :FinalPrice="ticket.FinalPrice">
+                            </Ticket>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -365,7 +587,219 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="show_result_btn" v-if="!showPlan3">
+                        <div class="btn" @click="showPlan3 = true; showPlan1 = false; showPlan2 = false;">
+                            <span>
+                                展開行程
+                                <font-awesome-icon icon="fa-solid fa-chevron-down" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="show_result_wrap" v-if="showPlan3">
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic2" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>星月天空景觀餐廳</h4>
+                                    <p>南投夜景聖地，還能跟草泥馬、侏儒羊、鸚鵡、大嘴鳥等小動物近距離接觸。無論情侶約會、親子放電都超適合，和猴探井天空之橋、中興新村一日遊好滿足。</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1.5 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">南投市猴探井街146巷200號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic3" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>猴探井天空之橋</h4>
+                                    <p>南投猴探井天空之橋「微笑天梯」之位於八卦山脈之上，遠望有如一抹淡淡微笑懸吊於山谷間，因此又有稱號。猴探井遊憩區與台語「好賺錢」諧音非常喜氣，天空之橋開放短短三個月就回本，果然是個賺錢的好地方，哈哈～雖然現在熱潮已過，甚至有謠傳已停業，但其實沒有啦，結合附近景點星月天空、微熱山丘三合院走走還是不錯的。</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">南投縣南投市猴探井街300號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="item in resultPic4" :key="item.index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>埔里酒廠</h4>
+                                    <p>南投埔里酒廠，有百年歷史的老酒廠，又被稱作「台灣紹興酒故鄉」，過去天皇御用、總統國宴用酒都在此製造。埔里酒廠必買商品除了紹興酒、女兒紅等經典酒類外，紹興米糕、紹興冰棒、花雕雞麵等特色伴手禮也不容錯過！</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 1.5 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a href="#">南投縣埔里鎮中山路三段219號</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn_bookmark">
+                            <label>
+                                <input type="checkbox" class="tag" />
+                                <span>
+                                    <font-awesome-icon icon="fa-regular fa-bookmark" class="bookmark" />
+                                    加入收藏
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather_container" v-if="showPlan3">
+                    <h3>一週天氣預報 | 台中</h3>
+                    <div class="table_wrap">
+                        <table>
+                            <tr>
+                                <td><span>07/28</span></td>
+                                <td><span>07/29</span></td>
+                                <td><span>07/30</span></td>
+                                <td><span>07/31</span></td>
+                                <td><span>08/01</span></td>
+                                <td><span>08/02</span></td>
+                                <td><span>08/03</span></td>
+                            </tr>
+                            <tr>
+                                <!-- <td>
+                                    <img :src="weatherData[0].day.condition.icon" alt="">
+                                    <span>最高 {{ weatherData['0'].day.maxtemp_c }}℃</span><br>
+                                    <span>最低 {{ weatherData['0'].day.mintemp_c }}℃</span><br>
+                                    <span>降雨機率 {{ weatherData['0'].day.daily_chance_of_rain }}%</span>
+                                </td> -->
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 28℃</span><br>
+                                    <span>最低 25℃</span><br>
+                                    <span>降雨機率 88%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 34℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 89%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 25℃</span><br>
+                                    <span>降雨機率 89%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
+                                    <span>最高 26℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 89%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 30℃</span><br>
+                                    <span>最低 23℃</span><br>
+                                    <span>降雨機率 65%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 24℃</span><br>
+                                    <span>降雨機率 78%</span>
+                                </td>
+                                <td>
+                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/302.png" alt="">
+                                    <span>最高 32℃</span><br>
+                                    <span>最低 26℃</span><br>
+                                    <span>降雨機率 80%</span>
+                                </td>
 
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="oott_container" v-if="showPlan3">
+                    <h3>出遊穿搭推薦</h3>
+                    <div class="oott_card_wrap">
+                        <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
+                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
+                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor">
+                        </OottCard>
+                    </div>
+                </div>
+                <div class="ticket_container" v-if="showPlan3">
+                    <h3>景點票券優惠</h3>
+                    <router-link to="/ticket_info">
+                        <div class="ticket_box">
+                            <div class="ticket_pic">
+                            </div>
+                            <div class="ticket_desc">
+                                <div class="ticket_content">
+                                    <h4>紙箱王創意園區門票</h4>
+                                    <span>台中・</span>
+                                    <span>#親子 #小資 #藝文</span>
+                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                </div>
+                                <div class="ticket_price">
+                                    <div class="price_box">
+                                        <!-- <span>NT$ 200</span> -->
+                                        <span>NT$ 200</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="sale_tag">
+                                <span>75折</span>
+                            </div>  -->
+                        </div>
+                    </router-link>
+                    <div class="ticket_card">
+                        <router-link to="/ticket_info">
+                            <Ticket v-for="(ticket, index) in tickets" :key="index" :ticketPhoto="ticket.ticketPhoto"
+                                :ticketTitle="ticket.ticketTitle" :ticketTags="ticket.ticketTags"
+                                :originalPrice="ticket.originalPrice" :FinalPrice="ticket.FinalPrice">
+                            </Ticket>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -414,6 +848,9 @@ export default defineComponent({
     data() {
         return {
             showResultContent: false,
+            showPlan1: false,
+            showPlan2: false,
+            showPlan3: false,
             resultPic1: [
                 { src: require('@/assets/img/layout/plan_result_place_1-1.png') },
                 { src: require('@/assets/img/layout/plan_result_place_1-2.png') },
@@ -764,7 +1201,7 @@ export default defineComponent({
             align-items: flex-end;
             gap: $sp1;
             padding-bottom: $sp4;
-            animation: fadeIn 1s ease-in;
+            animation: fadeIn 1s linear;
 
             @media (min-width: $md) {
                 padding-bottom: $sp6;
@@ -803,7 +1240,7 @@ export default defineComponent({
             margin-bottom: $sp3;
             box-shadow: 0px 3px 3px 0px rgba(106, 93, 74, 0.20);
             position: relative;
-            animation: fadeIn 1s ease-in;
+            animation: fadeIn 1.5s linear;
             @media (min-width: $md) {
                 padding: $sp4;
                 margin-bottom: $sp5;
@@ -1064,12 +1501,23 @@ export default defineComponent({
                         }
                     }
                 }
-
-                .btn_bookmark {
-                    label {
-                        span {
-                            .bookmark {
-                                padding-right: $sp1;
+                .show_result_btn{
+                    margin-top: -8px;
+                    @media (min-width: 1024px){
+                        margin-top: -16px;
+                    }
+                }
+                .show_result_wrap{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    animation: fadeIn 1s linear;
+                    .btn_bookmark {
+                        label {
+                            span {
+                                .bookmark {
+                                    padding-right: $sp1;
+                                }
                             }
                         }
                     }
@@ -1078,7 +1526,7 @@ export default defineComponent({
 
             .weather_container {
                 padding-top: $sp5;
-
+                animation: fadeIn 1s linear;
                 h3 {
                     @include sm_h3;
                     padding-bottom: $sp3;
@@ -1163,7 +1611,7 @@ export default defineComponent({
 
             .oott_container {
                 padding-top: $sp5;
-
+                animation: fadeIn 1s linear;
                 h3 {
                     @include sm_h3;
                     padding-bottom: $sp3;
@@ -1194,7 +1642,7 @@ export default defineComponent({
 
             .ticket_container {
                 padding-top: $sp5;
-
+                animation: fadeIn 1s linear;
                 h3 {
                     @include sm_h3;
                     padding-bottom: $sp3;
@@ -1216,6 +1664,9 @@ export default defineComponent({
                         background-image: url(~@/assets/img/layout/ticketHorizontal.png);
                         background-size: 100%;
                         gap: $sp5;
+                        &:hover{
+                            background-image: url(~@/assets/img/layout/ticketHorizontal_hover.png);
+                        }
                     }
 
                     @media (min-width: 1024px) {
