@@ -92,8 +92,10 @@ export default {
     // 票券內文
     .ticket_text {
         width: 80%;
+        height: 313px;
         display: flex;
         flex-direction: column;
+        position: relative;
         margin: $sp3 auto;
         color: $textColor_default;
 
@@ -104,7 +106,6 @@ export default {
 
         @media (min-width: $xl) {
             margin: $sp3;
-            height: 360px;
             color: $textColor_white;
         }
 
@@ -158,7 +159,7 @@ export default {
 
             @media (min-width: $xl) {
                 line-height: 30px;
-                margin: $sp2 $sp5 $sp7 0;
+                margin: $sp2 $sp5 $sp2 0;
                 color: $textColor_white;
             }
         }
@@ -173,6 +174,8 @@ export default {
             }
 
             @media (min-width: $xl) {
+                position: absolute;
+                bottom: 0;
                 font-size: 18px;
                 color: $textColor_white;
             }

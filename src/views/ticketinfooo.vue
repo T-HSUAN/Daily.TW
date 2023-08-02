@@ -135,7 +135,7 @@
             <div class="item">
                 <div class="item_null" v-if="itemList.length === 0">
                     <p>您的購物車目前是空的</p>
-                    <img src="@/assets/img/cart_scare.svg" alt="decorate">
+                    <img src="@/assets/img/cart_empty.svg" alt="decorate">
                 </div>
                 <div class="details" v-for="(item, index) in itemList" :key="item.id">
                     <!-- 標題&垃圾桶 -->
@@ -192,7 +192,6 @@
             </div>
             <div class="close" @click="toggleCart">close</div>
         </div>
-        <p>{{ Data.Name }}</p>
     </div>
 </template>
 

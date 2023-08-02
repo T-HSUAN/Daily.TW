@@ -32,24 +32,24 @@
         </div>
 
         <!-- 購物車清單 -->
-        <div class="cart" @click="toggleCart">
-            <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" />
-            <div class="numTag">{{ itemList.length }}</div>
-        </div>
-        <!-- 付款明細 -->
-        <div class="cart_sidebar" v-show="togglePage">
+        <div :class="['cart_sidebar', { 'showCartSidebar': switchPage }]">
+            <div class="cart_icon" @click="switchCart">
+                <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_switch" />
+                <div class="numTag">{{ cartItems.length }}</div>
+            </div>
             <h2>付款明細</h2>
             <!-- 購物明細 -->
             <div class="item">
-                <div class="item_null" v-if="itemList.length === 0">
+                <div class="item_null" v-if="cartItems.length === 0">
                     <p>您的購物車目前是空的</p>
-                    <img src="@/assets/img/cart_scare.svg" alt="decorate">
+                    <img src="@/assets/img/cart_empty.svg" alt="decorate">
                 </div>
-                <div class="details" v-for="(item, index) in itemList" :key="item.id">
+                <div class="details" v-for="(item, index) in cartItems" :key="item.id">
                     <!-- 標題&垃圾桶 -->
                     <div class="title">
                         {{ item.Name }}
-                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="cancel(index)" title="刪除" />
+                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="removeFromCart()"
+                            title="刪除" />
                     </div>
                     <!-- 成人票券項目 -->
                     <div class="ticket_adult">
@@ -90,7 +90,7 @@
             </div>
             <!-- 票券總計 -->
             <div class="total">
-                <p>({{ itemList.length }}項票券) 總計</p>
+                <p>({{ cartItems.length }}項票券) 總計</p>
                 <p> NT$&nbsp;
                     <span class="total-price"> {{ totalPrice }} </span>
                     元
@@ -98,15 +98,15 @@
                 <!-- 結帳按鈕，跳轉至購物車 -->
                 <router-link to="/cart"><button class="btn">結帳</button></router-link>
             </div>
-            <div class="close" @click="toggleCart">close</div>
+            <!-- <div class="close" @click="switchCart">close</div> -->
         </div>
     </div>
 </template>
 <script>
 import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
+import { mapActions, mapGetters } from 'vuex';
 import ticketData from "@/store/ticketData.js";
-import itemList from "@/store/cart.js";
 export default {
     components: {
         Searchbar,
@@ -140,10 +140,10 @@ export default {
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
             // 購物車清單
-            itemList: itemList,
-            //toggle購物車頁面
+            cartItems: this.$store.state.cartItems,
+            //switch購物車頁面
             totalPrice: 0,
-            togglePage: false,
+            switchPage: false,
         }
     },
     methods: {
@@ -164,68 +164,63 @@ export default {
         // updateTagsFilter() {
         //     this.ticketDisplay = this.ticketData.filter((item) =>
         //         item.location.includes(this.tagFilter.default))
-
         // }
-        // 檢查商品是否已經存在於購物車中
-        createItem(index) {
-            let cartItem = this.ticketDisplay[index];
-            if (!this.itemList.includes(cartItem)) {
-                this.itemList.push(cartItem);
-            } else {
-                window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。")
-            }
-            this.saveCartData();
+        // // switch購物車
+        //開關購物車
+        switchCart() {
+            this.switchPage = !this.switchPage;
         },
-        // 刪除購物車項目
+        ...mapActions(['addToCart', 'removeFromCart']),
+        // // 檢查商品是否已經存在於購物車中
+        createItem(index) {
+            const cartItem = this.ticketDisplay[index];
+            console.log('Received item:', this.cartItems);
+            if (cartItem) {
+                this.addToCart(cartItem);
+            }
+        },
+        // // 刪除購物車項目
         cancel: function (index) {
             // console.log(this);
-            this.itemList.splice(index, 1);
-            this.saveCartData();
+            this.cartItems.splice(index, 1);
+            // this.saveCartData();
         },
-        // 點擊關閉購物車
-        close() {
-            this.style.display = "none";
-        },
-        // toggle購物車
-        toggleCart() {
-            this.togglePage = !this.togglePage;
-        },
-        //購物車小計
-        subTotalPrice(item) {
-            const countAdult = item.count_adult;
-            const countEx = item.count_ex;
-            const priceAdultF = item.price_adultF;
-            const priceExF = item.price_exF;
-            item.subtotal = countAdult * priceAdultF + countEx * priceExF;
-            this.TotalPrice();
-        },
-        //購物車總計
-        TotalPrice() {
-            if (this.itemList.length === 0) return 0;
-            for (let i = 0; i < this.itemList.length; i++) {
-                const item = this.itemList[i];
-                this.totalPrice += item.subtotal;
-            }
-            return this.totalPrice;
-        },
-        // 儲存購物車資料到 sessionStorage
-        saveCartData() {
-            sessionStorage.setItem("cartItems", JSON.stringify(this.itemList));
-        },
-        // 從 sessionStorage 中讀取購物車資料
-        loadCartData() {
-            const cartItems = sessionStorage.getItem("cartItems");
-            if (cartItems) {
-                this.itemList = JSON.parse(cartItems);
-            }
-        },
+        // //購物車小計
+        // subTotalPrice(item) {
+        //     const countAdult = item.count_adult;
+        //     const countEx = item.count_ex;
+        //     const priceAdultF = item.price_adultF;
+        //     const priceExF = item.price_exF;
+        //     item.subtotal = countAdult * priceAdultF + countEx * priceExF;
+        //     this.TotalPrice();
+        // },
+        // //購物車總計
+        // TotalPrice() {
+        //     if (this.itemList.length === 0) return 0;
+        //     for (let i = 0; i < this.itemList.length; i++) {
+        //         const item = this.itemList[i];
+        //         this.totalPrice += item.subtotal;
+        //     }
+        // },
+        // // 儲存購物車資料到 sessionStorage
+        // saveCartData() {
+        //     sessionStorage.setItem("cartItems", JSON.stringify(this.itemList));
+        // },
+        // // 從 sessionStorage 中讀取購物車資料
+        // loadCartData() {
+        //     const cartItems = sessionStorage.getItem("cartItems");
+        //     if (cartItems) {
+        //         this.itemList = JSON.parse(cartItems);
+        //     }
     },
-    computed: {},
+    computed: {
+        ...mapGetters(["cartItems"]),
+    },
     created() {
         this.updateDisplay();
-        this.TotalPrice();
+        // this.TotalPrice();
         // 在 Vue 組件被建立時，從 sessionStorage 中讀取購物車資料
-        this.loadCartData();
+        // this.loadCartData();
     },
 };
 </script>

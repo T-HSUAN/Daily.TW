@@ -1,6 +1,7 @@
 const ticketData = [
     {
-        id: 1,        Name: "斑比山丘",
+        id: 1,        
+        Name: "斑比山丘",
         img: require("@/assets/img/ticketExample.png"),
         location: "宜蘭",
         tag: "#親子#情侶#農場",
@@ -42,7 +43,8 @@ const ticketData = [
         img: require("@/assets/img/ticket_photo/ticket_photo03.jpg"),
         location: "宜蘭",
         tag: "#親子#情侶#風景#藝文",
-        ticket_details:"藝園區內有多個場館和設施，提供多樣化的藝術體驗和學習機會。其中包括展覽廳、劇場、表演場地、工作室、圖書館等。園區內有專門展示台灣傳統藝術的展覽，涵蓋了戲曲、音樂、舞蹈、書法、繪畫、工藝等多個領域。這些展覽和表演不僅讓觀眾欣賞到傳統藝術的精髓，同時也提供了一個交流和學習的平台，讓人們更深入地了解台灣的文化遺產。",
+        ticket_details:"園區內有多個場館和設施，提供多樣化的藝術體驗和學習機會。園區內有專門展示台灣傳統藝術的展覽，涵蓋了戲曲、音樂、舞蹈、書法、繪畫、工藝等多個領域。這些展覽和表演不僅讓觀眾欣賞到傳統藝術的精髓，同時也提供了一個交流和學習的平台，讓人們更深入地了解台灣的文化遺產。",
+        ticket_addr: "宜蘭縣五結鄉五濱路二段201號",        
         ticket_addr_link: "https://goo.gl/maps/vWNDgB4QKutBLYJCA",
         price_adultO: "",
         price_adultF: 150,
@@ -156,8 +158,7 @@ const ticketData = [
         img: require("@/assets/img/ticket_photo/ticket_photo09.jpg"),
         location: "高雄",
         tag: "#親子#情侶#小資#樂園#放鬆",
-        ticket_details:
-            "高雄鈴鹿賽道樂園(Suzuka Circuit Park) 位於高雄大魯閣草衙道，是全台第一座駕駛主題樂園，同時都是日本鈴鹿賽車場唯一海外授權的樂園，緊鄰著名景點SKM Park，交通便利，是高雄必遊景點之一。前往迷你鈴鹿賽道，在這個以日本原型10:1縮小的卡丁車場地，體驗競速馳騁的極致快感。",
+        ticket_details:"高雄鈴鹿賽道樂園(Suzuka Circuit Park) 位於高雄大魯閣草衙道，是全台第一座駕駛主題樂園，同時都是日本鈴鹿賽車場唯一海外授權的樂園，緊鄰著名景點SKM Park，交通便利，是高雄必遊景點之一。前往迷你鈴鹿賽道，在這個以日本原型10:1縮小的卡丁車場地，體驗競速馳騁的極致快感。",
         ticket_addr: "高雄市前鎮區中安路1-1號",
         ticket_addr_link: "",
         price_adultO: "",
@@ -176,8 +177,7 @@ const ticketData = [
         img: require("@/assets/img/ticket_photo/ticket_photo10.jpg"),
         location: "花蓮",
         tag: "#親子#情侶#樂園",
-        ticket_details:
-            "來到花蓮總是被寬闊的海景所吸引，想徜徉海洋國度，就來花蓮遠雄海洋公園一起悠游！花蓮海洋公園結合遊樂與教育，不僅有八大特色主題區和設施，更特別為大小朋友設計許多海洋體驗活動與最夯夜宿水族館，還有美麗的美人魚與你互動，快帶著帶著全家大小來全場海洋之旅！",
+        ticket_details:"來到花蓮總是被寬闊的海景所吸引，想徜徉海洋國度，就來花蓮遠雄海洋公園一起悠游！花蓮海洋公園結合遊樂與教育，不僅有八大特色主題區和設施，更特別為大小朋友設計許多海洋體驗活動與最夯夜宿水族館，還有美麗的美人魚與你互動，快帶著帶著全家大小來全場海洋之旅！",
         ticket_addr: "花蓮縣壽豐鄉福德189號",
         ticket_addr_link: "",
         price_adultO: 990,
@@ -195,10 +195,9 @@ const ticketData = [
         Name: "澎湖水族館",
         img: require("@/assets/img/ticket_photo/ticket_photo11.jpg"),
         location: "澎湖",
-        tag: "	#親子#情侶#放鬆",
-        ticket_details:
-            "位於澎湖縣白沙鄉白沙養殖場內的「澎湖水族館」，是一座寓教於樂且功能完善的生態教育場域，當中「特產室」、「觀景台」、「視聽室」、「觸摸池」結合了視聽娛樂等設備，不僅可以擁有實際體驗，更能對這些海洋生物有更深的認識，其中大洋池海底隧道，不走上一趟，別說來過澎湖。",
-        ticket_addr: "	澎湖縣白沙鄉岐頭村58號",
+        tag: "#親子#情侶#放鬆",
+        ticket_details:"位於澎湖縣白沙鄉白沙養殖場內的「澎湖水族館」，是一座寓教於樂且功能完善的生態教育場域，當中「特產室」、「觀景台」、「視聽室」、「觸摸池」結合了視聽娛樂等設備，不僅可以擁有實際體驗，更能對這些海洋生物有更深的認識，其中大洋池海底隧道，不走上一趟，別說來過澎湖。",
+        ticket_addr: "澎湖縣白沙鄉岐頭村58號",
         ticket_addr_link: "",
         price_adultO: "",
         price_adultF: 300,
@@ -216,8 +215,7 @@ const ticketData = [
         img: require("@/assets/img/ticket_photo/ticket_photo12.jpg"),
         location: "馬祖",
         tag: "#親子#情侶#藝文",
-        ticket_details:
-            " 藍眼淚是馬祖當地非常具代表性的生態，也是許多人對於馬祖的第一印象，更是來此必訪的行程。藍眼淚的爆發季節約於每年的4-6月，9月至10月間結束，靜謐的海面上出現了藍色的光點，它其實是一種夜光蟲（渦鞭毛藻），經過海浪及自然風的驚擾會發出淡藍色的螢光，須在無光害的環境下才看得到，也有人稱為「藍海現象」或是「藍色啤酒海」。",
+        ticket_details:"藍眼淚是馬祖當地非常具代表性的生態，是來此必訪的行程。藍眼淚的爆發季節約於每年的4-6月，9月至10月間結束，靜謐的海面上出現了藍色的光點，它其實是一種夜光蟲（渦鞭毛藻），經過海浪及自然風的驚擾會發出淡藍色的螢光，須在無光害的環境下才看得到，也有人稱為「藍海現象」或是「藍色啤酒海」。",
         ticket_addr: "連江縣南竿鄉24號",
         ticket_addr_link: "",
         price_adultO: "",
