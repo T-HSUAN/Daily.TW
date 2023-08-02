@@ -10,9 +10,12 @@
             <!-- 內容區域 -->
             <div class="post_content_wrap">
                 <!-- 麵包屑 -->
-                <h5 class="breadcrumb">
-                   &lt 我的穿搭
-                </h5>
+                <div class="breadcrumb">
+                    <font-awesome-icon icon="fa-solid fa-chevron-left" />  
+                    <router-link to="/oott">
+                        <span>我的穿搭</span>
+                    </router-link>
+                </div>
                 
                 <div class="post_edit_title">
                     <h3>貼文編輯</h3>
@@ -199,7 +202,7 @@ export default{
             .breadcrumb{
                 display: none;
                 @media (min-width: 1024px) {
-                display: block;
+                display: inline-block;
                 margin-bottom: 22px;
                 }
             }
