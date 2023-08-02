@@ -15,14 +15,15 @@
     flex-shrink: 0;
     /* btn/default */
     box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-
-    &:hover{
-        color: $textColor_white;
-        background: $textColor_default;
-        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-    }
-    &:active{
-        color: $textColor_white;
-        background: $textColor_tint;
+    @media (min-width: 375px){
+        &:hover{
+            color: $textColor_white;
+            background: $textColor_default;
+            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+        &:active{
+            color: $textColor_white;
+            background: $textColor_tint;
+        }
     }
 }

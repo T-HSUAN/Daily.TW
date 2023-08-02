@@ -814,6 +814,7 @@ export default defineComponent({
 
                     @media (min-width: $md) {
                         flex-direction: row;
+                        align-self: flex-start;
                         gap: 0;
                         padding-bottom: $sp4;
                     }
@@ -1162,16 +1163,19 @@ export default defineComponent({
                 }
 
                 .oott_card_wrap {
+                    width: 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     gap: $sp2;
 
-                    @media (min-width: 1024px) {
+                    @media (min-width: $md) {
                         flex-direction: row;
-                        justify-content: center;
-                        gap: $sp3;
+                        overflow: scroll;
                         padding-bottom: $sp1;
+                    }
+                    @media (min-width: 1200px) {
+                        justify-content: center;
                     }
                 }
             }

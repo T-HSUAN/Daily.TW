@@ -218,10 +218,10 @@
                             <font-awesome-icon icon="fa-brands fa-line" />
                         </a>
                         <a href="#">
-                            <font-awesome-icon icon="fa-brands fa-instagram" />
+                            <font-awesome-icon icon="fa-brands fa-square-facebook" />
                         </a>
                         <a href="#">
-                            <font-awesome-icon icon="fa-brands fa-square-facebook" />
+                            <font-awesome-icon icon="fa-brands fa-instagram" />
                         </a>
                     </div>
                 </div>
