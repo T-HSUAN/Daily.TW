@@ -550,6 +550,9 @@ export default {
                     line-height: 21px;
                     font-weight: 700;
                 }
+                .ivu-select-arrow {
+                    color: $textColor_default;
+                }
             }
 
             // select{
