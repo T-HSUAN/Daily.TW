@@ -651,7 +651,7 @@ export default {
             max-width: 1200px;
             text-align: center;
             @media (min-width: 768px) {
-                // overflow: hidden;
+                overflow: hidden;
             }
 
             .wrap {
@@ -903,7 +903,7 @@ export default {
             .author {
                 width: 128px;
                 text-align: center;
-                margin: $sp1;
+                // margin: $sp1;
 
                 .profilePic {
                     width: 128px;

@@ -20,12 +20,16 @@
                                         alt=""
                                     />
                                 </div>
-                                <ul>
-                                    <li>用戶暱稱</li>
-                                    <li>生日</li>
-                                    <li>性別</li>
-                                    <li>email</li>
-                                </ul>
+                                <div class="info">
+                                    <div class="box">
+                                        <label for="account">用戶暱稱</label><input type="text" placeholder="王小明" disabled>
+                                        <label for="account">生日</label><input type="text" placeholder="2023/08/02" disabled>
+                                    </div>
+                                    <div class="box">
+                                        <label for="account">性別</label><input type="text" placeholder="男" disabled>
+                                        <label for="account">email</label><input type="email" placeholder="123456@gmail.com" disabled>
+                                    </div>
+                                </div>
                                 <router-link to="/member_info" class="btn">編輯</router-link>
                             </div>
                         </div>
@@ -360,7 +364,7 @@ export default {
                         margin: 0;
                     }
                     .pic {
-                        width: 98px;
+                        width: 100px;
                         @media (min-width: 768px) {
                             width: 160px;
                         }
@@ -368,17 +372,25 @@ export default {
                             width: 100%;
                         }
                     }
-                    ul {
-                        display: flex;
-                        flex-direction: column;
-                        width: 130px;
-                        align-items: start;
-                        padding-left: $sp2;
-                        gap: 15px;
+                    .info {
                         @media (min-width: 768px) {
-                            width: 600px;
-                            padding-left: $sp5;
-                            gap: 30px;
+                            display: flex;
+                        }
+                        .box{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: start;
+                            width: 180px;
+                            padding-left: $sp2;
+                            gap: 8px;
+                            label{
+                                padding: 5px;
+                            }
+                            @media (min-width: 768px) {
+                                width: 300px;
+                                padding-left: $sp5;
+                                gap: 15px;
+                            }
                         }
                     }
                     .btn {
