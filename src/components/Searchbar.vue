@@ -51,7 +51,7 @@
         <div class="tags_filter">
             <label v-for="item in tagTexts" :key="item">
                 <input type="checkbox" class="tag" />
-                <span>{{ item.default }}</span>
+                <span @click="TagsFilter" :class="TagSelected">{{ item.default }}</span>
             </label>
             <!-- <tag :tagTexts="tagTexts" :tagTexts.default="tagTexts.default" /> -->
         </div>
@@ -80,7 +80,9 @@ export default {
         tagTexts: {
             type: [Object, String],
             default: "#標籤",
-        }
+        },
+        TagsFilter: Function,
+        TagSelected: Boolean,
     },
     data() {
         return {
