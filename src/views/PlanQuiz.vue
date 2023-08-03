@@ -58,8 +58,10 @@
                 <div class="tags_container">
                     <span class="hint">* 請選擇至少3個</span>
                     <div class="tags_wrap">
-                        <label v-for="(placeTag, placeIndex) in placeTags" :key="placeIndex">
-                            <input type="checkbox" class="tag"/>
+                        <label v-for="(placeTag, index) in placeTags" :key="placeTag.index">
+                            <input type="checkbox" class="tag" 
+                            :id="`placeTag-${index}`" v-model="checkedPlaceTags[index]"
+                            @change="handleTagsChange('place',index)"/>
                             <span># {{ placeTag }}</span>
                         </label>
                     </div>
@@ -73,7 +75,7 @@
             </div>
             <div class="btn_wrap">
                 <button @click="prevQuestion" class="cancel_btn">回到上一題</button>
-                <button @click="nextQuestion" class="btn">
+                <button @click="nextQuestion" class="btn" :disabled="isNextButtonDisabled">
                     下一題
                     <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
                     <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
@@ -91,10 +93,13 @@
                 <div class="tags_qa">
                     <div class="subtitle">
                         <h4>平常習慣穿</h4>
+                        <span>* 請選擇1個</span>
                     </div>
                     <div class="tags_wrap">
-                        <label v-for="(sexTag, sexIndex) in sexTags" :key="sexIndex">
-                            <input type="checkbox" class="tag" />
+                        <label v-for="(sexTag, index) in sexTags" :key="sexTag.index">
+                            <input type="checkbox" class="tag" :id="`seasonTag-${index}`" 
+                            v-model="checkedSexTag[index]"
+                            @change="handleTagsChange('sex', index)"/>
                             <span># {{ sexTag }}</span>
                         </label>
                     </div>
@@ -108,8 +113,10 @@
                         <span>* 請選擇至少3個</span>
                     </div>
                     <div class="tags_wrap">
-                        <label v-for="(styleTag, styleIndex) in styleTags" :key="styleIndex">
-                            <input type="checkbox" class="tag" />
+                        <label v-for="(styleTag, index) in styleTags" :key="styleTag.index">
+                            <input type="checkbox" class="tag" :id="`styleTag-${index}`"
+                            v-model="checkedStyleTags[index]"
+                            @change="handleTagsChange('style', index)"/>
                             <span># {{ styleTag }}</span>
                         </label>
                     </div>
@@ -136,13 +143,11 @@
             </div>
             <div class="btn_wrap">
                 <button @click="prevQuestion" class="cancel_btn">回到上一題</button>
-                <router-link to="/plan_result">
-                    <button class="btn">
-                        看結果
-                        <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
-                        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
-                    </button>
-                </router-link>
+                <button @click="handleResultClick" :disabled="isNextButtonDisabled" class="btn">
+                    看結果
+                    <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white">
+                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown">
+                </button>
             </div>
         </div>
     </div>
@@ -237,49 +242,28 @@ export default {
             ],
             selectValue: [],
             placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆","懷舊"],
-            // checkedTags: [],
             sexTags: ["男裝", "女裝", "不限"],
             styleTags: ["日系", "韓系", "美式", "中性", "休閒", "簡約", "復古", "文青", "運動", "潮流", "街頭", "性感", "甜美", "可愛", "氣質"],
+            checkedPlaceTags :[],
+            checkedSexTag :[],
+            checkedStyleTags :[],
         }
     },
     mounted() {
         this.currentQuestionIndex = 0;
-        // this.placeTags = [
-        // "親子",
-        // "情侶",
-        // "小資",
-        // "風景",
-        // "山林",
-        // "海邊",
-        // "樂園",
-        // "農場",
-        // "藝文",
-        // "放鬆",
-        // "懷舊",
-        // ];
-        // this.checkedTags = Array(this.placeTags.length).fill(false);
     },
     computed: {
         isNextButtonDisabled() {
             if (this.currentQuestionIndex === 0) {
                 return this.selectValue.length < 1;
-            } 
-            // else if (this.currentQuestionIndex === 1) {
-            //     return this.getSelectedTagCount() < 3;
-            // } 
-            else {
-                return false;
+            } else if (this.currentQuestionIndex === 1) {
+                return this.countCheckedTags(this.checkedPlaceTags) < 3;
+            } else if (this.currentQuestionIndex === 2) {
+                return this.countCheckedTags(this.checkedStyleTags) < 3;
             }
         },
     },
     methods: {
-        // getSelectedTagCount() {
-        //     return this.checkedTags.filter((checked) => checked).length;
-        // },
-        // toggleTag(index) {
-        //     this.checkedTags.splice(index, 1, !this.checkedTags[index]);
-        //     this.changeTag();
-        // },
         nextQuestion() {
             if (this.currentQuestionIndex < 2) {
                 this.currentQuestionIndex++;
@@ -310,6 +294,38 @@ export default {
                 }
                 this.selectValue = data;
             })
+        },
+        limitCheckedTags(checkedArray,index){
+            let tagsLimit = 1;     // 限制選1個
+            if(checkedArray[index]){   // 確認勾到的有在資料裡面        
+                if(this.countCheckedTags(checkedArray)>tagsLimit){
+                    checkedArray[index] = false; // 取消勾選
+                }
+            }
+        },
+        // count the number of true values in an array
+        countCheckedTags(checkedArray){
+            return checkedArray.filter((tag) => tag).length;
+        },
+        handleTagsChange(tagList,index){
+            let checkedArray = []; // 辨識打勾選到的 array
+
+            if (tagList === 'place'){
+                checkedArray = this.checkedPlaceTags;
+            } else if(tagList === 'style'){
+                checkedArray = this.checkedStyleTags;
+            } else if (tagList === 'sex'){
+                checkedArray = this.checkedSexTag;
+                this.limitCheckedTags(checkedArray, index);
+            }
+
+        },
+        // "看結果"按鈕跳轉至結果頁
+        handleResultClick() {
+            if (this.isNextButtonDisabled) {
+                return;
+            }
+            this.$router.push('/plan_result');
         },
     },
 };
