@@ -5,9 +5,20 @@ import store from "./store";
 
 // router-link 換頁回到頁面頂端
 router.afterEach((to, from) => {
-	window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 });
 
+// 購物車:在創建 Vue app 之前，先將 sessionStorage 的資料還原到 Vuex store 中
+const CART_KEY = "StoreData"; // 作為 localStorage 的 key
+const storedCartItems = sessionStorage.getItem(CART_KEY);
+if (storedCartItems) {
+    store.commit("restoreCartItems", JSON.parse(storedCartItems));
+}
+// 購物車:在網頁重整前將購物車資料存入 sessionStorage
+window.addEventListener("beforeunload", () => {
+    const cartItems = JSON.stringify(store.state.cartItems);
+    sessionStorage.setItem(CART_KEY, cartItems);
+});
 
 // package
 
@@ -19,7 +30,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
 
-import { faBookmark, faHeart, faClock, faEyeSlash, faCircleXmark, faCartShopping, faMagnifyingGlass, faLocationDot, faCloud, faEye, faArrowLeft, faArrowRight, faArrowUp, faChevronDown, faCircleChevronDown,faPen, faTrashCan, faSquarePlus, faSortUp, faCar, faTicket, faUser, faUserTie, faShirt, faBullhorn, faBagShopping, faArrowUpWideShort, faFilter, faSortDown, faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+import { faBookmark, faHeart, faClock, faEyeSlash, faCircleXmark, faCartShopping, faMagnifyingGlass, faLocationDot, faCloud, faEye, faArrowLeft, faArrowRight, faArrowUp, faChevronDown, faCircleChevronDown, faPen, faTrashCan, faSquarePlus, faSortUp, faCar, faTicket, faUser, faUserTie, faShirt, faBullhorn, faBagShopping, faArrowUpWideShort, faFilter, faSortDown, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 import { faLine, faInstagram, faSquareFacebook } from '@fortawesome/free-brands-svg-icons'
 

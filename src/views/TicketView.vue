@@ -7,7 +7,7 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="updateDisplay" :tagTexts="tagFilter" />
+        <Searchbar :Filter="updateDisplay" :tagTexts="tagTexts" :TagsFilter="TagsFilter" :TagSelected="TagSelected" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -48,7 +48,7 @@
                     <!-- 標題&垃圾桶 -->
                     <div class="title">
                         {{ item.Name }}
-                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="removeFromCart()"
+                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="removeFromCart(index)"
                             title="刪除" />
                     </div>
                     <!-- 成人票券項目 -->
@@ -60,7 +60,8 @@
                             </p>
                         </label>
                         <select v-model="item.count_adult" name="ticket_count_adult" class="count_adult"
-                            @change="subTotalPrice(item)">
+                            @change="updateSubtotal(item)">
+                            <!-- 小計 -->
                             <option value="0" selected>0</option>
                             <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
@@ -74,7 +75,7 @@
                             <p class="price">(NT$ {{ item.price_exF }} /張)</p>
                         </label>
                         <select v-model="item.count_ex" name="ticket_count_ex" class="count_ex"
-                            @change="subTotalPrice(item)">
+                            @change="updateSubtotal(item)">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
@@ -118,7 +119,7 @@ export default {
                 title: "景點票券一次購夠GO",
                 img: "",
             },
-            tagFilter: [
+            tagTexts: [
                 { default: " #親子" },
                 { default: " #情侶" },
                 { default: " #小資" },
@@ -130,8 +131,8 @@ export default {
                 { default: " #海邊" },
                 { default: " #放鬆" },
                 { default: " #懷舊" },
-            ]
-            ,
+            ],
+            TagSelected: false,// 儲存使用者選擇的標籤
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
             },
@@ -142,11 +143,13 @@ export default {
             // 購物車清單
             cartItems: this.$store.state.cartItems,
             //switch購物車頁面
-            totalPrice: 0,
             switchPage: false,
         }
     },
     methods: {
+        // filterByTag(tag) {
+        //     this.selectedTag = tag;
+        // },
         //模糊搜尋
         updateDisplay() {
             if (this.$store.state.filter.searchText === "") {
@@ -161,17 +164,29 @@ export default {
                 );
             }
         },
-        // updateTagsFilter() {
-        //     this.ticketDisplay = this.ticketData.filter((item) =>
-        //         item.location.includes(this.tagFilter.default))
-        // }
-        // // switch購物車
-        //開關購物車
+        // LocationFilter() {
+        //     if (this.TagSelected === true) {
+        //         this.ticketDisplay = this.ticketData.filter((item) =>
+        //             item.location.includes(this.tagTexts.default))
+        //     } else {
+        //         this.ticketDisplay = this.ticketData;
+        //     }
+        // },
+        TagsFilter() {
+            this.TagSelected = !this.TagSelected;
+            if (this.TagSelected === true) {
+                this.ticketDisplay = this.ticketData.filter((item) =>
+                    item.location.includes(this.tagTexts.default))
+            } else {
+                this.ticketDisplay = this.ticketData;
+            }
+        },
+        // switch購物車
         switchCart() {
             this.switchPage = !this.switchPage;
         },
-        ...mapActions(['addToCart', 'removeFromCart']),
-        // // 檢查商品是否已經存在於購物車中
+        ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
+        // 檢查商品是否已經存在於購物車中
         createItem(index) {
             const cartItem = this.ticketDisplay[index];
             console.log('Received item:', this.cartItems);
@@ -179,48 +194,27 @@ export default {
                 this.addToCart(cartItem);
             }
         },
-        // // 刪除購物車項目
-        cancel: function (index) {
-            // console.log(this);
-            this.cartItems.splice(index, 1);
-            // this.saveCartData();
+        //更新購物車小計
+        updateSubtotal(item) {
+            // 調用 action 來更新小計
+            this.Subtotal({
+                itemId: item.id,
+                countAdult: item.count_adult,
+                countEx: item.count_ex,
+            });
         },
-        // //購物車小計
-        // subTotalPrice(item) {
-        //     const countAdult = item.count_adult;
-        //     const countEx = item.count_ex;
-        //     const priceAdultF = item.price_adultF;
-        //     const priceExF = item.price_exF;
-        //     item.subtotal = countAdult * priceAdultF + countEx * priceExF;
-        //     this.TotalPrice();
-        // },
-        // //購物車總計
-        // TotalPrice() {
-        //     if (this.itemList.length === 0) return 0;
-        //     for (let i = 0; i < this.itemList.length; i++) {
-        //         const item = this.itemList[i];
-        //         this.totalPrice += item.subtotal;
-        //     }
-        // },
-        // // 儲存購物車資料到 sessionStorage
-        // saveCartData() {
-        //     sessionStorage.setItem("cartItems", JSON.stringify(this.itemList));
-        // },
-        // // 從 sessionStorage 中讀取購物車資料
-        // loadCartData() {
-        //     const cartItems = sessionStorage.getItem("cartItems");
-        //     if (cartItems) {
-        //         this.itemList = JSON.parse(cartItems);
-        //     }
     },
     computed: {
-        ...mapGetters(["cartItems"]),
+        // filteredTicket() {
+        //     if (!this.selectedTag) {
+        //         return this.ticketDisplay;
+        //     }
+        //     return this.ticketDisplay.filter(ticket => ticket.location.includes(this.selectedTag));
+        // },
+        ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
         this.updateDisplay();
-        // this.TotalPrice();
-        // 在 Vue 組件被建立時，從 sessionStorage 中讀取購物車資料
-        // this.loadCartData();
     },
 };
 </script>
