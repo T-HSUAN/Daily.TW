@@ -70,6 +70,9 @@
 </section>
 </template>
 <script>
+import { firebaseAuth } from "@/assets/config/firebase.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 export default {
     data() {
         return {
@@ -107,20 +110,51 @@ export default {
         //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
         //     this.isPasswordValid = regex.test(this.psw);
         // },
-        login() {
-            // if (this.isEmailValid && this.isPasswordValid) {
-            if (this.email === "test123" && this.psw === "test123") {
-                window.alert("登入成功");
-                this.$store.commit('setName', this.email); 
-                this.$store.commit('setIsLogin', true);
-                this.$router.push({ path: "/" });
-            } else {
-                window.alert("帳號或密碼錯誤，請重新登入");
-                // this.$router.replace({ path: "/login" });
-            }
+        // login() {
+        //     // if (this.isEmailValid && this.isPasswordValid) {
+        //     if (this.email === "test123" && this.psw === "test123") {
+        //         window.alert("登入成功");
+        //         this.$store.commit('setName', this.email); 
+        //         this.$store.commit('setIsLogin', true);
+        //         this.$router.push({ path: "/" });
+        //     } else {
+        //         window.alert("帳號或密碼錯誤，請重新登入");
+        //         // this.$router.replace({ path: "/login" });
+        //     }
             
             // }
-        },
+        // },
+        login() {
+            console.log(this.email);
+    //   if(this.username === '' || this.password === '')return
+      signInWithEmailAndPassword(firebaseAuth, this.email, this.psw)
+        .then((userCredential) => {
+            console.log(this.psw);
+          // firebase 的資料
+          // const userInfo = userCredential.user
+          // this.$store.commit('setName', userInfo);
+          this.$store.commit('setName', this.email);
+          this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
+          window.alert("登入成功");
+          this.$router.push('/');
+        })
+        .catch((error) => {
+            const errorCode = error.code
+            console.log(errorCode);
+            if( errorCode === 'auth/wrong-password'){
+              window.alert("密碼錯誤");
+            }else if(errorCode === 'auth/user-not-found'){
+              window.alert("請前往註冊");
+            }else{
+              window.alert(`${errorCode}`);
+              this.errorMsg = "帳號或密碼輸入錯誤";
+            }
+        })
+    },
+
+
+
+
         // 切換tab
         updateTab(index) {
             this.tabActive = index
