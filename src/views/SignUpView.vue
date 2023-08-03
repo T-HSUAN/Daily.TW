@@ -65,7 +65,7 @@
                 <router-link to="./login" class="cancel_btn">
                     取消
                 </router-link>
-                <button class="btn" @click="showPopbox">
+                <button class="btn" @click="columnCheck">
                     註冊
                 </button>
             </div>
@@ -189,10 +189,47 @@ export default {
         },
         redirectToOtherPage() {
             this.$router.push('/member');
-        }
-        //     setTimeout(() => {
-        //     this.isPopBoxVisible = true;
-        //   }, 2000); 
+        },
+        columnCheck() {
+      if (this.register.pswReg === this.register.pswConfirmReg) {
+        //存輸入的信箱與密碼
+        const email = this.register.emailReg;
+        const password = this.register.pswReg;
+        console.log(`email:${email},password:${password}`)
+
+        // 使用 Firebase 的 createUserWithEmailAndPassword 方法進行註冊
+        createUserWithEmailAndPassword(firebaseAuth, email, password)
+          .then((userCredential) => {
+            // 註冊成功，您可以在這裡處理相應的動作
+            console.log('註冊成功', userCredential);
+            const userInfo = userCredential.user
+            this.$store.commit('setName', userInfo);
+
+            // 假設您希望在註冊成功後跳轉到其他頁面，您可以在這裡加入相應的路由導航
+            this.isRegistered = false;
+            this.step = 5;
+          }).catch((error) => {
+            // 註冊失敗，處理錯誤訊息
+            const errorCode = error.code
+            if (errorCode === 'auth/email-already-in-use') {
+              alert(`您的信箱可能已被註冊過了${errorCode}`);
+            } else if (errorCode === 'auth/weak-password') {
+              alert(`此密碼強度太弱，至少包含六個字符${errorCode}`);
+            } else if (errorCode === 'auth/invalid-email') {
+              alert(`信箱格式錯誤${errorCode}`);
+
+            } else {
+              console.log('註冊失敗', error.message);
+              alert(`註冊失敗${error.message}`);
+            }
+          });
+      }
+      else {
+        // 密碼不一致的處理
+        console.log('密碼不一致');
+        alert(`密碼不一致`);
+      }
+    },
 
 
 
