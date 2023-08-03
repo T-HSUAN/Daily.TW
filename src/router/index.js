@@ -165,7 +165,7 @@ const routesUser = [
             ),
     },
     {
-        path: "/oott_post_view/:oott_id",
+        path: "/oott_post_view",
         name: "OottPostView",
         component: () =>
             import(
@@ -181,7 +181,7 @@ const routesUser = [
             ),
     },
     {
-        path: "/oott_edit_view",
+        path: "/oott_edit_view/:oott_id",
         name: "OottEditView",
         component: () =>
             import(

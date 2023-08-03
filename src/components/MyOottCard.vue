@@ -28,10 +28,10 @@
         </div>
         <div class="action">
             <!-- 2 = 待修改 -->
-            <router-link to="/oott_edit_view" class="edit" v-if="oottStatus=='2'">
+            <div class="edit" v-if="oottStatus=='2'" @click="this.$router.push(`/oott_edit_view/${id}`)">
                 <font-awesome-icon icon="fa-solid fa-pen" />
                 編輯
-            </router-link>
+            </div>
             <!-- 1 = 已通過, -->
             <span class="delete" v-if="oottStatus=='1'">
                 <font-awesome-icon icon="fa-solid fa-trash-can" />
@@ -48,6 +48,7 @@ export default {
         oottCardTags: String,
         oottCardDate: String,
         oottStatus : String,
+        id:Number,
     },
 };
 </script>
@@ -120,7 +121,7 @@ export default {
     .action{
             text-align: right;
             margin-top: 4px;
-            a,span{
+            .edit,span{
                 color: var(--text-default, #6A5D4A);
                 font-family: Noto Sans TC;
                 font-size: 18px;
@@ -129,6 +130,10 @@ export default {
                 line-height: 150%; /* 24px */
                 letter-spacing: 0.32px;
             }
+            .edit {
+                cursor: pointer;
+            }
+
             svg{
                 font-size: 14px;
             }
