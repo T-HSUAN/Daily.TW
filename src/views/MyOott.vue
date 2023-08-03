@@ -51,6 +51,7 @@
                         :oottAuthorPhoto= "oott.oottAuthorPhoto"
                         :oottCardAuthor= "oott.oottCardAuthor"
                         :oottStatus ="oott.oottStatus"
+                        :id = "oott.oottId"
                         />
                     </div>
                     <Page :total="18" />

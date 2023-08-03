@@ -127,10 +127,12 @@
 </template>
 
 <script>
+import {GET} from '@/plugin/axios'
 import Sidenav from "@/components/Sidenav.vue";
 export default{
     data(){
         return{
+            oottData : [],
             isPopBoxVisible: false,
             styleTags : [  "日系",  "復古",  "韓系",  "簡約",  "美式",  "運動",  "休閒",  "甜美",  "可愛",  "氣質",  "文青",  "潮流",  "街頭",  "中性",  "性感"],
             placeTags : [  "親子",  "情侶",  "小資",  "風景",  "樂園",  "藝文",  "山林",  "海邊",  "放鬆",  "懷舊"],
@@ -144,6 +146,21 @@ export default{
         showPopbox(){
             this.isPopBoxVisible = !this.isPopBoxVisible;
         },
+        filter() {
+            this.oottData = this.oottData.filter(item => item.id === parseInt(this.id))
+        },
+    },
+    mounted() {
+        GET('/fake/OottData.json')
+            .then((res) => {
+                console.log(this.$route.params);
+                this.oottData = res;
+                this.id = this.$route.params.id;
+                this.filter();
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
 }
 </script>
