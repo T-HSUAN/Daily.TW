@@ -286,7 +286,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content_desc" v-show="showResultContent">
+            <div class="content_desc show_plan_2" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
                         <h3>基隆探索大自然之旅</h3>
@@ -331,7 +331,7 @@
                         </div>
                     </div>
                     <div class="show_result_btn" v-if="!showPlan2">
-                        <div class="btn" @click="showPlan2 = true; showPlan1 = false; showPlan3 = false;">
+                        <div class="btn" @click="showPlan2 = true; showPlan1 = false; showPlan3 = false; scrollToTop()">
                             <span>
                                 展開行程
                                 <font-awesome-icon icon="fa-solid fa-chevron-down" />
@@ -545,7 +545,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content_desc" v-show="showResultContent">
+            <div class="content_desc show_plan_3" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
                         <h3>南投約會一日遊</h3>
@@ -589,7 +589,7 @@
                         </div>
                     </div>
                     <div class="show_result_btn" v-if="!showPlan3">
-                        <div class="btn" @click="showPlan3 = true; showPlan1 = false; showPlan2 = false;">
+                        <div class="btn" @click="showPlan3 = true; showPlan1 = false; showPlan2 = false; scrollToTop()">
                             <span>
                                 展開行程
                                 <font-awesome-icon icon="fa-solid fa-chevron-down" />
@@ -957,6 +957,7 @@ export default defineComponent({
                 this.loading = false
             })
         },
+        // 往下滾動後行程 fadeIn 顯示，且往回滾動不會消失
         checkScroll() {
             const resultBanner = document.querySelector('.result_banner');
             if (resultBanner) {
@@ -974,6 +975,28 @@ export default defineComponent({
                     }
                 }
             }
+        },
+        // 展開行程後要到該行程頂端
+        scrollToTop() {
+            this.$nextTick(() => {
+                const showPlan2Section = document.querySelector(".show_plan_2");
+                const showPlan3Section = document.querySelector(".show_plan_3");
+                if (this.showPlan2 === true) {
+                const topOffset = showPlan2Section.getBoundingClientRect().top;
+                const scrollOptions = {
+                    top: window.scrollY + topOffset,
+                    behavior: "smooth",
+                };
+                window.scrollTo(scrollOptions);
+                }else if (this.showPlan3 === true) {
+                const topOffset = showPlan3Section.getBoundingClientRect().top;
+                const scrollOptions = {
+                    top: window.scrollY + topOffset,
+                    behavior: "smooth",
+                };
+                window.scrollTo(scrollOptions);
+                }
+            });
         },
     },
     mounted() {
