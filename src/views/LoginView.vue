@@ -9,19 +9,21 @@
                 </div>
                 <div class="login" :class="{ active: isActive }">
                     <h2>{{ item.title }}</h2>
-                    <div class="login_way">
-                        <img :src="require('@/assets/img/LINE.png')" alt="icon">
-                        <p>使用LINE登入</p>
+                    <div class="login_trace">
+                        <img :src="require('@/assets/img/duck_trace3.png')" alt="icon">
                     </div>
                     <div class="login_way">
-                        <img :src="require('@/assets/img/FB.png')" alt="icon">
-                        <p>使用FACEBOOK登入</p>
+                        <Icon type="logo-googleplus" />
+                        <!-- <img :src="require('@/assets/img/FB.png')" alt="icon" @click="signInGoogle"> -->
+                        <p>使用GOOGLE登入</p>
                     </div>
+                    <!-- <button v-for="btn in btnsRegister" class="login-connect" @click="signInGoogle">
+                <i :class="btn.iconClass"></i> {{ btn.text }}
+              </button> -->
                     <label for="email">Email</label>
-                    <input type="text" v-model="email" @input="validateEmail" :class="{ form_warning: !isEmailValid }"
+                    <input type="text" v-model="email" @input="validateEmail" :class="{ form_warning: !isEmailValid }" 
                         placeholder='請輸入EMAIL'>
-                    <!-- <span class="error_message" v-if="!isPasswordValid">
-                          請輸入@gmail.com格式</span> -->
+                    
                     <label for="psw">密碼</label>
                     <input type="password" v-model="psw" @input="validatePassword"
                         :class="{ form_warning: !isPasswordValid }" placeholder='請輸入密碼 (英數混合6-12碼)'>
@@ -73,6 +75,10 @@
 import { firebaseAuth } from "@/assets/config/firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+//google 守門人
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+const provider = new GoogleAuthProvider()
+
 export default {
     data() {
         return {
@@ -124,33 +130,56 @@ export default {
             
             // }
         // },
-        login() {
-            console.log(this.email);
-    //   if(this.username === '' || this.password === '')return
-      signInWithEmailAndPassword(firebaseAuth, this.email, this.psw)
-        .then((userCredential) => {
-            console.log(this.psw);
-          // firebase 的資料
-          // const userInfo = userCredential.user
-          // this.$store.commit('setName', userInfo);
-          this.$store.commit('setName', this.email);
-          this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-          window.alert("登入成功");
-          this.$router.push('/');
-        })
-        .catch((error) => {
-            const errorCode = error.code
-            console.log(errorCode);
-            if( errorCode === 'auth/wrong-password'){
-              window.alert("密碼錯誤");
-            }else if(errorCode === 'auth/user-not-found'){
-              window.alert("請前往註冊");
-            }else{
-              window.alert(`${errorCode}`);
-              this.errorMsg = "帳號或密碼輸入錯誤";
-            }
-        })
-    },
+    //     closeModal() {
+    //   this.$emit("emit-status");
+    // },
+        signInGoogle(){
+            signInWithPopup(firebaseAuth, provider)
+            .then((result) => {
+                // const credential = GoogleAuthProvider.credentialFromResulsignInGoogleedential.accessToken;
+                this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
+                window.alert("google 登入成功");
+                const userInfo = result.user;
+                this.$store.commit('setName', this.username);
+                // this.$store.commit('setName', userInfo);
+                // this.$router.push({ name: 'result', params: { 
+                    //     type: 'loginSuccess'
+                    // }})
+                }).catch((error) => {
+                    const errorCode = error.code
+                    // this.$Message.warning(errorCode);
+                    console.log('google註冊失敗', errorCode);
+                    alert(`google註冊失敗${errorCode}`);
+                });  
+            },
+            
+            login() {
+            
+            if(this.email === '' || this.pse === '')return
+            signInWithEmailAndPassword(firebaseAuth, this.email, this.psw)
+            .then((userCredential) => {
+                // firebase 的資料
+                // const userInfo = userCredential.user
+                // this.$store.commit('setName', userInfo);
+                this.$store.commit('setName', this.email);
+                this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
+                window.alert("登入成功");
+                this.$router.push('/');
+            })
+            .catch((error) => {
+                const errorCode = error.code
+                console.log(errorCode);
+                if( errorCode === 'auth/wrong-password'){
+                    window.alert("密碼錯誤");
+                }else if(errorCode === 'auth/user-not-found'){
+                    window.alert("請前往註冊");
+                }else{
+                    window.alert(`${errorCode}`);
+                    this.errorMsg = "帳號或密碼輸入錯誤";
+                }
+            })
+        },
+        
 
 
 
@@ -259,10 +288,17 @@ export default {
                 letter-spacing: 0.84px;
 
                 @media all and (min-width: $md) {
+                    // padding: 0 0 120px;
                     font-size: $xl_h2;
                 }
             }
-
+            .login_trace{
+                width: 80%;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
             .login_way {
                 width: 100%;
                 box-sizing: border-box;
@@ -449,7 +485,7 @@ export default {
                 .joinus_md {
                     max-width: 400px;
                     height: 306px;
-                    margin: $sp5 0 65px;
+                    margin: $sp5 0 72px;
 
                     img {
                         // display: block;
