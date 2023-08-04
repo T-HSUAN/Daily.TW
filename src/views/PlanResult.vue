@@ -178,66 +178,21 @@
                 <div class="weather_container" v-if="showPlan1">
                     <h3>一週天氣預報 | 台中</h3>
                     <div class="table_wrap">
-                        <table>
+                        <table v-if="weatherData">
                             <tr>
-                                <td><span>07/28</span></td>
-                                <td><span>07/29</span></td>
-                                <td><span>07/30</span></td>
-                                <td><span>07/31</span></td>
-                                <td><span>08/01</span></td>
-                                <td><span>08/02</span></td>
-                                <td><span>08/03</span></td>
+                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                    <span>
+                                        {{ formatDate(itemValue.date) }}
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
-                                <!-- <td>
-                                    <img :src="weatherData[0].day.condition.icon" alt="">
-                                    <span>最高 {{ weatherData['0'].day.maxtemp_c }}℃</span><br>
-                                    <span>最低 {{ weatherData['0'].day.mintemp_c }}℃</span><br>
-                                    <span>降雨機率 {{ weatherData['0'].day.daily_chance_of_rain }}%</span>
-                                </td> -->
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 28℃</span><br>
-                                    <span>最低 25℃</span><br>
-                                    <span>降雨機率 88%</span>
+                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                    <img :src="itemValue.day.condition.icon" alt="">
+                                    <span>最高 {{ Math.round(itemValue.day.maxtemp_c) }}℃</span><br>
+                                    <span>最低 {{ Math.round(itemValue.day.mintemp_c) }}℃</span><br>
+                                    <span>降雨機率 {{ itemValue.day.daily_chance_of_rain }}%</span>
                                 </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 34℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 25℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 26℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 30℃</span><br>
-                                    <span>最低 23℃</span><br>
-                                    <span>降雨機率 65%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 78%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/302.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 80%</span>
-                                </td>
-
                             </tr>
                         </table>
                     </div>
@@ -437,66 +392,21 @@
                 <div class="weather_container" v-if="showPlan2">
                     <h3>一週天氣預報 | 台中</h3>
                     <div class="table_wrap">
-                        <table>
+                        <table v-if="weatherData">
                             <tr>
-                                <td><span>07/28</span></td>
-                                <td><span>07/29</span></td>
-                                <td><span>07/30</span></td>
-                                <td><span>07/31</span></td>
-                                <td><span>08/01</span></td>
-                                <td><span>08/02</span></td>
-                                <td><span>08/03</span></td>
+                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                    <span>
+                                        {{ formatDate(itemValue.date) }}
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
-                                <!-- <td>
-                                    <img :src="weatherData[0].day.condition.icon" alt="">
-                                    <span>最高 {{ weatherData['0'].day.maxtemp_c }}℃</span><br>
-                                    <span>最低 {{ weatherData['0'].day.mintemp_c }}℃</span><br>
-                                    <span>降雨機率 {{ weatherData['0'].day.daily_chance_of_rain }}%</span>
-                                </td> -->
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 28℃</span><br>
-                                    <span>最低 25℃</span><br>
-                                    <span>降雨機率 88%</span>
+                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                    <img :src="itemValue.day.condition.icon" alt="">
+                                    <span>最高 {{ Math.round(itemValue.day.maxtemp_c) }}℃</span><br>
+                                    <span>最低 {{ Math.round(itemValue.day.mintemp_c) }}℃</span><br>
+                                    <span>降雨機率 {{ itemValue.day.daily_chance_of_rain }}%</span>
                                 </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 34℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 25℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 26℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 30℃</span><br>
-                                    <span>最低 23℃</span><br>
-                                    <span>降雨機率 65%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 78%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/302.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 80%</span>
-                                </td>
-
                             </tr>
                         </table>
                     </div>
@@ -695,66 +605,21 @@
                 <div class="weather_container" v-if="showPlan3">
                     <h3>一週天氣預報 | 台中</h3>
                     <div class="table_wrap">
-                        <table>
+                        <table v-if="weatherData">
                             <tr>
-                                <td><span>07/28</span></td>
-                                <td><span>07/29</span></td>
-                                <td><span>07/30</span></td>
-                                <td><span>07/31</span></td>
-                                <td><span>08/01</span></td>
-                                <td><span>08/02</span></td>
-                                <td><span>08/03</span></td>
+                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                    <span>
+                                        {{ formatDate(itemValue.date) }}
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
-                                <!-- <td>
-                                    <img :src="weatherData[0].day.condition.icon" alt="">
-                                    <span>最高 {{ weatherData['0'].day.maxtemp_c }}℃</span><br>
-                                    <span>最低 {{ weatherData['0'].day.mintemp_c }}℃</span><br>
-                                    <span>降雨機率 {{ weatherData['0'].day.daily_chance_of_rain }}%</span>
-                                </td> -->
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 28℃</span><br>
-                                    <span>最低 25℃</span><br>
-                                    <span>降雨機率 88%</span>
+                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                    <img :src="itemValue.day.condition.icon" alt="">
+                                    <span>最高 {{ Math.round(itemValue.day.maxtemp_c) }}℃</span><br>
+                                    <span>最低 {{ Math.round(itemValue.day.mintemp_c) }}℃</span><br>
+                                    <span>降雨機率 {{ itemValue.day.daily_chance_of_rain }}%</span>
                                 </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 34℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 25℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/308.png" alt="">
-                                    <span>最高 26℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 89%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 30℃</span><br>
-                                    <span>最低 23℃</span><br>
-                                    <span>降雨機率 65%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/176.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 24℃</span><br>
-                                    <span>降雨機率 78%</span>
-                                </td>
-                                <td>
-                                    <img src="https://cdn.weatherapi.com/weather/64x64/day/302.png" alt="">
-                                    <span>最高 32℃</span><br>
-                                    <span>最低 26℃</span><br>
-                                    <span>降雨機率 80%</span>
-                                </td>
-
                             </tr>
                         </table>
                     </div>
@@ -948,14 +813,18 @@ export default defineComponent({
     methods: {
         fetchWeather(){
             this.loading = true
-            fetch(`https://api.weatherapi.com/v1/forecast.json?q=Taichung&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
+            fetch(`https://api.weatherapi.com/v1/forecast.json?q=${this.weather.location}&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
             .then(res=> {
                 return res.json()
             })
             .then(json=> {
                 this.weatherData = json.forecast.forecastday
                 this.loading = false
+                console.log(this.weatherData)
             })
+        },
+        formatDate(date) {
+            return date.split("-").slice(1).join("/");
         },
         // 往下滾動後行程 fadeIn 顯示，且往回滾動不會消失
         checkScroll() {
