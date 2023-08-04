@@ -851,7 +851,6 @@ export default {
             .wrap {
                 margin-bottom: 16px;
                 justify-content: center;
-                
                 @media (min-width: 768px) {
                     gap: 100px;
                     overflow: visible;
@@ -864,9 +863,11 @@ export default {
                     flex-direction: column;
 
                     h2 {
-                        // text-align: center;
                         padding: 10px;
                         text-align: start;
+                        @media (max-width: 768px) {
+                            margin-left: 50px;
+                        }
                     }
 
                     .theme_block {
@@ -985,19 +986,6 @@ export default {
                 margin-bottom: 48px;
                 gap: 32px;
                 flex-shrink: 0;
-
-                // .oottCard:nth-child(1) {
-                //     transform: rotate(-2deg);
-                // }
-
-                // .oottCard:nth-child(2) {
-                //     transform: rotate(2deg);
-                // }
-
-                // .oottCard:nth-child(3) {
-                //     transform: rotate(-2deg);
-                // }
-
                 @media (min-width: 768px) {
                     margin-bottom: 120px;
                 }
@@ -1013,17 +1001,6 @@ export default {
                 }
 
             }
-
-            // .panel {
-            //     display: flex;
-            //     justify-content: center;
-            //     gap: 64px;
-            //     margin: 32px;
-
-            //     @media (max-width: 768px) {
-            //         display: none;
-            //     }
-            // }
 
             .btn {
                 justify-items: center;
@@ -1066,7 +1043,7 @@ export default {
         .content {
             width: 100%;
             display: flex;
-            gap: $sp5;
+            gap: $sp4;
             margin: 0 1%;
             overflow-x: scroll;
             overflow-y: hidden;

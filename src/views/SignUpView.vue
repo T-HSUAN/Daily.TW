@@ -11,7 +11,9 @@
                 <div class="member_img">
                     <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
                 </div>
-                <button class="btn push" @click="togglePreview">上傳大頭貼</button>
+                <Upload action="//jsonplaceholder.typicode.com/posts/">
+                    <Button class="btn push">上傳大頭貼</Button>
+                </Upload>
             </div>
             <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
             
