@@ -20,16 +20,12 @@
                                         alt=""
                                     />
                                 </div>
-                                <div class="info">
-                                    <div class="box">
-                                        <label for="account">用戶暱稱</label><input type="text" placeholder="王小明" disabled>
-                                        <label for="account">生日</label><input type="text" placeholder="2023/08/02" disabled>
-                                    </div>
-                                    <div class="box">
-                                        <label for="account">性別</label><input type="text" placeholder="男" disabled>
-                                        <label for="account">email</label><input type="email" placeholder="123456@gmail.com" disabled>
-                                    </div>
-                                </div>
+                                <ul>
+                                        <li>用戶暱稱：{{ member.nickname }}</li>
+                                        <li>生日：{{ member.birthday }}</li>
+                                        <li>性別：{{ member.gender }}</li>
+                                        <li>email:{{ member.email }}</li>
+                                </ul>
                                 <router-link to="/member_info" class="btn">編輯</router-link>
                             </div>
                         </div>
@@ -147,6 +143,7 @@
                     </div>
                 </div>
                 <!-- 我的訂單 -->
+                
                 <div class="order">
                     <div class="big_title">
                         <h2>我的訂單</h2>
@@ -162,54 +159,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2023-07-24</td>
-                                <td>處理中</td>
-                                <td>$100.00</td>
+                            <tr v-for="order in orders" :key="order.id">
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.orderDate }}</td>
+                                <td>{{ order.status }}</td>
+                                <td>{{ order.total }}</td>
                                 <td>
-                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2023-07-23</td>
-                                <td>已發貨</td>
-                                <td>$75.50</td>
-                                <td>
-                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>2023-07-22</td>
-                                <td>已完成</td>
-                                <td>$50.25</td>
-                                <td>
-                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>2023-07-21</td>
-                                <td>處理中</td>
-                                <td>$120.75</td>
-                                <td>
-                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>2023-07-20</td>
-                                <td>已取消</td>
-                                <td>$0.00</td>
-                                <td>
-                                    <router-link to="/myorder">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
+                                    <router-link :to="'/myorder/' + order.id">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
                             </tr>
                         </tbody>
-                        <router-link to="/myorder"><button class="btn">所有訂單</button></router-link>
                     </table>
+                    <router-link to="/myorder"><button class="btn">所有訂單</button></router-link>
                 </div>
             </div>
         </div>
@@ -228,6 +189,12 @@ export default {
     },
     data() {
         return {
+            member:{
+                nickname: '呱呱',
+                birthday: '1999/09/09',
+                gender: '男',
+                email: '123456@example.com',
+            },
             tripCards: [
                 {
                     tripCardPhoto: "https://picsum.photos/237/191?random=1",
@@ -280,6 +247,13 @@ export default {
                     oottCardAuthor: "Max",
                 },
             ],
+            orders: [
+            { id: 1, orderDate: '2023-07-24', status: '處理中', total: '$100.00' },
+            { id: 2, orderDate: '2023-07-23', status: '已發貨', total: '$75.50' },
+            { id: 3, orderDate: '2023-07-22', status: '已完成', total: '$50.25' },
+            { id: 4, orderDate: '2023-07-21', status: '處理中', total: '$120.75' },
+            { id: 5, orderDate: '2023-07-20', status: '已取消', total: '$0.00' }
+        ]
         };
     },
 };
@@ -364,7 +338,7 @@ export default {
                         margin: 0;
                     }
                     .pic {
-                        width: 100px;
+                        width: 98px;
                         @media (min-width: 768px) {
                             width: 160px;
                         }
@@ -372,25 +346,17 @@ export default {
                             width: 100%;
                         }
                     }
-                    .info {
+                    ul {
+                        display: flex;
+                        flex-direction: column;
+                        // width: 130px;
+                        align-items: start;
+                        padding-left: $sp2;
+                        gap: 15px;
                         @media (min-width: 768px) {
-                            display: flex;
-                        }
-                        .box{
-                            display: flex;
-                            flex-direction: column;
-                            align-items: start;
-                            width: 180px;
-                            padding-left: $sp2;
-                            gap: 8px;
-                            label{
-                                padding: 5px;
-                            }
-                            @media (min-width: 768px) {
-                                width: 300px;
-                                padding-left: $sp5;
-                                gap: 15px;
-                            }
+                            width: 600px;
+                            padding-left: $sp5;
+                            gap: 30px;
                         }
                     }
                     .btn {
