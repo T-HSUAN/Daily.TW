@@ -22,47 +22,38 @@
 
         <!-- 穿搭資訊頁 -->
         <div class="oott_info_section">
-            <div class="pic_md">
-                <img src="@/assets/img/info_name_2.png" alt="作者頭像" />
-                <router-link to="">Ailson</router-link>
-            </div>
-            <div class="pic_block">
-                <div class="pic">
-                    <img src="@/assets/img/oott_40.png" alt="穿搭照片" />
-                    <label>
-                        <input type="checkbox">
-                        <span></span>
-                    </label>
-                </div>
-            </div>
-            <div class="writer_block">
-                <div class="pic_xl">
-                    <img src="~@/assets/img/info_name_2.png" alt="作者頭像" />
-                    <a href="#">Ailson</a>
-                </div>
-                <p>
-                    小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。
-                </p>
-                <div class="tag_block">
-                    <label>
-                        <input type="checkbox" class="tag" />
-                        <span>#可愛</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" class="tag" />
-                        <span>#日系</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" class="tag" />
-                        <span>#運動</span>
-                    </label>
-                </div>
-                <div class="date">
-                    <span>2023年7月3日</span>
-                    <span class="number">2,345 次瀏覽</span>
-                </div>
-            </div>
-        </div>
+    <div class="pic_md">
+      <img :src="author.avatarSrc" alt="作者頭像" />
+      <router-link :to="author.profileLink">{{ author.name }}</router-link>
+    </div>
+    <div class="pic_block">
+      <div class="pic">
+        <img :src="outfit.photoSrc" alt="穿搭照片" />
+        <label>
+          <input type="checkbox">
+          <span></span>
+        </label>
+      </div>
+    </div>
+    <div class="writer_block">
+      <div class="pic_xl">
+        <img :src="author.avatarSrc" alt="作者頭像" />
+        <a :href="author.profileLink">{{ author.name }}</a>
+      </div>
+      <p>{{ outfit.description }}</p>
+      <div class="tag_block">
+        <label v-for="(tag, index) in outfit.tags" :key="index">
+          <input type="checkbox" class="tag" />
+          <span>{{ tag }}</span>
+        </label>
+      </div>
+      <div class="date">
+      <span>{{ outfit.date }}</span>
+      <span class="number">{{ outfit.views }} 次瀏覽</span>
+    </div>
+    </div>
+  </div>
+        
 
         <!-- 查看更多 -->
         <div class="oott_more">
@@ -102,6 +93,19 @@ export default {
     },
     data() {
         return {
+            author: {
+                name: "Ailson",
+                avatarSrc: require('@/assets/img/info_name_2.png'),
+                profileLink: "" // 這裡可以設定作者個人檔案的鏈接
+            },
+            outfit: {
+                photoSrc: require('@/assets/img/oott_40.png'),
+                description:
+                " 小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。",
+                tags: ["#可愛", "#日系", "#運動"],
+                date: "2023-07-03",
+                views: 2345
+            },
             ootts: [
                 {
                     oottPhoto: require("@/assets/img/oott_02.png"),
@@ -127,6 +131,7 @@ export default {
             ],
         };
     },
+    
 };
 import oottCard from "@/components/OottCard.vue";
 </script>

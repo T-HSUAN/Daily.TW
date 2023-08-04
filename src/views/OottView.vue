@@ -19,7 +19,7 @@
             </div>
 
         </div>
-
+       
         <!-- 主題穿搭 -->
         <div class="theme" id="theme">
             <div class="bgCurve">
@@ -38,10 +38,45 @@
                         <h2>#休閒</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts1" :key="index"
-                                    :oottRank="oott.oottRank"  :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                                 <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper">
+                                            <swiper-slide v-for="(oott, index) in theme_ootts1" :key="index"
+                                                :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                                :oottCardAuthor="oott.oottCardAuthor">
+                                                <div class="oott_card">
+                                                    <div class="oott_rank">
+                                                        {{ oott.oottRank }}
+                                                    </div>
+                                                    <div class="oott_default">
+                                                        <router-link to="/oott_Info" class="link">
+                                                            <img :src="oott.oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+                                                        </router-link>
+                                                        <label class="heart">
+                                                            <input type="checkbox">
+                                                            <span></span>
+                                                        </label>
+                                                        <router-link to="/oott_info">
+                                                            <div class="oott_card_text">
+                                                                <div class="oott_card_info">
+                                                                    <span class="oott_card_tag">{{ oott.oottCardTags }}</span>
+                                                                    <span class="oott_card_date">{{ oott.oottCardDate }}</span>
+                                                                </div>
+                                                                <div class="oott_card_foot">
+                                                                    <div class="oott_card_author">
+                                                                        <div class="oott_card_author_proPic">
+                                                                            <img :src="oott.oottAuthorPhoto" alt="作者照片" />
+                                                                        </div>
+                                                                        <h4 class="oott_card_author_name">{{ oott.oottCardAuthor }}</h4>
+                                                                    </div>
+                                                                    <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                                                                        class="oott_card_deco_footprint" />
+                                                                </div>
+                                                            </div>
+                                                        </router-link>
+                                                    </div>
+                                                </div>
+                                            </swiper-slide>
+                                    </swiper>
                             </div>
                         </div>
                     </div>
@@ -50,10 +85,45 @@
                         <h2>#復古</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts2" :key="index"
-                                    :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                                 <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper">
+                                            <swiper-slide v-for="(oott, index) in theme_ootts2" :key="index"
+                                                :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                                :oottCardAuthor="oott.oottCardAuthor">
+                                                <div class="oott_card">
+                                                    <div class="oott_rank">
+                                                        {{ oott.oottRank }}
+                                                    </div>
+                                                    <div class="oott_default">
+                                                        <router-link to="/oott_Info" class="link">
+                                                            <img :src="oott.oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+                                                        </router-link>
+                                                        <label class="heart">
+                                                            <input type="checkbox">
+                                                            <span></span>
+                                                        </label>
+                                                        <router-link to="/oott_info">
+                                                            <div class="oott_card_text">
+                                                                <div class="oott_card_info">
+                                                                    <span class="oott_card_tag">{{ oott.oottCardTags }}</span>
+                                                                    <span class="oott_card_date">{{ oott.oottCardDate }}</span>
+                                                                </div>
+                                                                <div class="oott_card_foot">
+                                                                    <div class="oott_card_author">
+                                                                        <div class="oott_card_author_proPic">
+                                                                            <img :src="oott.oottAuthorPhoto" alt="作者照片" />
+                                                                        </div>
+                                                                        <h4 class="oott_card_author_name">{{ oott.oottCardAuthor }}</h4>
+                                                                    </div>
+                                                                    <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                                                                        class="oott_card_deco_footprint" />
+                                                                </div>
+                                                            </div>
+                                                        </router-link>
+                                                    </div>
+                                                </div>
+                                            </swiper-slide>
+                                    </swiper>
                             </div>
                         </div>
                     </div>
@@ -61,24 +131,94 @@
                         <h2>#潮流</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts3" :key="index"
-                                    :oottRank="oott.oottRank"  :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                                <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper">
+                                            <swiper-slide v-for="(oott, index) in theme_ootts3" :key="index"
+                                                :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                                :oottCardAuthor="oott.oottCardAuthor">
+                                                <div class="oott_card">
+                                                    <div class="oott_rank">
+                                                        {{ oott.oottRank }}
+                                                    </div>
+                                                    <div class="oott_default">
+                                                        <router-link to="/oott_Info" class="link">
+                                                            <img :src="oott.oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+                                                        </router-link>
+                                                        <label class="heart">
+                                                            <input type="checkbox">
+                                                            <span></span>
+                                                        </label>
+                                                        <router-link to="/oott_info">
+                                                            <div class="oott_card_text">
+                                                                <div class="oott_card_info">
+                                                                    <span class="oott_card_tag">{{ oott.oottCardTags }}</span>
+                                                                    <span class="oott_card_date">{{ oott.oottCardDate }}</span>
+                                                                </div>
+                                                                <div class="oott_card_foot">
+                                                                    <div class="oott_card_author">
+                                                                        <div class="oott_card_author_proPic">
+                                                                            <img :src="oott.oottAuthorPhoto" alt="作者照片" />
+                                                                        </div>
+                                                                        <h4 class="oott_card_author_name">{{ oott.oottCardAuthor }}</h4>
+                                                                    </div>
+                                                                    <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                                                                        class="oott_card_deco_footprint" />
+                                                                </div>
+                                                            </div>
+                                                        </router-link>
+                                                    </div>
+                                                </div>
+                                            </swiper-slide>
+                                    </swiper>
                             </div>
                         </div>
                     </div>
-                    <div class="oottCards">
+                    <!-- <div class="oottCards">
                         <h2>#藝文</h2>
                         <div class="theme_block">
                             <div class="card_list">
-                                <oottCard class="oottCard" v-for="(oott, index) in theme_ootts4" :key="index"
-                                    :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                    :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                    :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                                <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper">
+                                            <swiper-slide v-for="(oott, index) in theme_ootts4" :key="index"
+                                                :oottRank="oott.oottRank" :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
+                                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
+                                                :oottCardAuthor="oott.oottCardAuthor">
+                                                <div class="oott_card">
+                                                    <div class="oott_rank">
+                                                        {{ oott.oottRank }}
+                                                    </div>
+                                                    <div class="oott_default">
+                                                        <router-link to="/oott_Info" class="link">
+                                                            <img :src="oott.oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+                                                        </router-link>
+                                                        <label class="heart">
+                                                            <input type="checkbox">
+                                                            <span></span>
+                                                        </label>
+                                                        <router-link to="/oott_info">
+                                                            <div class="oott_card_text">
+                                                                <div class="oott_card_info">
+                                                                    <span class="oott_card_tag">{{ oott.oottCardTags }}</span>
+                                                                    <span class="oott_card_date">{{ oott.oottCardDate }}</span>
+                                                                </div>
+                                                                <div class="oott_card_foot">
+                                                                    <div class="oott_card_author">
+                                                                        <div class="oott_card_author_proPic">
+                                                                            <img :src="oott.oottAuthorPhoto" alt="作者照片" />
+                                                                        </div>
+                                                                        <h4 class="oott_card_author_name">{{ oott.oottCardAuthor }}</h4>
+                                                                    </div>
+                                                                    <img :src="require('@/assets/img/oott_card_deco_footprint.png')" alt="腳印裝飾"
+                                                                        class="oott_card_deco_footprint" />
+                                                                </div>
+                                                            </div>
+                                                        </router-link>
+                                                    </div>
+                                                </div>
+                                            </swiper-slide>
+                                    </swiper>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- <div class="panel">
                     <button class="arrow">
@@ -204,6 +344,11 @@ import { Carousel, Slide, Navigation } from 'vue3-carousel';
 
 import 'vue3-carousel/dist/carousel.css';
 
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/effect-cards';
+import { EffectCards } from 'swiper/modules';
+
 
 export default {
     name: 'Autoplay',
@@ -213,6 +358,14 @@ export default {
         Carousel,
         Slide,
         Navigation,
+
+        Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      return {
+        modules: [EffectCards],
+      };
     },
     data() {
         return {
@@ -230,6 +383,20 @@ export default {
                     oottCardDate: "2022 / 06 / 24",
                     oottAuthorPhoto: require('@/assets/img/oott_11.png'),
                     oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_02.png'),
+                    oottCardTags: "#日系 #休閒 #風景",
+                    oottCardDate: "2022 / 12 / 12",
+                    oottAuthorPhoto: require('@/assets/img/info_name_2.png'),
+                    oottCardAuthor: "Alison",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_18.png'),
+                    oottCardTags: "#休閒",
+                    oottCardDate: "2022 / 11 / 27",
+                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
+                    oottCardAuthor: "DuckLord",
                 },
                 {
                     oottPhoto: require('@/assets/img/oott_02.png'),
@@ -261,6 +428,20 @@ export default {
                     oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
                     oottCardAuthor: "Kid",
                 },
+                {
+                    oottPhoto: require('@/assets/img/oott_14.png'),
+                    oottCardTags: "#簡約 #休閒",
+                    oottCardDate: "2022 / 07 / 29",
+                    oottAuthorPhoto: require('@/assets/img/oott_11.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardTags: "#復古 #性感",
+                    oottCardDate: "2023 / 07 / 12",
+                    oottAuthorPhoto: require('@/assets/img/oott_03.png'),
+                    oottCardAuthor: "DazzleQueen",
+                },
             ],
             theme_ootts3: [
                 {
@@ -284,28 +465,19 @@ export default {
                     oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
                     oottCardAuthor: "Max",
                 },
-            ],
-            theme_ootts4: [
-                {
-                    oottPhoto: require('@/assets/img/oott_18.png'),
-                    oottCardTags: "#休閒",
-                    oottCardDate: "2022 / 11 / 27",
-                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
-                    oottCardAuthor: "DuckLord",
-                },
-                {
-                    oottPhoto: require('@/assets/img/oott_14.png'),
-                    oottCardTags: "#簡約 #休閒",
-                    oottCardDate: "2022 / 07 / 29",
-                    oottAuthorPhoto: require('@/assets/img/oott_11.png'),
-                    oottCardAuthor: "Kay",
-                },
                 {
                     oottPhoto: require('@/assets/img/oott_01.png'),
                     oottCardTags: "#藝文 #放鬆 #懷舊",
                     oottCardDate: "2022 / 01 / 12",
                     oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
                     oottCardAuthor: "Jeffery",
+                },
+                {
+                    oottPhoto: require('@/assets/img/oott_41.png'),
+                    oottCardTags: "#街頭 #潮流",
+                    oottCardDate: "2022 / 7 / 6",
+                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
+                    oottCardAuthor: "Max",
                 },
             ],
 
@@ -383,8 +555,30 @@ export default {
                     oottAuthorPhoto: require('@/assets/img/duck_red.png'),
                     oottCardAuthor: "Kay",
                 },
-
-
+                {
+                    oottRank: "#08",
+                    oottPhoto: require('@/assets/img/oott_11.png'),
+                    oottCardTags: "#休閒 #美式",
+                    oottCardDate: "2022 / 09 / 06",
+                    oottAuthorPhoto: require('@/assets/img/duck_red.png'),
+                    oottCardAuthor: "Kay",
+                },
+                {
+                    oottRank: "#09",
+                    oottPhoto: require('@/assets/img/oott_12.png'),
+                    oottCardTags: "#兒童 #休閒 #自然",
+                    oottCardDate: "2022 / 01 / 08",
+                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
+                    oottCardAuthor: "Kid",
+                },
+                {
+                    oottRank: "#10",
+                    oottPhoto: require('@/assets/img/oott_40.png'),
+                    oottCardTags: "#韓系 #休閒",
+                    oottCardDate: "2022 / 06 / 12",
+                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
+                    oottCardAuthor: "Kid",
+                },
             ],
         }
     },
@@ -642,7 +836,7 @@ export default {
     //主題穿搭
     .theme {
         position: relative;
-        padding: 184px 0;
+        padding: 184px 0 120px 0;
         background-color: $bgColor_tint;
 
         .content {
@@ -651,16 +845,15 @@ export default {
             max-width: 1200px;
             text-align: center;
             @media (min-width: 768px) {
-                overflow: hidden;
+                // overflow: hidden;
             }
 
             .wrap {
                 margin-bottom: 16px;
-
-                // justify-content: center;
-                gap: 32px;
-
+                justify-content: center;
+                
                 @media (min-width: 768px) {
+                    gap: 100px;
                     overflow: visible;
                     display: flex;
                 }
@@ -671,80 +864,60 @@ export default {
                     flex-direction: column;
 
                     h2 {
+                        // text-align: center;
                         padding: 10px;
                         text-align: start;
                     }
 
                     .theme_block {
                         display: flex;
-                        gap: 32px;
+                        justify-content: center;
+                    }
+                    .swiper {
+                        width: 260px;
+                        @media (min-width: 768px) {
+                            width: 310px;
+                        }
+                    }
+
+                    .swiper-slide {
+                        display: flex;
+                        align-items: center;
+                        border-radius: 18px;
+                        font-size: 22px;
+                        font-weight: bold;
+                        background-color: none;
+                        // color: $default_yellow;
+                    }
+                    .swiper-slide:nth-child(1n) {
+                        background-color: none;
+                    }
+
+                    .swiper-slide:nth-child(2n) {
+                        background-color: none;
+                    }
+
+                    .swiper-slide:nth-child(3n) {
+                        background-color:none;
                     }
 
                     .card_list {
                         display: flex;
-                        gap: 12px;
-                        overflow: scroll;
-
-                        @media (min-width: 768px) {
-                            overflow: visible;
-                            flex-shrink: 0;
-                            width: 300px;
-                            position: relative;
-                            transition: all .5s linear;
-                            height: 560px;
-
-                            &:hover {
-                                width: 960px;
-                                cursor: pointer;
-
-                                .oottCard:nth-child(3) {
-                                    left: 640px;
-                                }
-
-                                .oottCard:nth-child(2) {
-                                   left: 320px;
-                                }
-
-                                .oottCard:nth-child(1) {
-                                   left: 0;
-                                }
-                            }
-                        }
 
                     }
 
                     .oottCard {
-                        // width: 279px;
+                        width: 100%;
                         flex-shrink: 0;
-
-                        @media (min-width: 768px) {
-                            margin: 10px;
-                            position: absolute;
-                           left: 0;
-                            transition: all .5s linear;
-
-                        }
-
                     }
 
-                }
-            }
-        }
-
-        .panel {
-            display: none;
-            justify-content: center;
-            gap: 64px;
-            margin-bottom: 32px;
-
-            @media (min-width: 768px) {
-                display: flex;
+                    }
             }
         }
 
         .btn {
             justify-items: center;
-            margin-top: 40px;
+            margin-top: 60px;
         }
 
     }
@@ -894,7 +1067,7 @@ export default {
             width: 100%;
             display: flex;
             gap: $sp5;
-            margin: 0 2%;
+            margin: 0 1%;
             overflow-x: scroll;
             overflow-y: hidden;
             @media (min-width: 768px) {
