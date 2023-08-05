@@ -18,14 +18,24 @@ export default createStore({
         },
     },
     mutations: {
+        // addToCart(state, cartItem) {
+        //     // 檢查票券是否已經在購物車中，如果不在，則添加到購物車
+        //     if (!state.cartItems.includes(cartItem)) {
+        //         state.cartItems.push(cartItem);
+        //     } else {
+        //         window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。");
+        //     }
+
+        // },
         addToCart(state, cartItem) {
             // 檢查票券是否已經在購物車中，如果不在，則添加到購物車
-            if (!state.cartItems.includes(cartItem)) {
+            const CartItemInCart = state.cartItems.some(item => item.id === cartItem.id);
+
+            if (!CartItemInCart) {
                 state.cartItems.push(cartItem);
             } else {
                 window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。");
             }
-
         },
         removeFromCart(state, index) {
             // 確保 index 的值在有效範圍內

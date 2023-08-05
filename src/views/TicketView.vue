@@ -7,7 +7,7 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="updateDisplay" :tagTexts="tagTexts" :TagsFilter="TagsFilter" :TagSelected="TagSelected" />
+        <Searchbar :Filter="updateDisplay" :tagTexts="tagTexts" @TagsFilter="" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -31,14 +31,14 @@
             <a class="page" v-if="ticketDisplay.length === ticketData.length">3</a>
         </div>
 
-        <!-- 購物車清單 -->
+        <!-- 購物車清單(側邊) -->
         <div :class="['cart_sidebar', { 'showCartSidebar': switchPage }]">
             <div class="cart_icon" @click="switchCart">
                 <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_switch" />
                 <div class="numTag">{{ cartItems.length }}</div>
             </div>
             <h2>付款明細</h2>
-            <!-- 購物明細 -->
+            <!-- 購物明細(側邊) -->
             <div class="item">
                 <div class="item_null" v-if="cartItems.length === 0">
                     <p>您的購物車目前是空的</p>
@@ -99,7 +99,6 @@
                 <!-- 結帳按鈕，跳轉至購物車 -->
                 <router-link to="/cart"><button class="btn">結帳</button></router-link>
             </div>
-            <!-- <div class="close" @click="switchCart">close</div> -->
         </div>
     </div>
 </template>
@@ -120,19 +119,18 @@ export default {
                 img: "",
             },
             tagTexts: [
-                { default: " #親子" },
-                { default: " #情侶" },
-                { default: " #小資" },
-                { default: " #風景" },
-                { default: " #樂園" },
-                { default: " #農場" },
-                { default: " #藝文" },
-                { default: " #山林" },
-                { default: " #海邊" },
-                { default: " #放鬆" },
-                { default: " #懷舊" },
+                { default: " #親子", selected: false },
+                { default: " #情侶", selected: false },
+                { default: " #小資", selected: false },
+                { default: " #風景", selected: false },
+                { default: " #樂園", selected: false },
+                { default: " #農場", selected: false },
+                { default: " #藝文", selected: false },
+                { default: " #山林", selected: false },
+                { default: " #海邊", selected: false },
+                { default: " #放鬆", selected: false },
+                { default: " #懷舊", selected: false },
             ],
-            TagSelected: false,// 儲存使用者選擇的標籤
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
             },
@@ -147,9 +145,6 @@ export default {
         }
     },
     methods: {
-        // filterByTag(tag) {
-        //     this.selectedTag = tag;
-        // },
         //模糊搜尋
         updateDisplay() {
             if (this.$store.state.filter.searchText === "") {
@@ -164,22 +159,27 @@ export default {
                 );
             }
         },
-        // LocationFilter() {
-        //     if (this.TagSelected === true) {
-        //         this.ticketDisplay = this.ticketData.filter((item) =>
-        //             item.location.includes(this.tagTexts.default))
-        //     } else {
-        //         this.ticketDisplay = this.ticketData;
-        //     }
-        // },
-        TagsFilter() {
-            this.TagSelected = !this.TagSelected;
-            if (this.TagSelected === true) {
-                this.ticketDisplay = this.ticketData.filter((item) =>
-                    item.location.includes(this.tagTexts.default))
-            } else {
+        toggleTagSelection(selectedTag) {
+            selectedTag.selected = !selectedTag.selected;
+            console.log(selectedTag.selected);
+            this.filterByTag();
+        },
+        filterByTag() {
+            const selectedTags = this.tagTexts.filter((tag) => tag.selected);
+            // 如果沒有選中任何標籤，則不進行篩選，直接顯示所有票券
+            if (selectedTags.length === 0) {
                 this.ticketDisplay = this.ticketData;
+                return;
             }
+            // 過濾票券資料，只保留與選中的標籤相關的票券
+            this.ticketDisplay = this.ticketData.filter((ticket) => {
+                for (const tag of selectedTags) {
+                    if (ticket.location.includes(tag.default)) {
+                        return true;
+                    }
+                }
+                return false;
+            });
         },
         // switch購物車
         switchCart() {
@@ -205,16 +205,11 @@ export default {
         },
     },
     computed: {
-        // filteredTicket() {
-        //     if (!this.selectedTag) {
-        //         return this.ticketDisplay;
-        //     }
-        //     return this.ticketDisplay.filter(ticket => ticket.location.includes(this.selectedTag));
-        // },
         ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
         this.updateDisplay();
+
     },
 };
 </script>

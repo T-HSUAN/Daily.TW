@@ -49,11 +49,10 @@
             </div>
         </div>
         <div class="tags_filter">
-            <label v-for="item in tagTexts" :key="item">
-                <input type="checkbox" class="tag" />
-                <span @click="TagsFilter" :class="TagSelected">{{ item.default }}</span>
+            <label v-for="(item, index) in tagTexts" :key="item">
+                <input type="checkbox" class="tag" v-model="item.selected" @click="TagsFilter" />
+                <span>{{ item.default }}</span>
             </label>
-            <!-- <tag :tagTexts="tagTexts" :tagTexts.default="tagTexts.default" /> -->
         </div>
         <!-- 在需要使用的該頁面使用以下方式即可添加標籤內容
         <Searchbar :Filter="某個可以篩選的function" :tagTexts="tagText" />
@@ -80,9 +79,10 @@ export default {
         tagTexts: {
             type: [Object, String],
             default: "#標籤",
+            selected: Boolean,
+            required: true,
         },
         TagsFilter: Function,
-        TagSelected: Boolean,
     },
     data() {
         return {
@@ -90,6 +90,11 @@ export default {
                 searchText: "",
             },
         };
+    },
+    methods: {
+        toggleTagSelection() {
+            this.$emit('TagsFilter', this.tagTexts);
+        },
     },
 };
 </script>

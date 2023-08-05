@@ -78,52 +78,53 @@
         }
     }
 
-    .cart {
-        width: 80px;
-        height: 80px;
-        position: fixed;
-        right: 0px;
-        top: 180px;
-        background: $textColor_tint;
-        border-radius: 50% 0 0 50%;
-
-        .cart_toggle {
-            width: 28px;
-            height: 28px;
-            padding: 17px;
-            position: absolute;
-            top: 9px;
-            left: 10px;
-            background: $textColor_white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .numTag {
-            display: inline-block;
-            width: 20px;
-            line-height: 20px;
-            position: absolute;
-            right: 7px;
-            top: 7px;
-            text-align: center;
-            color: $textColor_white;
-            background: $warningColor;
-            border-radius: 50%;
-        }
-    }
-
     .cart_sidebar {
         box-sizing: border-box;
-        @include width(100);
-        height: 100vh;
+        width: 300px;
+        height: 730px;
         padding: $sp3 $sp4;
         position: fixed;
         top: 150px;
-        right: 0;
+        right: -300px;
         color: $textColor_default;
         background: $textColor_tint;
-        z-index: 9999;
+        transition: right .5s ease-in-out;
+        z-index: 9998;
+
+        .cart_icon {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            left: -79px;
+            top: 0px;
+            background: $textColor_tint;
+            border-radius: 50% 0 0 50%;
+
+            .cart_switch {
+                width: 28px;
+                height: 28px;
+                padding: 17px;
+                position: absolute;
+                top: 9px;
+                left: 10px;
+                background: $textColor_white;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .numTag {
+                display: inline-block;
+                width: 20px;
+                line-height: 20px;
+                position: absolute;
+                right: 7px;
+                top: 7px;
+                text-align: center;
+                color: $textColor_white;
+                background: $warningColor;
+                border-radius: 50%;
+            }
+        }
 
         h2 {
             margin-bottom: $sp3;
@@ -149,7 +150,7 @@
                 text-align: center;
 
                 img {
-                    width: 250px;
+                    width: 200px;
                 }
             }
 
@@ -253,6 +254,11 @@
                 color: $bgColor_tint;
             }
         }
+    }
+
+    .showCartSidebar {
+        right: 0;
+        transition: right .5s ease-in-out;
     }
 }
 
@@ -404,6 +410,18 @@
                 display: none;
             }
         }
+
+        .cart_sidebar {
+            width: 400px;
+            height: 784px;
+            padding: $sp3 $sp4;
+            top: 180px;
+            right: -400px;
+        }
+
+        .showCartSidebar {
+            right: 0;
+        }
     }
 }
 
@@ -551,26 +569,117 @@
             }
         }
 
-        .cart {
-            width: 100px;
-            height: 100px;
-            right: 0px;
+        .cart_sidebar {
             top: 180px;
+            right: -400px;
+            width: 400px;
+            height: 784px;
+            padding: $sp4 $sp5;
 
-            .cart_toggle {
-                width: 36px;
-                height: 36px;
-                padding: 21px;
-                top: 11px;
-                left: 13px;
+            .cart_icon {
+                width: 100px;
+                height: 100px;
+                left: -100px;
+                top: 0px;
+
+                .cart_switch {
+                    width: 36px;
+                    height: 36px;
+                    padding: 21px;
+                    top: 11px;
+                    left: 13px;
+                }
+
+                .numTag {
+                    width: 25px;
+                    line-height: 25px;
+                    right: $sp1;
+                    top: $sp1;
+                }
             }
 
-            .numTag {
-                width: 25px;
-                line-height: 25px;
-                right: $sp1;
-                top: $sp1;
+            h2 {
+                margin-bottom: $sp3;
+                font-size: 32px;
             }
+
+            .item {
+                height: 550px;
+                padding: $sp2 0;
+
+                .details {
+                    margin: $sp1 $sp3 $sp3 0;
+                    border-bottom: 2px solid $textColor_default;
+
+                    .title {
+                        font-size: 20px;
+                        font-weight: bold;
+
+                        .cancel {
+                            margin: 0 $sp1;
+
+                            &:hover {
+                                color: $textColor_white;
+                            }
+                        }
+                    }
+
+                    .ticket_adult,
+                    .ticket_ex {
+                        width: 100%;
+                        margin: $sp2 0;
+                        font-size: 24px;
+
+                        label {
+                            font-size: 18px;
+                        }
+
+                        .count_adult,
+                        .count_ex {
+                            width: 60px;
+                            height: 36px;
+                            font-size: 20px;
+                            border: 2px solid;
+                        }
+                    }
+
+                    .amount {
+                        margin: $sp3;
+
+                        span {
+                            font-size: 24px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+
+            .total {
+                margin: $sp4 0;
+
+                p {
+                    font-size: 20px;
+                }
+
+                .total-price {
+                    font-size: 32px;
+                    font-weight: bold;
+                }
+            }
+
+            .close {
+                right: $sp5;
+                top: $sp4;
+                font-size: 28px;
+
+                &:hover {
+                    color: $bgColor_tint;
+                }
+            }
+        }
+
+        .showCartSidebar {
+            right: 0;
         }
     }
 }
