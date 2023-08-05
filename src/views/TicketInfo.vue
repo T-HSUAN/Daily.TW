@@ -39,7 +39,7 @@
                     <!-- 成人票項目 -->
                     <div class="ticket_adult">
                         <select name="ticket_count_adult" class="count_adult" v-model="ticketInfo.count_adult"
-                            @change="subTotalprice()">
+                            @change="subTotalpricePreview">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for=" num  in  5 " :key="num">
                                 {{ num }}
@@ -58,7 +58,7 @@
                     <!-- 優惠票項目 -->
                     <div class="ticket_ex">
                         <select name="ticket_count_ex" class="count_ex" v-model="ticketInfo.count_ex"
-                            @change="subTotalprice()">
+                            @change="subTotalpricePreview">
                             <option value="0" selected>0</option>
                             <option :value="num" v-for=" num  in  5 " :key="num">
                                 {{ num }}
@@ -90,11 +90,11 @@
                     </p>
                     <!-- 總計 -->
                     <p class="total">
-                        總計 <span>NT${{ subtotal }}</span>
+                        總計 <span>NT${{ ticketInfo.subtotal }}</span>
                     </p>
                     <!-- 購物車&購買按鈕 -->
                     <div class="buy_btn">
-                        <button class="btn" @click="createItem(index)">加入購物車</button>
+                        <button class="btn" @click="createItem()">加入購物車</button>
                         <router-link to="/cart"><button class="btn">直接購買</button></router-link>
                     </div>
                 </div>
@@ -117,33 +117,31 @@
                     </dd>
                 </dl>
             </div>
-            <div>
-            </div>
             <!-- 購買按鈕(手機) -->
             <div class="buy_btn_phone">
-                <button class="btn" @click="createItem(index)">加入購物車</button>
+                <button class="btn" @click="createItem()">加入購物車</button>
                 <router-link to="/cart"><button class="btn">直接購買</button></router-link>
             </div>
         </div>
         <!-- 購物車清單(側邊) -->
-        <div class="cart" @click="toggleCart">
-            <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_toggle" />
-            <div class="numTag">{{ itemList.length }}</div>
-        </div>
-        <!-- 付款明細(側邊攔) -->
-        <div class="cart_sidebar" v-show="togglePage">
+        <div :class="['cart_sidebar', { 'showCartSidebar': switchPage }]">
+            <div class="cart_icon" @click="switchCart">
+                <font-awesome-icon icon="fa-solid fa-cart-shopping" class="cart_switch" />
+                <div class="numTag">{{ cartItems.length }}</div>
+            </div>
             <h2>付款明細</h2>
-            <!-- 購物明細 -->
+            <!-- 購物明細(側邊) -->
             <div class="item">
-                <div class="item_null" v-if="itemList.length === 0">
+                <div class="item_null" v-if="cartItems.length === 0">
                     <p>您的購物車目前是空的</p>
                     <img src="@/assets/img/cart_empty.svg" alt="decorate">
                 </div>
-                <div class="details" v-for="( item, index ) in  itemList " :key="item.id">
+                <div class="details" v-for="(item, index) in cartItems" :key="item.id">
                     <!-- 標題&垃圾桶 -->
                     <div class="title">
                         {{ item.Name }}
-                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="cancel(index)" title="刪除" />
+                        <font-awesome-icon icon="fa-solid fa-trash-can" class="cancel" @click="removeFromCart(index)"
+                            title="刪除" />
                     </div>
                     <!-- 成人票券項目 -->
                     <div class="ticket_adult">
@@ -154,9 +152,10 @@
                             </p>
                         </label>
                         <select v-model="item.count_adult" name="ticket_count_adult" class="count_adult"
-                            @change="subTotalPrice(item)">
+                            @change="updateSubtotal(item)">
+                            <!-- 小計 -->
                             <option value="0" selected>0</option>
-                            <option :value="num" v-for=" num  in  5 " :key="num">
+                            <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
                             </option>
                         </select>
@@ -168,9 +167,9 @@
                             <p class="price">(NT$ {{ item.price_exF }} /張)</p>
                         </label>
                         <select v-model="item.count_ex" name="ticket_count_ex" class="count_ex"
-                            @change="subTotalPrice(item)">
+                            @change="updateSubtotal(item)">
                             <option value="0" selected>0</option>
-                            <option :value="num" v-for=" num  in  5 " :key="num">
+                            <option :value="num" v-for="num in 5" :key="num">
                                 {{ num }}
                             </option>
                         </select>
@@ -184,7 +183,7 @@
             </div>
             <!-- 票券總計 -->
             <div class="total">
-                <p>({{ itemCount }}項票券) 總計</p>
+                <p>({{ cartItems.length }}項票券) 總計</p>
                 <p> NT$&nbsp;
                     <span class="total-price"> {{ totalPrice }} </span>
                     元
@@ -192,7 +191,6 @@
                 <!-- 結帳按鈕，跳轉至購物車 -->
                 <router-link to="/cart"><button class="btn">結帳</button></router-link>
             </div>
-            <div class="close" @click="toggleCart">close</div>
         </div>
     </div>
 </template>
@@ -200,7 +198,7 @@
 <script>
 import TicketSingleCard from "@/components/TicketSingleCard.vue";
 import ticketData from "@/store/ticketData.js";
-import itemList from "@/store/cartData.js";
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -214,77 +212,52 @@ export default {
     },
     data() {
         return {
-            itemList: itemList,
-            togglePage: false,
+            cartItems: this.$store.state.cartItems,
+            switchPage: false,
             ticketInfo: null,
-            subtotal: 0,
-            totalPrice: 0,
         };
     },
     methods: {
+        ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
         // 從前一頁的票券得到它的id，藉由這個id找到與ticketData一樣id資料，並傳入本頁的ticketInfo之中
         getTicketContent(ticketId) {
             return ticketData.find(ticketData => ticketData.id === ticketId);
         },
-        createItem() {
-            let ticket = this.ticketInfo;
-            if (!this.itemList.includes(ticket)) {
-                this.itemList.push(ticket);
-            } else {
-                window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。")
-            }
-        },
-        //小計
-        subTotalprice() {
+        //小計預覽(未加入購物車)
+        subTotalpricePreview() {
             const subtotalAdult = this.ticketInfo.price_adultF * this.ticketInfo.count_adult;
             const subtotalEx = this.ticketInfo.price_exF * this.ticketInfo.count_ex;
-
-            this.subtotal = subtotalAdult + subtotalEx;
-        },
-        //以下購物車功能------------------------------------------------------------------        
-        // 刪除項目
-        cancel: function (index) {
-            console.log(this);
-            this.itemList.splice(index, 1);
-        },
-        // 點擊關閉購物車
-        close() {
-            this.style.display = "none";
+            this.ticketInfo.subtotal = subtotalAdult + subtotalEx;
         },
         // toggle購物車
-        toggleCart() {
-            this.togglePage = !this.togglePage;
+        switchCart() {
+            this.switchPage = !this.switchPage;
         },
-        //小計
-        subTotalPrice(item) {
-            const countAdult = item.count_adult;
-            const countEx = item.count_ex;
-            const priceAdultF = item.price_adultF;
-            const priceExF = item.price_exF;
-
-            item.subtotal = countAdult * priceAdultF + countEx * priceExF;
-            this.TotalPrice();
-        },
-        //總計
-        TotalPrice() {
-            if (this.itemList.length === 0) return 0;
-            for (let i = 0; i < this.itemList.length; i++) {
-                const item = this.itemList[i];
-                this.totalPrice += item.subtotal;
+        //加入購物車
+        createItem() {
+            const cartItem = this.ticketInfo;
+            console.log('Received item:', this.cartItems);
+            if (cartItem) {
+                this.addToCart(cartItem);
             }
-            return this.totalPrice;
+        },
+        updateSubtotal(ticketInfo) {
+            // 調用 action 來更新小計
+            this.Subtotal({
+                itemId: ticketInfo.id,
+                countAdult: ticketInfo.count_adult,
+                countEx: ticketInfo.count_ex,
+            });
         },
     },
     computed: {
-        // itemCount() {
-        //     return itemList.length;
-        // }
+        ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
         console.log('Received id:', this.$route.params.id);
         const id = parseInt(this.$route.params.id);
         this.ticketInfo = this.getTicketContent(id);
-        this.TotalPrice();
+        this.subTotalpricePreview();//票券小計預覽(未加入購物車)
     }
 
 };
