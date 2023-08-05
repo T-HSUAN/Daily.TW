@@ -56,7 +56,7 @@
                         </label>
                     </div>
                     <!-- 優惠票項目 -->
-                    <div class="ticket_ex">
+                    <div class="ticket_ex" v-if="ticketInfo.price_exF !== ''">
                         <select name="ticket_count_ex" class="count_ex" v-model="ticketInfo.count_ex"
                             @change="subTotalpricePreview">
                             <option value="0" selected>0</option>
@@ -68,7 +68,7 @@
                             <p class="name">優待票</p>
                             <div class="price">
                                 <p class="final">NT$ {{ ticketInfo.price_exF }}</p>
-                                <p class="origin" v-if="ticketInfo.price_exO !== ''">
+                                <p class="origin">
                                     原價:NT$ {{ ticketInfo.price_exO }}
                                 </p>
                             </div>
@@ -84,7 +84,7 @@
                         全票 (NT$ {{ ticketInfo.price_adultF }} / 張) x {{ ticketInfo.count_adult
                         }}<span>NT$ {{ ticketInfo.price_adultF * ticketInfo.count_adult }}</span>
                     </p>
-                    <p>
+                    <p v-if="ticketInfo.price_exF != ''">
                         半票 (NT$ {{ ticketInfo.price_exF }} / 張) x {{ ticketInfo.count_ex
                         }}<span>NT$ {{ ticketInfo.price_exF * ticketInfo.count_ex }}</span>
                     </p>
@@ -161,7 +161,7 @@
                         </select>
                     </div>
                     <!-- 優惠票券項目 -->
-                    <div class="ticket_ex">
+                    <div class="ticket_ex" v-if="item.price_exF !== ''">
                         <label for="count_ex">
                             <p class="name">優待票&nbsp;</p>
                             <p class="price">(NT$ {{ item.price_exF }} /張)</p>
