@@ -49,5 +49,10 @@ import "@/assets/scss/main.scss";//改放這邊，不然會被污染
 /* add icons to the library */
 library.add(faBookmark, farBookmark, faHeart, faCartShopping, faMagnifyingGlass, faLine, faInstagram, faSquareFacebook, faClock, faLocationDot, faCloud, faEye, faEyeSlash, faCircleXmark, faArrowLeft, faArrowRight, faArrowUp, faChevronDown, faCircleChevronDown, faPen, faTrashCan, faSquarePlus, faSortUp, faCar, faTicket, faUser, faUserTie, faShirt, faBullhorn, faBagShopping, faArrowUpWideShort, faFilter, faSortDown, faChevronRight, faChevronLeft)
 
+// 打API用的路徑變數
+import { URL } from '@/assets/js/common.js'
 
-createApp(App).component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).use(firebase).mount("#app");
+const app = createApp(App)
+app.config.globalProperties.$URL = URL;
+
+app.component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).use(firebase).mount("#app");

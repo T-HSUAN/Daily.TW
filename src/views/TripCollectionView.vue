@@ -132,6 +132,15 @@ export default {
             this.tripDataForUser = res
         })
     },
+    mounted() {
+        GET(`${this.$URL}/test.php`)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
 
 
     /* 以下使用 fetch 但上線前失敗了*/
