@@ -219,8 +219,7 @@
                     <div class="ticketCards">
                         <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
                             <router-link to="/ticket_info">
-                                <ticketCard
-                                    :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
+                                <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
                                     :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
                                     :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
                                     :discountTag="ticket.discountTag"></ticketCard>
@@ -444,9 +443,10 @@
 
             .spot {
 
-                a{
+                a {
                     color: inherit;
-                    &:hover{
+
+                    &:hover {
                         color: $textColor_tint;
                     }
                 }
@@ -593,6 +593,7 @@
                     display: none;
 
                     width: 100%;
+
                     // height: 100%;
                     +span {
                         padding: 16px;
@@ -809,7 +810,7 @@ export default {
     data() {
         return {
             ootts: [
-            {   
+                {
                     oottPhoto: require('@/assets/img//oott_02.png'),
                     oottCardTags: "#日系 #休閒 #風景",
                     oottCardDate: "2022 / 12 / 12",

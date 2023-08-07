@@ -333,10 +333,10 @@
 
         .pay_details {
             width: 35%;
-            margin: $sp10 $sp4 104px 0;
+            margin: $sp10 $sp4 $sp1 0;
 
             .pay_details_content {
-                padding: $sp3 $sp4;
+                padding: $sp3 $sp4 $sp1;
                 top: 250px;
 
                 .payDuck {
@@ -351,7 +351,7 @@
 
                 // 付款明系列表
                 .item {
-                    height: 300px;
+                    height: 500px;
                     padding: $sp3 0;
 
                     .details {

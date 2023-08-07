@@ -19,37 +19,37 @@
                 <h3 class="Title">付款明細</h3>
                 <!-- 購買內容 -->
                 <div class="item">
-                    <div class="details">
+                    <div class="details" v-for="(item, index) in finalCartItems" :key="index">
                         <h4 class="title">
-                            {{ Name }}
+                            {{ item.Name }}
                         </h4>
                         <div class="ticket_adult">
                             <p class="name">
                                 全票&nbsp;
-                                <span class="price">(NT$ {{ price_adultF }} /張)</span>
+                                <span class="price">(NT$ {{ item.price_adultF }} /張)</span>
                             </p>
-                            <p class="count">x{{ count_adult }}</p>
+                            <p class="count">x{{ item.count_adult }}</p>
                         </div>
                         <div class="ticket_ex">
                             <p class="name">
                                 優待票&nbsp;
-                                <span class="price">(NT$ {{ price_exF }} /張)</span>
+                                <span class="price">(NT$ {{ item.price_exF }} /張)</span>
                             </p>
-                            <p class="count">x{{ count_ex }}</p>
+                            <p class="count">x{{ item.count_ex }}</p>
                         </div>
 
                         <div class="amount">
                             小計&nbsp;
-                            <span>NT$ {{ subtotal }}</span>
+                            <span>NT$ {{ item.subtotal }}</span>
                         </div>
                     </div>
                 </div>
                 <!-- 票券總計 -->
                 <div class="total">
-                    <p>(1項票券) 總計</p>
+                    <p>({{ finalCartItems.length }}項票券) 總計</p>
                     <p>
                         NT$&nbsp;
-                        <span class="total-price"> {{ total }} </span>
+                        <span class="total-price"> {{ finalCartTotalPrice }} </span>
                         元
                     </p>
                 </div>
@@ -110,17 +110,10 @@
     </div>
 </template>
 <script>
+import { mapMutations, mapActions, mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            img: require("@/assets/img/ticketExample.png"),
-            Name: "斑比山丘門票",
-            price_adultF: 200,
-            price_exF: 50,
-            count_adult: 1,
-            count_ex: 0,
-            subtotal: 200,
-            total: 200,
             member: {
                 Name: "日日小鴨",
                 phone: "0912345678",
@@ -149,18 +142,9 @@ export default {
             }
         },
     },
-    // methods: {
-    //小計
-    // subTotalPrice() {
-    //     const subtotalAdult = this.price_adultF * this.count_adult;
-    //     const subtotalEx = this.price_exF * this.count_ex;
-    //     this.subtotal = subtotalAdult + subtotalEx;
-    //     this.Total();
-    // },
-    // Total() {
-    //     this.total = this.subtotal;
-    // },
-    // }
+    computed: {
+        ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice'])
+    },
 };
 </script>
 <style lang="scss" scoped>

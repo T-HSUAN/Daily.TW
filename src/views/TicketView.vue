@@ -97,7 +97,7 @@
                     元
                 </p>
                 <!-- 結帳按鈕，跳轉至購物車 -->
-                <router-link to="/cart"><button class="btn">結帳</button></router-link>
+                <button class="btn" @click="checkoutCart">結帳</button>
             </div>
         </div>
     </div>
@@ -107,6 +107,7 @@ import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import { mapActions, mapGetters } from 'vuex';
 import ticketData from "@/store/ticketData.js";
+import swal from "sweetalert";
 export default {
     components: {
         Searchbar,
@@ -202,6 +203,14 @@ export default {
                 countAdult: item.count_adult,
                 countEx: item.count_ex,
             });
+        },
+        //跳轉至購物車
+        checkoutCart() {
+            if (this.cartItems.length > 0) {
+                this.$router.push('/ticket_cart'); // 购物车不为空，跳转到结账页面
+            } else {
+                swal("您的購物車是空的", "請先選購票券", "warning");
+            }
         },
     },
     computed: {
