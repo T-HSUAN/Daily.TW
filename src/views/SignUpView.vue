@@ -15,9 +15,11 @@
                     <Button class="btn push">上傳大頭貼</Button>
                 </Upload>
             </div>
+
             <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
             
         </div> -->
+        
             <form class="form">
                 <div v-for="(item, index) in tabItems" :key="index">
                     <label :for="'member-' + index">{{ item.text }}</label>
@@ -64,10 +66,10 @@
                 <input type="text" v-model="phone" @input="filterNonNumeric" placeholder="請輸入電話">
             </form>
             <div class="btn_group">
-                <router-link to="./login" class="cancel_btn">
+                <button  class="cancel_btn" @click="canceldata">
                     取消
-                </router-link>
-                <button class="btn" @click="columnCheck">
+                </button>
+                <button class="btn" @click="showPopbox">
                     註冊
                 </button>
             </div>
@@ -80,7 +82,7 @@
                     <button class="btn" @click="redirectToOtherPage">確定</button>
                 </div>
             </div>
-            <!-- <h2>{{ message }}</h2> -->
+
         </div>
     </section>
 </section>
@@ -112,7 +114,7 @@ export default {
                     placeholder: '請輸入暱稱'
                 },
             },
-            inputValues: ['', '', ''],
+            inputValues: ['', '', '', '', ''],
             member: '',
             selectedYear: '', // 用於存儲選擇的年份值
             yearList: [], // 用於存儲年份選項的數組
@@ -185,55 +187,31 @@ export default {
             // 使用正則表達式過濾非數字字符
             this.phone = this.phone.replace(/\D/g, '');
         },
+        canceldata(){
+            this.$router.push('/');
+        },
         showPopbox() {
-            this.inputEls[2].focus();
-            // this.isPopBoxVisible = !this.isPopBoxVisible;
+            const emptyFieldIndex = this.inputValues.findIndex((value) => value.trim() === "");
+            if (emptyFieldIndex !== -1) {
+                // There is an empty field, set focus to the corresponding input element
+                this.$nextTick(() => {
+                    this.inputEls[emptyFieldIndex].focus();
+                });
+            } else {
+                this.isPopBoxVisible = !this.isPopBoxVisible;
+                // All fields have values, do your submit logic here
+                // ...
+            }
         },
         redirectToOtherPage() {
             this.$router.push('/member');
         },
         columnCheck() {
-      if (this.register.pswReg === this.register.pswConfirmReg) {
-        //存輸入的信箱與密碼
-        const email = this.register.emailReg;
-        const password = this.register.pswReg;
-        console.log(`email:${email},password:${password}`)
-
-        // 使用 Firebase 的 createUserWithEmailAndPassword 方法進行註冊
-        createUserWithEmailAndPassword(firebaseAuth, email, password)
-          .then((userCredential) => {
-            // 註冊成功，您可以在這裡處理相應的動作
-            console.log('註冊成功', userCredential);
-            const userInfo = userCredential.user
-            this.$store.commit('setName', userInfo);
-
-            // 假設您希望在註冊成功後跳轉到其他頁面，您可以在這裡加入相應的路由導航
-            this.isRegistered = false;
-            this.step = 5;
-          }).catch((error) => {
-            // 註冊失敗，處理錯誤訊息
-            const errorCode = error.code
-            if (errorCode === 'auth/email-already-in-use') {
-              alert(`您的信箱可能已被註冊過了${errorCode}`);
-            } else if (errorCode === 'auth/weak-password') {
-              alert(`此密碼強度太弱，至少包含六個字符${errorCode}`);
-            } else if (errorCode === 'auth/invalid-email') {
-              alert(`信箱格式錯誤${errorCode}`);
-
-            } else {
-              console.log('註冊失敗', error.message);
-              alert(`註冊失敗${error.message}`);
-            }
-          });
-      }
-      else {
-        // 密碼不一致的處理
-        console.log('密碼不一致');
-        alert(`密碼不一致`);
-      }
-    },
-
-
+            
+        },
+        
+        
+        
 
 
     },
@@ -547,11 +525,9 @@ export default {
                 justify-content: center;
             }
 
-            a:first-child {
-                margin: 0 $sp2;
-            }
-
+            
             .btn {
+                margin: 0 $sp2;
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
             }
 

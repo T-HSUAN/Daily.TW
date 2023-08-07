@@ -12,10 +12,11 @@
                     <div class="login_trace">
                         <img :src="require('@/assets/img/duck_trace3.png')" alt="icon">
                     </div>
-                    <button class="login_way" @click="signInGoogle">
+                    <button class="login_way" @click="signInGoogle" v-if="item.tab == 1">
                         <Icon type="logo-googleplus" />
                         <p>使用GOOGLE登入</p>
                     </button>
+                    <div v-if="item.tab == 2" class="space_login"></div>
                     <!-- <button v-for="btn in btnsRegister" class="login-connect" @click="signInGoogle">
                 <i :class="btn.iconClass"></i> {{ btn.text }}
               </button> -->
@@ -139,6 +140,7 @@ export default {
                 window.alert("google 登入成功");
                 const userInfo = result.user;
                 this.$store.commit('setName', this.email);
+                this.$router.push('/');
                 // this.$store.commit('setName', userInfo);
                 // this.$router.push({ name: 'result', params: { 
                     //     type: 'loginSuccess'
@@ -334,7 +336,12 @@ export default {
                     }
                 }
             }
-
+            .space_login{
+                
+                @media all and (min-width: $md) {
+                    padding-bottom: 66px;
+                }
+            }
             label {
                 width: 100%;
                 color: $textColor_white;
