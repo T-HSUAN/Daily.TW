@@ -12,11 +12,10 @@
                     <div class="login_trace">
                         <img :src="require('@/assets/img/duck_trace3.png')" alt="icon">
                     </div>
-                    <div class="login_way">
+                    <button class="login_way" @click="signInGoogle">
                         <Icon type="logo-googleplus" />
-                        <!-- <img :src="require('@/assets/img/FB.png')" alt="icon" @click="signInGoogle"> -->
                         <p>使用GOOGLE登入</p>
-                    </div>
+                    </button>
                     <!-- <button v-for="btn in btnsRegister" class="login-connect" @click="signInGoogle">
                 <i :class="btn.iconClass"></i> {{ btn.text }}
               </button> -->
@@ -45,12 +44,11 @@
                             取消
                         </div>
                         <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
-                        <router-link v-if="item.tab == 2" to="/signup" class="btn">
+                        <button @click.prevent="changeRegister" v-if="item.tab == 2"  class="btn">
                             註冊
-                        </router-link>
+                        </button>
                         <button v-else v-if="item.tab == 1" @click="login" class="btn"
                             :class="{ btn: isEmailValid && isPasswordValid }">
-                            <!-- :disabled="!(isEmailValid && isPasswordValid)" -->
                             登入
                         </button>
                     </div>
@@ -62,9 +60,9 @@
                         <img src="@/assets/img/joinus_md.png" alt="joinus">
                     </div>
                     <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
-                    <router-link v-if="item.tab == 1" to="/login" @click="handleClick" class="btn">
+                    <button v-if="item.tab == 1"  @click="handleClick" class="btn">
                         註冊
-                    </router-link>
+                    </button>
                 </div>
             </div>
         </div>
@@ -140,7 +138,7 @@ export default {
                 this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
                 window.alert("google 登入成功");
                 const userInfo = result.user;
-                this.$store.commit('setName', this.username);
+                this.$store.commit('setName', this.email);
                 // this.$store.commit('setName', userInfo);
                 // this.$router.push({ name: 'result', params: { 
                     //     type: 'loginSuccess'
@@ -191,6 +189,9 @@ export default {
         handleClick() {
             this.updateTab(this.tabItems[this.tabActive].goNext);
             this.isActive = !this.isActive;
+        },
+        changeRegister(){
+            this.$router.push('/signup');
         }
     }
 }
@@ -306,6 +307,7 @@ export default {
                 margin: 0 0 $sp2;
                 display: flex;
                 align-items: center;
+                color: $textColor_tint;
                 background: $textColor_white;
                 border-radius: 5px;
                 box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);

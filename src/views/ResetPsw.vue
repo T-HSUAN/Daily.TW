@@ -7,59 +7,52 @@
             <div class="joinus_sm">
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
-            <div class="forget">
+            <div class="resetcard">
                 <h2>重設密碼</h2>
                 <div class="psw_group">
-                <label for="newpsw">
-                    新密碼
-                </label>
-                <input 
-                type="password" 
-                v-model="newpsw" 
-                @input="validatePassword"
-                :placeholder="passwordPlaceholder">
-                <label for="repeatpsw">
-                    密碼
-                </label>
-                <input 
-                type="password" 
-                v-model="repeatpsw"
-                @input="validatePassword"
-                :placeholder="passwordPlaceholder">
-                <div v-if="!isPasswordValid" class="error_message">請輸入英數混合的6-12位密碼且兩次輸入值要相同</div>
-                <div class="space_reset"></div>
-                <button v-if="isPasswordValid" @click="handleSubmit">送出</button>
-            </div>
-            
-            
+                    <label for="newpsw">新密碼</label>
+                    <input 
+                    type="password" 
+                    v-model="newpsw" 
+                    @input="validatePassword"
+                    :placeholder="passwordPlaceholder">
+                    <label for="repeatpsw">密碼</label>
+                    <input 
+                    type="password" 
+                    v-model="repeatpsw"
+                    @input="validatePassword"
+                    :placeholder="passwordPlaceholder">
+                    <!-- <div v-if="!isPasswordValid" class="error_message">請輸入英數混合的6-12位密碼且兩次輸入值要相同</div> -->
+                    <div class="space_reset"></div>
+                    <button v-if="isPasswordValid" @click="handleSubmit">送出</button>
+                </div>
+                
+                
                 <div class="cancel_group">
                     <router-link to="/" 
-                        @click="handleClick"
-                        class="cancel_btn">
-                        取消
-                    </router-link>
-                    <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
-                    <router-link 
-                        to="/forget_psw"
-                        @click="handleSubmit" 
-                        class="btn">
-                        送出
-                    </router-link>
-                    
-                </div>
-            </div>
-            <div class="register">
-                <h2>Reset</h2>
-                <div class="joinus_md">
-
-                    <img  src="../assets/img/reset_md.png" alt="">
-
-                </div>
-                <div class="welcome">Please enter your password</div>
-                
-            </div>       
+                    @click="handleClick"
+                    class="cancel_btn">
+                    取消
+                </router-link>
+                <router-link 
+                to="/forget_psw"
+                @click="handleSubmit" 
+                class="btn">
+                送出
+            </router-link>
+            
         </div>
-
+    </div>
+    <div class="register">
+        <h2>Reset</h2>
+        <div class="joinus_md">
+            <img  src="../assets/img/reset_md.png" alt="">
+        </div>
+        <div class="welcome">Please enter your password</div>
+    </div>       
+</div>
+    
+    
     </section>
 </section>
 </template>
@@ -154,89 +147,84 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/scss/baseAndMixin.scss';
 
+// *{
+//     outline: 1px solid red;
+// }
 
-//手機板
+
 .reset{
     padding-top: 74px;
     @media all and (min-width: $md) {
         padding-top: 200px;
         
     }
-.resetpsw{
-    margin: 150px 0 60px;
-
-    @media all and (min-width: $md) {
-        margin: 130px 0;
-    }
-
-    .canvas{  
-        width: 83%;
-        background-color: $default_yellow;
-        margin: auto;
-        border-radius: $sp3;
-        position: relative;
-        z-index: 2;  
-        .joinus_sm{
-            position: absolute;
-            top: -130px;
-            width: 150px;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-            img{
-                display: block;
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
+    .resetpsw{
+        margin: 150px 0 60px;
+        @media all and (min-width: $md) {
+            margin: 130px 0;
         }
-        .forget{
-            padding: $sp8 $sp3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            h2{
-                color: $textColor_white;
-                font-size: $sm_h2;
-                padding: 0 0 $sp5;
-                font-weight: 900;
-                line-height: 150%; /* 42px */
-                letter-spacing: 0.84px;
+        
+        .canvas{  
+            width: 83%;
+            background-color: $default_yellow;
+            margin: auto;
+            border-radius: $sp3;
+            position: relative;
+            z-index: 2;
+            
+            @media all and (min-width: $md) {
+                max-width: 1000px;
+                display: flex;
+                justify-content: center;
+                margin: $sp10 auto;
             }
-            p{
-                font-size: $sm_p;
-                font-weight: 400;
-                line-height: 180%; /* 25.2px */
-                letter-spacing: 0.42px;
-                text-align: center;
-            }
-            label{
-                width: 100%;
-                color: $textColor_white;
-                font-size: $sm_h4;
-                font-weight: 700;
-                letter-spacing: 0.72px;
-                padding: 4px 0;
-                position: relative;
-                input{
-                    width: 100%;
-                    box-sizing: border-box;
-                    font-size: $sm_p;
-                    margin: $sp1 0 $sp1;
+            .joinus_sm{
+                position: absolute;
+                top: -130px;
+                width: 150px;
+                left: 50%;
+                transform: translateX(-50%);
+                overflow: hidden;
+                @media all and (min-width: $md) {
+                    display: none;
                 }
-                .error_message{
-                    position: absolute;
-                    bottom: -2px;
-                color: $warningColor;
-                font-size: $sm_p;
+                img{
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .resetcard{
+                padding: $sp8 $sp3;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                @media all and (min-width: $md) {
+                    width: 50%;
+                    border-right: 2px solid $textColor_white;
+                    padding: $sp6 0;
+                }
+                h2{
+                    color: $textColor_white;
+                    font-size: $sm_h2;
+                    padding: 0 0 $sp5;
+                    font-weight: 900;
+                    line-height: 150%; /* 42px */
+                    @media all and (min-width: $md) {
+                        font-size: $xl_h2;
+                        padding: 0 0 110px;
+                    }
                 }
                 
-            }
             .psw_group{
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                @media all and (min-width: $md) {
+                    width: 80%;
+                }
                 label{
                     width: 100%;
                     color: $textColor_white;
@@ -245,6 +233,9 @@ export default {
                     letter-spacing: 0.72px;
                     padding: 4px 0;
                     position: relative;
+                    @media all and (min-width: $md) {
+                        font-size: $xl_h4;
+                    }
                 }
                 input{
                     width: 100%;
@@ -254,6 +245,16 @@ export default {
                     box-sizing: border-box;
                     font-size: $sm_p;
                     margin: $sp1 0 $sp1;
+                    @media all and (min-width: $md) {
+                            font-size: $xl_p;
+                        }
+                }
+                .space_reset {
+                    margin: 0 0 50px;
+                    @media all and (min-width: $md) {
+                        margin: 0 0 50px;
+                        
+                    }
                 }
                 
             }
@@ -262,126 +263,67 @@ export default {
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
+                @media all and (min-width: $md) {
+                    justify-content: center;
+                }
                 a:first-child{
                     padding: 0 $sp2;
                 }
                 
                 
             }
+                
+            }
             
-        }
-        .register{
-            display: none;    
-        }
-        
-    }
-
-}
-}
-@media all and (min-width: $md){
-    // *{
-    //     outline: 1px solid red;
-    // }
-.resetpsw{
-    padding: 50px 0;
-    .canvas{
-        max-width: 1000px;
-        display: flex;
-        justify-content: center;
-        margin: $sp10 auto;
-        .joinus_sm{
-            display: none;
-        }
-        .forget{
-            width: 50%;
-            border-right: 2px solid $textColor_white;
-            padding: $sp6 0;
-            h2{
-                font-size: $xl_h2;
-                padding: 0 0 110px;
-            }
-            p{
-                font-size: $xl_p;
-                font-weight: 400;
-                line-height: 165%; /* 25.2px */
-                letter-spacing: 0.54px;
-            }
-            label{
-                width: 80%;
-                font-size: $xl_h4;
-                input{
-                    font-size: $xl_p;
-                }
-                .space_forget{
-                    margin: 0 0 110px;
-                }
-                .error_message{
-                    bottom: -6px;
-                    font-size: $xl_p;
-                }
-            }
-            .psw_group{
-                width: 80%;
-                label{
+            .register {
+                display: none;
+                @media all and (min-width: $md) {
+                    width: 50%;
+                    padding: $sp6 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border-radius: 0 $sp3 $sp3 0;
+                    h2 {
+                        color: $textColor_white;
+                        font-size: $xl_h2;
+                        padding: 0 0 $sp5;
+                        font-weight: 900;
+                        letter-spacing: 2px;
+                    }
+                    
+                    p {
                         font-size: $xl_h4;
+                        color: $textColor_white;
+                        font-weight: 700;
+                        letter-spacing: 0.72px;
                     }
-                    input{
-                        font-size: $xl_p;
-                        margin: $sp1 0 $sp1;
+                    
+                    .joinus_md {
+                        width: 300px;
+                        overflow: hidden;
+                        margin: $sp4 0 $sp10;
+                        
+                        img {
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                        object-fit: cover;
                     }
-                    .space_reset{
-                    margin: 0 0 80px;
-                }
-                }
-                .cancel_group{
-                justify-content: center;
-                a:first-child{
-                    padding: 0 $sp2;
                 }
                 
-                
-            }
-            
-        }
-        .register{
-            width: 50%;
-            padding: $sp6 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-radius: 0 $sp3 $sp3 0;
-            h2{
-                color: $textColor_white;
-                font-size: $xl_h2;
-                padding: 0 0 $sp5;
-                font-weight: 900;
-                letter-spacing: 2px;
-            }
-            p{
-                font-size: $xl_h4;
-                color:$textColor_white;
-                font-weight: 700;
-                letter-spacing: 0.72px;
-            }
-            .joinus_md{
-                width: 300px;
-                overflow: hidden;
-                margin: $sp4 0 $sp10;
-                img{
-                    display: block;
-                    height: 100%;
-                    width: 100%;
-                    object-fit: cover;
+                .welcome {
+                    font-size: $xl_h4;
+                    color: $textColor_white;
                 }
             }
-            .welcome{
-                font-size: $xl_h4;
-                color:$textColor_white;
-            }      
-        }
+        }   
         
     }
-
+    
+    
+    
+    
 }
 }
 </style>
