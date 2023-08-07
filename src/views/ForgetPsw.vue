@@ -7,20 +7,18 @@
             <div class="joinus_sm">
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
-            <form class="forget" ref="form" @submit.prevent="sendEmail">
+            <form class="forgetcard" ref="form" @submit.prevent="sendEmail">
                 <h2>忘記密碼</h2>
                 <p>請輸入註冊時的EMAIL，<br> 我們將寄送給您重置密碼的連結</p>
                 <label>Email
                     <input type="text" v-model="email" name="email" placeholder='請輸入EMAIL'>
                     <div class="space_forget"></div>
                 </label>
-
-
                 <div class="cancel_group">
                     <router-link to="/" class="cancel_btn">
                         取消
                     </router-link>
-                    <input type="submit" value="送出" class="btn">
+                    <button class="btn">送出</button>
                 </div>
             </form>
             <div class="register">
@@ -30,8 +28,6 @@
                 </div>
                 <div class="welcome">Please enter your EMAIL</div>
             </div>
-
-
         </div>
         <!-- 成功送出郵件後的彈窗 -->
         <div class="member_sm" v-if="isPopBoxVisible">
@@ -98,104 +94,92 @@ export default {
     }
 }
 </script>
+
 <style lang="scss" scoped>
 @import '@/assets/scss/baseAndMixin.scss';
 
+// *{
+//     outline: 1px solid blue;
+// }
 
-
-//手機板
 .forget{
     padding-top: 74px;
     @media all and (min-width: $md) {
         padding-top: 200px;
-        
     }
-
-.forgetpsw {
-    padding: 150px 0 60px;
-    @media all and (min-width: $md) {
-        margin: 130px 0;
-    }
-    .canvas {
-        width: 83%;
-        background-color: $default_yellow;
-        margin: auto;
-        border-radius: $sp3;
-        position: relative;
-        z-index: 2;
-
-        .joinus_sm {
-            position: absolute;
-            top: -130px;
-            width: 150px;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-
-            img {
-                display: block;
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
+    
+    .forgetpsw {
+        margin: 150px 0 60px;
+        @media all and (min-width: $md) {
+            margin: 130px 0;
         }
-
-        .forget {
-            padding: $sp8 $sp3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            h2 {
-                color: $textColor_white;
-                font-size: $sm_h2;
-                padding: 0 0 $sp5;
-                font-weight: 900;
-                line-height: 150%;
-                /* 42px */
-                letter-spacing: 0.84px;
+        .canvas {
+            width: 83%;
+            background-color: $default_yellow;
+            margin: auto;
+            border-radius: $sp3;
+            position: relative;
+            z-index: 2;
+            @media all and (min-width: $md) {
+                max-width: 1000px;
+                display: flex;
+                justify-content: center;
+                margin: $sp10 auto;
             }
-
-            p {
-                font-size: $sm_p;
-                font-weight: 400;
-                line-height: 180%;
-                /* 25.2px */
-                letter-spacing: 0.42px;
-                text-align: center;
-            }
-
-            label {
-                width: 100%;
-                color: $textColor_white;
-                font-size: $sm_h4;
-                font-weight: 700;
-                letter-spacing: 0.72px;
-                padding: 4px 0;
-                position: relative;
-
-                input {
+            
+            .joinus_sm {
+                position: absolute;
+                top: -130px;
+                width: 150px;
+                left: 50%;
+                transform: translateX(-50%);
+                overflow: hidden;
+                @media all and (min-width: $md) {
+                    display: none;
+                }
+                img {
+                    display: block;
+                    height: 100%;
                     width: 100%;
-                    box-sizing: border-box;
-                    font-size: $sm_p;
-                    margin: $sp1 0 $sp1;
+                    object-fit: cover;
                 }
-
-                .error_message {
-                    position: absolute;
-                    bottom: -2px;
-                    color: $warningColor;
-                    font-size: $sm_p;
-                }
-
             }
-
-            .psw_group {
-                width: 100%;
+            
+            .forgetcard {
+                padding: $sp8 $sp3;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-
+                @media all and (min-width: $md) {
+                    width: 50%;
+                    border-right: 2px solid $textColor_white;
+                    padding: $sp6 0;
+                }
+                
+                h2 {
+                    color: $textColor_white;
+                    font-size: $sm_h2;
+                    padding: 0 0 $sp5;
+                    font-weight: 900;
+                    line-height: 150%;
+                    @media all and (min-width: $md) {
+                        font-size: $xl_h2;
+                        padding: 0 0 110px;
+                    }
+                }
+                p {
+                    font-size: $sm_p;
+                    font-weight: 400;
+                    line-height: 180%;
+                    letter-spacing: 0.42px;
+                    text-align: center;
+                    @media all and (min-width: $md) {
+                        font-size: $xl_p;
+                        font-weight: 400;
+                        line-height: 165%;
+                    }
+                }
+                
                 label {
                     width: 100%;
                     color: $textColor_white;
@@ -204,43 +188,107 @@ export default {
                     letter-spacing: 0.72px;
                     padding: 4px 0;
                     position: relative;
+                    @media all and (min-width: $md) {
+                        width: 80%;
+                        font-size: $xl_h4;
+                    }
+                    input {
+                        width: 100%;
+                        box-sizing: border-box;
+                        font-size: $sm_p;
+                        margin: $sp1 0 $sp1;
+                        @media all and (min-width: $md) {
+                            font-size: $xl_p;
+                        }
+                    }
+                    .space_forget {
+                        margin: 0 0 50px;
+                        @media all and (min-width: $md) {
+                            margin: 0 0 110px;
+                            
+                        }
+                    }
+                    
+                    .error_message {
+                        position: absolute;
+                        bottom: -2px;
+                        color: $warningColor;
+                        font-size: $sm_p;
+                        @media all and (min-width: $md) {
+                            bottom: -6px;
+                            font-size: $xl_p;
+                        }
+                    } 
                 }
-
-                input {
+                
+                .cancel_group {
                     width: 100%;
-                    padding: $sp1 20px;
-                    background: $textColor_white;
-                    color: $textColor_default;
-                    box-sizing: border-box;
-                    font-size: $sm_p;
-                    margin: $sp1 0 $sp1;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    @media all and (min-width: $md) {
+                        justify-content: center;
+                    }
+                    
+                    a:first-child {
+                        padding: 0 $sp2;
+                    }
+                    
+                    
                 }
-
+                
             }
-
-            .cancel_group {
-                width: 100%;
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-
-                a:first-child {
-                    padding: 0 $sp2;
+            
+            
+            .register {
+                display: none;
+                @media all and (min-width: $md) {
+                    width: 50%;
+                    padding: $sp6 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border-radius: 0 $sp3 $sp3 0;
+                    h2 {
+                        color: $textColor_white;
+                        font-size: $xl_h2;
+                        padding: 0 0 $sp5;
+                        font-weight: 900;
+                        letter-spacing: 2px;
+                    }
+                    
+                    p {
+                        font-size: $xl_h4;
+                        color: $textColor_white;
+                        font-weight: 700;
+                        letter-spacing: 0.72px;
+                    }
+                    
+                    .joinus_md {
+                        width: 300px;
+                        overflow: hidden;
+                        margin: $sp4 0 $sp10;
+                        
+                        img {
+                            display: block;
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    
+                    .welcome {
+                        font-size: $xl_h4;
+                        color: $textColor_white;
+                    }
                 }
-
-
-            }
-
+            }          
         }
-
-        .register {
-            display: none;
-        }
-
-    }
-
-    //popbox
-
+        
+        
+    
+    
+    //popbox手機板
     .member_sm {
         display: flex;
         width: 273px;
@@ -312,10 +360,10 @@ export default {
                 }
             }
 
-            // }
+
         }
 
-        // 電腦版
+        // popbox電腦版
         @media (min-width: 768px) {
             display: flex;
             top: 500px;
@@ -397,135 +445,4 @@ export default {
 }
 }
 
-
-
-
-@media all and (min-width: $md) {
-
-    // *{
-    //     outline: 1px solid red;
-    // }
-    .forgetpsw {
-        padding: 50px 0;
-
-        .canvas {
-            max-width: 1000px;
-            display: flex;
-            justify-content: center;
-            margin: $sp10 auto;
-
-            .joinus_sm {
-                display: none;
-            }
-
-            .forget {
-                width: 50%;
-                border-right: 2px solid $textColor_white;
-                padding: $sp6 0;
-
-                h2 {
-                    font-size: $xl_h2;
-                    padding: 0 0 110px;
-                }
-
-                p {
-                    font-size: $xl_p;
-                    font-weight: 400;
-                    line-height: 165%;
-                    /* 25.2px */
-                    letter-spacing: 0.54px;
-                }
-
-                label {
-                    width: 80%;
-                    font-size: $xl_h4;
-
-                    input {
-                        font-size: $xl_p;
-                    }
-
-                    .space_forget {
-                        margin: 0 0 110px;
-                    }
-
-                    .error_message {
-                        bottom: -6px;
-                        font-size: $xl_p;
-                    }
-                }
-
-                .psw_group {
-                    width: 80%;
-
-                    label {
-                        font-size: $xl_h4;
-                    }
-
-                    input {
-                        font-size: $xl_p;
-                        margin: $sp1 0 $sp1;
-                    }
-
-                    .space_reset {
-                        margin: 0 0 80px;
-                    }
-                }
-
-                .cancel_group {
-                    justify-content: center;
-
-                    a:first-child {
-                        padding: 0 $sp2;
-                    }
-
-
-                }
-
-            }
-
-            .register {
-                width: 50%;
-                padding: $sp6 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border-radius: 0 $sp3 $sp3 0;
-
-                h2 {
-                    color: $textColor_white;
-                    font-size: $xl_h2;
-                    padding: 0 0 $sp5;
-                    font-weight: 900;
-                    letter-spacing: 2px;
-                }
-
-                p {
-                    font-size: $xl_h4;
-                    color: $textColor_white;
-                    font-weight: 700;
-                    letter-spacing: 0.72px;
-                }
-
-                .joinus_md {
-                    width: 300px;
-                    overflow: hidden;
-                    margin: $sp4 0 $sp10;
-
-                    img {
-                        display: block;
-                        height: 100%;
-                        width: 100%;
-                        object-fit: cover;
-                    }
-                }
-
-                .welcome {
-                    font-size: $xl_h4;
-                    color: $textColor_white;
-                }
-            }
-
-        }
-
-    }
-}</style>
+</style>
