@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-
+import swal from 'sweetalert';
 import firebase from './assets/config/firebase'
 
 // router-link 換頁回到頁面頂端
@@ -12,14 +12,22 @@ router.afterEach((to, from) => {
 
 // 購物車:在創建 Vue app 之前，先將 sessionStorage 的資料還原到 Vuex store 中
 const CART_KEY = "StoreData"; // 作為 localStorage 的 key
+const FINAL_CART_ITEMS_KEY = "FinalCartItems";
 const storedCartItems = sessionStorage.getItem(CART_KEY);
+const storedfinalCartItems = sessionStorage.getItem(FINAL_CART_ITEMS_KEY);
+
 if (storedCartItems) {
     store.commit("restoreCartItems", JSON.parse(storedCartItems));
+}
+if (storedfinalCartItems) {
+    store.commit("restoreFinalCartItems", JSON.parse(storedfinalCartItems));
 }
 // 購物車:在網頁重整前將購物車資料存入 sessionStorage
 window.addEventListener("beforeunload", () => {
     const cartItems = JSON.stringify(store.state.cartItems);
+    const finalCartItems = JSON.stringify(store.state.finalCartItems);
     sessionStorage.setItem(CART_KEY, cartItems);
+    sessionStorage.setItem(FINAL_CART_ITEMS_KEY, finalCartItems);
 });
 
 // package

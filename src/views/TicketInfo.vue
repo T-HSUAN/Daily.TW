@@ -68,7 +68,7 @@
                             <p class="name">優待票</p>
                             <div class="price">
                                 <p class="final">NT$ {{ ticketInfo.price_exF }}</p>
-                                <p class="origin">
+                                <p class="origin" v-if="ticketInfo.price_exO != ''">
                                     原價:NT$ {{ ticketInfo.price_exO }}
                                 </p>
                             </div>
@@ -95,7 +95,7 @@
                     <!-- 購物車&購買按鈕 -->
                     <div class="buy_btn">
                         <button class="btn" @click="createItem()">加入購物車</button>
-                        <router-link to="/cart"><button class="btn">直接購買</button></router-link>
+                        <button class="btn" @click="buyDirectly()">直接購買</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
             <!-- 購買按鈕(手機) -->
             <div class="buy_btn_phone">
                 <button class="btn" @click="createItem()">加入購物車</button>
-                <router-link to="/cart"><button class="btn">直接購買</button></router-link>
+                <button class="btn" @click="buyDirectly()">直接購買</button>
             </div>
         </div>
         <!-- 購物車清單(側邊) -->
@@ -189,7 +189,7 @@
                     元
                 </p>
                 <!-- 結帳按鈕，跳轉至購物車 -->
-                <router-link to="/cart"><button class="btn">結帳</button></router-link>
+                <button class="btn" @click="checkoutCart">結帳</button>
             </div>
         </div>
     </div>
@@ -218,7 +218,7 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
+        ...mapActions(['addToCart', 'addToCartDirectly', 'removeFromCart', 'Subtotal']),
         // 從前一頁的票券得到它的id，藉由這個id找到與ticketData一樣id資料，並傳入本頁的ticketInfo之中
         getTicketContent(ticketId) {
             return ticketData.find(ticketData => ticketData.id === ticketId);
@@ -241,6 +241,14 @@ export default {
                 this.addToCart(cartItem);
             }
         },
+        //直接購買
+        buyDirectly() {
+            const cartItem = this.ticketInfo;
+            if (cartItem) {
+                this.addToCartDirectly(cartItem);
+                this.$router.push('/ticket_cart');
+            }
+        },
         updateSubtotal(ticketInfo) {
             // 調用 action 來更新小計
             this.Subtotal({
@@ -248,6 +256,14 @@ export default {
                 countAdult: ticketInfo.count_adult,
                 countEx: ticketInfo.count_ex,
             });
+        },
+        //跳轉至購物車
+        checkoutCart() {
+            if (this.cartItems.length > 0) {
+                this.$router.push('/ticket_cart'); // 购物车不为空，跳转到结账页面
+            } else {
+                swal("您的購物車是空的", "請先選購票券", "warning");
+            }
         },
     },
     computed: {

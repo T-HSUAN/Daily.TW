@@ -89,6 +89,26 @@ const routesUser = [
         props: true,
     },
     {
+        path: "/ticket_cart",
+        name: "ticket_cart",
+        component: () =>
+            import(/* webpackChunkName: "cart" */ "@/views/TicketCart.vue"),
+    },
+    {
+        path: "/ticket_payment",
+        name: "ticket_payment",
+        component: () =>
+            import(/* webpackChunkName: "ticket_payment" */ "@/views/TicketPayment.vue"),
+    },
+    {
+        path: "/ticket_pay_success",
+        name: "ticket_pay_success",
+        component: () =>
+            import(
+                /* webpackChunkName: "ticket_pay_success" */ "@/views/TicketPaySuccess.vue"
+            ),
+    },
+    {
         path: "/about",
         name: "about",
         component: () =>
@@ -145,26 +165,6 @@ const routesUser = [
             import(/* webpackChunkName: "signup" */ "@/views/SignUpView.vue"),
     },
     {
-        path: "/cart",
-        name: "cart",
-        component: () =>
-            import(/* webpackChunkName: "cart" */ "@/views/CartView.vue"),
-    },
-    {
-        path: "/ticket_payment",
-        name: "ticket_payment",
-        component: () =>
-            import(/* webpackChunkName: "ticket_payment" */ "@/views/TicketPayment.vue"),
-    },
-    {
-        path: "/ticket_pay_success",
-        name: "ticket_pay_success",
-        component: () =>
-            import(
-                /* webpackChunkName: "ticket_pay_success" */ "@/views/TicketPaySuccess.vue"
-            ),
-    },
-    {
         path: "/oott_post_view",
         name: "OottPostView",
         component: () =>
@@ -210,7 +210,7 @@ const routesUser = [
                 /* webpackChunkName: "OottCollectionView" */ "@/views/email.vue"
             ),
     },
-    
+
 ];
 
 const router = createRouter({

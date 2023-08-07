@@ -62,6 +62,7 @@
                 position: absolute;
                 top: $sp2;
                 right: $sp2;
+                cursor: pointer;
             }
 
             // 票券圖片
@@ -461,7 +462,7 @@
             .pay_details_content {
                 position: sticky;
                 top: 200px;
-                margin: 100px 0;
+                margin: 100px 0 8px;
                 padding: $sp3 $sp4;
                 color: $textColor_default;
                 background: $textColor_tint;
@@ -482,7 +483,7 @@
 
                 // 付款明系列表
                 .item {
-                    height: 300px;
+                    height: 500px;
                     padding: $sp3 0;
                     overflow-y: auto;
 

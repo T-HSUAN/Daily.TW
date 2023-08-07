@@ -7,6 +7,8 @@ export default createStore({
         },
         //購物車
         cartItems: [],
+        finalCartItems: [], // 最終購物明細清單
+        selectAll: false,
         name: '登入/註冊',
         isLogin: false,
     },
@@ -16,17 +18,25 @@ export default createStore({
             // 計算 totalPrice，當 cartItems 數據發生變化時，totalPrice 會自動重新計算
             return state.cartItems.reduce((total, item) => total + item.subtotal, 0);
         },
+        totalSelectedPrice(state) {
+            if (state.selectAll) {
+                return state.cartItems.reduce((total, item) => total + item.subtotal, 0);
+            }
+            return state.cartItems.reduce((total, item) => {
+                if (item.selected) {
+                    return total + item.subtotal;
+                }
+                return total;
+            }, 0);
+        },
+        finalCartItems(state) {
+            return state.finalCartItems;
+        },
+        finalCartTotalPrice(state) {
+            return state.finalCartItems.reduce((total, item) => total + item.subtotal, 0);
+        },
     },
     mutations: {
-        // addToCart(state, cartItem) {
-        //     // 檢查票券是否已經在購物車中，如果不在，則添加到購物車
-        //     if (!state.cartItems.includes(cartItem)) {
-        //         state.cartItems.push(cartItem);
-        //     } else {
-        //         window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。");
-        //     }
-
-        // },
         addToCart(state, cartItem) {
             // 檢查票券是否已經在購物車中，如果不在，則添加到購物車
             const CartItemInCart = state.cartItems.some(item => item.id === cartItem.id);
@@ -34,7 +44,17 @@ export default createStore({
             if (!CartItemInCart) {
                 state.cartItems.push(cartItem);
             } else {
-                window.alert("票券已加入購物車，請點擊確認全票與優待票購買數量。");
+                swal("票券已加入購物車", "請點擊確認全票與優待票購買數量。", "error", { timer: 1800 });
+            }
+        },
+        addToCartDirectly(state, cartItem) {
+            // 檢查票券是否已經在購物車中，如果不在，則添加到購物車
+            const CartItemInCart = state.cartItems.some(item => item.id === cartItem.id);
+
+            if (!CartItemInCart) {
+                state.cartItems.push(cartItem);
+            } else {
+
             }
         },
         removeFromCart(state, index) {
@@ -59,9 +79,28 @@ export default createStore({
                 state.cartItems[index] = item;
             }
         },
+        SelectItem(state) {
+            state.selectAll = !state.selectAll;
+            if (state.selectAll === true) {
+                state.cartItems.forEach(item => {
+                    item.selected = true;
+                }
+                );
+            } else {
+                state.cartItems.forEach(item => {
+                    item.selected = false;
+                });
+            }
+        },
+        updateFinalCartItems(state, finalCartItems) {
+            state.finalCartItems = finalCartItems;
+        },
         restoreCartItems(state, cartItems) {
             // 還原購物車資料
             state.cartItems = cartItems;
+        },
+        restoreFinalCartItems(state, finalCartItems) {
+            state.finalCartItems = finalCartItems;
         },
         setName(state, payload) {
             state.name = payload
@@ -73,6 +112,9 @@ export default createStore({
     actions: {
         addToCart({ commit }, cartItem) {
             commit('addToCart', cartItem);
+        },
+        addToCartDirectly({ commit }, cartItem) {
+            commit('addToCartDirectly', cartItem);
         },
         removeFromCart({ commit }, cartItem) {
             commit('removeFromCart', cartItem);
