@@ -207,9 +207,9 @@ export default {
         //跳轉至購物車
         checkoutCart() {
             if (this.cartItems.length > 0) {
-                this.$router.push('/ticket_cart'); // 购物车不为空，跳转到结账页面
+                this.$router.push('/ticket_cart'); // 購物車不為空時，跳轉至購物車頁面
             } else {
-                swal("您的購物車是空的", "請先選購票券", "warning");
+                swal("您的購物車是空的", "請先選購票券", "warning", { timer: 2000 });
             }
         },
     },

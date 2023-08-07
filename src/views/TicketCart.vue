@@ -14,17 +14,20 @@
                 <span>購物車</span>
             </router-link>
         </div>
+        <h2>請勾選票券進行結帳</h2>
         <div class="cart_items">
             <div class="cart_select_all">
-                <label for="select_all"><input type="checkbox" id="select_all" :checked="$store.state.selectAll"
-                        @change="selectAll()" />&nbsp;全選</label>
+                <label for="select_all">
+                    <input type="checkbox" id="select_all" :checked="$store.state.selectAll"
+                        @change="selectAll()" />&nbsp;全選
+                </label>
             </div>
             <div class="cart_item" v-for="(item, index) in cartItems" :key="item">
                 <div class="ticket_title-photo">
-                    <label for="select" class="ticket_title"><input type="checkbox" name="" id="select"
-                            :checked="item.selected" @change="SelecteOne(item)" />&nbsp;{{
-                                item.Name
-                            }}</label>
+                    <label for="select" class="ticket_title">
+                        <input type="checkbox" name="" id="select" :checked="item.selected"
+                            @change="SelecteOne(item)" />&nbsp;{{ item.Name }}
+                    </label>
                     <img :src="item.img" alt="ticket_photo" />
                 </div>
                 <font-awesome-icon icon="fa-solid fa-trash-can" @click="removeFromCart(index)" />
@@ -115,9 +118,9 @@
                         <span class="total-price"> {{ finalCartTotalPrice }} </span>
                         元
                     </p>
-                    <router-link to="/ticket_payment"><button class="btn">
-                            付款 <span>⇀</span>
-                        </button></router-link>
+                    <button class="btn" @click="checkoutFinalCart">
+                        付款 <span>⇀</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -169,6 +172,15 @@ export default {
             // 將最終購物明細清單存儲在 Vuex 或其他地方
             this.$store.commit('updateFinalCartItems', finalCartItems);
         },
+        //結帳
+        checkoutFinalCart() {
+            if (this.finalCartTotalPrice > 0) {
+                this.$router.push('/ticket_payment'); // 购物车不为空，跳转到结账页面
+            }
+            else {
+                swal("您尚未勾選票券或選擇票券數量", "", "warning", { timer: 2000 });
+            }
+        },
     },
     computed: {
         ...mapGetters(['cartItems', 'totalPrice', 'totalSelectedPrice', 'finalCartItems', 'finalCartTotalPrice']),
@@ -189,5 +201,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/baseAndMixin.scss";
-@import "@/assets/scss/page/cart.scss";
+@import "@/assets/scss/page/ticketcart.scss";
 </style>

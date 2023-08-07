@@ -86,7 +86,7 @@
             <div class="recipient_info">
                 <h3>收件者資訊</h3>
                 <label>
-                    <input type="checkbox" class="same_check" @click="toggleCheck" />
+                    <input type="checkbox" class="same_check" @click="switchCheck" />
                     與訂購者相同&nbsp;<span v-if="checked">(勾選時無法修改內容)</span>
                 </label>
                 <label for="">收件者</label>
@@ -110,7 +110,7 @@
     </div>
 </template>
 <script>
-import { mapMutations, mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
@@ -130,7 +130,7 @@ export default {
     },
     watch: {},
     methods: {
-        toggleCheck() {
+        switchCheck() {
             this.checked = !this.checked;
             this.CheckedSame();
         },

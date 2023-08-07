@@ -13,6 +13,11 @@
         }
     }
 
+    h2 {
+        margin: $sp4 0;
+        text-align: center;
+    }
+
     .cart_items {
         box-sizing: border-box;
         @include width($sm);
@@ -148,6 +153,10 @@
             justify-content: end;
             align-items: end;
 
+            .payDuck {
+                max-width: 200px;
+            }
+
             p {
                 margin: $sp2;
                 font-size: 24px;
@@ -188,6 +197,14 @@
 
         .breadcrumb {
             @include width($md);
+        }
+
+        h2 {
+            width: 100%;
+            max-width: $md;
+            margin: $sp5 auto;
+            padding: 0 $sp2;
+            text-align: left;
         }
 
         .cart_items {
@@ -318,12 +335,27 @@
         @include width($xl);
         padding: 200px $sp2 $sp4;
 
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
         .breadcrumb {
             @include width($xl);
         }
 
+        h2 {
+            width: 60%;
+            max-width: 60%;
+            margin: $sp5 auto;
+            padding: 0 $sp2;
+            float: left;
+            text-align: left;
+        }
+
         .cart_items {
-            width: 70%;
+            width: 60%;
             max-width: 60%;
             margin: 0;
             float: left;
@@ -458,6 +490,8 @@
             width: 30%;
             height: 100vh;
             margin: 0 $sp2;
+            position: relative;
+            top: -100px;
 
             .pay_details_content {
                 position: sticky;
