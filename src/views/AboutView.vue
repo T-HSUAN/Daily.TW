@@ -170,7 +170,7 @@
                 <h2>有任何建議都<br>歡迎留言給我們</h2>
             </div>
             <div class="message_form">
-                <form @submit.prevent="handleSubmit" action="">
+                <form @submit.prevent="handleSubmit" action="`${publicPath}phpfile/feedback.php`" method="post">
                     <label for="user_name">
                         <span>姓名</span>
                         <input v-model="userName" type="text" name="user_name" id="user_name" placeholder="請輸入姓名">
@@ -232,6 +232,7 @@
 </template>
 
 <script>
+import {GET} from '@/plugin/axios';
 import { defineComponent } from 'vue'
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
 
@@ -303,6 +304,15 @@ export default defineComponent({
         simulateSubmit() {
             this.handleSubmit();
         },
+    },
+    mounted() {
+        GET(`${this.$URL}/feedback.php`)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
 })
 </script>
