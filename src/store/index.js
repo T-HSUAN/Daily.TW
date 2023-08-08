@@ -4,6 +4,7 @@ export default createStore({
         // 景點票券搜尋內容
         filter: {
             searchText: "",
+            selectedTags: [],
         },
         //購物車
         cartItems: [],

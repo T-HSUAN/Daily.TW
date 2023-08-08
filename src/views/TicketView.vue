@@ -7,7 +7,7 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="updateDisplay" :tagTexts="tagTexts" @TagsFilter="" />
+        <Searchbar :Filter="TicketsFilter" :tagTexts="tagTexts" @TagsFilter="TagsFilter" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -120,17 +120,17 @@ export default {
                 img: "",
             },
             tagTexts: [
-                { default: " #親子", selected: false },
-                { default: " #情侶", selected: false },
-                { default: " #小資", selected: false },
-                { default: " #風景", selected: false },
-                { default: " #樂園", selected: false },
-                { default: " #農場", selected: false },
-                { default: " #藝文", selected: false },
-                { default: " #山林", selected: false },
-                { default: " #海邊", selected: false },
-                { default: " #放鬆", selected: false },
-                { default: " #懷舊", selected: false },
+                { default: "#親子", selected: false },
+                { default: "#情侶", selected: false },
+                { default: "#小資", selected: false },
+                { default: "#風景", selected: false },
+                { default: "#樂園", selected: false },
+                { default: "#農場", selected: false },
+                { default: "#藝文", selected: false },
+                { default: "#山林", selected: false },
+                { default: "#海邊", selected: false },
+                { default: "#放鬆", selected: false },
+                { default: "#懷舊", selected: false },
             ],
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
@@ -139,6 +139,7 @@ export default {
             ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
+            filteredProducts: [],
             // 購物車清單
             cartItems: this.$store.state.cartItems,
             //switch購物車頁面
@@ -147,7 +148,7 @@ export default {
     },
     methods: {
         //模糊搜尋
-        updateDisplay() {
+        TicketsFilter() {
             if (this.$store.state.filter.searchText === "") {
                 this.ticketDisplay = this.ticketData;
             } else {
@@ -160,27 +161,19 @@ export default {
                 );
             }
         },
-        toggleTagSelection(selectedTag) {
-            selectedTag.selected = !selectedTag.selected;
-            console.log(selectedTag.selected);
-            this.filterByTag();
-        },
-        filterByTag() {
-            const selectedTags = this.tagTexts.filter((tag) => tag.selected);
-            // 如果沒有選中任何標籤，則不進行篩選，直接顯示所有票券
+        // 標籤篩選
+        TagsFilter() {
+            let selectedTags = this.$store.state.filter.selectedTags;
+            selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.default);
+            console.log(selectedTags);
             if (selectedTags.length === 0) {
                 this.ticketDisplay = this.ticketData;
-                return;
+            } else {
+                this.ticketDisplay = this.ticketData.filter(item => {
+                    // 检查商品的标签是否包含选中的所有标签值
+                    return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+                });
             }
-            // 過濾票券資料，只保留與選中的標籤相關的票券
-            this.ticketDisplay = this.ticketData.filter((ticket) => {
-                for (const tag of selectedTags) {
-                    if (ticket.location.includes(tag.default)) {
-                        return true;
-                    }
-                }
-                return false;
-            });
         },
         // switch購物車
         switchCart() {
@@ -217,7 +210,7 @@ export default {
         ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
-        this.updateDisplay();
+        this.TicketsFilter();
 
     },
 };
