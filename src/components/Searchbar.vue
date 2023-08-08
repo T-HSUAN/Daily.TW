@@ -50,7 +50,7 @@
         </div>
         <div class="tags_filter">
             <label v-for="(item, index) in tagTexts" :key="item">
-                <input type="checkbox" class="tag" v-model="item.selected" @click="TagsFilter" />
+                <input type="checkbox" class="tag" v-model="item.selected" @click="switchTagSelection(item)" />
                 <span>{{ item.default }}</span>
             </label>
         </div>
@@ -59,8 +59,8 @@
         data(){
             return{
                 tagText: [
-                { default: " #親子" },
-                { default: " #情侶" },
+                { default: "#親子" },
+                { default: "#情侶" },
             ]
             }       
         } -->
@@ -77,9 +77,11 @@ export default {
     props: {
         Filter: Function,
         tagTexts: {
-            type: [Object, String],
-            default: "#標籤",
-            selected: Boolean,
+            type: Array,
+            default: () => ([
+                { default: "#標籤", selected: false }, // 示例的默认标签
+                // ...其他标签
+            ]),
             required: true,
         },
         TagsFilter: Function,
@@ -92,8 +94,9 @@ export default {
         };
     },
     methods: {
-        toggleTagSelection() {
-            this.$emit('TagsFilter', this.tagTexts);
+        switchTagSelection(tag) {
+            tag.selected = !tag.selected;
+            this.$emit('TagsFilter');
         },
     },
 };
