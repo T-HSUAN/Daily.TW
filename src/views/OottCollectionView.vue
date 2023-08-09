@@ -9,13 +9,13 @@
                 <h3>穿搭收藏</h3>
                 <hr>
                 <div class="card_wrap">
-                    <div class="card" v-for="oott in oottDataForUser" key="oott.oottCardAuthor">
+                    <div class="card" v-for="item in tableData" key="oott.oottCardAuthor">
                         <OottCard
-                        :oottPhoto= "oott.oottPhoto"
-                        :oottCardTags= "oott.oottCardTags"
-                        :oottCardDate= "oott.oottCardDate"
-                        :oottAuthorPhoto= "oott.oottAuthorPhoto"
-                        :oottCardAuthor= "oott.oottCardAuthor"
+                        :oottPhoto= "item.oott_img"
+                        :oottCardTags= "item.concatenated_style_name"
+                        :oottCardDate= "item.oott_date"
+                        :oottAuthorPhoto= "item.mem_img"
+                        :oottCardAuthor= "item.mem_name"
                         />
                     </div>
                 </div>
@@ -104,13 +104,18 @@ export default{
     },
     data() {
         return {
-           oottDataForUser:[],
+            tableData:[],
         }
     },
-    created() {
-        GET('/fake/OottData.json').then(res => {
-            this.oottDataForUser = res
-        })
+    mounted() {
+        GET(`${this.$URL}/oottCollection.php`)
+            .then((res) => {
+                console.log(res);
+                this.tableData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
 
 };
