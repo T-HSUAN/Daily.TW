@@ -120,17 +120,17 @@ export default {
                 img: "",
             },
             tagTexts: [
-                { default: "#親子", selected: false },
-                { default: "#情侶", selected: false },
-                { default: "#小資", selected: false },
-                { default: "#風景", selected: false },
-                { default: "#樂園", selected: false },
-                { default: "#農場", selected: false },
-                { default: "#藝文", selected: false },
-                { default: "#山林", selected: false },
-                { default: "#海邊", selected: false },
-                { default: "#放鬆", selected: false },
-                { default: "#懷舊", selected: false },
+                { Name: "#親子", selected: false },
+                { Name: "#情侶", selected: false },
+                { Name: "#小資", selected: false },
+                { Name: "#風景", selected: false },
+                { Name: "#樂園", selected: false },
+                { Name: "#農場", selected: false },
+                { Name: "#藝文", selected: false },
+                { Name: "#山林", selected: false },
+                { Name: "#海邊", selected: false },
+                { Name: "#放鬆", selected: false },
+                { Name: "#懷舊", selected: false },
             ],
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
@@ -163,7 +163,7 @@ export default {
         // 標籤篩選
         TagsFilter() {
             let selectedTags = this.$store.state.filter.selectedTags;
-            selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.default);
+            selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
             console.log(selectedTags);
             if (selectedTags.length === 0) {
                 this.ticketDisplay = this.ticketData;
