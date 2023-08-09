@@ -15,53 +15,28 @@
                             <font-awesome-icon icon="fa-solid fa-arrow-up" class="order_arrow_icon" />
                         </button>
                     </div>
+                    <!-- 篩選function 地區、文字、標籤篩選共用:Filters() -->
                     <!-- 地區篩選 -->
                     <div class="select_tool">
                         <font-awesome-icon icon="fa-solid fa-filter" class="select_icon" />
-                        <select id="select_filter" v-model="$store.state.filter.areaSelected" @change="AreaFilter">
+                        <select id="select_filter" v-model="$store.state.filter.areaSelected" @change="Filters">
                             <option v-for="area in $store.state.area" :value="area" :key="area">{{ area }}
                             </option>
-                            <!-- <option value="">地區</option>
-                            <option value="">新北</option>
-                            <option value="">臺北</option>
-                            <option value="">基隆</option>
-                            <option value="">桃園</option>
-                            <option value="">新竹</option>
-                            <option value="">苗栗</option>
-                            <option value="">臺中</option>
-                            <option value="">彰化</option>
-                            <option value="">雲林</option>
-                            <option value="">嘉義</option>
-                            <option value="">南投</option>
-                            <option value="">臺南</option>
-                            <option value="">高雄</option>
-                            <option value="">屏東</option>
-                            <option value="">宜蘭</option>
-                            <option value="">花蓮</option>
-                            <option value="">臺東</option>
-                            <option value="">澎湖</option>
-                            <option value="">金門</option>
-                            <option value="">連江</option> -->
                         </select>
                     </div>
-                    <!-- <div class="tags_filter_status">
-                        <span>已選擇</span>
-                        <span class="tags_filter_status_num" v-for="tag in $store.state.filter.selectedTags" :key="tag"
-                            @change="tag">{{
-                                tag }}</span>
-                        <span></span>
-                    </div> -->
                 </div>
+                <!-- 使用說明:在store:index.js->filter中添加一個任意名稱的空字串
+                        ex: areaSelected:"所有地區(預設顯示的內容)"-->
                 <!-- 文字篩選 -->
                 <div class="search_tool">
-                    <input type="text" name="search" id="search" placeholder="請輸入關鍵字"
+                    <input type="text" name="search" id="search" placeholder="請輸入景點名稱"
                         v-model="$store.state.filter.searchText" />
-                    <button class="btn" @click="TextFilter">搜尋</button>
-                    <button class="cancel" @click="CancelFilter">x</button>
+                    <button class="btn" @click="Filters">搜尋</button>
+                    <button class="cancel" @click="ClearText">x</button>
                     <!-- <font-awesome-icon icon="fa-solid fa-xmark" /> -->
                 </div>
-                <!-- 使用說明:在store:index.js->Filter中添加一個任意名稱的空字串 
-                function請參考TicketsFilter()-->
+                <!-- 使用說明:在store:index.js->filter中添加一個任意名稱的空字串 
+                ex: searchText: ""-->
             </div>
         </div>
         <!-- 標籤篩選 -->
@@ -71,20 +46,18 @@
                 <span>{{ item.Name }}</span>
             </label>
         </div>
-        <!-- 使用說明；在需要使用的該頁面使用以下方式即可添加標籤內容
-            第一步驟：在data中添加tagTexts
-            function請參考TagsFilter()            
-        <Searchbar :Filter="某個篩選的function" :tagTexts="tagText" />
+        <!-- 使用說明；在自己頁面使用添加以下標籤內容
+            第一步驟：在data中添加tagTexts            
         data(){
             return{
                 tagText: [
-                { Name: "#親子" },
-                { Name: "#情侶" },
+                { Name: "#親子", selected: false},
+                { Name: "#情侶", selected: false},
             ]
             }       
         }
         第二步驟：在store:index.js->Filter中添加一個任意名稱的空陣列
-        -->
+        ex: selectedTags: [] ,並修改下面的switchTagSelection(item)內容-->
     </div>
 </template>
 
@@ -93,18 +66,16 @@ export default {
     components: {
     },
     props: {
-        AreaFilter: Function,
-        TextFilter: Function,
         tagTexts: {
             type: Array,
             default: () => ([
-                { Name: "#標籤", selected: false }, // 示例的默认标签
+                { Name: "#標籤", selected: false },
                 // ...其他标签
             ]),
             required: true,
         },
-        TagsFilter: Function,
-        CancelFilter: Function,
+        Filters: Function,
+        ClearFilter: Function,
     },
     data() {
         return {
@@ -114,10 +85,18 @@ export default {
         };
     },
     methods: {
-        switchTagSelection(tag) {
-            tag.selected = !tag.selected;
-            this.$emit('TagsFilter');
+        ClearText() {
+            this.$store.state.filter.searchText = "";
         },
+        Filters() {
+            this.$emit('Filters');
+        },
+        switchTagSelection(item) {
+            item.selected = !item.selected;
+            let selectedTags = this.$store.state.filter.selectedTags
+            selectedTags = this.tagTexts.filter(item => item.selected).map(item => item.Name);
+            this.$emit('Filters', selectedTags);
+        },//this.$store.state.filter.selectedTags改成自己的標籤Array
     },
 };
 </script>

@@ -5,16 +5,15 @@ export default createStore({
     state: {
         area: ["所有地區", "新北", "臺北", "基隆", "桃園", "新竹", "苗栗", "臺中", "彰化", "雲林", "嘉義", "南投", "臺南", "高雄", "屏東", "宜蘭", "花蓮", "臺東", "澎湖", "金門", "馬祖",
         ],
-        // 景點票券搜尋內容
+        // 篩選內容(各自設定不同名稱，不要共用)
         filter: {
-            areaSelected: "所有地區",
-            searchText: "",
-            selectedTags: [],
+            areaSelected: "所有地區",// 景點票券地區搜尋
+            searchText: "", // 景點票券名稱搜尋           
+            selectedTags: [],// 景點票券標籤
         },
-        //購物車
-        cartItems: [],
+        cartItems: [],//購物車
         finalCartItems: [], // 最終購物明細清單
-        selectAll: false,
+        selectAll: false,//購物車全選
         name: '登入/註冊',
         isLogin: false,
     },

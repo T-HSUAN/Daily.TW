@@ -1,4 +1,5 @@
 .ticket_page {
+    position: relative;
     padding-top: 74px;
     background: $bgColor_tint;
 
@@ -133,6 +134,19 @@
         margin: $sp5 auto;
         text-align: center;
         font-size: 24px;
+    }
+
+    .clear_filter {
+        position: fixed;
+        top: 50%;
+        right: 16px;
+        text-align: right;
+        cursor: pointer;
+
+        &:hover {
+            color: $textColor_tint;
+            text-decoration: underline;
+        }
     }
 
     //底部頁數
