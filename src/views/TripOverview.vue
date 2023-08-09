@@ -140,14 +140,8 @@ export default {
             .trip_card {
                 position: relative;
                 cursor: pointer;
-
-                .bookmark{
-                    right: -$sp3;
-                }
             }
 
-        }
-        .btn{
         }
         .page_link {
             display: flex;

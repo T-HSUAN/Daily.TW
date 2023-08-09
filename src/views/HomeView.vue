@@ -2,29 +2,29 @@
 <template>
     <div class="index">
         <main>
-        <!-- 專屬旅著區塊 -->
-        <section class="index_plan">
-            <div class="container">
-                <h1>一日行程 + 穿搭建議<br />規劃你的說走就走 !</h1>
-                <p>
-                    煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
-                </p>
-                <router-link to="/plan">
-                    <button class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                    </button>
-                </router-link>
-                <div class="swiper_wrap">
-                    <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
-                    <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
-                    <Carousel :autoplay="3000" :wrap-around="true">
-                        <Slide v-for="item in planPic" :key="item.index">
-                            <img :src="item.src" alt="">
-                        </Slide>
-                    </Carousel>
+            <!-- 專屬旅著區塊 -->
+            <section class="index_plan">
+                <div class="container">
+                    <h1>一日行程 + 穿搭建議<br />規劃你的說走就走 !</h1>
+                    <p>
+                        煩惱景點安排？煩惱衣著搭配？讓日日旅著分擔你的煩惱！<br />在這裡你能找到全台各地行程、獲得穿搭靈感，也能分享出遊穿搭、展現個人風格<br />如果想要更省時便利呢？馬上進行專屬旅著測驗，就能打造最適合你的一日旅著！
+                    </p>
+                    <router-link to="/plan">
+                        <button class="btn">立即體驗<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                            <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                        </button>
+                    </router-link>
+                    <div class="swiper_wrap">
+                        <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
+                        <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
+                        <Carousel :autoplay="3000" :wrap-around="true">
+                            <Slide v-for="item in planPic" :key="item.index">
+                                <img :src="item.src" alt="" class="mask_plan">
+                            </Slide>
+                        </Carousel>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
             <!-- 行程區塊 -->
             <section class="index_trip">
@@ -38,74 +38,28 @@
                     </div>
                     <h2>精選出遊特輯</h2>
                 </div>
-                <Carousel class="content">
-                    <Slide class="wrap">
+                <Carousel v-bind="settings2" :breakpoints="breakpoints2" class="content">
+                    <Slide class="wrap" v-for="(trip, index) in trips" :key="index">
                         <div class="head">
-                            <div class="tripTitle">台中文青一日遊</div>
+                            <div class="tripTitle">{{ trip.title }}</div>
                             <div class="tripCover">
-                                <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
+                                <img :src="trip.coverSrc" alt="" class="mask_trip" />
                             </div>
                         </div>
                         <div class="info">
                             <div class="tripSpots">
-                                <div class="spot spot1">
+                                <div v-for="(spot, spotIndex) in trip.spots" :key="spotIndex" class="spot">
                                     <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>屯區藝文中心</h5>
-                                </div>
-                                <div class="spot spot2">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>太平買菸場</h5>
-                                </div>
-                                <div class="spot spot3">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>新盛綠川水岸廊道</h5>
-                                </div>
-                                <div class="spot spot4">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>第二市場</h5>
+                                    <h5>{{ spot.name }}</h5>
                                 </div>
                             </div>
                             <div class="deco">
                                 <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                             </div>
                             <router-link to="/trip_info">
-                                <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                                </button>
-                            </router-link>
-                        </div>
-                    </Slide>
-                    <Slide class="wrap">
-                        <div class="head">
-                            <div class="tripTitle">台北文青一日遊</div>
-                            <div class="tripCover">
-                                <img src="~@/assets/img/index_trip_cover_example.png" alt="" />
-                            </div>
-                        </div>
-                        <div class="info">
-                            <div class="tripSpots">
-                                <div class="spot spot1">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>屯區藝文中心</h5>
-                                </div>
-                                <div class="spot spot2">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>太平買菸場</h5>
-                                </div>
-                                <div class="spot spot3">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>新盛綠川水岸廊道</h5>
-                                </div>
-                                <div class="spot spot4">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>第二市場</h5>
-                                </div>
-                            </div>
-                            <div class="deco">
-                                <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
-                            </div>
-                            <router-link to="/trip_info">
-                                <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                <button class="btn">
+                                    馬上出發
+                                    <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
                                     <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
                                 </button>
                             </router-link>
@@ -115,33 +69,6 @@
                         <Navigation />
                     </template>
                 </Carousel>
-                <!-- <Carousel :autoplay="false" :wrap-around="truwe">
-                        <Slide v-for="(trip, index) in trips" :key="index" class="wrap">
-                            <div class="head">
-                                <div class="tripTitle">{{ trip.tripTitle }}</div>
-                                <div class="tripCover">
-                                    <img :src="tripCover" alt="">
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="tripSpots">
-                                    <div v-for="(spot, index) in tripSpots" :key="index" class="spot">
-                                        <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                        <h5>{{ spot.name }}</h5>
-                                    </div>
-                                    
-                                </div>
-                                <div class="deco">
-                                    <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
-                                </div>
-                                <router-link :to="trip.tripLink">
-                                    <button class="btn">馬上出發<img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                                        <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                                    </button>
-                                </router-link>
-                            </div>
-                        </Slide>
-                    </Carousel> -->
             </section>
 
             <!-- 穿搭區塊 -->
@@ -245,25 +172,55 @@ export default {
         return {
 
             planPic: [
-                { src: require('@/assets/img/index_plan_1.png') },
-                { src: require('@/assets/img/index_plan_2.png') },
-                { src: require('@/assets/img/index_plan_3.png') },
-                { src: require('@/assets/img/index_plan_4.png') },
+                { src: require('@/assets/img/place/005.png') },
+                { src: require('@/assets/img/place/004.png') },
+                { src: require('@/assets/img/place/003.png') },
+                { src: require('@/assets/img/place/002.png') },
             ],
 
-            // trips: [
-            //     {
-            //         tripTitle: "台中文青一日遊",
-            //         tripCover: request('@/assets/img/index_trip_cover_example.png'),
-            //         tripSpots: [
-            //             {name: "屯區藝文中心"},
-            //             {name: "太平買菸場"},
-            //             {name: "新盛綠川水岸廊道"},
-            //             {name: "第二市場"}
-            //         ],
-            //         tripLink: "/trip_info",
-            //     },
-            // ],
+            trips: [
+                {
+                title: '台中文青一日遊',
+                coverSrc: require('@/assets/img/index_trip_cover_example.png'),
+                spots: [
+                    { name: '屯區藝文中心' },
+                    { name: '太平買菸場' },
+                    { name: '新盛綠川水岸廊道' },
+                    { name: '第二市場' },
+                ],
+                },
+                {
+                title: '新竹懷舊之旅',
+                coverSrc: require('@/assets/img/place/001.png'),
+                spots: [
+                    { name: '合興車站' },
+                    { name: '內灣愛情故事館' },
+                    { name: '內灣老街' },
+                    { name: '劉興欽漫畫館' },
+                ],
+                },
+            ],
+
+            settings2: {
+                wrapAround: true,
+                itemsToShow: 1.4,
+                snapAlign: 'center',
+                },
+                breakpoints2: {
+                // 700px and up
+                768: {
+                    wrapAround: true,
+                    itemsToShow: 1.6,
+                    snapAlign: 'center',
+                },
+                // 1024 and up
+                1200: {
+                    wrapAround: true,
+                    itemsToShow: 1.3,
+                    snapAlign: 'center',
+                },
+            },
+
 
             settings: {
                 itemsToShow: 1,
@@ -280,7 +237,8 @@ export default {
                     itemsToShow: 3,
                     snapAlign: 'start',
                 },
-                },
+            },
+            
 
             ootts: [
                 {
@@ -438,15 +396,29 @@ export default {
     .title {
         margin: 0 auto 24px;
         display: flex;
+        position: relative;
         flex-direction: column;
         align-items: center;
         gap: 8px;
+        animation: move_in 1s linear;
+
 
         @media (min-width: 768px) {
             margin: 0 auto 32px;
             max-width: 1200px;
             flex-direction: row;
             align-items: center;
+        }
+
+        @keyframes move_in {
+            0%{
+                left: -32px;
+                opacity: 0;
+            }
+            100%{
+                left: 0;
+                opacity: 1;
+            }
         }
 
         .duckDeco {
@@ -466,10 +438,18 @@ export default {
 
             .duck {
                 width: 80px;
-                animation: duck_shake 1s linear infinite;
+                animation: duck_shake 1s linear alternate infinite;
 
                 @media (min-width: 768px) {
                     width: 120px;
+                }
+                @keyframes duck_shake {
+                    0%{
+                        rotate: -3.2deg;
+                    }
+                    100%{
+                        rotate: 3.2deg;
+                    }
                 }
             }
         }
@@ -608,13 +588,13 @@ export default {
                 position: absolute;
                 opacity: 0;
                 top: $sp10;
-                right: -30%;
+                right: -20%;
                 z-index: 1;
                 width: 320px;
                 animation: index_btn 1.5s 0.8s 1 forwards;
 
                 @media (min-width: $md) {
-                    right: -20%;
+                    right: -12%;
                     top: -40px;
                     width: 480px;
                 }
@@ -635,8 +615,24 @@ export default {
                     }
                 }
 
-                img {
-                    width: 100%;
+                .mask_plan{
+                    width: 320px;
+                    height: 160px;
+                    -webkit-mask-image: url(@/assets/img/index_cover_mask.svg);
+                    mask-image: url(@/assets/img/index_cover_mask.svg);
+                    -webkit-mask-repeat: no-repeat;
+                    mask-repeat: no-repeat;
+                    mask-size: 320px 160px;
+                    @media (min-width: $md){
+                        width: 480px;
+                        height: 560px;
+                        mask-size: 480px 560px;
+                    }
+                    @media (min-width: $xl){
+                        width: 720px;
+                        height: 560px;
+                        mask-size: 720px 560px;
+                    }
                 }
 
 
@@ -651,8 +647,8 @@ export default {
                     @media (min-width: $md) {
                         rotate: -45deg;
                         width: $sp13;
-                        top: -$sp1;
-                        left: -$sp1;
+                        top: $sp12;
+                        left: $sp12;
                         animation: boy_move_md 2s 0.5s linear forwards;
                     }
 
@@ -768,6 +764,9 @@ export default {
                         }
                     }
                 }
+
+                
+                
             }
         }
     }
@@ -780,6 +779,53 @@ export default {
 
         @media (min-width: $xl) {
             padding: 160px 0 80px;
+        }
+
+        .carousel__prev, .carousel__next {
+            display: none;
+            @media (min-width: $xl){
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50px;
+                border: 2px solid $textColor_default;
+                background-color: $textColor_white;
+                width: 40px;
+                height: 40px;
+                box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                &:hover{
+                    background-color: $textColor_default;
+                    .carousel__icon{
+                        fill: $textColor_white;
+                    }
+                }
+                .carousel__icon {
+                    width: 40px;
+                    height: auto;
+                    fill: $textColor_default;
+                }
+            }
+        }
+
+        .carousel__prev {
+            left: calc(50% - 560px);
+        }
+
+        .carousel__next {
+            right: calc(50% - 560px);
+        }
+
+        .mask_trip{
+            width: 80%;
+            -webkit-mask-image: url(@/assets/img/mask_trip.svg);
+            mask-image: url(@/assets/img/mask_trip.svg);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            mask-size: 100%;
+            @media (min-width: $xl) {
+                width: 640px;
+                mask-size: 640px;
+            }
         }
 
         .content {
@@ -823,6 +869,7 @@ export default {
                         font-size: 20px;
                         font-weight: 800;
                         letter-spacing: 0.03em;
+                        z-index: 3;
 
                         @media (min-width: $xl) {
                             position: absolute;
@@ -832,17 +879,14 @@ export default {
                         }
                     }
 
-                    .tripCover {
-                        width: 80%;
+                    // .tripCover {
+                    //     width: 80%;
 
-                        @media (min-width: $xl) {
-                            width: 640px;
-                        }
+                    //     @media (min-width: $xl) {
+                    //         width: 640px;
+                    //     }
 
-                        img {
-                            width: 100%;
-                        }
-                    }
+                    // }
                 }
 
                 .info {
@@ -941,6 +985,12 @@ export default {
                 width: 40px;
                 height: 40px;
                 top: 640px;
+                &:hover{
+                    background-color: $textColor_default;
+                    .carousel__icon{
+                        fill: $textColor_white;
+                    }
+                }
                 .carousel__icon {
                     width: 40px;
                     height: auto;

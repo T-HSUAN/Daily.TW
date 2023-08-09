@@ -36,130 +36,45 @@
                     <p>新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳、自然景觀，推薦大家可以一同順遊。除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。
                     </p>
                 </div>
-                <section class="spot" id="spot1">
+
+                <section class="spot" v-for="(spot, index) in spots" :key="index" :id="'spot' + (index + 1)">
                     <div class="spot_title">
-                        <h3>合興車站</h3>
+                        <h3>{{ spot.title }}</h3>
                         <div class="time">
-                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留30分鐘</h5>
+                            <img src="~@/assets/img/layout/plan_result_time.png" alt="" />
+                            <h5>停留{{ spot.duration }}小時</h5>
                         </div>
                     </div>
                     <div class="spot_img">
-                        <img src="~@/assets/img/place/place_001.png" alt="景點照片">
+                        <Carousel :autoplay="3000" :wrap-around="true">
+                            <Slide v-for="(image, imageIndex) in spot.images" :key="imageIndex">
+                                <img :src="image.src" :alt="image.alt" />
+                            </Slide>
+                            <template #addons>
+                                <Navigation />
+                                <Pagination />
+                            </template>
+                        </Carousel>
                     </div>
-                    <p class="spot_desc">
-                        位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。
-                    </p>
+                        <p class="spot_desc">{{ spot.description }}</p>
                     <div class="spot_loc">
-                        <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <a href="https://goo.gl/maps/Nekbh1wSTguR5KDf7" target="_blank">
-                            <h5>新竹縣橫山鄉中山街一段17號</h5>
+                        <img src="~@/assets/img/layout/plan_result_location.png" alt="" />
+                        <a :href="spot.locationUrl" target="_blank">
+                            <h5>{{ spot.location }}</h5>
                         </a>
                     </div>
                 </section>
-                <section class="spot" id="spot2">
-                    <div class="spot_title">
-                        <h3>內灣愛情故事館</h3>
-                        <div class="time">
-                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留1小時</h5>
-                        </div>
-                    </div>
-                    <div class="spot_img">
-                        <img src="~@/assets/img/place/place_002.png" alt="景點照片">
-                    </div>
-                    <p class="spot_desc">
-                        浴火重生，強勢回歸~以全新的面貌再次登場，這回的內灣愛情故事館，可以說是進階版的愛情故事館，不只拍照的場景變多了，還有許多浪漫新元素，而且連餐點都變好吃了，想要揪好姐妹或另一半來浪漫拍照，就來全新的內灣愛情故事館走走吧。
-                    </p>
-                    <div class="spot_loc">
-                        <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <a href="https://goo.gl/maps/tL1NkkwnjHRej8Mr8" target="_blank">
-                            <h5> 新竹縣內灣鄉內灣村中正路200號</h5>
-                        </a>
-                    </div>
-                </section>
-                <section class="spot" id="spot3">
-                    <div class="spot_title">
-                        <h3>內灣老街</h3>
-                        <div class="time">
-                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留2小時</h5>
-                        </div>
-                    </div>
-                    <div class="spot_img">
-                        <img src="~@/assets/img/place/place_003.png" alt="景點照片">
-                    </div>
-                    <p class="spot_desc">
-                        一個充滿學生回憶的地方。內灣老街的小吃攤販很多，走一圈差不多就可以吃飽了，其中內灣戲院生意極好，用餐尖峰時間都要候位才排得到座位。
-                    </p>
-                    <div class="spot_loc">
-                        <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <a href="https://goo.gl/maps/xdGrkv3sFKemu5Xz5" target="_blank">
-                            <h5>新竹縣橫山鄉中正路</h5>
-                        </a>
-                    </div>
-                </section>
-                <section class="spot" id="spot4">
-                    <div class="spot_title">
-                        <h3>劉興欽漫畫館</h3>
-                        <div class="time">
-                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留3小時</h5>
-                        </div>
-                    </div>
-                    <div class="spot_img">
-                        <img src="~@/assets/img/place/place_004.png" alt="景點照片">
-                    </div>
-                    <p class="spot_desc">
-                        一直以來，我覺得漫畫館是比較靜態復古的展覽，對劉興欽大師的畫，又比較不是這麼熟悉，所以激不起我的興趣。
-                        可是後來了好客好品希望工場進駐，經過文創團隊的改造後，裡頭不只有漫畫館，還多了品客好客生活餐飲、及台灣水色工作坊。將園區打造的相當的有趣味性。
-                    </p>
-                    <div class="spot_loc">
-                        <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <a href="https://goo.gl/maps/DChj9k95D33TXvsKA" target="_blank">
-                            <h5>新竹縣橫山鄉內灣村3鄰110號</h5>
-                        </a>
-                    </div>
-                </section>
-                <section class="spot" id="spot5">
-                    <div class="spot_title">
-                        <h3>內灣隱藏版咖啡</h3>
-                        <div class="time">
-                            <font-awesome-icon icon="fa-solid fa-clock" flip="horizontal" />
-                            <h5>停留1.5小時</h5>
-                        </div>
-                    </div>
-                    <div class="spot_img">
-                        <img src="~@/assets/img/place/place_005.png" alt="景點照片">
-                    </div>
-                    <p class="spot_desc">
-                        位於內灣老街附近的遷徏咖啡，除了是民宿，白天也是咖啡廳，文青風的室內環境，復古卻很有味道。
-                    </p>
-                    <div class="spot_loc">
-                        <font-awesome-icon icon="fa-solid fa-location-dot" />
-                        <a href="https://goo.gl/maps/bu6AU3sz2Dua7L3T7" target="_blank">
-                            <h5>新竹縣橫山鄉和平街18號</h5>
-                        </a>
-                    </div>
-                </section>
+                
                 <section class="trip_tags">
-                    <div class="tags">#新竹</div>
-                    <div class="tags">#親子</div>
-                    <div class="tags">#情侶</div>
-                    <div class="tags">#風景</div>
-                    <div class="tags">#藝文</div>
-                    <div class="tags">#放鬆</div>
-                    <div class="tags">#懷舊</div>
+                    <router-link v-for="(tag, index) in tags" :key="index" :to="tag.to">
+                        <div class="tags">{{ tag.text }}</div>
+                    </router-link>
                 </section>
             </article>
             <div class="sidebar">
                 <div class="route">
                     <Anchor show-ink>
-                        <AnchorLink href="#spot1" title="合興車站" />
-                        <AnchorLink href="#spot2" title="內灣愛情故事館" />
-                        <AnchorLink href="#spot3" title="內灣老街" />
-                        <AnchorLink href="#spot4" title="劉興欽漫畫館" />
-                        <AnchorLink href="#spot5" title="內灣隱藏版咖啡" />
+                        <AnchorLink v-for="(spot, index) in spots" :key="index" :href="'#spot' + (index + 1)" :title="spot.title" />
                     </Anchor>
                 </div>
                 <label class="collect">
@@ -227,9 +142,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="/ticket">
+                <router-link to="/ticket">
                     <button class="btn">查看更多</button>
-                </a>
+                </router-link>
             </div>
         </section>
 
@@ -256,9 +171,9 @@
                             :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate" />
                     </div>
                 </div>
-                <a href="/trip">
+                <router-link to="/trip">
                     <button class="btn">查看更多</button>
-                </a>
+                </router-link>
             </div>
         </section>
 
@@ -269,6 +184,13 @@
 @import "@/assets/scss/baseAndMixin.scss";
 
 .tripInfo {
+
+    padding-top: 74px;
+    background: $bgColor_tint;
+
+    @media (min-width: 768px) {
+        padding-top: 200px;
+    }
 
     // 全頁設定
 
@@ -319,9 +241,18 @@
 
             .duck {
                 width: 80px;
+                animation: duck_shake 1s linear alternate infinite;
 
                 @media (min-width: 768px) {
                     width: 120px;
+                }
+                @keyframes duck_shake {
+                    0%{
+                        rotate: -3.2deg;
+                    }
+                    100%{
+                        rotate: 3.2deg;
+                    }
                 }
             }
         }
@@ -459,7 +390,19 @@
 
                     .time {
                         display: flex;
-                        gap: $sp1;
+                        align-items: center;
+                        gap: 4px;
+                        @media (min-width: $md) {
+                            gap: $sp1;
+                        }
+
+                        img {
+                                width: 22px;
+
+                                @media (min-width: $md) {
+                                    width: 27px;
+                                }
+                            }
                     }
                 }
 
@@ -474,6 +417,48 @@
                     img {
                         width: 100%;
                     }
+
+                    .carousel__prev, .carousel__next {
+                        display: none;
+                        @media (min-width: $md){
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50px;
+                            border: 2px solid $textColor_default;
+                            background-color: $textColor_white;
+                            width: 40px;
+                            height: 40px;
+                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+
+                            &:hover{
+                                background-color: $textColor_default;
+                                .carousel__icon{
+                                    fill: $textColor_white;
+                                }
+                            }
+                            .carousel__icon {
+                                width: 40px;
+                                height: auto;
+                                fill: $textColor_default;
+                            }
+                        }
+                    }
+                    .carousel__prev {
+                        left: 24px;
+                    }
+
+                    .carousel__next {
+                        right: 24px;
+                    }
+
+                    .carousel__pagination-button::after {
+                            background-color: $textColor_tint !important;
+                        }
+
+                        .carousel__pagination-button--active::after {
+                            background-color: $textColor_default !important;
+                        }
                 }
 
                 .spot_desc {
@@ -487,8 +472,20 @@
 
                 .spot_loc {
                     display: flex;
-                    gap: $sp1;
                     margin-bottom: $sp8;
+                    align-items: center;
+                    gap: 4px;
+                    @media (min-width: $md) {
+                        gap: $sp1;
+                    }
+
+                    img {
+                            width: 22px;
+
+                            @media (min-width: $md) {
+                                width: 27px;
+                            }
+                        }
                 }
 
             }
@@ -745,6 +742,7 @@
         position: relative;
         background-color: $bgColor_default;
         padding: $sp12 0 $sp8;
+        overflow: visible;
 
         @media (min-width: 768px) {
             padding: 160px 0 80px;
@@ -754,6 +752,7 @@
             margin: 0 auto;
             max-width: 1200px;
             text-align: center;
+            overflow: visible;
 
             @media (min-width: 768px) {
                 padding: 0 32px;
@@ -761,15 +760,16 @@
 
             .wrap {
                 margin-bottom: 16px;
-                overflow-x: scroll;
                 text-align: left;
+                overflow: visible;
 
                 @media (min-width: 768px) {
-                    overflow: visible;
                 }
 
                 .tripCards {
                     display: flex;
+                    overflow-y: visible;
+                    overflow-x: scroll;
                     // gap: $sp4;
                     margin-bottom: $sp4;
                     margin-right: 32px;
@@ -800,15 +800,95 @@
 import oottCard from '@/components/OottCard.vue'
 import ticketCard from '@/components/TicketVertical.vue'
 import tripCard from '@/components/TripCard.vue'
+import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
+
+import 'vue3-carousel/dist/carousel.css';
 
 export default {
     components: {
         oottCard,
         ticketCard,
         tripCard,
+
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
     },
     data() {
         return {
+            spots: [
+                {
+                title: "合興車站",
+                duration: "0.5",
+                images: [
+                    { src: require('@/assets/img/place/001.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/001.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/001.png'), alt: "景點照片" },
+                ],
+                description: "位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。",
+                locationUrl: "https://goo.gl/maps/Nekbh1wSTguR5KDf7",
+                location: "新竹縣橫山鄉中山街一段17號",
+                },
+                {
+                title: "內灣愛情故事館",
+                duration: "1",
+                images: [
+                    { src: require('@/assets/img/place/002.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/002.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/002.png'), alt: "景點照片" },
+                ],
+                description: "浴火重生，強勢回歸~以全新的面貌再次登場，這回的內灣愛情故事館，可以說是進階版的愛情故事館，不只拍照的場景變多了，還有許多浪漫新元素，而且連餐點都變好吃了，想要揪好姐妹或另一半來浪漫拍照，就來全新的內灣愛情故事館走走吧。",
+                locationUrl: "https://goo.gl/maps/tL1NkkwnjHRej8Mr8",
+                location: "新竹縣內灣鄉內灣村中正路200號",
+                },
+                {
+                title: "內灣老街",
+                duration: "2",
+                images: [
+                    { src: require('@/assets/img/place/003.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/003.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/003.png'), alt: "景點照片" },
+                ],
+                description: "一個充滿學生回憶的地方。內灣老街的小吃攤販很多，走一圈差不多就可以吃飽了，其中內灣戲院生意極好，用餐尖峰時間都要候位才排得到座位。",
+                locationUrl: "https://goo.gl/maps/xdGrkv3sFKemu5Xz5",
+                location: "新竹縣橫山鄉中正路",
+                },
+                {
+                title: "劉興欽漫畫館",
+                duration: "3",
+                images: [
+                    { src: require('@/assets/img/place/004.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/004.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/004.png'), alt: "景點照片" },
+                ],
+                description: "一直以來，我覺得漫畫館是比較靜態復古的展覽，對劉興欽大師的畫，又比較不是這麼熟悉，所以激不起我的興趣。可是後來了好客好品希望工場進駐，經過文創團隊的改造後，裡頭不只有漫畫館，還多了品客好客生活餐飲、及台灣水色工作坊。將園區打造的相當的有趣味性。",
+                locationUrl: "https://goo.gl/maps/DChj9k95D33TXvsKA",
+                location: "新竹縣橫山鄉內灣村3鄰110號",
+                },
+                {
+                title: "內灣隱藏版咖啡",
+                duration: "1.5",
+                images: [
+                    { src: require('@/assets/img/place/005.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/005.png'), alt: "景點照片" },
+                    { src: require('@/assets/img/place/005.png'), alt: "景點照片" },
+                ],
+                description: "位於內灣老街附近的遷徏咖啡，除了是民宿，白天也是咖啡廳，文青風的室內環境，復古卻很有味道。",
+                locationUrl: "https://goo.gl/maps/bu6AU3sz2Dua7L3T7",
+                location: "新竹縣橫山鄉和平街18號",
+                },
+            ],
+
+            tags: [
+                { text: "#新竹", to: "/trip_overview" },
+                { text: "#情侶", to: "/trip_overview" },
+                { text: "#風景", to: "/trip_overview" },
+                { text: "#藝文", to: "/trip_overview" },
+                { text: "#放鬆", to: "/trip_overview" },
+                { text: "#懷舊", to: "/trip_overview" },
+            ],
+            
             ootts: [
                 {
                     oottPhoto: require('@/assets/img//oott_02.png'),
@@ -879,7 +959,7 @@ export default {
                     tripCardDate: "2023 / 7 / 9",
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/place/place_006-1.png'),
+                    tripCardPhoto: require('@/assets/img/place/006-1.png'),
                     tripCardTags: "宜蘭・#親子 #情侶 #風景",
                     tripCardTitle: "宜蘭芬多精一日遊",
                     tripCardDesc: "不知道要去哪裡玩嗎？精選六個宜蘭知名景點，有吃又有玩，無論",
@@ -887,7 +967,7 @@ export default {
                     tripCardDate: "2023 / 7 / 12",
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/place/place_012.png'),
+                    tripCardPhoto: require('@/assets/img/place/012.png'),
                     tripCardTags: "新北・#親子 #情侶 #風景 #海邊 #放鬆",
                     tripCardTitle: "新北藝術一日遊",
                     tripCardDesc: "來去新北一日遊，鶯歌、三峽這裡也有蠻多特色景點，不只是逛老街，也可以安排個鶯歌景點一日遊，順便遊三峽景點。不管是季節限定的賞花景點，還是親子同遊必拍，又或者是IG熱門打卡點，通通好玩報你知。",
