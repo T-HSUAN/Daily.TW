@@ -645,9 +645,17 @@ export default {
 
             .duck {
                 width: 80px;
-
+                  animation: duck_shake 1s linear alternate infinite;
                 @media (min-width: 768px) {
                     width: 120px;
+                }
+                @keyframes duck_shake {
+                    0%{
+                        rotate: -3.2deg;
+                    }
+                    100%{
+                        rotate: 3.2deg;
+                    }
                 }
             }
         }
