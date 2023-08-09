@@ -7,7 +7,9 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar @Filters="Filters" :tagTexts="tagTexts" :ShowClear="ShowClear" :ClearFilter="ClearFilter" />
+        <Searchbar @Filters="Filters" :tagTexts="tagTexts" :ShowClear="ShowClear" :ClearFilter="ClearFilter">
+            <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
+        </Searchbar>
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -25,7 +27,6 @@
             </div>
         </div>
         <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
-        <!-- <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">清除所有篩選</div> -->
         <div class="page_link">
             <a class="page" v-if="ticketDisplay.length === ticketData.length">1</a>
             <a class="page" v-if="ticketDisplay.length === ticketData.length">2</a>
@@ -223,9 +224,10 @@ export default {
         // },
         //清除篩選
         ClearFilter() {
+            this.$store.state.filter.areaSelected = "所有地區";
+            this.$store.state.filter.searchText = "";
             this.tagTexts.forEach(tag => tag.selected = false);
             console.log('[篩選]清除篩選');
-            this.$store.state.filter.searchText = "";
             this.ticketDisplay = this.ticketData;
         },
         ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),

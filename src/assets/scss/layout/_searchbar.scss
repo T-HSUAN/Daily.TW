@@ -6,6 +6,7 @@
         background: $bgColor_default;
 
         .multi_filter {
+            position: relative;
             box-sizing: border-box;
             display: flex;
             gap: $sp2;
@@ -146,6 +147,18 @@
         label {
             width: 92px;
             height: 45px;
+        }
+
+        .clear_filter {
+            display: inline-flex;
+            align-items: center;
+            text-align: right;
+            cursor: pointer;
+
+            &:hover {
+                color: $textColor_tint;
+                text-decoration: underline;
+            }
         }
     }
 }

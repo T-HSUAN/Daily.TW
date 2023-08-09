@@ -136,18 +136,7 @@
         font-size: 24px;
     }
 
-    .clear_filter {
-        position: fixed;
-        top: 50%;
-        right: 16px;
-        text-align: right;
-        cursor: pointer;
 
-        &:hover {
-            color: $textColor_tint;
-            text-decoration: underline;
-        }
-    }
 
     //底部頁數
     .page_link {
