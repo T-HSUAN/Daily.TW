@@ -1,4 +1,6 @@
 import { createStore } from "vuex";
+import { URL } from "@/assets/js/common.js";
+
 export default createStore({
     state: {
         // 景點票券搜尋內容
@@ -108,6 +110,7 @@ export default createStore({
         setIsLogin(state, value) {
             state.isLogin = value;
         },
+        
     },
     actions: {
         addToCart({ commit }, cartItem) {

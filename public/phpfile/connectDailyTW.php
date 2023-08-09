@@ -1,6 +1,5 @@
 <?php 
-    // $dbname = "DailyTW"; 等資料庫建好再用這個
-    $dbname = "books"; //測試用
+    $dbname = "DailyTW";
     $user = "root";
     $password = "";
     $port = 3306;
@@ -12,4 +11,3 @@
     //建立pdo物件
     $pdo = new PDO($dsn, $user, $password, $options);
 ?>
-

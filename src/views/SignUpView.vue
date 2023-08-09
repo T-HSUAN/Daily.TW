@@ -1,702 +1,402 @@
-<!-- 會員註冊資料頁面 -->
+<!-- 註冊首頁 -->
 <template>
-<section class="signupview">
-    <section class="register">
-        <div class="canvas">
-            <div class="joinus_sm">
-                <img src="@/assets/img/joinus_sm.png" alt="joinus">
-            </div>
-            <h2>加入旅著</h2>
-            <div class="photo_group">
-                <div class="member_img">
-                    <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
-                </div>
-                <Upload action="//jsonplaceholder.typicode.com/posts/">
-                    <Button class="btn push">上傳大頭貼</Button>
-                </Upload>
-            </div>
-
-            <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
-            
-        </div> -->
-        
-            <form class="form">
-                <div v-for="(item, index) in tabItems" :key="index">
-                    <label :for="'member-' + index">{{ item.text }}</label>
-                    <input ref="inputEls" type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
-                        :id="'member-' + index" />
-                </div>
-                <label for="year">生日</label>
-                <div class="date_group">
-                    <select v-model="selectedYear" @change="onYearChange" id="year">
-                        <option v-for="(year, index) in yearList" :key="index" :value="year">
-                            {{ year }}
-                        </option>
-                    </select>
-                    <select v-model="selectedMonth" @change="onMonthChange" id="month">
-                        <option v-for="(month, index) in monthList" :key="index" :value="month">
-                            {{ month }}
-                        </option>
-                    </select>
-                    <select v-model="selectedDate" @change="onDayChange" id="selectDate">
-                        <option v-for="(date, index) in dateList" :key="index" :value="date">
-                            {{ date }}
-                        </option>
-                    </select>
-                </div>
-                <label for="gender">性別</label>
-                <div class="gender_group">
-                    <label class="checkbox_container" @click="toggleCheckbox('isMan')">
-                        <input type="checkbox" v-model="isMan" class="myCheckbox">
-                        <span class="checkmark"></span>
-                        <span class="content">男</span>
-                    </label>
-                    <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
-                        <input type="checkbox" v-model="isWomen" class="myCheckbox">
-                        <span class="checkmark"></span>
-                        <span class="content">女</span>
-                    </label>
-                    <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
-                        <input type="checkbox" v-model="isSecret" class="myCheckbox">
-                        <span class="checkmark"></span>
-                        <span class="content">不告訴你</span>
-                    </label>
-                </div>
-                <label for="phone">電話</label>
-                <input type="text" v-model="phone" @input="filterNonNumeric" placeholder="請輸入電話">
-            </form>
-            <div class="btn_group">
-                <button  class="cancel_btn" @click="canceldata">
-                    取消
-                </button>
-                <button class="btn" @click="showPopbox">
-                    註冊
-                </button>
-            </div>
-            <div class="member_sm" v-if="isPopBoxVisible">
-                <div class="block">
-                    <div class="pic">
-                        <img src="~@/assets/img/popbox_check.svg" alt="">
-                        <h3>註冊成功！</h3>
+    
+    <section class="signupcard">
+        <section class="signupview">
+            <div>
+                <div class="canvas">
+                    <div class="joinus_sm">
+                        <img src="@/assets/img/joinus_sm.png" alt="joinus">
                     </div>
-                    <button class="btn" @click="redirectToOtherPage">確定</button>
+                    <div class="signup">
+                        <h2>加入旅著</h2>
+                        <div class="signup_trace">
+                            <img :src="require('@/assets/img/duck_trace3.png')" alt="icon">
+                        </div>
+                        
+                        <div class="space_signup"></div>
+                        
+                        <label for="email">Email</label>
+                        <input type="text" v-model="email" @input="validateEmail" :class="{ form_warning: !isEmailValid }" 
+                            placeholder='請輸入EMAIL'>
+                        
+                        <label for="psw">密碼</label>
+                        <input type="password" v-model="psw" @input="validatePassword"
+                            :class="{ form_warning: !isPasswordValid }" placeholder='請輸入密碼 (英數混合6-12碼)'>
+                        
+                            <div class="space"></div>
+                        <div class="cancel_group">
+                            
+                            <button @click="cancelbtn" class="cancel_btn">
+                                取消
+                            </button>
+                            <button @click.prevent="changeRegister"  class="btn">
+                                註冊
+                            </button>
+                            
+                        </div>
+                    </div>
+                    <div class="register">
+                        <h2>Welcome</h2>
+                        <p>加入日日旅著體驗完整服務</p>
+                        <div class="joinus_md">
+                            <img src="@/assets/img/joinus_md.png" alt="joinus">
+                        </div>
+                        <div class="welcome">歡迎加入日日旅著！</div>
+                        
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </section>
     </section>
-</section>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            tabItems: {
-                1: {
-                    text: 'Email',
-                    placeholder: '請輸入EMAIL'
+    </template>
+    <script>
+    // import {GET} from '@/plugin/axios'
+    import axios from "axios";
+    import { firebaseAuth } from "@/assets/config/firebase.js";
+    import { createUserWithEmailAndPassword } from "firebase/auth";
+    import { signInWithEmailAndPassword } from "firebase/auth";
+    //google 守門人
+    import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+    const provider = new GoogleAuthProvider()
+    
+    export default {
+        data() {
+            return {
+                signupData:[],
+    
+                
+                email: '',
+                psw: '',
+                isEmailValid: true,
+                isPasswordValid: true,
+                showError: false,
+            }
+        },
+        methods: {
+            // validateEmail() {
+            //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            //     this.isEmailValid = regex.test(this.email);
+            // },
+            // validatePassword() {
+            //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
+            //     this.isPasswordValid = regex.test(this.psw);
+            // },
+            // signup() {
+            //     // if (this.isEmailValid && this.isPasswordValid) {
+            //     if (this.email === "test123" && this.psw === "test123") {
+            //         window.alert("登入成功");
+            //         this.$store.commit('setName', this.email); 
+            //         this.$store.commit('setIsLogin', true);
+            //         this.$router.push({ path: "/" });
+            //     } else {
+            //         window.alert("帳號或密碼錯誤，請重新登入");
+            //         // this.$router.replace({ path: "/login" });
+            //     }
+                
+                // }
+            // },
+        //     closeModal() {
+        //   this.$emit("emit-status");
+        // },
+        forgetpsw(){
+            this.$router.push('/forget_psw');
+        },
+            signInGoogle(){
+                signInWithPopup(firebaseAuth, provider)
+                .then((result) => {
+                    // const credential = GoogleAuthProvider.credentialFromResulsignInGoogleedential.accessToken;
+                    this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
+                    window.alert("google 登入成功");
+                    const userInfo = result.user;
+                    this.$store.commit('setName', this.email);
+                    this.$router.push('/');
+                    // this.$store.commit('setName', userInfo);
+                    // this.$router.push({ name: 'result', params: { 
+                        //     type: 'loginSuccess'
+                        // }})
+                    }).catch((error) => {
+                        const errorCode = error.code
+                        // this.$Message.warning(errorCode);
+                        console.log('google註冊失敗', errorCode);
+                        alert(`google註冊失敗${errorCode}`);
+                    });  
                 },
-                2: {
-                    text: '密碼',
-                    placeholder: '英數混合6-12碼'
-                },
-                3: {
-                    text: '確認密碼',
-                    placeholder: '請再輸入一次密碼'
-                },
-                4: {
-                    text: '姓名',
-                    placeholder: '請輸入姓名'
-                },
-                5: {
-                    text: '暱稱',
-                    placeholder: '請輸入暱稱'
-                },
+                
+                login() {
+                
+                if(this.email === '' || this.pse === '')return
+                signInWithEmailAndPassword(firebaseAuth, this.email, this.psw)
+                .then((userCredential) => {
+                    // firebase 的資料
+                    // const userInfo = userCredential.user
+                    // this.$store.commit('setName', userInfo);
+                    this.$store.commit('setName', this.email);
+                    this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
+                    window.alert("登入成功");
+                    this.$router.push('/');
+                })
+                .catch((error) => {
+                    const errorCode = error.code
+                    console.log(errorCode);
+                    if( errorCode === 'auth/wrong-password'){
+                        window.alert("密碼錯誤");
+                    }else if(errorCode === 'auth/user-not-found'){
+                        window.alert("請前往註冊");
+                    }else{
+                        window.alert(`${errorCode}`);
+                        this.errorMsg = "帳號或密碼輸入錯誤";
+                    }
+                })
             },
-            inputValues: ['', '', '', '', ''],
-            member: '',
-            selectedYear: '', // 用於存儲選擇的年份值
-            yearList: [], // 用於存儲年份選項的數組
-            selectedMonth: '',
-            monthList: [],
-            selectedDate: '',
-            dateList: [],
-            isMan: false,
-            isWomen: false,
-            isSecret: false,
-            phone: '',
-            showHiddenBlock: false,
-            showPreview: true,
-            isPopBoxVisible: false,
-        }
-    },
-    computed:{
-        inputEls(){
-            return Array.from(this.$refs.inputEls) ?? [];
-        }
-    },
-    methods: {
-        onYearChange() {
-            // 在這裡處理年份選項變化後的相關邏輯
-            // 例如，您可以根據選擇的年份值做進一步處理
-        },
-        onMonthChange() { },
-        onDayChange() { },
-        populateYearList() {
-            const currentYear = new Date().getFullYear();
-            const startYear = 1970;
-
-            for (let year = startYear; year <= currentYear; year++) {
-                this.yearList.push(year.toString());
-            }
-            // 將預設選擇設置為當前年份
-            this.selectedYear = startYear.toString();
-        },
-        populateMonthList() {
-            const currentMonth = new Date().getMonth() + 1;
-
-            for (let month = 1; month <= 12; month++) {
-                // 將月份值轉換為兩位數的字符串，例如：01、02、...、12
-                const formattedMonth = month.toString().padStart(2, '0');
-                this.monthList.push(formattedMonth);
-            }
-
-            this.selectedMonth = currentMonth.toString().padStart(2, '0');
-        },
-        populateDateList(selectedYear, selectedMonth) {
-            const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
-            this.dateList = Array.from({ length: daysInMonth }, (_, index) => (index + 1).toString());
-        },
-        toggleCheckbox(option) {
-            if (option === "isMan") {
-                this.isMan = true;
-                this.isWomen = false;
-                this.isSecret = false;
-            } else if (option === "isWomen") {
-                this.isMan = false;
-                this.isWomen = true;
-                this.isSecret = false;
-            } else if (option === "isSecret") {
-                this.isMan = false;
-                this.isWomen = false;
-                this.isSecret = true;
-            }
-        },
-        filterNonNumeric() {
-            // 使用正則表達式過濾非數字字符
-            this.phone = this.phone.replace(/\D/g, '');
-        },
-        canceldata(){
-            this.$router.push('/');
-        },
-        showPopbox() {
-            const emptyFieldIndex = this.inputValues.findIndex((value) => value.trim() === "");
-            if (emptyFieldIndex !== -1) {
-                // There is an empty field, set focus to the corresponding input element
-                this.$nextTick(() => {
-                    this.inputEls[emptyFieldIndex].focus();
-                });
-            } else {
-                this.isPopBoxVisible = !this.isPopBoxVisible;
-                // All fields have values, do your submit logic here
-                // ...
-            }
-        },
-        redirectToOtherPage() {
-            this.$router.push('/member');
-        },
-        columnCheck() {
             
-        },
-        
-        
-        
-
-
-    },
-    watch: {
-        selectedYear(newVal) {
-            this.populateDateList(newVal, this.selectedMonth);
-            // 將日期選擇設置為第一天（1號）
-            this.selectedDate = '1';
-        },
-        selectedMonth(newVal) {
-            this.populateDateList(this.selectedYear, newVal);
-            this.selectedDate = '1';
-        },
-        // 監聽資料屬性變化，保證至少選一個
-        isMan(newValue) {
-            if (!newValue && !this.isWomen && !this.isSecret) {
-                this.isMan = true;
+    
+    
+    
+    
+            cancelbtn(){
+                this.$router.push('/login');
+            },
+            changeRegister(){
+                this.$router.push('/signup_info');
             }
         },
-        isWomen(newValue) {
-            if (!newValue && !this.isMan && !this.isSecret) {
-                this.isWomen = true;
-            }
+        async mounted() {
+        //     GET(`${this.$URL}/login.php`)
+        //         .then((res) => {
+        //             this.loginData=res;
+        //         })
+        //         .catch((err) => {
+        //             console.log(err);
+        //         })
+        const res = await axios.get(`${this.$URL}/login.php`)
+        console.log(res)
         },
-        isSecret(newValue) {
-            if (!newValue && !this.isMan && !this.isWomen) {
-                this.isSecret = true;
-            }
-        },
-
-    },
-    created() {
-        this.populateYearList();
-        this.populateMonthList();
-        // 填充當前年份和月份的日期選項
-        this.populateDateList(new Date().getFullYear(), new Date().getMonth() + 1);
-        // 將日期選擇設置為當前日期
-        this.selectedDate = new Date().getDate().toString();
-    },
-
-};
-
-
-</script>
-
-<style lang="scss" scoped>
-@import '@/assets/scss/baseAndMixin.scss';
-
-// #app {
-//     background-color: $bgColor_default;
-// }
-.signupview{
-    padding-top: 74px;
-
-    @media all and (min-width: $md) {
-        padding-top: 200px;
     }
-.register {
-    margin: 150px 0 60px;
-
-    @media all and (min-width: $md) {
-        margin: 130px 0;
+    </script>
+      
+      
+    <style lang="scss" scoped>
+    @import '@/assets/scss/baseAndMixin.scss';
+    
+    // *{
+    //     outline: 1px solid red;
+    // }
+    #app {
+        background-color: $bgColor_default;
     }
-
-    .canvas {
-        width: 83%;
-        background-color: $mid_green;
-        padding: $sp8 27px;
-        box-sizing: border-box;
-        margin: auto;
-        border-radius: 30px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
+    
+    .signupcard{
+        padding-top: 74px;
+    
         @media all and (min-width: $md) {
-            max-width: 1000px;
-            padding: $sp12 0;
+            padding-top: 200px;
         }
-
-        .joinus_sm {
-            position: absolute;
-            top: -130px;
-            width: 150px;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-
+    
+    .signupview {
+        margin: 150px 0 60px;
+    
+        @media all and (min-width: $md) {
+            margin: 130px 0;
+        }
+    
+        .canvas {
+            width: 83%;
+            background-color: $default_green;
+            margin: auto;
+            border-radius: $sp3;
+            position: relative;
+            z-index: 2;
+    
             @media all and (min-width: $md) {
-                display: none;
-            }
-
-            img {
-                display: block;
-                height: 100%;
-                width: 100%;
-                object-fit: cover;
-            }
-        }
-
-        h2 {
-            color: $textColor_white;
-            font-size: $sm_h2;
-            padding: 0 0 $sp4;
-            font-weight: 900;
-            line-height: 150%;
-            /* 42px */
-            letter-spacing: 0.84px;
-
-            @media all and (min-width: $md) {
-                font-size: $xl_h2;
-            }
-        }
-
-        .photo_group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            @media (min-width: 768px) {
-                flex-direction: row;
-            }
-
-            .member_img {
-                width: 100px;
-                margin: 0 0 $sp2;
-                cursor: pointer;
-
-                @media (min-width: 768px) {
-                    width: 150px;
-                }
-
-                img {
-                    border: 2px solid $textColor_default;
-                    border-radius: 50%;
-                    width: 100%;
-                    height: 100%;
-                    display: block;
-                }
-            }
-
-            .push {
-                margin: 0 0 $sp4;
-                box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-
-                @media (min-width: 768px) {
-                    margin: 0 $sp5;
-                }
-            }
-        }
-
-        .preview {
-            // display: none;
-            width: 87%;
-            height: 367px;
-            background-color: $tint_green;
-            position: absolute;
-            z-index: 3;
-        }
-
-        .form {
-            width: 100%;
-
-            @media (min-width: 768px) {
-                width: 60%;
-            }
-
-            label {
-                width: 100%;
-                color: $textColor_default;
-                font-size: $sm_h4;
-                font-weight: 700;
-                letter-spacing: 0.72px;
-
-                @media (min-width: 768px) {
-                    font-size: $xl_h4;
-                }
-            }
-
-            input {
-                width: 100%;
-                padding: $sp1 20px;
-                background: $textColor_white;
-                color: $textColor_default;
-                border-radius: 50px;
-                box-sizing: border-box;
-                font-size: $sm_p;
-                margin: $sp1 0 $sp2;
-                border: 2px solid $textColor_default;
-
-                @media (min-width: 768px) {
-                    padding: $sp1 20px;
-                    font-size: $xl_p;
-                    margin: $sp1 0 $sp3;
-                }
-            }
-
-            .date_group {
-                width: 100%;
+                max-width: 1000px;
                 display: flex;
-                justify-content: space-between;
-                padding: $sp1 0 $sp4;
-
-                select {
-                    // 隱藏原本的下拉箭頭
-                    width: 33%;
-                    appearance: none;
-                    -moz-appearance: none;
-                    -webkit-appearance: none;
-                    background-image: url('@/assets/img/layout/down_arrow.svg');
-                    background-repeat: no-repeat;
-                    background-position: right 4px center;
-                    // padding-right: 40px;
-                    color: $textColor_default;
-                    font-size: $sm_p;
-                    border: 2px solid $textColor_default;
-                    border-radius: 50px;
-                    padding: 6px $sp2;
-                    margin: 0 4px 0 0;
-                    cursor: pointer;
-
-                    @media (min-width: 768px) {
-                        font-size: $xl_p;
-                        padding: $sp1 20px;
-                    }
-
-                    &:hover {
-                        color: $textColor_default;
-                        background: $textColor_white;
-                        border: 2px solid $textColor_default;
-                    }
-
-                    &:active {
-                        color: $textColor_tint;
-                        border: 2px solid $textColor_default;
-                        background: $textColor_white;
-                    }
-                }
-            }
-
-            .gender_group {
-                width: 100%;
-                display: flex;
-
-                .checkbox_container {
-                    width: 20%;
-                    position: relative;
-                    display: inline-block;
-                    cursor: pointer;
-                    font-size: $sm_h4;
-                    margin: $sp1 0 $sp3;
-
-                    @media (min-width: 768px) {
-                        font-size: $xl_h4;
-                        margin: $sp1 0 $sp4;
-                    }
-
-                    // 隱藏原本的checkbox
-                    input {
-                        display: none;
-                    }
-
-                    //圓形按鈕
-                    .checkmark {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        margin: 4px 0;
-                        height: 16px;
-                        width: 16px;
-                        border-radius: 50%;
-                        background-color: $textColor_white;
-                        outline: 2px solid $textColor_default;
-
-                        @media (min-width: 768px) {
-                            margin: 4px 0;
-                            height: 24px;
-                            width: 24px;
-                        }
-                    }
-
-                    // 當checkbox選中時變更背景顏色
-                    input:checked~.checkmark {
-                        background-color: $textColor_default;
-                    }
-
-                    .content {
-                        padding-left: 20px;
-
-                        @media (min-width: 768px) {
-                            padding-left: 30px;
-                        }
-                    }
-                }
-
-                .checkbox_container:nth-of-type(3) {
-                    width: 30%;
-                }
-            }
-        }
-
-        .btn_group {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin: $sp2 0;
-
-            @media (min-width: 768px) {
                 justify-content: center;
+                margin: $sp10 auto;
             }
-
-            
-            .btn {
-                margin: 0 $sp2;
-                box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-            }
-
-        }
-
-        //popbox
-
-        .member_sm {
-            display: flex;
-            width: 273px;
-            height: 194px;
-            border: 3px solid $textColor_default;
-            background-color: $textColor_white;
-            border-radius: 20px;
-
-            position: absolute;
-            z-index: 10;
-            top: 900px;
-            left: 50%;
-            transform: translate(-50%, 0%);
-
-            .block {
-                width: 250px;
+    
+    
+            .joinus_sm {
+                position: absolute;
+                top: -130px;
+                width: 150px;
                 left: 50%;
-                transform: translate(-50%, 0%);
-                position: relative;
+                transform: translateX(-50%);
+                overflow: hidden;
+    
+                @media all and (min-width: $md) {
+                    display: none;
+                }
+    
+                img {
+                    display: block;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+    
+            .signup {
+                padding: $sp8 $sp3;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
                 align-items: center;
-
-                .pic {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    margin-top: 20px;
-
-                    img {
-                        width: 28px;
-                    }
-
-                    h3 {
-                        padding: 10px;
-                        font-size: $sm_h4;
-                    }
+    
+                @media all and (min-width: $md) {
+                    width: 50%;
+                    border-right: 2px solid $textColor_white;
+                    padding: $sp6 0;
                 }
-
-                // .button{
-                // margin-left: auto;
-                // .cancel{
-                //     font-size: $sm_h5;
-                //     color: $textColor_default;
-                //     border-bottom: 1px solid $textColor_default;
-                //     margin-right: 20px;
-                // }
-                .btn {
-                    font-size: $sm_h5;
-                    padding: 8px 24px;
-                    box-shadow: 1px 1px 1px 1px #0005;
-                    white-space: nowrap;
+    
+                h2 {
                     color: $textColor_white;
-                    text-align: center;
-                    font-family: $fontFamily;
-                    letter-spacing: 0.6px;
-                    display: inline-flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    border-radius: 50px;
-                    border: 2px solid $textColor_default;
-                    background: $textColor_default;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: $textColor_default;
-                        background: $textColor_white;
-                        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-                    }
-
-                    &:active {
-                        color: $textColor_tint;
-                        border: 2px solid $textColor_tint;
-                        background: $textColor_white;
+                    font-size: $sm_h2;
+                    padding: 0 0 $sp5;
+                    font-weight: 900;
+                    line-height: 150%;
+                    /* 42px */
+                    letter-spacing: 0.84px;
+    
+                    @media all and (min-width: $md) {
+                        // padding: 0 0 120px;
+                        font-size: $xl_h2;
                     }
                 }
-
-                // }
-            }
-
-            // 電腦版
-            @media (min-width: 768px) {
-                display: flex;
-
-                width: 410px;
-                height: 243px;
-                border: 3px solid $textColor_default;
-                background-color: $textColor_white;
-                border-radius: 20px;
-                justify-content: center;
-
-                position: absolute;
-                z-index: 10;
-
-                .block {
+                .signup_trace{
+                    width: 80%;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                
+                .space_signup{
+                    
+                    @media all and (min-width: $md) {
+                        padding-bottom: 66px;
+                    }
+                }
+                label {
                     width: 100%;
+                    color: $textColor_white;
+                    font-size: $sm_h4;
+                    font-weight: 700;
+                    letter-spacing: 0.72px;
+                    padding: 4px 0;
                     position: relative;
+    
+                    @media all and (min-width: $md) {
+                        width: 80%;
+                        padding: 0;
+                        font-size: $xl_h4;
+                    }
+    
+                }
+    
+                input {
+                    width: 100%;
+                    box-sizing: border-box;
+                    margin: 4px 0 16px;
+    
+                    @media all and (min-width: $md) {
+                        width: 80%;
+                        padding: $sp1 20px;
+                        margin: $sp1 0 $sp3;
+                    }
+                }
+    
+                
+    
+                //加入旅著頁面撐出空間
+                .space {
+                    padding: 13px 0;
+    
+                    @media all and (min-width: $md) {
+                        padding: $sp2;
+                    }
+                }
+    
+                .cancel_group {
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+    
+                    @media all and (min-width: $md) {
+                        justify-content: center;
+                    }
+    
+                    
+    
+                    .cancel_btn {
+                        padding: 0 $sp2;
+                    }
+    
+                    .btn {
+                        box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
+                    }
+                }
+            }
+    
+            .register {
+                display: none;
+    
+                @media all and (min-width: $md) {
+                    width: 50%;
+                    padding: $sp6 0 0px;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-around;
                     align-items: center;
-
-                    .pic {
-                        margin-top: 10px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-
-                        img {
-                            width: 34px;
-                        }
-
-                        h3 {
-                            text-align: center;
-                            font-size: $sm_h3;
-                            line-height: 150%;
-                            margin-top: 15px;
+                    border-radius: 0 $sp3 $sp3 0;
+    
+                    h2 {
+                        color: $textColor_white;
+                        font-size: $sm_h2;
+                        padding: 0 0 $sp5;
+                        font-weight: 900;
+                        letter-spacing: 2px;
+    
+                        @media all and (min-width: $md) {
+                            font-size: $xl_h2;
                         }
                     }
-
-                    .btn {
-                        font-size: $sm_h5;
-                        padding: 8px 24px;
-                        box-shadow: 1px 1px 1px 1px #0005;
-
-                        @media (min-width: 768px) {
-                            font-size: $xl_h5;
-                            padding: 8px 32px;
-                        }
-
-                        white-space: nowrap;
+    
+                    p {
+                        font-size: $sm_h4;
                         color: $textColor_white;
-                        text-align: center;
-                        font-family: $fontFamily;
-                        letter-spacing: 0.6px;
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                        border-radius: 50px;
-                        border: 2px solid $textColor_default;
-                        background: $textColor_default;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: $textColor_default;
-                            background: $textColor_white;
-                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                        font-weight: 700;
+                        letter-spacing: 0.72px;
+    
+                        @media all and (min-width: $md) {
+                            font-size: $xl_h4;
                         }
-
-                        &:active {
-                            color: $textColor_tint;
-                            border: 2px solid $textColor_tint;
-                            background: $textColor_white;
+                    }
+    
+                    .joinus_md {
+                        max-width: 400px;
+                        height: 306px;
+                        margin: $sp5 0 72px;
+    
+                        img {
+                            // display: block;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+    
+                    .welcome {
+                        font-size: $sm_h4;
+                        color: $textColor_white;
+    
+                        @media all and (min-width: $md) {
+                            font-size: $xl_h4;
                         }
                     }
                 }
             }
+    
         }
+    
     }
-}
-}
-</style>
+    }
+    </style>
