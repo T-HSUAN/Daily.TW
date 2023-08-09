@@ -14,7 +14,7 @@
         <font-awesome-icon icon="fa-solid fa-eye" />
         <font-awesome-icon icon="fa-solid fa-eye-slash" flip="horizontal" />
         <font-awesome-icon icon="fa-solid fa-circle-xmark" />
-    <!-- 在 font-awesome 裡沒有找到單側的箭頭、navbar的按鈕，先放替代的 -->
+        <!-- 在 font-awesome 裡沒有找到單側的箭頭、navbar的按鈕，先放替代的 -->
         <font-awesome-icon icon="fa-solid fa-arrow-left" />
         <font-awesome-icon icon="fa-solid fa-arrow-right" />
         <font-awesome-icon icon="fa-solid fa-arrow-up" />
@@ -35,7 +35,8 @@
         <font-awesome-icon icon="fa-solid fa-shirt" />
         <font-awesome-icon icon="fa-solid fa-bullhorn" />
         <font-awesome-icon icon="fa-solid fa-bag-shopping" />
-<!-- 
+        <font-awesome-icon icon="fa-solid fa-xmark" />
+        <!-- 
         <font-awesome-icon :icon="`fa-solid fa-${icon}`" /> -->
         <!-- <FontAwesomeIcons icon="shirt" /> -->
     </div>
@@ -52,5 +53,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>    
+<style lang="scss" scoped></style>    

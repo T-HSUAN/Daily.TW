@@ -1,4 +1,5 @@
 <template>
+    <!-- 篩選功能請參考TicketView編寫 -->
     <div class="search_bar">
         <div class="multi_filter_bg">
             <div class="multi_filter">
@@ -41,21 +42,29 @@
                         </select>
                     </div>
                 </div>
+                <!-- 文字篩選 -->
                 <div class="search_tool">
                     <input type="text" name="search" id="search" placeholder="請輸入關鍵字"
                         v-model="$store.state.filter.searchText" />
                     <button class="btn" @click="Filter">搜尋</button>
+                    <button class="cancel" @click="CancelFilter">x</button>
+                    <!-- <font-awesome-icon icon="fa-solid fa-xmark" /> -->
                 </div>
+                <!-- 使用說明:在store:index.js->Filter中添加一個任意名稱的空字串 
+                function請參考TicketsFilter()-->
             </div>
         </div>
+        <!-- 標籤篩選 -->
         <div class="tags_filter">
             <label v-for="(item, index) in tagTexts" :key="item">
                 <input type="checkbox" class="tag" v-model="item.selected" @click="switchTagSelection(item)" />
                 <span>{{ item.default }}</span>
             </label>
         </div>
-        <!-- 在需要使用的該頁面使用以下方式即可添加標籤內容
-        <Searchbar :Filter="某個可以篩選的function" :tagTexts="tagText" />
+        <!-- 使用說明；在需要使用的該頁面使用以下方式即可添加標籤內容
+            第一步驟：在data中添加tagTexts
+            function請參考TagsFilter()            
+        <Searchbar :Filter="某個篩選的function" :tagTexts="tagText" />
         data(){
             return{
                 tagText: [
@@ -63,7 +72,9 @@
                 { default: "#情侶" },
             ]
             }       
-        } -->
+        }
+        第二步驟：在store:index.js->Filter中添加一個任意名稱的空陣列
+        -->
     </div>
 </template>
 
@@ -85,6 +96,7 @@ export default {
             required: true,
         },
         TagsFilter: Function,
+        CancelFilter: Function,
     },
     data() {
         return {

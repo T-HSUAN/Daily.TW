@@ -7,7 +7,7 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="TicketsFilter" :tagTexts="tagTexts" @TagsFilter="TagsFilter" />
+        <Searchbar :Filter="TicketsFilter" :tagTexts="tagTexts" @TagsFilter="TagsFilter" :CancelFilter="CancelFilter" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -139,7 +139,6 @@ export default {
             ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
-            filteredProducts: [],
             // 購物車清單
             cartItems: this.$store.state.cartItems,
             //switch購物車頁面
@@ -175,11 +174,16 @@ export default {
                 });
             }
         },
+        //取消篩選
+        CancelFilter() {
+            this.$store.state.filter.selectedTags.selected = false;
+            this.ticketDisplay = this.ticketData;
+        },
+        ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
         // switch購物車
         switchCart() {
             this.switchPage = !this.switchPage;
         },
-        ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
         // 檢查商品是否已經存在於購物車中
         createItem(index) {
             const cartItem = this.ticketDisplay[index];

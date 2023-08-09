@@ -1,8 +1,10 @@
 .search_bar {
     width: 100%;
+
     .multi_filter_bg {
         width: 100%;
         background: $bgColor_default;
+
         .multi_filter {
             box-sizing: border-box;
             display: flex;
@@ -14,30 +16,37 @@
             padding: $sp2;
             background-color: $bgColor_default;
             z-index: 2;
+
             @media (min-width: 768px) {
                 max-width: $xl;
                 gap: 0;
                 flex-direction: row;
                 justify-content: space-between;
             }
+
             .order_select_wrap {
                 display: flex;
                 align-items: center;
                 gap: $sp5;
                 order: 2;
+
                 @media (min-width: 768px) {
                     order: 0;
                 }
+
                 .order_tool {
                     display: flex;
                     align-items: center;
                     gap: 4px;
+
                     @media (min-width: 768px) {
                         gap: $sp1;
                     }
+
                     .order_icon {
                         padding-top: 4px;
                     }
+
                     button {
                         background-color: $bgColor_default;
                         color: $textColor_default;
@@ -45,15 +54,19 @@
                         display: flex;
                         align-items: center;
                         gap: 4px;
+
                         span {
                             @include sm_h5;
+
                             @media (min-width: 768px) {
                                 @include xl_h5;
                             }
                         }
+
                         .order_arrow_icon {
                             padding-top: 2px;
                             font-size: 16px;
+
                             @media (min-width: 768px) {
                                 padding-top: 3px;
                                 font-size: 20px;
@@ -61,19 +74,24 @@
                         }
                     }
                 }
+
                 .select_tool {
                     display: flex;
                     align-items: center;
                     gap: 4px;
+
                     @media (min-width: 768px) {
                         gap: $sp1;
                     }
+
                     select#select_filter {
                         // appearance: none;
                         @include sm_h5;
+
                         @media (min-width: 768px) {
                             @include xl_h5;
                         }
+
                         color: $textColor_default;
                         border: 0;
                         background-color: $bgColor_default;
@@ -82,10 +100,34 @@
                     }
                 }
             }
+
             .search_tool {
                 display: flex;
+                position: relative;
                 gap: $sp1;
                 flex-direction: row;
+
+                .fa-xmark {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 24px;
+                    color: $textColor_default;
+                }
+
+                .cancel {
+                    display: none;
+                    position: absolute;
+                    top: 8px;
+                    right: 135px;
+                    font-size: 24px;
+                    font-weight: 700;
+                    color: $textColor_default;
+                }
+
+                &:hover .cancel {
+                    display: block;
+                }
             }
         }
     }
@@ -98,9 +140,11 @@
         padding: $sp2;
         max-width: $xl;
         margin: auto;
+
         @media (min-width: 768px) {
             gap: $sp1;
         }
+
         label {
             width: 92px;
             height: 45px;
