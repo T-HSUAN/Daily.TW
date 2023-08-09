@@ -7,8 +7,7 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :AreaFilter="AreaFilter" :TextFilter="TicketsFilter" :tagTexts="tagTexts" @TagsFilter="TagsFilter"
-            :CancelFilter="CancelFilter" />
+        <Searchbar @Filters="Filters" :tagTexts="tagTexts" :ShowClear="ShowClear" :ClearFilter="ClearFilter" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -26,6 +25,7 @@
             </div>
         </div>
         <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
+        <!-- <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">清除所有篩選</div> -->
         <div class="page_link">
             <a class="page" v-if="ticketDisplay.length === ticketData.length">1</a>
             <a class="page" v-if="ticketDisplay.length === ticketData.length">2</a>
@@ -140,6 +140,7 @@ export default {
             ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
+            ShowClear: false,
             // 購物車清單
             cartItems: this.$store.state.cartItems,
             //switch購物車頁面
@@ -147,49 +148,83 @@ export default {
         }
     },
     methods: {
-        //地區篩選
-        AreaFilter() {
-            let AreaSelected = this.$store.state.filter.areaSelected;
-            if (AreaSelected === "所有地區") {
-                this.ticketDisplay = this.ticketData;
-                console.log('[篩選]地區選取:', AreaSelected);
-            } else {
-                this.ticketDisplay = this.ticketData.filter(item => {
-                    return item.location.includes(AreaSelected);
-                });
-            }
+        Filters() {
+            const areaSelected = this.$store.state.filter.areaSelected;
+            const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+            const searchText = this.$store.state.filter.searchText;
+            this.ticketDisplay = this.ticketData.filter(item => {
+                // 地區篩選
+                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+
+                // 標籤篩選
+                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+
+                // 文字模糊搜索
+                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+
+                // 返回结果
+                return areaMatch && tagMatch && nameMatch;
+            });
         },
-        // 標籤篩選
-        TagsFilter() {
-            let selectedTags = this.$store.state.filter.selectedTags;
-            selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
-            console.log('[篩選]標籤選取:', selectedTags);
-            if (selectedTags.length === 0) {
-                this.ticketDisplay = this.ticketData;
-            } else {
-                this.ticketDisplay = this.ticketData.filter(item => {
-                    // 檢查票券的標籤是否包含所有被選取的標籤
-                    return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
-                });
-            }
-        },
-        //文字模糊搜尋
-        TicketsFilter() {
-            if (this.$store.state.filter.searchText === "") {
-                this.ticketDisplay = this.ticketData;
-            } else {
-                const regexText = this.$store.state.filter.searchText
-                    .split("")
-                    .join(".*");
-                const regex = new RegExp(regexText, "i");
-                this.ticketDisplay = this.ticketData.filter((item) =>
-                    regex.test(item.Name)
-                );
-            }
-        },
-        //取消篩選
-        CancelFilter() {
-            this.$store.state.filter.selectedTags.selected = false;
+        // TicketsFilter() {
+        //     if (this.$store.state.filter.searchText === "") {
+        //         return this.ticketData;
+        //     } else {
+        //         const regexText = this.$store.state.filter.searchText
+        //             .split("")
+        //             .join(".*");
+        //         const regex = new RegExp(regexText, "i");
+        //         return this.ticketData.filter((item) =>
+        //             regex.test(item.Name)
+        //         );
+        //     }
+        // },
+        // //地區篩選
+        // AreaFilter() {
+        //     let selectedTags = this.$store.state.filter.selectedTags;
+        //     let AreaSelected = this.$store.state.filter.areaSelected;
+        //     if ((AreaSelected === "所有地區") && (selectedTags.length === 0)) {
+        //         this.ticketDisplay = this.ticketData;
+        //         console.log('[篩選]地區選取:', AreaSelected);
+        //     } else {
+        //         this.ticketDisplay = this.ticketData.filter(item => {
+        //             return item.location.includes(AreaSelected);
+        //         });
+        //     }
+        // },
+        // // 標籤篩選
+        // TagsFilter() {
+        //     let selectedTags = this.$store.state.filter.selectedTags;
+        //     let AreaSelected = this.$store.state.filter.areaSelected;
+        //     selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+        //     console.log('[篩選]標籤選取:', selectedTags);
+        //     if ((selectedTags.length === 0) && (AreaSelected === "所有地區")) {
+        //         this.ticketDisplay = this.ticketData;
+        //     } else {
+        //         this.ticketDisplay = this.ticketData.filter(item => {
+        //             // 檢查票券的標籤是否包含所有被選取的標籤
+        //             return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+        //         });
+        //     }
+        // },
+        // //文字模糊搜尋
+        // TicketsFilter() {
+        //     if (this.$store.state.filter.searchText === "") {
+        //         this.ticketDisplay = this.ticketData;
+        //     } else {
+        //         const regexText = this.$store.state.filter.searchText
+        //             .split("")
+        //             .join(".*");
+        //         const regex = new RegExp(regexText, "i");
+        //         this.ticketDisplay = this.ticketData.filter((item) =>
+        //             regex.test(item.Name)
+        //         );
+        //     }
+        // },
+        //清除篩選
+        ClearFilter() {
+            this.tagTexts.forEach(tag => tag.selected = false);
+            console.log('[篩選]清除篩選');
             this.$store.state.filter.searchText = "";
             this.ticketDisplay = this.ticketData;
         },
@@ -225,7 +260,14 @@ export default {
         },
     },
     computed: {
-
+        ShowClear() {
+            if (this.ticketDisplay != this.ticketData) {
+                console.log(this.ticketDisplay);
+                return true;
+            } else {
+                return false;
+            }
+        },
         ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
