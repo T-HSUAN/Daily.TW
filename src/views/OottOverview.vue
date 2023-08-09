@@ -56,17 +56,17 @@ export default {
             oottDisplay: [],
             //請自己更改標籤內容就可以
             tagText: [
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
-                { default: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
+                { Name: " #標籤" },
             ]
         };
     },
@@ -98,9 +98,11 @@ export default {
 .oottOverview {
     background: $bgColor_tint;
     padding-top: 74px;
+
     @media (min-width: 768px) {
         padding-top: 200px;
     }
+
     .breadcrumb {
         display: flex;
         align-items: center;
@@ -183,16 +185,17 @@ export default {
         .page_link {
             display: flex;
             justify-content: center;
+
             .page {
                 display: block;
                 margin: $sp4 $sp1 $sp8;
                 text-align: center;
                 color: $textColor_default;
+
                 &:hover {
                     color: $default_blue;
                 }
             }
         }
     }
-}
-</style>
+}</style>

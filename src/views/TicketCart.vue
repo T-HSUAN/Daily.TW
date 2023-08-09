@@ -175,7 +175,7 @@ export default {
         //結帳
         checkoutFinalCart() {
             if (this.finalCartTotalPrice > 0) {
-                this.$router.push('/ticket_payment'); // 购物车不为空，跳转到结账页面
+                this.$router.push('/ticket_payment'); // 購物車不為空，跳轉到結帳頁面
             }
             else {
                 swal("您尚未勾選票券或選擇票券數量", "", "warning", { timer: 2000 });

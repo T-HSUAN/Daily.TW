@@ -24,19 +24,9 @@
         <!-- 行程列表 -->
         <section class="list">
             <div class="trip_list" v-if="tripDisplay.length > 0">
-                <div
-                    class="trip_card"
-                    v-for="(item, index) in tripDisplay"
-                    :key="item.id"
-                >
-                <Trip
-                    :tripCardPhoto="item.img"
-                    :tripCardTags="item.tag"
-                    :tripCardTitle="item.name"
-                    :tripCardDesc="item.desc"
-                    :tripCardAuthor="item.author"
-                    :tripCardDate="item.date"
-                />
+                <div class="trip_card" v-for="(item, index) in tripDisplay" :key="item.id">
+                    <Trip :tripCardPhoto="item.img" :tripCardTags="item.tag" :tripCardTitle="item.name"
+                        :tripCardDesc="item.desc" :tripCardAuthor="item.author" :tripCardDate="item.date" />
                 </div>
             </div>
             <div v-else>查無結果</div>
@@ -66,17 +56,17 @@ export default {
             tripDisplay: [],
             // 可以自己加tag內容
             tagText: [
-                { default: " #親子" },
-                { default: " #情侶" },
-                { default: " #小資" },
-                { default: " #風景" },
-                { default: " #樂園" },
-                { default: " #農場" },
-                { default: " #藝文" },
-                { default: " #山林" },
-                { default: " #海邊" },
-                { default: " #放鬆" },
-                { default: " #懷舊" },
+                { Name: " #親子" },
+                { Name: " #情侶" },
+                { Name: " #小資" },
+                { Name: " #風景" },
+                { Name: " #樂園" },
+                { Name: " #農場" },
+                { Name: " #藝文" },
+                { Name: " #山林" },
+                { Name: " #海邊" },
+                { Name: " #放鬆" },
+                { Name: " #懷舊" },
             ]
 
         };
@@ -143,14 +133,17 @@ export default {
             }
 
         }
+
         .page_link {
             display: flex;
             justify-content: center;
+
             .page {
                 display: block;
                 margin: $sp4 $sp1 $sp8;
                 text-align: center;
                 color: $textColor_default;
+
                 &:hover {
                     color: $default_blue;
                 }

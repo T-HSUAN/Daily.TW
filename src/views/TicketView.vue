@@ -7,7 +7,8 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar :Filter="TicketsFilter" :tagTexts="tagTexts" @TagsFilter="TagsFilter" :CancelFilter="CancelFilter" />
+        <Searchbar :AreaFilter="AreaFilter" :TextFilter="TicketsFilter" :tagTexts="tagTexts" @TagsFilter="TagsFilter"
+            :CancelFilter="CancelFilter" />
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
             <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
@@ -120,17 +121,17 @@ export default {
                 img: "",
             },
             tagTexts: [
-                { default: "#親子", selected: false },
-                { default: "#情侶", selected: false },
-                { default: "#小資", selected: false },
-                { default: "#風景", selected: false },
-                { default: "#樂園", selected: false },
-                { default: "#農場", selected: false },
-                { default: "#藝文", selected: false },
-                { default: "#山林", selected: false },
-                { default: "#海邊", selected: false },
-                { default: "#放鬆", selected: false },
-                { default: "#懷舊", selected: false },
+                { Name: "#親子", selected: false },
+                { Name: "#情侶", selected: false },
+                { Name: "#小資", selected: false },
+                { Name: "#風景", selected: false },
+                { Name: "#樂園", selected: false },
+                { Name: "#農場", selected: false },
+                { Name: "#藝文", selected: false },
+                { Name: "#山林", selected: false },
+                { Name: "#海邊", selected: false },
+                { Name: "#放鬆", selected: false },
+                { Name: "#懷舊", selected: false },
             ],
             ticket: {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
@@ -146,7 +147,33 @@ export default {
         }
     },
     methods: {
-        //模糊搜尋
+        //地區篩選
+        AreaFilter() {
+            let AreaSelected = this.$store.state.filter.areaSelected;
+            if (AreaSelected === "所有地區") {
+                this.ticketDisplay = this.ticketData;
+                console.log('[篩選]地區選取:', AreaSelected);
+            } else {
+                this.ticketDisplay = this.ticketData.filter(item => {
+                    return item.location.includes(AreaSelected);
+                });
+            }
+        },
+        // 標籤篩選
+        TagsFilter() {
+            let selectedTags = this.$store.state.filter.selectedTags;
+            selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+            console.log('[篩選]標籤選取:', selectedTags);
+            if (selectedTags.length === 0) {
+                this.ticketDisplay = this.ticketData;
+            } else {
+                this.ticketDisplay = this.ticketData.filter(item => {
+                    // 檢查票券的標籤是否包含所有被選取的標籤
+                    return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+                });
+            }
+        },
+        //文字模糊搜尋
         TicketsFilter() {
             if (this.$store.state.filter.searchText === "") {
                 this.ticketDisplay = this.ticketData;
@@ -160,23 +187,10 @@ export default {
                 );
             }
         },
-        // 標籤篩選
-        TagsFilter() {
-            let selectedTags = this.$store.state.filter.selectedTags;
-            selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.default);
-            console.log(selectedTags);
-            if (selectedTags.length === 0) {
-                this.ticketDisplay = this.ticketData;
-            } else {
-                this.ticketDisplay = this.ticketData.filter(item => {
-                    // 检查商品的标签是否包含选中的所有标签值
-                    return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
-                });
-            }
-        },
         //取消篩選
         CancelFilter() {
             this.$store.state.filter.selectedTags.selected = false;
+            this.$store.state.filter.searchText = "";
             this.ticketDisplay = this.ticketData;
         },
         ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
@@ -211,11 +225,11 @@ export default {
         },
     },
     computed: {
+
         ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
-        this.TicketsFilter();
-
+        this.ticketDisplay = this.ticketData;
     },
 };
 </script>

@@ -2,7 +2,7 @@ const ticketData = [
     {
         id: 1,
         Name: "斑比山丘",
-        img: require("@/assets/img/ticket_photo/ticket_photo02.jpg"),
+        img: require("@/assets/img/place/009-1.png"),
         location: "宜蘭",
         tag: "#親子#情侶#農場",
         ticket_details: "大受歡迎的親子景點，園區內有多種動物，可以與梅花鹿、水豚、羊咩咩來場親密的互動。美美子咖啡廳的冰淇淋十分美味，推薦給所有人到店購買品嚐。",
