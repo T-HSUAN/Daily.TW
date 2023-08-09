@@ -1,67 +1,60 @@
-<!-- 登入/註冊 -->
+<!-- 登入 -->
 <template>
+
+
 <section class="logincard">
     <section class="loginview">
-        <div v-for="(item, key) in tabItems" :class="{ active: key == tabActive }">
-            <div v-if="tabActive == item.tab" class="canvas">
+        <div>
+            <div  class="canvas">
                 <div class="joinus_sm">
                     <img src="@/assets/img/joinus_sm.png" alt="joinus">
                 </div>
-                <div class="login" :class="{ active: isActive }">
-                    <h2>{{ item.title }}</h2>
+                <div class="login" >
+                    <h2>歡迎加入</h2>
                     <div class="login_trace">
                         <img :src="require('@/assets/img/duck_trace3.png')" alt="icon">
                     </div>
-                    <button class="login_way" @click="signInGoogle" v-if="item.tab == 1">
+                    <button class="login_way" @click="signInGoogle">
                         <Icon type="logo-googleplus" />
                         <p>使用GOOGLE登入</p>
                     </button>
-                    <div v-if="item.tab == 2" class="space_login"></div>
-                    <!-- <button v-for="btn in btnsRegister" class="login-connect" @click="signInGoogle">
-                <i :class="btn.iconClass"></i> {{ btn.text }}
-              </button> -->
-                    <label for="email">Email</label>
-                    <input type="text" v-model="email" @input="validateEmail" :class="{ form_warning: !isEmailValid }" 
+
+                    <label>Email</label>
+                    <input type="text" v-model="email"  required 
                         placeholder='請輸入EMAIL'>
-                    
-                    <label for="psw">密碼</label>
-                    <input type="password" v-model="psw" @input="validatePassword"
-                        :class="{ form_warning: !isPasswordValid }" placeholder='請輸入密碼 (英數混合6-12碼)'>
+                        <!-- @input="validateEmail" :class="{ form_warning: !isEmailValid }" -->
+                    <label>密碼</label>
+                    <input type="password" v-model="psw"  placeholder='請輸入密碼 (英數混合6-12碼)' required >
+                    <!-- @input="validatePassword"
+                        :class="{ form_warning: !isPasswordValid }" -->
                     <div class="login_action">
-                        <label for="remember" v-if="item.tab == 1">
+                        <label for="remember">
                             <input type="checkbox" name="remember" id="remember">
                             <span>記住我</span>
                         </label>
-                        <router-link to="/forget_psw" v-if="item.tab == 1">
+                        <button @click="forgetpsw" class="forgetpsw">
                             忘記密碼?
-                        </router-link>
+                    </button>
                     </div>
-                    <!-- <div v-show="item.tab == 2" class="space"></div> -->
                     <div class="cancel_group">
-                        <router-link to="/login" v-if="item.tab == 1" @click="handleClick" class="cancel_btn">
+                        <button  @click="changeRegister" class="cancel_btn">
                             還不是會員?
-                        </router-link>
-                        <div to="/login" v-if="item.tab == 2" @click="handleClick" class="cancel_btn">
-                            取消
-                        </div>
-                        <!-- 利用 v-if/v-else 控制是否顯示 router-link -->
-                        <button @click.prevent="changeRegister" v-if="item.tab == 2"  class="btn">
-                            註冊
                         </button>
-                        <button v-else v-if="item.tab == 1" @click="login" class="btn"
-                            :class="{ btn: isEmailValid && isPasswordValid }">
+                         
+                        <button @click="login" class="btn" type="submit" value="login"
+                            >
                             登入
                         </button>
+                        <!-- :class="{ btn: isEmailValid && isPasswordValid }" -->
                     </div>
                 </div>
-                <div class="register" :class="{ active: isActive }">
-                    <h2>{{ item.subtitle }}</h2>
-                    <p v-if="item.tab == 1">加入日日旅著體驗完整服務</p>
+                <div class="register">
+                    <h2>還不是會員?</h2>
+                    <p>加入日日旅著體驗完整服務</p>
                     <div class="joinus_md">
                         <img src="@/assets/img/joinus_md.png" alt="joinus">
                     </div>
-                    <div v-if="item.tab == 2" class="welcome">歡迎加入日日旅著！</div>
-                    <button v-if="item.tab == 1"  @click="handleClick" class="btn">
+                    <button  @click="changeRegister" class="btn">
                         註冊
                     </button>
                 </div>
@@ -71,6 +64,11 @@
 </section>
 </template>
 <script>
+import {GET} from '@/plugin/axios'
+
+// import axios from "axios";
+// import { URL } from "@/assets/js/common.js";
+
 import { firebaseAuth } from "@/assets/config/firebase.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -81,23 +79,8 @@ const provider = new GoogleAuthProvider()
 export default {
     data() {
         return {
-            tabActive: 1,
-            tabItems: {
-                1: {
-                    title: '歡迎登入',
-                    subtitle: '還不是會員?',
-                    tab: 1,
-                    goNext: 2,
-                    btn: '登入',
-                },
-                2: {
-                    title: '加入旅著',
-                    subtitle: 'Welcome!',
-                    tab: 2,
-                    goNext: 1,
-                    btn: '註冊',
-                },
-            },
+            dataFromMySQL:[],
+
             email: '',
             psw: '',
             isEmailValid: true,
@@ -132,6 +115,10 @@ export default {
     //     closeModal() {
     //   this.$emit("emit-status");
     // },
+    forgetpsw(){
+        this.$router.push('/forget_psw');
+    },
+    //===========================google註冊登入==================================
         signInGoogle(){
             signInWithPopup(firebaseAuth, provider)
             .then((result) => {
@@ -152,10 +139,13 @@ export default {
                     alert(`google註冊失敗${errorCode}`);
                 });  
             },
-            
+    //===========================帳號登入=========================================
             login() {
-            
-            if(this.email === '' || this.pse === '')return
+            if(this.email === '' || this.psw === '') {
+                alert('帳號密碼不能為空！');
+                return; 
+
+            }
             signInWithEmailAndPassword(firebaseAuth, this.email, this.psw)
             .then((userCredential) => {
                 // firebase 的資料
@@ -179,23 +169,84 @@ export default {
                 }
             })
         },
+
+        //     async login_2() {
+        //     let thisvue = this;
+        //     if (thisvue.email == "" || thisvue.psw == "") {
+        //         // thisvue.errorMsg = "請輸入帳號和密碼";
+        //         // thisvue.errorFlag = true;
+        //     } else {
+        //         await this.$store.dispatch("memLogin", {
+        //             mem_account: this.email,
+        //             mem_psw: this.psw,
+        //         });
+
+        //         if (this.$store.state.user) {
+        //             this.$router.push({ path: "/" });
+        //         }
+        //     }
+        // },
+        // async login_2() {
+        //     if (this.email == "" || this.psw == "") {
+        //         console.log(this.email)
+        //         // return
+        //     } else {
+        //         await this.$store.dispatch("memLogin", {
+        //             mem_email: this.email,
+        //             mem_psw: this.psw,
+        //         });
+
+        //         if (this.$store.state.user) {
+        //             this.$router.push({ path: "/" });
+        //         }
+
+        //     }
+        // },
+        
         
 
-
-
-
-        // 切換tab
-        updateTab(index) {
-            this.tabActive = index
-        },
-        handleClick() {
-            this.updateTab(this.tabItems[this.tabActive].goNext);
-            this.isActive = !this.isActive;
-        },
         changeRegister(){
             this.$router.push('/signup');
         }
-    }
+    },
+    mounted() {
+        GET(`${this.$URL}/login.php`)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
+    // 抓 php 資料
+    // mounted() {
+    //         // 設定要執行的操作，這裡是取得資料
+    //         axios
+    //         .get(`${URL}/login.php`)
+    //         .then((response) => {
+    //             this.dataFromMySQL = response.data;
+                
+    //             // 打印取得的資料以確認是否成功
+    //             console.log("Data retrieved from MySQL:", this.dataFromMySQL);
+    //         })
+    //         .catch((error) => {
+    //             console.error("There was an error fetching the data:", error);
+    //         });
+    //     },
+    
+    
+    // async mounted() {
+    //     // this.login();
+    // //     GET(`${this.$URL}/login.php`)
+    // //         .then((res) => {
+    // //             this.loginData=res;
+    // //         })
+    // //         .catch((err) => {
+    // //             console.log(err);
+    // //         })
+    // const res = await axios.get(`${this.$URL}/login.php`)
+    // // console.log(res)
+    // },
 }
 </script>
   
@@ -239,15 +290,7 @@ export default {
             margin: $sp10 auto;
         }
 
-        // 變換背景色
-        .active {
-            border-radius: $sp3;
-            background-color: $default_green;
-
-            @media all and (min-width: $md) {
-                border-radius: $sp3 0 0 $sp3;
-            }
-        }
+        
 
         .joinus_sm {
             position: absolute;
@@ -336,12 +379,7 @@ export default {
                     }
                 }
             }
-            .space_login{
-                
-                @media all and (min-width: $md) {
-                    padding-bottom: 66px;
-                }
-            }
+            
             label {
                 width: 100%;
                 color: $textColor_white;
@@ -390,25 +428,26 @@ export default {
                     flex-direction: row;
                     align-items: center;
                     cursor: pointer;
-
+                    
                     @media all and (min-width: $md) {
                         font-size: $xl_p;
                     }
-
+                    
                     &:hover {
                         color: $tint_blue;
                     }
-
+                    
                     #remember {
                         width: 20px;
                         height: 18px;
                         margin: 0 $sp1 0 0;
                     }
+                    
                 }
-
-                a {
+                
+                .forgetpsw {
                     font-size: $sm_p;
-                    color: $textColor_white;
+                    color: $textColor_default;
 
                     @media all and (min-width: $md) {
                         font-size: $xl_p;
@@ -421,13 +460,13 @@ export default {
             }
 
             //加入旅著頁面撐出空間
-            .space {
-                padding: 13px 0;
+            // .space {
+            //     padding: 13px 0;
 
-                @media all and (min-width: $md) {
-                    padding: $sp2;
-                }
-            }
+            //     @media all and (min-width: $md) {
+            //         padding: $sp2;
+            //     }
+            // }
 
             .cancel_group {
                 width: 100%;
@@ -439,16 +478,11 @@ export default {
                     justify-content: center;
                 }
 
-                a:first-child {
+                .cancel_btn {
                     padding: 0 $sp2;
-
-                    @media all and (min-width: $md) {
-                        display: none;
+                    &:hover {
+                        color: $tint_blue;
                     }
-                }
-
-                div {
-                    padding: $sp1 $sp2;
                 }
 
                 .btn {
@@ -503,14 +537,7 @@ export default {
                     }
                 }
 
-                .welcome {
-                    font-size: $sm_h4;
-                    color: $textColor_white;
-
-                    @media all and (min-width: $md) {
-                        font-size: $xl_h4;
-                    }
-                }
+                
             }
         }
 

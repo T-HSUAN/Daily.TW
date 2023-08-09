@@ -1,4 +1,6 @@
 import { createStore } from "vuex";
+import { URL } from "@/assets/js/common.js";
+
 export default createStore({
     state: {
         area: ["所有地區", "新北", "臺北", "基隆", "桃園", "新竹", "苗栗", "臺中", "彰化", "雲林", "嘉義", "南投", "臺南", "高雄", "屏東", "宜蘭", "花蓮", "臺東", "澎湖", "金門", "馬祖",
@@ -112,6 +114,7 @@ export default createStore({
         setIsLogin(state, value) {
             state.isLogin = value;
         },
+        
     },
     actions: {
         addToCart({ commit }, cartItem) {

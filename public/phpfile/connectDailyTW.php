@@ -11,4 +11,3 @@
     //建立pdo物件
     $pdo = new PDO($dsn, $user, $password, $options);
 ?>
-

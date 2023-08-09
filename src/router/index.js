@@ -165,6 +165,12 @@ const routesUser = [
             import(/* webpackChunkName: "signup" */ "@/views/SignUpView.vue"),
     },
     {
+        path: "/signup_info",
+        name: "signup_info",
+        component: () =>
+            import(/* webpackChunkName: "SignUpInfo" */ "@/views/SignUpInfo.vue"),
+    },
+    {
         path: "/oott_post_view",
         name: "OottPostView",
         component: () =>
