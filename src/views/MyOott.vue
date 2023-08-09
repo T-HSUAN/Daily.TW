@@ -184,35 +184,5 @@ export default{
             this.oottDataForUser = res
         })
     },
-//     data() {
-//         return {
-//             oottData : [],// Initialize oottData as an empty array
-//         }
-//     },
-//     mounted() {
-//         // Fetch data from the JSON file when the component is mounted
-//         this.fetchOottData();
-//     },
-//     methods: {
-//     async fetchOottData() {
-    // const url = process.env.NODE_ENV === 'production' ? "/g5/fake/OottData.json" : "/fake/OottData.json";
-//       try {
-//         // Use the Fetch API to fetch the data from the JSON file
-//         const response = await fetch(url); // Adjust the path based on your project structure
-
-//         if (!response.ok) {
-//           throw new Error("Network response was not ok");
-//         }
-
-//         // Parse the JSON data
-//         const data = await response.json();
-
-//         // Set the fetched data as OottData
-//         this.oottData = data;
-//       } catch (error) {
-//         console.error("Error fetching oott data:", error);
-//       }
-//     },
-//   },
 };
 </script>  

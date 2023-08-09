@@ -11,21 +11,21 @@
                 <div class="card_wrap">
                     <div
                         class="card"
-                        v-for="trip in tripDataForUser"
+                        v-for="item in tripDataForUser"
                         key="tripCollection"
                     >
                         <TripCardConst
-                            :tripCardPhoto="trip.place_img1"
+                            :tripCardPhoto="item.place_img1"
                             :tripCardTags="
                                 combineTags(
-                                    trip.region_name,
-                                    trip.place_tag_name
+                                    item.region_name,
+                                    item.place_tag_name
                                 )
                             "
-                            :tripCardTitle="trip.trip_name"
-                            :tripCardDesc="trip.trip_desc"
-                            :tripCardAuthor="trip.trip_author"
-                            :tripCardDate="trip.trip_date"
+                            :tripCardTitle="item.trip_name"
+                            :tripCardDesc="item.trip_desc"
+                            :tripCardAuthor="item.trip_author"
+                            :tripCardDate="item.trip_date"
                         />
                     </div>
                 </div>
@@ -124,18 +124,14 @@ export default {
     methods: {
         combineTags(regionName, placeTagName) {
             // Combine regionName and placeTagName with a space between them
-            return `${regionName} ${placeTagName}`;
+            return `${regionName} #${placeTagName}`;
         },
     },
-    created() {
-        GET('/fake/TripData.json').then(res => {
-            this.tripDataForUser = res
-        })
-    },
     mounted() {
-        GET(`${this.$URL}/test.php`)
+        GET(`${this.$URL}/tripCollection.php`)
             .then((res) => {
                 console.log(res);
+                this.tripDataForUser = res;
             })
             .catch((err) => {
                 console.log(err);
@@ -143,41 +139,5 @@ export default {
     },
 
 
-    /* 以下使用 fetch 但上線前失敗了*/
-    /*
-    data() {
-        return {
-            tripData: [], // Initialize tripData as an empty array
-        };
-    },
-    mounted() {
-        // Fetch data from the JSON file when the component is mounted
-        this.fetchTripData();
-    },
-    methods: {
-        async fetchTripData() {
-            try {
-                // Use the Fetch API to fetch the data from the JSON file
-                const response = await fetch("/fake/TripData.json"); // Adjust the path based on your project structure
-
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-
-                // Parse the JSON data
-                const data = await response.json();
-
-                // Set the fetched data as tripData
-                this.tripData = data;
-            } catch (error) {
-                console.error("Error fetching trip data:", error);
-            }
-        },
-        combineTags(regionName, placeTagName) {
-            // Combine regionName and placeTagName with a space between them
-            return `${regionName} ${placeTagName}`;
-        },
-    },
-    */
 };
 </script>
