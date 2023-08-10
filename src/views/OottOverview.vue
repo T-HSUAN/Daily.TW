@@ -1,4 +1,4 @@
-<!-- 行程總覽 -->
+<!-- 穿搭總覽 -->
 <template>
     <div class="oottOverview">
         <!-- 麵包屑 -->
@@ -19,7 +19,7 @@
         <!-- 標題 -->
         <h2>穿搭總覽</h2>
         <!-- 搜尋篩選欄 -->
-        <Searchbar :Filter="updateDisplay" :tagTexts="tagText" />
+        <Searchbar :Filter="oottFilter" :tagTexts="tagText" @TagsFilter="TagsFilter" :CancelFilter="CancelFilter"/>
         <!-- 穿搭列表 -->
         <section class="list">
             <div class="oott_list" v-if="oottDisplay.length > 0">
@@ -30,7 +30,7 @@
                     </router-link>
                 </div>
             </div>
-            <div v-else>查無結果</div>
+            <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
             <div class="page_link">
                 <a class="page" v-if="oottDisplay.length === oottData.length">1</a>
                 <a class="page" v-if="oottDisplay.length === oottData.length">2</a>
@@ -50,29 +50,30 @@ export default {
     },
     data() {
         return {
+            
+            tagText: [
+                { Name: "#運動" ,selected: false},
+                { Name: "#派對" ,selected: false},
+                { Name: "#日系" ,selected: false},
+                { Name: "#性感" ,selected: false},
+                { Name: "#懷舊" ,selected: false},
+                { Name: "#休閒" ,selected: false},
+                { Name: "#可愛" ,selected: false},
+                { Name: "#潮流" ,selected: false},
+                { Name: "#復古" ,selected: false},
+                { Name: "#美式" ,selected: false},
+                { Name: "#簡約" ,selected: false},
+            ],
             oottData: oottData,
             // 從oottData抓取資料並呈現(進行搜尋篩選)
 
             oottDisplay: [],
             //請自己更改標籤內容就可以
-            tagText: [
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-                { Name: " #標籤" },
-            ]
         };
     },
     methods: {
         //模糊搜尋
-        updateDisplay() {
+        oottFilter() {
             if (this.$store.state.filter.searchText === "") {
                 this.oottDisplay = this.oottData;
             } else {
@@ -81,14 +82,34 @@ export default {
                     .join(".*");
                 const regex = new RegExp(regexText, "i");
                 this.oottDisplay = this.oottData.filter((item) =>
-                    regex.test(item.name)
+                    regex.test(item.tag)
                 );
             }
+        },
+        // 標籤篩選
+        TagsFilter() {
+            this.oottDisplay = [];
+            let selectedTags = this.tagText.filter(tag => tag.selected).map(tag => tag.Name);
+            console.log(selectedTags);
+            if (selectedTags.length === 0) {
+                this.oottDisplay = this.oottData;
+            } else {
+                this.oottDisplay = this.oottData.filter(item => {
+                    return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+                });
+            }
+        },
+        //取消篩選
+        CancelFilter() {
+            this.tagText.forEach(tag => {
+                tag.selected = false;
+            });
+            this.oottDisplay = this.oottData;
         },
     },
     computed: {},
     created() {
-        this.updateDisplay();
+        this.oottFilter();
     },
 };
 </script>
@@ -102,7 +123,13 @@ export default {
     @media (min-width: 768px) {
         padding-top: 200px;
     }
-
+    .no_result{
+        padding: 40px;
+        font-size: $sm_h4;
+        @media (min-width: 768px) {
+        font-size: $xl_h4;
+        }
+    }
     .breadcrumb {
         display: flex;
         align-items: center;
