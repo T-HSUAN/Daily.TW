@@ -170,26 +170,28 @@
                 <h2>有任何建議都<br>歡迎留言給我們</h2>
             </div>
             <div class="message_form">
-                <form @submit.prevent="handleSubmit" action="`${publicPath}phpfile/feedback.php`" method="post">
-                    <label for="user_name">
+                <form @submit="submitForm" method="post">
+                    <label for="feedback_name">
                         <span>姓名</span>
-                        <input v-model="userName" type="text" name="user_name" id="user_name" placeholder="請輸入姓名">
+                        <input v-model="feedback_name" type="text" name="feedback_name" id="feedback_name" placeholder="請輸入姓名">
                     </label><br>
-                    <label for="user_email">
+                    <label for="feedback_email">
                         <span>email</span>
-                        <input v-model="userEmail" type="text" name="user_email" id="user_email" placeholder="請輸入email">
+                        <input v-model="feedback_email" type="text" name="feedback_email" id="feedback_email" placeholder="請輸入email">
                     </label><br>
-                    <label for="user_title">
+                    <label for="feedback_subject">
                         <span>主旨</span>
-                        <input v-model="userTitle" type="text" name="user_title" id="user_title" placeholder="請輸入主旨">
+                        <input v-model="feedback_subject" type="text" name="feedback_subject" id="feedback_subject" placeholder="請輸入主旨">
                     </label><br>
-                    <label for="user_content">
+                    <label for="feedback_cont">
                         <span>內容說明</span>
-                        <textarea v-model="userContent" name="user_content" id="user_content" rows="9" @input="handleContentChange"></textarea>
-                        <span class="count_hint">{{ userContent.length }} / 限 200 字</span>
+                        <textarea v-model="feedback_cont" name="feedback_cont" id="feedback_cont" rows="9" @input="handleContentChange"></textarea>
+                        <span class="count_hint">{{ feedback_cont.length }} / 限 200 字</span>
                     </label>
+                    <div class="btn_wrap">
+                        <button type="submit" :disabled="!formValid" class="btn">送出</button>
+                    </div>
                 </form>
-                <button :disabled="!formValid" class="btn" @click="simulateSubmit">送出</button>
             </div>
         </div>
         <div v-if="showPopBox" class="about_popbox">
@@ -232,7 +234,7 @@
 </template>
 
 <script>
-import {GET} from '@/plugin/axios';
+import  axios  from "axios";
 import { defineComponent } from 'vue'
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
 
@@ -253,34 +255,61 @@ export default defineComponent({
             { src: require('@/assets/img/layout/about_pic3.png') }
         ],
 
-        userName: '',
-        userEmail: '',
-        userTitle: '',
-        userContent: '',
+        feedback_name: '',
+        feedback_email: '',
+        feedback_subject: '',
+        feedback_cont: '',
         showPopBox: false,
     }),
     computed: {
         formValid() {
             return (
-                this.userName.trim() !== '' &&
-                this.userEmail.trim() !== '' &&
-                this.userTitle.trim() !== '' &&
-                this.userContent.trim() !== '' &&
-                this.userContent.length <= 200
+                this.feedback_name.trim() !== '' &&
+                this.feedback_email.trim() !== '' &&
+                this.feedback_subject.trim() !== '' &&
+                this.feedback_cont.trim() !== '' &&
+                this.feedback_cont.length <= 200
             );
         },
     },
     methods: {
         handleContentChange() {
-        // Limit the number of characters in userContent to 200
-            if (this.userContent.length > 200) {
-                this.userContent = this.userContent.slice(0, 200);
+        // Limit the number of characters in feedback_cont to 200
+            if (this.feedback_cont.length > 200) {
+                this.feedback_cont = this.feedback_cont.slice(0, 200);
             }
         },
-        handleSubmit() {
+        resetForm() {
+            // Reset form fields' values
+            this.feedback_name = '';
+            this.feedback_email = '';
+            this.feedback_subject = '';
+            this.feedback_cont = '';
+        },
+        //用戶回饋新增進資料庫表格
+        async submitForm(event) {
+            event.preventDefault();
             if (this.formValid) {
                 // Form is valid, proceed with form submission logic
-                // ...
+                try {
+                    console.log('Sending request...');
+                    const formData = new FormData();
+                    formData.append('feedback_name', this.feedback_name);
+                    formData.append('feedback_email', this.feedback_email);
+                    formData.append('feedback_subject', this.feedback_subject);
+                    formData.append('feedback_cont', this.feedback_cont);
+
+                    const response = await axios.post(`${this.$URL}/AboutView.php`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data', // Use multipart/form-data for form data
+                        },
+                    });
+
+                    console.log('Data sent successfully', response.data);
+
+                } catch (error) {
+                    console.log(error);
+                }
 
                 // Show the popbox
                 this.showPopBox = true;
@@ -292,27 +321,7 @@ export default defineComponent({
                 // Reset form fields' values
                 this.resetForm();
             }
-        },
-        resetForm() {
-            // Reset form fields' values
-            this.userName = '';
-            this.userEmail = '';
-            this.userTitle = '';
-            this.userContent = '';
-        },
-        // 測試用，未進資料庫
-        simulateSubmit() {
-            this.handleSubmit();
-        },
-    },
-    mounted() {
-        GET(`${this.$URL}/feedback.php`)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        }
     },
 })
 </script>
@@ -937,11 +946,16 @@ export default defineComponent({
                         }
                     }
                 }
+                .btn_wrap{
+                    display: flex;
+                    justify-content: center;
+                    .btn {
+                        margin-top: $sp1;
+                    }
+                }
             }
 
-            .btn {
-                margin-top: $sp1;
-            }
+            
         }
     }
     .about_popbox{

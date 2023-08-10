@@ -14,10 +14,13 @@ try {
     $feedback->bindValue(":feedback_subject", $_POST["feedback_subject"]);
     $feedback->bindValue(":feedback_cont", $_POST["feedback_cont"]);
     $feedback->execute();
+	$msg = ["error" => false, "message" => "新增成功"];
 
 } catch (Exception $e) {
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	//echo "系統暫時不能正常運行，請稍後再試<br>";	
+	$message = "錯誤行號 : ". $e->getLine(). "錯誤原因 : ". $e->getMessage();
+    $msg = ["error" => true, "message" => $message]; 
 }
 ?>
