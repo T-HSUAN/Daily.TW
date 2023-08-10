@@ -19,14 +19,19 @@
         <!-- 標題 -->
         <h2>穿搭總覽</h2>
         <!-- 搜尋篩選欄 -->
-        <Searchbar :Filter="oottFilter" :tagTexts="tagText" @TagsFilter="TagsFilter" :CancelFilter="CancelFilter"/>
+        <Searchbar @Filters="Filters" :tagTexts="tagTexts" :ShowClear="ShowClear" :ClearFilter="ClearFilter">
+            <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
+        </Searchbar>
         <!-- 穿搭列表 -->
         <section class="list">
             <div class="oott_list" v-if="oottDisplay.length > 0">
                 <div class="oott_card" v-for="(item, index) in oottDisplay" :key="item.id">
                     <router-link :to="item.link" title="點擊查看穿搭詳情">
-                        <Oott :oottPhoto="item.img" :oottCardTags="item.tag" :oottCardDate="item.date"
-                            :oottAuthorPhoto="item.authorphoto" :oottCardAuthor="item.author" />
+                        <Oott 
+                        :oottPhoto="item.img" 
+                        :oottCardTags="item.tag" 
+                        :oottCardDate="item.date"
+                        :oottAuthorPhoto="item.authorphoto" :oottCardAuthor="item.author" />
                     </router-link>
                 </div>
             </div>
@@ -51,7 +56,7 @@ export default {
     data() {
         return {
             
-            tagText: [
+            tagTexts: [
                 { Name: "#運動" ,selected: false},
                 { Name: "#派對" ,selected: false},
                 { Name: "#日系" ,selected: false},
@@ -68,48 +73,39 @@ export default {
             // 從oottData抓取資料並呈現(進行搜尋篩選)
 
             oottDisplay: [],
-            //請自己更改標籤內容就可以
+            ShowClear: false,
         };
     },
     methods: {
-        //模糊搜尋
-        oottFilter() {
-            if (this.$store.state.filter.searchText === "") {
-                this.oottDisplay = this.oottData;
-            } else {
-                const regexText = this.$store.state.filter.searchText
-                    .split("")
-                    .join(".*");
-                const regex = new RegExp(regexText, "i");
-                this.oottDisplay = this.oottData.filter((item) =>
-                    regex.test(item.tag)
-                );
-            }
-        },
-        // 標籤篩選
-        TagsFilter() {
-            this.oottDisplay = [];
-            let selectedTags = this.tagText.filter(tag => tag.selected).map(tag => tag.Name);
-            console.log(selectedTags);
-            if (selectedTags.length === 0) {
-                this.oottDisplay = this.oottData;
-            } else {
-                this.oottDisplay = this.oottData.filter(item => {
-                    return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
-                });
-            }
-        },
-        //取消篩選
-        CancelFilter() {
-            this.tagText.forEach(tag => {
-                tag.selected = false;
+        Filters() {
+            const areaSelected = this.$store.state.filter.areaSelected;
+            const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+            const searchText = this.$store.state.filter.searchText;
+            this.oottDisplay = this.oottData.filter(item => {
+                // 地區篩選
+                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+
+                // 標籤篩選
+                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+
+                // 文字模糊搜索
+                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+
+                // 返回结果
+                return areaMatch && tagMatch && nameMatch;
             });
+        },
+        ClearFilter() {
+            this.$store.state.filter.areaSelected = "所有地區";
+            this.$store.state.filter.searchText = "";
+            this.tagTexts.forEach(tag => tag.selected = false);
+            console.log('[篩選]清除篩選');
             this.oottDisplay = this.oottData;
         },
     },
     computed: {},
     created() {
-        this.oottFilter();
+        this.oottDisplay = this.oottData;
     },
 };
 </script>
