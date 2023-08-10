@@ -61,6 +61,7 @@ library.add(faBookmark, farBookmark, faHeart, faCartShopping, faMagnifyingGlass,
 import { URL } from '@/assets/js/common.js'
 
 const app = createApp(App)
+const apiURL = 'http://localhost/DailyTW/public/phpfile/'
 app.config.globalProperties.$URL = URL;
 
 app.component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).use(firebase).mount("#app");
