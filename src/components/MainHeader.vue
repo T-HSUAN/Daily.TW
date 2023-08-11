@@ -168,6 +168,7 @@ export default {
             //登出
             this.$store.commit('setName', "登入/註冊");
             this.$store.commit('setIsLogin', false);
+            sessionStorage.removeItem("mem_id");
             this.$router.push("/");
         },
 
