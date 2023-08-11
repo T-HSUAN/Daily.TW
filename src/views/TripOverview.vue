@@ -39,6 +39,7 @@
     </div>
 </template>
 <script>
+import {GET} from '@/plugin/axios'
 import Searchbar from "@/components/Searchbar.vue";
 import Trip from "@/components/TripCard.vue";
 import tripData from "@/store/tripData.js";
@@ -88,7 +89,16 @@ export default {
         },
 
     },
-    computed: {},
+    mounted() {
+        GET(`${this.$URL}/tripOverview.php`)
+            .then((res) => {
+                console.log(res);
+                this.tripDataForUser = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
     created() {
         this.updateDisplay();
     },

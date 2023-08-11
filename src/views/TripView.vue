@@ -616,6 +616,7 @@
 </style>
 
 <script>
+import {GET} from '@/plugin/axios'
 import tripCard from '@/components/TripCard.vue'
 import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
 
@@ -636,7 +637,7 @@ export default {
             trips: [
                 {
                 title: '台中文青一日遊',
-                coverSrc: require('@/assets/img/index_trip_cover_example.png'),
+                coverSrc: require('@/assets/img/place/001.png'),
                 spots: [
                     { name: '屯區藝文中心' },
                     { name: '太平買菸場' },
@@ -646,7 +647,7 @@ export default {
                 },
                 {
                 title: '新竹懷舊之旅',
-                coverSrc: require('@/assets/img/index_trip_cover_example.png'),
+                coverSrc: require('@/assets/img/place/001.png'),
                 spots: [
                     { name: '合興車站' },
                     { name: '內灣愛情故事館' },
@@ -749,6 +750,16 @@ export default {
                 },
             ]
         }
+    },
+    mounted() {
+        GET(`${this.$URL}/trip.php`)
+            .then((res) => {
+                console.log(res);
+                this.tripDataForUser = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
     methods: {
 
