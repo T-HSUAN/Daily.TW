@@ -270,6 +270,7 @@ export default {
         ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
+        //接收前一頁的票券id
         console.log('Received id:', this.$route.params.id);
         const id = parseInt(this.$route.params.id);
         this.ticketInfo = this.getTicketContent(id);
