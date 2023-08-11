@@ -176,16 +176,19 @@ export default {
                 params.append("email", this.email);
                 //"email"跟login.php的$email = $_POST["email"]; 做呼應
                 params.append("psw", this.psw);
+                
                 POST(url,params).then((res) => {
-                    console.log(res)
+                    // console.log(res)
                     if (res == 0) {
                         alert("*帳號密碼錯誤，請再試一次");
                         // this.errMsg = '*帳號密碼錯誤，請再試一次'
                     } else {
-                        this.$store.commit("setName", res.data);
+                        this.$store.commit("setName", res);
                         this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
                         window.alert("登入成功");
                         this.$router.push('/');
+
+                        this.$store.commit("setLoginData", res);
 
                         // this.$emit("close");
                         this.email = ''
@@ -248,15 +251,15 @@ export default {
             this.$router.push('/signup');
         }
     },
-    mounted() {
-        GET(`${this.$URL}/login.php`)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    },
+    // mounted() {
+    //     GET(`${this.$URL}/login.php`)
+    //         .then((res) => {
+    //             console.log(res);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // },
     // 抓 php 資料
     // mounted() {
     //         // 設定要執行的操作，這裡是取得資料

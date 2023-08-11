@@ -16,6 +16,7 @@ export default createStore({
         selectAll: false,//購物車全選
         name: '登入/註冊',
         isLogin: false,
+        useInfo:[],
     },
     getters: {
         cartItems: state => state.cartItems,
@@ -112,6 +113,9 @@ export default createStore({
         },
         setIsLogin(state, value) {
             state.isLogin = value;
+        },
+        setLoginData(state, data){
+            state.useInfo = data
         },
         
     },
