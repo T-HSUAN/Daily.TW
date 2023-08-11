@@ -16,7 +16,7 @@ export default createStore({
         selectAll: false,//購物車全選
         name: '登入/註冊',
         isLogin: false,
-        useInfo:[],
+        
     },
     getters: {
         cartItems: state => state.cartItems,
@@ -114,9 +114,27 @@ export default createStore({
         setIsLogin(state, value) {
             state.isLogin = value;
         },
-        setLoginData(state, data){
-            state.useInfo = data
+        //接收回傳的使用者資訊
+        setLoginData(state, userInfo){
+            state.userInfo = userInfo
+            sessionStorage.setItem("mem_id", userInfo.mem_id);
+            state.isLogin = true
         },
+        logOut(state) {
+            state.isLogin = false
+            sessionStorage.removeItem("mem_id")
+        },
+        //後端資料
+        // setUserInfo(state, userInfo) {
+        //     sessionStorage.setItem("cus_no", userInfo.cus_no);
+        //     state.memberInfoAll.info = userInfo
+        //     state.isLogin = true
+        // },
+        // sendMemDetail(state, data) {
+        //     state.memberInfoAll.shop = data[0]
+        //     state.memberInfoAll.giftcard = data[1]
+        //     state.memberInfoAll.share = data[2]
+        // }
         
     },
     actions: {

@@ -71,6 +71,9 @@
     </header>
 </template>
 <script>
+
+import { POST } from '../plugin/axios.js';
+
 export default {
     data() {
         return {
@@ -111,13 +114,6 @@ export default {
                     display: "none",
                 },
 
-                // {
-                //     id: 6,
-                //     name: "登入|註冊",
-                //     link: "login",
-                //     img: "flag_login-reg",
-                //     display: "none",
-                // },
             ],
             LOGO: {
                 sidebar: require('@/assets/img/layout/sidebar_logo.svg'),
@@ -164,13 +160,38 @@ export default {
         toggleUser() {
             this.$router.push({ path: "/member" });
         },
-        handleLogout() {
-            //登出
+        //登出
+        handleLogout() {   
             this.$store.commit('setName', "登入/註冊");
             this.$store.commit('setIsLogin', false);
             sessionStorage.removeItem("mem_id");
             this.$router.push("/");
+            setTimeout(()=>{
+                this.$router.go(0);
+
+            },10)
         },
+        
+        //檢查登入狀態
+        checkLogin() {
+            let memId = sessionStorage.getItem("mem_id");
+            console.log(memId);
+
+            if (memId) {
+
+                let URL = `${this.$URL}/sessionLogin.php`;
+                let params = new FormData();
+                params.append("mem_id", memId);
+                POST(URL, params).then((res) => {
+                    console.log(res);
+                     this.$store.commit("setLoginData", res);
+                });
+            } else {
+                this.$store.commit('logOut');
+            }
+        },
+
+        
 
     },
     computed: {
@@ -183,6 +204,8 @@ export default {
         window.addEventListener('resize', this.Resize);
         window.addEventListener("scroll", this.scrollDown);
         this.scrollDown();
+
+        this.checkLogin();
     },
     beforeUnmount() {
         window.removeEventListener('resize', this.Resize);

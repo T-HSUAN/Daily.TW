@@ -30,6 +30,27 @@ window.addEventListener("beforeunload", () => {
     sessionStorage.setItem(FINAL_CART_ITEMS_KEY, finalCartItems);
 });
 
+
+// // 登入者:在創建 Vue app 之前，先將 sessionStorage 的資料還原到 Vuex store 中
+// const USER_KEY = "StoreUserData"; // 作為 localStorage 的 key
+// const FINAL_USER_ITEMS_KEY = "FinalUser";
+// const storedUser = sessionStorage.getItem(USER_KEY);
+// const storedfinalUser = sessionStorage.getItem(FINAL_USER_ITEMS_KEY);
+
+// if (storedUser) {
+//     store.commit("restoreUser", JSON.parse(storedUser));
+// }
+// if (storedfinalUser) {
+//     store.commit("storedfinalUser", JSON.parse(storedfinalUser));
+// }
+// // 使用者:在網頁重整前將購物車資料存入 sessionStorage
+// window.addEventListener("beforeunload", () => {
+//     const User = JSON.stringify(store.state.User);
+//     const finalUser = JSON.stringify(store.state.finalUser);
+//     sessionStorage.setItem(USER_KEY, User);
+//     sessionStorage.setItem(FINAL_USER_ITEMS_KEY, finalUser);
+// });
+
 // package
 
 /* import the fontawesome core */

@@ -60,7 +60,6 @@
     </section>
 </template>
 <script>
-import { GET } from '../plugin/axios.js';
 import { POST } from '../plugin/axios.js';
 
 import axios from "axios";
@@ -95,23 +94,6 @@ export default {
         // validatePassword() {
         //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
         //     this.isPasswordValid = regex.test(this.psw);
-        // },
-        // login() {
-        //     // if (this.isEmailValid && this.isPasswordValid) {
-        //     if (this.email === "test123" && this.psw === "test123") {
-        //         window.alert("登入成功");
-        //         this.$store.commit('setName', this.email); 
-        //         this.$store.commit('setIsLogin', true);
-        //         this.$router.push({ path: "/" });
-        //     } else {
-        //         window.alert("帳號或密碼錯誤，請重新登入");
-        //         // this.$router.replace({ path: "/login" });
-        //     }
-
-        // }
-        // },
-        //     closeModal() {
-        //   this.$emit("emit-status");
         // },
         forgetpsw() {
             this.$router.push('/forget_psw');
@@ -204,91 +186,13 @@ export default {
             }
         },
 
-        // =================
-
-
-
-
-        // login() {
-        //     if (this.email !== "" && this.psw !== "") {
-        //         // 创建需要 POST 的数据对象
-        //         const postData = {
-        //             email: this.email,
-        //             psw: this.psw
-        //         };
-
-        //         // 发送 POST 请求
-        //         axios.post(`${this.$URL}login.php`, postData)
-        //             .then((response) => {
-        //                 const data = response.data;
-        //                 if (data === 0) {
-        //                     // 帐号或密码错误
-        //                     this.errMsg = '*帐号密码错误，请再试一次';
-        //                 } else {
-        //                     // 登录成功
-        //                     this.$store.commit("setName", data.mem_name);
-        //                     this.$store.commit('setIsLogin', true);
-        //                     window.alert("登录成功");
-        //                     this.$router.push('/');
-        //                 }
-        //             })
-        //             .catch((error) => {
-        //                 console.log(error);
-        //                 // 处理错误
-        //             });
-        //     } else {
-        //         // 处理未输入帐号或密码的情况
-        //         alert('帐号和密码不能为空');
-        //     }
-        // },
-
-
-
-
 
 
         changeRegister() {
             this.$router.push('/signup');
         }
     },
-    // mounted() {
-    //     GET(`${this.$URL}/login.php`)
-    //         .then((res) => {
-    //             console.log(res);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // },
-    // 抓 php 資料
-    // mounted() {
-    //         // 設定要執行的操作，這裡是取得資料
-    //         axios
-    //         .get(`${URL}/login.php`)
-    //         .then((response) => {
-    //             this.dataFromMySQL = response.data;
-
-    //             // 打印取得的資料以確認是否成功
-    //             console.log("Data retrieved from MySQL:", this.dataFromMySQL);
-    //         })
-    //         .catch((error) => {
-    //             console.error("There was an error fetching the data:", error);
-    //         });
-    //     },
-
-
-    // async mounted() {
-    //     // this.login();
-    // //     GET(`${this.$URL}/login.php`)
-    // //         .then((res) => {
-    // //             this.loginData=res;
-    // //         })
-    // //         .catch((err) => {
-    // //             console.log(err);
-    // //         })
-    // const res = await axios.get(`${this.$URL}/login.php`)
-    // // console.log(res)
-    // },
+    
 }
 </script>
   

@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import TicketInfo from "@/views/TicketInfo.vue";
+import store from '@/store/index'
+
 
 const routesUser = [
     {//首頁
@@ -119,6 +121,13 @@ const routesUser = [
         name: "login",
         component: () =>
             import(/* webpackChunkName: "login" */ "@/views/LoginView.vue"),
+        beforeEnter: () => {
+            console.log('login');
+            console.log(store.state.isLogin)
+            // if(store.state.isLogin === true){
+            //     return {name:'home'}
+            // }
+        },
     },
     {
         path: "/forget_psw",
@@ -218,6 +227,8 @@ const routesUser = [
     },
 
 ];
+
+
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),

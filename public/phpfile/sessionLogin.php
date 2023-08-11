@@ -6,8 +6,8 @@ header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 try{
     require_once("connectDailyTW.php");
     
-    // $memid = $_POST["mem_id"];
-    $memid = 1;
+    $memid = $_POST["mem_id"];
+    // $memid = 1;
     
         $sql = "select mem_id, mem_name, mem_email, mem_nickname, mem_birth, mem_sex,
 		mem_img, mem_phone, mem_psw, mem_status

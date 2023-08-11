@@ -28,6 +28,12 @@
 			echo json_encode([0]);
 		}else{
 			$memberRow = $member->fetch(PDO::FETCH_ASSOC);
+			// 登入成功，將登入者的資料寫入session
+			session_start();
+			$_SESSION["mem_id"] = $memberRow["mem_id"];
+			$_SESSION["mem_psw"] = $memberRow["mem_psw"];
+			$_SESSION["mem_email"] = $memberRow["mem_email"];
+			$_SESSION["mem_birth"] = $memberRow["mem_birth"];
 			echo json_encode($memberRow);	
 		}
 		
