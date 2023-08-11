@@ -149,7 +149,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import {GET} from '@/plugin/axios';
 import oottCard from "@/components/OottCard.vue";
 import ticketCard from "@/components/TicketVertical.vue";
 import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
@@ -181,7 +181,7 @@ export default {
             trips: [
                 {
                 title: '台中文青一日遊',
-                coverSrc: require('@/assets/img/index_trip_cover_example.png'),
+                coverSrc: require('@/assets/img/place/001.png'),
                 spots: [
                     { name: '屯區藝文中心' },
                     { name: '太平買菸場' },
@@ -362,8 +362,19 @@ export default {
             ],
         };
     },
+    mounted() {
+        GET(`${this.$URL}/home.php`)
+            .then((res) => {
+                console.log(res);
+                this.tripDataForUser = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
 };
 </script>
+
 
 <style lang="scss">
 @import "@/assets/scss/baseAndMixin.scss";

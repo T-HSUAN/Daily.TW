@@ -797,6 +797,7 @@
 
 
 <script>
+import {GET} from '@/plugin/axios'
 import oottCard from '@/components/OottCard.vue'
 import ticketCard from '@/components/TicketVertical.vue'
 import tripCard from '@/components/TripCard.vue'
