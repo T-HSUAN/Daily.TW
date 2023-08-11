@@ -12,12 +12,12 @@
         </Searchbar>
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
-            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
+            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.ticket_id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
-                    <Ticket :ticketPhoto="item.img" :ticketTitle="item.Name" :ticketLocation="item.location"
-                        :ticketTags="item.tag" :originalPrice="item.price_adultO" :FinalPrice="item.price_adultF"
-                        :discountTag="item.discount" />
+                    <Ticket :ticketPhoto="item.img" :ticketTitle="item.ticket_name" :ticketLocation="item.location"
+                        :ticketTags="item.ticket_tag" :originalPrice="item.price_adultO" :FinalPrice="item.ticket_adult"
+                        :discountTag="item.ticket_discount" />
                 </router-link>
                 <div class="add_cart">
                     <button class="btn" @click="createItem(index)">
@@ -108,8 +108,9 @@
 import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import { mapActions, mapGetters } from 'vuex';
-import ticketData from "@/store/ticketData.js";
+// import ticketData from "@/store/ticketData.js";
 import swal from "sweetalert";
+import axios from 'axios';
 export default {
     components: {
         Searchbar,
@@ -138,7 +139,7 @@ export default {
                 style: require("@/assets/img/layout/ticketVertical.svg"),
             },
             // 商品資料(僅在進入畫面時去取一次資料)
-            ticketData: ticketData,
+            // ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
             ShowClear: false,
@@ -149,6 +150,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['fetchTicketData', 'addToCart', 'removeFromCart', 'Subtotal']),
         Filters() {
             const areaSelected = this.$store.state.filter.areaSelected;
             const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
@@ -230,7 +232,6 @@ export default {
             console.log('[篩選]清除篩選');
             this.ticketDisplay = this.ticketData;
         },
-        ...mapActions(['addToCart', 'removeFromCart', 'Subtotal']),
         // switch購物車
         switchCart() {
             this.switchPage = !this.switchPage;
@@ -262,6 +263,7 @@ export default {
         },
     },
     computed: {
+        ...mapGetters(['ticketData', 'cartItems', 'totalPrice']),
         ShowClear() {
             if (this.ticketDisplay != this.ticketData) {
                 console.log(this.ticketDisplay);
@@ -270,10 +272,12 @@ export default {
                 return false;
             }
         },
-        ...mapGetters(['cartItems', 'totalPrice']),
     },
     created() {
         this.ticketDisplay = this.ticketData;
+    },
+    mounted() {
+        this.fetchTicketData();// 调用 Vuex 的 fetchTicketData action
     },
 };
 </script>

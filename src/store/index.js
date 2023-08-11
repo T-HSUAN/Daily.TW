@@ -1,8 +1,10 @@
 import { createStore } from "vuex";
+import axios from 'axios';
 import { URL } from "@/assets/js/common.js";
 
 export default createStore({
     state: {
+        ticketData: [],
         area: ["所有地區", "新北", "臺北", "基隆", "桃園", "新竹", "苗栗", "臺中", "彰化", "雲林", "嘉義", "南投", "臺南", "高雄", "屏東", "宜蘭", "花蓮", "臺東", "澎湖", "金門", "馬祖",
         ],
         // 篩選內容(各自設定不同名稱，不要共用)
@@ -18,6 +20,7 @@ export default createStore({
         isLogin: false,
     },
     getters: {
+        ticketData: state => state.ticketData,
         cartItems: state => state.cartItems,
         totalPrice: state => {
             // 計算 totalPrice，當 cartItems 數據發生變化時，totalPrice 會自動重新計算
@@ -42,6 +45,9 @@ export default createStore({
         },
     },
     mutations: {
+        SET_TICKET_DATA(state, data) {
+            state.ticketData = data;
+        },
         addToCart(state, cartItem) {
             // 檢查票券是否已經在購物車中，如果不在，則添加到購物車
             const CartItemInCart = state.cartItems.some(item => item.id === cartItem.id);
@@ -100,6 +106,10 @@ export default createStore({
         updateFinalCartItems(state, finalCartItems) {
             state.finalCartItems = finalCartItems;
         },
+        restoreTicketData(state, ticketData) {
+            // 還原票券資料
+            state.ticketData = ticketData;
+        },
         restoreCartItems(state, cartItems) {
             // 還原購物車資料
             state.cartItems = cartItems;
@@ -113,9 +123,19 @@ export default createStore({
         setIsLogin(state, value) {
             state.isLogin = value;
         },
-        
+
     },
     actions: {
+        fetchTicketData({ commit }) {
+            axios.get('http://localhost/DailyTW_Backstage/public/phpfile/TicketList.php')
+                .then(response => {
+                    commit('SET_TICKET_DATA', response.data);
+                    console.log('[store]成功連接ticketdata:', this.state.ticketData);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        },
         addToCart({ commit }, cartItem) {
             commit('addToCart', cartItem);
         },
