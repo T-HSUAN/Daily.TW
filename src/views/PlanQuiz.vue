@@ -35,7 +35,7 @@
                 <div class="select_box">
                     <span>* 請選擇1~3個</span>
                     <Select v-model="selectValue" multiple @on-select="changeTag">
-                        <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <Option v-for="(item, index) in cityList" :value="item.region_name" :key="index">{{ item.region_name }}</Option>
                     </Select>
                 </div>
             </div>
@@ -58,11 +58,11 @@
                 <div class="tags_container">
                     <span class="hint">* 請選擇至少3個</span>
                     <div class="tags_wrap">
-                        <label v-for="(placeTag, index) in placeTags" :key="placeTag.index">
+                        <label v-for="(placeTag, index) in placeTags" :key="index">
                             <input type="checkbox" class="tag" 
-                            :id="`placeTag-${index}`" v-model="checkedPlaceTags[index]"
+                            v-model="checkedPlaceTags[index]"
                             @change="handleTagsChange('place',index)"/>
-                            <span># {{ placeTag }}</span>
+                            <span># {{ placeTag.place_tag_name }}</span>
                         </label>
                     </div>
                 </div>
@@ -96,11 +96,11 @@
                         <span>* 請選擇1個</span>
                     </div>
                     <div class="tags_wrap">
-                        <label v-for="(sexTag, index) in sexTags" :key="sexTag.index">
-                            <input type="checkbox" class="tag" :id="`seasonTag-${index}`" 
+                        <label v-for="(sexTag, index) in sexTags" :key="index">
+                            <input type="checkbox" class="tag" 
                             v-model="checkedSexTag[index]"
                             @change="handleTagsChange('sex', index)"/>
-                            <span># {{ sexTag }}</span>
+                            <span># {{ sexTag.label }}</span>
                         </label>
                     </div>
                 </div>
@@ -113,11 +113,11 @@
                         <span>* 請選擇至少3個</span>
                     </div>
                     <div class="tags_wrap">
-                        <label v-for="(styleTag, index) in styleTags" :key="styleTag.index">
-                            <input type="checkbox" class="tag" :id="`styleTag-${index}`"
+                        <label v-for="(styleTag, index) in styleTags" :key="index">
+                            <input type="checkbox" class="tag"
                             v-model="checkedStyleTags[index]"
                             @change="handleTagsChange('style', index)"/>
-                            <span># {{ styleTag }}</span>
+                            <span># {{ styleTag.style_name }}</span>
                         </label>
                     </div>
                 </div>
@@ -154,96 +154,30 @@
 </template>
     
 <script>
+import { GET } from '@/plugin/axios';
+
 export default {
     data() {
         return {
             currentQuestionIndex: 0,
-            cityList: [
-                {
-                    value: 'taipei',
-                    label: '台北'
-                },
-                {
-                    value: 'newtaipei',
-                    label: '新北'
-                },
-                {
-                    value: 'keelung',
-                    label: '基隆'
-                },
-                {
-                    value: 'yilan',
-                    label: '宜蘭'
-                },
-                {
-                    value: 'taoyuan',
-                    label: '桃園'
-                },
-                {
-                    value: 'hsinchu',
-                    label: '新竹'
-                },
-                {
-                    value: 'miaoli',
-                    label: '苗栗'
-                },
-                {
-                    value: 'taichung',
-                    label: '台中'
-                },
-                {
-                    value: 'changhua',
-                    label: '彰化'
-                },
-                {
-                    value: 'nantou',
-                    label: '南投'
-                },
-                {
-                    value: 'yunlin',
-                    label: '雲林'
-                },
-                {
-                    value: 'chiayi',
-                    label: '嘉義'
-                },
-                {
-                    value: 'tainan',
-                    label: '台南'
-                },
-                {
-                    value: 'kaohsiung',
-                    label: '高雄'
-                },
-                {
-                    value: 'pingtung',
-                    label: '屏東'
-                },
-                {
-                    value: 'hualien',
-                    label: '花蓮'
-                },
-                {
-                    value: 'taitung',
-                    label: '台東'
-                },
-                {
-                    value: 'kinmen',
-                    label: '金門'
-                },
-                {
-                    value: 'matsu',
-                    label: '馬祖'
-                },
-                {
-                    value: 'penghu',
-                    label: '澎湖'
-                }
-            ],
+            cityList: [],
             selectValue: [],
-            placeTags: ["親子", "情侶", "小資", "風景", "山林", "海邊", "樂園", "農場", "藝文", "放鬆","懷舊"],
-            sexTags: ["男裝", "女裝", "不限"],
-            styleTags: ["日系", "韓系", "美式", "中性", "休閒", "簡約", "復古", "文青", "運動", "潮流", "街頭", "性感", "甜美", "可愛", "氣質"],
+            placeTags: [],
+            sexTags: [
+                {
+                    value: '男',
+                    label: '男裝'
+                },
+                {
+                    value: '女',
+                    label: '女裝'
+                },
+                {
+                    value: '',
+                    label: '不限'
+                },
+            ],
+            styleTags: [],
             checkedPlaceTags :[],
             checkedSexTag :[],
             checkedStyleTags :[],
@@ -259,7 +193,7 @@ export default {
             } else if (this.currentQuestionIndex === 1) {
                 return this.countCheckedTags(this.checkedPlaceTags) < 3;
             } else if (this.currentQuestionIndex === 2) {
-                return this.countCheckedTags(this.checkedStyleTags) < 3;
+                return this.countCheckedTags(this.checkedSexTag) < 1 || this.countCheckedTags(this.checkedStyleTags) < 3;
             }
         },
     },
@@ -327,6 +261,32 @@ export default {
             }
             this.$router.push('/plan_result');
         },
+    },
+    mounted() {
+        GET(`${this.$URL}/PlanQuizRegion.php`)
+            .then((res) => {
+                console.log(res);
+                this.cityList = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        GET(`${this.$URL}/PlanQuizPlaceTag.php`)
+            .then((res) => {
+                console.log(res);
+                this.placeTags = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        GET(`${this.$URL}/PlanQuizStyle.php`)
+            .then((res) => {
+                console.log(res);
+                this.styleTags = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
 };
 </script>
@@ -582,7 +542,7 @@ export default {
         }
 
         .btn {
-            margin-bottom: $sp12;
+            margin-bottom: 128px;
             position: relative;
 
             img {
