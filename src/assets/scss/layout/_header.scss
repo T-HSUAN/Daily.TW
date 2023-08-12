@@ -47,7 +47,8 @@ header {
             transition: right .5s ease-in-out;
 
             ul {
-                margin-top: 136px;
+                // margin-top: 136px;
+                margin-top: 76px;
 
                 a {
                     li {
@@ -64,11 +65,13 @@ header {
                             color: $default_yellow;
                         }
                     }
+
+                    
                 }
                 // 登入後顯示
                 div{
                     div{
-                        margin: $sp1 0;
+                        // margin: $sp1 0;
                         text-align: center;
                         color: $textColor_default;
                         cursor: pointer;
@@ -83,25 +86,17 @@ header {
                         }
                     }
                 }
-                // 未登入狀態
+                //未登入顯示
                 // div{
-                //     a {
-                //         li {
-                //             margin: $sp3 0;
-                //             color: $textColor_default;
-                            
-                //             &:hover {
-                //                 color: $default_yellow;
-                //             }
-                //         }
-                        
-                //         &.router-link-exact-active {
-                //             li {
-                //                 color: $default_yellow;
-                //             }
+                //     a{
+                //         li{
+                //             // text-align: center;
+                //             margin: 0 auto;
+                //             background-color: black;
                 //         }
                 //     }
                 // }
+                
             }
             
 
@@ -161,7 +156,7 @@ header {
                     div{
                         div{
                             display: inline-block;
-                            // margin: 0 9px;
+                            margin: 0 $sp1;
                             font-size: 20px;
                             color: $textColor_default;
                             cursor: pointer;
@@ -176,28 +171,7 @@ header {
                             }
                         }
                     }
-                    // 未登入狀態
-                    // div{
-                    //     a {
-                    //     li {
-                    //         margin: 0 9px;
-                    //         font-size: 16px;
-                    //         color: $textColor_default;
-
-                    //         &:hover {
-                    //             color: $default_yellow;
-                    //         }
-
-                    //         &.router-link-exact-active {
-                    //             li {
-                    //                 color: $default_yellow;
-                    //             }
-                    //         }
-                    //     }
-
-                    // }
-                        
-                    // }
+                    
                 }
             }
 

@@ -15,16 +15,17 @@
                     </router-link>
                     <!-- 登入後顯示 -->
                     <div v-if="isLogin">
-                        <div @click="toggleUser">
-                            會員中心,
-                        </div>
+                        <router-link to="/member" @click="toggleSidebar">
+                            <li>會員中心</li>
+                        </router-link>
+
                         <div @click="handleLogout">
                             登出
                         </div>
                     </div>
                     <!-- 未登入狀態 -->
                     <div v-else>
-                        <router-link to="/login">
+                        <router-link to="/login" @click="toggleSidebar">
                             <li>{{ $store.state.name }}</li>
                         </router-link>
                     </div>
@@ -34,6 +35,7 @@
                 </router-link>
             </nav>
         </div>
+
         <!-- desktop -->
         <div :class="['header_desktop', { 'header_short': changeHeight }]" v-if="screenWidth > 767">
             <!-- logo_xl &home_link -->
@@ -49,15 +51,16 @@
                     <!-- 登入後顯示 -->
                     <div v-if="isLogin">
                         <div @click="toggleUser">
-                            會員中心,
+                            會員中心
                         </div>
-                        <div @click="handleLogout">
+                        <span class="separate">|</span>
+                        <div  @click="handleLogout">
                             登出
                         </div>
                     </div>
                     <!-- 未登入狀態 -->
                     <div v-else>
-                        <router-link to="/login">
+                        <router-link to="/login" @click="toggleSidebar">
                             <li>{{ $store.state.name }}</li>
                         </router-link>
                     </div>
@@ -158,11 +161,13 @@ export default {
             }
         },
         toggleUser() {
+            this.showSidebar = !this.showSidebar;
             this.$router.push({ path: "/member" });
         },
         //登出
-        handleLogout() {   
-            this.$store.commit('setName', "登入/註冊");
+        handleLogout() {  
+            this.showSidebar = !this.showSidebar; 
+            this.$store.commit('setName', "登入|註冊");
             this.$store.commit('setIsLogin', false);
             sessionStorage.removeItem("mem_id");
             this.$router.push("/");
@@ -171,6 +176,7 @@ export default {
 
             },10)
         },
+        
         
         //檢查登入狀態
         checkLogin() {
@@ -216,4 +222,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 // @import "@/assets/scss/baseAndMixin.scss";
+
 </style>
