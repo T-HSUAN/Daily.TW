@@ -16,7 +16,7 @@ export default createStore({
         cartItems: [],//購物車
         finalCartItems: [], // 最終購物明細清單
         selectAll: false,//購物車全選
-        name: '登入/註冊',
+        name: '登入 | 註冊',
         isLogin: false,
 
     },
