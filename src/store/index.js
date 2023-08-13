@@ -18,6 +18,9 @@ export default createStore({
         selectAll: false,//購物車全選
         name: '登入 | 註冊',
         isLogin: false,
+        memberInfoAll: { info: '' },
+        sign_email:'',
+        sign_psw:'',
 
     },
     getters: {
@@ -127,6 +130,7 @@ export default createStore({
         //接收回傳的使用者資訊
         setLoginData(state, userInfo) {
             state.userInfo = userInfo
+            // state.memberInfoAll.info = userInfo
             sessionStorage.setItem("mem_id", userInfo.mem_id);
             state.isLogin = true
         },
@@ -134,6 +138,18 @@ export default createStore({
             state.isLogin = false
             sessionStorage.removeItem("mem_id")
         },
+        setLoginData(state, userInfo) {
+            state.userInfo = userInfo
+            // state.memberInfoAll.info = userInfo
+            sessionStorage.setItem("mem_id", userInfo.mem_id);
+            state.isLogin = true
+        },
+        setAccount(state, account) {
+            state.sign_email = account;
+          },
+          setPassword(state, password) {
+            state.sign_psw = password;
+          },
         //後端資料
         // setUserInfo(state, userInfo) {
         //     sessionStorage.setItem("cus_no", userInfo.cus_no);
@@ -182,6 +198,12 @@ export default createStore({
                 commit('updateItemCount', item);
             }
         },
+        updateAccount({ commit }, account) {
+            commit('setAccount', account);
+          },
+          updatePassword({ commit }, password) {
+            commit('setPassword', password);
+          },
     },
     modules: {},
 });
