@@ -7,6 +7,10 @@
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
             <h2>加入旅著</h2>
+
+            <form class="form" 
+            method="post" 
+            @submit="submitForm">
             <div class="photo_group">
                 <div class="member_img">
                     <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
@@ -20,60 +24,98 @@
             
         </div> -->
         
-            <form class="form">
-                <div v-for="(item, index) in tabItems" :key="index">
-                    <label :for="'member-' + index">{{ item.text }}</label>
-                    <input ref="inputEls" type="text" v-model="inputValues[index]" :placeholder="item.placeholder"
-                        :id="'member-' + index" />
+            
+                    <label for="sign_email">Email</label>
+                    <input type="text" v-model="sign_email"
+                    placeholder="請輸入EMAIL"
+                    id="sign_email"
+                    name="sign_email"
+                    required
+                    readonly>
+                    <label for="sign_psw">密碼</label>
+                    <input type="password" v-model="sign_psw"
+                    placeholder="請輸入密碼"
+                    id="sign_psw"
+                    required
+                    readonly>
+                    <label for="repeat_psw">確認密碼</label>
+                    <input type="password" v-model="repeat_psw"
+                    placeholder="請在輸入一次密碼"
+                    id="repeat_psw"
+                    name="repeat_psw"
+                    required>
+                    <label for="sign_name">姓名</label>
+                    <input type="text" v-model="sign_name"
+                    placeholder="請輸入姓名"
+                    id="sign_name"
+                    name="sign_name"
+                    required>
+                    <label for="sign_nickname">暱稱</label>
+                    <input type="text" v-model="sign_nickname"
+                    placeholder="請輸入暱稱"
+                    id="sign_nickname"
+                    name="sign_nickname"
+                    required>
+
+                    
+                    <label for="year">生日</label>
+                    <div class="date_group">
+                        <select v-model="selectedYear" @change="onYearChange" id="year">
+                            <option v-for="(year, index) in yearList" :key="index" :value="year">
+                                {{ year }}
+                            </option>
+                        </select>
+                        <select v-model="selectedMonth" @change="onMonthChange" id="month">
+                            <option v-for="(month, index) in monthList" :key="index" :value="month">
+                                {{ month }}
+                            </option>
+                        </select>
+                        <select v-model="selectedDate" @change="onDayChange" id="selectDate">
+                            <option v-for="(date, index) in dateList" :key="index" :value="date">
+                                {{ date }}
+                            </option>
+                        </select>
+                    </div>
+                    <label for="gender">性別</label>
+                    <div class="gender_group">
+                        <label class="checkbox_container" @click="toggleCheckbox('isMan')">
+                            <input type="checkbox" v-model="isMan" class="myCheckbox">
+                            <span class="checkmark"></span>
+                            <span class="content">男</span>
+                        </label>
+                        <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
+                            <input type="checkbox" v-model="isWomen" class="myCheckbox">
+                            <span class="checkmark"></span>
+                            <span class="content">女</span>
+                        </label>
+                        <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
+                            <input type="checkbox" v-model="isSecret" class="myCheckbox">
+                            <span class="checkmark"></span>
+                            <span class="content">不告訴你</span>
+                        </label>
+                    </div>
+                    <label for="sign_phone">電話</label>
+                    <input type="text" v-model="sign_phone"
+                     @input="filterNonNumeric" 
+                     placeholder="請輸入電話"
+                     id="sign_phone"
+                     name="sign_phone"
+                     >
+                    <div class="btn_group">
+                    <button  class="cancel_btn" @click="canceldata">
+                        取消
+                    </button>
+                    <button class="btn"
+                    type="submit" 
+                    :disabled="!formValid" 
+                    >
+                        註冊
+                    </button>
+                    <!-- @click="ConfirmRegistration" -->
                 </div>
-                <label for="year">生日</label>
-                <div class="date_group">
-                    <select v-model="selectedYear" @change="onYearChange" id="year">
-                        <option v-for="(year, index) in yearList" :key="index" :value="year">
-                            {{ year }}
-                        </option>
-                    </select>
-                    <select v-model="selectedMonth" @change="onMonthChange" id="month">
-                        <option v-for="(month, index) in monthList" :key="index" :value="month">
-                            {{ month }}
-                        </option>
-                    </select>
-                    <select v-model="selectedDate" @change="onDayChange" id="selectDate">
-                        <option v-for="(date, index) in dateList" :key="index" :value="date">
-                            {{ date }}
-                        </option>
-                    </select>
-                </div>
-                <label for="gender">性別</label>
-                <div class="gender_group">
-                    <label class="checkbox_container" @click="toggleCheckbox('isMan')">
-                        <input type="checkbox" v-model="isMan" class="myCheckbox">
-                        <span class="checkmark"></span>
-                        <span class="content">男</span>
-                    </label>
-                    <label class="checkbox_container" @click="toggleCheckbox('isWomen')">
-                        <input type="checkbox" v-model="isWomen" class="myCheckbox">
-                        <span class="checkmark"></span>
-                        <span class="content">女</span>
-                    </label>
-                    <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
-                        <input type="checkbox" v-model="isSecret" class="myCheckbox">
-                        <span class="checkmark"></span>
-                        <span class="content">不告訴你</span>
-                    </label>
-                </div>
-                <label for="phone">電話</label>
-                <input type="text" v-model="phone" @input="filterNonNumeric" placeholder="請輸入電話">
-            </form>
-            <div class="btn_group">
-                <button  class="cancel_btn" @click="canceldata">
-                    取消
-                </button>
-                <button class="btn" @click="showPopbox">
-                    註冊
-                </button>
-            </div>
-            <div class="member_sm" v-if="isPopBoxVisible">
+                </form>
+            
+            <!-- <div class="member_sm" v-if="isPopBoxVisible">
                 <div class="block">
                     <div class="pic">
                         <img src="~@/assets/img/popbox_check.svg" alt="">
@@ -81,7 +123,7 @@
                     </div>
                     <button class="btn" @click="redirectToOtherPage">確定</button>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </section>
@@ -89,32 +131,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { POST } from '../plugin/axios.js';
+
+import  axios  from "axios";
+
 export default {
     data() {
         return {
-            tabItems: {
-                1: {
-                    text: 'Email',
-                    placeholder: '請輸入EMAIL'
-                },
-                2: {
-                    text: '密碼',
-                    placeholder: '英數混合6-12碼'
-                },
-                3: {
-                    text: '確認密碼',
-                    placeholder: '請再輸入一次密碼'
-                },
-                4: {
-                    text: '姓名',
-                    placeholder: '請輸入姓名'
-                },
-                5: {
-                    text: '暱稱',
-                    placeholder: '請輸入暱稱'
-                },
-            },
-            inputValues: ['', '', '', '', ''],
+            
             member: '',
             selectedYear: '', // 用於存儲選擇的年份值
             yearList: [], // 用於存儲年份選項的數組
@@ -129,12 +154,29 @@ export default {
             showHiddenBlock: false,
             showPreview: true,
             isPopBoxVisible: false,
+            // sign_email:'',
+            // sign_psw:'',
+            repeat_psw:'',
+            sign_name:'',
+            sign_nickname:'',
+            sign_phone:'',
+            
         }
     },
     computed:{
         inputEls(){
             return Array.from(this.$refs.inputEls) ?? [];
+        },
+        ...mapState(['sign_email', 'sign_psw']),
+        formValid(){
+            return(
+                this.repeat_psw !== '' &&
+                this.sign_name !== '' &&
+                this.sign_nickname !== '' &&
+                this.sign_phone !== '' 
+            )
         }
+
     },
     methods: {
         onYearChange() {
@@ -185,35 +227,128 @@ export default {
         },
         filterNonNumeric() {
             // 使用正則表達式過濾非數字字符
-            this.phone = this.phone.replace(/\D/g, '');
+            this.sign_phone = this.sign_phone.replace(/\D/g, '');
         },
         canceldata(){
-            this.$router.push('/');
+            this.$router.push('/signup');
         },
-        showPopbox() {
-            const emptyFieldIndex = this.inputValues.findIndex((value) => value.trim() === "");
-            if (emptyFieldIndex !== -1) {
-                // There is an empty field, set focus to the corresponding input element
-                this.$nextTick(() => {
-                    this.inputEls[emptyFieldIndex].focus();
-                });
-            } else {
-                this.isPopBoxVisible = !this.isPopBoxVisible;
-                // All fields have values, do your submit logic here
-                // ...
-            }
-        },
+        // showPopbox() {
+        //     const emptyFieldIndex = this.inputValues.findIndex((value) => value.trim() === "");
+        //     if (emptyFieldIndex !== -1) {
+        //         // There is an empty field, set focus to the corresponding input element
+        //         this.$nextTick(() => {
+        //             this.inputEls[emptyFieldIndex].focus();
+        //         });
+        //     } else {
+        //         this.isPopBoxVisible = !this.isPopBoxVisible;
+        //         // All fields have values, do your submit logic here
+        //         // ...
+        //     }
+        // },
         redirectToOtherPage() {
             this.$router.push('/member');
         },
-        columnCheck() {
-            
-        },
         
-        
+        async submitForm(event) {
+            event.preventDefault();
+
+            if (this.sign_psw !== this.repeat_psw) {
+            alert('密碼和確認密碼不相符，請重新輸入。');
+            console.log("psw",this.sign_psw)
+            return;
+            }
+            try {
+
+                console.log('Sending request...');
+                const formData = new FormData();
+                formData.append('sign_email', this.sign_email);
+                formData.append('sign_psw', this.sign_psw);
+                formData.append('repeat_psw', this.repeat_psw);
+                formData.append('sign_name', this.sign_name);
+                formData.append('sign_nickname', this.sign_nickname);
+                formData.append('sign_phone', this.sign_phone);
+
+                const response = await axios.post(`${this.$URL}/PostMember.php`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data', // Use multipart/form-data for form data
+                    },
+                });
+                window.alert('新增成功!');
+                console.log('Data sent successfully', response.data);
+                
+                this.$router.push('/signup');
+                // this.$router.push('/');
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
         
 
+        // ConfirmRegistration() {
+        //     const formData = new FormData();
+        //     formData.append('mem_email', this.sign_email);
+        //     formData.append('mem_psw', this.sign_psw);
+        //     formData.append('mem_name', this.sign_name);
+        //     formData.append('mem_nickname', this.sign_nickname);
+        //     formData.append('mem_birth_year', this.selectedYear);
+        //     formData.append('mem_birth_month', this.selectedMonth);
+        //     formData.append('mem_birth_date', this.selectedDate);
+        //     formData.append('mem_gender', this.isMan ? '男' : (this.isWomen ? '女' : '不告訴你'));
+        //     formData.append('mem_phone', this.phone);
 
+        //     // 使用 Axios 或 Fetch API 发送 POST 请求
+        //     POST('PostMember.php', formData)
+        //         .then(response => {
+        //             // 处理成功响应
+        //             console.log(response.data);
+        //             // 这里可以根据后台的响应进行相应的操作，例如显示成功提示或跳转页面
+        //         })
+        //         .catch(error => {
+        //             // 处理错误
+        //             console.error(error);
+        //         });
+        // }
+
+
+
+        // 傳送資料到後台會員資料庫
+    // postBackMember(userObj,email,password,name,nickname) {
+    //   let mem = {};
+    // //   mem["mem_id"] = userObj.uid
+    //   mem["mem_email"] = userObj.email
+    // //   mem["mem_name"] = userObj.displayName? userObj.displayName: name
+    //   mem["mem_psw"] = userObj.password
+    //   mem["mem_acc"] = email
+    //   mem["mem_pwd"] = password
+
+    //   const data = new FormData(); // POST 表單資料
+    //   // for (const key in mem) {
+    //     // data.append(key, mem[key]);
+    //   // }
+    //   data.append("mem_no", mem["mem_no"]);
+    //   data.append("mem_email", mem["mem_email"]);
+    //   data.append("mem_name", mem["mem_name"]);
+    //   data.append("mem_acc", mem["mem_acc"]);
+    //   data.append("mem_pwd", mem["mem_pwd"]);
+    //   console.log("postBackMember::", data);
+
+    //   // 使用 Axios 發送 POST 請求
+    //   axios
+    //     .post(`${BASE_URL}postMember.php`, data)
+    //     .then((response) => {
+    //       // 請求成功後的處理
+    //       console.log(response.data);
+    //       // location.reload(); //刷新頁面
+    //       alert("已新增帳號！");
+    //     })
+    //     .catch((error) => {
+    //       // 請求失敗後的處理
+    //       console.error(error);
+    //       alert("新增帳號失敗！");
+    //     });
+    // },
+        
     },
     watch: {
         selectedYear(newVal) {
@@ -250,7 +385,9 @@ export default {
         this.populateDateList(new Date().getFullYear(), new Date().getMonth() + 1);
         // 將日期選擇設置為當前日期
         this.selectedDate = new Date().getDate().toString();
+        
     },
+    
 
 };
 
@@ -334,6 +471,7 @@ export default {
 
             @media (min-width: 768px) {
                 flex-direction: row;
+                justify-content: center;
             }
 
             .member_img {

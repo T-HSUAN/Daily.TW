@@ -186,7 +186,9 @@ export default {
             if (memId) {
 
                 let URL = `${this.$URL}/sessionLogin.php`;
+                // 建立一個 FormData 物件，用來傳送資料到後端
                 let params = new FormData();
+                //將資料新增到 FormData 物件中。第一個參數 "mem_id" 是欄位的名稱，它是後端接收資料時的參數名稱
                 params.append("mem_id", memId);
                 POST(URL, params).then((res) => {
                     console.log(res);

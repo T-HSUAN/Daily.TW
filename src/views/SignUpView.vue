@@ -17,20 +17,24 @@
                         <div class="space_signup"></div>
                         
                         <label for="email">Email</label>
-                        <input type="text" v-model="email" @input="validateEmail" :class="{ form_warning: !isEmailValid }" 
-                            placeholder='請輸入EMAIL'>
-                        
+                        <input type="text" v-model="sign_email"  
+                        placeholder='請輸入EMAIL'
+                        required>
+                        <!-- @input="validateEmail" :class="{ form_warning: !isEmailValid }" -->
                         <label for="psw">密碼</label>
-                        <input type="password" v-model="psw" @input="validatePassword"
-                            :class="{ form_warning: !isPasswordValid }" placeholder='請輸入密碼 (英數混合6-12碼)'>
-                        
+                        <input type="password" v-model="sign_psw"  
+                        placeholder='請輸入密碼 '
+                        required>
+                        <!-- @input="validatePassword"
+                            :class="{ form_warning: !isPasswordValid }" -->
+                        <!-- (英數混合6-12碼) -->
                             <div class="space"></div>
                         <div class="cancel_group">
                             
                             <button @click="cancelbtn" class="cancel_btn">
                                 取消
                             </button>
-                            <button @click.prevent="changeRegister"  class="btn">
+                            <button @click.prevent="updateValues"  class="btn">
                                 註冊
                             </button>
                             
@@ -50,30 +54,24 @@
         </section>
     </section>
     </template>
+
     <script>
-    // import {GET} from '@/plugin/axios'
-    import axios from "axios";
-    import { firebaseAuth } from "@/assets/config/firebase.js";
-    import { createUserWithEmailAndPassword } from "firebase/auth";
-    import { signInWithEmailAndPassword } from "firebase/auth";
-    //google 守門人
-    import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-    const provider = new GoogleAuthProvider()
+    import { mapActions } from 'vuex';
     
     export default {
         data() {
             return {
                 signupData:[],
-    
-                
-                email: '',
-                psw: '',
+                sign_email: '',
+                sign_psw: '',
                 isEmailValid: true,
                 isPasswordValid: true,
                 showError: false,
             }
         },
         methods: {
+            ...mapActions(['updateAccount', 'updatePassword']),
+    
             // validateEmail() {
             //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
             //     this.isEmailValid = regex.test(this.email);
@@ -96,82 +94,26 @@
                 
                 // }
             // },
-        //     closeModal() {
-        //   this.$emit("emit-status");
-        // },
-        forgetpsw(){
-            this.$router.push('/forget_psw');
-        },
-            signInGoogle(){
-                signInWithPopup(firebaseAuth, provider)
-                .then((result) => {
-                    // const credential = GoogleAuthProvider.credentialFromResulsignInGoogleedential.accessToken;
-                    this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                    window.alert("google 登入成功");
-                    const userInfo = result.user;
-                    this.$store.commit('setName', this.email);
-                    this.$router.push('/');
-                    // this.$store.commit('setName', userInfo);
-                    // this.$router.push({ name: 'result', params: { 
-                        //     type: 'loginSuccess'
-                        // }})
-                    }).catch((error) => {
-                        const errorCode = error.code
-                        // this.$Message.warning(errorCode);
-                        console.log('google註冊失敗', errorCode);
-                        alert(`google註冊失敗${errorCode}`);
-                    });  
-                },
-                
-                login() {
-                
-                if(this.email === '' || this.pse === '')return
-                signInWithEmailAndPassword(firebaseAuth, this.email, this.psw)
-                .then((userCredential) => {
-                    // firebase 的資料
-                    // const userInfo = userCredential.user
-                    // this.$store.commit('setName', userInfo);
-                    this.$store.commit('setName', this.email);
-                    this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                    window.alert("登入成功");
-                    this.$router.push('/');
-                })
-                .catch((error) => {
-                    const errorCode = error.code
-                    console.log(errorCode);
-                    if( errorCode === 'auth/wrong-password'){
-                        window.alert("密碼錯誤");
-                    }else if(errorCode === 'auth/user-not-found'){
-                        window.alert("請前往註冊");
-                    }else{
-                        window.alert(`${errorCode}`);
-                        this.errorMsg = "帳號或密碼輸入錯誤";
-                    }
-                })
+
+            updateValues() {
+                if (this.sign_email !== "" && this.sign_psw !== "") {
+                    console.log(this.sign_email)
+                    console.log(this.sign_psw)
+                    this.updateAccount(this.sign_email);
+                    this.updatePassword(this.sign_psw);
+                    this.$router.push({ name: 'signup_info' });
+
+                } else if (this.sign_email === "") {
+                    alert('請輸入帳號');
+                } else if (this.sign_psw === "") {
+                    alert('請輸入密碼');
+                }
             },
-            
-    
-    
-    
-    
             cancelbtn(){
                 this.$router.push('/login');
             },
-            changeRegister(){
-                this.$router.push('/signup_info');
-            }
         },
-        async mounted() {
-        //     GET(`${this.$URL}/login.php`)
-        //         .then((res) => {
-        //             this.loginData=res;
-        //         })
-        //         .catch((err) => {
-        //             console.log(err);
-        //         })
-        const res = await axios.get(`${this.$URL}/login.php`)
-        console.log(res)
-        },
+        
     }
     </script>
       

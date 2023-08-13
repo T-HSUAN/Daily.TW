@@ -18,10 +18,17 @@
                         </button>
 
                         <label>Email</label>
-                        <input type="text" v-model="email" required placeholder='請輸入EMAIL'>
+                        <input type="text" 
+                        v-model="email" 
+                        required 
+                        placeholder='請輸入EMAIL'>
                         <!-- @input="validateEmail" :class="{ form_warning: !isEmailValid }" -->
                         <label>密碼</label>
-                        <input type="password" v-model="psw" placeholder='請輸入密碼 (英數混合6-12碼)' required>
+                        <input type="password" 
+                        v-model="psw" 
+                        placeholder='請輸入密碼 ' 
+                        required>
+                        <!-- (英數混合6-12碼) -->
                         <!-- @input="validatePassword"
                         :class="{ form_warning: !isPasswordValid }" -->
                         <div class="login_action">
@@ -163,6 +170,7 @@ export default {
                     // console.log(res)
                     if (res == 0) {
                         alert("*帳號密碼錯誤，請再試一次");
+                        
                         // this.errMsg = '*帳號密碼錯誤，請再試一次'
                     } else {
                         this.$store.commit("setName", res);
@@ -185,9 +193,6 @@ export default {
                 alert('請輸入密碼');
             }
         },
-
-
-
         changeRegister() {
             this.$router.push('/signup');
         }
