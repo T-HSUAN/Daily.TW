@@ -20,7 +20,9 @@
         <!-- 標題 -->
         <h2>行程總覽</h2>
         <!-- 搜尋篩選欄 -->
-        <Searchbar :Filter="updateDisplay" :tagTexts="tagText" />
+        <Searchbar @Filters="Filters" :tagTexts="tagTexts" :ShowClear="ShowClear" :ClearFilter="ClearFilter">
+            <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
+        </Searchbar>
         <!-- 行程列表 -->
         <section class="list">
             <div class="trip_list" v-if="tripDisplay.length > 0">
@@ -29,7 +31,7 @@
                         :tripCardDesc="item.desc" :tripCardAuthor="item.author" :tripCardDate="item.date" />
                 </div>
             </div>
-            <div v-else>查無結果</div>
+            <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
             <div class="page_link">
                 <a class="page" v-if="tripDisplay.length === tripData.length">1</a>
                 <a class="page" v-if="tripDisplay.length === tripData.length">2</a>
@@ -55,37 +57,50 @@ export default {
             // 從tripData抓取行程資料並呈現(進行搜尋篩選)
 
             tripDisplay: [],
-            // 可以自己加tag內容
-            tagText: [
-                { Name: " #親子" },
-                { Name: " #情侶" },
-                { Name: " #小資" },
-                { Name: " #風景" },
-                { Name: " #樂園" },
-                { Name: " #農場" },
-                { Name: " #藝文" },
-                { Name: " #山林" },
-                { Name: " #海邊" },
-                { Name: " #放鬆" },
-                { Name: " #懷舊" },
-            ]
+            ShowClear: false,
+
+            tagTexts: [
+                { Name: "#親子", selected: false },
+                { Name: "#情侶", selected: false },
+                { Name: "#小資", selected: false },
+                { Name: "#風景", selected: false },
+                { Name: "#樂園", selected: false },
+                { Name: "#農場", selected: false },
+                { Name: "#藝文", selected: false },
+                { Name: "#山林", selected: false },
+                { Name: "#海邊", selected: false },
+                { Name: "#放鬆", selected: false },
+                { Name: "#懷舊", selected: false },
+            ],
 
         };
     },
     methods: {
-        //模糊搜尋
-        updateDisplay() {
-            if (this.$store.state.filter.searchText === "") {
-                this.tripDisplay = this.tripData;
-            } else {
-                const regexText = this.$store.state.filter.searchText
-                    .split("")
-                    .join(".*");
-                const regex = new RegExp(regexText, "i");
-                this.tripDisplay = this.tripData.filter((item) =>
-                    regex.test(item.name)
-                );
-            }
+        Filters() {
+            const areaSelected = this.$store.state.filter.areaSelected;
+            const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+            const searchText = this.$store.state.filter.searchText;
+            this.tripDisplay = this.tripData.filter(item => {
+                // 地區篩選
+                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+
+                // 標籤篩選
+                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+
+                // 文字模糊搜索
+                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+
+                // 返回结果
+                return areaMatch && tagMatch && nameMatch;
+            });
+        },
+        //清除篩選
+        ClearFilter() {
+            this.$store.state.filter.areaSelected = "所有地區";
+            this.$store.state.filter.searchText = "";
+            this.tagTexts.forEach(tag => tag.selected = false);
+            console.log('[篩選]清除篩選');
+            this.tripDisplay = this.tripData;
         },
 
     },
@@ -99,8 +114,18 @@ export default {
                 console.log(err);
             })
     },
+    computed: {
+        ShowClear() {
+            if (this.tripDisplay != this.tripData) {
+                console.log(this.tripDisplay);
+                return true;
+            } else {
+                return false;
+            }
+        },
+    },
     created() {
-        this.updateDisplay();
+        this.tripDisplay = this.tripData;
     },
 };
 </script>
@@ -108,6 +133,13 @@ export default {
 @import "@/assets/scss/baseAndMixin.scss";
 
 .tripOverview {
+    padding: 8px 32px 32px;
+    background-color: $bgColor_tint;
+    overflow: hidden;
+
+@media (min-width: 768px) {
+    padding: 200px 32px 200px;
+}
 
     h2 {
         text-align: center;
