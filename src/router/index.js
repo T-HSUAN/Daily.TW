@@ -51,7 +51,7 @@ const routesUser = [
             ),
     },
     {
-        path: "/trip_info",
+        path: "/trip_info/:trip_id",
         name: "trip_info",
         component: () =>
             import(/* webpackChunkName: "tripinfo" */ "@/views/TripInfo.vue"),
