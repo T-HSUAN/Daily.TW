@@ -39,9 +39,9 @@
                     <h2>精選出遊特輯</h2>
                 </div>
                 <Carousel v-bind="settings2" :breakpoints="breakpoints2" class="content">
-                    <Slide class="wrap" v-for="(trip, index) in trips" :key="index">
+                    <Slide class="wrap" v-for="(trip, index) in tripData" :key="index">
                         <div class="head">
-                            <div class="tripTitle">{{ trip.title }}</div>
+                            <div class="tripTitle">{{ trip.trip_name }}</div>
                             <div class="tripCover">
                                 <img :src="trip.coverSrc" alt="" class="mask_trip" />
                             </div>
@@ -172,6 +172,9 @@ export default {
         return {
 
             placeImg: [],
+            tripData: [],
+            oottData: [],
+            ticketData: [],
 
             planPic: [
                 { src: require('@/assets/img/place/005.png') },
