@@ -25,30 +25,31 @@
             <article class="trip_article">
                 <div class="header">
                     <div class="trip_title">
-                        <h2>新竹內灣放鬆小旅行</h2>
+                        <h2>{{ tripInfo.trip_name }}</h2>
                         <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" class="deco">
                     </div>
-                    <h5 class="author">作者 | 日日旅著小編</h5>
-                    <h5 class="date">發布日期 | 2023年7月2日</h5>
+                    <h5 class="author">作者 | {{ tripInfo.trip_author }}</h5>
+                    <h5 class="date">發布日期 | {{ tripInfo.formattedDate }}</h5>
                     <h5 class="views">2,345 次瀏覽</h5>
                 </div>
                 <div class="trip_desc">
-                    <p>新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳、自然景觀，推薦大家可以一同順遊。除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。
+                    <p>{{ tripInfo.trip_desc }}
                     </p>
                 </div>
-
-                <section class="spot" v-for="(spot, index) in spots" :key="index" :id="'spot' + (index + 1)">
-                    <div class="spot_title">
-                        <h3>{{ spot.title }}</h3>
+                <img src="../../public/placeImg/001.png">
+                
+                <section class="place" v-for="(place, index) in placeInfo" :key="index" :id="'place' + (index + 1)">
+                    <div class="place_title">
+                        <h3>{{ place.place_name }}</h3>
                         <div class="time">
                             <img src="~@/assets/img/layout/plan_result_time.png" alt="" />
-                            <h5>停留{{ spot.duration }}小時</h5>
+                            <h5>停留{{ place.place_stay }}小時</h5>
                         </div>
                     </div>
-                    <div class="spot_img">
+                    <div class="place_img">
                         <Carousel :autoplay="3000" :wrap-around="true">
-                            <Slide v-for="(image, imageIndex) in spot.images" :key="imageIndex">
-                                <img :src="image.src" :alt="image.alt" />
+                            <Slide v-for="(image, imageIndex) in placeInfo.place_img" :key="imageIndex" v-if="image">
+                                <img :src="getPlaceImagePath(image)"/>
                             </Slide>
                             <template #addons>
                                 <Navigation />
@@ -56,25 +57,25 @@
                             </template>
                         </Carousel>
                     </div>
-                        <p class="spot_desc">{{ spot.description }}</p>
-                    <div class="spot_loc">
+                        <p class="place_desc">{{ place.place_desc }}</p>
+                    <div class="place_loc">
                         <img src="~@/assets/img/layout/plan_result_location.png" alt="" />
-                        <a :href="spot.locationUrl" target="_blank">
-                            <h5>{{ spot.location }}</h5>
+                        <a :href="place.place_link" target="_blank">
+                            <h5>{{ place.place_addr }}</h5>
                         </a>
                     </div>
                 </section>
                 
                 <section class="trip_tags">
-                    <router-link v-for="(tag, index) in tags" :key="index" :to="tag.to">
-                        <div class="tags">{{ tag.text }}</div>
+                    <router-link v-for="(tag, index) in placeTags" :key="index" to="/trip_overview">
+                        <div class="tags">{{ tag.place_tag_name }}</div>
                     </router-link>
                 </section>
             </article>
             <div class="sidebar">
                 <div class="route">
                     <Anchor show-ink>
-                        <AnchorLink v-for="(spot, index) in spots" :key="index" :href="'#spot' + (index + 1)" :title="spot.title" />
+                        <AnchorLink v-for="(place, index) in placeInfo" :key="index" :href="'#place' + (index + 1)" :title="place.place_name" />
                     </Anchor>
                 </div>
                 <label class="collect">
@@ -104,9 +105,9 @@
             <div class="content">
                 <div class="wrap">
                     <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                        <oottCard class="oottCard" v-for="(oott, index) in oottData" :key="index" :oottPhoto="oott.oott_img"
+                            :oottCardTags="oott.concatenated_style_name" :oottCardDate="oott.oott_date"
+                            :oottAuthorPhoto="oott.mem_img" :oottCardAuthor="oott.mem_name"></oottCard>
                     </div>
                 </div>
                 <a href="/oott">
@@ -372,7 +373,7 @@
                 }
             }
 
-            .spot {
+            .place {
 
                 a {
                     color: inherit;
@@ -382,7 +383,7 @@
                     }
                 }
 
-                .spot_title {
+                .place_title {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -406,7 +407,7 @@
                     }
                 }
 
-                .spot_img {
+                .place_img {
                     width: 100%;
                     margin-bottom: $sp2;
 
@@ -461,7 +462,7 @@
                         }
                 }
 
-                .spot_desc {
+                .place_desc {
                     margin-bottom: $sp3;
                     line-height: 190%;
 
@@ -470,7 +471,7 @@
                     }
                 }
 
-                .spot_loc {
+                .place_loc {
                     display: flex;
                     margin-bottom: $sp8;
                     align-items: center;
@@ -818,100 +819,29 @@ export default {
     },
     data() {
         return {
-            spots: [
-                {
-                title: "合興車站",
-                duration: "0.5",
-                images: [
-                    { src: require('@/assets/img/place/001.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/001.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/001.png'), alt: "景點照片" },
-                ],
-                description: "位於內灣老街附近的合興火車站，這裡除了原有的候車亭外，並沒有太多好玩或好拍的東西。但現在很不一樣囉！經過薰衣草森林的重新規劃後，合興車站成了名符其實的愛情火車站，在這裡，可以看到許多愛情的元素，一字一語、一點一滴，都觸動著我們的心。",
-                locationUrl: "https://goo.gl/maps/Nekbh1wSTguR5KDf7",
-                location: "新竹縣橫山鄉中山街一段17號",
-                },
-                {
-                title: "內灣愛情故事館",
-                duration: "1",
-                images: [
-                    { src: require('@/assets/img/place/002.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/002.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/002.png'), alt: "景點照片" },
-                ],
-                description: "浴火重生，強勢回歸~以全新的面貌再次登場，這回的內灣愛情故事館，可以說是進階版的愛情故事館，不只拍照的場景變多了，還有許多浪漫新元素，而且連餐點都變好吃了，想要揪好姐妹或另一半來浪漫拍照，就來全新的內灣愛情故事館走走吧。",
-                locationUrl: "https://goo.gl/maps/tL1NkkwnjHRej8Mr8",
-                location: "新竹縣內灣鄉內灣村中正路200號",
-                },
-                {
-                title: "內灣老街",
-                duration: "2",
-                images: [
-                    { src: require('@/assets/img/place/003.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/003.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/003.png'), alt: "景點照片" },
-                ],
-                description: "一個充滿學生回憶的地方。內灣老街的小吃攤販很多，走一圈差不多就可以吃飽了，其中內灣戲院生意極好，用餐尖峰時間都要候位才排得到座位。",
-                locationUrl: "https://goo.gl/maps/xdGrkv3sFKemu5Xz5",
-                location: "新竹縣橫山鄉中正路",
-                },
-                {
-                title: "劉興欽漫畫館",
-                duration: "3",
-                images: [
-                    { src: require('@/assets/img/place/004.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/004.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/004.png'), alt: "景點照片" },
-                ],
-                description: "一直以來，我覺得漫畫館是比較靜態復古的展覽，對劉興欽大師的畫，又比較不是這麼熟悉，所以激不起我的興趣。可是後來了好客好品希望工場進駐，經過文創團隊的改造後，裡頭不只有漫畫館，還多了品客好客生活餐飲、及台灣水色工作坊。將園區打造的相當的有趣味性。",
-                locationUrl: "https://goo.gl/maps/DChj9k95D33TXvsKA",
-                location: "新竹縣橫山鄉內灣村3鄰110號",
-                },
-                {
-                title: "內灣隱藏版咖啡",
-                duration: "1.5",
-                images: [
-                    { src: require('@/assets/img/place/005.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/005.png'), alt: "景點照片" },
-                    { src: require('@/assets/img/place/005.png'), alt: "景點照片" },
-                ],
-                description: "位於內灣老街附近的遷徏咖啡，除了是民宿，白天也是咖啡廳，文青風的室內環境，復古卻很有味道。",
-                locationUrl: "https://goo.gl/maps/bu6AU3sz2Dua7L3T7",
-                location: "新竹縣橫山鄉和平街18號",
-                },
-            ],
+            tripInfo: [],
 
-            tags: [
-                { text: "#新竹", to: "/trip_overview" },
-                { text: "#情侶", to: "/trip_overview" },
-                { text: "#風景", to: "/trip_overview" },
-                { text: "#藝文", to: "/trip_overview" },
-                { text: "#放鬆", to: "/trip_overview" },
-                { text: "#懷舊", to: "/trip_overview" },
-            ],
-            
-            ootts: [
-                {
-                    oottPhoto: require('@/assets/img//oott_02.png'),
-                    oottCardTags: "#日系 #休閒 #風景",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
-                    oottCardAuthor: "Alison",
-                },
-                {
-                    oottPhoto: require('@/assets/img/oott_06.png'),
-                    oottCardTags: "#簡約 #休閒 #氣質",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-2_member.png'),
-                    oottCardAuthor: "Susan",
-                },
-                {
-                    oottPhoto: require('@/assets/img/oott_41.png'),
-                    oottCardTags: "#簡約 #運動 #休閒",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
-                }
-            ],
+            placeInfo: {
+                place_name:'',
+                place_img: [
+                    {place_img1:''},
+                    {place_img2:''},
+                    {place_img3:''}
+                ],
+                place_stay:'',
+                place_desc:'',
+                place_addr:'',
+                place_link:''
+            },
+
+            placeTags: [],
+
+            oottData: [],
+
+            ticketData: [],
+
+            otherTrip: [],
+
             tickets: [
                 {
                     ticketPhoto: require('@/assets/img/ticketExample.png'),
@@ -979,7 +909,60 @@ export default {
         }
     },
     methods: {
-
+        formatTripDate(originalDateString) {
+            const date = new Date(originalDateString);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            return `${year}年${month}月${day}日`;
+        },
+        getPlaceImagePath(imageName) {
+            return `placeImg/${imageName}.png`;
+        }
+    },
+    mounted() {
+        const tripId = this.$route.params.trip_id;
+        GET(`${this.$URL}/tripInfoGetTrip.php?trip_id=${tripId}`)
+            .then((res) => {
+                console.log(res);
+                this.tripInfo = res;
+                this.tripInfo.formattedDate = this.formatTripDate(this.tripInfo.trip_date);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        GET(`${this.$URL}/tripInfoGetPlaces.php?trip_id=${tripId}`)
+            .then((res) => {
+                console.log(res);
+                this.placeInfo = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        GET(`${this.$URL}/tripInfoGetOott.php?trip_id=${tripId}`)
+            .then((res) => {
+                console.log(res);
+                this.oottData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        GET(`${this.$URL}/tripInfoGetTicket.php?trip_id=${tripId}`)
+            .then((res) => {
+                console.log(res);
+                this.ticketData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        GET(`${this.$URL}/tripInfoGetOther.php?trip_id=${tripId}`)
+            .then((res) => {
+                console.log(res);
+                this.otherTrip = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
 }
 </script>

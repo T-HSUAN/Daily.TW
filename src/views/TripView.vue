@@ -634,6 +634,10 @@ export default {
 
     data() {
         return {
+            tripInfo: [],
+            topTrip: [],
+            selectTrip: [],
+            authorInfo: [],
             trips: [
                 {
                 title: '台中文青一日遊',
@@ -752,10 +756,34 @@ export default {
         }
     },
     mounted() {
-        GET(`${this.$URL}/trip.php`)
+        GET(`${this.$URL}/homeGetTrip.php`)
             .then((res) => {
                 console.log(res);
-                this.tripDataForUser = res;
+                this.tripInfo = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            }),
+        GET(`${this.$URL}/tripGetTop.php`)
+            .then((res) => {
+                console.log(res);
+                this.topTrip = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            }),
+        GET(`${this.$URL}/tripGetSelect.php`)
+            .then((res) => {
+                console.log(res);
+                this.selectTrip = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            }),
+        GET(`${this.$URL}/tripGetAuthor.php`)
+            .then((res) => {
+                console.log(res);
+                this.authorInfo = res;
             })
             .catch((err) => {
                 console.log(err);

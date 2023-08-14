@@ -363,10 +363,40 @@ export default {
         };
     },
     mounted() {
-        GET(`${this.$URL}/home.php`)
+        GET(`${this.$URL}/homeGetPlaceImg.php`)
             .then((res) => {
                 console.log(res);
-                this.tripDataForUser = res;
+                this.placeImg = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
+    mounted() {
+        GET(`${this.$URL}/homeGetTrip.php`)
+            .then((res) => {
+                console.log(res);
+                this.tripData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
+    mounted() {
+        GET(`${this.$URL}/homeGetOott.php`)
+            .then((res) => {
+                console.log(res);
+                this.oottData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
+    mounted() {
+        GET(`${this.$URL}/homeGetTicket.php`)
+            .then((res) => {
+                console.log(res);
+                this.ticketData = res;
             })
             .catch((err) => {
                 console.log(err);

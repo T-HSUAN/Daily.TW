@@ -6,21 +6,23 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "select * from trip";
-	tripData = $pdo->prepare($sql); 
-	tripData->bindValue(":trip_id", $_GET["trip_id"]);
-    tripData->execute();
+	$sql = "SELECT trip_name, trip_author, trip_date, trip_view, trip_desc
+			FROM trip
+			WHERE trip_id = :trip_id;
+			";
+	$tripInfo = $pdo->prepare($sql); 
+	$tripInfo->bindValue(":trip_id", $_GET["trip_id"]);
+    $tripInfo->execute();
 
-	if( tripData->rowCount() === 0 ){ //找不到
+	if( $tripInfo->rowCount() === 0 ){ //找不到
         //傳回空的JSON字串
         echo "{}";
     }else{ //找得到
-        //取回所有資料
-        tripDataRow = tripData->fetchAll(PDO::FETCH_ASSOC);
+        //取回一筆資料
+        $tripInfoRow = $tripInfo->fetch(PDO::FETCH_ASSOC);
         //送出json字串
-        echo json_encode(tripDataRow);
+        echo json_encode($tripInfoRow);
     }
-
 
 } catch (Exception $e) {
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
