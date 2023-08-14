@@ -9,7 +9,8 @@ try {
 	$sql = "select 
 	ot.oott_id, 
     ot.oott_img, 
-    ot.oott_date, 
+    date(ot.oott_date) as oott_date_only,
+    ot.oott_review_status, 
     m.mem_name, 
     m.mem_img,
     GROUP_CONCAT(style_name SEPARATOR ' #') AS concatenated_style_name

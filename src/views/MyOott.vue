@@ -43,15 +43,13 @@
                     </div>
                 </div>
                 <div class="card_wrap">
-                    <div class="card" v-for="oott in oottDataForUser" key="oott.oottCardAuthor">
+                    <div class="card" v-for="oott in tableData" key="oott.oottCardAuthor">
                         <MyOottCard
-                        :oottPhoto= "oott.oottPhoto"
+                        :oottImg= "oott.oott_img"
                         :oottCardTags= "oott.oottCardTags"
-                        :oottCardDate= "oott.oottCardDate"
-                        :oottAuthorPhoto= "oott.oottAuthorPhoto"
-                        :oottCardAuthor= "oott.oottCardAuthor"
-                        :oottStatus ="oott.oottStatus"
-                        :id = "oott.oottId"
+                        :oottCardDate= "oott.oott_date_only"
+                        :oottStatus ="oott.oott_review_status"
+                        :oottId = "oott.oott_id"
                         />
                     </div>
                     <Page :total="18" />
@@ -160,8 +158,6 @@ import {GET} from '@/plugin/axios';
 import MyOottCard from "@/components/MyOottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
-// import oottDataForUser from "@/store/oottDataForUser.js";
-
 export default{
     components:{
         MyOottCard,
@@ -169,20 +165,25 @@ export default{
     },
     data() {
         return {
-            oottDataForUser:[],
+            tableData:[],
             PAGE_SIZE: 10,
             currentPageNum: 1,
         }
     },
     computed: {
     currentList() {
-            return this.oottDataForUser.slice((this.currentPageNum - 1) * this.PAGE_SIZE, this.currentPageNum * this.PAGE_SIZE);
+            return this.tableData.slice((this.currentPageNum - 1) * this.PAGE_SIZE, this.currentPageNum * this.PAGE_SIZE);
         }
     },
-    created() {
-        GET('/fake/OottData.json').then(res => {
-            this.oottDataForUser = res
-        })
+    mounted() {
+        GET(`${this.$URL}/myOott.php`)
+            .then((res) => {
+                console.log(res);
+                this.tableData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
 };
 </script>  

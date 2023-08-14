@@ -2,7 +2,7 @@
     <div class="my_oott_card">
         <div class="card_content">
             <router-link to="/oott_info">
-                <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
+                <img :src=getOottImg(oottImg) alt="穿搭照片" class="oott_card_pic" />
             </router-link>
             <!-- 0 = 審核中 -->
             <div class="oott_card_text reviewing" v-if="oottStatus=='0'">
@@ -28,10 +28,10 @@
         </div>
         <div class="action">
             <!-- 2 = 待修改 -->
-            <div class="edit" v-if="oottStatus=='2'" @click="this.$router.push(`/oott_edit_view/${id}`)">
+            <div class="edit" v-if="oottStatus=='2'" @click="reviewDetails(oottId)">
                 <font-awesome-icon icon="fa-solid fa-pen" />
                 編輯
-            </div>
+            </div>  
             <!-- 1 = 已通過, -->
             <span class="delete" v-if="oottStatus=='1'">
                 <font-awesome-icon icon="fa-solid fa-trash-can" />
@@ -44,11 +44,20 @@
 <script>
 export default {
     props: {
-        oottPhoto: String,
+        oottImg: String,
         oottCardTags: String,
         oottCardDate: String,
         oottStatus : String,
-        id:Number,
+        oottId:Number,
+    },
+    methods: {
+        // 檢視單頁的連結
+        reviewDetails(oottId){
+            this.$router.push({name:'OottEditView',params:{oottId:oottId}}) 
+        },
+        getOottImg(oottImg){
+            return `oottImg/${oottImg}.png`;  
+        }
     },
 };
 </script>
