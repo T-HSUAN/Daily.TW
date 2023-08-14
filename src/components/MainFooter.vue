@@ -47,7 +47,11 @@
                         <a href="#"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
                     </div>
                 </div>
-                <input class="footer_input" type="text" v-model="email" placeholder="請輸入email" />
+                <form ref="form" @submit.prevent="sendEmail" class="input_group">
+                    <button class="input_arrow" @click="sendEmail"></button>
+                <input class="footer_input" type="text" v-model="email" placeholder="請輸入email"
+                name="email" />
+            </form>
             </div>
         </div>
         <div class="footer_notice">
@@ -58,16 +62,65 @@
                 © 2023 Daily.TW
             </p>
         </div>
+        <!-- 成功送出郵件後的彈窗 -->
+        <div class="member_sm" v-if="isPopBoxVisible">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_check.svg" alt="">
+                    <h3>信件已送出，請至信箱查看！</h3>
+                </div>
+                <button class="btn" @click="closePopBox">確定</button>
+            </div>
+        </div>
+        <!-- 寄送失敗後的彈窗 -->
+        <div class="member_sm" v-if="isPopBoxFalse">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_exclamation.svg" alt="">
+                    <h3>EMAIL信箱不能為空白</h3>
+                </div>
+                <button class="btn" @click="closePopBox">確定</button>
+            </div>
+        </div>
     </footer>
 </template>
 
 <script>
+import emailjs from 'emailjs-com';
+
 export default {
     data() {
         return {
             email: "",
+            isPopBoxVisible: false,
+            isPopBoxFalse: false,
         };
     },
+
+    methods:{
+        sendEmail() {  
+        if (this.email === '') {
+
+            this.isPopBoxFalse = true;
+        } else {
+
+            emailjs.sendForm('daily', 'daily', this.$refs.form, 'av3wEk3CDkczylGAe')
+                .then((result) => {
+                    // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
+                    this.isPopBoxVisible = true;
+                })
+                .catch((error) => {
+                    this.isPopBoxVisible = false;
+                    alert('信件未送出，請稍後再試');
+                });
+        }
+    },
+    closePopBox() {
+            this.isPopBoxVisible = false;
+            this.isPopBoxFalse = false,
+                this.email = '';
+        },
+    }
 };
 </script>
 

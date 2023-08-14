@@ -1,4 +1,4 @@
-footer{
+footer {
     box-sizing: border-box;
     width: 100%;
     padding: $sp3 $sp4;
@@ -11,33 +11,41 @@ footer{
     margin-top: -8px;
     position: relative;
     z-index: 99;
-    @media screen and (min-width: 768px){
+
+    @media screen and (min-width: 768px) {
         padding: $sp5 $sp15;
     }
-    .footer_section{
+
+    .footer_section {
         width: 100%;
         max-width: 1200px;
         border-bottom: 1px solid $textColor_default;
         display: flex;
         justify-content: space-between;
         padding-bottom: $sp2;
-        .footer_block{
+
+        .footer_block {
             display: none;
-            @media screen and (min-width: 990px){
+
+            @media screen and (min-width: 990px) {
                 display: flex;
                 gap: $sp2;
-                @media screen and (min-width: 1200px){
+
+                @media screen and (min-width: 1200px) {
                     gap: $sp4;
                 }
-                .footer_list{
+
+                .footer_list {
                     display: flex;
                     flex-direction: column;
-                    h4{
+
+                    h4 {
                         font-size: 16px !important;
                         font-weight: 500 !important;
                         padding-bottom: 8px;
                     }
-                    a{
+
+                    a {
                         font-size: 16px !important;
                         font-weight: 400 !important;
                         color: $textColor_default;
@@ -45,61 +53,252 @@ footer{
                     }
                 }
             }
-            
+
         }
-        .social_box{
+
+        .social_box {
             display: flex;
             flex-direction: column;
             gap: $sp1;
             margin: auto;
-            @media (min-width: 990px){
+
+            @media (min-width: 990px) {
                 margin: 0;
             }
-            .social_icon{
+
+            .social_icon {
                 display: flex;
                 align-items: center;
-                @media (min-width: 990px){
+
+                @media (min-width: 990px) {
                     align-items: flex-start;
                 }
-                p{
+
+                p {
                     @include sm_h5;
                     padding-right: $sp1;
-                    @media (min-width: 400px){
+
+                    @media (min-width: 400px) {
                         @include xl_h5;
                         padding-right: $sp2;
                     }
                 }
-                .icon_wrap{
-                    a{
+
+                .icon_wrap {
+                    a {
                         color: $textColor_default;
                         font-size: 25px;
                         padding-right: $sp1;
                     }
                 }
             }
+
+            .input_group {
+                position: relative;
+
+                .input_arrow {
+
+                    position: absolute;
+                    top: 0px;
+                    right: 15px;
+                    // transform: translateY(-50%);
+                    width: 50px;
+                    height: 100%;
+                    background-image: url('/src/assets/img/btn_arrow_hover.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    cursor: pointer;
+                }
+
+                .footer_input {
+                    width: 100%;
+
+                }
+            }
         }
     }
-    .footer_notice{
+
+    .footer_notice {
         width: 100%;
         max-width: 1200px;
         padding: $sp1 $sp1 0 $sp1;
         display: flex;
         justify-content: center;
-        @media screen and (min-width: 990px){
+
+        @media screen and (min-width: 990px) {
             padding: $sp3 $sp3 0 $sp3;
         }
-        p{
+
+        p {
             font-size: 12px;
             font-weight: 400;
             line-height: 1.2;
             letter-spacing: 0.6px;
             text-align: center;
-            @media (min-width: 400px){
+
+            @media (min-width: 400px) {
                 font-size: 14px;
                 line-height: 1.5;
             }
-            a{
+
+            a {
                 color: $tint_yellow;
+            }
+        }
+    }
+
+    //popbox手機板
+    .member_sm {
+        display: flex;
+        width: 273px;
+        height: 194px;
+        border: 3px solid $textColor_default;
+        background-color: $textColor_white;
+        border-radius: 20px;
+
+        position: absolute;
+        z-index: 10;
+        top: -200px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+
+        .block {
+            width: 250px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            .pic {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+
+                img {
+                    width: 28px;
+                }
+
+                h3 {
+                    padding: 10px;
+                    font-size: $sm_h4;
+                }
+            }
+
+            .btn {
+                font-size: $sm_h5;
+                padding: 8px 24px;
+                box-shadow: 1px 1px 1px 1px #0005;
+                white-space: nowrap;
+                color: $textColor_white;
+                text-align: center;
+                font-family: $fontFamily;
+                letter-spacing: 0.6px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 50px;
+                border: 2px solid $textColor_default;
+                background: $textColor_default;
+                cursor: pointer;
+
+                &:hover {
+                    color: $textColor_default;
+                    background: $textColor_white;
+                    box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+
+                &:active {
+                    color: $textColor_tint;
+                    border: 2px solid $textColor_tint;
+                    background: $textColor_white;
+                }
+            }
+
+
+        }
+
+        // popbox電腦版
+        @media (min-width: 768px) {
+            display: flex;
+            top: -200px;
+            width: 410px;
+            height: 243px;
+            border: 3px solid $textColor_default;
+            background-color: $textColor_white;
+            border-radius: 20px;
+            justify-content: center;
+
+            position: absolute;
+            z-index: 10;
+
+            .block {
+                width: 100%;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+
+                .pic {
+                    margin-top: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    img {
+                        width: 34px;
+                    }
+
+                    h3 {
+                        text-align: center;
+                        font-size: $sm_h3;
+                        line-height: 150%;
+                        margin-top: 15px;
+                    }
+                }
+
+                .btn {
+                    font-size: $sm_h5;
+                    padding: 8px 24px;
+                    box-shadow: 1px 1px 1px 1px #0005;
+
+                    @media (min-width: 768px) {
+                        font-size: $xl_h5;
+                        padding: 8px 32px;
+                    }
+
+                    white-space: nowrap;
+                    color: $textColor_white;
+                    text-align: center;
+                    font-family: $fontFamily;
+                    letter-spacing: 0.6px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    border-radius: 50px;
+                    border: 2px solid $textColor_default;
+                    background: $textColor_default;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $textColor_default;
+                        background: $textColor_white;
+                        box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+                    }
+
+                    &:active {
+                        color: $textColor_tint;
+                        border: 2px solid $textColor_tint;
+                        background: $textColor_white;
+                    }
+                }
             }
         }
     }
