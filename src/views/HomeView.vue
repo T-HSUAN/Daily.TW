@@ -176,13 +176,6 @@ export default {
             oottData: [],
             ticketData: [],
 
-            planPic: [
-                { src: require('@/assets/img/place/005.png') },
-                { src: require('@/assets/img/place/004.png') },
-                { src: require('@/assets/img/place/003.png') },
-                { src: require('@/assets/img/place/002.png') },
-            ],
-
             trips: [
                 {
                 title: '台中文青一日遊',
@@ -370,7 +363,10 @@ export default {
 
     methods: {
         getPlaceImg(placeImg){
-            return `placeImg/${placeImg}`;  
+            return process.env.BASE_URL + 'placeImg/' + placeImg;  
+        },
+        getOottImg(oottImg){
+            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';  
         }
     },
 
