@@ -27,10 +27,10 @@
             <div class="oott_list" v-if="oottDisplay.length > 0">
                 <div class="oott_card" v-for="item in oottDisplay" :key="item.id">
                     <Oott 
-                    :oottPhoto="item.oott_img" 
+                    :oottPhoto="getOottImg(item.oott_img)" 
                     :oottCardTags="item.concatenated_style_name" 
                     :oottCardDate="item.oott_date"
-                    :oottAuthorPhoto="item.mem_img" 
+                    :oottAuthorPhoto="getMemImg(item.mem_img)" 
                     :oottCardAuthor="item.mem_name" />
                 </div>
             </div>
@@ -101,6 +101,12 @@ export default {
             this.tagTexts.forEach(tag => tag.selected = false);
             console.log('[篩選]清除篩選');
             this.oottDisplay = this.oottData;
+        },
+        getOottImg(oottImg){
+            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
+        },
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
         },
     },
     mounted() {
