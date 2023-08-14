@@ -66,10 +66,11 @@ import "@/assets/scss/main.scss";//改放這邊，不然會被污染
 library.add(faBookmark, farBookmark, faHeart, faCartShopping, faMagnifyingGlass, faLine, faInstagram, faSquareFacebook, faClock, faLocationDot, faCloud, faEye, faEyeSlash, faCircleXmark, faArrowLeft, faArrowRight, faArrowUp, faChevronDown, faCircleChevronDown, faPen, faTrashCan, faSquarePlus, faSortUp, faCar, faTicket, faUser, faUserTie, faShirt, faBullhorn, faBagShopping, faArrowUpWideShort, faFilter, faSortDown, faChevronRight, faChevronLeft)
 
 // 打API用的路徑變數
-import { URL } from '@/assets/js/common.js'
+import { URL, URL_MAC} from '@/assets/js/common.js'
 
 const app = createApp(App)
 const apiURL = 'http://localhost/DailyTW/public/phpfile/'
 app.config.globalProperties.$URL = URL;
+app.config.globalProperties.$URL_MAC = URL_MAC;
 
 app.component('font-awesome-icon', FontAwesomeIcon).use(store).use(router).use(ViewUIPlus).use(firebase).mount("#app");
