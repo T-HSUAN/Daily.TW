@@ -24,32 +24,30 @@
         </Searchbar>
         <!-- 穿搭列表 -->
         <section class="list">
-            <div class="oott_list" v-if="tableData.length > 0">
-                <div class="oott_card" v-for="item in tableData" :key="item.id">
+            <div class="oott_list" v-if="table.length > 0">
+                <div class="oott_card" v-for="item in table" :key="item.id">
                     <router-link :to="item.link" title="點擊查看穿搭詳情">
-                        <OottCard
-                        :oottPhoto="item.oott_img" 
-                        :oottCardTags="item.concatenated_style_name" 
-                        :oottCardDate="item.oott_date"
-                        :oottAuthorPhoto="item.mem_img" 
-                        :oottCardAuthor="item.mem_name" />
+                        <Oott 
+                        :oottPhoto="item.img" 
+                        :oottCardTags="item.tag" 
+                        :oottCardDate="item.date"
+                        :oottAuthorPhoto="item.authorphoto" :oottCardAuthor="item.author" />
                     </router-link>
                 </div>
             </div>
             <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
             <div class="page_link">
-                <a class="page" v-if="tableData.length === oottData.length">1</a>
-                <a class="page" v-if="tableData.length === oottData.length">2</a>
-                <a class="page" v-if="tableData.length === oottData.length">3</a>
+                <a class="page" v-if="table.length === oottData.length">1</a>
+                <a class="page" v-if="table.length === oottData.length">2</a>
+                <a class="page" v-if="table.length === oottData.length">3</a>
             </div>
         </section>
     </div>
 </template>
 <script>
-import {GET} from '@/plugin/axios'
 import Searchbar from "@/components/Searchbar.vue";
 import Oott from "@/components/OottCard.vue";
-// import oottData from "@/store/oottData.js";
+import oottData from "@/store/oottData.js";
 export default {
     components: {
         Searchbar,
@@ -71,29 +69,19 @@ export default {
                 { Name: "#美式" ,selected: false},
                 { Name: "#簡約" ,selected: false},
             ],
-            // oottData: oottData,
+            oottData: oottData,
             // 從oottData抓取資料並呈現(進行搜尋篩選)
 
-            tableData: [],
+            table: [],
             ShowClear: false,
         };
-    },
-    mounted() {
-        GET(`${this.$URL_MAC}/phpfile/oottCollection.php`)
-            .then((res) => {
-                console.log(res);
-                this.tableData = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
     },
     methods: {
         Filters() {
             const areaSelected = this.$store.state.filter.areaSelected;
             const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
             const searchText = this.$store.state.filter.searchText;
-            this.tableData = this.oottData.filter(item => {
+            this.table = this.oottData.filter(item => {
                 // 地區篩選
                 const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
 
@@ -112,12 +100,12 @@ export default {
             this.$store.state.filter.searchText = "";
             this.tagTexts.forEach(tag => tag.selected = false);
             console.log('[篩選]清除篩選');
-            this.tableData = this.oottData;
+            this.table = this.oottData;
         },
     },
     computed: {},
     created() {
-        this.tableData = this.oottData;
+        this.table = this.oottData;
     },
 };
 </script>
