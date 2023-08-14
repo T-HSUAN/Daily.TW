@@ -17,12 +17,18 @@
                             <p>使用GOOGLE登入</p>
                         </button>
 
-                        <label>Email</label>
+                        <label>Email
+                            <span v-if="!isEmailValid"
+                            class="error"
+                            >帳號格式錯誤！</span>
+                        </label>
                         <input type="text" 
                         v-model="email" 
                         required 
-                        placeholder='請輸入EMAIL'>
-                        <!-- @input="validateEmail" :class="{ form_warning: !isEmailValid }" -->
+                        placeholder='請輸入EMAIL'
+                        @blur="validateEmail"
+                        :class="{ form_warning: !isEmailValid }">
+                        <!-- <p v-if="!isEmailValid">帳號格式錯誤！</p> -->
                         <label>密碼</label>
                         <input type="password" 
                         v-model="psw" 
@@ -45,10 +51,11 @@
                                 還不是會員?
                             </button>
 
-                            <button @click="login" class="btn" type="button">
+                            <button @click="login" class="btn" type="button"
+                            >
                                 登入
                             </button>
-                            <!-- :class="{ btn: isEmailValid && isPasswordValid }" -->
+                            <!-- :class="{ btn: isEmailValid }" -->
                         </div>
                     </div>
                     <div class="register">
@@ -89,15 +96,15 @@ export default {
             isEmailValid: true,
             isPasswordValid: true,
             isActive: false,
-            showError: false,
+            // showError: false,
 
         }
     },
     methods: {
-        // validateEmail() {
-        //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-        //     this.isEmailValid = regex.test(this.email);
-        // },
+        validateEmail() {
+            const regex = /^[a-zA-Z0-9._%+-]+@testmail\.com$/;
+            this.isEmailValid = regex.test(this.email);
+        },
         // validatePassword() {
         //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
         //     this.isPasswordValid = regex.test(this.psw);
@@ -105,13 +112,13 @@ export default {
         forgetpsw() {
             this.$router.push('/forget_psw');
         },
-        //===========================google註冊登入==================================
+        //===========================google連結登入==================================
         signInGoogle() {
             signInWithPopup(firebaseAuth, provider)
                 .then((result) => {
                     // const credential = GoogleAuthProvider.credentialFromResulsignInGoogleedential.accessToken;
                     this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                    window.alert("google 登入成功");
+                    window.alert("google 登入成功！");
                     const userInfo = result.user;
                     this.$store.commit('setName', this.email);
                     this.$router.push('/');
@@ -169,13 +176,13 @@ export default {
                 POST(url,params).then((res) => {
                     // console.log(res)
                     if (res == 0) {
-                        alert("*帳號密碼錯誤，請再試一次");
+                        alert("帳號密碼錯誤，請再試一次！");
                         
                         // this.errMsg = '*帳號密碼錯誤，請再試一次'
                     } else {
                         this.$store.commit("setName", res);
                         this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                        window.alert("登入成功");
+                        window.alert("登入成功！");
                         this.$router.push('/');
 
                         this.$store.commit("setLoginData", res);
@@ -188,10 +195,14 @@ export default {
                     }
                 });
             } else if (this.email === "") {
-                alert('請輸入帳號');
+                alert('帳號不能為空！');
             } else if (this.psw === "") {
-                alert('請輸入密碼');
-            }
+                alert('密碼不能為空！');
+            } else if (!this.isEmailValid) {
+        // 将焦点设置回错误的输入框内
+        document.querySelector('.form_warning input').focus();
+        return; // 停止继续执行登录逻辑
+      }
         },
         changeRegister() {
             this.$router.push('/signup');
@@ -342,7 +353,9 @@ export default {
                     letter-spacing: 0.72px;
                     padding: 4px 0;
                     position: relative;
-
+                    .error{
+                        color: $warningColor;
+                    }
                     @media all and (min-width: $md) {
                         width: 80%;
                         padding: 0;
@@ -438,6 +451,9 @@ export default {
                         &:hover {
                             color: $tint_blue;
                         }
+                        @media all and (min-width: $md) {
+                        display: none;
+                    }
                     }
 
                     .btn {
