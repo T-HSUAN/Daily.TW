@@ -108,7 +108,7 @@ export default {
         GET(`${this.$URL}/tripOverview.php`)
             .then((res) => {
                 console.log(res);
-                this.tripDataForUser = res;
+                this.tripData = res;
             })
             .catch((err) => {
                 console.log(err);
