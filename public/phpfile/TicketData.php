@@ -7,9 +7,12 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "select * from ticket";
-	$tickets = $pdo->query($sql); 
-	$ticketRows = $tickets->fetchAll(PDO::FETCH_ASSOC);
+	$sql = "select t.ticket_id 'id', t.ticket_name 'Name', r.region_name 'location', p.place_addr 'addr', p.place_img1 'img', t.ticket_adult 'price_adult', t.ticket_ex 'price_ex', t.ticket_discount 'discount', t.ticket_desc 'desc', t.ticket_notice 'notice', t.ticket_date 'date', t.ticket_status 'status', t.ticket_top 'top'
+    from ticket t 
+    join place p on t.place_id = p.place_id
+    join region r on p.region_id = r.region_id";
+	$ticketList = $pdo->query($sql); 
+	$ticketRows = $ticketList->fetchAll(PDO::FETCH_ASSOC);
   echo json_encode($ticketRows, JSON_NUMERIC_CHECK);
 
 } catch (Exception $e) {

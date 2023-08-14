@@ -49,7 +49,7 @@
                     <!-- 登入後顯示 -->
                     <div v-if="isLogin">
                         <div @click="toggleUser">
-                            會員中心,
+                            會員中心
                         </div>
                         <div @click="handleLogout">
                             登出
@@ -64,8 +64,8 @@
                 </ul>
             </nav>
         </div>
-        
-        
+
+
 
 
     </header>
@@ -161,17 +161,17 @@ export default {
             this.$router.push({ path: "/member" });
         },
         //登出
-        handleLogout() {   
+        handleLogout() {
             this.$store.commit('setName', "登入/註冊");
             this.$store.commit('setIsLogin', false);
             sessionStorage.removeItem("mem_id");
             this.$router.push("/");
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.$router.go(0);
 
-            },10)
+            }, 10)
         },
-        
+
         //檢查登入狀態
         checkLogin() {
             let memId = sessionStorage.getItem("mem_id");
@@ -184,14 +184,14 @@ export default {
                 params.append("mem_id", memId);
                 POST(URL, params).then((res) => {
                     console.log(res);
-                     this.$store.commit("setLoginData", res);
+                    this.$store.commit("setLoginData", res);
                 });
             } else {
                 this.$store.commit('logOut');
             }
         },
 
-        
+
 
     },
     computed: {

@@ -4,7 +4,7 @@ import { URL } from "@/assets/js/common.js";
 
 export default createStore({
     state: {
-        ticketData: [],
+        ticketData: [],//從資料庫匯入的票券資料
         area: ["所有地區", "新北", "臺北", "基隆", "桃園", "新竹", "苗栗", "臺中", "彰化", "雲林", "嘉義", "南投", "臺南", "高雄", "屏東", "宜蘭", "花蓮", "臺東", "澎湖", "金門", "馬祖",
         ],
         // 篩選內容(各自設定不同名稱，不要共用)
@@ -149,7 +149,7 @@ export default createStore({
     },
     actions: {
         fetchTicketData({ commit }) {
-            axios.get('http://localhost/DailyTW_Backstage/public/phpfile/TicketList.php')
+            axios.get('http://localhost/Daily.TW/public/phpfile/TicketData.php')
                 .then(response => {
                     commit('SET_TICKET_DATA', response.data);
                     console.log('[store]成功連接ticketdata:', this.state.ticketData);
