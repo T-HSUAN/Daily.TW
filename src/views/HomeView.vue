@@ -18,8 +18,8 @@
                         <img src="~@/assets/img/index_boy.png" alt="" class="boy" />
                         <img src="~@/assets/img/layout/plan_duck.png" alt="" class="duck" />
                         <Carousel :autoplay="3000" :wrap-around="true">
-                            <Slide v-for="item in planPic" :key="item.index">
-                                <img :src="item.src" alt="" class="mask_plan">
+                            <Slide v-for="item in placeImg" :key="item.index">
+                                <img :src=getPlaceImg(item.place_img1) alt="景點照片" class="mask_plan">
                             </Slide>
                         </Carousel>
                     </div>
@@ -167,9 +167,11 @@ export default {
         Pagination,
         Navigation,
     },
-    
+
     data() {
         return {
+
+            placeImg: [],
 
             planPic: [
                 { src: require('@/assets/img/place/005.png') },
@@ -362,41 +364,42 @@ export default {
             ],
         };
     },
+
+    methods: {
+        getPlaceImg(placeImg){
+            return `placeImg/${placeImg}`;  
+        }
+    },
+
     mounted() {
         GET(`${this.$URL}/homeGetPlaceImg.php`)
             .then((res) => {
-                console.log(res);
                 this.placeImg = res;
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
-            })
-    },
-    mounted() {
+            }),
         GET(`${this.$URL}/homeGetTrip.php`)
             .then((res) => {
-                console.log(res);
                 this.tripData = res;
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
-            })
-    },
-    mounted() {
+            }),
         GET(`${this.$URL}/homeGetOott.php`)
             .then((res) => {
-                console.log(res);
                 this.oottData = res;
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
-            })
-    },
-    mounted() {
+            }),
         GET(`${this.$URL}/homeGetTicket.php`)
             .then((res) => {
-                console.log(res);
                 this.ticketData = res;
+                console.log(res);
             })
             .catch((err) => {
                 console.log(err);
