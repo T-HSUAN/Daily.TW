@@ -22,39 +22,38 @@
 
         <!-- 穿搭資訊頁 -->
         <div class="oott_info_section">
-    <div class="pic_md">
-      <img :src="author.avatarSrc" alt="作者頭像" />
-      <router-link :to="author.profileLink">{{ author.name }}</router-link>
-    </div>
-    <div class="pic_block">
-      <div class="pic">
-        <img :src="outfit.photoSrc" alt="穿搭照片" />
-        <label>
-          <input type="checkbox">
-          <span></span>
-        </label>
-      </div>
-    </div>
-    <div class="writer_block">
-      <div class="pic_xl">
-        <img :src="author.avatarSrc" alt="作者頭像" />
-        <a :href="author.profileLink">{{ author.name }}</a>
-      </div>
-      <p>{{ outfit.description }}</p>
-      <div class="tag_block">
-        <label v-for="(tag, index) in outfit.tags" :key="index">
-          <input type="checkbox" class="tag" />
-          <span>{{ tag }}</span>
-        </label>
-      </div>
-      <div class="date">
-      <span>{{ outfit.date }}</span>
-      <span class="number">{{ outfit.views }} 次瀏覽</span>
-    </div>
-    </div>
-  </div>
+            <div class="pic_md">
+            <img :src="oottInfo.mem_img" alt="作者頭像" />
+            <span>{{ oottInfo.mem_name }}</span>
+            </div>
+            <div class="pic_block">
+            <div class="pic">
+                <img :src=getOottImg(oottInfo.oott_img) alt="穿搭照片" />
+                <label>
+                <input type="checkbox">
+                <span></span>
+                </label>
+            </div>
+            </div>
+            <div class="writer_block">
+            <div class="pic_xl">
+                <img :src="oottInfo.mem_img" alt="作者頭像" />
+                <a href="#">{{ oottInfo.mem_name }}</a>
+            </div>
+            <p>{{ oottInfo.oott_desc }}</p>
+            <div class="tag_block">
+                <label v-for="(tag, index) in oottInfo.concatenated_style_name" :key="index">
+                <input type="checkbox" class="tag" />
+                <span>{{ tag }}</span>
+                </label>
+            </div>
+            <div class="date">
+            <span>{{ oottInfo.oott_date }}</span>
+            <span class="number">{{ oottInfo.oott_view }} 次瀏覽</span>
+            </div>
+            </div>
+        </div>
         
-
         <!-- 查看更多 -->
         <div class="oott_more">
             <div class="bgCurve">
@@ -87,25 +86,28 @@
     </div>
 </template>
 <script>
+import {GET} from '@/plugin/axios'
+import oottCard from "@/components/OottCard.vue";
 export default {
     components: {
         oottCard,
     },
     data() {
         return {
-            author: {
-                name: "Ailson",
-                avatarSrc: require('@/assets/img/info_name_2.png'),
-                profileLink: "" // 這裡可以設定作者個人檔案的鏈接
-            },
-            outfit: {
-                photoSrc: require('@/assets/img/oott_40.png'),
-                description:
-                " 小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。",
-                tags: ["#可愛", "#日系", "#運動"],
-                date: "2023-07-03",
-                views: 2345
-            },
+            oottInfo: [],
+            // author: {
+            //     name: "Ailson",
+            //     avatarSrc: require('@/assets/img/info_name_2.png'),
+            //     profileLink: "" // 這裡可以設定作者個人檔案的鏈接
+            // },
+            // outfit: {
+            //     photoSrc: require('@/assets/img/oott_40.png'),
+            //     description:
+            //     " 小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。",
+            //     tags: ["#可愛", "#日系", "#運動"],
+            //     date: "2023-07-03",
+            //     views: 2345
+            // },
             ootts: [
                 {
                     oottPhoto: require("@/assets/img/oott_02.png"),
@@ -131,9 +133,28 @@ export default {
             ],
         };
     },
+    methods: {
+        getOottImg(oottImg){
+            return `oottImg/${oottImg}.png`
+        },
+        getOottImg(oottImg){
+            return `oottImg/${oottImg}.png`
+        }
+    },
+    mounted() {
+        const oottId = this.$route.params.oott_id;
+        GET(`${this.$URL_MAC}/phpfile/oottInfo.php?oott_id=${oottId}`)
+            .then((res) => {
+                this.oottInfo = res;
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
     
 };
-import oottCard from "@/components/OottCard.vue";
+
 </script>
 
 <style lang="scss" scoped>
