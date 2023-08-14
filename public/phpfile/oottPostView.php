@@ -1,15 +1,30 @@
 <?php
-// upload.php
+header('Access-Control-Allow-Origin: *');
+header("Content-Type: application/json;charset=utf-8");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $targetDir = 'oottImg/';
-    $uploadedFile = $_FILES['photo'];
-    $targetPath = $targetDir . basename($uploadedFile['name']);
+$targetDir = __DIR__ . '/../oottImg/';
 
-    if (move_uploaded_file($uploadedFile['tmp_name'], $targetPath)) {
-        echo json_encode(['message' => 'File uploaded successfully']);
+try {
+    require_once("connectDailyTW.php");
+
+    if (!empty($_FILES['photo']['name'])) {
+        $targetFile = $targetDir . basename($_FILES['photo']['name']);
+        if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFile)) {
+            echo "File uploaded successfully.";
+        } else {
+            echo "Error uploading file.";
+        }
     } else {
-        echo json_encode(['error' => 'Error uploading file']);
+        echo "No file uploaded.";
     }
+    
+} catch (Exception $e) {
+    $response = [
+        'status' => 'error',
+        'message' => 'An error occurred.',
+    ];
+
+    echo json_encode($response);
 }
 ?>
+
