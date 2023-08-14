@@ -25,12 +25,12 @@
                     <div class="post_subtitle">
                         <h5>*穿搭照片</h5>
                     </div>
-                    <label for="postPhoto" class="photo_upload">
+                    <label for="postPhoto" class="photo_upload" v-if="!isPhotoSelected">
                         <input type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
                         + <br> 點此選擇照片上傳
                     </label>
-                    <div class="preview_img" v-if="isPhotoSelected">
-                        <img :src="previewImage" alt="Preview">
+                    <div class="photo_upload" v-if="isPhotoSelected">
+                        <img :src="previewUrl" alt="Preview">
                     </div>
 
                 </div>
@@ -81,7 +81,7 @@
 
             <!-- post_button -->
             <div class="post_button_area">
-                <button class="btn" @click="showPopbox" :disabled="!formValid">
+                <button class="btn" type="submit" @click="showPopbox" :disabled="!formValid">
                     確定送出
                 </button>
             </div>
@@ -98,7 +98,11 @@
                 </div>
                 <div class="button">
                     <!-- <button class="cancel" @click="showPopbox">取消</button> -->
-                    <button class="btn" @click="showPopbox">確定</button>
+                    <button class="btn" @click="uploadPhoto">
+                        <router-link to="/oott" class="confirm_btn">
+                            確定
+                        </router-link> 
+                    </button>
                 </div>
             </div>
         </div>
@@ -185,47 +189,33 @@ export default {
 // 確認照片上傳
         handleFileChange(event) {
             this.isPhotoSelected = event.target.files.length > 0;
+            // 將照片選取狀態改變
             this.selectedFile = event.target.files[0];
-            // 將取得的照片存在
+            // 將取得的照片存在selectedFile
+            this.previewUrl = URL.createObjectURL(this.selectedFile);
         },
-// 圖片上傳到後端
-        uploadPhoto() {
-            const formData = new FormData();
-            formData.append('photo', this.selectedFile);
 
-            // Send formData to the backend
-            // You will make an API call to your PHP backend here
+// 圖片上傳到後端
+async submitForm(event) {
+            event.preventDefault();
+            try {
+                console.log('Sending request...');
+                const formData = new FormData();
+                formData.append('photo', this.selectedFile);
+
+                const response = await axios.post(`${this.$URL}/oottPostView.php`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data', // Use multipart/form-data for form data
+                    },
+                });
+                console.log('Data sended successfully', response.data);
+            } catch (error) {
+                console.log(error);
+            }
         },
 // 圖片存在預覽區，準備上傳
 
-// 圖片上傳到後端
-
-
-
-        // 送出資料
-        // async submitForm(event) {
-        //     event.preventDefault();
-        //     try {
-        //         console.log('Sending request...');
-        //         const formData = new FormData();
-        //         formData.append('style_name', this.style_name);
-        //         formData.append('style_desc', this.style_desc);
-
-        //         const response = await axios.post(`${this.$URL}/oottPostView.php`, formData, {
-        //             headers: {
-        //                 'Content-Type': 'multipart/form-data', // Use multipart/form-data for form data
-        //             },
-        //         });
-        //         Swal.fire({
-        //             icon: 'success',
-        //             title: 'Success!',
-        //             text: 'Item has been added successfully.',
-        //         });
-        //         console.log('Data sended successfully', response.data);
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // }
+        
 
     },
 }
@@ -280,17 +270,22 @@ export default {
     .post_content {
         @media (min-width: 1024px) {
             display: flex;
+            justify-content: center;
+            align-content: center;
             gap: 24px;
         }
 
         .photo_upload {
-            width: 257px;
-            height: 342px;
+            width: 279px;
+            height: 369px;
             margin: auto;
+            img{
+                width: 100%;
+            }
 
             @media (min-width: 1024px) {
-                width: 486px;
-                height: 751px;
+                width: 418.5px;
+                height: 553.5px;
             }
 
             border: 1px solid var(--text-default, #6A5D4A);
@@ -546,7 +541,11 @@ export default {
             }
         }
     }
-
+    .confirm_btn{
+        a,a:active,a:hover{
+            color: #fefff5;
+        }
+    }
 
 }
 </style>
