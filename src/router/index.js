@@ -196,12 +196,13 @@ const routesUser = [
             ),
     },
     {
-        path: "/oott_edit_view/:oott_id",
+        path: "/oott_edit_view/:oottId",
         name: "OottEditView",
         component: () =>
             import(
                 /* webpackChunkName: "OottEditView" */ "@/views/OottEditView.vue"
             ),
+            props: true,
     },
     {
         path: "/my_oott",
