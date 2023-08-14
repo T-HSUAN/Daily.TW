@@ -161,7 +161,7 @@ export default {
         return {
             currentQuestionIndex: 0,
             cityList: [],
-            selectValue: [],
+            selectValue: [], //選取地區
             placeTags: [],
             sexTags: [
                 {
@@ -178,13 +178,13 @@ export default {
                 },
             ],
             styleTags: [],
-            checkedPlaceTags :[],
-            checkedSexTag :[],
-            checkedStyleTags :[],
+            checkedPlaceTags :[], //選取景點類型
+            checkedSexTag :[], //選取穿搭性別
+            checkedStyleTags :[], //選取穿搭風格
+            placeTagIdMapping: [], //轉存place_tag_id
+            // sexTagIdMapping: [], //轉存mem_id
+            styleTagIdMapping: [], //轉存style_id
         }
-    },
-    mounted() {
-        this.currentQuestionIndex = 0;
     },
     computed: {
         isNextButtonDisabled() {
@@ -252,17 +252,42 @@ export default {
                 checkedArray = this.checkedSexTag;
                 this.limitCheckedTags(checkedArray, index);
             }
-
         },
         // "看結果"按鈕跳轉至結果頁
         handleResultClick() {
             if (this.isNextButtonDisabled) {
                 return;
             }
-            this.$router.push('/plan_result');
+            // 陣列改存table id
+            this.checkedPlaceTags = this.checkedPlaceTags.forEach((isChecked, index) => {
+                if (isChecked) {
+                    this.placeTagIdMapping.push(this.placeTags[index].place_tag_id);
+                }
+            });
+            this.checkedStyleTags = this.checkedStyleTags.forEach((isChecked, index) => {
+                if (isChecked) {
+                    this.styleTagIdMapping.push(this.styleTags[index].style_id);
+                }
+            });
+            // Construct the query parameters
+            const query = {
+                selectValue: this.selectValue,
+                checkedPlaceTags: this.placeTagIdMapping,
+                checkedSexTag: this.checkedSexTag,
+                checkedStyleTags: this.styleTagIdMapping,
+            };
+
+            // Use Vue Router to navigate to the target route with query parameters
+            this.$router.push({
+                path: '/plan_result',
+                query: query,
+            });
+
+            // this.$router.push('/plan_result');            
         },
     },
     mounted() {
+        this.currentQuestionIndex = 0;
         GET(`${this.$URL}/PlanQuizRegion.php`)
             .then((res) => {
                 console.log(res);

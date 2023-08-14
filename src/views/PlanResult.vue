@@ -872,6 +872,25 @@ export default defineComponent({
         // Add the event listener when the component is mounted
         window.addEventListener('scroll', this.checkScroll);
         this.checkScroll();
+
+        // Retrieve query parameters from the route
+        const query = this.$route.query;
+
+        // Access the query parameters and use them as needed
+        const selectValue = query.selectValue;
+        const checkedPlaceTags = query.checkedPlaceTags;
+        const checkedSexTag = query.checkedSexTag;
+        const checkedStyleTags = query.checkedStyleTags;
+
+        // Now you can use these values to perform queries or manipulate your component's data
+        // Example:
+        console.log(selectValue);
+        console.log(checkedPlaceTags);
+        console.log(checkedSexTag);
+        console.log(checkedStyleTags);
+
+        // Fetch data from your API based on the query parameters and update your component's data accordingly
+        // For example, update the 'ootts', 'tickets', 'trips', etc. arrays based on the selected tags
     },
     beforeUnmount() {
         // Remove the event listener when the component is about to be unmounted
