@@ -23,7 +23,7 @@
         <!-- 穿搭資訊頁 -->
         <div class="oott_info_section">
             <div class="pic_md">
-            <img :src="oottInfo.mem_img" alt="作者頭像" />
+            <img :src=getMemImg(oottInfo.mem_img) alt="作者頭像" />
             <span>{{ oottInfo.mem_name }}</span>
             </div>
             <div class="pic_block">
@@ -37,7 +37,7 @@
             </div>
             <div class="writer_block">
             <div class="pic_xl">
-                <img :src="oottInfo.mem_img" alt="作者頭像" />
+                <img :src=getMemImg(oottInfo.mem_img) alt="作者頭像" />
                 <a href="#">{{ oottInfo.mem_name }}</a>
             </div>
             <p>{{ oottInfo.oott_desc }}</p>
@@ -68,15 +68,13 @@
             <div class="wrap">
                 <div class="oottCards">
                     <oottCard
-                        class="oottCard"
-                        v-for="(oott, index) in ootts"
-                        :key="index"
-                        :oottPhoto="oott.oottPhoto"
-                        :oottCardTags="oott.oottCardTags"
-                        :oottCardDate="oott.oottCardDate"
-                        :oottAuthorPhoto="oott.oottAuthorPhoto"
-                        :oottCardAuthor="oott.oottCardAuthor"
-                    ></oottCard>
+                        class="oottCard" v-for="item in ootts" :key="item.id"
+                        :oottPhoto="getOottImg(item.oott_img)" 
+                        :oottCardTags="item.concatenated_style_name" 
+                        :oottCardDate="item.oott_date"
+                        :oottAuthorPhoto="getMemImg(item.mem_img)" 
+                        :oottCardAuthor="item.mem_name" >
+                    </oottCard>
                 </div>
             </div>
             <div class="look_more">
@@ -95,51 +93,17 @@ export default {
     data() {
         return {
             oottInfo: [],
-            // author: {
-            //     name: "Ailson",
-            //     avatarSrc: require('@/assets/img/info_name_2.png'),
-            //     profileLink: "" // 這裡可以設定作者個人檔案的鏈接
-            // },
-            // outfit: {
-            //     photoSrc: require('@/assets/img/oott_40.png'),
-            //     description:
-            //     " 小朋友穿著一套黃色花花的衣服，衣服上繽紛的花卉圖案增添了活潑的氛圍，頭上戴著一頂黃色的學生帽，帽檐整齊地遮蓋著他的額頭，營造出俏皮可愛的感覺，小朋友充滿活力和童真，他的穿搭散發著陽光般的溫暖和歡樂。",
-            //     tags: ["#可愛", "#日系", "#運動"],
-            //     date: "2023-07-03",
-            //     views: 2345
-            // },
-            ootts: [
-                {
-                    oottPhoto: require("@/assets/img/oott_02.png"),
-                    oottCardTags: "#日系 #休閒 #風景",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/info_name_2.png"),
-                    oottCardAuthor: "Alison",
-                },
-                {
-                    oottPhoto: require("@/assets/img/oott_06.png"),
-                    oottCardTags: "#復古 #海邊",
-                    oottCardDate: "2022 / 7 / 3",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Susan",
-                },
-                {
-                    oottPhoto: require("@/assets/img/oott_41.png"),
-                    oottCardTags: "#街頭 #潮流",
-                    oottCardDate: "2022 / 7 / 6",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Max",
-                },
-            ],
+           
+            ootts: [],
         };
     },
     methods: {
         getOottImg(oottImg){
-            return `oottImg/${oottImg}.png`
+            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
         },
-        getOottImg(oottImg){
-            return `oottImg/${oottImg}.png`
-        }
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
+        },
     },
     mounted() {
         const oottId = this.$route.params.oott_id;
@@ -147,6 +111,15 @@ export default {
             .then((res) => {
                 this.oottInfo = res;
                 console.log(res);
+            })
+            .catch((err) => {
+                console.log(err); 
+            });
+
+            GET(`${this.$URL_MAC}/phpfile/oottInfoMore.php`)
+            .then((res) => {
+            console.log(res);
+            this.ootts = res;
             })
             .catch((err) => {
                 console.log(err);
@@ -207,7 +180,6 @@ export default {
             }
         }
     }
-
     //tag
     .tag {
         position: absolute;
@@ -343,6 +315,7 @@ export default {
                     img {
                         width: 100%;
                         // padding: 10px;
+                        border-radius: 50px;
                     }
                     a {
                         padding: 5px;
