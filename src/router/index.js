@@ -71,7 +71,7 @@ const routesUser = [
             ),
     },
     {
-        path: "/oott_info",
+        path: "/oott_info/:oott_id",
         name: "oott_info",
         // component: TicketView
         component: () =>
