@@ -6,17 +6,16 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT t.trip_name, p.place_img1, p.place_name
+	$sql = "SELECT t.trip_name, GROUP_CONCAT(p.place_img1 SEPARATOR ',') AS concatenated_place_name, GROUP_CONCAT(p.place_name SEPARATOR ',') AS concatenated_place_name
 			FROM trip AS t
 			JOIN trip_item AS ti on t.trip_id = ti.trip_id
 			JOIN place AS p on ti.place_id = p.place_id
-			GROUP BY t.trip_id
 			WHERE t.trip_status = 1 AND t.trip_ref = 0
+            GROUP BY t.trip_id
 			ORDER BY rand()
-			LIMIT 6;
+			LIMIT 6
 			";
 	$tripInfo = $pdo->prepare($sql); 
-	$tripInfo->bindValue(":trip_id", $_GET["trip_id"]);
     $tripInfo->execute();
 
 	if( $tripInfo->rowCount() === 0 ){ //找不到
