@@ -3,7 +3,7 @@
     <div class="oottOverview">
         <!-- 麵包屑 -->
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -26,12 +26,8 @@
         <section class="list">
             <div class="oott_list" v-if="oottDisplay.length > 0">
                 <div class="oott_card" v-for="item in oottDisplay" :key="item.id">
-                    <Oott 
-                    :oottPhoto="item.oott_img" 
-                    :oottCardTags="item.concatenated_style_name" 
-                    :oottCardDate="item.oott_date"
-                    :oottAuthorPhoto="item.mem_img" 
-                    :oottCardAuthor="item.mem_name" />
+                    <Oott :oottPhoto="item.oott_img" :oottCardTags="item.concatenated_style_name"
+                        :oottCardDate="item.oott_date" :oottAuthorPhoto="item.mem_img" :oottCardAuthor="item.mem_name" />
                 </div>
             </div>
             <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
@@ -44,7 +40,7 @@
     </div>
 </template>
 <script>
-import {GET} from '@/plugin/axios'
+import { GET } from '@/plugin/axios'
 import Searchbar from "@/components/Searchbar.vue";
 import Oott from "@/components/OottCard.vue";
 import oottData from "@/store/oottData.js";
@@ -61,19 +57,19 @@ export default {
             ShowClear: false,
 
             tagTexts: [
-                { Name: "#運動" ,selected: false},
-                { Name: "#派對" ,selected: false},
-                { Name: "#日系" ,selected: false},
-                { Name: "#性感" ,selected: false},
-                { Name: "#懷舊" ,selected: false},
-                { Name: "#休閒" ,selected: false},
-                { Name: "#可愛" ,selected: false},
-                { Name: "#潮流" ,selected: false},
-                { Name: "#復古" ,selected: false},
-                { Name: "#美式" ,selected: false},
-                { Name: "#簡約" ,selected: false},
+                { Name: "#運動", selected: false },
+                { Name: "#派對", selected: false },
+                { Name: "#日系", selected: false },
+                { Name: "#性感", selected: false },
+                { Name: "#懷舊", selected: false },
+                { Name: "#休閒", selected: false },
+                { Name: "#可愛", selected: false },
+                { Name: "#潮流", selected: false },
+                { Name: "#復古", selected: false },
+                { Name: "#美式", selected: false },
+                { Name: "#簡約", selected: false },
             ],
-           
+
         };
     },
     methods: {
@@ -90,7 +86,7 @@ export default {
 
                 // 文字模糊搜索
                 const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
-                
+
                 // 返回结果
                 return areaMatch && tagMatch && nameMatch;
             });
@@ -138,13 +134,16 @@ export default {
     @media (min-width: 768px) {
         padding-top: 200px;
     }
-    .no_result{
+
+    .no_result {
         padding: 40px;
         font-size: $sm_h4;
+
         @media (min-width: 768px) {
-        font-size: $xl_h4;
+            font-size: $xl_h4;
         }
     }
+
     .breadcrumb {
         display: flex;
         align-items: center;
@@ -240,4 +239,5 @@ export default {
             }
         }
     }
-}</style>
+}
+</style>

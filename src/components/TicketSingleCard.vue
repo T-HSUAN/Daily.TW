@@ -18,13 +18,13 @@
             </a>
             <div class="ticket_price" v-if="showNT === true">
                 <!--以下不用加true/false，它是參考originalPrice的值，沒有價格就會不顯示 -->
-                <p class="price_original" v-if="originalPrice !== ''">NT$</p>
+                <p class="price_original" v-if="originalPrice !== FinalPrice">NT$</p>
                 <p class="price_original">{{ originalPrice }}</p>
                 <p class="price_final">NT${{ FinalPrice }}</p>
             </div>
         </div>
         <!--以下不用加true/false，它是參考discountTag的值，沒有折扣就會不顯示 -->
-        <p class="discount_tag" v-if="discountTag !== ''">{{ discountTag }}</p>
+        <p class="discount_tag" v-if="discountTag">{{ discountTag }}折</p>
     </div>
 </template>
 

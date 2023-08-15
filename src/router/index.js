@@ -6,7 +6,7 @@ import store from '@/store/index'
 
 const routesUser = [
     {//首頁
-        path: "/",
+        path: "/Home",
         name: "home",
         component: HomeView,
     },
@@ -202,7 +202,7 @@ const routesUser = [
             import(
                 /* webpackChunkName: "OottEditView" */ "@/views/OottEditView.vue"
             ),
-            props: true,
+        props: true,
     },
     {
         path: "/my_oott",

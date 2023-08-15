@@ -4,7 +4,7 @@
 
         <!-- 麵包屑 -->
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -41,7 +41,7 @@
     </div>
 </template>
 <script>
-import {GET} from '@/plugin/axios'
+import { GET } from '@/plugin/axios'
 import Searchbar from "@/components/Searchbar.vue";
 import Trip from "@/components/TripCard.vue";
 import tripData from "@/store/tripData.js";
@@ -137,9 +137,9 @@ export default {
     background-color: $bgColor_tint;
     overflow: hidden;
 
-@media (min-width: 768px) {
-    padding: 200px 32px 200px;
-}
+    @media (min-width: 768px) {
+        padding: 200px 32px 200px;
+    }
 
     h2 {
         text-align: center;

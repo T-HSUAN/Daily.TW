@@ -3,7 +3,7 @@
     <div class="tripInfo">
         <!-- 麵包屑 -->
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -37,7 +37,7 @@
                     </p>
                 </div>
                 <img src="../../public/placeImg/001.png">
-                
+
                 <section class="place" v-for="(place, index) in placeInfo" :key="index" :id="'place' + (index + 1)">
                     <div class="place_title">
                         <h3>{{ place.place_name }}</h3>
@@ -49,7 +49,7 @@
                     <div class="place_img">
                         <Carousel :autoplay="3000" :wrap-around="true">
                             <Slide v-for="(image, imageIndex) in placeInfo.place_img" :key="imageIndex" v-if="image">
-                                <img :src="getPlaceImagePath(image)"/>
+                                <img :src="getPlaceImagePath(image)" />
                             </Slide>
                             <template #addons>
                                 <Navigation />
@@ -57,7 +57,7 @@
                             </template>
                         </Carousel>
                     </div>
-                        <p class="place_desc">{{ place.place_desc }}</p>
+                    <p class="place_desc">{{ place.place_desc }}</p>
                     <div class="place_loc">
                         <img src="~@/assets/img/layout/plan_result_location.png" alt="" />
                         <a :href="place.place_link" target="_blank">
@@ -65,7 +65,7 @@
                         </a>
                     </div>
                 </section>
-                
+
                 <section class="trip_tags">
                     <router-link v-for="(tag, index) in placeTags" :key="index" to="/trip_overview">
                         <div class="tags">{{ tag.place_tag_name }}</div>
@@ -75,7 +75,8 @@
             <div class="sidebar">
                 <div class="route">
                     <Anchor show-ink>
-                        <AnchorLink v-for="(place, index) in placeInfo" :key="index" :href="'#place' + (index + 1)" :title="place.place_name" />
+                        <AnchorLink v-for="(place, index) in placeInfo" :key="index" :href="'#place' + (index + 1)"
+                            :title="place.place_name" />
                     </Anchor>
                 </div>
                 <label class="collect">
@@ -247,11 +248,13 @@
                 @media (min-width: 768px) {
                     width: 120px;
                 }
+
                 @keyframes duck_shake {
-                    0%{
+                    0% {
                         rotate: -3.2deg;
                     }
-                    100%{
+
+                    100% {
                         rotate: 3.2deg;
                     }
                 }
@@ -393,17 +396,18 @@
                         display: flex;
                         align-items: center;
                         gap: 4px;
+
                         @media (min-width: $md) {
                             gap: $sp1;
                         }
 
                         img {
-                                width: 22px;
+                            width: 22px;
 
-                                @media (min-width: $md) {
-                                    width: 27px;
-                                }
+                            @media (min-width: $md) {
+                                width: 27px;
                             }
+                        }
                     }
                 }
 
@@ -419,9 +423,11 @@
                         width: 100%;
                     }
 
-                    .carousel__prev, .carousel__next {
+                    .carousel__prev,
+                    .carousel__next {
                         display: none;
-                        @media (min-width: $md){
+
+                        @media (min-width: $md) {
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -432,12 +438,14 @@
                             height: 40px;
                             box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
-                            &:hover{
+                            &:hover {
                                 background-color: $textColor_default;
-                                .carousel__icon{
+
+                                .carousel__icon {
                                     fill: $textColor_white;
                                 }
                             }
+
                             .carousel__icon {
                                 width: 40px;
                                 height: auto;
@@ -445,6 +453,7 @@
                             }
                         }
                     }
+
                     .carousel__prev {
                         left: 24px;
                     }
@@ -454,12 +463,12 @@
                     }
 
                     .carousel__pagination-button::after {
-                            background-color: $textColor_tint !important;
-                        }
+                        background-color: $textColor_tint !important;
+                    }
 
-                        .carousel__pagination-button--active::after {
-                            background-color: $textColor_default !important;
-                        }
+                    .carousel__pagination-button--active::after {
+                        background-color: $textColor_default !important;
+                    }
                 }
 
                 .place_desc {
@@ -476,17 +485,18 @@
                     margin-bottom: $sp8;
                     align-items: center;
                     gap: 4px;
+
                     @media (min-width: $md) {
                         gap: $sp1;
                     }
 
                     img {
-                            width: 22px;
+                        width: 22px;
 
-                            @media (min-width: $md) {
-                                width: 27px;
-                            }
+                        @media (min-width: $md) {
+                            width: 27px;
                         }
+                    }
                 }
 
             }
@@ -764,8 +774,7 @@
                 text-align: left;
                 overflow: visible;
 
-                @media (min-width: 768px) {
-                }
+                @media (min-width: 768px) {}
 
                 .tripCards {
                     display: flex;
@@ -798,7 +807,7 @@
 
 
 <script>
-import {GET} from '@/plugin/axios'
+import { GET } from '@/plugin/axios'
 import oottCard from '@/components/OottCard.vue'
 import ticketCard from '@/components/TicketVertical.vue'
 import tripCard from '@/components/TripCard.vue'
@@ -822,16 +831,16 @@ export default {
             tripInfo: [],
 
             placeInfo: {
-                place_name:'',
+                place_name: '',
                 place_img: [
-                    {place_img1:''},
-                    {place_img2:''},
-                    {place_img3:''}
+                    { place_img1: '' },
+                    { place_img2: '' },
+                    { place_img3: '' }
                 ],
-                place_stay:'',
-                place_desc:'',
-                place_addr:'',
-                place_link:''
+                place_stay: '',
+                place_desc: '',
+                place_addr: '',
+                place_link: ''
             },
 
             placeTags: [],

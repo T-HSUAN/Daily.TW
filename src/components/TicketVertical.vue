@@ -1,4 +1,3 @@
-<!-- 後來決定把橫式票券另外寫一個，檔名:TicketSingleCard，不然有時會有奇怪bug -->
 <template>
     <div class="ticketVertical_container">
         <img :src="ticketPhoto" alt="票券照片" />
@@ -9,12 +8,12 @@
                 <span class="ticket_tags">{{ ticketTags }}</span>
             </p>
             <div class="ticket_price">
-                <p class="price_original" v-if="originalPrice !== ''">NT$</p>
-                <p class="price_original">{{ originalPrice }}</p>
+                <p class="price_original" v-if="originalPrice !== FinalPrice">NT$</p>
+                <p class="price_original" v-if="originalPrice !== FinalPrice">{{ originalPrice }}</p>
                 <p class="price_final">NT${{ FinalPrice }}</p>
             </div>
         </div>
-        <p class="discount_tag" v-if="discountTag !== ''">{{ discountTag }}</p>
+        <p class="discount_tag" v-if="discountTag">{{ discountTag }}折</p>
     </div>
 </template>
 
@@ -29,7 +28,7 @@ export default {
         ticketTags: String,
         originalPrice: { Number, String },
         FinalPrice: Number,
-        discountTag: String,
+        discountTag: { Number, String },
     },
 };
 </script>

@@ -4,7 +4,7 @@ import { URL } from "@/assets/js/common.js";
 
 export default createStore({
     state: {
-        ticketData: [],
+        ticketData: [],//從資料庫匯入的票券資料
         area: ["所有地區", "新北", "臺北", "基隆", "桃園", "新竹", "苗栗", "臺中", "彰化", "雲林", "嘉義", "南投", "臺南", "高雄", "屏東", "宜蘭", "花蓮", "臺東", "澎湖", "金門", "馬祖",
         ],
         // 篩選內容(各自設定不同名稱，不要共用)
@@ -19,8 +19,8 @@ export default createStore({
         name: '登入 | 註冊',
         isLogin: false,
         memberInfoAll: { info: '' },
-        sign_email:'',
-        sign_psw:'',
+        sign_email: '',
+        sign_psw: '',
 
     },
     getters: {
@@ -59,7 +59,7 @@ export default createStore({
             if (!CartItemInCart) {
                 state.cartItems.push(cartItem);
             } else {
-                swal("票券已加入購物車", "請點擊確認全票與優待票購買數量。", "error", { timer: 1800 });
+                swal("票券已加入購物車", "請至購物車確認全票與優待票購買數量。", "error", { timer: 2500 });
             }
         },
         addToCartDirectly(state, cartItem) {
@@ -146,10 +146,10 @@ export default createStore({
         },
         setAccount(state, account) {
             state.sign_email = account;
-          },
-          setPassword(state, password) {
+        },
+        setPassword(state, password) {
             state.sign_psw = password;
-          },
+        },
         //後端資料
         // setUserInfo(state, userInfo) {
         //     sessionStorage.setItem("cus_no", userInfo.cus_no);
@@ -165,7 +165,7 @@ export default createStore({
     },
     actions: {
         fetchTicketData({ commit }) {
-            axios.get('http://localhost/DailyTW_Backstage/public/phpfile/TicketList.php')
+            axios.get('http://localhost/Daily.TW/public/phpfile/TicketData.php')
                 .then(response => {
                     commit('SET_TICKET_DATA', response.data);
                     console.log('[store]成功連接ticketdata:', this.state.ticketData);
@@ -186,11 +186,11 @@ export default createStore({
         clearCart({ commit }) {
             commit('clearCart');
         },
-        Subtotal({ commit, state }, { itemId, countAdult, countEx }) {
+        Subtotal({ commit, state }, { itemId, priceAdultF, priceExF, countAdult, countEx }) {
             const item = state.cartItems.find((item) => item.id === itemId);
             if (item) {
-                const priceAdultF = item.price_adultF;
-                const priceExF = item.price_exF;
+                item.price_adultF = priceAdultF;
+                item.price_exF = priceExF;
                 item.count_adult = countAdult;
                 item.count_ex = countEx;
                 item.subtotal = countAdult * priceAdultF + countEx * priceExF;
@@ -200,10 +200,10 @@ export default createStore({
         },
         updateAccount({ commit }, account) {
             commit('setAccount', account);
-          },
-          updatePassword({ commit }, password) {
+        },
+        updatePassword({ commit }, password) {
             commit('setPassword', password);
-          },
+        },
     },
     modules: {},
 });

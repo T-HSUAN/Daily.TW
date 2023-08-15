@@ -1,7 +1,7 @@
 <template>
     <div class="oott_post_wrap">
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -101,7 +101,7 @@
                     <button class="btn" @click="uploadPhoto">
                         <router-link to="/oott" class="confirm_btn">
                             確定
-                        </router-link> 
+                        </router-link>
                     </button>
                 </div>
             </div>
@@ -186,7 +186,7 @@ export default {
         countCheckedTags(checkedArray) {
             return checkedArray.filter(tag => tag).length; // 計算有勾選的長度
         },
-// 確認照片上傳
+        // 確認照片上傳
         handleFileChange(event) {
             this.isPhotoSelected = event.target.files.length > 0;
             // 將照片選取狀態改變
@@ -195,8 +195,8 @@ export default {
             this.previewUrl = URL.createObjectURL(this.selectedFile);
         },
 
-// 圖片上傳到後端
-async submitForm(event) {
+        // 圖片上傳到後端
+        async submitForm(event) {
             event.preventDefault();
             try {
                 console.log('Sending request...');
@@ -213,9 +213,9 @@ async submitForm(event) {
                 console.log(error);
             }
         },
-// 圖片存在預覽區，準備上傳
+        // 圖片存在預覽區，準備上傳
 
-        
+
 
     },
 }
@@ -279,7 +279,8 @@ async submitForm(event) {
             width: 279px;
             height: 369px;
             margin: auto;
-            img{
+
+            img {
                 width: 100%;
             }
 
@@ -541,11 +542,14 @@ async submitForm(event) {
             }
         }
     }
-    .confirm_btn{
-        a,a:active,a:hover{
+
+    .confirm_btn {
+
+        a,
+        a:active,
+        a:hover {
             color: #fefff5;
         }
     }
 
-}
-</style>
+}</style>

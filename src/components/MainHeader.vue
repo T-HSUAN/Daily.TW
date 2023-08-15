@@ -3,7 +3,7 @@
         <!-- phone -->
         <div class="header_phone" v-if="screenWidth < 768">
             <!-- logo_sm &home_link -->
-            <router-link to="/">
+            <router-link to="/Home">
                 <img class="logo_sm" :src="LOGO.sm" alt="logo" @click="hideSidebar" />
             </router-link>
             <img class="ham_toggle" :src="Hamburger.toggle" alt="hamburger_toggle" @click="toggleSidebar" />
@@ -30,7 +30,7 @@
                         </router-link>
                     </div>
                 </ul>
-                <router-link to="/">
+                <router-link to="/Home">
                     <img class="sidebar_logo" :src="LOGO.sidebar" alt="logo" @click="hideSidebar">
                 </router-link>
             </nav>
@@ -39,7 +39,7 @@
         <!-- desktop -->
         <div :class="['header_desktop', { 'header_short': changeHeight }]" v-if="screenWidth > 767">
             <!-- logo_xl &home_link -->
-            <router-link to="/">
+            <router-link to="/Home">
                 <img :class="'logo_' + LOGO.size" :src="LOGO.desktop" alt="logo">
             </router-link>
             <!-- menu -->
@@ -54,7 +54,7 @@
                             會員中心
                         </div>
                         <span class="separate">|</span>
-                        <div  @click="handleLogout">
+                        <div @click="handleLogout">
                             登出
                         </div>
                     </div>
@@ -67,8 +67,8 @@
                 </ul>
             </nav>
         </div>
-        
-        
+
+
 
 
     </header>
@@ -165,19 +165,19 @@ export default {
             this.$router.push({ path: "/member" });
         },
         //登出
-        handleLogout() {  
-            this.showSidebar = !this.showSidebar; 
+        handleLogout() {
+            this.showSidebar = !this.showSidebar;
             this.$store.commit('setName', "登入|註冊");
             this.$store.commit('setIsLogin', false);
             sessionStorage.removeItem("mem_id");
-            this.$router.push("/");
-            setTimeout(()=>{
+            this.$router.push("/Home");
+            setTimeout(() => {
                 this.$router.go(0);
 
-            },10)
+            }, 10)
         },
-        
-        
+
+
         //檢查登入狀態
         checkLogin() {
             let memId = sessionStorage.getItem("mem_id");
@@ -192,14 +192,14 @@ export default {
                 params.append("mem_id", memId);
                 POST(URL, params).then((res) => {
                     console.log(res);
-                     this.$store.commit("setLoginData", res);
+                    this.$store.commit("setLoginData", res);
                 });
             } else {
                 this.$store.commit('logOut');
             }
         },
 
-        
+
 
     },
     computed: {
@@ -224,5 +224,4 @@ export default {
 </script>
 <style lang="scss" scoped>
 // @import "@/assets/scss/baseAndMixin.scss";
-
 </style>

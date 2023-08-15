@@ -1,7 +1,7 @@
 <template>
     <div class="payment_page">
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
