@@ -1,7 +1,7 @@
 <?php 
     $dbname = "DailyTW"; 
     $user = "root";
-    $password = "0624";
+    $password = "";
     $port = 3306;
 
     $dsn = "mysql:host=localhost;port=$port;dbname=$dbname;charset=utf8";
