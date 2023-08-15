@@ -21,10 +21,10 @@
                                     />
                                 </div>
                                 <ul>
-                                        <li>用戶暱稱：{{ member.nickname }}</li>
-                                        <li>生日：{{ member.birthday }}</li>
-                                        <li>性別：{{ member.gender }}</li>
-                                        <li>email:{{ member.email }}</li>
+                                    <li>用戶暱稱：{{ member.nickname }}</li>
+                                    <li>生日：{{ member.birthday }}</li>
+                                    <li>性別：{{ member.gender }}</li>
+                                    <li>email:{{ member.email }}</li>
                                 </ul>
                                 <router-link to="/member_info" class="btn">編輯</router-link>
                             </div>

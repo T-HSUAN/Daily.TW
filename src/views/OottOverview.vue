@@ -27,6 +27,7 @@
             <div class="oott_list" v-if="oottDisplay.length > 0">
                 <div class="oott_card" v-for="item in oottDisplay" :key="item.id">
                     <Oott 
+                    :oottCardId="+item.oott_id"
                     :oottPhoto="getOottImg(item.oott_img)" 
                     :oottCardTags="item.concatenated_style_name" 
                     :oottCardDate="item.oott_date"
@@ -58,7 +59,7 @@ export default {
             oottData: oottData,
             // 從oottData抓取資料並呈現(進行搜尋篩選)
             oottDisplay: [],
-            ShowClear: false,
+            // ShowClear: false,
 
             tagTexts: [
                 { Name: "#運動" ,selected: false},
@@ -78,21 +79,23 @@ export default {
     },
     methods: {
         Filters() {
-            const areaSelected = this.$store.state.filter.areaSelected;
-            const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
-            const searchText = this.$store.state.filter.searchText;
+            console.log(this.oottDisplay)
+            // const areaSelected = this.$store.state.filter.areaSelected;
+            // const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+            // const searchText = this.$store.state.filter.searchText;
+           console.log(this.oottData)
             this.oottDisplay = this.oottData.filter(item => {
                 // 地區篩選
-                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+                // const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
 
                 // 標籤篩選
-                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+                // const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
 
                 // 文字模糊搜索
-                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
-                
+                // const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
                 // 返回结果
-                return areaMatch && tagMatch && nameMatch;
+                // return areaMatch && tagMatch && nameMatch;
+                return true
             });
         },
         ClearFilter() {
@@ -108,9 +111,11 @@ export default {
         getMemImg(memImg){
             return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
         },
+        
     },
     mounted() {
-        GET(`${this.$URL}/phpfile/oottOverview.php`)
+        const oottId = this.$route.params.oott_id;
+        GET(`${this.$URL}/oottOverview.php?oott_id=${oottId}`)
             .then((res) => {
                 console.log(res);
                 this.oottDisplay = res;

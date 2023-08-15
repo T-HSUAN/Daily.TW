@@ -76,7 +76,7 @@ export default {
             ]),
             required: true,
         },
-        Filters: Function,
+        // Filters: Function,
         ClearFilter: Function,
     },
     data() {
