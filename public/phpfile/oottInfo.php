@@ -9,7 +9,7 @@ try {
    $sql = "select 
     ot.oott_id, 
     ot.oott_img, 
-    ot.oott_date, 
+    DATE_FORMAT(ot.oott_date, '%Y/%m/%d') AS oott_date, 
     ot.oott_desc,
     ot.oott_view,
     m.mem_name, 
