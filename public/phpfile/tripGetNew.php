@@ -14,27 +14,28 @@ try {
             JOIN place_tag_connection AS ptc ON p.place_id = ptc.place_id
             JOIN place_tag AS pt ON ptc.place_tag_id = pt.place_tag_id
 			GROUP BY t.trip_id
-			ORDER BY t.trip_view DESC
-			LIMIT 7
+			ORDER BY t.trip_date DESC
+			LIMIT 3
 			";
-	$topTrip = $pdo->prepare($sql); 
-    $topTrip->execute();
+	$newTrip = $pdo->prepare($sql); 
+    $newTrip->execute();
 
-	if( $topTrip->rowCount() === 0 ){ //找不到
+	if( $newTrip->rowCount() === 0 ){ //找不到
         //傳回空的JSON字串
         echo "{}";
+
     }else{ //找得到
         //取回所有資料
-        $topTripRow = $topTrip->fetchAll(PDO::FETCH_ASSOC);
+        $newTripRow = $newTrip->fetchAll(PDO::FETCH_ASSOC);
 
-		foreach ($topTripRow as &$row) {
+		foreach ($newTripRow as &$row) {
             $row['trip_region'] = explode(',', $row['trip_region']);
             $row['trip_img'] = explode(',', $row['trip_img']);
 			$row['trip_img'] = $row['trip_img'][0];
         }
 
         //送出json字串
-        echo json_encode($topTripRow);
+        echo json_encode($newTripRow);
     }
 
 } catch (Exception $e) {

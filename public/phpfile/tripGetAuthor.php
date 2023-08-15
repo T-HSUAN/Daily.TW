@@ -6,7 +6,7 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT trip_name, trip_author, trip_date, trip_view, trip_desc
+	$sql = "SELECT mem_
 		FROM trip
 		WHERE trip_id = 1;
 			";
