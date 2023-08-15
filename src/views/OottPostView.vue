@@ -99,9 +99,9 @@
                 <div class="button">
                     <!-- <button class="cancel" @click="showPopbox">取消</button> -->
                     <button class="btn" @click="uploadPhoto">
-                        <router-link to="/oott" class="confirm_btn">
+                        <!-- <router-link to="/oott" class="confirm_btn"> -->
                             確定
-                        </router-link> 
+                        <!-- </router-link>  -->
                     </button>
                 </div>
             </div>
@@ -191,7 +191,7 @@ export default {
             this.isPhotoSelected = event.target.files.length > 0;
             // 將照片選取狀態改變
             this.selectedFile = event.target.files[0];
-            // 將取得的照片存在selectedFile
+            // 將取得的照片存在selectedFile供預覽用
             this.previewUrl = URL.createObjectURL(this.selectedFile);
         },
 
@@ -213,7 +213,7 @@ async submitForm(event) {
                 console.log(error);
             }
         },
-// 圖片存在預覽區，準備上傳
+
 
         
 
@@ -284,8 +284,8 @@ async submitForm(event) {
             }
 
             @media (min-width: 1024px) {
-                width: 418.5px;
-                height: 553.5px;
+                width: 279*1.2px;
+                height: 369*1.2px;
             }
 
             border: 1px solid var(--text-default, #6A5D4A);

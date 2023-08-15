@@ -8,9 +8,13 @@ try {
     require_once("connectDailyTW.php");
 
     if (!empty($_FILES['photo']['name'])) {
-        $targetFile = $targetDir . basename($_FILES['photo']['name']);
+        $extension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
+        $newFileName = uniqid() . '.' . $extension; // Generate a unique filename
+        
+        $targetFile = $targetDir . $newFileName;
+        
         if (move_uploaded_file($_FILES['photo']['tmp_name'], $targetFile)) {
-            echo "File uploaded successfully.";
+            echo "File uploaded successfully as: $newFileName";
         } else {
             echo "Error uploading file.";
         }
@@ -27,4 +31,3 @@ try {
     echo json_encode($response);
 }
 ?>
-
