@@ -56,7 +56,7 @@ export default {
             this.$router.push({name:'OottEditView',params:{oottId:oottId}}) 
         },
         getOottImg(oottImg){
-            return `oottImg/${oottImg}.png`;  
+            return `oottImg/${oottImg}`;
         }
     },
 };

@@ -18,6 +18,7 @@ from oott ot
 join oott_style_connection osc on ot.oott_id = osc.oott_id
 join style s on osc.style_id = s.style_id
 join member m on ot.mem_id = m.mem_id 
+Where m.mem_id = 3
 GROUP BY ot.oott_id;
   ";
             
