@@ -6,12 +6,16 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT trip_name, trip_author, trip_date, trip_view, trip_desc
-			FROM trip
-			WHERE trip_id = :trip_id;
+	$sql = "SELECT o.oott_id, o.oott_img, DATE_FORMAT(o.oott_date, '%Y / %c / %e') AS oott_date_new, m.mem_nickname, m.mem_img, GROUP_CONCAT(DISTINCT s.style_name SEPARATOR ' #') AS concatenated_style_name
+			FROM oott AS o
+			JOIN oott_style_connection AS osc ON o.oott_id = osc.oott_id
+			JOIN style AS s ON osc.style_id = s.style_id
+			JOIN member AS m ON o.mem_id = m.mem_id
+			GROUP BY o.oott_id
+			ORDER BY o.oott_view DESC
+			LIMIT 10;
 			";
 	$oottInfo = $pdo->prepare($sql); 
-	$oottInfo->bindValue(":trip_id", $_GET["trip_id"]);
     $oottInfo->execute();
 
 	if( $oottInfo->rowCount() === 0 ){ //找不到

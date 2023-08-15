@@ -6,7 +6,7 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT t.trip_name, GROUP_CONCAT(p.place_img1 SEPARATOR ',') AS concatenated_place_name, GROUP_CONCAT(p.place_name SEPARATOR ',') AS concatenated_place_name
+	$sql = "SELECT t.trip_name, GROUP_CONCAT(p.place_img1 SEPARATOR ',') AS concatenated_place_img, GROUP_CONCAT(p.place_name SEPARATOR ',') AS concatenated_place_name
 			FROM trip AS t
 			JOIN trip_item AS ti on t.trip_id = ti.trip_id
 			JOIN place AS p on ti.place_id = p.place_id
@@ -24,6 +24,11 @@ try {
     }else{ //找得到
         //取回所有資料
         $tripInfoRow = $tripInfo->fetchAll(PDO::FETCH_ASSOC);
+		// 將連結的地點圖片和名稱分隔成陣列
+        foreach ($tripInfoRow as &$row) {
+            $row['concatenated_place_img'] = explode(',', $row['concatenated_place_img']);
+            $row['concatenated_place_name'] = explode(',', $row['concatenated_place_name']);
+        }
         //送出json字串
         echo json_encode($tripInfoRow);
     }

@@ -6,12 +6,18 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT trip_name, trip_author, trip_date, trip_view, trip_desc
-			FROM trip
-			WHERE trip_id = :trip_id;
+	$sql = "SELECT t.ticket_id, p.place_img1, t.ticket_name, GROUP_CONCAT(DISTINCT r.region_name) AS region, GROUP_CONCAT(DISTINCT pt.place_tag_name SEPARATOR ' #') AS tag, t.ticket_adult, t.ticket_discount, ROUND(t.ticket_adult * t.ticket_discount * 0.1) AS final_price
+			FROM ticket AS t
+			JOIN place AS p ON t.place_id = p.place_id
+			JOIN region AS r ON p.region_id = r.region_id
+			JOIN place_tag_connection AS ptc ON p.place_id = ptc.place_id
+			JOIN place_tag AS pt ON ptc.place_tag_id = pt.place_tag_id
+			WHERE t.ticket_discount is NOT NULL
+			GROUP BY t.ticket_id
+			ORDER BY rand()
+			LIMIT 4;
 			";
 	$ticketInfo = $pdo->prepare($sql); 
-	$ticketInfo->bindValue(":trip_id", $_GET["trip_id"]);
     $ticketInfo->execute();
 
 	if( $ticketInfo->rowCount() === 0 ){ //找不到
