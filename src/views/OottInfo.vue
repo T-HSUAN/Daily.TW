@@ -107,7 +107,7 @@ export default {
     },
     mounted() {
         const oottId = this.$route.params.oott_id;
-        GET(`${this.$URL_MAC}/phpfile/oottInfo.php?oott_id=${oottId}`)
+        GET(`${this.$URL}/phpfile/oottInfo.php?oott_id=${oottId}`)
             .then((res) => {
                 this.oottInfo = res;
                 console.log(res);
@@ -116,7 +116,7 @@ export default {
                 console.log(err); 
             });
 
-            GET(`${this.$URL_MAC}/phpfile/oottInfoMore.php`)
+            GET(`${this.$URL}/phpfile/oottInfoMore.php`)
             .then((res) => {
             console.log(res);
             this.ootts = res;

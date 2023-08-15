@@ -110,7 +110,7 @@ export default {
         },
     },
     mounted() {
-        GET(`${this.$URL_MAC}/phpfile/oottOverview.php`)
+        GET(`${this.$URL}/phpfile/oottOverview.php`)
             .then((res) => {
                 console.log(res);
                 this.oottDisplay = res;

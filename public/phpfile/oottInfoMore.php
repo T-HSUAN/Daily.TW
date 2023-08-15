@@ -9,7 +9,7 @@ try {
     $sql = "SELECT 
         ot.oott_id, 
         ot.oott_img, 
-        ot.oott_date, 
+        DATE_FORMAT(ot.oott_date, '%Y/%m/%d') AS oott_date,
         m.mem_name, 
         m.mem_img,
         GROUP_CONCAT(style_name SEPARATOR ' #') AS concatenated_style_name
@@ -17,7 +17,6 @@ try {
         JOIN oott_style_connection osc ON ot.oott_id = osc.oott_id
         JOIN style s ON osc.style_id = s.style_id
         JOIN member m ON ot.mem_id = m.mem_id 
-
         GROUP BY ot.oott_id
         ORDER BY RAND()
         LIMIT 3"; // 限制结果数量为3
