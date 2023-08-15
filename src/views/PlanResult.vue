@@ -29,22 +29,22 @@
             <div class="content_desc" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>{{selectValue[0]}}{{checkedPlaceTags[0]}}一日遊</h3>
+                        <h3>{{selectValue[0]}}一日遊</h3>
                         <div class="place_tags">
-                            <span># 屯區藝文中心</span>
-                            <span># 太平買菸場</span>
-                            <span># 審計新村</span>
-                            <span># 紙箱王創意園區</span>
+                            <span v-for="(place, placeIndex) in limitedFilteredPlaces[selectValue[0]]"
+                            :key="placeIndex">
+                                # {{place.place_name}}
+                            </span>
                         </div>
                         <label>
                             <input type="checkbox">
                             <span></span>
                         </label>
                     </div>
-                    <div class="plan_place">
+                    <div class="plan_place" v-if="limitedFilteredPlaces[selectValue[0]] && limitedFilteredPlaces[selectValue[0]].length > 0">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic1" :key="item.index">
+                                <Slide v-for="(item, index) in resultPicMapping[selectValue[0]][0].images" :key="index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -54,18 +54,17 @@
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
-                                <h4>屯區藝文中心</h4>
-                                <p>於99年7月正式成立，99年12月25日縣市合併後改名為臺中市立屯區藝文中心，嗣因組織整併，又於102年1月1日更改為今名。其以表演藝術與音樂為主軸，兼具美術展示與文化推廣功能。積極辦理各項藝文展演活動，促進國際文化藝術交流。
-                                </p>
+                                <h4>{{ limitedFilteredPlaces[selectValue[0]][0].place_name }}</h4>
+                                <p>{{ limitedFilteredPlaces[selectValue[0]][0].place_desc }}</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
                                     <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
+                                    <span>停留 {{ limitedFilteredPlaces[selectValue[0]][0].place_stay }} 小時</span>
                                 </div>
                                 <div class="address">
                                     <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">台中市太平區大興路201號</a>
+                                    <a :href="limitedFilteredPlaces[selectValue[0]][0].place_link">{{ limitedFilteredPlaces[selectValue[0]][0].place_addr }}</a>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +81,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic2" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[0]][1].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -92,18 +91,17 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>太平買菸場</h4>
-                                    <p>興建於1955年，是公賣局向菸農鑑定、收購菸葉的場所，1994年裁撤後閒置良久，因見證太平菸葉發展歷程，加上建築構造特殊，整體空間具有再利用潛力，經兩年修繕營造出結合歷史與藝術文化的新場域。
-                                    </p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[0]][1].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[0]][1].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1.5 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[0]][1].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">台中市太平區東平路464號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[0]][1].place_link">{{ limitedFilteredPlaces[selectValue[0]][1].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +109,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic3" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[0]][2].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -121,17 +119,17 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>審計新村</h4>
-                                    <p>本區串連既有的綠園道及美術館文創商店以形成產業群聚效應，型塑臺中市園道文創產業廊道，並以生活、生產、生態三生共構的基礎，輔導青年族群進行微型創業，增加就業機會。</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[0]][2].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[0]][2].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1.5 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[0]][2].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">台中市西區民生路368巷</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[0]][2].place_link">{{ limitedFilteredPlaces[selectValue[0]][2].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +137,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic4" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[0]][3].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -149,22 +147,50 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>紙箱王創意園區</h4>
-                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[0]][3].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[0]][3].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1.5 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[0]][3].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">台中市北屯區東山路二段2巷2號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[0]][3].place_link">{{ limitedFilteredPlaces[selectValue[0]][3].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="btn_bookmark">
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[0]][4].images" :key="index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>{{ limitedFilteredPlaces[selectValue[0]][4].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[0]][4].place_desc }}</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[0]][4].place_stay }} 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a :href="limitedFilteredPlaces[selectValue[0]][4].place_link">{{ limitedFilteredPlaces[selectValue[0]][4].place_addr }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="btn_bookmark">
                             <label>
                                 <input type="checkbox" class="tag" />
                                 <span>
@@ -172,22 +198,22 @@
                                     加入收藏
                                 </span>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="weather_container" v-if="showPlan1">
-                    <h3>一週天氣預報 | 台中</h3>
+                    <h3>一週天氣預報 | {{selectValue[0]}}</h3>
                     <div class="table_wrap">
-                        <table v-if="weatherData">
+                        <table v-if="weather.weatherData">
                             <tr>
-                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                <td v-for=" (itemValue, itemIndex) in weather.weatherData[selectValue[0]]" :key="itemIndex">
                                     <span>
                                         {{ formatDate(itemValue.date) }}
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                <td v-for=" (itemValue, itemIndex) in weather.weatherData[selectValue[0]]" :key="itemIndex">
                                     <img :src="itemValue.day.condition.icon" alt="">
                                     <span>最高 {{ Math.round(itemValue.day.maxtemp_c) }}℃</span><br>
                                     <span>最低 {{ Math.round(itemValue.day.mintemp_c) }}℃</span><br>
@@ -207,7 +233,7 @@
                     </div>
                 </div>
                 <div class="ticket_container" v-if="showPlan1">
-                    <h3>景點票券優惠</h3>
+                    <h3>相關景點票券</h3>
                     <router-link to="/ticket_info">
                         <div class="ticket_box">
                             <div class="ticket_pic">
@@ -244,22 +270,22 @@
             <div class="content_desc show_plan_2" v-if="showResultContent2">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>{{selectValue[1]}}{{checkedPlaceTags[1]}}一日遊</h3>
+                        <h3>{{selectValue[1]}}一日遊</h3>
                         <div class="place_tags">
-                            <span># 正濱漁港彩色屋</span>
-                            <span># 望幽谷濱海步道</span>
-                            <span># 基隆潮境智能海洋館</span>
-                            <span># 深澳鐵道自行車</span>
+                            <span v-for="(place, placeIndex) in limitedFilteredPlaces[selectValue[1]]"
+                            :key="placeIndex">
+                                # {{place.place_name}}
+                            </span>
                         </div>
                         <label>
                             <input type="checkbox">
                             <span></span>
                         </label>
                     </div>
-                    <div class="plan_place">
+                    <div class="plan_place" v-if="limitedFilteredPlaces[selectValue[1]] && limitedFilteredPlaces[selectValue[1]].length > 0">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic5" :key="item.index">
+                                <Slide v-for="(item, index) in resultPicMapping[selectValue[1]][0].images" :key="index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -269,18 +295,17 @@
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
-                                <h4>正濱漁港彩色屋</h4>
-                                <p>正濱漁港的16棟屋子彩繪成彩色屋，讓原本寂靜的漁村，變成年輕人必訪的景點，最佳的拍攝點就在基隆市中正區正濱路58號~88號前的觀景平台。「涂大的吉古拉」非常好找，就在正濱漁港港邊，遠遠就能聞到一股碳烤香氣，基隆在地的美味，黃金色的吉古拉在彩色屋的陪襯下，顯得格外醒目，記得要先預訂才吃的到！
-                                </p>
+                                <h4>{{ limitedFilteredPlaces[selectValue[1]][0].place_name }}</h4>
+                                <p>{{ limitedFilteredPlaces[selectValue[1]][0].place_desc }}</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
                                     <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 0.5 小時</span>
+                                    <span>停留 {{ limitedFilteredPlaces[selectValue[1]][0].place_stay }} 小時</span>
                                 </div>
                                 <div class="address">
                                     <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">基隆市中正區正濱路27號</a>
+                                    <a :href="limitedFilteredPlaces[selectValue[1]][0].place_link">{{ limitedFilteredPlaces[selectValue[1]][0].place_addr }}</a>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +322,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic2" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[1]][1].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -307,17 +332,17 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>望幽谷濱海步道</h4>
-                                    <p>這幾年整修後變的超美麗，延伸到湛藍海岸的步道，變成最夢幻的IG打卡秘境，也有基隆版宮崎駿楓之谷的美稱，台灣最美的海濱公園就在基隆，每次去都會多了新的亮點，巨人椅子、大鳥、飛魚裝飾、甜甜圈、鸚鵡螺溜滑梯都很好拍，如果東北角要選一個不能錯過的景點，那一定是八斗子潮境公園~</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[1]][1].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[1]][1].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[1]][1].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">基隆市中正區北寧路21號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[1]][1].place_link">{{ limitedFilteredPlaces[selectValue[1]][1].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -325,7 +350,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic3" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[1]][2].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -335,17 +360,17 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>基隆潮境智能海洋館</h4>
-                                    <p>基隆也有水族館了，最新基隆景點「潮境智能海洋館」，座落在最美的潮境公園裡面，結合4K投影、VR互動、七米高大洋缸，讓你能近距離觀賞海洋生物，也能跟他們互動。四大主題展區各具特色，其中復育海中生物的海洋中心，看到愛護海洋的重要，在潮境智能海洋館不只玩還學到了豐富的知識，很值得來看看!</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[1]][2].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[1]][2].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 2 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[1]][2].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">基隆市中正區北寧路369巷61號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[1]][2].place_link">{{ limitedFilteredPlaces[selectValue[1]][2].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -353,7 +378,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic4" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[1]][3].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -363,22 +388,50 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>深澳鐵道自行車</h4>
-                                    <p>終於來朝聖了，號稱最美的海岸鐵道自行車，除了靠近海邊，還要介紹鐵道自行車光雕，愛心型隧道真的是美翻了，河豚車車殼全面換新，趕快看這篇最詳細的介紹，從交通、兒童規定、報到流程，介紹到沿途風景，趕快收藏起來吧!</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[1]][3].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[1]][3].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 2 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[1]][3].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">新北市瑞芳區建基路2段121號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[1]][3].place_link">{{ limitedFilteredPlaces[selectValue[1]][3].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="btn_bookmark">
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[1]][4].images" :key="index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>{{ limitedFilteredPlaces[selectValue[1]][4].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[1]][4].place_desc }}</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[1]][4].place_stay }} 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a :href="limitedFilteredPlaces[selectValue[1]][4].place_link">{{ limitedFilteredPlaces[selectValue[1]][4].place_addr }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="btn_bookmark">
                             <label>
                                 <input type="checkbox" class="tag" />
                                 <span>
@@ -386,22 +439,22 @@
                                     加入收藏
                                 </span>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="weather_container" v-if="showPlan2">
-                    <h3>一週天氣預報 | 台中</h3>
+                    <h3>一週天氣預報 | {{selectValue[1]}}</h3>
                     <div class="table_wrap">
-                        <table v-if="weatherData">
+                        <table v-if="weather.weatherData">
                             <tr>
-                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                <td v-for=" (itemValue, itemIndex) in weather.weatherData[selectValue[1]]" :key="itemIndex">
                                     <span>
                                         {{ formatDate(itemValue.date) }}
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                <td v-for=" (itemValue, itemIndex) in weather.weatherData[selectValue[1]]" :key="itemIndex">
                                     <img :src="itemValue.day.condition.icon" alt="">
                                     <span>最高 {{ Math.round(itemValue.day.maxtemp_c) }}℃</span><br>
                                     <span>最低 {{ Math.round(itemValue.day.mintemp_c) }}℃</span><br>
@@ -421,7 +474,7 @@
                     </div>
                 </div>
                 <div class="ticket_container" v-if="showPlan2">
-                    <h3>景點票券優惠</h3>
+                    <h3>相關景點票券</h3>
                     <router-link to="/ticket_info">
                         <div class="ticket_box">
                             <div class="ticket_pic">
@@ -458,22 +511,22 @@
             <div class="content_desc show_plan_3" v-if="showResultContent3">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>{{selectValue[2]}}{{checkedPlaceTags[2]}}一日遊</h3>
+                        <h3>{{selectValue[2]}}一日遊</h3>
                         <div class="place_tags">
-                            <span># 中興新村</span>
-                            <span># 星月天空景觀餐廳</span>
-                            <span># 猴探井天空之橋</span>
-                            <span># 埔里酒廠</span>
+                            <span v-for="(place, placeIndex) in limitedFilteredPlaces[selectValue[2]]"
+                            :key="placeIndex">
+                                # {{place.place_name}}
+                            </span>
                         </div>
                         <label>
                             <input type="checkbox">
                             <span></span>
                         </label>
                     </div>
-                    <div class="plan_place">
+                    <div class="plan_place" v-if="limitedFilteredPlaces[selectValue[2]] && limitedFilteredPlaces[selectValue[2]].length > 0">
                         <div class="pic_swiper">
                             <Carousel :autoplay="3000" :wrap-around="true">
-                                <Slide v-for="item in resultPic6" :key="item.index">
+                                <Slide v-for="(item, index) in resultPicMapping[selectValue[2]][0].images" :key="index">
                                     <img :src="item.src" alt="">
                                 </Slide>
                                 <template #addons>
@@ -483,17 +536,17 @@
                         </div>
                         <div class="place_desc">
                             <div class="place_content">
-                                <h4>中興新村</h4>
-                                <p>走進仿英國花園城鎮建造的「舊省府所在地」，時光彷彿停在純樸的5、60年代。除了有郵票牆、荷花池、大會堂等打卡景點；冰磚、牛肉麵、餡餅小米粥也是必吃喔！</p>
+                                <h4>{{ limitedFilteredPlaces[selectValue[2]][0].place_name }}</h4>
+                                <p>{{ limitedFilteredPlaces[selectValue[2]][0].place_desc }}</p>
                             </div>
                             <div class="place_time_address">
                                 <div class="time">
                                     <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                    <span>停留 1.5 小時</span>
+                                    <span>停留 {{ limitedFilteredPlaces[selectValue[2]][0].place_stay }} 小時</span>
                                 </div>
                                 <div class="address">
                                     <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                    <a href="#">南投縣南投市省府路</a>
+                                    <a :href="limitedFilteredPlaces[selectValue[2]][0].place_link">{{ limitedFilteredPlaces[selectValue[2]][0].place_addr }}</a>
                                 </div>
                             </div>
                         </div>
@@ -510,7 +563,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic2" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[2]][1].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -520,17 +573,17 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>星月天空景觀餐廳</h4>
-                                    <p>南投夜景聖地，還能跟草泥馬、侏儒羊、鸚鵡、大嘴鳥等小動物近距離接觸。無論情侶約會、親子放電都超適合，和猴探井天空之橋、中興新村一日遊好滿足。</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[2]][1].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[2]][1].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1.5 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[2]][1].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">南投市猴探井街146巷200號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[2]][1].place_link">{{ limitedFilteredPlaces[selectValue[2]][1].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -538,7 +591,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic3" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[2]][2].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -548,17 +601,17 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>猴探井天空之橋</h4>
-                                    <p>南投猴探井天空之橋「微笑天梯」之位於八卦山脈之上，遠望有如一抹淡淡微笑懸吊於山谷間，因此又有稱號。猴探井遊憩區與台語「好賺錢」諧音非常喜氣，天空之橋開放短短三個月就回本，果然是個賺錢的好地方，哈哈～雖然現在熱潮已過，甚至有謠傳已停業，但其實沒有啦，結合附近景點星月天空、微熱山丘三合院走走還是不錯的。</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[2]][2].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[2]][2].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[2]][2].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">南投縣南投市猴探井街300號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[2]][2].place_link">{{ limitedFilteredPlaces[selectValue[2]][2].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -566,7 +619,7 @@
                         <div class="plan_place">
                             <div class="pic_swiper">
                                 <Carousel :autoplay="3000" :wrap-around="true">
-                                    <Slide v-for="item in resultPic4" :key="item.index">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[2]][3].images" :key="index">
                                         <img :src="item.src" alt="">
                                     </Slide>
                                     <template #addons>
@@ -576,22 +629,50 @@
                             </div>
                             <div class="place_desc">
                                 <div class="place_content">
-                                    <h4>埔里酒廠</h4>
-                                    <p>南投埔里酒廠，有百年歷史的老酒廠，又被稱作「台灣紹興酒故鄉」，過去天皇御用、總統國宴用酒都在此製造。埔里酒廠必買商品除了紹興酒、女兒紅等經典酒類外，紹興米糕、紹興冰棒、花雕雞麵等特色伴手禮也不容錯過！</p>
+                                    <h4>{{ limitedFilteredPlaces[selectValue[2]][3].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[2]][3].place_desc }}</p>
                                 </div>
                                 <div class="place_time_address">
                                     <div class="time">
                                         <img src="~@/assets/img/layout/plan_result_time.png" alt="">
-                                        <span>停留 1.5 小時</span>
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[2]][3].place_stay }} 小時</span>
                                     </div>
                                     <div class="address">
                                         <img src="~@/assets/img/layout/plan_result_location.png" alt="">
-                                        <a href="#">南投縣埔里鎮中山路三段219號</a>
+                                        <a :href="limitedFilteredPlaces[selectValue[2]][3].place_link">{{ limitedFilteredPlaces[selectValue[2]][3].place_addr }}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="btn_bookmark">
+                        <div class="plan_place">
+                            <div class="pic_swiper">
+                                <Carousel :autoplay="3000" :wrap-around="true">
+                                    <Slide v-for="(item, index) in resultPicMapping[selectValue[2]][4].images" :key="index">
+                                        <img :src="item.src" alt="">
+                                    </Slide>
+                                    <template #addons>
+                                        <Pagination />
+                                    </template>
+                                </Carousel>
+                            </div>
+                            <div class="place_desc">
+                                <div class="place_content">
+                                    <h4>{{ limitedFilteredPlaces[selectValue[2]][4].place_name }}</h4>
+                                    <p>{{ limitedFilteredPlaces[selectValue[2]][4].place_desc }}</p>
+                                </div>
+                                <div class="place_time_address">
+                                    <div class="time">
+                                        <img src="~@/assets/img/layout/plan_result_time.png" alt="">
+                                        <span>停留 {{ limitedFilteredPlaces[selectValue[2]][4].place_stay }} 小時</span>
+                                    </div>
+                                    <div class="address">
+                                        <img src="~@/assets/img/layout/plan_result_location.png" alt="">
+                                        <a :href="limitedFilteredPlaces[selectValue[2]][4].place_link">{{ limitedFilteredPlaces[selectValue[2]][4].place_addr }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="btn_bookmark">
                             <label>
                                 <input type="checkbox" class="tag" />
                                 <span>
@@ -599,22 +680,22 @@
                                     加入收藏
                                 </span>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="weather_container" v-if="showPlan3">
-                    <h3>一週天氣預報 | 台中</h3>
+                    <h3>一週天氣預報 | {{selectValue[2]}}</h3>
                     <div class="table_wrap">
-                        <table v-if="weatherData">
+                        <table v-if="weather.weatherData">
                             <tr>
-                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                <td v-for=" (itemValue, itemIndex) in weather.weatherData[selectValue[2]]" :key="itemIndex">
                                     <span>
                                         {{ formatDate(itemValue.date) }}
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td v-for=" (itemValue, itemIndex) in weatherData" :key="itemIndex">
+                                <td v-for=" (itemValue, itemIndex) in weather.weatherData[selectValue[2]]" :key="itemIndex">
                                     <img :src="itemValue.day.condition.icon" alt="">
                                     <span>最高 {{ Math.round(itemValue.day.maxtemp_c) }}℃</span><br>
                                     <span>最低 {{ Math.round(itemValue.day.mintemp_c) }}℃</span><br>
@@ -634,7 +715,7 @@
                     </div>
                 </div>
                 <div class="ticket_container" v-if="showPlan3">
-                    <h3>景點票券優惠</h3>
+                    <h3>相關景點票券</h3>
                     <router-link to="/ticket_info">
                         <div class="ticket_box">
                             <div class="ticket_pic">
@@ -676,9 +757,13 @@
                 <div class="title_footprint"></div>
             </div>
             <div class="result_trip">
-                <TripCard v-for="(trip, index) in trips" :key="index" :tripCardPhoto="trip.tripCardPhoto"
-                    :tripCardTags="trip.tripCardTags" :tripCardTitle="trip.tripCardTitle"
-                    :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate">
+                <TripCard v-for="(trip, index) in trips" :key="index" 
+                    :tripCardId="trip.tripCardId"
+                    :tripCardPhoto="trip.tripCardPhoto"
+                    :tripCardTags="trip.tripCardTags" 
+                    :tripCardTitle="trip.tripCardTitle"
+                    :tripCardAuthor="trip.tripCardAuthor" 
+                    :tripCardDate="trip.tripCardDate">
                 </TripCard>
             </div>
             <router-link to="/trip">
@@ -718,6 +803,30 @@ export default defineComponent({
             const selectValue = this.$route.query.selectValue || [];
             return selectValue.length;
         },
+        // 篩選各地區的景點資料
+        filteredPlaces() {
+            const filteredData = {};
+
+            for (const regionName of this.selectValue) {
+                const regionFilteredData = this.placeData.filter(place => {
+                    return place.region_name === regionName;
+                });
+
+                filteredData[regionName] = regionFilteredData.map(place => ({ ...place }));
+            }
+
+            return filteredData;
+        },
+        limitedFilteredPlaces() {
+            const limitPerRegion = 5;
+
+            const limitedPlaces = {};
+            for (const regionName in this.filteredPlaces) {
+                limitedPlaces[regionName] = this.filteredPlaces[regionName].slice(0, limitPerRegion);
+            }
+
+            return limitedPlaces;
+        },
     },
     data() {
         return {
@@ -727,33 +836,7 @@ export default defineComponent({
             showPlan1: false,
             showPlan2: false,
             showPlan3: false,
-            resultPic1: [
-                { src: require('@/assets/img/layout/plan_result_place_1-1.png') },
-                { src: require('@/assets/img/layout/plan_result_place_1-2.png') },
-                { src: require('@/assets/img/layout/plan_result_place_1-3.png') }
-            ],
-            resultPic2: [
-                { src: require('@/assets/img/layout/plan_result_place_2-1.png') },
-                { src: require('@/assets/img/layout/plan_result_place_2-2.png') },
-                { src: require('@/assets/img/layout/plan_result_place_2-3.png') }
-            ],
-            resultPic3: [
-                { src: require('@/assets/img/layout/plan_result_place_3-1.png') },
-                { src: require('@/assets/img/layout/plan_result_place_3-2.png') },
-                { src: require('@/assets/img/layout/plan_result_place_3-3.png') }
-            ],
-            resultPic4: [
-                { src: require('@/assets/img/layout/plan_result_place_4-1.png') },
-                { src: require('@/assets/img/layout/plan_result_place_4-2.png') }
-            ],
-            resultPic5: [
-                { src: require('@/assets/img/layout/plan_result_place_5-1.png') },
-                { src: require('@/assets/img/layout/plan_result_place_5-2.png') }
-            ],
-            resultPic6: [
-                { src: require('@/assets/img/layout/plan_result_place_6-1.png') },
-                { src: require('@/assets/img/layout/plan_result_place_6-2.png') }
-            ],
+            resultPicMapping: {},
             weather: {
                 loading: false,
                 weatherData: {},
@@ -761,6 +844,7 @@ export default defineComponent({
                 lang:'zh_tw',
                 token:'713d2a4d5d6d47dca9a15517232207',
             },
+            regionWeatherData: {},
             ootts: [
                 {
                     oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
@@ -795,49 +879,78 @@ export default defineComponent({
             ],
             trips: [
                 {
-                    tripCardPhoto: require("@/assets/img/layout/plan_result_place_7.png"),
-                    tripCardTags: "新竹・#情侶 #風景 #藝文",
-                    tripCardTitle: "新竹懷舊一日遊",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 12",
+                    tripCardId: 7,
+                    tripCardPhoto: require("@/assets/img/layout/plan_result_place_3-1.png"),
+                    tripCardTags: "台中・#情侶 #風景 #藝文",
+                    tripCardTitle: "台中文青一日遊",
+                    tripCardAuthor: "小編C",
+                    tripCardDate: "2023 / 8 / 6",
                 },
                 {
+                    ripCardId: 3,
                     tripCardPhoto: require("@/assets/img/layout/plan_result_place_8.png"),
                     tripCardTags: "新北・#情侶 #小資 #風景",
                     tripCardTitle: "新北藝術一日遊",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 12",
+                    tripCardAuthor: "小編B",
+                    tripCardDate: "2023 / 8 / 6",
                 },
                 {
+                    ripCardId: 2,
                     tripCardPhoto: require("@/assets/img/layout/plan_result_place_9.png"),
                     tripCardTags: "宜蘭・#情侶 #風景 #藝文",
                     tripCardTitle: "宜蘭芬多精一日遊",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 12",
+                    tripCardAuthor: "小編C",
+                    tripCardDate: "2023 / 8 / 4",
                 },
             ],
             selectValue: [],
             checkedPlaceTags: [],
-            resultPlaces: [],
+            placeData: [],
         }
     },
-    created(){
-        this.fetchWeather();
-        this.fetchPlanPlace();
-    },
+    // created(){
+    //     this.fetchWeather();
+    // },
     methods: {
-        fetchWeather(){
-            this.loading = true
+        fetchWeather(region) {
+            this.weather.location = this.placeData.find(place => place.region_name === region)?.region_weather || 'Taichung';
+
             fetch(`https://api.weatherapi.com/v1/forecast.json?q=${this.weather.location}&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
             .then(res=> {
                 return res.json()
             })
             .then(json=> {
-                this.weatherData = json.forecast.forecastday
-                this.loading = false
-                console.log(this.weatherData)
+                // this.weatherData = json.forecast.forecastday
+                // this.loading = false
+                // console.log(this.weatherData)
+                this.weather.weatherData[region] = json.forecast.forecastday; // Store weather data for the region
+                this.weather.loading = false;
+                console.log(this.weather.weatherData);
             })
         },
+        extractRegionWeather() {
+            const regionWeatherPromises = this.selectValue.map(region => this.fetchWeather(region));
+
+            Promise.all(regionWeatherPromises)
+                .then(() => {
+                    console.log('All weather data fetched.');
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        },
+        // fetchWeather(){
+        //     this.loading = true
+        //     fetch(`https://api.weatherapi.com/v1/forecast.json?q=${this.weather.location}&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
+        //     .then(res=> {
+        //         return res.json()
+        //     })
+        //     .then(json=> {
+        //         this.weatherData = json.forecast.forecastday
+        //         this.loading = false
+        //         console.log(this.weatherData)
+        //     })
+        // },
         formatDate(date) {
             return date.split("-").slice(1).join("/");
         },
@@ -882,6 +995,10 @@ export default defineComponent({
                 }
             });
         },
+        //修正圖片路徑
+        getPlaceImg(placeImg){
+            return process.env.BASE_URL + 'placeImg/' + placeImg;  
+        },
         // 陣列隨機排序
         shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -889,20 +1006,6 @@ export default defineComponent({
                 [array[i], array[j]] = [array[j], array[i]];
             }
             return array;
-        },
-        // 篩選資料庫景點資料
-        fetchPlanPlace() {
-            const regionNames = this.selectValue;
-            const placeTagNames = this.checkedPlaceTags;
-            
-            axios.get(`${this.$URL}/PlanResultPlace.php?region_name=${regionNames.join(',')}&place_tag_name=${placeTagNames.join(',')}`)
-                .then(response => {
-                    this.resultPlaces = response.data;
-                    console.log(this.resultPlaces);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
         },
     },
     mounted() {
@@ -913,7 +1016,7 @@ export default defineComponent({
         // 從PlanQuiz取得用戶選取內容
         const query = this.$route.query;
         this.selectValue = query.selectValue || [];
-        this.checkedPlaceTags = this.shuffleArray(query.checkedPlaceTags);
+        this.checkedPlaceTags = query.checkedPlaceTags;
         const checkedSexTag = query.checkedSexTag;
         const checkedStyleTags = query.checkedStyleTags;
 
@@ -927,6 +1030,52 @@ export default defineComponent({
         console.log(count);
         this.showResultContent2 = count >= 2;
         this.showResultContent3 = count >= 3;
+
+        //取得景點資料
+        GET(`${this.$URL}/PlanResultPlace.php`)
+            .then((res) => {
+                console.log(res);
+                this.placeData = this.shuffleArray(res);
+
+                // Populate resultPicMapping dynamically
+                for (const region of this.selectValue) {
+                    const placesForRegion = this.limitedFilteredPlaces[region];
+                    if (Array.isArray(placesForRegion)) {
+                        const placeImagesArray = [];
+                        placesForRegion.forEach(place => {
+                            const placeImages = [];
+                            placeImages.push({
+                                src: this.getPlaceImg(place.place_img1),
+                            });
+                            if (place.place_img2) {
+                                placeImages.push({
+                                    src: this.getPlaceImg(place.place_img2),
+                                });
+                            }
+                            if (place.place_img3) {
+                                placeImages.push({
+                                    src: this.getPlaceImg(place.place_img3),
+                                });
+                            }
+                            if (placeImages.length > 0) {
+                                placeImagesArray.push({
+                                    place_name: place.place_name,
+                                    images: placeImages,
+                                });
+                            }
+                        });
+                        if (placeImagesArray.length > 0) {
+                            this.resultPicMapping[region] = placeImagesArray;
+                        }
+                    }
+                }
+
+                // Fetch weather data after receiving placeData
+                this.weatherData = this.extractRegionWeather(); 
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
     beforeUnmount() {
         // Remove the event listener when the component is about to be unmounted

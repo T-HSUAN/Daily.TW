@@ -218,16 +218,22 @@ export default {
         },
         // view ui 限制最多選3個
         changeTag() {
+            if (!Array.isArray(this.selectValue)) {
+                this.selectValue = [this.selectValue];
+            }
+
             if (this.selectValue.length < 3) {
                 return false;
             }
+
             const data = this.selectValue;
+
             this.$nextTick(() => {
                 if (this.selectValue.length < data.length) {
                     return false;
                 }
                 this.selectValue = data;
-            })
+            });
         },
         limitCheckedTags(checkedArray,index){
             let tagsLimit = 1;     // 限制選1個
