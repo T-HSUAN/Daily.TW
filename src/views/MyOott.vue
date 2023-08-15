@@ -14,25 +14,25 @@
                         <div class="status">
                             <h5>您有 </h5>
                             <h5 class="edit_status_number">1</h5>
-                            <h5> 則貼文待修改</h5>
+                            <h5> 則貼文未通過</h5>
                             <h5 class="status_number">1</h5>
                             <h5> 則貼文審核中</h5>
                         </div>
 
                         <div class="status">
-                            <h5 class="status_number">12</h5>
+                            <h5 class="status_number">0</h5>
                             <h5> 則貼文已發布</h5>
                         </div>
                     </div>
-                    <div class="status_sorting">
-                        <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" />
+                    <!-- <div class="status_sorting">
+                        <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" /> -->
                         <!-- 排序依據 -->
-                        <span>排序依據</span>
+                        <!-- <span>排序依據</span>
                         <select name="my_oott_sorting" id="selection_main" >
                             <option value="">由新到舊</option>
                             <option value="">由舊到新</option>
                             <option value="">瀏覽人氣</option>
-                        </select>
+                        </select> -->
 
                         <!-- 狀態 -->
                         <!-- <font-awesome-icon icon="fa-solid fa-filter" />
@@ -40,7 +40,7 @@
 
                         </select>
                         <font-awesome-icon icon="fa-solid fa-caret-down" /> -->
-                    </div>
+                    <!-- </div> -->
                 </div>
                 <div class="card_wrap">
                     <div class="card" v-for="oott in tableData" key="oott.oottCardAuthor">
@@ -52,7 +52,7 @@
                         :oottId = "oott.oott_id"
                         />
                     </div>
-                    <Page :total="18" />
+                    <!-- <Page :total="18" /> -->
                 </div>
             </div>
 
@@ -157,6 +157,7 @@
 import {GET} from '@/plugin/axios';
 import MyOottCard from "@/components/MyOottCard.vue";
 import Sidenav from "@/components/Sidenav.vue";
+import axios from 'axios';
 
 export default{
     components:{
