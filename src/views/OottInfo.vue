@@ -11,12 +11,12 @@
                 <span>穿搭特輯</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
-            <router-link to="/oott">
+            <router-link to="/oott_overview">
                 <span>穿搭總覽</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
             <router-link to="/oott">
-                <span>Ailson #oott</span>
+                <span>{{ oottInfo.mem_name }}</span>
             </router-link>
         </div>
 
@@ -36,21 +36,21 @@
                 </div>
             </div>
             <div class="writer_block">
-                <div class="pic_xl">
-                    <img :src=getMemImg(oottInfo.mem_img) alt="作者頭像" />
-                    <a href="#">{{ oottInfo.mem_name }}</a>
-                </div>
-                <p>{{ oottInfo.oott_desc }}</p>
-                <div class="tag_block">
-                    <label v-for="(tag, index) in oottInfo.concatenated_style_name" :key="index">
-                        <input type="checkbox" class="tag" />
-                        <span>{{ tag }}</span>
-                    </label>
-                </div>
-                <div class="date">
-                    <span>{{ oottInfo.oott_date }}</span>
-                    <span class="number">{{ oottInfo.oott_view }} 次瀏覽</span>
-                </div>
+            <div class="pic_xl">
+                <img :src=getMemImg(oottInfo.mem_img) alt="作者頭像" />
+                <a href="#">{{ oottInfo.mem_name }}</a>
+            </div>
+            <p>{{ oottInfo.oott_desc }}</p>
+            <div class="tag_block">
+                <label v-for="(tag, index) in oottInfo.concatenated_style_name" :key="index">
+                <input type="checkbox" class="tag" />
+                <span>#{{ tag }}</span>
+                </label>
+            </div>
+            <div class="date">
+            <span>{{ oottInfo.oott_date }}</span>
+            <span class="number">{{ oottInfo.oott_view }} 次瀏覽</span>
+            </div>
             </div>
         </div>
 
@@ -103,7 +103,7 @@ export default {
     },
     mounted() {
         const oottId = this.$route.params.oott_id;
-        GET(`${this.$URL}/phpfile/oottInfo.php?oott_id=${oottId}`)
+        GET(`${this.$URL}/oottInfo.php?oott_id=${oottId}`)
             .then((res) => {
                 this.oottInfo = res;
                 console.log(res);
@@ -112,7 +112,7 @@ export default {
                 console.log(err);
             });
 
-        GET(`${this.$URL}/phpfile/oottInfoMore.php`)
+            GET(`${this.$URL}/oottInfoMore.php`)
             .then((res) => {
                 console.log(res);
                 this.ootts = res;
