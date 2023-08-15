@@ -69,7 +69,7 @@
                         <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
                             <input type="checkbox" v-model="isSecret" class="myCheckbox">
                             <span class="checkmark"></span>
-                            <span class="content" >不告訴你</span>
+                            <span class="content" >秘密</span>
                         </label>  
                     </div>
                     <div v-for="(way, index) in contact" 

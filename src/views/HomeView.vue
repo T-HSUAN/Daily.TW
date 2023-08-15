@@ -43,14 +43,14 @@
                         <div class="head">
                             <div class="tripTitle">{{ trip.trip_name }}</div>
                             <div class="tripCover">
-                                <img :src="trip.coverSrc" alt="" class="mask_trip" />
+                                <img :src="getPlaceImg(trip.concatenated_place_img[0])" alt="景點圖片" class="mask_trip" />
                             </div>
                         </div>
                         <div class="info">
                             <div class="tripSpots">
-                                <div v-for="(spot, spotIndex) in trip.spots" :key="spotIndex" class="spot">
+                                <div v-for="(place, placeIndex) in trip.concatenated_place_name" :key="placeIndex" class="spot" >
                                     <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>{{ spot.name }}</h5>
+                                    <h5>{{ place }}</h5>
                                 </div>
                             </div>
                             <div class="deco">
@@ -87,31 +87,27 @@
                 </div>
                 <div class="content">
                     <Carousel class="wrap" v-bind="settings" :breakpoints="breakpoints">
-                        <Slide v-for="(oott, index) in ootts" :key="index">
+                        <Slide v-for="(oott, index) in oottData" :key="index">
                             <oottCard class="oottCard"
-                                :oottRank="oott.oottRank"
-                                :oottPhoto="oott.oottPhoto" :oottCardTags="oott.oottCardTags"
-                                :oottCardDate="oott.oottCardDate" :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                :oottCardAuthor="oott.oottCardAuthor"></oottCard>
+                                :oottCardId="oott.oott_id"
+                                :oottRank="'#' + (index + 1).toString().padStart(2, '0')"
+                                :oottPhoto="getOottImg(oott.oott_img)"
+                                :oottCardTags="oott.concatenated_style_name"
+                                :oottCardDate="oott.oott_date_new"
+                                :oottAuthorPhoto="getMemImg(oott.mem_img)"
+                                :oottCardAuthor="oott.mem_nickname">
+                            </oottCard>
                         </Slide>
                         <template #addons>
                             <Navigation />
                         </template>
                     </Carousel>
-                    <!-- <div class="panel">
-                        <button class="arrow">
-                            <font-awesome-icon icon="fa-solid fa-arrow-left" />
-                        </button>
-                        <button class="arrow">
-                            <font-awesome-icon icon="fa-solid fa-arrow-right" />
-                        </button>
-                    </div> -->
                     <router-link to="/oott">
                         <button class="btn">查看更多</button>
                     </router-link>
                 </div>
-                
             </section>
+
             <!-- 票券區塊 -->
             <section class="index_ticket">
                 <div class="bgCurve">
@@ -129,12 +125,16 @@
                 <div class="content">
                     <div class="wrap">
                         <div class="ticketCards">
-                            <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
-                                <router-link to="/ticket_info" title="點擊查看票券詳情">
-                                    <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                                        :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                                        :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
-                                        :discountTag="ticket.discountTag" />
+                            <div class="ticketCard" v-for="(ticket, index) in ticketData" :key="index">
+                                <router-link :to="'/ticket_info/' + ticket.ticket_id" title="點擊查看票券詳情">
+                                    <ticketCard 
+                                        :ticketPhoto="getPlaceImg(ticket.place_img1)" 
+                                        :ticketTitle="ticket.ticket_name"
+                                        :ticketLocation="ticket.region" 
+                                        :ticketTags="ticket.tag"
+                                        :originalPrice="ticket.ticket_adult" 
+                                        :FinalPrice="ticket.final_price"
+                                        :discountTag="parseFloat(ticket.ticket_discount).toFixed(1) + '折'" />
                                 </router-link>
                             </div>
                         </div>
@@ -176,37 +176,9 @@ export default {
             oottData: [],
             ticketData: [],
 
-            planPic: [
-                { src: require('@/assets/img/place/005.png') },
-                { src: require('@/assets/img/place/004.png') },
-                { src: require('@/assets/img/place/003.png') },
-                { src: require('@/assets/img/place/002.png') },
-            ],
-
-            trips: [
-                {
-                title: '台中文青一日遊',
-                coverSrc: require('@/assets/img/place/001.png'),
-                spots: [
-                    { name: '屯區藝文中心' },
-                    { name: '太平買菸場' },
-                    { name: '新盛綠川水岸廊道' },
-                    { name: '第二市場' },
-                ],
-                },
-                {
-                title: '新竹懷舊之旅',
-                coverSrc: require('@/assets/img/place/001.png'),
-                spots: [
-                    { name: '合興車站' },
-                    { name: '內灣愛情故事館' },
-                    { name: '內灣老街' },
-                    { name: '劉興欽漫畫館' },
-                ],
-                },
-            ],
 
             settings2: {
+                autoplay: 5000,
                 wrapAround: true,
                 itemsToShow: 1.4,
                 snapAlign: 'center',
@@ -221,7 +193,7 @@ export default {
                 // 1024 and up
                 1200: {
                     wrapAround: true,
-                    itemsToShow: 1.3,
+                    itemsToShow: 1.2,
                     snapAlign: 'center',
                 },
             },
@@ -244,134 +216,33 @@ export default {
                 },
             },
             
-
-            ootts: [
-                {
-                    oottRank: "#01",
-                    oottPhoto: require('@/assets/img//oott_02.png'),
-                    oottCardTags: "#日系 #休閒 #風景",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
-                    oottCardAuthor: "Alison",
-                },
-                {
-                    oottRank: "#02",
-                    oottPhoto: require('@/assets/img/oott_06.png'),
-                    oottCardTags: "#簡約 #休閒 #氣質",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-2_member.png'),
-                    oottCardAuthor: "Susan",
-                },
-                {
-                    oottRank: "#03",
-                    oottPhoto: require('@/assets/img/oott_41.png'),
-                    oottCardTags: "#簡約 #運動 #休閒",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-3_member.png'),
-                    oottCardAuthor: "Max",
-                },
-                {
-                    oottRank: "#04",
-                    oottPhoto: require('@/assets/img/oott_01.png'),
-                    oottCardTags: "#藝文 #放鬆 #懷舊",
-                    oottCardDate: "2022 / 01 / 12",
-                    oottAuthorPhoto: require('@/assets/img/duck_yellow.png'),
-                    oottCardAuthor: "Jeffery",
-                },
-                {
-                    oottRank: "#05",
-                    oottPhoto: require('@/assets/img/oott_03.png'),
-                    oottCardTags: "#復古 #性感",
-                    oottCardDate: "2023 / 07 / 12",
-                    oottAuthorPhoto: require('@/assets/img/layout/plan_result_oott-1_member.png'),
-                    oottCardAuthor: "DazzleQueen",
-                },
-                {
-                    oottRank: "#06",
-                    oottPhoto: require('@/assets/img/oott_05.png'),
-                    oottCardTags: "#休閒",
-                    oottCardDate: "2022 / 08 / 31",
-                    oottAuthorPhoto: require('@/assets/img/oott_13.png'),
-                    oottCardAuthor: "DuckLord",
-                },
-                {
-                    oottRank: "#07",
-                    oottPhoto: require('@/assets/img/oott_10.png'),
-                    oottCardTags: "#休閒 #美式",
-                    oottCardDate: "2022 / 06 / 24",
-                    oottAuthorPhoto: require('@/assets/img/duck_red.png'),
-                    oottCardAuthor: "Kay",
-                },
-                {
-                    oottRank: "#08",
-                    oottPhoto: require('@/assets/img/oott_11.png'),
-                    oottCardTags: "#休閒 #美式",
-                    oottCardDate: "2022 / 09 / 06",
-                    oottAuthorPhoto: require('@/assets/img/duck_red.png'),
-                    oottCardAuthor: "Kay",
-                },
-                {
-                    oottRank: "#09",
-                    oottPhoto: require('@/assets/img/oott_12.png'),
-                    oottCardTags: "#兒童 #休閒 #自然",
-                    oottCardDate: "2022 / 01 / 08",
-                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
-                    oottCardAuthor: "Kid",
-                },
-                {
-                    oottRank: "#10",
-                    oottPhoto: require('@/assets/img/oott_40.png'),
-                    oottCardTags: "#韓系 #休閒",
-                    oottCardDate: "2022 / 06 / 12",
-                    oottAuthorPhoto: require('@/assets/img/oott_kid.png'),
-                    oottCardAuthor: "Kid",
-                },
-            ],
-            tickets: [
-                {
-                    ticketPhoto: require("@/assets/img/ticketExample.png"),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折"
-                },
-                {
-                    ticketPhoto: require("@/assets/img/ticketExample.png"),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折"
-                },
-                {
-                    ticketPhoto: require("@/assets/img/ticketExample.png"),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折"
-                },
-                {
-                    ticketPhoto: require("@/assets/img/ticketExample.png"),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折"
-                },
-            ],
         };
     },
 
     methods: {
         getPlaceImg(placeImg){
-            return `placeImg/${placeImg}`;  
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
+        },
+        getOottImg(oottImg){
+            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
+        },
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
         }
+    },
+
+    computed: {
+        formatDiscountTag() {
+            return (discount) => {
+                if (discount === null) {
+                return ''; // 或者您可以返回其他適合的值
+                } else {
+                const discountPercentage = parseFloat(discount) * 100;
+                const formattedDiscount = discountPercentage === 100 ? '原價' : discountPercentage.toFixed(1) + '折';
+                return formattedDiscount;
+                }
+            };
+        },
     },
 
     mounted() {

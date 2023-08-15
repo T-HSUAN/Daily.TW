@@ -16,25 +16,36 @@
                         
                         <div class="space_signup"></div>
                         
-                        <label for="email">Email</label>
+                        <label for="email">Email
+                            <span v-if="!isEmailValid"
+                            class="error"
+                            >請輸入...@testmail.com</span>
+                        </label>
                         <input type="text" v-model="sign_email"  
                         placeholder='請輸入EMAIL'
+                        @blur="validateEmail"
+                        :class="{ form_warning: !isEmailValid }"
                         required>
-                        <!-- @input="validateEmail" :class="{ form_warning: !isEmailValid }" -->
-                        <label for="psw">密碼</label>
+
+                        <label for="psw">密碼
+                            <span v-if="!isPasswordValid"
+                            class="error"
+                            >請輸入英數混合6-12碼</span>
+                        </label>
                         <input type="password" v-model="sign_psw"  
-                        placeholder='請輸入密碼 '
+                        placeholder='請輸入密碼(英數混合6-12碼)'
+                        @blur="validatePassword"
+                        :class="{ form_warning: !isPasswordValid }"
                         required>
-                        <!-- @input="validatePassword"
-                            :class="{ form_warning: !isPasswordValid }" -->
-                        <!-- (英數混合6-12碼) -->
+                        
                             <div class="space"></div>
                         <div class="cancel_group">
                             
                             <button @click="cancelbtn" class="cancel_btn">
                                 取消
                             </button>
-                            <button @click.prevent="updateValues"  class="btn">
+                            <button @click.prevent="updateValues"  class="btn"
+                            type="button">
                                 註冊
                             </button>
                             
@@ -61,42 +72,33 @@
     export default {
         data() {
             return {
-                signupData:[],
                 sign_email: '',
                 sign_psw: '',
                 isEmailValid: true,
                 isPasswordValid: true,
-                showError: false,
             }
         },
         methods: {
             ...mapActions(['updateAccount', 'updatePassword']),
-    
-            // validateEmail() {
-            //     const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-            //     this.isEmailValid = regex.test(this.email);
-            // },
-            // validatePassword() {
-            //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-            //     this.isPasswordValid = regex.test(this.psw);
-            // },
-            // signup() {
-            //     // if (this.isEmailValid && this.isPasswordValid) {
-            //     if (this.email === "test123" && this.psw === "test123") {
-            //         window.alert("登入成功");
-            //         this.$store.commit('setName', this.email); 
-            //         this.$store.commit('setIsLogin', true);
-            //         this.$router.push({ path: "/" });
-            //     } else {
-            //         window.alert("帳號或密碼錯誤，請重新登入");
-            //         // this.$router.replace({ path: "/login" });
-            //     }
-                
-                // }
-            // },
+
+            validateEmail() {
+                const regex = /^[a-zA-Z0-9._%+-]+@testmail\.com$/;
+                this.isEmailValid = regex.test(this.sign_email);
+            },
+            validatePassword() {
+                const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
+                this.isPasswordValid = regex.test(this.sign_psw);
+                if (this.isPasswordValid) {
+                    this.isPasswordValid = this.sign_psw.length >= 6 && this.sign_psw.length <= 12;
+                }
+            },
+
 
             updateValues() {
-                if (this.sign_email !== "" && this.sign_psw !== "") {
+                this.validateEmail();
+                this.validatePassword();
+
+                if (this.isEmailValid && this.isPasswordValid && this.sign_email !== "" && this.sign_psw !== "") {
                     console.log(this.sign_email)
                     console.log(this.sign_psw)
                     this.updateAccount(this.sign_email);
@@ -107,9 +109,13 @@
                     alert('請輸入帳號');
                 } else if (this.sign_psw === "") {
                     alert('請輸入密碼');
+                } else if (this.isEmailValid) {
+                    // 将焦点设置回错误的输入框内
+                    // document.querySelector('.form_warning input').focus();
+                    return; // 停止继续执行登录逻辑
                 }
             },
-            cancelbtn(){
+            cancelbtn() {
                 this.$router.push('/login');
             },
         },
@@ -226,7 +232,9 @@
                     letter-spacing: 0.72px;
                     padding: 4px 0;
                     position: relative;
-    
+                    .error{
+                        color: $warningColor;
+                    }
                     @media all and (min-width: $md) {
                         width: 80%;
                         padding: 0;

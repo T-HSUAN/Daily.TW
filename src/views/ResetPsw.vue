@@ -1,4 +1,4 @@
-<!-- 重設密碼頁面 -->
+<!-- 重設密碼完成頁面 -->
 <template>
     <section class="reset">
         <section class="resetpsw">
@@ -8,36 +8,19 @@
                     <img src="@/assets/img/joinus_sm.png" alt="joinus">
                 </div>
                 <div class="resetcard">
-                    <h2>重設密碼</h2>
-                    <div class="psw_group">
-                        <label for="newpsw">新密碼</label>
-                        <input type="password" v-model="newpsw" @input="validatePassword"
-                            :placeholder="passwordPlaceholder">
-                        <label for="repeatpsw">密碼</label>
-                        <input type="password" v-model="repeatpsw" @input="validatePassword"
-                            :placeholder="passwordPlaceholder">
-                        <!-- <div v-if="!isPasswordValid" class="error_message">請輸入英數混合的6-12位密碼且兩次輸入值要相同</div> -->
-                        <div class="space_reset"></div>
-                        <button v-if="isPasswordValid" @click="handleSubmit">送出</button>
-                    </div>
+                    <h2>修改成功</h2>
+                    <p>請至信箱驗證並修改密碼</p>
+                    <p>請返回重新登入</p>
+                    <div class="space"></div>
+                    <button type="button" class="btn" @click="returnLogin">返回會員登入</button>
 
-
-                    <div class="cancel_group">
-                        <router-link to="/Home" @click="handleClick" class="cancel_btn">
-                            取消
-                        </router-link>
-                        <router-link to="/forget_psw" @click="handleSubmit" class="btn">
-                            送出
-                        </router-link>
-
-                    </div>
                 </div>
                 <div class="register">
-                    <h2>Reset</h2>
+                    <h2>Reset Success！</h2>
                     <div class="joinus_md">
                         <img src="../assets/img/reset_md.png" alt="">
                     </div>
-                    <div class="welcome">Please enter your password</div>
+                    <div class="welcome">We really appreciate all your effort.</div>
                 </div>
             </div>
 
@@ -47,90 +30,11 @@
 </template>
 <script>
 export default {
-    data() {
-        return {
-            tabActive: 1,
-            tabItems: {
-                1: {
-                    title: '忘記密碼',
-                    tab: 1,
-                    goNext: 2,
-                    subtitle: "Forget",
-                    text: "Please enter your EMAIL",
-                    img: ""
-                },
-                2: {
-                    title: '重設密碼',
-                    tab: 2,
-                    goNext: 1,
-                    subtitle: "Reset",
-                    text: "Please enter your password"
-                },
-            },
-            email: '',
-            psw: '',
-            isActive: false,
-            showError: false,
-            newpsw: "",
-            repeatpsw: "",
-        }
-    },
-    computed: {
-        isPasswordValid() {
-            // 密码校验逻辑
-            const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-            return (
-                regex.test(this.newpsw) &&
-                regex.test(this.repeatpsw) &&
-                this.newpsw === this.repeatpsw
-            );
-        },
-        passwordPlaceholder() {
-            return this.isPasswordValid
-                ? "請輸入密碼 (英數混合6-12碼)"
-                : "密碼不合法或兩次輸入不一致";
-        },
-    },
     methods: {
-        validateEmail() {
-            const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-            if (!regex.test(this.email)) {
-                // 輸入格式不正確，顯示錯誤提示
-                this.showError = true;
-            } else {
-                // 輸入格式正確，隱藏錯誤提示
-                this.showError = false;
-            }
-        },
-        login() {
-            if (this.email === '123@gmail.com' && this.psw === 'test') {
-                window.alert('登入成功')
-            }
-            else {
-                window.alert('登入失敗，請重新登入');
-            }
-        },
-        // 切換tab
-        updateTab(index) {
-            this.tabActive = index
-        },
-        handleClick() {
-            this.updateTab(this.tabItems[this.tabActive].goNext);
-            this.isActive = !this.isActive;
-        },
-        handleSubmit() {
-            // 在这里处理表单提交逻辑
-            // 可以通过this.newpsw和this.repeatpsw获取密码值
-            console.log("密码正确，执行提交操作");
-        },
-        validatePassword() {
-            // 在用户输入时动态验证密码
-            this.passwordPlaceholder = this.isPasswordValid
-                ? "請輸入密碼 (英數混合6-12碼)"
-                : "密碼不合法或兩次輸入不一致";
-        },
+        returnLogin() {
+            this.$router.push('/login')
+        }
     }
-
 }
 </script>
 <style lang="scss" scoped>
@@ -217,71 +121,17 @@ export default {
                     }
                 }
 
-                .psw_group {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-
-                    @media all and (min-width: $md) {
-                        width: 80%;
-                    }
-
-                    label {
-                        width: 100%;
-                        color: $textColor_white;
-                        font-size: $sm_h4;
-                        font-weight: 700;
-                        letter-spacing: 0.72px;
-                        padding: 4px 0;
-                        position: relative;
-
-                        @media all and (min-width: $md) {
-                            font-size: $xl_h4;
-                        }
-                    }
-
-                    input {
-                        width: 100%;
-                        padding: $sp1 20px;
-                        background: $textColor_white;
-                        color: $textColor_default;
-                        box-sizing: border-box;
-                        font-size: $sm_p;
-                        margin: $sp1 0 $sp1;
-
-                        @media all and (min-width: $md) {
-                            font-size: $xl_p;
-                        }
-                    }
-
-                    .space_reset {
-                        margin: 0 0 50px;
-
-                        @media all and (min-width: $md) {
-                            margin: 0 0 50px;
-
-                        }
-                    }
-
+                p {
+                    padding: 0 0 $sp4;
                 }
 
-                .cancel_group {
-                    width: 100%;
-                    display: flex;
-                    justify-content: flex-end;
-                    align-items: center;
-
-                    @media all and (min-width: $md) {
-                        justify-content: center;
+                @media all and (min-width: $md) {
+                    .space {
+                        padding-top: 166px;
                     }
-
-                    a:first-child {
-                        padding: 0 $sp2;
-                    }
-
-
                 }
+
+
 
             }
 
@@ -337,4 +187,5 @@ export default {
 
 
     }
-}</style>
+}
+</style>

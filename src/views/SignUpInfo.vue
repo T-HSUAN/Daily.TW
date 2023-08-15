@@ -8,7 +8,7 @@
             </div>
             <h2>加入旅著</h2>
 
-            <form class="form" 
+            <form class="form" id="registryForm"
             method="post" 
             @submit="submitForm">
             <div class="photo_group">
@@ -23,8 +23,6 @@
             <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
             
         </div> -->
-        
-            
                     <label for="sign_email">Email</label>
                     <input type="text" v-model="sign_email"
                     placeholder="請輸入EMAIL"
@@ -38,12 +36,20 @@
                     id="sign_psw"
                     required
                     readonly>
-                    <label for="repeat_psw">確認密碼</label>
+                    <label for="repeat_psw">確認密碼
+                        <span v-if="!isPasswordMatch"
+                            class="error"
+                            >與密碼不一致</span>
+                    </label>
+                    
                     <input type="password" v-model="repeat_psw"
                     placeholder="請在輸入一次密碼"
                     id="repeat_psw"
                     name="repeat_psw"
-                    required>
+                    required
+                    @blur="checkPasswordMatch"
+                    :class="{ form_warning: !isPasswordMatch }">
+                    <!-- :class沒效果 -->
                     <label for="sign_name">姓名</label>
                     <input type="text" v-model="sign_name"
                     placeholder="請輸入姓名"
@@ -89,9 +95,9 @@
                             <span class="content">女</span>
                         </label>
                         <label class="checkbox_container" @click="toggleCheckbox('isSecret')">
-                            <input type="checkbox" v-model="isSecret" class="myCheckbox">
+                            <input type="checkbox" v-model="isSecret" class="myCheckbox" >
                             <span class="checkmark"></span>
-                            <span class="content">不告訴你</span>
+                            <span class="content">秘密</span>
                         </label>
                     </div>
                     <label for="sign_phone">電話</label>
@@ -111,7 +117,6 @@
                     >
                         註冊
                     </button>
-                    <!-- @click="ConfirmRegistration" -->
                 </div>
                 </form>
             
@@ -150,12 +155,14 @@ export default {
             isMan: false,
             isWomen: false,
             isSecret: false,
+            mem_sex:'',
             phone: '',
             showHiddenBlock: false,
             showPreview: true,
             isPopBoxVisible: false,
             // sign_email:'',
             // sign_psw:'',
+            isPasswordMatch:true,
             repeat_psw:'',
             sign_name:'',
             sign_nickname:'',
@@ -215,14 +222,19 @@ export default {
                 this.isMan = true;
                 this.isWomen = false;
                 this.isSecret = false;
+                this.mem_sex = "男"
             } else if (option === "isWomen") {
                 this.isMan = false;
                 this.isWomen = true;
                 this.isSecret = false;
+                this.mem_sex = "女"
+
             } else if (option === "isSecret") {
                 this.isMan = false;
                 this.isWomen = false;
                 this.isSecret = true;
+                this.mem_sex = "秘密"
+
             }
         },
         filterNonNumeric() {
@@ -231,6 +243,9 @@ export default {
         },
         canceldata(){
             this.$router.push('/signup');
+        },
+        checkPasswordMatch() {
+            this.isPasswordMatch = this.sign_psw == this.repeat_psw;
         },
         // showPopbox() {
         //     const emptyFieldIndex = this.inputValues.findIndex((value) => value.trim() === "");
@@ -246,6 +261,7 @@ export default {
         //     }
         // },
         redirectToOtherPage() {
+            this.isPopBoxVisible = false;
             this.$router.push('/member');
         },
         
@@ -253,7 +269,7 @@ export default {
             event.preventDefault();
 
             if (this.sign_psw !== this.repeat_psw) {
-            alert('密碼和確認密碼不相符，請重新輸入。');
+            alert('密碼和確認密碼不一致，請重新輸入。');
             console.log("psw",this.sign_psw)
             return;
             }
@@ -266,7 +282,9 @@ export default {
                 formData.append('repeat_psw', this.repeat_psw);
                 formData.append('sign_name', this.sign_name);
                 formData.append('sign_nickname', this.sign_nickname);
+                // formData.append('sign_birth', this.sign_birth);
                 formData.append('sign_phone', this.sign_phone);
+                formData.append('img', this.sign_phone);
 
                 const response = await axios.post(`${this.$URL}/PostMember.php`, formData, {
                     headers: {
@@ -274,9 +292,10 @@ export default {
                     },
                 });
                 window.alert('新增成功!');
+                // this.isPopBoxVisible = true;
                 console.log('Data sent successfully', response.data);
                 
-                this.$router.push('/signup');
+                this.$router.push('/member');
                 // this.$router.push('/');
 
             } catch (error) {
@@ -284,70 +303,6 @@ export default {
             }
         }
         
-
-        // ConfirmRegistration() {
-        //     const formData = new FormData();
-        //     formData.append('mem_email', this.sign_email);
-        //     formData.append('mem_psw', this.sign_psw);
-        //     formData.append('mem_name', this.sign_name);
-        //     formData.append('mem_nickname', this.sign_nickname);
-        //     formData.append('mem_birth_year', this.selectedYear);
-        //     formData.append('mem_birth_month', this.selectedMonth);
-        //     formData.append('mem_birth_date', this.selectedDate);
-        //     formData.append('mem_gender', this.isMan ? '男' : (this.isWomen ? '女' : '不告訴你'));
-        //     formData.append('mem_phone', this.phone);
-
-        //     // 使用 Axios 或 Fetch API 发送 POST 请求
-        //     POST('PostMember.php', formData)
-        //         .then(response => {
-        //             // 处理成功响应
-        //             console.log(response.data);
-        //             // 这里可以根据后台的响应进行相应的操作，例如显示成功提示或跳转页面
-        //         })
-        //         .catch(error => {
-        //             // 处理错误
-        //             console.error(error);
-        //         });
-        // }
-
-
-
-        // 傳送資料到後台會員資料庫
-    // postBackMember(userObj,email,password,name,nickname) {
-    //   let mem = {};
-    // //   mem["mem_id"] = userObj.uid
-    //   mem["mem_email"] = userObj.email
-    // //   mem["mem_name"] = userObj.displayName? userObj.displayName: name
-    //   mem["mem_psw"] = userObj.password
-    //   mem["mem_acc"] = email
-    //   mem["mem_pwd"] = password
-
-    //   const data = new FormData(); // POST 表單資料
-    //   // for (const key in mem) {
-    //     // data.append(key, mem[key]);
-    //   // }
-    //   data.append("mem_no", mem["mem_no"]);
-    //   data.append("mem_email", mem["mem_email"]);
-    //   data.append("mem_name", mem["mem_name"]);
-    //   data.append("mem_acc", mem["mem_acc"]);
-    //   data.append("mem_pwd", mem["mem_pwd"]);
-    //   console.log("postBackMember::", data);
-
-    //   // 使用 Axios 發送 POST 請求
-    //   axios
-    //     .post(`${BASE_URL}postMember.php`, data)
-    //     .then((response) => {
-    //       // 請求成功後的處理
-    //       console.log(response.data);
-    //       // location.reload(); //刷新頁面
-    //       alert("已新增帳號！");
-    //     })
-    //     .catch((error) => {
-    //       // 請求失敗後的處理
-    //       console.error(error);
-    //       alert("新增帳號失敗！");
-    //     });
-    // },
         
     },
     watch: {
@@ -527,6 +482,9 @@ export default {
 
                 @media (min-width: 768px) {
                     font-size: $xl_h4;
+                }
+                .error{
+                    color: $warningColor;
                 }
             }
 

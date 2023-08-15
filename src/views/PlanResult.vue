@@ -29,7 +29,7 @@
             <div class="content_desc" v-show="showResultContent">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>台中文青一日遊</h3>
+                        <h3>{{selectValue[0]}}{{checkedPlaceTags[0]}}一日遊</h3>
                         <div class="place_tags">
                             <span># 屯區藝文中心</span>
                             <span># 太平買菸場</span>
@@ -241,10 +241,10 @@
                     </div>
                 </div>
             </div>
-            <div class="content_desc show_plan_2" v-show="showResultContent">
+            <div class="content_desc show_plan_2" v-if="showResultContent2">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>基隆探索大自然之旅</h3>
+                        <h3>{{selectValue[1]}}{{checkedPlaceTags[1]}}一日遊</h3>
                         <div class="place_tags">
                             <span># 正濱漁港彩色屋</span>
                             <span># 望幽谷濱海步道</span>
@@ -455,10 +455,10 @@
                     </div>
                 </div>
             </div>
-            <div class="content_desc show_plan_3" v-show="showResultContent">
+            <div class="content_desc show_plan_3" v-if="showResultContent3">
                 <div class="plan_container">
                     <div class="plan_title">
-                        <h3>南投約會一日遊</h3>
+                        <h3>{{selectValue[2]}}{{checkedPlaceTags[2]}}一日遊</h3>
                         <div class="place_tags">
                             <span># 中興新村</span>
                             <span># 星月天空景觀餐廳</span>
@@ -691,6 +691,8 @@
 <script>
 import { defineComponent } from 'vue'
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
+import { GET } from '@/plugin/axios';
+import  axios  from "axios";
 
 import 'vue3-carousel/dist/carousel.css'
 
@@ -710,9 +712,18 @@ export default defineComponent({
         Ticket,
         TripCard,
     },
+    computed: {
+        // 以地區數顯示行程數
+        showPlanCount() {
+            const selectValue = this.$route.query.selectValue || [];
+            return selectValue.length;
+        },
+    },
     data() {
         return {
             showResultContent: false,
+            showResultContent2: false,
+            showResultContent3: false,
             showPlan1: false,
             showPlan2: false,
             showPlan3: false,
@@ -805,10 +816,14 @@ export default defineComponent({
                     tripCardDate: "2023 / 7 / 12",
                 },
             ],
+            selectValue: [],
+            checkedPlaceTags: [],
+            resultPlaces: [],
         }
     },
     created(){
         this.fetchWeather();
+        this.fetchPlanPlace();
     },
     methods: {
         fetchWeather(){
@@ -867,30 +882,51 @@ export default defineComponent({
                 }
             });
         },
+        // 陣列隨機排序
+        shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        },
+        // 篩選資料庫景點資料
+        fetchPlanPlace() {
+            const regionNames = this.selectValue;
+            const placeTagNames = this.checkedPlaceTags;
+            
+            axios.get(`${this.$URL}/PlanResultPlace.php?region_name=${regionNames.join(',')}&place_tag_name=${placeTagNames.join(',')}`)
+                .then(response => {
+                    this.resultPlaces = response.data;
+                    console.log(this.resultPlaces);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        },
     },
     mounted() {
         // Add the event listener when the component is mounted
         window.addEventListener('scroll', this.checkScroll);
         this.checkScroll();
 
-        // Retrieve query parameters from the route
+        // 從PlanQuiz取得用戶選取內容
         const query = this.$route.query;
-
-        // Access the query parameters and use them as needed
-        const selectValue = query.selectValue;
-        const checkedPlaceTags = query.checkedPlaceTags;
+        this.selectValue = query.selectValue || [];
+        this.checkedPlaceTags = this.shuffleArray(query.checkedPlaceTags);
         const checkedSexTag = query.checkedSexTag;
         const checkedStyleTags = query.checkedStyleTags;
 
-        // Now you can use these values to perform queries or manipulate your component's data
-        // Example:
-        console.log(selectValue);
-        console.log(checkedPlaceTags);
+        console.log(this.selectValue);
+        console.log(this.checkedPlaceTags);
         console.log(checkedSexTag);
         console.log(checkedStyleTags);
 
-        // Fetch data from your API based on the query parameters and update your component's data accordingly
-        // For example, update the 'ootts', 'tickets', 'trips', etc. arrays based on the selected tags
+        // 控制要顯示的行程數
+        const count = this.showPlanCount;
+        console.log(count);
+        this.showResultContent2 = count >= 2;
+        this.showResultContent3 = count >= 3;
     },
     beforeUnmount() {
         // Remove the event listener when the component is about to be unmounted

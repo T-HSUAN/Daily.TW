@@ -15,10 +15,10 @@
                         <div class="space_forget"></div>
                     </label>
                     <div class="cancel_group">
-                        <router-link to="/Home" class="cancel_btn">
+                        <router-link to="/" class="cancel_btn">
                             取消
                         </router-link>
-                        <button class="btn">送出</button>
+                        <button class="btn" @click="resetPsw">送出</button>
                     </div>
                 </form>
                 <div class="register">
@@ -58,6 +58,17 @@
 
 
 <script>
+import { firebaseAuth } from "@/assets/config/firebase.js";
+import {
+
+    sendPasswordResetEmail,
+    sendEmailVerification,
+} from "firebase/auth";
+//google 守門人
+import { signInWithPopup, GoogleAuthProvider, getAdditionalUserInfo } from "firebase/auth";
+const provider = new GoogleAuthProvider();
+
+
 import emailjs from 'emailjs-com';
 
 export default {
@@ -69,28 +80,45 @@ export default {
         }
     },
     methods: {
-        sendEmail() {
-            if (this.email === '') {
+        //=========================EmailJs===========================================
+        // sendEmail() {
+        //     if (this.email === '') {
 
-                this.isPopBoxFalse = true;
-            } else {
+        //         this.isPopBoxFalse = true;
+        //     } else {
 
-                emailjs.sendForm('daily', 'daily', this.$refs.form, 'av3wEk3CDkczylGAe')
-                    .then((result) => {
-                        // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
-                        this.isPopBoxVisible = true;
-                    })
-                    .catch((error) => {
-                        this.isPopBoxVisible = false;
-                        alert('信件未送出，請稍後再試');
-                    });
-            }
-        },
+        //         emailjs.sendForm('daily', 'daily', this.$refs.form, 'av3wEk3CDkczylGAe')
+        //             .then((result) => {
+        //                 // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
+        //                 this.isPopBoxVisible = true;
+        //             })
+        //             .catch((error) => {
+        //                 this.isPopBoxVisible = false;
+        //                 alert('信件未送出，請稍後再試');
+        //             });
+        //     }
+        // },
         closePopBox() {
             this.isPopBoxVisible = false;
             this.isPopBoxFalse = false,
                 this.email = '';
-        }
+        },
+        resetPsw() {
+            sendPasswordResetEmail(firebaseAuth, this.email)
+                .then(() => {
+                    window.alert("已發送信件至信箱，請按照信件說明重設密碼");
+                    this.$router.push('/reset_psw');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    if (errorCode === "auth/invalid-email") {
+                        alert(`信箱格式錯誤${errorCode}`);
+                    } else {
+                        console.log("重置密碼失敗", error.message);
+                        alert(`重置密碼失敗${error}`);
+                    }
+                });
+        },
     }
 }
 </script>
@@ -462,4 +490,5 @@ export default {
             }
         }
     }
-}</style>
+}
+</style>

@@ -4,17 +4,17 @@
             {{ oottRank }}
         </div>
         <div class="oott_default">
-            <router-link to="/oott_Info" class="link">
+            <router-link :to="'/oott_info/' + oottCardId" class="link">
                 <img :src="oottPhoto" alt="穿搭照片" class="oott_card_pic" />
             </router-link>
             <label class="heart">
                 <input type="checkbox">
                 <span></span>
             </label>
-            <router-link to="/oott_info">
+            <router-link :to="'/oott_info/' + oottCardId">
                 <div class="oott_card_text">
                     <div class="oott_card_info">
-                        <span class="oott_card_tag">{{ oottCardTags }}</span>
+                        <span class="oott_card_tag">#{{ oottCardTags }}</span>
                         <span class="oott_card_date">{{ oottCardDate }}</span>
                     </div>
                     <div class="oott_card_foot">
@@ -36,6 +36,7 @@
 <script>
 export default {
     props: {
+        oottCardId: Number,
         oottRank: String,
         oottPhoto: String,
         oottCardTags: String,

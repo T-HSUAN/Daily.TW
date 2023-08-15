@@ -138,12 +138,12 @@ export default createStore({
             state.isLogin = false
             sessionStorage.removeItem("mem_id")
         },
-        setLoginData(state, userInfo) {
-            state.userInfo = userInfo
-            // state.memberInfoAll.info = userInfo
-            sessionStorage.setItem("mem_id", userInfo.mem_id);
-            state.isLogin = true
-        },
+        // setLoginData(state, userInfo) {
+        //     state.userInfo = userInfo
+        //     // state.memberInfoAll.info = userInfo
+        //     sessionStorage.setItem("mem_id", userInfo.mem_id);
+        //     state.isLogin = true
+        // },
         setAccount(state, account) {
             state.sign_email = account;
         },

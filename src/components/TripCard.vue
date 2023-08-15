@@ -12,12 +12,12 @@
             <font-awesome-icon icon="fa-solid fa-bookmark" class="front_bookmark"/>
         </label> -->
         <div class="trip_card_img">
-            <router-link to="/trip_info">
+            <router-link :to="'/trip_info/' + tripCardId">
                 <img :src="tripCardPhoto" alt="景點照片" />
             </router-link>
         </div>
         <div class="trip_card_text">
-            <router-link to="/trip_info">
+            <router-link :to="'/trip_info/' + tripCardId">
                 <span class="trip_card_tags">{{ tripCardTags }}</span>
                 <h3 class="trip_card_title">{{ tripCardTitle }}</h3>
                 <p class="trip_card_desc">{{ tripCardDesc }}</p>
@@ -34,6 +34,7 @@
 export default {
     props: {
         // 這裡是 TripCard 組件的屬性（props），用於接收外部傳遞的資料
+        tripCardId: Number, //連接資料分頁的編號
         tripCardPhoto: String, // 圖片的路徑
         tripCardTags: String, // 標籤文字
         tripCardTitle: String, // 標題文字
