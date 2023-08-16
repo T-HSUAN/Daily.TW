@@ -20,7 +20,7 @@
                         <label>Email
                             <span v-if="!isEmailValid"
                             class="error"
-                            >帳號格式錯誤！</span>
+                            >請輸入...@testmail.com</span>
                         </label>
                         <input type="text" 
                         v-model="email" 
