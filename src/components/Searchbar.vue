@@ -4,7 +4,7 @@
         <div class="multi_filter_bg">
             <div class="multi_filter">
                 <div class="order_select_wrap">
-                    <div class="order_tool">
+                    <!-- <div class="order_tool">
                         <font-awesome-icon icon="fa-solid fa-arrow-up-wide-short" class="order_icon" />
                         <button>
                             <span>人氣</span>
@@ -14,7 +14,7 @@
                             <span>上架時間</span>
                             <font-awesome-icon icon="fa-solid fa-arrow-up" class="order_arrow_icon" />
                         </button>
-                    </div>
+                    </div> -->
                     <!-- 篩選function 地區、文字、標籤篩選共用:Filters() -->
                     <!-- 地區篩選 -->
                     <div class="select_tool">

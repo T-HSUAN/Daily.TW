@@ -27,7 +27,7 @@
                     <label for="select" class="ticket_title" @change="SelecteOne(item)">
                         <input type="checkbox" name="" id="select" :checked="item.selected" />&nbsp;{{ item.Name }}
                     </label>
-                    <img :src="`/placeImg/${item.img}`" alt="ticket_photo" />
+                    <img :src="getPlaceImg(item.img)" alt="ticket_photo" />
                 </div>
                 <font-awesome-icon icon="fa-solid fa-trash-can" @click="removeFromCart(index)" />
                 <div class="ticket_select">
@@ -135,6 +135,9 @@ export default {
     methods: {
         ...mapMutations(['SelectItem', 'updateFinalCartItems']),
         ...mapActions(['removeFromCart', 'Subtotal']),
+        getPlaceImg(placeImg) {
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
+        },
         priceAdultF(item) {
             if (item.discount !== null) {
                 return Math.round(item.discount * (item.price_adult / 10));

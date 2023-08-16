@@ -7,7 +7,7 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar @Filters="ticketDisplay" :tagTexts="tagTexts" :searchText="searchText">
+        <Searchbar @Filters="ticketsDisplay" :tagTexts="tagTexts" :searchText="searchText">
             <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
         </Searchbar>
         <!-- 景點票券清單 -->
@@ -249,35 +249,7 @@ export default {
             }
         },
         //資料分頁&篩選
-        // ticketsDisplay() {
-        //     const areaSelected = this.$store.state.filter.areaSelected;
-        //     const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
-        //     const searchText = this.$store.state.filter.searchText;
-        //     this.ticketDisplay = this.ticketData.filter(item => {
-        //         // 地區篩選
-        //         const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
-
-        //         // 標籤篩選
-        //         // const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
-
-        //         // 文字模糊搜索
-        //         const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
-
-        //         // 返回结果
-        //         return areaMatch && tagMatch && nameMatch;
-        //     });
-        //     return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
-        // },
-        dataLength() {
-            return this.ticketDisplay.length;
-
-        },
-    },
-    created() {
-        this.ticketDisplay = this.ticketData;
-    },
-    mounted() {
-        this.fetchTicketData().then(() => {
+        ticketsDisplay() {
             // 資料取得後進行篩選操作
             const areaSelected = this.$store.state.filter.areaSelected;
             const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
@@ -296,6 +268,18 @@ export default {
                 // 返回结果
                 return areaMatch && tagMatch && nameMatch;
             });
+        },
+        dataLength() {
+            return this.ticketDisplay.length;
+
+        },
+    },
+    created() {
+        this.ticketDisplay = this.ticketData;
+    },
+    mounted() {
+        this.fetchTicketData().then(() => {
+            this.ticketsDisplay;
         });
     },
 

@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Entrance from '@/views/Entrance.vue'
-import HomeView from "@/views/HomeView.vue";
 import TicketInfo from "@/views/TicketInfo.vue";
 import store from '@/store/index.js'
 
@@ -14,7 +13,8 @@ const routesUser = [
     {//首頁
         path: "/Home",
         name: "home",
-        component: HomeView,
+        component: () =>
+            import(/* webpackChunkName: "plan" */ "@/views/HomeView.vue"),
     },
     {
         path: "/plan",
@@ -134,8 +134,8 @@ const routesUser = [
         beforeEnter: () => {
             // console.log('login');
             console.log(store.state.isLogin)
-            if(store.state.isLogin === true){
-                return {name:'home'}
+            if (store.state.isLogin === true) {
+                return { name: 'home' }
             }
         },
     },
@@ -171,49 +171,49 @@ const routesUser = [
             import(
                 /* webpackChunkName: "memberinfo" */ "@/views/MemberInfo.vue"
             ),
-            beforeEnter: () => {
-                console.log(store.state.isLogin)
-                if (store.state.isLogin === false) {
-                    return { name: 'home' }
-                }
-            },
-            
+        beforeEnter: () => {
+            console.log(store.state.isLogin)
+            if (store.state.isLogin === false) {
+                return { name: 'home' }
+            }
+        },
+
     },
     {
         path: "/member_psw",
         name: "memberpsw",
         component: () =>
             import(/* webpackChunkName: "memberpsw" */ "@/views/MemberPsw.vue"),
-            beforeEnter: () => {
-                console.log(store.state.isLogin)
-                if (store.state.isLogin === false) {
-                    return { name: 'home' }
-                }
-            },
+        beforeEnter: () => {
+            console.log(store.state.isLogin)
+            if (store.state.isLogin === false) {
+                return { name: 'home' }
+            }
+        },
     },
     {
         path: "/member",
         name: "member",
         component: () =>
             import(/* webpackChunkName: "member" */ "@/views/MemberView.vue"),
-            beforeEnter: () => {
-                console.log(store.state.isLogin)
-                if (store.state.isLogin === false) {
-                    return { name: 'home' }
-                }
-            },
+        beforeEnter: () => {
+            console.log(store.state.isLogin)
+            if (store.state.isLogin === false) {
+                return { name: 'home' }
+            }
+        },
     },
     {
         path: "/myorder",
         name: "myorder",
         component: () =>
             import(/* webpackChunkName: "myorder" */ "@/views/MyOrder.vue"),
-            beforeEnter: () => {
-                console.log(store.state.isLogin)
-                if (store.state.isLogin === false) {
-                    return { name: 'home' }
-                }
-            },
+        beforeEnter: () => {
+            console.log(store.state.isLogin)
+            if (store.state.isLogin === false) {
+                return { name: 'home' }
+            }
+        },
     },
     {
         path: "/signup",

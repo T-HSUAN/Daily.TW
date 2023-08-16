@@ -15,7 +15,7 @@
             </router-link>
         </div>
         <!-- 票券造型呈現，1200以下無造型 -->
-        <TicketSingleCard :ticketPhoto="`/placeImg/${ticketInfo.img}`" :ticketTitle="ticketInfo.Name"
+        <TicketSingleCard :ticketPhoto="getPlaceImg(ticketInfo.img)" :ticketTitle="ticketInfo.Name"
             :ticketLocation="ticketInfo.location" :ticketTags="ticketInfo.tag" :ticketDetails="ticketInfo.place_desc"
             :showAddr="true" :ticketAddr="ticketInfo.addr" :ticketAddrLink="ticketInfo.ticket_addr_link"
             :discountTag="ticketInfo.discount" />
@@ -220,6 +220,9 @@ export default {
         // [取得id]從前一頁的票券取得其id，藉由這個id找到與ticketData相同id資料，並傳入本頁的ticketInfo之中
         getTicketContent(ticketId) {
             return this.ticketData.find(ticketData => ticketData.id === ticketId);
+        },
+        getPlaceImg(placeImg) {
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
         },
         priceAdultF(item) {
             if (item.discount !== null) {
