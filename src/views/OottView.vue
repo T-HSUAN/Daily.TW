@@ -287,10 +287,10 @@ export default {
     },
     methods: {
         getOottImg(oottImg){
-            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
+            return process.env.BASE_URL + 'oottImg/' + oottImg ;
         },
         getMemImg(memImg){
-            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
+            return process.env.BASE_URL + 'profileImg/' + memImg ;
         },
         navigateToDetail(oottId) {
         // 构建跳转链接，将 oottId 作为参数传递到目标页面

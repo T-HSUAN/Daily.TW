@@ -15,16 +15,13 @@
                             </div>
                             <div class="text">
                                 <div class="pic">
-                                    <img
-                                        src="~@/assets/img/member_info.png"
-                                        alt=""
-                                    />
+                                    <img :src= getMemImg(memberData.mem_img) alt="作者頭像" />
                                 </div>
                                 <ul>
-                                    <li>用戶暱稱：{{ member.nickname }}</li>
-                                    <li>生日：{{ member.birthday }}</li>
-                                    <li>性別：{{ member.gender }}</li>
-                                    <li>email:{{ member.email }}</li>
+                                    <li>用戶暱稱：{{ memberData.mem_nickname }}</li>
+                                    <li>生日：{{ memberData.mem_birth }}</li>
+                                    <li>性別：{{ memberData.mem_sex }}</li>
+                                    <li>email:{{ memberData.mem_email }}</li>
                                 </ul>
                                 <router-link to="/member_info" class="btn">編輯</router-link>
                             </div>
@@ -42,11 +39,9 @@
                         <div class="card_list">
                             <div class="card">
                                 <div class="pic">
-                                    <a href="#"
-                                        ><img
-                                            src="~@/assets/img/oott_14.png"
-                                            alt="卡片照片"
-                                    /></a>
+                                    <a href="#">
+                                        <img src="~@/assets/img/oott_14.png" alt="卡片照片"/>
+                                    </a>
                                 </div>
                                 <div class="text_warn">
                                     <p>主題標籤</p>
@@ -178,6 +173,7 @@
 </div>
 </template>
 <script>
+import { GET } from '@/plugin/axios'
 import Sidenav from "@/components/Sidenav.vue";
 import TripCard from "@/components/TripCard.vue";
 import oottCard from "@/components/OottCard.vue";
@@ -189,12 +185,8 @@ export default {
     },
     data() {
         return {
-            member:{
-                nickname: '呱呱',
-                birthday: '1999/09/09',
-                gender: '男',
-                email: '123456@example.com',
-            },
+            memberData:[],
+            myOott:[],
             tripCards: [
                 {
                     tripCardPhoto: "https://picsum.photos/237/191?random=1",
@@ -248,13 +240,31 @@ export default {
                 },
             ],
             orders: [
-            { id: 1, orderDate: '2023-07-24', status: '處理中', total: '$100.00' },
-            { id: 2, orderDate: '2023-07-23', status: '已發貨', total: '$75.50' },
-            { id: 3, orderDate: '2023-07-22', status: '已完成', total: '$50.25' },
-            { id: 4, orderDate: '2023-07-21', status: '處理中', total: '$120.75' },
-            { id: 5, orderDate: '2023-07-20', status: '已取消', total: '$0.00' }
-        ]
+                { id: 1, orderDate: '2023-07-24', status: '處理中', total: '$100.00' },
+                { id: 2, orderDate: '2023-07-23', status: '已發貨', total: '$75.50' },
+                { id: 3, orderDate: '2023-07-22', status: '已完成', total: '$50.25' },
+                { id: 4, orderDate: '2023-07-21', status: '處理中', total: '$120.75' },
+                { id: 5, orderDate: '2023-07-20', status: '已取消', total: '$0.00' }
+            ]
         };
+    },
+    methods: {
+        getOottImg(oottImg) {
+            return process.env.BASE_URL + 'oottImg/' + oottImg;
+        },
+        getMemImg(memImg) {
+            return process.env.BASE_URL + 'profileImg/' + memImg;
+        },
+    },
+    mounted() {
+        GET(`${this.$URL}/memberViewInfo.php`)
+            .then((res) => {
+                console.log(res);
+                this.memberData = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
 };
 </script>

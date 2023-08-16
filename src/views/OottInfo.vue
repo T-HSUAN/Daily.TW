@@ -95,10 +95,10 @@ export default {
     },
     methods: {
         getOottImg(oottImg) {
-            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
+            return process.env.BASE_URL + 'oottImg/' + oottImg ;
         },
         getMemImg(memImg) {
-            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
+            return process.env.BASE_URL + 'profileImg/' + memImg ;
         },
     },
     mounted() {
@@ -112,7 +112,7 @@ export default {
                 console.log(err);
             });
 
-            GET(`${this.$URL}/oottInfoMore.php`)
+        GET(`${this.$URL}/oottInfoMore.php`)
             .then((res) => {
                 console.log(res);
                 this.ootts = res;
