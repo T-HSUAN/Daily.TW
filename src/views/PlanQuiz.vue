@@ -257,6 +257,11 @@ export default {
             } else if (tagList === 'sex'){
                 checkedArray = this.checkedSexTag;
                 this.limitCheckedTags(checkedArray, index);
+                if (checkedArray[index]) {
+                    this.sexTagIdMapping = [this.sexTags[index].value.toString()];
+                } else {
+                    this.sexTagIdMapping = [];
+                }
             }
         },
         // "看結果"按鈕跳轉至結果頁
@@ -270,6 +275,11 @@ export default {
                     this.placeTagIdMapping.push(this.placeTags[index].place_tag_name);
                 }
             });
+            // this.checkedSexTag = this.checkedSexTag.forEach((isChecked, index) => {
+            //     if (isChecked) {
+            //         this.sexTagIdMapping.push(this.sexTags[index].value);
+            //     }
+            // });
             // this.checkedStyleTags = this.checkedStyleTags.forEach((isChecked, index) => {
             //     if (isChecked) {
             //         this.styleTagIdMapping.push(this.styleTags[index].style_id);
@@ -279,7 +289,7 @@ export default {
             const query = {
                 selectValue: this.selectValue,
                 checkedPlaceTags: this.placeTagIdMapping,
-                checkedSexTag: this.checkedSexTag,
+                checkedSexTag: this.sexTagIdMapping,
                 checkedStyleTags: this.checkedStyleTags,
             };
 

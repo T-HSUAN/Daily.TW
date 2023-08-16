@@ -226,9 +226,13 @@
                 <div class="oott_container" v-if="showPlan1">
                     <h3>出遊穿搭推薦</h3>
                     <div class="oott_card_wrap">
-                        <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor">
+                        <OottCard class="oott_card" v-for="(oott, index) in randomPickedOottData[0]" :key="index" 
+                                :oottCardId="oott.oott_id"
+                                :oottPhoto="getOottImg(oott.oott_img)"
+                                :oottCardTags="oott.concatenated_style_name"
+                                :oottCardDate="oott.oott_date_new"
+                                :oottAuthorPhoto="getMemImg(oott.mem_img)"
+                                :oottCardAuthor="oott.mem_nickname">
                         </OottCard>
                     </div>
                 </div>
@@ -467,9 +471,13 @@
                 <div class="oott_container" v-if="showPlan2">
                     <h3>出遊穿搭推薦</h3>
                     <div class="oott_card_wrap">
-                        <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor">
+                        <OottCard class="oott_card" v-for="(oott, index) in randomPickedOottData[1]" :key="index" 
+                                :oottCardId="oott.oott_id"
+                                :oottPhoto="getOottImg(oott.oott_img)"
+                                :oottCardTags="oott.concatenated_style_name"
+                                :oottCardDate="oott.oott_date_new"
+                                :oottAuthorPhoto="getMemImg(oott.mem_img)"
+                                :oottCardAuthor="oott.mem_nickname">
                         </OottCard>
                     </div>
                 </div>
@@ -708,9 +716,13 @@
                 <div class="oott_container" v-if="showPlan3">
                     <h3>出遊穿搭推薦</h3>
                     <div class="oott_card_wrap">
-                        <OottCard class="oott_card" v-for="(oott, index) in ootts" :key="index" :oottPhoto="oott.oottPhoto"
-                            :oottCardTags="oott.oottCardTags" :oottCardDate="oott.oottCardDate"
-                            :oottAuthorPhoto="oott.oottAuthorPhoto" :oottCardAuthor="oott.oottCardAuthor">
+                        <OottCard class="oott_card" v-for="(oott, index) in randomPickedOottData[2]" :key="index" 
+                                :oottCardId="oott.oott_id"
+                                :oottPhoto="getOottImg(oott.oott_img)"
+                                :oottCardTags="oott.concatenated_style_name"
+                                :oottCardDate="oott.oott_date_new"
+                                :oottAuthorPhoto="getMemImg(oott.mem_img)"
+                                :oottCardAuthor="oott.mem_nickname">
                         </OottCard>
                     </div>
                 </div>
@@ -827,6 +839,25 @@ export default defineComponent({
 
             return limitedPlaces;
         },
+        randomPickedOottData() {
+            const subarraySize = 3;
+            const oottDataCopy = [...this.oottData]; // Create a copy of the oottData array
+            let randomPickedData = [];
+            if (this.checkedSexTag.length === 1 && this.checkedSexTag[0] === "") {
+                // If checkedSexTag is empty, shuffle all oottData
+                randomPickedData = this.shuffleArray(oottDataCopy);
+            } else {
+                const filteredOottData = oottDataCopy.filter(oott => this.checkedSexTag.includes(oott.mem_sex));
+                randomPickedData = this.shuffleArray(filteredOottData);
+            }
+            const result = [];
+
+            for (let i = 0; i < subarraySize; i++) {
+                const subarray = randomPickedData.slice(i * subarraySize, (i + 1) * subarraySize);
+                result.push(subarray);
+            }
+            return result;
+        },
     },
     data() {
         return {
@@ -845,29 +876,6 @@ export default defineComponent({
                 token:'713d2a4d5d6d47dca9a15517232207',
             },
             regionWeatherData: {},
-            ootts: [
-                {
-                    oottPhoto: require("@/assets/img/layout/plan_result_oott-1.png"),
-                    oottCardTags: "#日系 #休閒 #風景",
-                    oottCardDate: "2023 / 7 / 12",
-                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-1_member.png"),
-                    oottCardAuthor: "Alison",
-                },
-                {
-                    oottPhoto: require("@/assets/img/layout/plan_result_oott-2.png"),
-                    oottCardTags: "#復古 #海邊",
-                    oottCardDate: "2023 / 7 / 3",
-                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-2_member.png"),
-                    oottCardAuthor: "Susan",
-                },
-                {
-                    oottPhoto: require("@/assets/img/layout/plan_result_oott-3.png"),
-                    oottCardTags: "#街頭 #潮流",
-                    oottCardDate: "2023 / 6 / 6",
-                    oottAuthorPhoto: require("@/assets/img/layout/plan_result_oott-3_member.png"),
-                    oottCardAuthor: "Max",
-                },
-            ],
             tickets: [
                 {
                     ticketPhoto: require("@/assets/img/layout/plan_result_ticket.png"),
@@ -905,7 +913,9 @@ export default defineComponent({
             ],
             selectValue: [],
             checkedPlaceTags: [],
+            checkedSexTag: [],
             placeData: [],
+            oottData: [],
         }
     },
     // created(){
@@ -999,6 +1009,12 @@ export default defineComponent({
         getPlaceImg(placeImg){
             return process.env.BASE_URL + 'placeImg/' + placeImg;  
         },
+        getOottImg(oottImg){
+            return process.env.BASE_URL + 'oottImg/' + oottImg;
+        },
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg;
+        },
         // 陣列隨機排序
         shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -1017,12 +1033,12 @@ export default defineComponent({
         const query = this.$route.query;
         this.selectValue = query.selectValue || [];
         this.checkedPlaceTags = query.checkedPlaceTags;
-        const checkedSexTag = query.checkedSexTag;
+        this.checkedSexTag = query.checkedSexTag;
         const checkedStyleTags = query.checkedStyleTags;
 
         console.log(this.selectValue);
         console.log(this.checkedPlaceTags);
-        console.log(checkedSexTag);
+        console.log(this.checkedSexTag);
         console.log(checkedStyleTags);
 
         // 控制要顯示的行程數
@@ -1075,7 +1091,15 @@ export default defineComponent({
             })
             .catch((err) => {
                 console.log(err);
+            });
+            GET(`${this.$URL}/PlanResultOott.php`)
+            .then((res) => {
+                this.oottData = res;
+                console.log(res);
             })
+            .catch((err) => {
+                console.log(err);
+            });
     },
     beforeUnmount() {
         // Remove the event listener when the component is about to be unmounted
