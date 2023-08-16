@@ -124,13 +124,13 @@
                             <div class="oottCards">
                                 <oottCard
                                     class="oottCard"
-                                    v-for="(oott, index) in ootts"
+                                    v-for="oott in ootts"
                                     :key="index"
-                                    :oottPhoto="oott.oottPhoto"
-                                    :oottCardTags="oott.oottCardTags"
-                                    :oottCardDate="oott.oottCardDate"
-                                    :oottAuthorPhoto="oott.oottAuthorPhoto"
-                                    :oottCardAuthor="oott.oottCardAuthor"
+                                    :oottPhoto="getOottImg(oott.oott_img)"
+                                    :oottCardTags="oott.concatenated_style_name"
+                                    :oottCardDate="oott.oott_date"
+                                    :oottAuthorPhoto="getMemImg(oott.mem_img)"
+                                    :oottCardAuthor="oott.mem_name"
                                 ></oottCard>
                             </div>
                         </div>
@@ -187,6 +187,7 @@ export default {
         return {
             memberData:[],
             myOott:[],
+            tripDataForUser:[],
             tripCards: [
                 {
                     tripCardPhoto: "https://picsum.photos/237/191?random=1",
@@ -216,29 +217,7 @@ export default {
                     tripCardDate: "2023/05/03",
                 },
             ],
-            ootts: [
-                {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
-                    oottCardTags: "#日系 #休閒 #風景",
-                    oottCardDate: "2022 / 12 / 12",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Alison",
-                },
-                {
-                    oottPhoto: require("@/assets/img/oott_06.png"),
-                    oottCardTags: "#復古 #海邊",
-                    oottCardDate: "2022 / 7 / 3",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Susan",
-                },
-                {
-                    oottPhoto: require("@/assets/img/oott_card_example.png"),
-                    oottCardTags: "#街頭 #潮流",
-                    oottCardDate: "2022 / 7 / 6",
-                    oottAuthorPhoto: require("@/assets/img/oott_card_proPic_example.png"),
-                    oottCardAuthor: "Max",
-                },
-            ],
+            ootts: [],
             orders: [
                 { id: 1, orderDate: '2023-07-24', status: '處理中', total: '$100.00' },
                 { id: 2, orderDate: '2023-07-23', status: '已發貨', total: '$75.50' },
@@ -264,8 +243,34 @@ export default {
             })
             .catch((err) => {
                 console.log(err);
+            }),
+        GET(`${this.$URL}/memberViewMyOott.php`)
+            .then((res) => {
+                console.log(res);
+                this.myOott = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            }),
+        GET(`${this.$URL}/memberViewTrip.php`)
+            .then((res) => {
+                console.log(res);
+                this. tripDataForUser = res;
+            })
+            .catch((err) => {
+                console.log(err);
+            }),
+
+        GET(`${this.$URL}/memberViewOott.php`)
+            .then((res) => {
+                console.log(res);
+                this.ootts = res;
+            })
+            .catch((err) => {
+                console.log(err);
             })
     },
+    
 };
 </script>
 <style lang="scss" scoped>
