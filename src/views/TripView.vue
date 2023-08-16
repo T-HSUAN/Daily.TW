@@ -662,7 +662,7 @@ export default {
             return process.env.BASE_URL + 'placeImg/' + placeImg;
         },
         getMemImg(memImg){
-            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
+            return process.env.BASE_URL + 'profileImg/' + memImg;
         }
     },
     

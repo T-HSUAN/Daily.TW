@@ -103,10 +103,10 @@ export default {
             this.oottDisplay = this.oottData;
         },
         getOottImg(oottImg){
-            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
+            return process.env.BASE_URL + 'oottImg/' + oottImg;
         },
         getMemImg(memImg){
-            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
+            return process.env.BASE_URL + 'profileImg/' + memImg;
         },
     },
     mounted() {
