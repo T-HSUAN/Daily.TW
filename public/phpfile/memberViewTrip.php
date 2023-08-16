@@ -6,9 +6,9 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "select * from member ";
+	$sql = "select * from trip limit 3";
 	$products = $pdo->query($sql); 
-	$prodRows = $products->fetch(PDO::FETCH_ASSOC);
+	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($prodRows);
 
 } catch (Exception $e) {
