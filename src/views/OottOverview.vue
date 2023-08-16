@@ -118,7 +118,7 @@ export default {
     },
     mounted() {
         const oottId = this.$route.params.oott_id;
-        GET(`${this.$URL_}/oottOverview.php?oott_id=${oottId}`)
+        GET(`${this.$URL}/oottOverview.php?oott_id=${oottId}`)
             .then((res) => {
                 console.log(res);
                 this.oottDisplay = res;
