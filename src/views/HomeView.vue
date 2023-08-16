@@ -134,7 +134,7 @@
                                     :ticketTags="ticket.tag"
                                     :originalPrice="ticket.ticket_discount !== null ? ticket.ticket_adult : ''" 
                                     :FinalPrice="ticket.final_price"
-                                    :discountTag="ticket.ticket_discount !== null ? parseFloat(ticket.ticket_discount).toFixed(1) + '折' : ''" />
+                                    :discountTag="ticket.ticket_discount !== null ? parseFloat(ticket.ticket_discount).toFixed(1) : ''" />
                                 </router-link>
                             </div>
                         </div>
@@ -229,20 +229,6 @@ export default {
         getMemImg(memImg){
             return process.env.BASE_URL + 'profileImg/' + memImg;
         }
-    },
-
-    computed: {
-        formatDiscountTag() {
-            return (discount) => {
-                if (discount === null) {
-                return ''; // 或者您可以返回其他適合的值
-                } else {
-                const discountPercentage = parseFloat(discount) * 100;
-                const formattedDiscount = discountPercentage === 100 ? '原價' : discountPercentage.toFixed(1) + '折';
-                return formattedDiscount;
-                }
-            };
-        },
     },
 
     mounted() {
