@@ -66,15 +66,17 @@ header {
                         }
                     }
 
-                    
+
                 }
+
                 // 登入後顯示
-                div{
-                    div{
+                div {
+                    div {
                         // margin: $sp1 0;
                         text-align: center;
                         color: $textColor_default;
                         cursor: pointer;
+
                         &:hover {
                             color: $default_yellow;
                         }
@@ -86,6 +88,7 @@ header {
                         }
                     }
                 }
+
                 //未登入顯示
                 // div{
                 //     a{
@@ -96,9 +99,9 @@ header {
                 //         }
                 //     }
                 // }
-                
+
             }
-            
+
 
             .sidebar_logo {
                 margin-top: $sp5;
@@ -111,6 +114,10 @@ header {
             transition: right .5s ease-in-out;
         }
     }
+}
+
+.hidden {
+    display: none;
 }
 
 @media screen and (min-width: $md) {
@@ -152,18 +159,20 @@ header {
                         }
 
                     }
+
                     // 登入後顯示
-                    div{
-                        div{
+                    div {
+                        div {
                             display: inline-block;
                             margin: 0 $sp1;
                             font-size: 20px;
                             color: $textColor_default;
                             cursor: pointer;
+
                             &:hover {
                                 color: $default_yellow;
                             }
-                            
+
                             &.router-link-exact-active {
                                 li {
                                     color: $default_yellow;
@@ -171,7 +180,7 @@ header {
                             }
                         }
                     }
-                    
+
                 }
             }
 

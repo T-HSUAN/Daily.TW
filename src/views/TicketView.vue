@@ -7,12 +7,12 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar @Filters="Filters" :tagTexts="tagTexts">
+        <Searchbar @Filters="ticketsDisplay" :tagTexts="tagTexts" :searchText="searchText">
             <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
         </Searchbar>
         <!-- 景點票券清單 -->
-        <div class="ticket_list" v-if="ticketDisplay.length > 0">
-            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
+        <div class="ticket_list" v-if="ticketsDisplay.length > 0">
+            <div class="ticket_card" v-for="(item, index) in ticketsDisplay" :key="item.id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
                     <Ticket :ticketPhoto="`/placeImg/${item.img}`" :ticketTitle="item.Name" :ticketLocation="item.location"
@@ -27,11 +27,15 @@
             </div>
         </div>
         <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
-        <div class="page_link">
+        <!-- 切換分頁 -->
+        <div class="pages">
+            <Page :total="dataLength" v-model="page.index" :page-size="page.size" />
+        </div>
+        <!-- <div class="page_link">
             <a class="page" v-if="ticketDisplay.length === ticketData.length">1</a>
             <a class="page" v-if="ticketDisplay.length === ticketData.length">2</a>
             <a class="page" v-if="ticketDisplay.length === ticketData.length">3</a>
-        </div>
+        </div> -->
 
         <!-- 購物車清單(側邊) -->
         <div :class="['cart_sidebar', { 'showCartSidebar': switchPage }]">
@@ -40,7 +44,7 @@
                 <div class="numTag">{{ cartItems.length }}</div>
             </div>
             <h2>付款明細</h2>
-            <!-- 購物明細(側邊) -->
+            <!-- 購物明細 -->
             <div class="item">
                 <div class="item_null" v-if="cartItems.length === 0">
                     <p>您的購物車目前是空的</p>
@@ -102,7 +106,7 @@
                 <button class="btn" @click="checkoutCart">結帳</button>
             </div>
         </div>
-        <button @click="test">test123</button>
+        <!-- <button @click="test">test123</button> -->
     </div>
 </template>
 <script>
@@ -142,6 +146,11 @@ export default {
             // ticketData: ticketData,
             // 從ticketData抓取商品資料並呈現(進行搜尋篩選)
             ticketDisplay: [],
+            page: {
+                index: 1, //當前分頁
+                size: 20, //一頁多少筆資料
+            },
+            // searchText: this.$store.state.filter.searchText,
             ShowClear: false,
             // 購物車清單
             cartItems: this.$store.state.cartItems,
@@ -165,24 +174,24 @@ export default {
                 return item.price_ex;
             }
         },
-        Filters() {
-            const areaSelected = this.$store.state.filter.areaSelected;
-            const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
-            const searchText = this.$store.state.filter.searchText;
-            this.ticketDisplay = this.ticketData.filter(item => {
-                // 地區篩選
-                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+        // Filters() {
+        //     const areaSelected = this.$store.state.filter.areaSelected;
+        //     const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+        //     const searchText = this.$store.state.filter.searchText;
+        //     this.ticketDisplay = this.ticketData.filter(item => {
+        //         // 地區篩選
+        //         const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
 
-                // 標籤篩選
-                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+        //         // 標籤篩選
+        //         const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
 
-                // 文字模糊搜索
-                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+        //         // 文字模糊搜索
+        //         const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
 
-                // 返回结果
-                return areaMatch && tagMatch && nameMatch;
-            });
-        },
+        //         // 返回结果
+        //         return areaMatch && tagMatch && nameMatch;
+        //     });
+        // },
         //清除篩選
         ClearFilter() {
             this.$store.state.filter.areaSelected = "所有地區";
@@ -235,6 +244,31 @@ export default {
             } else {
                 return true;
             }
+        },
+        //資料分頁&篩選
+        ticketsDisplay() {
+            const areaSelected = this.$store.state.filter.areaSelected;
+            const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+            const searchText = this.$store.state.filter.searchText;
+            this.ticketDisplay = this.ticketData.filter(item => {
+                // 地區篩選
+                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+
+                // 標籤篩選
+                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+
+                // 文字模糊搜索
+                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+
+                // 返回结果
+                return areaMatch && tagMatch && nameMatch;
+            });
+            return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
+        },
+        dataLength() {
+            console.log('票券長度', this.ticketsDisplay.length);
+            return this.ticketDisplay.length;
+
         },
     },
     created() {

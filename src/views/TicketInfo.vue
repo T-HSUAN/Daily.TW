@@ -24,9 +24,7 @@
             <!-- 內容描述 -->
             <div class="ticket_desc">
                 <h3>票券描述</h3>
-                <ol class="content">
-                    <li>{{ ticketInfo.desc }}</li>
-                </ol>
+                <p class="content" v-html="formatDescription(ticketInfo.desc)"></p>
             </div>
             <!-- 選擇門票數量 -->
             <div class="ticket_select">
@@ -157,7 +155,7 @@
                         </select>
                     </div>
                     <!-- 優惠票券項目 -->
-                    <div class="ticket_ex" v-if="item.price_exF">
+                    <div class="ticket_ex" v-if="item.price_ex">
                         <label for="count_ex">
                             <p class="name">優待票&nbsp;</p>
                             <p class="price">(NT$ {{ priceExF(item) }} /張)</p>
@@ -213,7 +211,12 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['fetchTicketData', 'addToCart', 'addToCartDirectly', 'removeFromCart', 'Subtotal']),
+        ...mapActions(['fetchTicketData', 'addToCart', 'addToCartDirectly',
+            'removeFromCart', 'Subtotal']),
+        formatDescription(description) {
+            // 將資料庫中的換行符號 \n 取代為 <br> 換行標籤
+            return description.replace(/\n/g, "<br>");
+        },
         // [取得id]從前一頁的票券取得其id，藉由這個id找到與ticketData相同id資料，並傳入本頁的ticketInfo之中
         getTicketContent(ticketId) {
             return this.ticketData.find(ticketData => ticketData.id === ticketId);

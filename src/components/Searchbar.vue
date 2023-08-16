@@ -29,9 +29,9 @@
                         ex: areaSelected:"所有地區(預設顯示的內容)"-->
                 <!-- 文字篩選 -->
                 <div class="search_tool">
-                    <input type="text" name="search" id="search" placeholder="請輸入景點名稱"
+                    <input type="text" name="search" id="search" placeholder="請搜尋景點名稱"
                         v-model="$store.state.filter.searchText" />
-                    <button class="btn" @click="Filters">搜尋</button>
+                    <!-- <button class="btn" @click="Filters">搜尋</button> -->
                     <button class="cancel" @click="ClearText">x</button>
                     <!-- <font-awesome-icon icon="fa-solid fa-xmark" /> -->
                 </div>
@@ -82,9 +82,6 @@ export default {
     },
     data() {
         return {
-            filter: {
-                searchText: "",
-            },
         };
     },
     methods: {
