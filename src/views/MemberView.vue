@@ -40,7 +40,7 @@
                             <div class="card">
                                 <div class="pic">
                                     <a href="#">
-                                        <img src="~@/assets/img/oott_14.png" alt="卡片照片"/>
+                                        <img src="~@/assets/img/oott_01.png" alt="卡片照片"/>
                                     </a>
                                 </div>
                                 <div class="text_warn">
@@ -55,7 +55,7 @@
                                     <a href="#">編輯</a>
                                 </div>
                             </div>
-                            <div class="card">
+                            <!-- <div class="card">
                                 <div class="pic">
                                     <a href="#"
                                         ><img
@@ -87,7 +87,7 @@
                                     />
                                     <a href="#">刪除</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <router-link to="/my_oott" class="btn">所有穿搭</router-link>
                     </div>
@@ -219,11 +219,11 @@ export default {
             ],
             ootts: [],
             orders: [
-                { id: 1, orderDate: '2023-07-24', status: '處理中', total: '$100.00' },
-                { id: 2, orderDate: '2023-07-23', status: '已發貨', total: '$75.50' },
-                { id: 3, orderDate: '2023-07-22', status: '已完成', total: '$50.25' },
-                { id: 4, orderDate: '2023-07-21', status: '處理中', total: '$120.75' },
-                { id: 5, orderDate: '2023-07-20', status: '已取消', total: '$0.00' }
+                { id: 5, orderDate: '2023/08/17', status: '處理中', total: '$695元' },
+                { id: 4, orderDate: '2023/07/23', status: '已發貨', total: '$375元' },
+                { id: 3, orderDate: '2023/07/22', status: '已完成', total: '$250元' },
+                { id: 2, orderDate: '2023/07/21', status: '已完成', total: '$420元' },
+                { id: 1, orderDate: '2023/07/20', status: '已取消', total: '$150元' }
             ]
         };
     },
