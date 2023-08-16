@@ -567,6 +567,7 @@
                     font-size: $sm_p;
                     margin: $sp1 0 $sp2;
                     border: 2px solid $textColor_default;
+                    
     
                     @media (min-width: 768px) {
                         padding: $sp1 20px;
@@ -574,6 +575,9 @@
                         margin: $sp1 0 $sp3;
                     }
                 }
+                .form_warning{
+                        border: 2px solid $warningColor;
+                    }
     
                 .date_group {
                     width: 100%;
