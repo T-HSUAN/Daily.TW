@@ -15,7 +15,7 @@
                     <div class="space_forget"></div>
                 </label>
                 <div class="cancel_group">
-                    <router-link to="/" class="cancel_btn">
+                    <router-link to="/login" class="cancel_btn">
                         取消
                     </router-link>
                     <button class="btn" @click="resetPsw">送出</button>
@@ -68,8 +68,6 @@ import {
 import { signInWithPopup, GoogleAuthProvider, getAdditionalUserInfo  } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 
-
-import emailjs from 'emailjs-com';
 
 export default {
     data() {
