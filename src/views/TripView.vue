@@ -22,7 +22,7 @@
                         <div class="deco">
                             <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                         </div>
-                        <router-link to="/trip_info">
+                        <router-link :to="'/trip_info/' + trip.trip_id">
                             <button class="btn">
                                 馬上出發
                                 <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
@@ -656,13 +656,10 @@ export default {
 
         }
     },
-    
+
     methods: {
         getPlaceImg(placeImg){
             return process.env.BASE_URL + 'placeImg/' + placeImg;
-        },
-        getOottImg(oottImg){
-            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
         },
         getMemImg(memImg){
             return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
@@ -673,7 +670,7 @@ export default {
         GET(`${this.$URL}/homeGetTrip.php`)
             .then((res) => {
                 console.log(res);
-                this.tripInfo = res;
+                this.tripData = res;
             })
             .catch((err) => {
                 console.log(err);
