@@ -54,7 +54,8 @@
                     <div class="tripCards">
                         <tripCard class="tripCard" v-for="(trip, index) in topTrip" :key="index"
                             :tripCardId="trip.trip_id"
-                            :tripCardPhoto="getPlaceImg(trip.trip_img)" :tripCardTags="trip.trip_region + '・' + trip.trip_tag"
+                            :tripCardPhoto="getPlaceImg(trip.trip_img)" 
+                            :tripCardTags="trip.trip_region + '・' + trip.trip_tag"
                             :tripCardTitle="trip.trip_name" :tripCardDesc="trip.trip_desc"
                             :tripCardAuthor="trip.trip_author" :tripCardDate="trip.trip_date_new" />
                     </div>

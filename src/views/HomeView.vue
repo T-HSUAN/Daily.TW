@@ -126,7 +126,7 @@
                     <div class="wrap">
                         <div class="ticketCards">
                             <div class="ticketCard" v-for="(ticket, index) in ticketData" :key="index">
-                                <router-link :to="'/ticket_info/' + ticket.ticket_id" title="點擊查看票券詳情">
+                                <router-link :to="'/ticket/' + ticket.ticket_id" title="點擊查看票券詳情">
                                     <ticketCard 
                                     :ticketPhoto="getPlaceImg(ticket.place_img1)" 
                                     :ticketTitle="ticket.ticket_name"
