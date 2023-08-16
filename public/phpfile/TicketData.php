@@ -8,6 +8,7 @@ try {
 	
 	//執行sql指令並取得pdoStatement
 	$sql = "select t.ticket_id 'id', t.ticket_name 'Name', r.region_name 'location', p.place_desc, p.place_addr 'addr', p.place_img1 'img', t.ticket_adult 'price_adult', t.ticket_ex 'price_ex', t.ticket_discount 'discount', t.ticket_desc 'desc', t.ticket_notice 'notice', t.ticket_date 'date', t.ticket_status 'status', t.ticket_top 'top', 
+    '#標籤' AS 'Tags', -- 添加一個虛擬欄位，用來篩選標籤
     '0' AS 'count_adult', -- 添加一個虛擬欄位，用來計算數量
     '0' AS 'count_ex', -- 添加一個虛擬欄位，用來計算數量
     '0' AS 'subtotal', -- 添加一個虛擬欄位，用來計算小計

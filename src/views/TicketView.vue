@@ -7,16 +7,16 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar @Filters="ticketsDisplay" :tagTexts="tagTexts" :searchText="searchText">
+        <Searchbar @Filters="ticketDisplay" :tagTexts="tagTexts" :searchText="searchText">
             <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
         </Searchbar>
         <!-- 景點票券清單 -->
-        <div class="ticket_list" v-if="ticketsDisplay.length > 0">
-            <div class="ticket_card" v-for="(item, index) in ticketsDisplay" :key="item.id">
+        <div class="ticket_list" v-if="ticketDisplay.length > 0">
+            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
                     <Ticket :ticketPhoto="getPlaceImg(item.img)" :ticketTitle="item.Name" :ticketLocation="item.location"
-                        :ticketTags="item.ticket_tag" :originalPrice="item.price_adult" :FinalPrice="priceAdultF(item)"
+                        :ticketTags="item.Tag" :originalPrice="item.price_adult" :FinalPrice="priceAdultF(item)"
                         :discountTag="item.discount" />
                 </router-link>
                 <div class="add_cart">
@@ -249,11 +249,40 @@ export default {
             }
         },
         //資料分頁&篩選
-        ticketsDisplay() {
+        // ticketsDisplay() {
+        //     const areaSelected = this.$store.state.filter.areaSelected;
+        //     const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
+        //     const searchText = this.$store.state.filter.searchText;
+        //     this.ticketDisplay = this.ticketData.filter(item => {
+        //         // 地區篩選
+        //         const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+
+        //         // 標籤篩選
+        //         // const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+
+        //         // 文字模糊搜索
+        //         const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+
+        //         // 返回结果
+        //         return areaMatch && tagMatch && nameMatch;
+        //     });
+        //     return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
+        // },
+        dataLength() {
+            return this.ticketDisplay.length;
+
+        },
+    },
+    created() {
+    },
+    mounted() {
+        this.fetchTicketData().then(() => {
+            // 資料取得後進行篩選操作
             const areaSelected = this.$store.state.filter.areaSelected;
             const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
             const searchText = this.$store.state.filter.searchText;
-            this.ticketDisplay = this.ticketData.filter(item => {
+
+            this.ticketDisplay = Array.from(this.ticketData).filter(item => {
                 // 地區篩選
                 const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
 
@@ -266,20 +295,9 @@ export default {
                 // 返回结果
                 return areaMatch && tagMatch && nameMatch;
             });
-            return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
-        },
-        dataLength() {
-            return this.ticketDisplay.length;
-
-        },
-    },
-    created() {
-    },
-    mounted() {
-        this.fetchTicketData().then(() => {
-            this.ticketDisplay = this.ticketData; // 進入頁面時，將商品資料載入至畫面
         });
     },
+
 };
 </script>
 <style lang="scss" scoped>

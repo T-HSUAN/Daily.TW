@@ -18,8 +18,8 @@ export default createStore({
         selectAll: true,//購物車全選
         name: '登入 | 註冊',
         isLogin: false,
-        sign_email:'',
-        sign_psw:'',
+        sign_email: '',
+        sign_psw: '',
         // memberInfoAll: { info: '' },
 
     },
@@ -120,7 +120,7 @@ export default createStore({
         restoreFinalCartItems(state, finalCartItems) {
             state.finalCartItems = finalCartItems;
         },
-        
+
         setName(state, payload) {
             state.name = payload
         },
@@ -151,19 +151,20 @@ export default createStore({
         //後端資料
         // setUserInfo(state, userInfo) {
         //     sessionStorage.setItem("cus_no", userInfo.cus_no);
-            // state.memberInfoAll.info = userInfo
+        // state.memberInfoAll.info = userInfo
         //     state.isLogin = true
         // },
         // sendMemDetail(state, data) {
-            // state.memberInfoAll.shop = data[0]
-            // state.memberInfoAll.giftcard = data[1]
-            // state.memberInfoAll.share = data[2]
+        // state.memberInfoAll.shop = data[0]
+        // state.memberInfoAll.giftcard = data[1]
+        // state.memberInfoAll.share = data[2]
         // }
 
     },
+    // axios.get(`${URL}/TicketData.php`)
     actions: {
         fetchTicketData({ commit }) {
-            axios.get('http://localhost/Daily.TW/public/phpfile/TicketData.php')
+            axios.get(`${URL}/TicketData.php`)
                 .then(response => {
                     commit('SET_TICKET_DATA', response.data);
                     console.log('[store]成功連接ticketdata:', this.state.ticketData);
