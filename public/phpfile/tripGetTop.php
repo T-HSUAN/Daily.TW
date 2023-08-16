@@ -13,6 +13,7 @@ try {
 			JOIN region AS r ON p.region_id = r.region_id
             JOIN place_tag_connection AS ptc ON p.place_id = ptc.place_id
             JOIN place_tag AS pt ON ptc.place_tag_id = pt.place_tag_id
+			WHERE t.trip_status = 1 AND t.trip_ref = 0
 			GROUP BY t.trip_id
 			ORDER BY t.trip_view DESC
 			LIMIT 7

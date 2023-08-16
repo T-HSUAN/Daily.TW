@@ -8,7 +8,7 @@ try {
 	//執行sql指令並取得pdoStatement
 	$sql = "SELECT trip_name, trip_author, trip_date, trip_view, trip_desc
 			FROM trip
-			WHERE trip_id = :trip_id;
+			WHERE trip_id = :trip_id AND trip_status = 1;
 			";
 	$tripInfo = $pdo->prepare($sql); 
 	$tripInfo->bindValue(":trip_id", $_GET["trip_id"]);

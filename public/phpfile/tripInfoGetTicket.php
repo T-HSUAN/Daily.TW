@@ -14,7 +14,7 @@ try {
 			JOIN place_tag_connection AS ptc on p.place_id = ptc.place_id
 			JOIN place_tag AS pt on ptc.place_tag_id = pt.place_tag_id
 			JOIN ticket AS tk ON p.place_id = tk.place_id
-			WHERE t.trip_id = :trip_id
+			WHERE t.trip_id = :trip_id AND tk.ticket_status = 1
 			GROUP BY tk.ticket_id
 			ORDER BY rand()
 			LIMIT 4;

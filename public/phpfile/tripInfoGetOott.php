@@ -17,7 +17,7 @@ try {
 			JOIN oott_style_connection osc ON o.oott_id = osc.oott_id
 			JOIN style s ON osc.style_id = s.style_id
 			JOIN member m ON o.mem_id = m.mem_id
-			WHERE t.trip_id = :trip_id
+			WHERE t.trip_id = :trip_id AND o.oott_status = 1
 			GROUP BY o.oott_id
 			ORDER BY rand()
 			LIMIT 3;

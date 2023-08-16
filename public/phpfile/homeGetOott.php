@@ -11,6 +11,7 @@ try {
 			JOIN oott_style_connection AS osc ON o.oott_id = osc.oott_id
 			JOIN style AS s ON osc.style_id = s.style_id
 			JOIN member AS m ON o.mem_id = m.mem_id
+			WHERE o.oott_status = 1
 			GROUP BY o.oott_id
 			ORDER BY o.oott_view DESC
 			LIMIT 10;

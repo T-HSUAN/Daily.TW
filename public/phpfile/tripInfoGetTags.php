@@ -12,7 +12,7 @@ try {
 			JOIN place AS p on ti.place_id = p.place_id
 			JOIN place_tag_connection AS ptc on p.place_id = ptc.place_id
 			JOIN place_tag AS pt on ptc.place_tag_id = pt.place_tag_id
-			WHERE t.trip_id = :trip_id;
+			WHERE t.trip_id = :trip_id AND pt.place_tag_status = 1;
 			";
 	$tripTags = $pdo->prepare($sql); 
 	$tripTags->bindValue(":trip_id", $_GET["trip_id"]);

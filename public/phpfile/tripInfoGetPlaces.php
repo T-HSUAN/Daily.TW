@@ -10,7 +10,7 @@ try {
 			FROM trip AS t
 			JOIN trip_item AS ti on t.trip_id = ti.trip_id
 			JOIN place AS p on ti.place_id = p.place_id
-			WHERE t.trip_id = :trip_id;
+			WHERE t.trip_id = :trip_id AND p.place_status = 1;
 			";
 	$placeInfo = $pdo->prepare($sql); 
 	$placeInfo->bindValue(":trip_id", $_GET["trip_id"]);

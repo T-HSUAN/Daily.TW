@@ -12,7 +12,7 @@ try {
 			JOIN region AS r ON p.region_id = r.region_id
 			JOIN place_tag_connection AS ptc ON p.place_id = ptc.place_id
 			JOIN place_tag AS pt ON ptc.place_tag_id = pt.place_tag_id
-			WHERE t.ticket_discount is NOT NULL
+			WHERE t.ticket_discount is NOT NULL AND t.ticket_status = 1
 			GROUP BY t.ticket_id
 			ORDER BY rand()
 			LIMIT 4;

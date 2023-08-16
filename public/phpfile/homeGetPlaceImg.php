@@ -8,6 +8,7 @@ try {
 	//執行sql指令並取得pdoStatement
 	$sql = "SELECT place_img1
 			FROM place
+			WHERE place_status = 1
 			ORDER BY rand()
 			LIMIT 6;
 			";
