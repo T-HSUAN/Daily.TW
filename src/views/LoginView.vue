@@ -176,11 +176,10 @@ export default {
                     } else {
                         // this.$store.commit("setName", res.mem_name);
                         this.$store.state.isLogin = true;
-                        // this.$store.commit('setIsLogin', true); 
                         // 使用 commit 來改變狀態
                         this.$store.commit("setLoginData", res);
                         swal("登入成功","歡迎來到日日旅著", "success")
-                        this.$router.push('/');
+                        this.$router.push('/Home');
 
                         this.email = ''
                         this.psw = ''

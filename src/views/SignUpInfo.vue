@@ -13,17 +13,13 @@
             @submit="submitForm">
             <div class="photo_group">
                 <label for="postPhoto" class="member_img">
-
-                    
-                        <input v-show="!previewUrl" type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
-                        + <br> <span v-show="!previewUrl">點此選擇照片上傳</span>
+                        <input class="post_sticker" v-show="!previewUrl" type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
+                        <span class="btn" v-show="!previewUrl">上傳大頭貼</span>
                     
                     <div class="photo_upload" v-if="previewUrl">
                         <img :src="previewUrl" alt="Preview">
                     </div>
                     
-                    <!-- <input type="file" ref="upFile" style="display: none" @change="handleFileChange">
-                    <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview"> -->
                 </label>
                 <!-- <label for="postPhoto" class="photo_upload" v-if="!isPhotoSelected">
                         <input type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
@@ -463,22 +459,24 @@ export default {
 
         .photo_group {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
+            align-items: end;
 
             @media (min-width: 768px) {
-                flex-direction: row;
-                justify-content: center;
+                // flex-direction: row;
+                // justify-content: center;
             }
 
             .member_img {
                 width: 100px;
+                display: flex;
+                flex-direction: column;
                 margin: 0 0 $sp2;
                 cursor: pointer;
 
-                @media (min-width: 768px) {
-                    width: 150px;
-                }
+                // @media (min-width: 768px) {
+                //     width: 150px;
+                // }
 
                 img {
                     border: 2px solid $textColor_default;
@@ -486,27 +484,35 @@ export default {
                     width: 100%;
                     height: 100%;
                     display: block;
+                    cursor: pointer;
+                }
+                .post_sticker{
+                    width: 100px;
+                    height: 100px;
+                    cursor: pointer;
+                }
+                input[type="file"]::-webkit-file-upload-button {
+                    visibility: hidden;
+                }
+                input[type="file"]::before {
+                    content: url(''); 
+                    display: inline-block;
+                    width: 16px; /* 调整图片宽度 */
+                    height: 16px; 
+                    cursor: pointer;
+                    vertical-align: middle;
+                    margin-right: 5px; /* 可选，根据需要调整图片和文本之间的间距 */
+                }
+                
+                
+                .photo_upload{
+                    width: 100px;
+                    height: 100px;
                 }
             }
 
-            .push {
-                margin: 0 0 $sp4;
-                box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
-
-                @media (min-width: 768px) {
-                    margin: 0 $sp5;
-                }
-            }
         }
 
-        .preview {
-            // display: none;
-            width: 87%;
-            height: 367px;
-            background-color: $tint_green;
-            position: absolute;
-            z-index: 3;
-        }
 
         .form {
             width: 100%;
