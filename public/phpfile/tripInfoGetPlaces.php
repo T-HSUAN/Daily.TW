@@ -6,7 +6,7 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT p.place_name, p.place_desc, p.place_img1, p.place_img2, p.place_img3, p.place_stay, p.place_addr, p.place_link
+	$sql = "SELECT p.place_name, p.place_desc, CONCAT_WS(',', p.place_img1, p.place_img2, p.place_img3) AS place_img, p.place_stay, p.place_addr, p.place_link
 			FROM trip AS t
 			JOIN trip_item AS ti on t.trip_id = ti.trip_id
 			JOIN place AS p on ti.place_id = p.place_id
@@ -22,6 +22,11 @@ try {
     }else{ //找得到
         //取回所有資料
         $placeInfoRow = $placeInfo->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach ($placeInfoRow as &$row) {
+            $row['place_img'] = explode(',', $row['place_img']);
+        }
+
         //送出json字串
         echo json_encode($placeInfoRow);
     }

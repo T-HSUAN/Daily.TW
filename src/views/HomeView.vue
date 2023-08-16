@@ -56,7 +56,7 @@
                             <div class="deco">
                                 <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                             </div>
-                            <router-link to="/trip_info">
+                            <router-link :to="'/trip_info/' + trip.trip_id">
                                 <button class="btn">
                                     馬上出發
                                     <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
@@ -128,13 +128,13 @@
                             <div class="ticketCard" v-for="(ticket, index) in ticketData" :key="index">
                                 <router-link :to="'/ticket_info/' + ticket.ticket_id" title="點擊查看票券詳情">
                                     <ticketCard 
-                                        :ticketPhoto="getPlaceImg(ticket.place_img1)" 
-                                        :ticketTitle="ticket.ticket_name"
-                                        :ticketLocation="ticket.region" 
-                                        :ticketTags="ticket.tag"
-                                        :originalPrice="ticket.ticket_adult" 
-                                        :FinalPrice="ticket.final_price"
-                                        :discountTag="parseFloat(ticket.ticket_discount).toFixed(1) + '折'" />
+                                    :ticketPhoto="getPlaceImg(ticket.place_img1)" 
+                                    :ticketTitle="ticket.ticket_name"
+                                    :ticketLocation="ticket.region" 
+                                    :ticketTags="ticket.tag"
+                                    :originalPrice="ticket.ticket_discount !== null ? ticket.ticket_adult : ''" 
+                                    :FinalPrice="ticket.final_price"
+                                    :discountTag="ticket.ticket_discount !== null ? parseFloat(ticket.ticket_discount).toFixed(1) + '折' : ''" />
                                 </router-link>
                             </div>
                         </div>

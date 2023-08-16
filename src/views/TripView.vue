@@ -1,40 +1,42 @@
 <!-- 出遊特輯 -->
 <template>
     <div class="tripView">
+
         <!-- banner -->
         <section class="tripView_banner">
-            <Carousel v-bind="settings2" :breakpoints="breakpoints2" class="content">
-                    <Slide class="wrap" v-for="(trip, index) in trips" :key="index">
-                        <div class="head">
-                            <div class="tripTitle">{{ trip.title }}</div>
-                            <div class="tripCover">
-                                <img :src="trip.coverSrc" alt="" class="mask_trip" />
+            <MyCarousel v-bind="settings2" :breakpoints="breakpoints2" class="content">
+                <MySlide class="wrap" v-for="(trip, index) in tripData" :key="index">
+                    <div class="head">
+                        <div class="tripTitle">{{ trip.trip_name }}</div>
+                        <div class="tripCover">
+                            <img :src="getPlaceImg(trip.concatenated_place_img[0])" alt="景點圖片" class="mask_trip" />
+                        </div>
+                    </div>
+                    <div class="info">
+                        <div class="tripSpots">
+                            <div v-for="(place, placeIndex) in trip.concatenated_place_name" :key="placeIndex" class="spot" >
+                                <img src="~@/assets/img/trip_flag_white.svg" alt="" />
+                                <h5>{{ place }}</h5>
                             </div>
                         </div>
-                        <div class="info">
-                            <div class="tripSpots">
-                                <div v-for="(spot, spotIndex) in trip.spots" :key="spotIndex" class="spot">
-                                    <img src="~@/assets/img/trip_flag_white.svg" alt="" />
-                                    <h5>{{ spot.name }}</h5>
-                                </div>
-                            </div>
-                            <div class="deco">
-                                <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
-                            </div>
-                            <router-link to="/trip_info">
-                                <button class="btn">
-                                    馬上出發
-                                    <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
-                                    <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
-                                </button>
-                            </router-link>
+                        <div class="deco">
+                            <img src="~@/assets/img/trip_deco_footPrint.svg" alt="" />
                         </div>
-                    </Slide>
-                    <template #addons>
-                        <Navigation />
-                    </template>
-                </Carousel>
+                        <router-link :to="'/trip_info/' + trip.trip_id">
+                            <button class="btn">
+                                馬上出發
+                                <img src="~@/assets/img/btn_arrow.png" alt="" class="arrow_white" />
+                                <img src="~@/assets/img/btn_arrow_hover.png" alt="" class="arrow_brown" />
+                            </button>
+                        </router-link>
+                    </div>
+                </MySlide>
+                <template #addons>
+                    <MyNavigation />
+                </template>
+            </MyCarousel>
         </section>
+
         <!-- 熱門行程 -->
         <section class="tripView_topTrip" id="tripView_topTrip">
             <div class="bgCurve">
@@ -50,10 +52,11 @@
             <div class="content">
                 <div class="wrap">
                     <div class="tripCards">
-                        <tripCard class="tripCard" v-for="(trip, index) in topTrips" :key="index"
-                            :tripCardPhoto="trip.tripCardPhoto" :tripCardTags="trip.tripCardTags"
-                            :tripCardTitle="trip.tripCardTitle" :tripCardDesc="trip.tripCardDesc"
-                            :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate" />
+                        <tripCard class="tripCard" v-for="(trip, index) in topTrip" :key="index"
+                            :tripCardId="trip.trip_id"
+                            :tripCardPhoto="getPlaceImg(trip.trip_img)" :tripCardTags="trip.trip_region + '・' + trip.trip_tag"
+                            :tripCardTitle="trip.trip_name" :tripCardDesc="trip.trip_desc"
+                            :tripCardAuthor="trip.trip_author" :tripCardDate="trip.trip_date_new" />
                     </div>
                 </div>
                 <router-link to="/trip_overview">
@@ -61,8 +64,9 @@
                 </router-link>
             </div>
         </section>
-        <!-- 精選行程 -->
-        <section class="tripView_selectTrip" id="tripView_selectTrip">
+
+        <!-- 最新行程 -->
+        <section class="tripView_newTrip" id="tripView_newTrip">
             <div class="bgCurve">
                 <img src="~@/assets/img/bgCurve_B.png" alt="">
             </div>
@@ -71,15 +75,16 @@
                     <img src="~@/assets/img/duck_trace.png" alt="" class="trace">
                     <img src="~@/assets/img/duck_red.png" alt="" class="duck">
                 </div>
-                <h2>精選行程</h2>
+                <h2>最新行程</h2>
             </div>
             <div class="content">
                 <div class="wrap">
                     <div class="tripCards">
-                        <tripCard class="tripCard" v-for="(trip, index) in selectTrips" :key="index"
-                            :tripCardPhoto="trip.tripCardPhoto" :tripCardTags="trip.tripCardTags"
-                            :tripCardTitle="trip.tripCardTitle" :tripCardDesc="trip.tripCardDesc"
-                            :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate" />
+                        <tripCard class="tripCard" v-for="(trip, index) in newTrip" :key="index"
+                            :tripCardId="trip.trip_id"
+                            :tripCardPhoto="getPlaceImg(trip.trip_img)" :tripCardTags="trip.trip_region + '・' + trip.trip_tag"
+                            :tripCardTitle="trip.trip_name" :tripCardDesc="trip.trip_desc"
+                            :tripCardAuthor="trip.trip_author" :tripCardDate="trip.trip_date_new" />
                     </div>
                 </div>
                 <router-link to="/trip_overview">
@@ -104,46 +109,12 @@
                     </div>
                 </div>
                 <div class="content">
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <!-- <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div> -->
-                    <!-- <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div>
-                    <div class="author">
-                        <div class="profilePic"><img src="~@/assets/img/oott_card_proPic_example.png" alt=""></div>
-                        <h4>Alison</h4>
-                    </div> -->
+                    <router-link to="#" class="author" v-for="(author, index) in authorInfo" :key="index">
+                        <div class="profilePic">
+                            <img :src="require('@/assets/img/' + author.author_img)" alt="作者頭像">
+                        </div>
+                        <h4>{{ author.author_name }}</h4>
+                    </router-link>
                 </div>
             </div>
         </section>
@@ -487,7 +458,7 @@
     }
     
     // 精選行程
-    .tripView_selectTrip {
+    .tripView_newTrip {
         position: relative;
         background-color: $bgColor_default;
         padding: $sp12 0 $sp8;
@@ -618,148 +589,88 @@
 <script>
 import {GET} from '@/plugin/axios'
 import tripCard from '@/components/TripCard.vue'
-import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
+import { Carousel as MyCarousel, Pagination as MyPagination, Slide as MySlide, Navigation as MyNavigation } from 'vue3-carousel';
 
 import 'vue3-carousel/dist/carousel.css';
 
 export default {
+    name: 'Autoplay',
     components: {
         tripCard,
 
-        Carousel,
-        Slide,
-        Pagination,
-        Navigation,
+        MyCarousel,
+        MySlide,
+        MyPagination,
+        MyNavigation,
     },
 
     data() {
         return {
-            tripInfo: [],
+            tripData: [],
             topTrip: [],
-            selectTrip: [],
-            authorInfo: [],
-            trips: [
+            newTrip: [],
+            authorInfo: [
                 {
-                title: '台中文青一日遊',
-                coverSrc: require('@/assets/img/place/001.png'),
-                spots: [
-                    { name: '屯區藝文中心' },
-                    { name: '太平買菸場' },
-                    { name: '新盛綠川水岸廊道' },
-                    { name: '第二市場' },
-                ],
+                    author_img: "tripAuthorA.png",
+                    author_name: "小編A"
                 },
                 {
-                title: '新竹懷舊之旅',
-                coverSrc: require('@/assets/img/place/001.png'),
-                spots: [
-                    { name: '合興車站' },
-                    { name: '內灣愛情故事館' },
-                    { name: '內灣老街' },
-                    { name: '劉興欽漫畫館' },
-                ],
-                },
-            ],
-            
-            topTrips: [
-                {
-                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
-                    tripCardTags: "台中・#親子 #情侶 #農場",
-                    tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 9",
+                    author_img: "tripAuthorB.png",
+                    author_name: "小編B"
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/place/006-1.png'),
-                    tripCardTags: "宜蘭・#親子 #情侶 #風景",
-                    tripCardTitle: "宜蘭芬多精一日遊",
-                    tripCardDesc: "不知道要去哪裡玩嗎？精選六個宜蘭知名景點，有吃又有玩，無論",
-                    tripCardAuthor: "小編B",
-                    tripCardDate: "2023 / 7 / 12",
+                    author_img: "tripAuthorC.png",
+                    author_name: "小編C"
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/place/012.png'),
-                    tripCardTags: "新北・#親子 #情侶 #風景 #海邊 #放鬆",
-                    tripCardTitle: "新北藝術一日遊",
-                    tripCardDesc: "來去新北一日遊，鶯歌、三峽這裡也有蠻多特色景點，不只是逛老街，也可以安排個鶯歌景點一日遊，順便遊三峽景點。不管是季節限定的賞花景點，還是親子同遊必拍，又或者是IG熱門打卡點，通通好玩報你知。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 13",
+                    author_img: "tripAuthorD.png",
+                    author_name: "小編D"
                 },
                 {
-                    tripCardPhoto: require('@/assets/img/place/001.png'),
-                    tripCardTags: "新竹・#親子 #情侶 #風景 #藝文 #放鬆 #懷舊",
-                    tripCardTitle: "新竹懷舊之旅",
-                    tripCardDesc: "新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳，自然景觀，推薦大家可以一同順遊，除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 9",
-                },
-                {
-                    tripCardPhoto: require('@/assets/img/place/019-1.png'),
-                    tripCardTags: "台北・#親子 #藝文 #放鬆",
-                    tripCardTitle: "台北泡湯一日遊",
-                    tripCardDesc: "台北一日遊，探索台北的繁華與傳統魅力！不只是泡溫泉，也可以安排個美食之旅，順便去公園遊玩。不管是季節限定的賞花景點，還是親子同遊必拍！。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 16",
-                },
-                {
-                    tripCardPhoto: require('@/assets/img/place/029-1.png'),
-                    tripCardTags: "基隆・#小資 #風景 #海邊 #放鬆 #懷舊",
-                    tripCardTitle: "基隆探索大自然之",
-                    tripCardDesc: "基隆一日遊，享受基隆的陽光與海洋！不只是拍美美的照片，也可以安排個美食之旅，順便去騎自行車。不管是基隆仙洞巖山，或是智能海洋館！",
-                    tripCardAuthor: "小編B",
-                    tripCardDate: "2023 / 7 / 18",
-                },
-                {
-                    tripCardPhoto: require('@/assets/img/place/037-1.png'),
-                    tripCardTags: "苗栗・#親子 #風景 #山林 #放鬆 #農場",
-                    tripCardTitle: "苗栗放鬆身心一日遊",
-                    tripCardDesc: "探索苗栗美景：飛牛牧場帶您親近可愛的牛兒，西湖渡假村讓您寧靜享受湖光山色，巧克力雲莊帶來甜蜜的巧克力製作體驗，白沙屯拱天宮感受宗教莊嚴。一天遊覽，盡情享受苗栗之旅！",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 19",
+                    author_img: "tripAuthorE.png",
+                    author_name: "小編E"
                 },
             ],
-            selectTrips: [
-                {
-                    tripCardPhoto: require('@/assets/img/place/056.png'),
-                    tripCardTags: "彰化・#親子 #情侶 #風景 #樂園 #山林 #放鬆",
-                    tripCardTitle: "彰化活力滿滿一日遊",
-                    tripCardDesc: "樸實無化的彰化地區，除了濃濃的人情味，還有許多宮廟傳統，彰化活力滿滿一日遊，讓你越玩越有活力！",
-                    tripCardAuthor: "小編B",
-                    tripCardDate: "2023 / 7 / 22",
+
+
+            settings2: {
+                autoplay: 5000,
+                wrapAround: true,
+                itemsToShow: 1.4,
+                snapAlign: 'center',
                 },
-                {
-                    tripCardPhoto: require('@/assets/img/place/130-1.png'),
-                    tripCardTags: "宜蘭・#親子 #情侶 #藝文",
-                    tripCardTitle: "宜蘭深度之旅",
-                    tripCardDesc: "來一場令人難以忘懷的深度旅程吧!!!可以讓你深入了解台灣的歷史文明和文化遺產，帶領你穿越時空，探索古老的建築、考古遺址、博物館和文物展覽，並提供了對過去的獨特洞察。",
-                    tripCardAuthor: "小編B",
-                    tripCardDate: "2023 / 7 / 23",
+                breakpoints2: {
+                // 700px and up
+                768: {
+                    wrapAround: true,
+                    itemsToShow: 1.6,
+                    snapAlign: 'center',
                 },
-                {
-                    tripCardPhoto: require('@/assets/img/place/064-1.png'),
-                    tripCardTags: "南投・#情侶 #小資 #風景 #放鬆 #懷舊",
-                    tripCardTitle: "南投約會一日遊",
-                    tripCardDesc: "讓我們一起遊玩南投！中興新村、星月天空景觀餐廳、猴探井天空之橋、埔里酒廠、水蛙頭步道。漫遊於這些地點，體驗豐富的文化、美食和自然景觀。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 25",
+                // 1024 and up
+                1200: {
+                    wrapAround: true,
+                    itemsToShow: 1.2,
+                    snapAlign: 'center',
                 },
-                {
-                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
-                    tripCardTags: "台中・#親子 #情侶 #農場",
-                    tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 9",
-                },
-            ]
+            },
+
         }
     },
+
+    methods: {
+        getPlaceImg(placeImg){
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
+        },
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
+        }
+    },
+    
     mounted() {
         GET(`${this.$URL}/homeGetTrip.php`)
             .then((res) => {
                 console.log(res);
-                this.tripInfo = res;
+                this.tripData = res;
             })
             .catch((err) => {
                 console.log(err);
@@ -772,25 +683,14 @@ export default {
             .catch((err) => {
                 console.log(err);
             }),
-        GET(`${this.$URL}/tripGetSelect.php`)
+        GET(`${this.$URL}/tripGetNew.php`)
             .then((res) => {
                 console.log(res);
-                this.selectTrip = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            }),
-        GET(`${this.$URL}/tripGetAuthor.php`)
-            .then((res) => {
-                console.log(res);
-                this.authorInfo = res;
+                this.newTrip = res;
             })
             .catch((err) => {
                 console.log(err);
             })
-    },
-    methods: {
-
-    },
+    }
 }
 </script>

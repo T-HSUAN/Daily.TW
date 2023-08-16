@@ -6,7 +6,7 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT t.trip_name, GROUP_CONCAT(p.place_img1 SEPARATOR ',') AS concatenated_place_img, GROUP_CONCAT(p.place_name SEPARATOR ',') AS concatenated_place_name
+	$sql = "SELECT t.trip_id, t.trip_name, GROUP_CONCAT(p.place_img1 SEPARATOR ',') AS concatenated_place_img, GROUP_CONCAT(p.place_name SEPARATOR ',') AS concatenated_place_name
 			FROM trip AS t
 			JOIN trip_item AS ti on t.trip_id = ti.trip_id
 			JOIN place AS p on ti.place_id = p.place_id
