@@ -3,52 +3,52 @@
     <section class="forget">
         <section class="forgetpsw">
 
-            <div class="canvas">
-                <div class="joinus_sm">
-                    <img src="@/assets/img/joinus_sm.png" alt="joinus">
-                </div>
-                <form class="forgetcard" ref="form" @submit.prevent="sendEmail">
-                    <h2>忘記密碼</h2>
-                    <p>請輸入註冊時的EMAIL，<br> 我們將寄送給您重置密碼的連結</p>
-                    <label>Email
-                        <input type="text" v-model="email" name="email" placeholder='請輸入EMAIL'>
-                        <div class="space_forget"></div>
-                    </label>
-                    <div class="cancel_group">
-                        <router-link to="/" class="cancel_btn">
-                            取消
-                        </router-link>
-                        <button class="btn" @click="resetPsw">送出</button>
-                    </div>
-                </form>
-                <div class="register">
-                    <h2>Forget</h2>
-                    <div class="joinus_md">
-                        <img src="../assets/img/forget_md.png" alt="">
-                    </div>
-                    <div class="welcome">Please enter your EMAIL</div>
-                </div>
+        <div class="canvas">
+            <div class="joinus_sm">
+                <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
-            <!-- 成功送出郵件後的彈窗 -->
-            <div class="member_sm" v-if="isPopBoxVisible">
-                <div class="block">
-                    <div class="pic">
-                        <img src="~@/assets/img/popbox_check.svg" alt="">
-                        <h3>信件已送出，請至信箱查看！</h3>
-                    </div>
-                    <button class="btn" @click="closePopBox">確定</button>
+            <form class="forgetcard" ref="form" @submit.prevent="sendEmail">
+                <h2>忘記密碼</h2>
+                <p>請輸入註冊時的EMAIL，<br> 我們將寄送給您重置密碼的連結</p>
+                <label>Email
+                    <input type="text" v-model="email" name="email" placeholder='請輸入EMAIL'>
+                    <div class="space_forget"></div>
+                </label>
+                <div class="cancel_group">
+                    <router-link to="/login" class="cancel_btn">
+                        取消
+                    </router-link>
+                    <button class="btn" @click="resetPsw">送出</button>
                 </div>
-            </div>
-            <!-- 寄送失敗後的彈窗 -->
-            <div class="member_sm" v-if="isPopBoxFalse">
-                <div class="block">
-                    <div class="pic">
-                        <img src="~@/assets/img/popbox_exclamation.svg" alt="">
-                        <h3>EMAIL信箱不能為空白</h3>
-                    </div>
-                    <button class="btn" @click="closePopBox">確定</button>
+            </form>
+            <div class="register">
+                <h2>Forget</h2>
+                <div class="joinus_md">
+                    <img src="../assets/img/forget_md.png" alt="">
                 </div>
+                <div class="welcome">Please enter your EMAIL</div>
             </div>
+        </div>
+        <!-- 成功送出郵件後的彈窗 -->
+        <div class="member_sm" v-if="isPopBoxVisible">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_check.svg" alt="">
+                    <h3>信件已送出，請至信箱查看！</h3>
+                </div>
+                <button class="btn" @click="closePopBox">確定</button>
+            </div>
+        </div>
+        <!-- 寄送失敗後的彈窗 -->
+        <div class="member_sm" v-if="isPopBoxFalse">
+            <div class="block">
+                <div class="pic">
+                    <img src="~@/assets/img/popbox_exclamation.svg" alt="">
+                    <h3>EMAIL信箱不能為空白</h3>
+                </div>
+                <button class="btn" @click="closePopBox">確定</button>
+            </div>
+        </div>
 
         </section>
     </section>
@@ -68,8 +68,6 @@ import {
 import { signInWithPopup, GoogleAuthProvider, getAdditionalUserInfo } from "firebase/auth";
 const provider = new GoogleAuthProvider();
 
-
-import emailjs from 'emailjs-com';
 
 export default {
     data() {

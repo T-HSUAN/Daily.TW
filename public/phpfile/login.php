@@ -12,8 +12,7 @@
 		$psw = $_POST["psw"];
 		// $psw = "test123";
 		// $psw = "865nQtf2";
-		$sql = "select mem_id, mem_name, mem_email, mem_nickname, mem_birth, mem_sex,
-		mem_img, mem_phone, mem_psw, mem_status
+		$sql = "select *
 		from member
 		where mem_email=:email AND mem_psw = :psw";
         $member = $pdo->prepare($sql);

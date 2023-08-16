@@ -18,9 +18,9 @@ export default createStore({
         selectAll: false,//購物車全選
         name: '登入 | 註冊',
         isLogin: false,
-        memberInfoAll: { info: '' },
-        sign_email: '',
-        sign_psw: '',
+        sign_email:'',
+        sign_psw:'',
+        // memberInfoAll: { info: '' },
 
     },
     getters: {
@@ -121,29 +121,28 @@ export default createStore({
         restoreFinalCartItems(state, finalCartItems) {
             state.finalCartItems = finalCartItems;
         },
+        
         setName(state, payload) {
             state.name = payload
         },
-        setIsLogin(state, value) {
-            state.isLogin = value;
-        },
-        //接收回傳的使用者資訊
+        //登入後狀態改變
+        // setIsLogin(state, value) {
+        //     state.isLogin = value;
+        // },
+        //接收回傳的使用者資訊, 從LoginView.vue
         setLoginData(state, userInfo) {
+            //從資料庫獲取的使用者資料
             state.userInfo = userInfo
-            // state.memberInfoAll.info = userInfo
+            //MainHeader.vue取得mem_id檢查是否有登入狀態
             sessionStorage.setItem("mem_id", userInfo.mem_id);
-            state.isLogin = true
+            // sessionStorage.setItem("mem_name", userInfo.mem_name);
+            // state.isLogin = true
         },
         logOut(state) {
             state.isLogin = false
             sessionStorage.removeItem("mem_id")
         },
-        // setLoginData(state, userInfo) {
-        //     state.userInfo = userInfo
-        //     // state.memberInfoAll.info = userInfo
-        //     sessionStorage.setItem("mem_id", userInfo.mem_id);
-        //     state.isLogin = true
-        // },
+        //取得SignUpInfo的Email輸入值
         setAccount(state, account) {
             state.sign_email = account;
         },
@@ -153,13 +152,13 @@ export default createStore({
         //後端資料
         // setUserInfo(state, userInfo) {
         //     sessionStorage.setItem("cus_no", userInfo.cus_no);
-        //     state.memberInfoAll.info = userInfo
+            // state.memberInfoAll.info = userInfo
         //     state.isLogin = true
         // },
         // sendMemDetail(state, data) {
-        //     state.memberInfoAll.shop = data[0]
-        //     state.memberInfoAll.giftcard = data[1]
-        //     state.memberInfoAll.share = data[2]
+            // state.memberInfoAll.shop = data[0]
+            // state.memberInfoAll.giftcard = data[1]
+            // state.memberInfoAll.share = data[2]
         // }
 
     },
@@ -198,6 +197,7 @@ export default createStore({
                 commit('updateItemCount', item);
             }
         },
+        //將SignUpInfo的Email輸入值, 輸出給SignUpInfo的Email輸入框
         updateAccount({ commit }, account) {
             commit('setAccount', account);
         },

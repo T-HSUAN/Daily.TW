@@ -168,7 +168,8 @@ export default {
         handleLogout() {
             this.showSidebar = !this.showSidebar;
             this.$store.commit('setName', "登入|註冊");
-            this.$store.commit('setIsLogin', false);
+            this.$store.state.isLogin = false;
+            // this.$store.commit('setIsLogin', false);
             sessionStorage.removeItem("mem_id");
             this.$router.push("/Home");
             setTimeout(() => {
@@ -180,8 +181,9 @@ export default {
 
         //檢查登入狀態
         checkLogin() {
+            //取得登入狀態下的mem_id
             let memId = sessionStorage.getItem("mem_id");
-            console.log(memId);
+            console.log("memId = ", memId);
 
             if (memId) {
 
@@ -190,6 +192,8 @@ export default {
                 let params = new FormData();
                 //將資料新增到 FormData 物件中。第一個參數 "mem_id" 是欄位的名稱，它是後端接收資料時的參數名稱
                 params.append("mem_id", memId);
+                //登入狀態下, isLogin為true
+                this.$store.state.isLogin = true;
                 POST(URL, params).then((res) => {
                     console.log(res);
                     this.$store.commit("setLoginData", res);
