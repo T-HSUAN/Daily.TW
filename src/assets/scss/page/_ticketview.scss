@@ -136,24 +136,28 @@
         font-size: 24px;
     }
 
-
-
-    //底部頁數
-    .page_link {
+    .pages {
+        padding: $sp3 0;
         display: flex;
         justify-content: center;
-
-        .page {
-            display: block;
-            margin: $sp4 $sp1;
-            text-align: center;
-            color: $textColor_default;
-
-            &:hover {
-                color: $default_blue;
-            }
-        }
     }
+
+    //底部頁數
+    // .page_link {
+    //     display: flex;
+    //     justify-content: center;
+
+    //     .page {
+    //         display: block;
+    //         margin: $sp4 $sp1;
+    //         text-align: center;
+    //         color: $textColor_default;
+
+    //         &:hover {
+    //             color: $default_blue;
+    //         }
+    //     }
+    // }
 
     .cart_sidebar {
         box-sizing: border-box;

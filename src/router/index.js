@@ -1,23 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Entrance from '@/views/Entrance.vue'
 import HomeView from "@/views/HomeView.vue";
 import TicketInfo from "@/views/TicketInfo.vue";
 import store from '@/store/index.js'
 
 
 const routesUser = [
+    {//入口
+        path: "/",
+        name: 'Entrance',
+        component: Entrance
+    },
     {//首頁
         path: "/Home",
         name: "home",
         component: HomeView,
     },
-    // {
-    //     path: "/",
-    //     name: "frontbackstage",
-    //     component: () =>
-    //         import(
-    //             /* webpackChunkName: "frontbackstage" */ "@/views/FrontBackStage.vue"
-    //         ),
-    // },
     {
         path: "/plan",
         name: "plan",

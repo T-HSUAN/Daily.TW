@@ -1,5 +1,5 @@
 <template>
-    <footer id="mainFooter">
+    <footer id="mainFooter" :class="{ 'hidden': Hidden }">
         <div class="footer_section">
             <div class="footer_block">
                 <div class="footer_list">
@@ -49,9 +49,8 @@
                 </div>
                 <form ref="form" @submit.prevent="sendEmail" class="input_group">
                     <button class="input_arrow" @click="sendEmail"></button>
-                <input class="footer_input" type="text" v-model="email" placeholder="請輸入email"
-                name="email" />
-            </form>
+                    <input class="footer_input" type="text" v-model="email" placeholder="請輸入email" name="email" />
+                </form>
             </div>
         </div>
         <div class="footer_notice">
@@ -97,30 +96,35 @@ export default {
         };
     },
 
-    methods:{
-        sendEmail() {  
-        if (this.email === '') {
+    methods: {
+        sendEmail() {
+            if (this.email === '') {
 
-            this.isPopBoxFalse = true;
-        } else {
+                this.isPopBoxFalse = true;
+            } else {
 
-            emailjs.sendForm('daily', 'daily', this.$refs.form, 'av3wEk3CDkczylGAe')
-                .then((result) => {
-                    // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
-                    this.isPopBoxVisible = true;
-                })
-                .catch((error) => {
-                    this.isPopBoxVisible = false;
-                    alert('信件未送出，請稍後再試');
-                });
-        }
-    },
-    closePopBox() {
+                emailjs.sendForm('daily', 'daily', this.$refs.form, 'av3wEk3CDkczylGAe')
+                    .then((result) => {
+                        // 信件成功送出，設定 isPopBoxVisible 為 true，顯示彈窗
+                        this.isPopBoxVisible = true;
+                    })
+                    .catch((error) => {
+                        this.isPopBoxVisible = false;
+                        alert('信件未送出，請稍後再試');
+                    });
+            }
+        },
+        closePopBox() {
             this.isPopBoxVisible = false;
             this.isPopBoxFalse = false,
                 this.email = '';
         },
-    }
+    },
+    computed: {
+        Hidden() {
+            return this.$route.path === '/';
+        },
+    },
 };
 </script>
 

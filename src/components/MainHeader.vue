@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header :class="{ 'hidden': Hidden }">
         <!-- phone -->
         <div class="header_phone" v-if="screenWidth < 768">
             <!-- logo_sm &home_link -->
@@ -207,6 +207,10 @@ export default {
 
     },
     computed: {
+        // 入口隱藏header
+        Hidden() {
+            return this.$route.path === '/';
+        },
         isLogin() {
             return this.$store.state.isLogin;
         },

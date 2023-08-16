@@ -15,7 +15,7 @@ export default createStore({
         },
         cartItems: [],//購物車
         finalCartItems: [], // 最終購物明細清單
-        selectAll: false,//購物車全選
+        selectAll: true,//購物車全選
         name: '登入 | 註冊',
         isLogin: false,
         sign_email:'',
@@ -95,7 +95,6 @@ export default createStore({
             }
         },
         SelectItem(state) {
-            state.selectAll = !state.selectAll;
             if (state.selectAll === true) {
                 state.cartItems.forEach(item => {
                     item.selected = true;

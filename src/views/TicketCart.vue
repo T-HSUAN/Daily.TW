@@ -17,9 +17,8 @@
         <h2>請勾選票券進行結帳</h2>
         <div class="cart_items">
             <div class="cart_select_all">
-                <label for="select_all">
-                    <input type="checkbox" id="select_all" :checked="$store.state.selectAll"
-                        @change="selectAll()" />&nbsp;全選
+                <label for="select_all" @change="selectAll()">
+                    <input type="checkbox" id="select_all" :checked="$store.state.selectAll" />&nbsp;全選
                 </label>
             </div>
             <div class="cart_item" v-for="(item, index) in cartItems" :key="item">
@@ -48,7 +47,7 @@
                                 NT${{ priceAdultF(item) * item.count_adult }}
                             </p>
                         </div>
-                        <div class="ticket_ex" v-if="item.price_exF">
+                        <div class="ticket_ex" v-if="item.price_ex">
                             <label for="count_ex">
                                 <p class="name">優待票</p>
                                 <p class="price">NT$ {{ priceExF(item) }}</p>
@@ -97,7 +96,7 @@
                             <p class="price">(NT$ {{ priceAdultF(item) }} /張)</p>
                             <p class="count">x{{ item.count_adult }}</p>
                         </div>
-                        <div class="ticket_ex" v-if="item.price_exF">
+                        <div class="ticket_ex" v-if="item.price_ex">
                             <p class="name">優待票&nbsp;</p>
                             <p class="price">(NT$ {{ priceExF(item) }} /張)</p>
                             <p class="count">x{{ item.count_ex }}</p>
@@ -163,19 +162,21 @@ export default {
         SelecteOne(item) {
             item.selected = !item.selected;
             console.log('[勾選]', item.Name, ':', item.selected);
-            this.updateFinalCart();
-            console.log('[勾選]all:', this.$store.state.selectAll);
             //至少有一個沒有選中則為true
-            const checkedItems = this.cartItems.every(item => true === item.selected);
+            const checkedItems = this.cartItems.every(item => item.selected === true);
             if (checkedItems === true) {
                 this.$store.state.selectAll = true;
             }
             else {
                 this.$store.state.selectAll = false;
             }
+            console.log('[勾選]all:', this.$store.state.selectAll);
+            this.updateFinalCart();
         },
         selectAll() {
+            this.$store.state.selectAll = !this.$store.state.selectAll;
             this.$store.commit('SelectItem');// 更新購物車項目的選取狀態
+            console.log('[勾選]all:', this.$store.state.selectAll);
             this.updateFinalCart();// 更新最終購物明細清單和總金額 
         },
         updateFinalCart() {
