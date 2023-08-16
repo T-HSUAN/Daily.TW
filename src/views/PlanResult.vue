@@ -236,8 +236,8 @@
                         </OottCard>
                     </div>
                 </div>
-                <div class="ticket_container" v-if="showPlan1">
-                    <h3>精選景點票券</h3>
+                <div class="ticket_container" v-if="showPlan1 && limitedFilteredTickets[selectValue[0]] && limitedFilteredTickets[selectValue[0]].length > 0">
+                    <h3 v-if="limitedFilteredTickets[selectValue[0]].length > 0">精選景點票券</h3>
                     <router-link v-for="ticket in limitedFilteredTickets[selectValue[0]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
                         <div class="ticket_box">
                             <div class="ticket_pic">
@@ -481,8 +481,8 @@
                         </OottCard>
                     </div>
                 </div>
-                <div class="ticket_container" v-if="showPlan2">
-                    <h3>精選景點票券</h3>
+                <div class="ticket_container" v-if="showPlan2 && limitedFilteredTickets[selectValue[1]] && limitedFilteredTickets[selectValue[1]].length > 0">
+                    <h3 v-if="limitedFilteredTickets[selectValue[1]].length > 0">精選景點票券</h3>
                     <router-link v-for="ticket in limitedFilteredTickets[selectValue[1]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
                         <div class="ticket_box">
                             <div class="ticket_pic">
@@ -726,8 +726,8 @@
                         </OottCard>
                     </div>
                 </div>
-                <div class="ticket_container" v-if="showPlan3">
-                    <h3>精選景點票券</h3>
+                <div class="ticket_container" v-if="showPlan3 && limitedFilteredTickets[selectValue[2]] && limitedFilteredTickets[selectValue[2]].length > 0">
+                    <h3 v-if="limitedFilteredTickets[selectValue[2]].length > 0">精選景點票券</h3>
                     <router-link v-for="ticket in limitedFilteredTickets[selectValue[2]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
                         <div class="ticket_box">
                             <div class="ticket_pic">
