@@ -2,10 +2,12 @@
 .btn {
     font-size: $sm_h5;
     padding: 8px 24px;
+
     @media (min-width: 768px) {
-    font-size: $xl_h5;
-    padding: 8px 32px;
+        font-size: $xl_h5;
+        padding: 8px 32px;
     }
+
     white-space: nowrap;
     color: $textColor_white;
     text-align: center;
@@ -20,11 +22,13 @@
     background: $textColor_default;
     cursor: pointer;
     box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+
     &:hover {
         color: $textColor_default;
         background: $textColor_white;
         box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
     }
+
     &:active {
         color: $textColor_tint;
         border: 2px solid $textColor_tint;
@@ -38,13 +42,16 @@
 .tag {
     position: absolute;
     display: none;
-    + span {
+
+    +span {
         @include sm_p;
         padding: 4px 12px;
+
         @media (min-width: 768px) {
             @include xl_p;
             padding: 8px 20px;
         }
+
         display: inline-flex;
         width: fit-content;
         justify-content: center;
@@ -55,7 +62,8 @@
         cursor: pointer;
         white-space: nowrap;
     }
-    &:checked + span {
+
+    &:checked+span {
         color: $textColor_white;
         border: 2px solid $textColor_default;
         background: $textColor_default;
@@ -66,10 +74,12 @@
 // 取消按鈕
 .cancel_btn {
     color: $textColor_default;
-    @include sm_h5;   
+    @include sm_h5;
+
     @media (min-width: 768px) {
         @include xl_h5;
     }
+
     text-decoration: underline;
     cursor: pointer;
     font-family: $fontFamily;
@@ -114,15 +124,15 @@
     transition: 0.4s;
 }
 
-input:checked + .toggle_slider {
+input:checked+.toggle_slider {
     background-color: $textColor_default;
 }
 
-input:focus + .toggle_slider {
+input:focus+.toggle_slider {
     box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .toggle_slider:before {
+input:checked+.toggle_slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -134,4 +144,46 @@ input:checked + .toggle_slider:before {
 
 .toggle_slider.round:before {
     border-radius: 50%;
+}
+
+//分頁
+.ivu-page-item {
+    border-color: #6a5d4a;
+
+    &:hover {
+        border-color: #bab162;
+
+        a {
+            color: #6a5d4a;
+        }
+    }
+
+    a {
+        color: #6a5d4a;
+
+        &:hover {
+            color: #bab162;
+        }
+    }
+}
+
+.ivu-page-item-active {
+    border-color: #6a5d4a;
+
+    a {
+        color: #6a5d4a;
+    }
+}
+
+.ivu-page-prev,
+.ivu-page-next {
+    border-color: #6a5d4a;
+
+    &:hover {
+        border-color: #bab162;
+
+        a {
+            color: #6a5d4a;
+        }
+    }
 }
