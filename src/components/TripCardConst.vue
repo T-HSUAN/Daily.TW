@@ -4,9 +4,9 @@
             <input type="checkbox">
             <span></span>
         </label>
-        <a href="#">
+        <router-link :to="'/trip_info/' + tripCardId">
             <div class="trip_card_img">
-                <img :src="tripCardPhoto" alt="景點照片" />
+                <img :src=tripCardPhoto alt="景點照片" />
             </div>
             <div class="trip_card_text">
                 <span class="trip_card_tags">{{ tripCardTags }}</span>
@@ -17,7 +17,7 @@
                     <span>{{ tripCardDate }}</span>
                 </div>
             </div>
-        </a>
+        </router-link>
     </div>
 </template>
 
@@ -25,13 +25,14 @@
 export default {
     props: {
         // 這裡是 TripCard 組件的屬性（props），用於接收外部傳遞的資料
+        tripCardId: Number,
         tripCardPhoto: String, // 圖片的路徑
         tripCardTags: String, // 標籤文字
         tripCardTitle: String, // 標題文字
         tripCardDesc: String, // 描述文字
         tripCardAuthor: String, // 作者名稱
         tripCardDate: String, // 日期
-    }
+    },
 }
 </script>
 
@@ -49,6 +50,11 @@ export default {
         height: 521px;
     }
 
+    &:hover {
+        background-color: $mid-green;
+        transform: rotate(0.5deg) scale(1.01);
+    }
+
     position: relative;
 
     label {
@@ -57,6 +63,7 @@ export default {
         }
 
         input[type="checkbox"]+span::before {
+            z-index: 5;
             content: '';
             display: inline-block;
             width: 29px;
@@ -95,6 +102,8 @@ export default {
 
     .trip_card_img {
         padding: 24px;
+        width: 100%;
+        overflow: hidden;
 
         @media (min-width: 768px) {
             padding: 24px;
@@ -102,8 +111,10 @@ export default {
 
         img {
             width: 100%;
+            transition: 0.5s;
         }
     }
+
 
     .trip_card_text {
         margin: 24px;

@@ -11,10 +11,11 @@
                 <div class="card_wrap">
                     <div class="card" v-for="item in tableData" key="oott.oottCardAuthor">
                         <OottCard
-                        :oottPhoto= "item.oott_img"
+                        :oottCardId="item.oott_id"
+                        :oottPhoto= "getOottImg(item.oott_img)"
                         :oottCardTags= "item.concatenated_style_name"
-                        :oottCardDate= "item.oott_date"
-                        :oottAuthorPhoto= "item.mem_img"
+                        :oottCardDate= "item.oott_date_only"
+                        :oottAuthorPhoto="getMemImg(item.mem_img)"
                         :oottCardAuthor= "item.mem_name"
                         />
                     </div>
@@ -70,9 +71,9 @@
                 width: 257px;
                 height: 440px;
                 @media (min-width:768px) {
-                    width: 276px;
+                    width: 283px;
                     height: 463px;
-                    margin: 12px;
+                    margin: 7px;
                 }
                 
                 .oott_card_tag{
@@ -105,6 +106,14 @@ export default{
     data() {
         return {
             tableData:[],
+        }
+    },
+    methods:{
+        getOottImg(oottImg){
+            return process.env.BASE_URL + 'oottImg/' + oottImg;
+        },
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg;
         }
     },
     mounted() {

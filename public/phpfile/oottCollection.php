@@ -12,6 +12,7 @@ try {
     ot.oott_date, 
     m.mem_name, 
     m.mem_img,
+	date(ot.oott_date) as oott_date_only,
     GROUP_CONCAT(style_name SEPARATOR ' #') AS concatenated_style_name
 from oott ot
 join oott_style_connection osc on ot.oott_id = osc.oott_id
