@@ -1,7 +1,7 @@
 <template>
     <div class="my_oott_card">
         <div class="card_content">
-            <router-link to="/oott_info">
+            <router-link :to="'/oott_info/' + oottId">
                 <img :src=getOottImg(oottImg) alt="穿搭照片" class="oott_card_pic" />
             </router-link>
             <!-- 0 = 審核中 -->
@@ -30,7 +30,7 @@
             <!-- 2 = 待修改 -->
             <div class="edit" v-if="oottStatus=='2'" @click="reviewDetails(oottId)">
                 <font-awesome-icon icon="fa-solid fa-pen" />
-                編輯
+                查看
             </div>  
             <!-- 1 = 已通過, -->
             <span class="delete" v-if="oottStatus=='1'">
@@ -44,6 +44,7 @@
 <script>
 export default {
     props: {
+        oottId: Number,
         oottImg: String,
         oottCardTags: String,
         oottCardDate: String,

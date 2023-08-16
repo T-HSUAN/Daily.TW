@@ -15,7 +15,8 @@
                         key="tripCollection"
                     >
                         <TripCardConst
-                            :tripCardPhoto="item.place_img1"
+                            :tripCardId="item.trip_id"
+                            :tripCardPhoto="getPlaceImg(item.place_img1)"
                             :tripCardTags="
                                 combineTags(
                                     item.region_name,
@@ -126,6 +127,10 @@ export default {
             // Combine regionName and placeTagName with a space between them
             return `${regionName} #${placeTagName}`;
         },
+        getPlaceImg(placeImg){
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
+        },
+        
     },
     mounted() {
         GET(`${this.$URL}/tripCollection.php`)
