@@ -14,6 +14,7 @@
                 <span>購物車</span>
             </router-link>
         </div>
+        <!-- <button @click="test">test</button> -->
         <h2>請勾選票券進行結帳</h2>
         <div class="cart_items">
             <div class="cart_select_all">
@@ -194,6 +195,9 @@ export default {
                 swal("您尚未勾選票券或選擇票券數量", "", "warning", { timer: 2000 });
             }
         },
+        test() {
+            console.log(this.cartItems);
+        }
     },
     computed: {
         ...mapGetters(['cartItems', 'totalPrice', 'totalSelectedPrice', 'finalCartItems', 'finalCartTotalPrice']),

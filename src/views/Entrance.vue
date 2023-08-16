@@ -10,12 +10,12 @@
                     <p>前台</p>
                 </div>
             </a>
-            <router-link to="DailyTW_Backstage/login">
+            <a href="https://tibamef2e.com/chd102/g5/back/">
                 <img :src="require('@/assets/img/entrance_boy.png')" alt="">
                 <div class="back">
                     <p>後台</p>
                 </div>
-            </router-link>
+            </a>
         </div>
         <div class="notice">
             <p>
@@ -73,7 +73,7 @@
             .front,
             .back {
                 width: 350px;
-                height: 358px;
+                height: 370px;
                 display: flex;
                 justify-content: center;
                 align-items: center;

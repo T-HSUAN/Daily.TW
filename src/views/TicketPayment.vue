@@ -143,7 +143,11 @@ export default {
         },
     },
     computed: {
-        ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice'])
+        ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice']),
+        Item() {
+            console.log(this.finalCartItems);
+
+        },
     },
 };
 </script>

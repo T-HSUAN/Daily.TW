@@ -15,7 +15,7 @@
             <div class="ticket_card" v-for="(item, index) in ticketsDisplay" :key="item.id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
-                    <Ticket :ticketPhoto="`/placeImg/${item.img}`" :ticketTitle="item.Name" :ticketLocation="item.location"
+                    <Ticket :ticketPhoto="getPlaceImg(item.img)" :ticketTitle="item.Name" :ticketLocation="item.location"
                         :ticketTags="item.ticket_tag" :originalPrice="item.price_adult" :FinalPrice="priceAdultF(item)"
                         :discountTag="item.discount" />
                 </router-link>
@@ -114,6 +114,7 @@ import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import { mapActions, mapGetters } from 'vuex';
 import swal from 'sweetalert';
+import { GET } from '@/plugin/axios';
 import axios from 'axios';
 export default {
     components: {
@@ -160,6 +161,9 @@ export default {
     },
     methods: {
         ...mapActions(['fetchTicketData', 'addToCart', 'removeFromCart', 'Subtotal']),
+        getPlaceImg(placeImg) {
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
+        },
         priceAdultF(item) {
             if (item.discount !== null) {
                 return Math.round(item.discount * (item.price_adult / 10));
@@ -232,7 +236,6 @@ export default {
             }
         },
         test() {
-            console.log(this.ticketDisplay);
             console.log(typeof (this.ticketDisplay[0].count_adult));
         },
     },
@@ -266,7 +269,6 @@ export default {
             return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
         },
         dataLength() {
-            console.log('票券長度', this.ticketsDisplay.length);
             return this.ticketDisplay.length;
 
         },
