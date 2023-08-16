@@ -219,7 +219,7 @@ export default {
             ],
             ootts: [],
             orders: [
-                { id: 5, orderDate: '2023/08/17', status: '處理中', total: '$695元' },
+                { id: 5, orderDate: '2023/08/17', status: '處理中', total: '$673元' },
                 { id: 4, orderDate: '2023/07/23', status: '已發貨', total: '$375元' },
                 { id: 3, orderDate: '2023/07/22', status: '已完成', total: '$250元' },
                 { id: 2, orderDate: '2023/07/21', status: '已完成', total: '$420元' },
