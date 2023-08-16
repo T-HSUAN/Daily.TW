@@ -1,4 +1,10 @@
 <?php 
+    // $dbname = "tibamefe_chd102g5"; 
+    // $user = "tibamefe_since2021";
+    // $password = "vwRBSb.j&K#E";
+    // $port = 3306;
+
+    // $dsn = "mysql:host=localhost;port=$port;dbname=$dbname;charset=utf8";
     $dbname = "DailyTW"; 
     $user = "root";
     $password = "";
