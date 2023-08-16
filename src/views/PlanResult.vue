@@ -237,35 +237,35 @@
                     </div>
                 </div>
                 <div class="ticket_container" v-if="showPlan1">
-                    <h3>相關景點票券</h3>
-                    <router-link to="/ticket_info">
+                    <h3>精選景點票券</h3>
+                    <router-link v-for="ticket in limitedFilteredTickets[selectValue[0]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
                         <div class="ticket_box">
                             <div class="ticket_pic">
+                                <img :src="getPlaceImg(ticket.place_img1)" alt="">
                             </div>
                             <div class="ticket_desc">
                                 <div class="ticket_content">
-                                    <h4>紙箱王創意園區門票</h4>
-                                    <span>台中・</span>
-                                    <span>#親子 #小資 #藝文</span>
-                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                    <h4>{{ticket.ticket_name}}</h4>
+                                    <span>{{ticket.region}}・</span>
+                                    <span>#{{ticket.tag}}</span>
                                 </div>
                                 <div class="ticket_price">
                                     <div class="price_box">
-                                        <!-- <span>NT$ 200</span> -->
-                                        <span>NT$ 200</span>
+                                        <span>NT$ {{ticket.ticket_adult}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="sale_tag">
-                                <span>75折</span>
-                            </div>  -->
                         </div>
                     </router-link>
                     <div class="ticket_card">
-                        <router-link to="/ticket_info">
-                            <Ticket v-for="(ticket, index) in tickets" :key="index" :ticketPhoto="ticket.ticketPhoto"
-                                :ticketTitle="ticket.ticketTitle" :ticketTags="ticket.ticketTags"
-                                :originalPrice="ticket.originalPrice" :FinalPrice="ticket.FinalPrice">
+                        <router-link v-for="ticket in limitedFilteredTickets[selectValue[0]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
+                            <Ticket 
+                                :ticketPhoto="getPlaceImg(ticket.place_img1)"
+                                :ticketTitle="ticket.ticket_name" 
+                                :ticketLocation="ticket.region"
+                                :ticketTags="ticket.tag"
+                                :originalPrice="ticket.ticket_adult"
+                                :FinalPrice="ticket.ticket_adult">
                             </Ticket>
                         </router-link>
                     </div>
@@ -482,35 +482,35 @@
                     </div>
                 </div>
                 <div class="ticket_container" v-if="showPlan2">
-                    <h3>相關景點票券</h3>
-                    <router-link to="/ticket_info">
+                    <h3>精選景點票券</h3>
+                    <router-link v-for="ticket in limitedFilteredTickets[selectValue[1]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
                         <div class="ticket_box">
                             <div class="ticket_pic">
+                                <img :src="getPlaceImg(ticket.place_img1)" alt="">
                             </div>
                             <div class="ticket_desc">
                                 <div class="ticket_content">
-                                    <h4>紙箱王創意園區門票</h4>
-                                    <span>台中・</span>
-                                    <span>#親子 #小資 #藝文</span>
-                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                    <h4>{{ticket.ticket_name}}</h4>
+                                    <span>{{ticket.region}}・</span>
+                                    <span>#{{ticket.tag}}</span>
                                 </div>
                                 <div class="ticket_price">
                                     <div class="price_box">
-                                        <!-- <span>NT$ 200</span> -->
-                                        <span>NT$ 200</span>
+                                        <span>NT$ {{ticket.ticket_adult}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="sale_tag">
-                                <span>75折</span>
-                            </div>  -->
                         </div>
                     </router-link>
                     <div class="ticket_card">
-                        <router-link to="/ticket_info">
-                            <Ticket v-for="(ticket, index) in tickets" :key="index" :ticketPhoto="ticket.ticketPhoto"
-                                :ticketTitle="ticket.ticketTitle" :ticketTags="ticket.ticketTags"
-                                :originalPrice="ticket.originalPrice" :FinalPrice="ticket.FinalPrice">
+                        <router-link v-for="ticket in limitedFilteredTickets[selectValue[1]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
+                            <Ticket 
+                                :ticketPhoto="getPlaceImg(ticket.place_img1)"
+                                :ticketTitle="ticket.ticket_name" 
+                                :ticketLocation="ticket.region"
+                                :ticketTags="ticket.tag"
+                                :originalPrice="ticket.ticket_adult"
+                                :FinalPrice="ticket.ticket_adult">
                             </Ticket>
                         </router-link>
                     </div>
@@ -727,35 +727,35 @@
                     </div>
                 </div>
                 <div class="ticket_container" v-if="showPlan3">
-                    <h3>相關景點票券</h3>
-                    <router-link to="/ticket_info">
+                    <h3>精選景點票券</h3>
+                    <router-link v-for="ticket in limitedFilteredTickets[selectValue[2]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
                         <div class="ticket_box">
                             <div class="ticket_pic">
+                                <img :src="getPlaceImg(ticket.place_img1)" alt="">
                             </div>
                             <div class="ticket_desc">
                                 <div class="ticket_content">
-                                    <h4>紙箱王創意園區門票</h4>
-                                    <span>台中・</span>
-                                    <span>#親子 #小資 #藝文</span>
-                                    <p>以紙為主題的親子觀光創意園區將紙的創意無限延伸，打破你的想像，打造全世界的知名景點，來到這裡就可以搭乘紙箱小火車環遊世界，探索這變化萬千的異想紙的王國。</p>
+                                    <h4>{{ticket.ticket_name}}</h4>
+                                    <span>{{ticket.region}}・</span>
+                                    <span>#{{ticket.tag}}</span>
                                 </div>
                                 <div class="ticket_price">
                                     <div class="price_box">
-                                        <!-- <span>NT$ 200</span> -->
-                                        <span>NT$ 200</span>
+                                        <span>NT$ {{ticket.ticket_adult}}</span>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="sale_tag">
-                                <span>75折</span>
-                            </div>  -->
                         </div>
                     </router-link>
                     <div class="ticket_card">
-                        <router-link to="/ticket_info">
-                            <Ticket v-for="(ticket, index) in tickets" :key="index" :ticketPhoto="ticket.ticketPhoto"
-                                :ticketTitle="ticket.ticketTitle" :ticketTags="ticket.ticketTags"
-                                :originalPrice="ticket.originalPrice" :FinalPrice="ticket.FinalPrice">
+                        <router-link v-for="ticket in limitedFilteredTickets[selectValue[2]]" :to="`/ticket/${ticket.ticket_id}`" :key="ticket.ticket_id">
+                            <Ticket 
+                                :ticketPhoto="getPlaceImg(ticket.place_img1)"
+                                :ticketTitle="ticket.ticket_name" 
+                                :ticketLocation="ticket.region"
+                                :ticketTags="ticket.tag"
+                                :originalPrice="ticket.ticket_adult"
+                                :FinalPrice="ticket.ticket_adult">
                             </Ticket>
                         </router-link>
                     </div>
@@ -858,6 +858,26 @@ export default defineComponent({
             }
             return result;
         },
+        selectedRegionTickets() {
+            const selectedRegionTicketData = {};
+            for (const regionName of this.selectValue) {
+                const regionTickets = this.ticketData.filter(ticket => {
+                    return ticket.region === regionName;
+                });
+                selectedRegionTicketData[regionName] = regionTickets;
+            }
+            return selectedRegionTicketData;
+        },
+        limitedFilteredTickets() {
+            const limitPerRegion = 1;
+
+            const limitedTickets = {};
+            for (const regionName in this.selectedRegionTickets) {
+                limitedTickets[regionName] = this.selectedRegionTickets[regionName].slice(0, limitPerRegion);
+            }
+
+            return limitedTickets;
+        },
     },
     data() {
         return {
@@ -895,7 +915,7 @@ export default defineComponent({
                     tripCardDate: "2023 / 8 / 6",
                 },
                 {
-                    ripCardId: 3,
+                    tripCardId: 3,
                     tripCardPhoto: require("@/assets/img/layout/plan_result_place_8.png"),
                     tripCardTags: "新北・#情侶 #小資 #風景",
                     tripCardTitle: "新北藝術一日遊",
@@ -903,7 +923,7 @@ export default defineComponent({
                     tripCardDate: "2023 / 8 / 6",
                 },
                 {
-                    ripCardId: 2,
+                    tripCardId: 2,
                     tripCardPhoto: require("@/assets/img/layout/plan_result_place_9.png"),
                     tripCardTags: "宜蘭・#情侶 #風景 #藝文",
                     tripCardTitle: "宜蘭芬多精一日遊",
@@ -916,6 +936,7 @@ export default defineComponent({
             checkedSexTag: [],
             placeData: [],
             oottData: [],
+            ticketData: [],
         }
     },
     // created(){
@@ -949,18 +970,6 @@ export default defineComponent({
                     console.error('Error fetching weather data:', error);
                 });
         },
-        // fetchWeather(){
-        //     this.loading = true
-        //     fetch(`https://api.weatherapi.com/v1/forecast.json?q=${this.weather.location}&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
-        //     .then(res=> {
-        //         return res.json()
-        //     })
-        //     .then(json=> {
-        //         this.weatherData = json.forecast.forecastday
-        //         this.loading = false
-        //         console.log(this.weatherData)
-        //     })
-        // },
         formatDate(date) {
             return date.split("-").slice(1).join("/");
         },
@@ -1092,7 +1101,7 @@ export default defineComponent({
             .catch((err) => {
                 console.log(err);
             });
-            GET(`${this.$URL}/PlanResultOott.php`)
+        GET(`${this.$URL}/PlanResultOott.php`)
             .then((res) => {
                 this.oottData = res;
                 console.log(res);
@@ -1100,6 +1109,15 @@ export default defineComponent({
             .catch((err) => {
                 console.log(err);
             });
+        GET(`${this.$URL}/PlanResultTicket.php`)
+            .then((res) => {
+                this.ticketData = this.shuffleArray(res);
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
     },
     beforeUnmount() {
         // Remove the event listener when the component is about to be unmounted
@@ -1795,12 +1813,12 @@ export default defineComponent({
 
                     .ticket_pic {
                         width: 45%;
-                        aspect-ratio: calc(511/360);
-                        background-image: url(~@/assets/img/layout/plan_result_ticket.png);
-                        background-size: 100%;
-                        background-repeat: no-repeat;
                         margin-left: $sp6;
                         flex-shrink: 0;
+                        img{
+                            width: 100%;
+                            aspect-ratio: calc(511/360);
+                        }
 
                         @media (min-width: 1024px) {
                             margin-left: $sp8;
@@ -1824,9 +1842,10 @@ export default defineComponent({
                                 font-weight: 900;
                                 color: $textColor_white;
                                 padding-bottom: $sp2;
+                                line-height: 1.2;
 
                                 @media (min-width: $md) {
-                                    font-size: 32px;
+                                    font-size: 32px !important;
                                 }
                             }
 
@@ -1836,7 +1855,7 @@ export default defineComponent({
                                 color: $tint_blue;
 
                                 @media (min-width: $md) {
-                                    font-size: 16px;
+                                    font-size: 16px !important;
                                 }
                             }
 
