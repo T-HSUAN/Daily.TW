@@ -15,9 +15,13 @@
                 <span>行程總覽</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
-            <router-link to="/trip_info">
-                <span>新竹內灣放鬆小旅行</span>
+            <router-link to="#">
+                <span>{{ tripInfo.trip_name }}</span>
             </router-link>
+        </div>
+
+        <div v-for="(image, imageIndex) in placeInfo.place_img" :key="imageIndex" v-if="image">
+            <img :src="getPlaceImg(image)"/>
         </div>
 
         <!-- 行程內容 -->
@@ -30,13 +34,12 @@
                     </div>
                     <h5 class="author">作者 | {{ tripInfo.trip_author }}</h5>
                     <h5 class="date">發布日期 | {{ tripInfo.formattedDate }}</h5>
-                    <h5 class="views">2,345 次瀏覽</h5>
+                    <h5 class="views">{{ tripInfo.trip_view }} 次瀏覽</h5>
                 </div>
                 <div class="trip_desc">
                     <p>{{ tripInfo.trip_desc }}
                     </p>
                 </div>
-                <img src="../../public/placeImg/001.png">
                 
                 <section class="place" v-for="(place, index) in placeInfo" :key="index" :id="'place' + (index + 1)">
                     <div class="place_title">
@@ -48,8 +51,8 @@
                     </div>
                     <div class="place_img">
                         <Carousel :autoplay="3000" :wrap-around="true">
-                            <Slide v-for="(image, imageIndex) in placeInfo.place_img" :key="imageIndex" v-if="image">
-                                <img :src="getPlaceImagePath(image)"/>
+                            <Slide v-for="(image, imageIndex) in place.place_img" :key="imageIndex">
+                                <img :src="getPlaceImg(image)"/>
                             </Slide>
                             <template #addons>
                                 <Navigation />
@@ -105,9 +108,14 @@
             <div class="content">
                 <div class="wrap">
                     <div class="oottCards">
-                        <oottCard class="oottCard" v-for="(oott, index) in oottData" :key="index" :oottPhoto="oott.oott_img"
-                            :oottCardTags="oott.concatenated_style_name" :oottCardDate="oott.oott_date"
-                            :oottAuthorPhoto="oott.mem_img" :oottCardAuthor="oott.mem_name"></oottCard>
+                        <oottCard class="oottCard" v-for="(oott, index) in oottData" :key="index" 
+                            :oottCardId="oott.oott_id"
+                            :oottPhoto="getOottImg(oott.oott_img)"
+                            :oottCardTags="oott.concatenated_style_name"
+                            :oottCardDate="oott.oott_date_new"
+                            :oottAuthorPhoto="getMemImg(oott.mem_img)"
+                            :oottCardAuthor="oott.mem_nickname">
+                        </oottCard>
                     </div>
                 </div>
                 <a href="/oott">
@@ -128,19 +136,25 @@
                         <img src="~@/assets/img/duck_blue.png" alt="" class="duck">
                     </div>
                 </div>
-                <h2>相關票券優惠</h2>
+                <h2>相關景點票券</h2>
             </div>
             <div class="content">
                 <div class="wrap">
                     <div class="ticketCards">
-                        <div class="ticketCard" v-for="(ticket, index) in tickets" :key="index">
-                            <router-link to="/ticket_info">
-                                <ticketCard :ticketPhoto="ticket.ticketPhoto" :ticketTitle="ticket.ticketTitle"
-                                    :ticketLocation="ticket.ticketLocation" :ticketTags="ticket.ticketTags"
-                                    :originalPrice="ticket.originalPrice" :FinalPrice="ticket.finalPrice"
-                                    :discountTag="ticket.discountTag"></ticketCard>
+                        <div class="ticketCard" v-if="ticketData.length > 0" v-for="(ticket, index) in ticketData" :key="index">
+                            <router-link :to="'/ticket_info/' + ticket.ticket_id" title="點擊查看票券詳情">
+                                <ticketCard
+                                    :ticketPhoto="getPlaceImg(ticket.place_img1)" 
+                                    :ticketTitle="ticket.ticket_name"
+                                    :ticketLocation="ticket.region" 
+                                    :ticketTags="ticket.tag"
+                                    :originalPrice="ticket.ticket_discount !== null ? ticket.ticket_adult : ''" 
+                                    :FinalPrice="ticket.final_price"
+                                    :discountTag="ticket.ticket_discount !== null ? parseFloat(ticket.ticket_discount).toFixed(1) + '折' : ''" >
+                                </ticketCard>
                             </router-link>
                         </div>
+                        <div v-else class="noTickets">Sorry~ 暫無相關票券</div>
                     </div>
                 </div>
                 <router-link to="/ticket">
@@ -148,6 +162,7 @@
                 </router-link>
             </div>
         </section>
+
 
         <!-- 你可能有興趣 -->
         <section class="tripInfo_trip">
@@ -166,10 +181,11 @@
             <div class="content">
                 <div class="wrap">
                     <div class="tripCards">
-                        <tripCard class="tripCard" v-for="(trip, index) in trips" :key="index"
-                            :tripCardPhoto="trip.tripCardPhoto" :tripCardTags="trip.tripCardTags"
-                            :tripCardTitle="trip.tripCardTitle" :tripCardDesc="trip.tripCardDesc"
-                            :tripCardAuthor="trip.tripCardAuthor" :tripCardDate="trip.tripCardDate" />
+                        <tripCard class="tripCard" v-for="(trip, index) in otherTrip" :key="index"
+                            :tripCardId="trip.trip_id"
+                            :tripCardPhoto="getPlaceImg(trip.trip_img)" :tripCardTags="trip.trip_region + '・' + trip.trip_tag"
+                            :tripCardTitle="trip.trip_name" :tripCardDesc="trip.trip_desc"
+                            :tripCardAuthor="trip.trip_author" :tripCardDate="trip.trip_date_new" />
                     </div>
                 </div>
                 <router-link to="/trip">
@@ -718,7 +734,7 @@
                     overflow-x: scroll;
 
                     @media (min-width: $xl) {
-                        justify-content: space-between;
+                        justify-content: center;
                         gap: 32px;
                         overflow: visible;
                     }
@@ -730,6 +746,10 @@
                         @media (min-width: $xl) {
                             margin-left: 0;
                         }
+                    }
+
+                    .noTickets{
+                        margin: $sp8 auto;
                     }
 
                 }
@@ -821,18 +841,7 @@ export default {
         return {
             tripInfo: [],
 
-            placeInfo: {
-                place_name:'',
-                place_img: [
-                    {place_img1:''},
-                    {place_img2:''},
-                    {place_img3:''}
-                ],
-                place_stay:'',
-                place_desc:'',
-                place_addr:'',
-                place_link:''
-            },
+            placeInfo: [],
 
             placeTags: [],
 
@@ -842,44 +851,6 @@ export default {
 
             otherTrip: [],
 
-            tickets: [
-                {
-                    ticketPhoto: require('@/assets/img/ticketExample.png'),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折",
-                },
-                {
-                    ticketPhoto: require('@/assets/img/ticketExample.png'),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折",
-                },
-                {
-                    ticketPhoto: require('@/assets/img/ticketExample.png'),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折",
-                },
-                {
-                    ticketPhoto: require('@/assets/img/ticketExample.png'),
-                    ticketTitle: "斑比斑比斑比斑比山丘門票",
-                    ticketLocation: "宜蘭",
-                    ticketTags: "#標籤",
-                    originalPrice: 800,
-                    finalPrice: 599,
-                    discountTag: "75折",
-                },
-            ],
             trips: [
                 {
                     tripCardPhoto: require('@/assets/img/trip_card_example.png'),
@@ -916,8 +887,14 @@ export default {
             const day = date.getDate();
             return `${year}年${month}月${day}日`;
         },
-        getPlaceImagePath(imageName) {
-            return `placeImg/${imageName}.png`;
+        getPlaceImg(placeImg){
+            return process.env.BASE_URL + 'placeImg/' + placeImg;
+        },
+        getOottImg(oottImg){
+            return process.env.BASE_URL + 'oottImg/' + oottImg + '.png';
+        },
+        getMemImg(memImg){
+            return process.env.BASE_URL + 'profileImg/' + memImg + '.png';
         }
     },
     mounted() {
