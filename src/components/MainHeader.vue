@@ -172,10 +172,10 @@ export default {
             // this.$store.commit('setIsLogin', false);
             sessionStorage.removeItem("mem_id");
             this.$router.push("/Home");
-            setTimeout(() => {
-                this.$router.go(0);
+            // setTimeout(() => {
+            //     this.$router.go(0);
 
-            }, 10)
+            // }, 10)
         },
 
 

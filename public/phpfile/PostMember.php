@@ -9,13 +9,20 @@ try{
     $images = $_FILES['mem_img'];
     switch($_FILES["mem_img"]["error"]){
         case UPLOAD_ERR_OK:
-            $dir = "images"; //指定所要上傳的路徑
+            $dir = "../profileImg/"; //指定所要上傳的路徑
             if(file_exists($dir)===false){
                 mkdir($dir); //make directory
             }
-    
+            
             $from = $_FILES["mem_img"]["tmp_name"];
-            $to = "$dir/" . $_FILES["mem_img"]["name"];
+
+            // Get the last inserted ID (編號)
+            $lastInsertedId = $pdo->lastInsertId();
+
+            // Construct the new filename as ID.png
+            $newFilename = $lastInsertedId . '.png';
+
+            $to = "$dir/" . $newFilename;
             copy($from, $to);
             echo "上傳成功<br>";
             break;
