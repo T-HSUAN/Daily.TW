@@ -72,11 +72,11 @@ export default {
             orderNumber: "5",
             orderDate: "2023/08/17",
             orderStatus: "已付款",
-            total: "$695元",
+            total: "$673元",
             expanded: false,
             tickets: [
               { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-              { name: "蘭陽博物館門票", type1:"全票 (NT$100 / 張)", quantity1: "x2", price1:"200", type2 :"半票 (NT$45 / 張)", quantity2:"x1", price2:"45", subtotal: "NT$245" },
+              { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
             ],
           },
           {
@@ -87,7 +87,7 @@ export default {
             expanded: false,
             tickets: [
               { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-              { name: "蘭陽博物館門票", type1:"全票 (NT$100 / 張)", quantity1: "x2", price1:"200", type2 :"半票 (NT$45 / 張)", quantity2:"x1", price2:"45", subtotal: "NT$245" },
+              { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
             ],
           },
           {
@@ -98,7 +98,7 @@ export default {
             expanded: false,
             tickets: [
               { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-              { name: "蘭陽博物館門票", type1:"全票 (NT$100 / 張)", quantity1: "x2", price1:"200", type2 :"半票 (NT$45 / 張)", quantity2:"x1", price2:"45", subtotal: "NT$245" },
+              { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
             ],
           },
           {
@@ -109,7 +109,7 @@ export default {
             expanded: false,
             tickets: [
               { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-              { name: "蘭陽博物館門票", type1:"全票 (NT$100 / 張)", quantity1: "x2", price1:"200", type2 :"半票 (NT$45 / 張)", quantity2:"x1", price2:"45", subtotal: "NT$245" },
+              { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
             ],
           },
           {
@@ -120,7 +120,7 @@ export default {
             expanded: false,
             tickets: [
               { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-              { name: "蘭陽博物館門票", type1:"全票 (NT$100 / 張)", quantity1: "x2", price1:"200", type2 :"半票 (NT$45 / 張)", quantity2:"x1", price2:"45", subtotal: "NT$245" },
+              { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
             ],
           },
           // Add more orders here

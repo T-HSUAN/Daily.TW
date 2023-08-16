@@ -67,9 +67,13 @@
             </div>
             <div class="wrap">
                 <div class="oottCards">
-                    <oottCard class="oottCard" v-for="item in ootts" :key="item.id" :oottPhoto="getOottImg(item.oott_img)"
-                        :oottCardTags="item.concatenated_style_name" :oottCardDate="item.oott_date"
-                        :oottAuthorPhoto="getMemImg(item.mem_img)" :oottCardAuthor="item.mem_name">
+                    <oottCard class="oottCard" v-for="item in ootts" :key="item.id" 
+                        :oottCardId="+item.oott_id"
+                        :oottPhoto="getOottImg(item.oott_img)"
+                        :oottCardTags="item.concatenated_style_name" 
+                        :oottCardDate="item.oott_date"
+                        :oottAuthorPhoto="getMemImg(item.mem_img)" 
+                        :oottCardAuthor="item.mem_name">
                     </oottCard>
                 </div>
             </div>
@@ -112,7 +116,7 @@ export default {
                 console.log(err);
             });
 
-        GET(`${this.$URL}/oottInfoMore.php`)
+        GET(`${this.$URL}/oottInfoMore.php?oott_id=${oottId}`)
             .then((res) => {
                 console.log(res);
                 this.ootts = res;
