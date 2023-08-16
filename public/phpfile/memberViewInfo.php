@@ -6,9 +6,9 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT * FROM region WHERE NOT region_name = '桃園';";
+	$sql = "select * from member ;
 	$products = $pdo->query($sql); 
-	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
+	$prodRows = $products->fetch(PDO::FETCH_ASSOC);
     echo json_encode($prodRows);
 
 } catch (Exception $e) {

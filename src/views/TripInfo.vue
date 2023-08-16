@@ -3,7 +3,7 @@
     <div class="tripInfo">
         <!-- 麵包屑 -->
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -60,7 +60,7 @@
                             </template>
                         </Carousel>
                     </div>
-                        <p class="place_desc">{{ place.place_desc }}</p>
+                    <p class="place_desc">{{ place.place_desc }}</p>
                     <div class="place_loc">
                         <img src="~@/assets/img/layout/plan_result_location.png" alt="" />
                         <a :href="place.place_link" target="_blank">
@@ -68,7 +68,7 @@
                         </a>
                     </div>
                 </section>
-                
+
                 <section class="trip_tags">
                     <router-link v-for="(tag, index) in placeTags" :key="index" to="/trip_overview">
                         <div class="tags">{{ tag.place_tag_name }}</div>
@@ -78,7 +78,8 @@
             <div class="sidebar">
                 <div class="route">
                     <Anchor show-ink>
-                        <AnchorLink v-for="(place, index) in placeInfo" :key="index" :href="'#place' + (index + 1)" :title="place.place_name" />
+                        <AnchorLink v-for="(place, index) in placeInfo" :key="index" :href="'#place' + (index + 1)"
+                            :title="place.place_name" />
                     </Anchor>
                 </div>
                 <label class="collect">
@@ -263,11 +264,13 @@
                 @media (min-width: 768px) {
                     width: 120px;
                 }
+
                 @keyframes duck_shake {
-                    0%{
+                    0% {
                         rotate: -3.2deg;
                     }
-                    100%{
+
+                    100% {
                         rotate: 3.2deg;
                     }
                 }
@@ -409,17 +412,18 @@
                         display: flex;
                         align-items: center;
                         gap: 4px;
+
                         @media (min-width: $md) {
                             gap: $sp1;
                         }
 
                         img {
-                                width: 22px;
+                            width: 22px;
 
-                                @media (min-width: $md) {
-                                    width: 27px;
-                                }
+                            @media (min-width: $md) {
+                                width: 27px;
                             }
+                        }
                     }
                 }
 
@@ -435,9 +439,11 @@
                         width: 100%;
                     }
 
-                    .carousel__prev, .carousel__next {
+                    .carousel__prev,
+                    .carousel__next {
                         display: none;
-                        @media (min-width: $md){
+
+                        @media (min-width: $md) {
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -448,12 +454,14 @@
                             height: 40px;
                             box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
 
-                            &:hover{
+                            &:hover {
                                 background-color: $textColor_default;
-                                .carousel__icon{
+
+                                .carousel__icon {
                                     fill: $textColor_white;
                                 }
                             }
+
                             .carousel__icon {
                                 width: 40px;
                                 height: auto;
@@ -461,6 +469,7 @@
                             }
                         }
                     }
+
                     .carousel__prev {
                         left: 24px;
                     }
@@ -470,12 +479,12 @@
                     }
 
                     .carousel__pagination-button::after {
-                            background-color: $textColor_tint !important;
-                        }
+                        background-color: $textColor_tint !important;
+                    }
 
-                        .carousel__pagination-button--active::after {
-                            background-color: $textColor_default !important;
-                        }
+                    .carousel__pagination-button--active::after {
+                        background-color: $textColor_default !important;
+                    }
                 }
 
                 .place_desc {
@@ -492,17 +501,18 @@
                     margin-bottom: $sp8;
                     align-items: center;
                     gap: 4px;
+
                     @media (min-width: $md) {
                         gap: $sp1;
                     }
 
                     img {
-                            width: 22px;
+                        width: 22px;
 
-                            @media (min-width: $md) {
-                                width: 27px;
-                            }
+                        @media (min-width: $md) {
+                            width: 27px;
                         }
+                    }
                 }
 
             }
@@ -784,8 +794,7 @@
                 text-align: left;
                 overflow: visible;
 
-                @media (min-width: 768px) {
-                }
+                @media (min-width: 768px) {}
 
                 .tripCards {
                     display: flex;
@@ -818,7 +827,7 @@
 
 
 <script>
-import {GET} from '@/plugin/axios'
+import { GET } from '@/plugin/axios'
 import oottCard from '@/components/OottCard.vue'
 import ticketCard from '@/components/TicketVertical.vue'
 import tripCard from '@/components/TripCard.vue'
@@ -851,32 +860,6 @@ export default {
 
             otherTrip: [],
 
-            trips: [
-                {
-                    tripCardPhoto: require('@/assets/img/trip_card_example.png'),
-                    tripCardTags: "台中・#親子 #情侶 #農場",
-                    tripCardTitle: "台中文青一日遊",
-                    tripCardDesc: "到臺中屯區藝文中心參觀各式展覽與展演廳，並到太平買菸場欣賞本市藝術家陳庭詩鐵雕作品，再來到臺中市中區參觀美化的綠川水岸廊道，中午在第二市場品嚐臺中市各式美食小吃，下午再到審計新村參觀文創聚落感受臺中市文創的魅力，接著前往紙箱王創意園區體驗親手DIY文創商品，帶著滿滿的回憶與紀念品回家。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 9",
-                },
-                {
-                    tripCardPhoto: require('@/assets/img/place/006-1.png'),
-                    tripCardTags: "宜蘭・#親子 #情侶 #風景",
-                    tripCardTitle: "宜蘭芬多精一日遊",
-                    tripCardDesc: "不知道要去哪裡玩嗎？精選六個宜蘭知名景點，有吃又有玩，無論",
-                    tripCardAuthor: "小編B",
-                    tripCardDate: "2023 / 7 / 12",
-                },
-                {
-                    tripCardPhoto: require('@/assets/img/place/012.png'),
-                    tripCardTags: "新北・#親子 #情侶 #風景 #海邊 #放鬆",
-                    tripCardTitle: "新北藝術一日遊",
-                    tripCardDesc: "來去新北一日遊，鶯歌、三峽這裡也有蠻多特色景點，不只是逛老街，也可以安排個鶯歌景點一日遊，順便遊三峽景點。不管是季節限定的賞花景點，還是親子同遊必拍，又或者是IG熱門打卡點，通通好玩報你知。",
-                    tripCardAuthor: "小編A",
-                    tripCardDate: "2023 / 7 / 13",
-                },
-            ]
         }
     },
     methods: {

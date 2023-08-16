@@ -2,7 +2,7 @@
 <template>
     <div class="ticket_info_page">
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -15,9 +15,9 @@
             </router-link>
         </div>
         <!-- 票券造型呈現，1200以下無造型 -->
-        <TicketSingleCard :ticketPhoto="ticketInfo.img" :ticketTitle="ticketInfo.Name" :ticketLocation="ticketInfo.location"
-            :ticketTags="ticketInfo.tag" :ticketDetails="ticketInfo.ticket_details" :showAddr="true"
-            :ticketAddr="ticketInfo.ticket_addr" :ticketAddrLink="ticketInfo.ticket_addr_link"
+        <TicketSingleCard :ticketPhoto="`/placeImg/${ticketInfo.img}`" :ticketTitle="ticketInfo.Name"
+            :ticketLocation="ticketInfo.location" :ticketTags="ticketInfo.tag" :ticketDetails="ticketInfo.place_desc"
+            :showAddr="true" :ticketAddr="ticketInfo.addr" :ticketAddrLink="ticketInfo.ticket_addr_link"
             :discountTag="ticketInfo.discount" />
         <!-- 票券資訊區 -->
         <div class="ticket_info">
@@ -25,11 +25,7 @@
             <div class="ticket_desc">
                 <h3>票券描述</h3>
                 <ol class="content">
-                    <li>全票200元(含體驗飼料一份)。</li>
-                    <li>
-                        優待票50元(6~12歲之孩童、65歲以上之長者、領有身心障礙手冊者及其陪同者為優待票，皆需憑證明文件購票)。
-                    </li>
-                    <li>5歲以下孩童免購票。</li>
+                    <li>{{ ticketInfo.desc }}</li>
                 </ol>
             </div>
             <!-- 選擇門票數量 -->
@@ -48,15 +44,15 @@
                         <label for="count_adult">
                             <p class="name">全票</p>
                             <div class="price">
-                                <p class="final">NT$ {{ ticketInfo.price_adultF }}</p>
-                                <p class="origin" v-if="ticketInfo.price_adultO !== ''">
-                                    原價:NT$ {{ ticketInfo.price_adultO }}
+                                <p class="final">NT$ {{ priceAdultF(ticketInfo) }}</p>
+                                <p class="origin" v-if="ticketInfo.price_adult !== priceAdultF(ticketInfo)">
+                                    原價:NT$ {{ ticketInfo.price_adult }}
                                 </p>
                             </div>
                         </label>
                     </div>
                     <!-- 優惠票項目 -->
-                    <div class="ticket_ex" v-if="ticketInfo.price_exF !== ''">
+                    <div class="ticket_ex" v-if="ticketInfo.price_ex">
                         <select name="ticket_count_ex" class="count_ex" v-model="ticketInfo.count_ex"
                             @change="subTotalpricePreview">
                             <option value="0" selected>0</option>
@@ -67,9 +63,9 @@
                         <label for="count_ex">
                             <p class="name">優待票</p>
                             <div class="price">
-                                <p class="final">NT$ {{ ticketInfo.price_exF }}</p>
-                                <p class="origin" v-if="ticketInfo.price_exO != ''">
-                                    原價:NT$ {{ ticketInfo.price_exO }}
+                                <p class="final">NT$ {{ priceExF(ticketInfo) }}</p>
+                                <p class="origin" v-if="ticketInfo.price_ex !== priceExF(ticketInfo)">
+                                    原價:NT$ {{ ticketInfo.price_ex }}
                                 </p>
                             </div>
                         </label>
@@ -81,12 +77,12 @@
                 <div class="content">
                     <h3>目前選擇</h3>
                     <p>
-                        全票 (NT$ {{ ticketInfo.price_adultF }} / 張) x {{ ticketInfo.count_adult
-                        }}<span>NT$ {{ ticketInfo.price_adultF * ticketInfo.count_adult }}</span>
+                        全票 (NT$ {{ priceAdultF(ticketInfo) }} / 張) x {{ ticketInfo.count_adult
+                        }}<span>NT$ {{ priceAdultF(ticketInfo) * ticketInfo.count_adult }}</span>
                     </p>
-                    <p v-if="ticketInfo.price_exF != ''">
-                        半票 (NT$ {{ ticketInfo.price_exF }} / 張) x {{ ticketInfo.count_ex
-                        }}<span>NT$ {{ ticketInfo.price_exF * ticketInfo.count_ex }}</span>
+                    <p v-if="ticketInfo.price_ex">
+                        半票 (NT$ {{ priceExF(ticketInfo) }} / 張) x {{ ticketInfo.count_ex
+                        }}<span>NT$ {{ priceExF(ticketInfo) * ticketInfo.count_ex }}</span>
                     </p>
                     <!-- 總計 -->
                     <p class="total">
@@ -148,7 +144,7 @@
                         <label for="count_adult">
                             <p class="name">全票&nbsp;</p>
                             <p class="price">
-                                (NT$ {{ item.price_adultF }} /張)
+                                (NT$ {{ priceAdultF(item) }} /張)
                             </p>
                         </label>
                         <select v-model="item.count_adult" name="ticket_count_adult" class="count_adult"
@@ -161,10 +157,10 @@
                         </select>
                     </div>
                     <!-- 優惠票券項目 -->
-                    <div class="ticket_ex" v-if="item.price_exF !== ''">
+                    <div class="ticket_ex" v-if="item.price_exF">
                         <label for="count_ex">
                             <p class="name">優待票&nbsp;</p>
-                            <p class="price">(NT$ {{ item.price_exF }} /張)</p>
+                            <p class="price">(NT$ {{ priceExF(item) }} /張)</p>
                         </label>
                         <select v-model="item.count_ex" name="ticket_count_ex" class="count_ex"
                             @change="updateSubtotal(item)">
@@ -197,7 +193,6 @@
 
 <script>
 import TicketSingleCard from "@/components/TicketSingleCard.vue";
-import ticketData from "@/store/ticketData.js";
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -218,22 +213,45 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['addToCart', 'addToCartDirectly', 'removeFromCart', 'Subtotal']),
-        // 從前一頁的票券得到它的id，藉由這個id找到與ticketData一樣id資料，並傳入本頁的ticketInfo之中
+        ...mapActions(['fetchTicketData', 'addToCart', 'addToCartDirectly', 'removeFromCart', 'Subtotal']),
+        // [取得id]從前一頁的票券取得其id，藉由這個id找到與ticketData相同id資料，並傳入本頁的ticketInfo之中
         getTicketContent(ticketId) {
-            return ticketData.find(ticketData => ticketData.id === ticketId);
+            return this.ticketData.find(ticketData => ticketData.id === ticketId);
         },
-        //小計預覽(未加入購物車)
+        priceAdultF(item) {
+            if (item.discount !== null) {
+                return Math.round(item.discount * (item.price_adult / 10));
+            } else {
+                return item.price_adult;
+            }
+        },
+        priceExF(item) {
+            if (item.discount !== null) {
+                return Math.round(item.discount * (item.price_ex / 10));
+            } else {
+                return item.price_ex;
+            }
+        },
+        //票券小計預覽(未加入購物車)
         subTotalpricePreview() {
-            const subtotalAdult = this.ticketInfo.price_adultF * this.ticketInfo.count_adult;
-            const subtotalEx = this.ticketInfo.price_exF * this.ticketInfo.count_ex;
-            this.ticketInfo.subtotal = subtotalAdult + subtotalEx;
+            const priceAdultF = Math.round(this.ticketInfo.discount * (this.ticketInfo.price_adult / 10))
+            const priceExF = Math.round(this.ticketInfo.discount * (this.ticketInfo.price_ex / 10))
+            if (this.ticketInfo.discount !== null) {
+                const subtotalAdult = priceAdultF * this.ticketInfo.count_adult;
+                const subtotalEx = priceExF * this.ticketInfo.count_ex;
+                this.ticketInfo.subtotal = subtotalAdult + subtotalEx;
+            }
+            else {
+                const subtotalAdult = this.ticketInfo.price_adult * this.ticketInfo.count_adult;
+                const subtotalEx = this.ticketInfo.price_ex * this.ticketInfo.count_ex;
+                this.ticketInfo.subtotal = subtotalAdult + subtotalEx;
+            }
         },
-        // toggle購物車
+        // [購物車]開關
         switchCart() {
             this.switchPage = !this.switchPage;
         },
-        //加入購物車
+        //[購物車]加入項目
         createItem() {
             const cartItem = this.ticketInfo;
             console.log('Received item:', this.cartItems);
@@ -241,7 +259,17 @@ export default {
                 this.addToCart(cartItem);
             }
         },
-        //直接購買
+        updateSubtotal(ticketInfo) {
+            // [購物車]調用 action 來更新小計
+            this.Subtotal({
+                itemId: ticketInfo.id,
+                priceAdultF: this.priceAdultF(ticketInfo),
+                priceExF: this.priceExF(ticketInfo),
+                countAdult: ticketInfo.count_adult,
+                countEx: ticketInfo.count_ex,
+            });
+        },
+        //[購物車]直接購買，跳轉至購物車頁面
         buyDirectly() {
             const cartItem = this.ticketInfo;
             if (cartItem) {
@@ -249,31 +277,25 @@ export default {
                 this.$router.push('/ticket_cart');
             }
         },
-        updateSubtotal(ticketInfo) {
-            // 調用 action 來更新小計
-            this.Subtotal({
-                itemId: ticketInfo.id,
-                countAdult: ticketInfo.count_adult,
-                countEx: ticketInfo.count_ex,
-            });
-        },
-        //跳轉至購物車
+        //[購物車]跳轉至購物車頁面
         checkoutCart() {
             if (this.cartItems.length > 0) {
-                this.$router.push('/ticket_cart'); // 购物车不为空，跳转到结账页面
+                this.$router.push('/ticket_cart'); //購物車不為空，跳轉到購物車頁面
             } else {
-                swal("您的購物車是空的", "請先選購票券", "warning", { timer: 2000 });
+                swal("您的購物車是空的", "請先選購票券", "warning", { timer: 2500 });
             }
         },
     },
     computed: {
-        ...mapGetters(['cartItems', 'totalPrice']),
+        ...mapGetters(['ticketData', 'cartItems', 'totalPrice']),
     },
     created() {
-        //接收前一頁的票券id
+        //接收前一頁的票券id--start
         console.log('Received id:', this.$route.params.id);
         const id = parseInt(this.$route.params.id);
         this.ticketInfo = this.getTicketContent(id);
+        console.log('Received item:', this.ticketInfo);
+        //接收前一頁的票券id--end
         this.subTotalpricePreview();//票券小計預覽(未加入購物車)
     }
 

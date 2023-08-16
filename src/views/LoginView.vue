@@ -95,8 +95,6 @@ export default {
             psw: '',
             isEmailValid: true,
             isPasswordValid: true,
-            isActive: false,
-            // showError: false,
 
         }
     },
@@ -105,32 +103,28 @@ export default {
             const regex = /^[a-zA-Z0-9._%+-]+@testmail\.com$/;
             this.isEmailValid = regex.test(this.email);
         },
-        // validatePassword() {
-        //     const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-        //     this.isPasswordValid = regex.test(this.psw);
-        // },
+
         forgetpsw() {
             this.$router.push('/forget_psw');
         },
         //===========================google連結登入==================================
         signInGoogle() {
             signInWithPopup(firebaseAuth, provider)
-                .then((result) => {
+                .then((res) => {
                     // const credential = GoogleAuthProvider.credentialFromResulsignInGoogleedential.accessToken;
-                    this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                    window.alert("google 登入成功！");
-                    const userInfo = result.user;
+                    this.$store.state.isLogin = true;
+                    // this.$store.commit('setIsLogin', true); 
+                    // 使用 commit 來改變狀態
+                    swal("登入成功","歡迎來到日日旅著", "success")
+                    const userInfo = res.user;
                     this.$store.commit('setName', this.email);
                     this.$router.push('/');
-                    // this.$store.commit('setName', userInfo);
-                    // this.$router.push({ name: 'result', params: { 
-                    //     type: 'loginSuccess'
-                    // }})
+                    
                 }).catch((error) => {
                     const errorCode = error.code
                     // this.$Message.warning(errorCode);
                     console.log('google註冊失敗', errorCode);
-                    alert(`google註冊失敗${errorCode}`);
+                    swal("google註冊失敗","${errorCode}", "success")
                 });
         },
         //===========================google帳號登入=========================================
@@ -174,30 +168,29 @@ export default {
                 params.append("psw", this.psw);
                 
                 POST(url,params).then((res) => {
-                    // console.log(res)
+                    // console.log('res',res)
+                    // console.log('res.mem_sex',res.mem_sex)
                     if (res == 0) {
-                        alert("帳號密碼錯誤，請再試一次！");
+                        swal("帳號密碼錯誤", "請再試一次！", "error")
                         
-                        // this.errMsg = '*帳號密碼錯誤，請再試一次'
                     } else {
-                        this.$store.commit("setName", res);
-                        this.$store.commit('setIsLogin', true); // 使用 commit 來改變狀態
-                        window.alert("登入成功！");
+                        // this.$store.commit("setName", res.mem_name);
+                        this.$store.state.isLogin = true;
+                        // this.$store.commit('setIsLogin', true); 
+                        // 使用 commit 來改變狀態
+                        this.$store.commit("setLoginData", res);
+                        swal("登入成功","歡迎來到日日旅著", "success")
                         this.$router.push('/');
 
-                        this.$store.commit("setLoginData", res);
-
-                        // this.$emit("close");
                         this.email = ''
                         this.psw = ''
-                        // this.errMsg = ''
-                        // this.$router.push("/index");
+                        
                     }
                 });
             } else if (this.email === "") {
-                alert('帳號不能為空！');
+                swal("帳號不能為空！", "", "error")
             } else if (this.psw === "") {
-                alert('密碼不能為空！');
+                swal("密碼不能為空！", "", "error")
             } else if (!this.isEmailValid) {
         // 将焦点设置回错误的输入框内
         document.querySelector('.form_warning input').focus();

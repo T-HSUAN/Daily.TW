@@ -20,7 +20,7 @@
                 <div class="post_edit_title">
                     <h3>貼文編輯</h3>
                     <span>狀態：</span>
-                    <span class="status">！待修改</span>
+                    <span class="status">！未通過</span>
                 </div>
 
                 <hr>
@@ -37,15 +37,11 @@
                             </div>
                             <!-- 如果需要修改 -->
                             <div class="review_feedback" v-if="tableData.oott_img_feedback">
-                                ！待修改：{{ tableData.oott_img_feedback }}
+                                ！未通過：{{ tableData.oott_img_feedback }}
                             </div>
                         </div>
                         <div class="photo_preview">
-                            <!-- <img :src=getOottImg(tableData.oott_img) alt=""> -->
-                            <label for="postPhoto">
-                                <input type="file" name="postPhoto" id="postPhoto">
-                                + <br> 點此選擇照片上傳
-                            </label>
+                            <img :src=getOottImg() alt="">
                         </div>
                     </div>
                     <!-- 右方的文字和標籤 -->
@@ -54,7 +50,7 @@
                             <div class="edit_subtitle">
                                 <div class="edit_header">
                                     <h5>*穿搭描述</h5>
-                                    <span class="text_limit edit_instruction">*字數 200/200</span>
+                                    <!-- <span class="text_limit edit_instruction">*字數 200/200</span> -->
                                 </div>
                                 <!-- 如果通過 -->
                                 <div class="review_feedback" v-if="tableData.oott_desc_feedback == null">
@@ -62,16 +58,19 @@
                                 </div>
                                 <!-- 如果需要修改 -->
                                 <div class="review_feedback" v-if="tableData.oott_desc_feedback">
-                                    ！待修改：{{ tableData.oott_desc_feedback }}
+                                    ！未通過：{{ tableData.oott_desc_feedback }}
                                 </div>
                             </div>
-                            <textarea name="" id="" cols="5" rows="10"></textarea>
+                            <div class="post_content">
+                                {{ tableData.oott_desc }}
+                            </div>
+                            <!-- <textarea name="" id="" cols="5" rows="10" :value=tableData.oott_desc></textarea> -->
                         </div>
                         <div class="style_tags">
                             <div class="edit_subtitle">
                                 <div class="edit_header">
                                     <h5>*穿搭風格</h5>
-                                    <span lass="edit_instruction">請選擇1~3個</span>
+                                    <!-- <span lass="edit_instruction">請選擇1~3個</span> -->
                                 </div>
                                 <!-- 如果通過 -->
                                 <div class="review_feedback" v-if="tableData.oott_style_feedback == null">
@@ -79,19 +78,22 @@
                                 </div>
                                 <!-- 如果需要修改 -->
                                 <div class="review_feedback" v-if="tableData.oott_style_feedback">
-                                    ！待修改：{{ tableData.oott_style_feedback }}
+                                    ！未通過：{{ tableData.oott_style_feedback }}
                                 </div>
                             </div>
-                            <label v-for="(styleTag, index) in styleTags" :key="styleTag.index">
+                            <!-- <label v-for="(styleTag, index) in styleTags" :key="styleTag.index">
                                 <input type="checkbox" class="tag" :id="`styleTag-${index}`" />
                                 <span># {{ styleTag }}</span>
-                            </label>
+                            </label> -->
+                            <div class="post_content">
+                                #{{tableData.concatenated_style_name}}
+                            </div>
                         </div>
                         <div class="place_tags">
                             <div class="edit_subtitle">
                                 <div class="edit_header">
                                     <h5>*景點類型</h5>
-                                    <span>請選擇1~3個</span>
+                                    <!-- <span>請選擇1~3個</span> -->
                                 </div>
                                 <!-- 如果通過 -->
                                 <div class="review_feedback" v-if="tableData.oott_type_feedback == null">
@@ -99,13 +101,16 @@
                                 </div>
                                 <!-- 如果需要修改 -->
                                 <div class="review_feedback" v-if="tableData.oott_type_feedback">
-                                    ！待修改：{{ tableData.oott_type_feedback }}
+                                    ！未通過：{{ tableData.oott_type_feedback }}
                                 </div>
                             </div>
-                            <label v-for="(placeTag, index) in placeTags" :key="placeTag.index">
+                            <!-- <label v-for="(placeTag, index) in placeTags" :key="placeTag.index">
                                 <input type="checkbox" class="tag" />
                                 <span># {{ placeTag }}</span>
-                            </label>
+                            </label> -->
+                            <div class="post_content">
+                                #{{tableData.concatenated_place_tag_name}}
+                            </div>
                         </div>
                         <div class="season_tags">
                             <div class="edit_subtitle">
@@ -118,19 +123,26 @@
                                 </div>
                                 <!-- 如果需要修改 -->
                                 <div class="review_feedback" v-if="tableData.oott_season_feedback">
-                                    ！待修改：{{ tableData.oott_season_feedback }}
+                                    ！未通過：{{ tableData.oott_season_feedback }}
                                 </div>
                             </div>
-                            <label v-for="(seasonTag, index) in seasonTags" :key="seasonTag.index">
+                            <!-- <label v-for="(seasonTag, index) in seasonTags" :key="seasonTag.index">
                                 <input type="checkbox" class="tag" />
                                 <span>{{ seasonTag }}</span>
-                            </label>
+                            </label> -->
+                            <div class="post_content">
+                                {{ tableData.oott_season }}
+                            </div>
+                            
                         </div>
                         <div class="button_area">
                             <button class="cancel_btn">
+                                <router-link to="/my_oott">回上一頁</router-link>
+                            </button>
+                            <!-- <button class="cancel_btn">
                                 <router-link to="/my_oott">取消編輯</router-link>
                             </button>
-                            <button class="btn" @click="showPopbox">送出審核</button>
+                            <button class="btn" @click="showPopbox">送出審核</button> -->
                         </div>
                     </div>
                 </div>
@@ -183,9 +195,9 @@ export default {
                     console.error('Error fetching post details:', error);
                 })
         },
-        // getOottImg(imgPath){
-        //     return `../public/oottImg/${imgPath}.png`;  
-        // }
+        getOottImg(){
+            return `../oottImg/${this.tableData.oott_img}`;  
+        }
     },
     created() {
         this.fetchPostDetails();
@@ -225,6 +237,11 @@ export default {
         @media (min-width: 1024px) {
             min-width: 610px;
         }
+        .post_content{
+            line-height: 150%;
+            display: block;
+            margin: 0 20px;
+        }
     }
 
     .post_title {
@@ -255,7 +272,7 @@ export default {
 
     // 內容區域
     .post_content_wrap {
-
+        width: 761px;
         .breadcrumb {
             display: none;
 
@@ -296,6 +313,9 @@ export default {
             align-items: center;
             justify-content: center;
             text-align: center;
+            img{
+                width: 100%;
+            }
 
             input {
                 display: none;
@@ -345,6 +365,7 @@ export default {
 
             .review_feedback {
                 margin-left: 5px;
+                color: #DB4918;
             }
 
         }

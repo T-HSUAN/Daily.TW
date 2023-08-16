@@ -9,12 +9,12 @@ try {
    $sql = "select 
     ot.oott_id, 
     ot.oott_img, 
-    ot.oott_date, 
+    DATE_FORMAT(ot.oott_date, '%Y/%m/%d') AS oott_date, 
     ot.oott_desc,
     ot.oott_view,
     m.mem_name, 
     m.mem_img,
-    GROUP_CONCAT(style_name SEPARATOR ' #') AS concatenated_style_name
+    GROUP_CONCAT(style_name SEPARATOR ',') AS concatenated_style_name
     from oott ot
     join oott_style_connection osc on ot.oott_id = osc.oott_id
     join style s on osc.style_id = s.style_id
@@ -33,6 +33,7 @@ try {
 	}else{ //找得到
 		//取回資料
 		$oottInfoRow = $oottInfo->fetch(PDO::FETCH_ASSOC);
+        $oottInfoRow['concatenated_style_name'] = explode(',', $oottInfoRow['concatenated_style_name']);
 		//送出json字串
 		echo json_encode($oottInfoRow);
 	}

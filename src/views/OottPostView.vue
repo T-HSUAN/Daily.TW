@@ -1,7 +1,7 @@
 <template>
     <div class="oott_post_wrap">
         <div class="breadcrumb">
-            <router-link to="/">
+            <router-link to="/Home">
                 <span>首頁</span>
             </router-link>
             <font-awesome-icon icon="fa-solid fa-chevron-right" />
@@ -50,7 +50,7 @@
                             <span>請選擇1~3個</span>
                         </div>
                         <label v-for="(styleTag, index) in styleTags" :key="styleTag.index">
-                            <input type="checkbox" class="tag" :id="`styleTag-${index}`" v-model="checkedStyleTags[index]"
+                            <input type="checkbox" class="tag" :id="`styleTag-${index}`" :value="index" v-model="checkedStyleTags"
                                 @change="handleTagsChange('style', index)" />
                             <span># {{ styleTag }}</span>
                         </label>
@@ -61,7 +61,7 @@
                             <span>請選擇1~3個</span>
                         </div>
                         <label v-for="(placeTag, index) in placeTags" :key="placeTag.index">
-                            <input type="checkbox" class="tag" :id="`placeTag-${index}`" v-model="checkedPlaceTags[index]"
+                            <input type="checkbox" class="tag" :id="`placeTag-${index}`" :value="index" v-model="checkedPlaceTags"
                                 @change="handleTagsChange('place', index)" />
                             <span># {{ placeTag }}</span>
                         </label>
@@ -71,7 +71,7 @@
                             <h5>*穿搭季節</h5>
                         </div>
                         <label v-for="(seasonTag, index) in seasonTags" :key="seasonTag.index">
-                            <input type="checkbox" class="tag" :id="`seasonTag-${index}`" v-model="checkedSeasonTags[index]"
+                            <input type="checkbox" class="tag" :id="`seasonTag-${index}`" :value="index" v-model="checkedSeasonTags"
                                 @change="handleTagsChange('season', index)" />
                             <span>{{ seasonTag }}</span>
                         </label>
@@ -97,10 +97,10 @@
                         貼文狀態</h3>
                 </div>
                 <div class="button">
-                    <!-- <button class="cancel" @click="showPopbox">取消</button> -->
+                    <button class="cancel" @click="showPopbox">取消</button>
                     <button class="btn" @click="uploadPhoto">
                         <router-link to="/oott" class="confirm_btn">
-                            確定
+                        確定
                         </router-link> 
                     </button>
                 </div>
@@ -116,22 +116,27 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            // 會員ID
+            memId: '',
             // 圖片的上傳狀態
             isPhotoSelected: false,
-
             // 預覽圖片
             selectedFile: null,
-
             //圖片描述
             oottDesc: '',
 
             styleTags: ["日系", "復古", "韓系", "簡約", "美式", "運動", "休閒", "甜美", "可愛", "氣質", "文青", "潮流", "街頭", "中性", "性感"],
-            placeTags: ["親子", "情侶", "小資", "風景", "樂園", "藝文", "山林", "海邊", "放鬆", "懷舊"],
-            seasonTags: ["春季", "夏季", "秋季", "冬季"],
+            placeTags: ["親子", "情侶", "風景", "藝文", "放鬆", "懷舊", "小資", "山林", "農場", "海邊", "樂園"],
+            seasonTags: ["春", "夏", "秋", "冬"],
             // 打勾的 Tags
             checkedStyleTags: [],
             checkedPlaceTags: [],
             checkedSeasonTags: [],
+
+            // 要傳到後台的資料
+            selectedStyle: '',
+            selectedPlace: '',
+            selectedSeason: '',
 
             // 送出後的彈窗
             isPopBoxVisible: false,
@@ -169,15 +174,23 @@ export default {
             if (tagList === 'style') {
                 checkedArray = this.checkedStyleTags;
                 tagsLimit = 3;
+                // 先只能勾選一個
+                this.selectedStyle = index+1;
             } else if (tagList === 'place') {
                 checkedArray = this.checkedPlaceTags;
                 tagsLimit = 3;
+                // 先只能勾選一個
+                this.selectedPlace = index+1;
             } else if (tagList === 'season') {
                 checkedArray = this.checkedSeasonTags
                 tagsLimit = 1;
-            }
+                // 將選中的季節存入變數
+                this.selectedSeason = this.seasonTags[index]; 
 
-            if (checkedArray[index]) {          // 確認勾到的有在資料裡面        
+            } 
+
+            if (checkedArray[index]) {          // 確認勾到的有在資料裡面  
+                      
                 if (this.countCheckedTags(checkedArray) > tagsLimit) {
                     checkedArray[index] = false; // 取消勾選
                 }
@@ -186,22 +199,27 @@ export default {
         countCheckedTags(checkedArray) {
             return checkedArray.filter(tag => tag).length; // 計算有勾選的長度
         },
-// 確認照片上傳
+        // 確認照片上傳
         handleFileChange(event) {
             this.isPhotoSelected = event.target.files.length > 0;
             // 將照片選取狀態改變
             this.selectedFile = event.target.files[0];
-            // 將取得的照片存在selectedFile
+            // 將取得的照片存在selectedFile供預覽用
             this.previewUrl = URL.createObjectURL(this.selectedFile);
         },
 
-// 圖片上傳到後端
-async submitForm(event) {
+        // 圖片上傳到後端
+        async submitForm(event) {
             event.preventDefault();
             try {
                 console.log('Sending request...');
                 const formData = new FormData();
                 formData.append('photo', this.selectedFile);
+                formData.append('oottDesc', this.oottDesc);
+                formData.append('memId', this.memId);
+                formData.append('oottSeason', this.selectedSeason);
+                formData.append('styleId', this.selectedStyle);
+                formData.append('placeId', this.selectedPlace);
 
                 const response = await axios.post(`${this.$URL}/oottPostView.php`, formData, {
                     headers: {
@@ -213,10 +231,14 @@ async submitForm(event) {
                 console.log(error);
             }
         },
-// 圖片存在預覽區，準備上傳
 
-        
 
+
+
+    },
+    mounted() {
+        // 進到頁面後先取得會員資料
+        this.memId = sessionStorage.getItem("mem_id");
     },
 }
 </script>
@@ -279,13 +301,14 @@ async submitForm(event) {
             width: 279px;
             height: 369px;
             margin: auto;
-            img{
+
+            img {
                 width: 100%;
             }
 
             @media (min-width: 1024px) {
-                width: 418.5px;
-                height: 553.5px;
+                width: 279*1.2px;
+                height: 369*1.2px;
             }
 
             border: 1px solid var(--text-default, #6A5D4A);
@@ -541,8 +564,12 @@ async submitForm(event) {
             }
         }
     }
-    .confirm_btn{
-        a,a:active,a:hover{
+
+    .confirm_btn {
+
+        a,
+        a:active,
+        a:hover {
             color: #fefff5;
         }
     }

@@ -7,18 +7,38 @@
                 <img src="@/assets/img/joinus_sm.png" alt="joinus">
             </div>
             <h2>加入旅著</h2>
-
-            <form class="form" id="registryForm"
+            <!-- id="registryForm" -->
+            <form class="form" 
             method="post" 
             @submit="submitForm">
             <div class="photo_group">
-                <div class="member_img">
-                    <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview">
-                </div>
-                <Upload action="//jsonplaceholder.typicode.com/posts/">
+                <label for="postPhoto" class="member_img">
+
+                    
+                        <input v-show="!previewUrl" type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
+                        + <br> <span v-show="!previewUrl">點此選擇照片上傳</span>
+                    
+                    <div class="photo_upload" v-if="previewUrl">
+                        <img :src="previewUrl" alt="Preview">
+                    </div>
+                    
+                    <!-- <input type="file" ref="upFile" style="display: none" @change="handleFileChange">
+                    <img src="../assets/img/photo_stickers.png" alt="上傳照片" @click="togglePreview"> -->
+                </label>
+                <!-- <label for="postPhoto" class="photo_upload" v-if="!isPhotoSelected">
+                        <input type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
+                        + <br> 點此選擇照片上傳
+                    </label>
+                    <div class="photo_upload" v-if="isPhotoSelected">
+                        <img :src="previewUrl" alt="Preview">
+                    </div> -->
+
+
+                <!-- <Upload action="//jsonplaceholder.typicode.com/posts/">
                     <Button class="btn push">上傳大頭貼</Button>
-                </Upload>
+                </Upload> -->
             </div>
+            
 
             <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
             
@@ -136,16 +156,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { POST } from '../plugin/axios.js';
-
+import { mapState } from 'vuex';	
+import { POST } from '../plugin/axios.js';	
 import  axios  from "axios";
 
 export default {
     data() {
         return {
-            
-            member: '',
             selectedYear: '', // 用於存儲選擇的年份值
             yearList: [], // 用於存儲年份選項的數組
             selectedMonth: '',
@@ -160,20 +177,27 @@ export default {
             showHiddenBlock: false,
             showPreview: true,
             isPopBoxVisible: false,
-            // sign_email:'',
-            // sign_psw:'',
             isPasswordMatch:true,
             repeat_psw:'',
             sign_name:'',
             sign_nickname:'',
             sign_phone:'',
+            // 圖片的上傳狀態
+            isPhotoSelected: false,
+            // 預覽圖片
+            selectedFile: null,
+            // 要傳到後台的資料
+            selectedStyle: '',
+            selectedPlace: '',
+            selectedSeason: '',
+            previewUrl: '',
             
         }
     },
     computed:{
-        inputEls(){
-            return Array.from(this.$refs.inputEls) ?? [];
-        },
+        // inputEls(){
+        //     return Array.from(this.$refs.inputEls) ?? [];
+        // },
         ...mapState(['sign_email', 'sign_psw']),
         formValid(){
             return(
@@ -186,6 +210,14 @@ export default {
 
     },
     methods: {
+        // 確認照片上傳
+        handleFileChange(event) {
+            this.isPhotoSelected = event.target.files.length > 0;
+            // 將照片選取狀態改變
+            this.selectedFile = event.target.files[0];
+            // 將取得的照片存在selectedFile供預覽用
+            this.previewUrl = URL.createObjectURL(this.selectedFile);
+        },
         onYearChange() {
             // 在這裡處理年份選項變化後的相關邏輯
             // 例如，您可以根據選擇的年份值做進一步處理
@@ -268,8 +300,13 @@ export default {
         async submitForm(event) {
             event.preventDefault();
 
+            const selectedYear = this.selectedYear;
+            const selectedMonth = this.selectedMonth;
+            const selectedDate = this.selectedDate;
+            const selectedDateStr = `${selectedYear}-${selectedMonth}-${selectedDate}`;
+
             if (this.sign_psw !== this.repeat_psw) {
-            alert('密碼和確認密碼不一致，請重新輸入。');
+                swal("密碼和確認密碼不一致，", "請重新輸入。", "error")
             console.log("psw",this.sign_psw)
             return;
             }
@@ -277,21 +314,26 @@ export default {
 
                 console.log('Sending request...');
                 const formData = new FormData();
+                
+                formData.append('mem_img', this.selectedFile);
+
                 formData.append('sign_email', this.sign_email);
                 formData.append('sign_psw', this.sign_psw);
                 formData.append('repeat_psw', this.repeat_psw);
                 formData.append('sign_name', this.sign_name);
                 formData.append('sign_nickname', this.sign_nickname);
-                // formData.append('sign_birth', this.sign_birth);
+                formData.append('mem_sex', this.mem_sex);
                 formData.append('sign_phone', this.sign_phone);
-                formData.append('img', this.sign_phone);
+                formData.append('mem_birth', selectedDateStr);
+                // formData.append('img', this.sign_phone);
 
                 const response = await axios.post(`${this.$URL}/PostMember.php`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data', // Use multipart/form-data for form data
                     },
                 });
-                window.alert('新增成功!');
+                console.log("mem_sex", this.mem_sex)
+                swal("新增成功!","", "success")
                 // this.isPopBoxVisible = true;
                 console.log('Data sent successfully', response.data);
                 

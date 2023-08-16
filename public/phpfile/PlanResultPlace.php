@@ -7,20 +7,15 @@ try {
     require_once("connectDailyTW.php");
 
     //執行sql指令並取得pdoStatement
-    $sql = "SELECT r.region_name, r.region_weather, p.place_name, p.place_desc, p.place_img1, p.place_img2, p.place_img3, p.place_stay, p.place_addr, p.place_link
+    $sql = "SELECT r.region_name, r.region_weather, p.place_name, p.place_desc, p.place_img1, p.place_img2, p.place_img3, p.place_stay, p.place_addr, p.place_link, GROUP_CONCAT(pt.place_tag_name SEPARATOR ',') AS place_tag_group
     FROM region r JOIN place p ON r.region_id = p.region_id
                     JOIN place_tag_connection ptc ON p.place_id = ptc.place_id
                     JOIN place_tag pt ON pt.place_tag_id = ptc.place_tag_id
-    WHERE r.region_name IN ('臺北', '基隆')
-    AND pt.place_tag_id IN ('2', '5', '8')
-    GROUP BY place_name;
-    ";
+                    GROUP BY p.place_name;";
 
-    //尚未改帶變數
-    $tagAdd = $pdo->prepare($sql);
-    $tagAdd -> bindValue(":place_tag_name", $_POST['place_tag_name']);
-    $tagAdd -> bindValue(":place_tag_desc", $_POST['place_tag_desc']);
-    $tagAdd -> execute();
+    $products = $pdo->query($sql); 
+    $prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($prodRows);
 
 } catch (PDOException $e) {
     echo "錯誤行號 : ", $e->getLine(), "<br>";

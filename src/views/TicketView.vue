@@ -7,17 +7,17 @@
             <img class="banner_man" :src="require('@/assets/img/layout/plan_q1-6.png')" alt="banner" />
             <h1>{{ banner.title }}</h1>
         </div>
-        <Searchbar @Filters="Filters" :tagTexts="tagTexts" :ShowClear="ShowClear" :ClearFilter="ClearFilter">
+        <Searchbar @Filters="Filters" :tagTexts="tagTexts">
             <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
         </Searchbar>
         <!-- 景點票券清單 -->
         <div class="ticket_list" v-if="ticketDisplay.length > 0">
-            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.ticket_id">
+            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
-                    <Ticket :ticketPhoto="item.img" :ticketTitle="item.ticket_name" :ticketLocation="item.location"
-                        :ticketTags="item.ticket_tag" :originalPrice="item.price_adultO" :FinalPrice="item.ticket_adult"
-                        :discountTag="item.ticket_discount" />
+                    <Ticket :ticketPhoto="`/placeImg/${item.img}`" :ticketTitle="item.Name" :ticketLocation="item.location"
+                        :ticketTags="item.ticket_tag" :originalPrice="item.price_adult" :FinalPrice="priceAdultF(item)"
+                        :discountTag="item.discount" />
                 </router-link>
                 <div class="add_cart">
                     <button class="btn" @click="createItem(index)">
@@ -58,7 +58,7 @@
                         <label for="count_adult">
                             <p class="name">全票&nbsp;</p>
                             <p class="price">
-                                (NT$ {{ item.price_adultF }} /張)
+                                (NT$ {{ priceAdultF(item) }} /張)
                             </p>
                         </label>
                         <select v-model="item.count_adult" name="ticket_count_adult" class="count_adult"
@@ -71,10 +71,10 @@
                         </select>
                     </div>
                     <!-- 優惠票券項目 -->
-                    <div class="ticket_ex">
+                    <div class="ticket_ex" v-if="item.price_ex">
                         <label for="count_ex">
                             <p class="name">優待票&nbsp;</p>
-                            <p class="price">(NT$ {{ item.price_exF }} /張)</p>
+                            <p class="price">(NT$ {{ priceExF(item) }} /張)</p>
                         </label>
                         <select v-model="item.count_ex" name="ticket_count_ex" class="count_ex"
                             @change="updateSubtotal(item)">
@@ -102,14 +102,14 @@
                 <button class="btn" @click="checkoutCart">結帳</button>
             </div>
         </div>
+        <button @click="test">test123</button>
     </div>
 </template>
 <script>
 import Searchbar from "@/components/Searchbar.vue";
 import Ticket from "@/components/TicketVertical.vue";
 import { mapActions, mapGetters } from 'vuex';
-// import ticketData from "@/store/ticketData.js";
-import swal from "sweetalert";
+import swal from 'sweetalert';
 import axios from 'axios';
 export default {
     components: {
@@ -151,6 +151,20 @@ export default {
     },
     methods: {
         ...mapActions(['fetchTicketData', 'addToCart', 'removeFromCart', 'Subtotal']),
+        priceAdultF(item) {
+            if (item.discount !== null) {
+                return Math.round(item.discount * (item.price_adult / 10));
+            } else {
+                return item.price_adult;
+            }
+        },
+        priceExF(item) {
+            if (item.discount !== null) {
+                return Math.round(item.discount * (item.price_ex / 10));
+            } else {
+                return item.price_ex;
+            }
+        },
         Filters() {
             const areaSelected = this.$store.state.filter.areaSelected;
             const selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
@@ -169,61 +183,6 @@ export default {
                 return areaMatch && tagMatch && nameMatch;
             });
         },
-        // TicketsFilter() {
-        //     if (this.$store.state.filter.searchText === "") {
-        //         return this.ticketData;
-        //     } else {
-        //         const regexText = this.$store.state.filter.searchText
-        //             .split("")
-        //             .join(".*");
-        //         const regex = new RegExp(regexText, "i");
-        //         return this.ticketData.filter((item) =>
-        //             regex.test(item.Name)
-        //         );
-        //     }
-        // },
-        // //地區篩選
-        // AreaFilter() {
-        //     let selectedTags = this.$store.state.filter.selectedTags;
-        //     let AreaSelected = this.$store.state.filter.areaSelected;
-        //     if ((AreaSelected === "所有地區") && (selectedTags.length === 0)) {
-        //         this.ticketDisplay = this.ticketData;
-        //         console.log('[篩選]地區選取:', AreaSelected);
-        //     } else {
-        //         this.ticketDisplay = this.ticketData.filter(item => {
-        //             return item.location.includes(AreaSelected);
-        //         });
-        //     }
-        // },
-        // // 標籤篩選
-        // TagsFilter() {
-        //     let selectedTags = this.$store.state.filter.selectedTags;
-        //     let AreaSelected = this.$store.state.filter.areaSelected;
-        //     selectedTags = this.tagTexts.filter(tag => tag.selected).map(tag => tag.Name);
-        //     console.log('[篩選]標籤選取:', selectedTags);
-        //     if ((selectedTags.length === 0) && (AreaSelected === "所有地區")) {
-        //         this.ticketDisplay = this.ticketData;
-        //     } else {
-        //         this.ticketDisplay = this.ticketData.filter(item => {
-        //             // 檢查票券的標籤是否包含所有被選取的標籤
-        //             return selectedTags.every(selectedTag => item.tag.includes(selectedTag));
-        //         });
-        //     }
-        // },
-        // //文字模糊搜尋
-        // TicketsFilter() {
-        //     if (this.$store.state.filter.searchText === "") {
-        //         this.ticketDisplay = this.ticketData;
-        //     } else {
-        //         const regexText = this.$store.state.filter.searchText
-        //             .split("")
-        //             .join(".*");
-        //         const regex = new RegExp(regexText, "i");
-        //         this.ticketDisplay = this.ticketData.filter((item) =>
-        //             regex.test(item.Name)
-        //         );
-        //     }
-        // },
         //清除篩選
         ClearFilter() {
             this.$store.state.filter.areaSelected = "所有地區";
@@ -249,6 +208,8 @@ export default {
             // 調用 action 來更新小計
             this.Subtotal({
                 itemId: item.id,
+                priceAdultF: this.priceAdultF(item),
+                priceExF: this.priceExF(item),
                 countAdult: item.count_adult,
                 countEx: item.count_ex,
             });
@@ -258,30 +219,35 @@ export default {
             if (this.cartItems.length > 0) {
                 this.$router.push('/ticket_cart'); // 購物車不為空時，跳轉至購物車頁面
             } else {
-                swal("您的購物車是空的", "請先選購票券", "warning", { timer: 2000 });
+                swal("您的購物車是空的", "請先選購票券", "warning", { timer: 2500 });
             }
+        },
+        test() {
+            console.log(this.ticketDisplay);
+            console.log(typeof (this.ticketDisplay[0].count_adult));
         },
     },
     computed: {
         ...mapGetters(['ticketData', 'cartItems', 'totalPrice']),
         ShowClear() {
-            if (this.ticketDisplay != this.ticketData) {
-                console.log(this.ticketDisplay);
-                return true;
-            } else {
+            if (this.ticketDisplay.length === this.ticketData.length) {
                 return false;
+            } else {
+                return true;
             }
         },
     },
     created() {
-        this.ticketDisplay = this.ticketData;
     },
     mounted() {
-        this.fetchTicketData();// 调用 Vuex 的 fetchTicketData action
+        this.fetchTicketData().then(() => {
+            this.ticketDisplay = this.ticketData; // 進入頁面時，將商品資料載入至畫面
+        });
     },
 };
 </script>
 <style lang="scss" scoped>
+@import "@/assets/scss/main.scss";
 @import "@/assets/scss/baseAndMixin.scss";
 @import "@/assets/scss/page/ticketview.scss";
 </style>

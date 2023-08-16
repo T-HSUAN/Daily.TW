@@ -218,16 +218,22 @@ export default {
         },
         // view ui 限制最多選3個
         changeTag() {
+            if (!Array.isArray(this.selectValue)) {
+                this.selectValue = [this.selectValue];
+            }
+
             if (this.selectValue.length < 3) {
                 return false;
             }
+
             const data = this.selectValue;
+
             this.$nextTick(() => {
                 if (this.selectValue.length < data.length) {
                     return false;
                 }
                 this.selectValue = data;
-            })
+            });
         },
         limitCheckedTags(checkedArray,index){
             let tagsLimit = 1;     // 限制選1個
@@ -261,20 +267,20 @@ export default {
             // 陣列改存table id
             this.checkedPlaceTags = this.checkedPlaceTags.forEach((isChecked, index) => {
                 if (isChecked) {
-                    this.placeTagIdMapping.push(this.placeTags[index].place_tag_id);
+                    this.placeTagIdMapping.push(this.placeTags[index].place_tag_name);
                 }
             });
-            this.checkedStyleTags = this.checkedStyleTags.forEach((isChecked, index) => {
-                if (isChecked) {
-                    this.styleTagIdMapping.push(this.styleTags[index].style_id);
-                }
-            });
+            // this.checkedStyleTags = this.checkedStyleTags.forEach((isChecked, index) => {
+            //     if (isChecked) {
+            //         this.styleTagIdMapping.push(this.styleTags[index].style_id);
+            //     }
+            // });
             // Construct the query parameters
             const query = {
                 selectValue: this.selectValue,
                 checkedPlaceTags: this.placeTagIdMapping,
                 checkedSexTag: this.checkedSexTag,
-                checkedStyleTags: this.styleTagIdMapping,
+                checkedStyleTags: this.checkedStyleTags,
             };
 
             // Use Vue Router to navigate to the target route with query parameters

@@ -4,7 +4,7 @@ import { URL } from "@/assets/js/common.js";
 
 export default createStore({
     state: {
-        ticketData: [],
+        ticketData: [],//從資料庫匯入的票券資料
         area: ["所有地區", "新北", "臺北", "基隆", "桃園", "新竹", "苗栗", "臺中", "彰化", "雲林", "嘉義", "南投", "臺南", "高雄", "屏東", "宜蘭", "花蓮", "臺東", "澎湖", "金門", "馬祖",
         ],
         // 篩選內容(各自設定不同名稱，不要共用)
@@ -18,9 +18,9 @@ export default createStore({
         selectAll: false,//購物車全選
         name: '登入 | 註冊',
         isLogin: false,
-        memberInfoAll: { info: '' },
         sign_email:'',
         sign_psw:'',
+        // memberInfoAll: { info: '' },
 
     },
     getters: {
@@ -59,7 +59,7 @@ export default createStore({
             if (!CartItemInCart) {
                 state.cartItems.push(cartItem);
             } else {
-                swal("票券已加入購物車", "請點擊確認全票與優待票購買數量。", "error", { timer: 1800 });
+                swal("票券已加入購物車", "請至購物車確認全票與優待票購買數量。", "error", { timer: 2500 });
             }
         },
         addToCartDirectly(state, cartItem) {
@@ -121,51 +121,50 @@ export default createStore({
         restoreFinalCartItems(state, finalCartItems) {
             state.finalCartItems = finalCartItems;
         },
+        
         setName(state, payload) {
             state.name = payload
         },
-        setIsLogin(state, value) {
-            state.isLogin = value;
-        },
-        //接收回傳的使用者資訊
+        //登入後狀態改變
+        // setIsLogin(state, value) {
+        //     state.isLogin = value;
+        // },
+        //接收回傳的使用者資訊, 從LoginView.vue
         setLoginData(state, userInfo) {
+            //從資料庫獲取的使用者資料
             state.userInfo = userInfo
-            // state.memberInfoAll.info = userInfo
+            //MainHeader.vue取得mem_id檢查是否有登入狀態
             sessionStorage.setItem("mem_id", userInfo.mem_id);
-            state.isLogin = true
+            // sessionStorage.setItem("mem_name", userInfo.mem_name);
+            // state.isLogin = true
         },
         logOut(state) {
             state.isLogin = false
             sessionStorage.removeItem("mem_id")
         },
-        // setLoginData(state, userInfo) {
-        //     state.userInfo = userInfo
-        //     // state.memberInfoAll.info = userInfo
-        //     sessionStorage.setItem("mem_id", userInfo.mem_id);
-        //     state.isLogin = true
-        // },
+        //取得SignUpInfo的Email輸入值
         setAccount(state, account) {
             state.sign_email = account;
-          },
-          setPassword(state, password) {
+        },
+        setPassword(state, password) {
             state.sign_psw = password;
-          },
+        },
         //後端資料
         // setUserInfo(state, userInfo) {
         //     sessionStorage.setItem("cus_no", userInfo.cus_no);
-        //     state.memberInfoAll.info = userInfo
+            // state.memberInfoAll.info = userInfo
         //     state.isLogin = true
         // },
         // sendMemDetail(state, data) {
-        //     state.memberInfoAll.shop = data[0]
-        //     state.memberInfoAll.giftcard = data[1]
-        //     state.memberInfoAll.share = data[2]
+            // state.memberInfoAll.shop = data[0]
+            // state.memberInfoAll.giftcard = data[1]
+            // state.memberInfoAll.share = data[2]
         // }
 
     },
     actions: {
         fetchTicketData({ commit }) {
-            axios.get('http://localhost/DailyTW_Backstage/public/phpfile/TicketList.php')
+            axios.get('http://localhost/Daily.TW/public/phpfile/TicketData.php')
                 .then(response => {
                     commit('SET_TICKET_DATA', response.data);
                     console.log('[store]成功連接ticketdata:', this.state.ticketData);
@@ -186,11 +185,11 @@ export default createStore({
         clearCart({ commit }) {
             commit('clearCart');
         },
-        Subtotal({ commit, state }, { itemId, countAdult, countEx }) {
+        Subtotal({ commit, state }, { itemId, priceAdultF, priceExF, countAdult, countEx }) {
             const item = state.cartItems.find((item) => item.id === itemId);
             if (item) {
-                const priceAdultF = item.price_adultF;
-                const priceExF = item.price_exF;
+                item.price_adultF = priceAdultF;
+                item.price_exF = priceExF;
                 item.count_adult = countAdult;
                 item.count_ex = countEx;
                 item.subtotal = countAdult * priceAdultF + countEx * priceExF;
@@ -198,12 +197,13 @@ export default createStore({
                 commit('updateItemCount', item);
             }
         },
+        //將SignUpInfo的Email輸入值, 輸出給SignUpInfo的Email輸入框
         updateAccount({ commit }, account) {
             commit('setAccount', account);
-          },
-          updatePassword({ commit }, password) {
+        },
+        updatePassword({ commit }, password) {
             commit('setPassword', password);
-          },
+        },
     },
     modules: {},
 });

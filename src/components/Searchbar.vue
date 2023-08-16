@@ -45,7 +45,8 @@
                 <input type="checkbox" class="tag" v-model="item.selected" @click="switchTagSelection(item)" />
                 <span>{{ item.Name }}</span>
             </label>
-            <slot></slot><!-- 可以在自己頁面加上清除篩選 class名:clear_filter(已設定css) 
+            <slot></slot>
+            <!-- 可以在自己頁面加上清除篩選 class名:clear_filter(已設定css) 
             <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>-->
         </div>
         <!-- 使用說明；在自己頁面使用添加以下標籤內容
@@ -76,7 +77,7 @@ export default {
             ]),
             required: true,
         },
-        Filters: Function,
+        // Filters: Function,
         ClearFilter: Function,
     },
     data() {

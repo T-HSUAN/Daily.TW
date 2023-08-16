@@ -9,7 +9,7 @@ try {
    $sql = "select 
     ot.oott_id, 
     ot.oott_img, 
-    ot.oott_date, 
+    DATE_FORMAT(ot.oott_date, '%Y/%m/%d') AS oott_date, 
     m.mem_name, 
     m.mem_img,
     GROUP_CONCAT(style_name SEPARATOR ' #') AS concatenated_style_name
