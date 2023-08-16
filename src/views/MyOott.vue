@@ -13,14 +13,14 @@
                         
                         <div class="status">
                             <h5>您有 </h5>
-                            <h5 class="edit_status_number">2</h5>
+                            <h5 class="edit_status_number">1</h5>
                             <h5> 則貼文未通過</h5>
                             <h5 class="status_number">1</h5>
-                            <h5> 則貼文審核中</h5>
+                            <h5> 則貼文審核中</h5>  
                         </div>
 
                         <div class="status">
-                            <h5 class="status_number">2</h5>
+                            <h5 class="status_number">1</h5>
                             <h5> 則貼文已發布</h5>
                         </div>
                     </div>
