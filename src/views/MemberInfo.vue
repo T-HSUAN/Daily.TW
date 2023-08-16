@@ -15,7 +15,9 @@
                 <div class="member_data">
                     <div class="photo_group">
                         <div class="member_img">
-                            <img src="../assets/img/photo_stickers.png" alt="上傳照片">
+                            <!-- <img src="../assets/img/photo_stickers.png" alt="上傳照片"> -->
+                            <img src="/profileImg/1.png" alt="上傳照片">
+                            <!-- public\profileImg\1.png -->
                         </div>
                         <button class="btn push" @click="toggleHiddenBlock">上傳大頭貼</button>
                     </div>
@@ -23,9 +25,9 @@
                     :key="index">
                         <label :for="item.id">{{ item.text }}</label>
                         <input type="text" 
-                        :id="item.id"
-                        v-model="item.tag" 
-                        :placeholder="item.placeholder"/>
+                        :id="item.id" 
+                        :placeholder="item.placeholder"
+                        :value="item.value"/>
                     </div>
                     <label for="year">生日</label> 
                     <div class="date_group">
@@ -77,7 +79,7 @@
                     <label :for="way.id">{{ way.name }}</label>
                     <input type="text"
                     :id="way.id" 
-                    v-model="way.tag"
+                    :value="way.value"
                     :placeholder="way.placeholder"/>
                     </div>
                     <div class="btn_group">
@@ -182,7 +184,8 @@
                         margin: 0 0 $sp4;
                         box-shadow: -3px 3px 4px 0px rgba(106, 93, 74, 0.50);
                         @media (min-width: 768px) {
-                            margin: 0 $sp5;
+                            padding: 0 $sp5;
+                            margin: auto;
                         }
                     }
                 }
@@ -330,13 +333,15 @@ export default{
                     text:'姓名',
                     placeholder:'請輸入姓名',
                     id:'name',
-                    tag:''
+                    tag:'',
+                    value:'Jeffery'
                 },
                 2:{
                     text:'暱稱',
                     placeholder:'請輸入暱稱',
                     id:'nickname',
-                    tag:''
+                    tag:'',
+                    value:'Jeffery'
                 },
            },
            contact:{
@@ -344,13 +349,13 @@ export default{
                     name:'連絡電話',
                     placeholder:'請輸入電話',
                     id:'phone',
-                    tag:''
+                    value:'0973012998'
                 },
                 2:{
                     name:'Email',
                     placeholder:'請輸入Email',
                     id:'email',
-                    tag:''
+                    value:'Jeffery@testmail.com'
                 },
            },
            member:'',
@@ -360,7 +365,7 @@ export default{
            monthList: [],
            selectedDate: '',
            dateList: [],
-           isMan: false,
+           isMan: true,
            isWomen: false,
            isSecret: false, 
         }
@@ -374,7 +379,7 @@ export default{
         onDayChange() {},
         populateYearList() {
             const currentYear = new Date().getFullYear();
-            const startYear = 1970;
+            const startYear = 1979;
 
             for (let year = startYear; year <= currentYear; year++) {
               this.yearList.push(year.toString());
@@ -427,11 +432,11 @@ export default{
         selectedYear(newVal) {
             this.populateDateList(newVal, this.selectedMonth);
             // 將日期選擇設置為第一天（1號）
-            this.selectedDate = '1';
+            this.selectedDate = '18';
         },
         selectedMonth(newVal) {
             this.populateDateList(this.selectedYear, newVal);
-            this.selectedDate = '1';
+            this.selectedDate = '10';
         },
         // 監聽資料屬性變化，保證至少選一個
         isMan(newValue) {

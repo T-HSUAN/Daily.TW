@@ -118,7 +118,7 @@ export default {
                     swal("登入成功","歡迎來到日日旅著", "success")
                     const userInfo = res.user;
                     this.$store.commit('setName', this.email);
-                    this.$router.push('/');
+                    this.$router.push('/Home');
                     
                 }).catch((error) => {
                     const errorCode = error.code
