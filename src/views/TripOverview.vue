@@ -27,7 +27,7 @@
         <section class="list">
             <div class="trip_list" v-if="tripDisplay.length > 0">
                 <div class="trip_card" v-for="(item, index) in tripDisplay" :key="item.id">
-                    <Trip :tripCardPhoto="item.img" :tripCardTags="item.tag" :tripCardTitle="item.name"
+                    <Trip :tripCardId="item.id" :tripCardPhoto="item.img" :tripCardTags="item.tag" :tripCardTitle="item.name"
                         :tripCardDesc="item.desc" :tripCardAuthor="item.author" :tripCardDate="item.date" />
                 </div>
             </div>
@@ -82,13 +82,13 @@ export default {
             const searchText = this.$store.state.filter.searchText;
             this.tripDisplay = this.tripData.filter(item => {
                 // 地區篩選
-                const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
+                const areaMatch = areaSelected === "所有地區" || item.tag.includes(areaSelected);
 
                 // 標籤篩選
                 const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
 
                 // 文字模糊搜索
-                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
+                const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.name);
 
                 // 返回结果
                 return areaMatch && tagMatch && nameMatch;
@@ -104,16 +104,16 @@ export default {
         },
 
     },
-    mounted() {
-        GET(`${this.$URL}/tripOverview.php`)
-            .then((res) => {
-                console.log(res);
-                this.tripData = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    },
+    // mounted() {
+    //     GET(`${this.$URL}/tripOverview.php`)
+    //         .then((res) => {
+    //             console.log(res);
+    //             this.tripData = res;
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // },
     computed: {
         ShowClear() {
             if (this.tripDisplay != this.tripData) {
