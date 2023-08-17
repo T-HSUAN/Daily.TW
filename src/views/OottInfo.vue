@@ -211,7 +211,7 @@ export default {
             color: $textColor_white;
             border: 2px solid $textColor_default;
             background: $textColor_default;
-            cursor: pointer;
+            cursor:default;
         }
     }
 
