@@ -76,7 +76,7 @@
                     </div>
                     
                     <div class="oottCards">
-                        <h2>＃文青</h2>
+                        <h2>＃甜美</h2>
                         <div class="theme_block">
                             <div class="card_list">
                                  <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper">
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="oottCards">
-                        <h2>#潮流</h2>
+                        <h2>#氣質</h2>
                         <div class="theme_block">
                             <div class="card_list">
                                 <swiper :effect="'cards'" :grabCursor="true" :modules="modules" class="mySwiper">
