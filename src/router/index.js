@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Entrance from '@/views/Entrance.vue'
 import TicketInfo from "@/views/TicketInfo.vue";
 import store from '@/store/index.js'
-
+import swal from "sweetalert";
 
 const routesUser = [
     {//入口
@@ -102,7 +102,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員再進行購買", "warning");
                 return { name: 'home' }
             }
         },
@@ -117,7 +117,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員再進行購買", "warning");
                 return { name: 'home' }
             }
         },
@@ -176,7 +176,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員", "warning");
                 return { name: 'home' }
             }
         },
@@ -190,7 +190,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員", "warning");
                 return { name: 'home' }
             }
         },
@@ -203,7 +203,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員", "warning");
                 return { name: 'home' }
             }
         },
@@ -216,7 +216,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員", "warning");
                 return { name: 'home' }
             }
         },
@@ -255,7 +255,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
-                swal("請先登入會員", "", "error")
+                swal("您尚未登入", "請先登入會員再進行投稿", "warning");
                 return { name: 'home' }
             }
         },
