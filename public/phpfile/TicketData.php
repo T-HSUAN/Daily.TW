@@ -7,17 +7,39 @@ try {
 	require_once("connectDailyTW.php");
 	
 	//執行sql指令並取得pdoStatement
-    $sql = "select t.ticket_id 'id', t.ticket_name 'Name', r.region_name 'location', concat('#',group_concat(distinct pt.place_tag_name separator '#')) as Tags, p.place_desc, p.place_addr 'addr', p.place_link 'addr_link', p.place_img1 'img', t.ticket_adult 'price_adult', t.ticket_ex 'price_ex', t.ticket_discount 'discount', t.ticket_desc 'desc', t.ticket_notice 'notice', t.ticket_date 'date', t.ticket_status 'status', t.ticket_top 'top', 
+    $sql = "SELECT
+    t.ticket_id AS 'id',
+    t.ticket_name AS 'Name',
+    r.region_name AS 'location',
+    CONCAT('#', GROUP_CONCAT(DISTINCT pt.place_tag_name SEPARATOR '#')) AS Tags,
+    p.place_desc,
+    p.place_addr AS 'addr',
+    p.place_link AS 'addr_link',
+    p.place_img1 AS 'img',
+    t.ticket_adult AS 'price_adult',
+    t.ticket_ex AS 'price_ex',
+    t.ticket_discount AS 'discount',
+    t.ticket_desc AS 'desc',
+    t.ticket_notice AS 'notice',
+    t.ticket_date AS 'date',
+    t.ticket_status AS 'status',
+    t.ticket_top AS 'top',
     '0' AS 'count_adult', -- 添加一個虛擬欄位，用來計算數量
     '0' AS 'count_ex', -- 添加一個虛擬欄位，用來計算數量
     '0' AS 'subtotal', -- 添加一個虛擬欄位，用來計算小計
-    true AS 'selected' -- 添加一個虛擬欄位，用來確認購物車勾選狀態
-    from ticket t 
-    join place p on t.place_id = p.place_id
-    join place_tag_connection ptc on p.place_id = ptc.place_id
-    join place_tag pt on ptc.place_tag_id = pt.place_tag_id
-    join region r on p.region_id = r.region_id
-    group by t.ticket_id";
+    TRUE AS 'selected' -- 添加一個虛擬欄位，用來確認購物車勾選狀態
+    FROM
+        ticket t 
+    JOIN
+        place p ON t.place_id = p.place_id
+    JOIN
+        place_tag_connection ptc ON p.place_id = ptc.place_id
+    JOIN
+        place_tag pt ON ptc.place_tag_id = pt.place_tag_id
+    JOIN
+        region r ON p.region_id = r.region_id
+    GROUP BY
+        t.ticket_id;";
 	$ticketList = $pdo->query($sql); 
 	$ticketRows = $ticketList->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($ticketRows, JSON_NUMERIC_CHECK);
