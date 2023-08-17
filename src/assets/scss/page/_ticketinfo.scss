@@ -74,6 +74,18 @@
         }
     }
 
+    .cart_overlay {
+        display: none;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgb(106, 93, 74, 0.4);
+        transition: .5s ease-in-out;
+        z-index: 9998;
+    }
+
     .cart_sidebar {
         box-sizing: border-box;
         width: 300px;
@@ -95,6 +107,7 @@
             top: 0px;
             background: $textColor_tint;
             border-radius: 50% 0 0 50%;
+            cursor: pointer;
 
             .cart_switch {
                 width: 28px;
@@ -105,7 +118,6 @@
                 left: 10px;
                 background: $textColor_white;
                 border-radius: 50%;
-                cursor: pointer;
             }
 
             .numTag {
@@ -253,6 +265,7 @@
     }
 
     .showCartSidebar {
+        display: block;
         right: 0;
         transition: right .5s ease-in-out;
     }

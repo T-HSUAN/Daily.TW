@@ -16,9 +16,8 @@
         </div>
         <!-- 票券造型呈現，1200以下無造型 -->
         <TicketSingleCard :ticketPhoto="getPlaceImg(ticketInfo.img)" :ticketTitle="ticketInfo.Name"
-            :ticketLocation="ticketInfo.location" :ticketTags="ticketInfo.tag" :ticketDetails="ticketInfo.place_desc"
-            :showAddr="true" :ticketAddr="ticketInfo.addr" :ticketAddrLink="ticketInfo.ticket_addr_link"
-            :discountTag="ticketInfo.discount" />
+            :ticketLocation="ticketInfo.location" :ticketTags="ticketInfo.Tags" :ticketDetails="ticketInfo.place_desc"
+            :showAddr="true" :ticketAddr="ticketInfo.addr" :ticketAddrLink="AddrLink" :discountTag="ticketInfo.discount" />
         <!-- 票券資訊區 -->
         <div class="ticket_info">
             <!-- 內容描述 -->
@@ -117,6 +116,8 @@
                 <button class="btn" @click="buyDirectly()">直接購買</button>
             </div>
         </div>
+        <!-- 購物車overlay -->
+        <div :class="['cart_overlay', { 'showCartSidebar': switchPage }]" @click="switchCart"></div>
         <!-- 購物車清單(側邊) -->
         <div :class="['cart_sidebar', { 'showCartSidebar': switchPage }]">
             <div class="cart_icon" @click="switchCart">
@@ -294,6 +295,13 @@ export default {
     },
     computed: {
         ...mapGetters(['ticketData', 'cartItems', 'totalPrice']),
+        AddrLink() {
+            if (this.ticketInfo.addr_link === null) {
+                return this.ticketInfo.addr_link = 'https://www.google.com.tw/maps/search/' + this.ticketInfo.Name;
+            } else {
+                return this.ticketInfo.addr_link;
+            }
+        },
     },
     created() {
         //接收前一頁的票券id--start
