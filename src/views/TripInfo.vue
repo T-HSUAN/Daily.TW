@@ -119,9 +119,9 @@
                         </oottCard>
                     </div>
                 </div>
-                <a href="/oott">
+                <router-link to="/oott">
                     <button class="btn">查看更多</button>
-                </a>
+                </router-link>
             </div>
         </section>
 
@@ -879,6 +879,11 @@ export default {
         getMemImg(memImg){
             return process.env.BASE_URL + 'profileImg/' + memImg;
         }
+    },
+    beforeRouteUpdate(to, from, next) {
+        // 在這裡重新獲取資料或更新組件的狀態
+        this.routeData = to.params.data; // 假設你的資料是透過路由參數傳遞的
+        next();
     },
     mounted() {
         const tripId = this.$route.params.trip_id;
