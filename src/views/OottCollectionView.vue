@@ -10,7 +10,7 @@
                 <hr>
                 <div class="card_wrap">
                     <div class="card" v-for="item in tableData" key="oott.oottCardAuthor">
-                        <OottCard
+                        <OottCardConst
                         :oottCardId="item.oott_id"
                         :oottPhoto= "getOottImg(item.oott_img)"
                         :oottCardTags= "item.concatenated_style_name"
@@ -93,14 +93,14 @@
 
 <script>
 import {GET} from '@/plugin/axios'
-import OottCard from "@/components/OottCard.vue";
+import OottCardConst from "@/components/OottCardConst.vue";
 import Sidenav from "@/components/Sidenav.vue";
 
 // import oottDataForUser from "@/store/oottDataForUser.js";
 
 export default{
     components:{
-        OottCard,
+        OottCardConst,
         Sidenav,
     },
     data() {
