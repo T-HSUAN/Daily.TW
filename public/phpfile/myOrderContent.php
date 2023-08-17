@@ -6,11 +6,12 @@ try {
 	require_once("connectDailyTW.php");
 
 	//執行sql指令並取得pdoStatement
-	$sql = "SELECT t.ticket_name, i.ticket_adult_count, i.ticket_ex_count, i.total
+	$sql = "SELECT t.ticket_name, i.ticket_adult_count, i.ticket_ex_count, i.total, o.ord_id, o.ord_date, o.ord_sum, o.ord_status, o.ord_mem, m.mem_id
 			FROM ord AS o
+			JOIN member AS m ON o.ord_mem = m.mem_id
 			JOIN item AS i ON o.ord_id = i.item_id
 			JOIN ticket AS t ON i.item_ticket_id = t.ticket_id
-			WHERE o.ord_id = :ord_id
+			-- WHERE o.ord_id = :ord_id
 			";
 		
 	$itemInfo = $pdo->prepare($sql); 
@@ -25,6 +26,8 @@ try {
 		$itemInfoRow = $itemInfo->fetchAll(PDO::FETCH_ASSOC);
 		//送出json字串
 		echo json_encode($itemInfoRow);
+		echo json_encode(array("selectrdItem" => $itemInfoRow)); // 將名稱改成 selectrdItem
+
 	}
 
 } catch (Exception $e) {
