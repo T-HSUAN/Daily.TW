@@ -144,101 +144,89 @@
                 border-bottom: 1px solid $textColor_default;
                 padding: 0 0 $sp1;
                 
-                h2{ 
+                h3{ 
                     margin: 0; 
-                }
-                p{
-                    font-size: $sm_p;
-                    @media (min-width: 768px) {
-                        font-size: $xl_p;
-                    }
                 }
             }
             
             .member_data{
+                outline: 1px solid red;
                 @media (min-width: 768px) {
-                    outline: 1px solid red;
                     max-width: 435px;
                     box-sizing: border-box;
                     margin: 0 200px 0 150px;
                 }
                 .photo_group {
-                display: flex;
-                justify-content: center;
-                align-items: end;
-               
-                
-                // @media (min-width: 768px) {
-                    // flex-direction: row;
-                    // justify-content: center;
-                // }
-    
-                .member_img {
-                    width: 100px;
                     display: flex;
-                    flex-direction: column;
-                    margin: 0 0 $sp2;
-                    cursor: pointer;
-    
-                    @media (min-width: 768px) {
-                        width: 200px;
-                    }
-    
-                    img {
-                        border: 2px solid $textColor_default;
-                        border-radius: 50%;
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                        cursor: pointer;
-                        @media (min-width: 768px) {
-                            // border-radius: 50%;
-                            // width: 200px;
-                            // height: 200%;
-                        }
-                    }
-                    .post_sticker{
+                    justify-content: center;
+                    align-items: end;
+                    .member_img {
                         width: 100px;
-                        height: 100px;
+                        display: flex;
+                        flex-direction: column;
+                        margin: 0 0 $sp2;
                         cursor: pointer;
+                        
                         @media (min-width: 768px) {
                             width: 200px;
-                            height: 200px;
+                        }
+                        
+                        img {
+                            border: 2px solid $textColor_default;
                             border-radius: 50%;
+                            width: 100%;
+                            height: 100%;
+                            display: block;
+                            cursor: pointer;
+                            @media (min-width: 768px) {
+                                // border-radius: 50%;
+                                // width: 200px;
+                                // height: 200%;
+                            }
+                        }
+                        .post_sticker{
+                            width: 100px;
+                            height: 100px;
+                            cursor: pointer;
+                            @media (min-width: 768px) {
+                                width: 200px;
+                                height: 200px;
+                                border-radius: 50%;
+                                
+                            }
+                        }
+                        
+                        input[type="file"]::-webkit-file-upload-button {
+                            visibility: hidden;
+                        }
+                        input[type="file"]::before {
+                            content: url(''); 
+                            display: inline-block;
+                            width: 16px; /* 调整图片宽度 */
+                            height: 16px; 
+                            cursor: pointer;
+                            vertical-align: middle;
+                            margin-right: 5px; /* 可选，根据需要调整图片和文本之间的间距 */
+                            // @media (min-width: 768px) {
+                                //     width: 20px;
+                                //     height: 200px;
+                                // }
+                            }
                             
+                            
+                            .photo_upload{
+                                width: 100px;
+                                height: 100px;
+                                @media (min-width: 768px) {
+                                    width: 200px;
+                                    height: 200px;
+                                }
+                            }
                         }
-                    }
-                    
-                    input[type="file"]::-webkit-file-upload-button {
-                        visibility: hidden;
-                    }
-                    input[type="file"]::before {
-                        content: url(''); 
-                        display: inline-block;
-                        width: 16px; /* 调整图片宽度 */
-                        height: 16px; 
-                        cursor: pointer;
-                        vertical-align: middle;
-                        margin-right: 5px; /* 可选，根据需要调整图片和文本之间的间距 */
-                        // @media (min-width: 768px) {
-                        //     width: 20px;
-                        //     height: 200px;
-                        // }
-                    }
-                    
-                    
-                    .photo_upload{
-                        width: 100px;
-                        height: 100px;
-                        @media (min-width: 768px) {
-                            width: 200px;
-                            height: 200px;
-                        }
-                    }
+                        
+                        
                 }
-    
-            }
-                
+                    
                 label{
                     font-size: $sm_h4;
                     font-weight: 700;
@@ -360,7 +348,7 @@
             }
             
         }
-        }
+            }
         }
     }
     
