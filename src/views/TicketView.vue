@@ -11,8 +11,8 @@
             <div class="clear_filter" v-show="ShowClear" @click="ClearFilter">x 清除所有篩選</div>
         </Searchbar>
         <!-- 景點票券清單 -->
-        <div class="ticket_list" v-if="ticketDisplay.length > 0">
-            <div class="ticket_card" v-for="(item, index) in ticketDisplay" :key="item.id">
+        <div class="ticket_list" v-if="ticketsDisplay.length > 0">
+            <div class="ticket_card" v-for="(item, index) in ticketsDisplay" :key="item.id">
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
                     <Ticket :ticketPhoto="getPlaceImg(item.img)" :ticketTitle="item.Name" :ticketLocation="item.location"
@@ -268,6 +268,8 @@ export default {
                 // 返回结果
                 return areaMatch && tagMatch && nameMatch;
             });
+            console.log('[篩選]篩選結果:', this.ticketDisplay);
+            return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
         },
         dataLength() {
             return this.ticketDisplay.length;

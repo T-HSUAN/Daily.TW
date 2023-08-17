@@ -19,7 +19,7 @@
                 <h3 class="Title">付款明細</h3>
                 <!-- 購買內容 -->
                 <div class="item">
-                    <div class="details" v-for="(item, index) in finalCartItems" :key="index">
+                    <div class="details" v-for="(item, index) in FilterFinalCartItems" :key="index">
                         <h4 class="title">
                             {{ item.Name }}
                         </h4>
@@ -146,7 +146,12 @@ export default {
         ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice']),
         Item() {
             console.log(this.finalCartItems);
-
+        },
+        FilterFinalCartItems() {
+            // 假設 finalCartItems 是包含所有項目的陣列
+            const FilterFinalCartItems = this.finalCartItems.filter(item => item.subtotal !== 0);
+            console.log('最終清單:', FilterFinalCartItems);
+            return FilterFinalCartItems;
         },
     },
 };
