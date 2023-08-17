@@ -74,3 +74,37 @@
 
     
 }
+
+//-----------修改sweetalert套件樣式------------
+
+.swal-title,
+.swal-text{
+    font-family: $fontFamily;
+    color: $textColor_default;
+}
+.swal-button {
+    font-family: $fontFamily;
+    font-size: $xl_h5 !important;
+    padding: 8px 24px;
+    border-radius: 50px;
+    background-color: $textColor_default;
+    color: $textColor_white;
+    border: 2px solid $textColor_default;
+    text-shadow: none;
+}
+.swal-button--cancel{
+    &:focus{
+        box-shadow: none;
+    }
+    &:hover{
+        background-color: $textColor_tint !important;
+    }
+}
+.swal-button--confirm{
+    &:focus{
+        box-shadow: none;
+    }
+    &:hover{
+        background-color: $default_red !important;
+    }
+}
