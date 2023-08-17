@@ -279,6 +279,7 @@ export default {
     },
     mounted() {
         this.fetchTicketData().then(() => {
+            this.ticketDisplay = this.ticketData;
             this.ticketsDisplay;
         });
     },
