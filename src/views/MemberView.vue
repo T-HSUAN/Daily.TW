@@ -37,19 +37,7 @@
                             <button class="my_btn">1則待修改|1則審核中</button>
                         </div>
                         <div class="card_list">
-                            <div class="card_wrap">
-                            <div class="card" v-for="item in myOott" :key="index">
-                            <MyOottCard
-                                :oottImg="item.oott_img"
-                                :oottCardTags="item.oottCardTags"
-                                :oottCardDate="item.oott_date_only"
-                                :oottStatus="item.oott_review_status"
-                                :oottId="item.oott_id"
-                            />
-                            </div>
-                            <!-- <Page :total="18" /> -->
-                        </div>
-                            <!-- <div class="card">
+                            <div class="card">
                                 <div class="pic">
                                     <a href="#">
                                         <img src="~@/assets/img/oott_01.png" alt="卡片照片"/>
@@ -66,7 +54,7 @@
                                     />
                                     <a href="#">編輯</a>
                                 </div>
-                            </div> -->
+                            </div>
                             <!-- <div class="card">
                                 <div class="pic">
                                     <a href="#"
@@ -114,38 +102,18 @@
                             <h3>行程收藏</h3>
                         </div>
                         <div class="trip_block">
-                            <!-- <div
-                        class="card"
-                        v-for="item in tripDataForUser"
-                        key="tripCollection"
-                    >
-                        <TripCardConst
-                            :tripCardId="item.trip_id"
-                            :tripCardPhoto="getPlaceImg(item.place_img1)"
-                            :tripCardTags="
-                                combineTags(
-                                    item.region_name,
-                                    item.place_tag_name
-                                )
-                            "
-                            :tripCardTitle="item.trip_name"
-                            :tripCardDesc="item.trip_desc"
-                            :tripCardAuthor="item.trip_author"
-                            :tripCardDate="item.trip_date"
-                        />
-                    </div> -->
                             <trip-card
                                 class="trip_box"
-                                v-for="(trip, index) in tripCards" :key="index"
-                                :tripCardId="trip.trip_id"
-                                :tripCardPhoto="getPlaceImg(trip.trip_img)" 
-                                :tripCardTags="trip.trip_region + '・' + trip.trip_tag"
-                                :tripCardTitle="trip.trip_name" 
-                                :tripCardDesc="trip.trip_desc"
-                                :tripCardAuthor="trip.trip_author" 
-                                :tripCardDate="trip.trip_date_new" />
-                                
-                            </div>
+                                v-for="(card, index) in tripCards"
+                                :key="index"
+                                :tripCardPhoto="card.tripCardPhoto"
+                                :tripCardTags="card.tripCardTags"
+                                :tripCardTitle="card.tripCardTitle"
+                                :tripCardDesc="card.tripCardDesc"
+                                :tripCardAuthor="card.tripCardAuthor"
+                                :tripCardDate="card.tripCardDate"
+                            />
+                        </div>
                         <router-link to="/trip_collection_view" class="btn">所有行程</router-link>
                     </div>
                     <div class="oott_collect">
@@ -187,10 +155,10 @@
                         </thead>
                         <tbody>
                             <tr v-for="order in orders" :key="order.id">
-                                <td>{{ order.ord_id }}</td>
-                                <td>{{ order.ord_date }}</td>
-                                <td>{{ order.ord_status }}</td>
-                                <td>{{ order.ord_sum }}</td>
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.orderDate }}</td>
+                                <td>{{ order.status }}</td>
+                                <td>{{ order.total }}</td>
                                 <td>
                                     <router-link :to="'/myorder/' + order.id">前往訂單<font-awesome-icon icon="fa-solid fa-arrow-right"/></router-link>
                                 </td>
@@ -207,46 +175,47 @@
 <script>
 import { GET } from '@/plugin/axios'
 import Sidenav from "@/components/Sidenav.vue";
-import TripCardConst from "@/components/TripCardConst.vue";
+import TripCard from "@/components/TripCard.vue";
 import oottCard from "@/components/OottCard.vue";
 export default {
     components: {
         Sidenav,
-        TripCardConst,
+        TripCard,
         oottCard,
     },
     data() {
         return {
             memberData:[],
             myOott:[],
+            tripDataForUser:[],
             tripCards: [
-                // {
-                //     tripCardPhoto: "https://picsum.photos/237/191?random=1",
-                //     tripCardTags: "#懷舊 #文青 #景觀",
-                //     tripCardTitle: "新竹懷舊之旅",
-                //     tripCardDesc:
-                //         "新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳，自然景觀，推薦大家可以一同順遊，除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。",
-                //     tripCardAuthor: "小編A",
-                //     tripCardDate: "2023/05/01",
-                // },
-                // {
-                //     tripCardPhoto: "https://picsum.photos/237/191?random=2",
-                //     tripCardTags: "#親子 #農場",
-                //     tripCardTitle: "宜蘭芬多精一日遊",
-                //     tripCardDesc:
-                //         "不知道要去哪裡玩嗎? 精選六個宜蘭知名景點，有吃又有玩，無論是親子出遊、朋友相聚或者是情侶約會保證您都能玩得很盡興。",
-                //     tripCardAuthor: "小編B",
-                //     tripCardDate: "2023/05/02",
-                // },
-                // {
-                //     tripCardPhoto: "https://picsum.photos/237/191?random=3",
-                //     tripCardTags: "#藝術 #賞花 #親子",
-                //     tripCardTitle: "新北藝術一日遊",
-                //     tripCardDesc:
-                //         "來去新北一日遊,鶯歌、三峽這裡也有蠻多特色景點,不只是逛老街,也可以安排個鶯歌景點一日遊,順便遊三峽景點。不管是季節限定的賞花景點,還是親子同遊必拍,又或者是IG熱門打卡點,通通好玩報你知。",
-                //     tripCardAuthor: "小編A",
-                //     tripCardDate: "2023/05/03",
-                // },
+                {
+                    tripCardPhoto: "https://picsum.photos/237/191?random=1",
+                    tripCardTags: "#懷舊 #文青 #景觀",
+                    tripCardTitle: "新竹懷舊之旅",
+                    tripCardDesc:
+                        "新竹內灣旅行去，來內灣一日遊要怎麼玩呢？除了內灣老街外，週邊也有一些亮點，像是景觀餐廳、文青景點、咖啡廳，自然景觀，推薦大家可以一同順遊，除了玩內灣，如果有時間，尖石一帶也有一些不錯的景點，可以順著路線玩上去。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023/05/01",
+                },
+                {
+                    tripCardPhoto: "https://picsum.photos/237/191?random=2",
+                    tripCardTags: "#親子 #農場",
+                    tripCardTitle: "宜蘭芬多精一日遊",
+                    tripCardDesc:
+                        "不知道要去哪裡玩嗎? 精選六個宜蘭知名景點，有吃又有玩，無論是親子出遊、朋友相聚或者是情侶約會保證您都能玩得很盡興。",
+                    tripCardAuthor: "小編B",
+                    tripCardDate: "2023/05/02",
+                },
+                {
+                    tripCardPhoto: "https://picsum.photos/237/191?random=3",
+                    tripCardTags: "#藝術 #賞花 #親子",
+                    tripCardTitle: "新北藝術一日遊",
+                    tripCardDesc:
+                        "來去新北一日遊,鶯歌、三峽這裡也有蠻多特色景點,不只是逛老街,也可以安排個鶯歌景點一日遊,順便遊三峽景點。不管是季節限定的賞花景點,還是親子同遊必拍,又或者是IG熱門打卡點,通通好玩報你知。",
+                    tripCardAuthor: "小編A",
+                    tripCardDate: "2023/05/03",
+                },
             ],
             ootts: [],
             orders: [
@@ -254,18 +223,11 @@ export default {
                 // { id: 4, orderDate: '2023/07/23', status: '已發貨', total: '$375元' },
                 // { id: 3, orderDate: '2023/07/22', status: '已完成', total: '$250元' },
                 // { id: 2, orderDate: '2023/07/21', status: '已完成', total: '$420元' },
-                // { id: 1, orderDate: '2023/07/20', status: '已取消', total: '$150元' }
+                { id: 1, orderDate: '2023/08/04', status: '已完成', total: '$800元' }
             ]
         };
     },
     methods: {
-        // combineTags(regionName, placeTagName) {
-        //     // Combine regionName and placeTagName with a space between them
-        //     return `${regionName} #${placeTagName}`;
-        // },
-        getPlaceImg(placeImg){
-            return process.env.BASE_URL + 'placeImg/' + placeImg;
-        },
         getOottImg(oottImg) {
             return process.env.BASE_URL + 'oottImg/' + oottImg;
         },
@@ -293,11 +255,12 @@ export default {
         GET(`${this.$URL}/memberViewTrip.php`)
             .then((res) => {
                 console.log(res);
-                this.tripCards = res;
+                this. tripDataForUser = res;
             })
             .catch((err) => {
                 console.log(err);
             }),
+
         GET(`${this.$URL}/memberViewOott.php`)
             .then((res) => {
                 console.log(res);
@@ -305,19 +268,8 @@ export default {
             })
             .catch((err) => {
                 console.log(err);
-            }),
-        GET(`${this.$URL}/memberViewOrder.php`)
-            .then((res) => {
-                console.log(res);
-                this.orders = res;
             })
-            .catch((err) => {
-                console.log(err);
-            })
-            
     },
-    
-    
     
 };
 </script>
