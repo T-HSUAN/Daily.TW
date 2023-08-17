@@ -19,7 +19,7 @@
                         <label for="email">Email
                             <span v-if="!isEmailValid"
                             class="error"
-                            >請輸入...@testmail.com</span>
+                            >請輸入.com</span>
                         </label>
                         <input type="text" v-model="sign_email"  
                         placeholder='請輸入EMAIL'
@@ -36,6 +36,7 @@
                         placeholder='請輸入密碼(英數混合6-12碼)'
                         @blur="validatePassword"
                         :class="{ form_warning: !isPasswordValid }"
+                        maxlength="12"
                         required>
                         
                             <div class="space"></div>
@@ -82,7 +83,7 @@
             ...mapActions(['updateAccount', 'updatePassword']),
 
             validateEmail() {
-                const regex = /^[a-zA-Z0-9._%+-]+@testmail\.com$/;
+                const regex = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/;
                 this.isEmailValid = regex.test(this.sign_email);
             },
             validatePassword() {

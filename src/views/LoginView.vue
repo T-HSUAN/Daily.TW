@@ -20,7 +20,7 @@
                         <label>Email
                             <span v-if="!isEmailValid"
                             class="error"
-                            >請輸入...@testmail.com</span>
+                            >請輸入.com</span>
                         </label>
                         <input type="text" 
                         v-model="email" 
@@ -28,15 +28,14 @@
                         placeholder='請輸入EMAIL'
                         @blur="validateEmail"
                         :class="{ form_warning: !isEmailValid }">
-                        <!-- <p v-if="!isEmailValid">帳號格式錯誤！</p> -->
+
                         <label>密碼</label>
                         <input type="password" 
                         v-model="psw" 
-                        placeholder='請輸入密碼 ' 
+                        placeholder='請輸入密碼 '
+                        maxlength="12" 
                         required>
-                        <!-- (英數混合6-12碼) -->
-                        <!-- @input="validatePassword"
-                        :class="{ form_warning: !isPasswordValid }" -->
+                        
                         <div class="login_action">
                             <label for="remember">
                                 <input type="checkbox" name="remember" id="remember">
@@ -55,7 +54,7 @@
                             >
                                 登入
                             </button>
-                            <!-- :class="{ btn: isEmailValid }" -->
+
                         </div>
                     </div>
                     <div class="register">
@@ -100,7 +99,7 @@ export default {
     },
     methods: {
         validateEmail() {
-            const regex = /^[a-zA-Z0-9._%+-]+@testmail\.com$/;
+            const regex = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}$/;
             this.isEmailValid = regex.test(this.email);
         },
 

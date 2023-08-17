@@ -7,7 +7,7 @@
                     <img src="@/assets/img/joinus_sm.png" alt="joinus">
                 </div>
                 <h2>加入旅著</h2>
-                <!-- id="registryForm" -->
+
                 <form class="form" 
                 method="post" 
                 @submit="submitForm">
@@ -21,24 +21,8 @@
                         </div>
                         
                     </label>
-                    <!-- <label for="postPhoto" class="photo_upload" v-if="!isPhotoSelected">
-                            <input type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
-                            + <br> 點此選擇照片上傳
-                        </label>
-                        <div class="photo_upload" v-if="isPhotoSelected">
-                            <img :src="previewUrl" alt="Preview">
-                        </div> -->
-    
-    
-                    <!-- <Upload action="//jsonplaceholder.typicode.com/posts/">
-                        <Button class="btn push">上傳大頭貼</Button>
-                    </Upload> -->
                 </div>
-                
-    
-                <!-- <div class="preview" v-if="showPreview" @click="hidePreview">
-                
-            </div> -->
+
                         <label for="sign_email">Email</label>
                         <input type="text" v-model="sign_email"
                         placeholder="請輸入EMAIL"
@@ -65,7 +49,7 @@
                         required
                         @blur="checkPasswordMatch"
                         :class="{ form_warning: !isPasswordMatch }">
-                        <!-- :class沒效果 -->
+
                         <label for="sign_name">姓名</label>
                         <input type="text" v-model="sign_name"
                         placeholder="請輸入姓名"
