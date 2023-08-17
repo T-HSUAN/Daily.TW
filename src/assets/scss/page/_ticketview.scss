@@ -142,22 +142,17 @@
         justify-content: center;
     }
 
-    //底部頁數
-    // .page_link {
-    //     display: flex;
-    //     justify-content: center;
-
-    //     .page {
-    //         display: block;
-    //         margin: $sp4 $sp1;
-    //         text-align: center;
-    //         color: $textColor_default;
-
-    //         &:hover {
-    //             color: $default_blue;
-    //         }
-    //     }
-    // }
+    .cart_overlay {
+        display: none;
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgb(106, 93, 74, 0.4);
+        transition: .5s ease-in-out;
+        z-index: 9998;
+    }
 
     .cart_sidebar {
         box-sizing: border-box;
@@ -180,6 +175,7 @@
             top: 0px;
             background: $textColor_tint;
             border-radius: 50% 0 0 50%;
+            cursor: pointer;
 
             .cart_switch {
                 width: 28px;
@@ -190,7 +186,6 @@
                 left: 10px;
                 background: $textColor_white;
                 border-radius: 50%;
-                cursor: pointer;
             }
 
             .numTag {
@@ -338,10 +333,12 @@
     }
 
     .showCartSidebar {
+        display: block;
         right: 0px;
         transition: right .5s ease-in-out;
     }
 }
+
 
 @media all and (min-width: $md) {
     .ticket_page {

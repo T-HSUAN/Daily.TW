@@ -81,6 +81,7 @@ export default createStore({
                 itemIndex.subtotal = 0;
                 state.cartItems.splice(index, 1);
             }
+            state.finalCartItems = state.cartItems;
         },
         clearCart(state) {
             // 清空購物車
