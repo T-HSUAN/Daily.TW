@@ -186,6 +186,12 @@ export default {
         updateFinalCart() {
             // 選中的商品加入最終購物明細清單
             const finalCartItems = this.cartItems.filter(item => item.selected);
+            console.log('[最終購物明細清單]', finalCartItems);
+            finalCartItems.forEach(item => {
+                if (item.count_adult === 0) {
+                    item.count_adult = 1;
+                }
+            });
             // 將最終購物明細清單存儲在 Vuex 或其他地方
             this.$store.commit('updateFinalCartItems', finalCartItems);
         },
