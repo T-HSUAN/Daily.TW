@@ -4,12 +4,12 @@
             <img :src="require('@/assets/img/layout/big.svg')" alt="logo" />
         </div>
         <div class="content">
-            <a href="https://tibamef2e.com/chd102/g5/Home">
+            <router-link to="/Home">
                 <img :src="require('@/assets/img/entrance_boy.png')" alt="">
                 <div class="front">
                     <p>前台</p>
                 </div>
-            </a>
+            </router-link>
             <a href="https://tibamef2e.com/chd102/g5/back/">
                 <img :src="require('@/assets/img/entrance_boy.png')" alt="">
                 <div class="back">

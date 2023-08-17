@@ -161,7 +161,7 @@ export default {
 
         login() {
             if (this.email !== "" && this.psw !== "") {
-                let url = `${this.$URL}/login.php`;
+                let url = `${this.$URL_MAC}/login.php`;
                 let params = new URLSearchParams();
                 params.append("email", this.email);
                 //"email"跟login.php的$email = $_POST["email"]; 做呼應
