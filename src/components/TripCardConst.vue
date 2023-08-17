@@ -68,7 +68,7 @@ export default {
             display: inline-block;
             width: 29px;
             height: 47px;
-            background-image: url(~@/assets/img/bookmark_default.svg);
+            background-image: url(~@/assets/img/bookmark_clicked.svg);
             background-size: 100%;
             background-repeat: no-repeat;
             position: absolute;
@@ -88,7 +88,7 @@ export default {
             display: inline-block;
             width: 29px;
             height: 47px;
-            background-image: url(~@/assets/img/bookmark_clicked.svg);
+            background-image: url(~@/assets/img/bookmark_default.svg);
             background-size: 100%;
             background-repeat: no-repeat;
             cursor: pointer;
