@@ -102,6 +102,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
@@ -116,6 +117,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
@@ -174,6 +176,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
@@ -187,6 +190,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
@@ -199,6 +203,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
@@ -211,6 +216,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
@@ -249,6 +255,7 @@ const routesUser = [
         beforeEnter: () => {
             console.log(store.state.isLogin)
             if (store.state.isLogin === false) {
+                swal("請先登入會員", "", "error")
                 return { name: 'home' }
             }
         },
