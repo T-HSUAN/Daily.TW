@@ -35,12 +35,10 @@
                             <div class="order_box">
                                 <div>{{ ticket.type1 }}</div>
                                 <div>{{ ticket.quantity1 }}</div>
-                                <div>{{ ticket.price1 }}</div>
                             </div>
                             <div class="order_box">
                                 <div>{{ ticket.type2 }}</div>
                                 <div>{{ ticket.quantity2 }}</div>
-                                <div>{{ ticket.price2 }}</div>
                             </div>
                             <div class="last"><span>小計</span>{{ ticket.subtotal }}</div>
                         </div>
@@ -70,59 +68,15 @@ export default {
         orders: [
           {
             orderNumber: "1",
-            orderDate: "2023/08/04",
+            orderDate: "2023-08-04",
             orderStatus: "已完成",
-            total: "$800元",
+            total: "$800",
             expanded: false,
             tickets: [
-              { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x4", price1:"800", type2 :"半票 (NT$50 / 張)", quantity2:"0", price2:"0", subtotal: "NT$800" },
-            //   { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
+              { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x4", type2 :"半票 (NT$50 / 張)", quantity2:"0", subtotal: "NT$800" },
+              
             ],
           },
-        //   {
-        //     orderNumber: "4",
-        //     orderDate: "2023/07/23",
-        //     orderStatus: "已發貨",
-        //     total: "$375元",
-        //     expanded: false,
-        //     tickets: [
-        //       { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-        //       { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
-        //     ],
-        //   },
-        //   {
-        //     orderNumber: "3",
-        //     orderDate: "2023/07/22",
-        //     orderStatus: "已完成",
-        //     total: "$250元",
-        //     expanded: false,
-        //     tickets: [
-        //       { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-        //       { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
-        //     ],
-        //   },
-        //   {
-        //     orderNumber: "2",
-        //     orderDate: "2023/07/21",
-        //     orderStatus: "已完成",
-        //     total: "$420元",
-        //     expanded: false,
-        //     tickets: [
-        //       { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-        //       { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
-        //     ],
-        //   },
-        //   {
-        //     orderNumber: "1",
-        //     orderDate: "2023/07/20",
-        //     orderStatus: "已取消",
-        //     total: "$150元",
-        //     expanded: false,
-        //     tickets: [
-        //       { name: "班比山丘門票", type1:"全票 (NT$200 / 張)", quantity1: "x2", price1:"400", type2 :"半票 (NT$50 / 張)", quantity2:"x1", price2:"50", subtotal: "NT$450" },
-        //       { name: "蘭陽博物館門票", type1:"全票 (NT$91 / 張)", quantity1: "x2", price1:"182", type2 :"半票 (NT$41 / 張)", quantity2:"x1", price2:"41", subtotal: "NT$223" },
-        //     ],
-        //   },
           // Add more orders here
         ],
       };
@@ -140,15 +94,10 @@ export default {
   };
   </script>
   
-  <style lang="scss" scoped>
+  <style lang="scss">
   @import "@/assets/scss/baseAndMixin.scss";
 
   .myorder{
-    background: $bgColor_tint;
-    padding-top: 74px;
-    @media (min-width: 768px) {
-        padding-top: 200px;
-    }
     .lg_area {
         width: 90%;
         margin: 0 auto;
