@@ -46,7 +46,7 @@
                 </div>
                 <!-- 票券總計 -->
                 <div class="total">
-                    <p>({{ finalCartItems.length }}項票券) 總計</p>
+                    <p>({{ FilterFinalCartItems.length }}項票券) 總計</p>
                     <p>
                         NT$&nbsp;
                         <span class="total-price"> {{ finalCartTotalPrice }} </span>
