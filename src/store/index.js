@@ -204,9 +204,9 @@ export default createStore({
                 commit('updateItemCount', item);
             }
         },
-        // updateorderInfo({ commit }, orderInfo) {
-        //     commit('updateorderInfo', orderInfo);
-        // },
+        submitOrderInfo({ commit }, orderInfo) {
+            commit('updateOrderInfo', orderInfo);
+        },
         //將SignUpInfo的Email輸入值, 輸出給SignUpInfo的Email輸入框
         updateAccount({ commit }, account) {
             commit('setAccount', account);
