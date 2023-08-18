@@ -806,6 +806,7 @@
 
                     @media (min-width: 768px) {
                         justify-content: center;
+                        overflow-x: visible;
                     }
 
                     .tripCard {

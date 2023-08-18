@@ -485,7 +485,7 @@
                         flex-direction: column;
                         flex-wrap: wrap;
                         gap: 32px;
-                        overflow-x: hidden;
+                        overflow-x: visible;
                         overflow-y: visible;
                     }
     
