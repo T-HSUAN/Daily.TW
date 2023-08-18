@@ -34,7 +34,7 @@
                         <div class="oott_container">
                             <div class="my_title">
                                 <h2>我的穿搭</h2>
-                                <button class="my_btn">1則待修改|1則審核中</button>
+                                <button class="my_btn">1則待修改</button>
                             </div>
                             <div class="card_list">
                                 <div class="card_wrap">
