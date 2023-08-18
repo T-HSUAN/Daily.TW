@@ -36,8 +36,9 @@
 .entrance {
     width: 100%;
     max-width: 1200px;
-    height: 100vh;
+    min-height: 100vh;
     margin: auto;
+    padding: $sp4 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,12 +54,17 @@
     }
 
     .content {
-        margin: 0 auto;
+        margin: $sp4 auto;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
+        gap: $sp3;
+        @media (min-width: $md) {
+            gap: $sp10;
+        }
 
         a {
-            margin: 0 $sp10;
+            // margin: 0 $sp10;
             position: relative;
 
             &:hover img {
@@ -75,12 +81,16 @@
 
             .front,
             .back {
-                width: 350px;
-                height: 370px;
+                width: 315px;
+                height: 333px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 position: relative;
+                @media (min-width: $md) {
+                    width: 350px;
+                    height: 370px;
+                }
 
                 p {
                     font-size: 48px;
@@ -90,10 +100,12 @@
 
             .front {
                 background: url("@/assets/img/front.svg") no-repeat center;
+                background-size: contain;
             }
 
             .back {
                 background: url("@/assets/img/back.svg") no-repeat center;
+                background-size: contain;
             }
 
             img {
@@ -115,6 +127,7 @@
         justify-content: center;
 
         p {
+            padding: 0 $sp3;
             font-size: 18px;
             font-weight: 400;
             line-height: 1.2;
