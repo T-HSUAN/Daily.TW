@@ -157,10 +157,10 @@
     .cart_sidebar {
         box-sizing: border-box;
         width: 300px;
-        height: 730px;
-        padding: $sp3 $sp4;
+        height: 700px;
+        padding: $sp3 $sp4 0;
         position: fixed;
-        top: 150px;
+        top: 100px;
         right: -300px;
         color: $textColor_default;
         background: $textColor_tint;
@@ -299,7 +299,7 @@
 
         .total {
             position: relative;
-            margin: $sp3 0;
+            margin-top: $sp5;
 
             p {
                 font-size: 16px;
