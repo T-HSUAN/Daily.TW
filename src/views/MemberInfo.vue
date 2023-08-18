@@ -16,7 +16,7 @@
                         <div class="photo_group">
                             <div class="member_img">
                                 <!-- <img src="../assets/img/photo_stickers.png" alt="上傳照片"> -->
-                                <img src="/profileImg/1.png" alt="上傳照片">
+                                <img src="~@/assets/img/member_info_1.png" alt="上傳照片">
                                 <!-- public\profileImg\1.png -->
                             </div>
                             <button class="btn push" @click="toggleHiddenBlock">上傳大頭貼</button>
