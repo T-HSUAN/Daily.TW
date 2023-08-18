@@ -104,6 +104,7 @@ export default {
         text-align: center;
         @media (min-width: 1200px) {
             width: 1175px;
+            padding-top: 195px;
         }
         h2 {
             margin: 41px auto;
@@ -136,7 +137,7 @@ export default {
         .bg_order{
             padding: 0 0 100px;
             @media (max-width:768px) {
-                padding: 40px 0;
+                padding: 40px 0 ;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -148,7 +149,7 @@ export default {
         .order {
             box-sizing: border-box;
             @media (min-width:768px) {
-                margin:40px 0 10px 0;
+                margin:40px 0 400px 0;
                 .details_button_md{
                     display: none;
                 }

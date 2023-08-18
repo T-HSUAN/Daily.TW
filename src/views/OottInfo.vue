@@ -104,27 +104,34 @@ export default {
         getMemImg(memImg) {
             return process.env.BASE_URL + 'profileImg/' + memImg ;
         },
-    },
-    mounted() {
-        const oottId = this.$route.params.oott_id;
-        GET(`${this.$URL}/oottInfo.php?oott_id=${oottId}`)
-            .then((res) => {
-                this.oottInfo = res;
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        getData(){
+            const oottId = this.$route.params.oott_id;
+            GET(`${this.$URL}/oottInfo.php?oott_id=${oottId}`)
+                .then((res) => {
+                    this.oottInfo = res;
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
 
-        GET(`${this.$URL}/oottInfoMore.php?oott_id=${oottId}`)
-            .then((res) => {
-                console.log(res);
-                this.ootts = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+            GET(`${this.$URL}/oottInfoMore.php?oott_id=${oottId}`)
+                .then((res) => {
+                    console.log(res);
+                    this.ootts = res;
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
     },
+    watch: {
+        '$route.params.oott_id': {
+            handler: 'getData',
+            deep: true,
+            immediate: true
+        }
+    }
 
 };
 
