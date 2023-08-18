@@ -109,7 +109,7 @@
                     <button class="btn" @click="SubmitOrderInfo">確認付款</button>
                 </router-link>
             </div>
-            <button @click="test">test</button>
+            <!-- <button @click="test">test</button> -->
         </div>
     </div>
 </template>
