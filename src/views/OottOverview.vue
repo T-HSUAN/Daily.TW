@@ -54,10 +54,10 @@ export default {
 
             tagTexts: [
                 { Name: "#運動" ,selected: false},
-                { Name: "#派對" ,selected: false},
+                { Name: "#韓系" ,selected: false},
                 { Name: "#日系" ,selected: false},
                 { Name: "#性感" ,selected: false},
-                { Name: "#懷舊" ,selected: false},
+                { Name: "#文青" ,selected: false},
                 { Name: "#休閒" ,selected: false},
                 { Name: "#可愛" ,selected: false},
                 { Name: "#潮流" ,selected: false},
@@ -130,14 +130,18 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "@/assets/scss/baseAndMixin.scss";
 
 .oottOverview {
     background: $bgColor_tint;
     padding-top: 74px;
+    
     @media (min-width: 768px) {
         padding-top: 200px;
+    }
+    .multi_filter{
+            display: none !important;
     }
     .no_result{
         padding: 40px;
@@ -146,6 +150,7 @@ export default {
         font-size: $xl_h4;
         }
     }
+   
     .breadcrumb {
         display: flex;
         align-items: center;
@@ -195,6 +200,9 @@ export default {
         text-align: center;
         margin: $sp10 auto $sp5;
     }
+    
+      
+    
 
     .breadcrumb {
         max-width: $xl;
