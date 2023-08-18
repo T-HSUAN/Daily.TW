@@ -66,12 +66,16 @@
         width: 90%;
         margin: auto;
         padding-top: 74px;
+        padding-bottom: 100px;
         @media (min-width: 768px) {
             padding-top: 200px;
         }
         .collection_container{
             display: flex;
             gap: 30px;
+            .collection_content{
+                width: 100%;
+            }
         }
 
 
@@ -144,6 +148,9 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            @media (min-width: 768px) {
+                justify-content: left;
+            }
         }
 
     }
