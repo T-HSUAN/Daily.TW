@@ -16,6 +16,7 @@ export default createStore({
         cartItems: [],//購物車
         finalCartItems: [], // 最終購物明細清單
         selectAll: true,//購物車全選
+        orderInfo: {},//訂單資訊
         name: '登入 | 註冊',
         isLogin: false,
         sign_email: '',
@@ -46,6 +47,9 @@ export default createStore({
         },
         finalCartTotalPrice(state) {
             return state.finalCartItems.reduce((total, item) => total + item.subtotal, 0);
+        },
+        orderInfo(state) {
+            return state.orderInfo;
         },
     },
     mutations: {
@@ -121,7 +125,9 @@ export default createStore({
         restoreFinalCartItems(state, finalCartItems) {
             state.finalCartItems = finalCartItems;
         },
-
+        updateOrderInfo(state, orderInfo) {
+            state.orderInfo = orderInfo;
+        },
         setName(state, payload) {
             state.name = payload
         },
@@ -197,6 +203,9 @@ export default createStore({
                 // 調用 mutation 來更新購物車中這個商品的數據
                 commit('updateItemCount', item);
             }
+        },
+        submitOrderInfo({ commit }, orderInfo) {
+            commit('updateOrderInfo', orderInfo);
         },
         //將SignUpInfo的Email輸入值, 輸出給SignUpInfo的Email輸入框
         updateAccount({ commit }, account) {

@@ -72,15 +72,15 @@
                 <h3>訂購者資訊</h3>
                 <div class="name">
                     <p class="title">訂購者</p>
-                    <p class="content">{{ member.Name }}</p>
+                    <p class="content">{{ memberData.mem_name }}</p>
                 </div>
                 <div class="phone_num">
                     <p class="title">手機號碼</p>
-                    <p class="content">{{ member.phone }}</p>
+                    <p class="content">{{ memberData.mem_phone }}</p>
                 </div>
                 <div class="email">
                     <p class="title">Email</p>
-                    <p class="content">{{ member.email }}</p>
+                    <p class="content">{{ memberData.mem_email }}</p>
                 </div>
             </div>
             <div class="recipient_info">
@@ -90,69 +90,98 @@
                     與訂購者相同&nbsp;<span v-if="checked">(勾選時無法修改內容)</span>
                 </label>
                 <label for="">收件者</label>
-                <input type="text" name="name" class="name" :value="recipient_info.Name" :disabled="checked" />
+                <input type="text" name="name" class="name" v-model="recipient_info.ord_receiver" :disabled="checked"
+                    placeholder="請輸入收件者" />
                 <label for="">手機號碼</label>
-                <input type="tel" name="phone" maxlength="10" :value="recipient_info.phone" :disabled="checked" />
+                <input type="tel" name="phone" maxlength="10" v-model="recipient_info.ord_phone" :disabled="checked"
+                    placeholder="請輸入手機號碼" />
                 <label for="">Email</label>
-                <input type="email" name="email" :value="recipient_info.email" :disabled="checked" />
+                <input type="email" name="email" v-model="recipient_info.ord_email" :disabled="checked"
+                    placeholder="請輸入email" />
                 <label for="">寄送地址</label>
-                <input type="text" name="ord_addr" :value="recipient_info.ord_addr" />
+                <input type="text" name="ord_addr" v-model="recipient_info.ord_addr" placeholder="請輸入地址" />
             </div>
             <div class="result">
                 <router-link to="/ticket">
                     <button class="cancel_btn">取消</button>
                 </router-link>
                 <router-link to="/ticket_pay_success">
-                    <button class="btn">確認付款</button>
+                    <button class="btn" @click="SubmitOrderInfo">確認付款</button>
                 </router-link>
             </div>
+            <button @click="test">test</button>
         </div>
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import { GET } from '@/plugin/axios'
 export default {
     data() {
         return {
-            member: {
-                Name: "日日小鴨",
-                phone: "0912345678",
-                email: "littleduck@dailytw.com",
-            },
+            memberData: [],
+            OrderDetails: [],
             recipient_info: {
-                Name: "",
-                phone: "",
-                email: "",
+                // ticket_name: this.FilterFinalCartItems.Name,
+                // price_adult: this.FilterFinalCartItems.price_adultF,
+                // price_ex: this.FilterFinalCartItems.price_exF,
+                // count_adult: this.FilterFinalCartItems.count_adult,
+                // count_ex: this.FilterFinalCartItems.count_ex,
+                // subtotal: this.FilterFinalCartItems.subtotal,
+                ord_sum: this.finalCartTotalPrice,
+                ord_receiver: "",
+                ord_phone: "",
+                ord_email: "",
                 ord_addr: "",
             },
             checked: false,
         };
     },
-    watch: {},
     methods: {
+        ...mapActions(['submitOrderInfo']),
+        test() {
+            this.SubmitInfo
+            console.log(this.orderInfo);
+        },
         switchCheck() {
             this.checked = !this.checked;
             this.CheckedSame();
         },
         CheckedSame() {
             if (this.checked === true) {
-                this.recipient_info.Name = this.member.Name;
-                this.recipient_info.phone = this.member.phone;
-                this.recipient_info.email = this.member.email;
+                this.recipient_info.ord_receiver = this.memberData.mem_name;
+                this.recipient_info.ord_phone = this.memberData.mem_phone;
+                this.recipient_info.ord_email = this.memberData.mem_email;
             }
         },
+        SubmitInfo() {
+            // 假设 this.recipient_info 包含需要的订单信息
+            this.submitOrderInfo(this.recipient_info);
+        }
     },
     computed: {
-        ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice']),
+        ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice', 'orderInfo']),
         Item() {
             console.log(this.finalCartItems);
         },
         FilterFinalCartItems() {
             // 假設 finalCartItems 是包含所有項目的陣列
             const FilterFinalCartItems = this.finalCartItems.filter(item => item.subtotal !== 0);
-            console.log('最終清單:', FilterFinalCartItems);
+            this.OrderDetails = FilterFinalCartItems;
+            console.log('最終清單:', this.OrderDetails);
             return FilterFinalCartItems;
         },
+    },
+    mounted() {
+        GET(`${this.$URL}/memberViewInfo.php`)
+            .then((res) => {
+                console.log(res);
+                this.memberData = res;
+                console.log('[會員]:資料成功匯入', this.memberData);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
 };
 </script>
