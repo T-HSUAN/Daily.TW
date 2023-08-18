@@ -806,6 +806,7 @@
 
                     @media (min-width: 768px) {
                         justify-content: center;
+                        overflow-x: visible;
                     }
 
                     .tripCard {
@@ -878,56 +879,58 @@ export default {
         },
         getMemImg(memImg){
             return process.env.BASE_URL + 'profileImg/' + memImg;
+        },
+        getData(){
+            const tripId = this.$route.params.trip_id;
+            GET(`${this.$URL}/tripInfoGetTrip.php?trip_id=${tripId}`)
+                .then((res) => {
+                    console.log(res);
+                    this.tripInfo = res;
+                    this.tripInfo.formattedDate = this.formatTripDate(this.tripInfo.trip_date);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            GET(`${this.$URL}/tripInfoGetPlaces.php?trip_id=${tripId}`)
+                .then((res) => {
+                    console.log(res);
+                    this.placeInfo = res;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            GET(`${this.$URL}/tripInfoGetOott.php?trip_id=${tripId}`)
+                .then((res) => {
+                    console.log(res);
+                    this.oottData = res;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            GET(`${this.$URL}/tripInfoGetTicket.php?trip_id=${tripId}`)
+                .then((res) => {
+                    console.log(res);
+                    this.ticketData = res;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            GET(`${this.$URL}/tripInfoGetOther.php?trip_id=${tripId}`)
+                .then((res) => {
+                    console.log(res);
+                    this.otherTrip = res;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     },
-    beforeRouteUpdate(to, from, next) {
-        // 在這裡重新獲取資料或更新組件的狀態
-        this.routeData = to.params.data; // 假設你的資料是透過路由參數傳遞的
-        next();
-    },
-    mounted() {
-        const tripId = this.$route.params.trip_id;
-        GET(`${this.$URL}/tripInfoGetTrip.php?trip_id=${tripId}`)
-            .then((res) => {
-                console.log(res);
-                this.tripInfo = res;
-                this.tripInfo.formattedDate = this.formatTripDate(this.tripInfo.trip_date);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        GET(`${this.$URL}/tripInfoGetPlaces.php?trip_id=${tripId}`)
-            .then((res) => {
-                console.log(res);
-                this.placeInfo = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        GET(`${this.$URL}/tripInfoGetOott.php?trip_id=${tripId}`)
-            .then((res) => {
-                console.log(res);
-                this.oottData = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        GET(`${this.$URL}/tripInfoGetTicket.php?trip_id=${tripId}`)
-            .then((res) => {
-                console.log(res);
-                this.ticketData = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        GET(`${this.$URL}/tripInfoGetOther.php?trip_id=${tripId}`)
-            .then((res) => {
-                console.log(res);
-                this.otherTrip = res;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    },
+    watch: {
+        '$route.params.trip_id': {
+            handler: 'getData',
+            deep: true,
+            immediate: true
+        }
+    }
 }
 </script>

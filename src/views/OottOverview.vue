@@ -25,7 +25,7 @@
         <!-- 穿搭列表 -->
         <section class="list">
             <div class="oott_list" v-if="oottDisplay.length > 0">
-                <div class="oott_card" v-for="(item, index) in oottDisplay" :key="item.id">
+            <div class="oott_card" v-for="(item, index) in paginatedOottDisplay" :key="item.id">
                     <router-link :to="item.link" title="點擊查看穿搭詳情">
                         <Oott :oottCardId="item.id" :oottPhoto="item.img" :oottCardTags="item.tag" :oottCardDate="item.date"
                             :oottAuthorPhoto="item.authorphoto" :oottCardAuthor="item.author" />
@@ -34,9 +34,8 @@
             </div>
             <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
             <div class="page_link">
-                <a class="page" v-if="oottDisplay.length === oottData.length">1</a>
-                <a class="page" v-if="oottDisplay.length === oottData.length">2</a>
-                <a class="page" v-if="oottDisplay.length === oottData.length">3</a>
+                <a class="page" v-for="(page, pageIndex) in totalPages" :key="pageIndex"
+                @click="changePage(pageIndex + 1)">{{ pageIndex + 1 }}</a>
             </div>
         </section>
     </div>
@@ -72,6 +71,8 @@ export default {
             oottDisplay: [],
             //請自己更改標籤內容就可以
             ShowClear: false,
+            itemsPerPage: 12,
+            currentPage: 1,
         };
     },
     methods: {
@@ -101,6 +102,9 @@ export default {
             console.log('[篩選]清除篩選');
             this.oottDisplay = this.oottData;
         },
+        changePage(page) {
+            this.currentPage = page;
+        },
     },
     computed: {
         ShowClear() {
@@ -110,6 +114,15 @@ export default {
             } else {
                 return false;
             }
+        },
+        paginatedOottDisplay() {
+            const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            const endIndex = startIndex + this.itemsPerPage;
+            return this.oottDisplay.slice(startIndex, endIndex);
+        },
+
+        totalPages() {
+            return Math.ceil(this.oottDisplay.length / this.itemsPerPage);
         },
     },
     created() {

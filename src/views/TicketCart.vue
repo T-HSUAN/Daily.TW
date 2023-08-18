@@ -19,13 +19,15 @@
         <div class="cart_items">
             <div class="cart_select_all">
                 <label for="select_all" @change="selectAll()">
-                    <input type="checkbox" id="select_all" :checked="$store.state.selectAll" />&nbsp;全選
+                    <input type="checkbox" id="select_all" :checked="$store.state.selectAll" />
+                    &nbsp;全選
                 </label>
             </div>
             <div class="cart_item" v-for="(item, index) in cartItems" :key="item">
                 <div class="ticket_title-photo">
                     <label for="select" class="ticket_title" @change="SelecteOne(item)">
-                        <input type="checkbox" name="" id="select" :checked="item.selected" />&nbsp;{{ item.Name }}
+                        <input type="checkbox" name="checkItem" :id="'select_' + (index + 1)" :checked="item.selected" />
+                        &nbsp;{{ item.Name }}
                     </label>
                     <img :src="getPlaceImg(item.img)" alt="ticket_photo" />
                 </div>
@@ -165,8 +167,12 @@ export default {
         },
         SelecteOne(item) {
             item.selected = !item.selected;
+            //勾選時，全票數量設定至少為1
+            if (item.selected === true && item.count_adult == 0 && item.count_ex == 0) {
+                item.count_adult = 1;
+            }
             console.log('[勾選]', item.Name, ':', item.selected);
-            //至少有一個沒有選中則為true
+            //若全部項目皆勾選為true，則全選打勾
             const checkedItems = this.cartItems.every(item => item.selected === true);
             if (checkedItems === true) {
                 this.$store.state.selectAll = true;
@@ -175,10 +181,12 @@ export default {
                 this.$store.state.selectAll = false;
             }
             console.log('[勾選]all:', this.$store.state.selectAll);
+            this.updateSubtotal(item);
             this.updateFinalCart();
         },
         selectAll() {
             this.$store.state.selectAll = !this.$store.state.selectAll;
+            //若全選打勾，所有項目皆勾選並為true
             this.$store.commit('SelectItem');// 更新購物車項目的選取狀態
             console.log('[勾選]all:', this.$store.state.selectAll);
             this.updateFinalCart();// 更新最終購物明細清單和總金額 
@@ -188,9 +196,10 @@ export default {
             const finalCartItems = this.cartItems.filter(item => item.selected);
             console.log('[最終購物明細清單]', finalCartItems);
             finalCartItems.forEach(item => {
-                if (item.count_adult === 0) {
+                if (item.count_adult == 0 && item.count_ex == 0) {
                     item.count_adult = 1;
                 }
+                this.updateSubtotal(item);
             });
             // 將最終購物明細清單存儲在 Vuex 或其他地方
             this.$store.commit('updateFinalCartItems', finalCartItems);
@@ -217,10 +226,13 @@ export default {
             set(value) {
                 this.$store.commit('SelectItem', value);
             }
-        }
+        },
+    },
+    created() {
     },
     mounted() {
         this.$store.commit('SelectItem');
+        this.updateSubtotal(this.cartItems);
         this.updateFinalCart();
     }
 };

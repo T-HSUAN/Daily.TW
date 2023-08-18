@@ -18,7 +18,6 @@ try {
         JOIN style s ON osc.style_id = s.style_id
         JOIN member m ON ot.mem_id = m.mem_id 
         GROUP BY ot.oott_id
-        ORDER BY RAND()
         LIMIT 3"; // 限制结果数量为3
          
     $products = $pdo->query($sql); 

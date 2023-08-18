@@ -16,7 +16,7 @@
                 <img class="hover_showDuck" src="@/assets/img/duck_chooseme.svg" alt="hover_decorate" />
                 <router-link :to="'/ticket/' + item.id" title="點擊查看票券詳情">
                     <Ticket :ticketPhoto="getPlaceImg(item.img)" :ticketTitle="item.Name" :ticketLocation="item.location"
-                        :ticketTags="item.Tag" :originalPrice="item.price_adult" :FinalPrice="priceAdultF(item)"
+                        :ticketTags="item.Tags" :originalPrice="item.price_adult" :FinalPrice="priceAdultF(item)"
                         :discountTag="item.discount" />
                 </router-link>
                 <div class="add_cart">
@@ -31,12 +31,8 @@
         <div class="pages">
             <Page :total="dataLength" v-model="page.index" :page-size="page.size" />
         </div>
-        <!-- <div class="page_link">
-            <a class="page" v-if="ticketDisplay.length === ticketData.length">1</a>
-            <a class="page" v-if="ticketDisplay.length === ticketData.length">2</a>
-            <a class="page" v-if="ticketDisplay.length === ticketData.length">3</a>
-        </div> -->
-
+        <!-- 購物車overlay -->
+        <div :class="['cart_overlay', { 'showCartSidebar': switchPage }]" @click="switchCart"></div>
         <!-- 購物車清單(側邊) -->
         <div :class="['cart_sidebar', { 'showCartSidebar': switchPage }]">
             <div class="cart_icon" @click="switchCart">
@@ -106,6 +102,7 @@
                 <button class="btn" @click="checkoutCart">結帳</button>
             </div>
         </div>
+
         <!-- <button @click="test">test123</button> -->
     </div>
 </template>
@@ -260,7 +257,7 @@ export default {
                 const areaMatch = areaSelected === "所有地區" || item.location.includes(areaSelected);
 
                 // 標籤篩選
-                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.tag.includes(selectedTag));
+                const tagMatch = selectedTags.length === 0 || selectedTags.every(selectedTag => item.Tags.includes(selectedTag));
 
                 // 文字模糊搜索
                 const nameMatch = searchText === "" || new RegExp(searchText.split("").join(".*"), "i").test(item.Name);
@@ -268,7 +265,8 @@ export default {
                 // 返回结果
                 return areaMatch && tagMatch && nameMatch;
             });
-            console.log('[篩選]篩選結果:', this.ticketDisplay);
+            if (this.ticketDisplay.length !== this.ticketData.length) { console.log('[篩選]篩選結果:', this.ticketDisplay) };
+            // 資料篩選後進行分頁操作
             return this.ticketDisplay.slice((this.page.index - 1) * this.page.size, this.page.index * this.page.size);
         },
         dataLength() {
