@@ -17,9 +17,9 @@
                         <div class="space_signup"></div>
                         
                         <label for="email">Email
-                            <span v-if="!isEmailValid"
+                            <div v-if="!isEmailValid"
                             class="error"
-                            >請輸入.com</span>
+                            >*請輸入正確格式</div>
                         </label>
                         <input type="text" v-model="sign_email"  
                         placeholder='請輸入EMAIL'
@@ -233,8 +233,15 @@
                     letter-spacing: 0.72px;
                     padding: 4px 0;
                     position: relative;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     .error{
                         color: $warningColor;
+                        font-size: $sm_p;
+                        @media all and (min-width: $md) {
+                        font-size: $xl_p;
+                    }
                     }
                     @media all and (min-width: $md) {
                         width: 80%;
