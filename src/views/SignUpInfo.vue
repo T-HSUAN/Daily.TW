@@ -13,11 +13,16 @@
                 @submit="submitForm">
                 <div class="photo_group">
                     <label for="postPhoto" class="member_img">
-                            <input class="post_sticker" v-show="!previewUrl" type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
-                            <span class="btn" v-show="!previewUrl">上傳大頭貼</span>
+                        <!-- 預設圖片 -->
+                        <div class="photo_upload" v-if="!previewUrl">
+                            <img src="../assets/img/photo_stickers.png" alt="Default Preview">
+                        </div>
                         
+                        <input class="post_sticker" v-show="!previewUrl" type="file" name="postPhoto" id="postPhoto" @change="handleFileChange">
+                        <span class="btn" v-show="!previewUrl">上傳大頭貼</span>
                         <div class="photo_upload" v-if="previewUrl">
                             <img :src="previewUrl" alt="Preview">
+                            <!-- ../assets/img/photo_stickers.png -->
                         </div>
                         
                     </label>
@@ -37,9 +42,9 @@
                         required
                         readonly>
                         <label for="repeat_psw">確認密碼
-                            <span v-if="!isPasswordMatch"
+                            <div v-if="!isPasswordMatch"
                                 class="error"
-                                >與密碼不一致</span>
+                                >*與密碼不一致</div>
                         </label>
                         
                         <input type="password" v-model="repeat_psw"
@@ -317,7 +322,7 @@
                     // this.isPopBoxVisible = true;
                     console.log('Data sent successfully', response.data);
                     
-                    this.$router.push('/member');
+                    this.$router.push('/Home');
                     // this.$router.push('/');
     
                 } catch (error) {
@@ -477,15 +482,16 @@
                         }
                     }
                     .post_sticker{
-                        width: 100px;
-                        height: 100px;
-                        cursor: pointer;
-                        @media (min-width: 768px) {
-                            width: 200px;
-                            height: 200px;
-                            border-radius: 50%;
+                        display: none;
+                        // width: 100px;
+                        // height: 100px;
+                        // cursor: pointer;
+                        // @media (min-width: 768px) {
+                        //     width: 200px;
+                        //     height: 200px;
+                        //     border-radius: 50%;
                             
-                        }
+                        // }
                     }
                     
                     input[type="file"]::-webkit-file-upload-button {
@@ -509,9 +515,11 @@
                     .photo_upload{
                         width: 100px;
                         height: 100px;
+                        margin: 20px 0;
                         @media (min-width: 768px) {
                             width: 200px;
                             height: 200px;
+                            margin: 30px 0;
                         }
                     }
                 }
@@ -532,12 +540,18 @@
                     font-size: $sm_h4;
                     font-weight: 700;
                     letter-spacing: 0.72px;
-    
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     @media (min-width: 768px) {
                         font-size: $xl_h4;
                     }
                     .error{
                         color: $warningColor;
+                        font-size: $sm_p;
+                        @media all and (min-width: $md) {
+                        font-size: $xl_p;
+                    }
                     }
                 }
     
