@@ -26,10 +26,13 @@
         <section class="list">
             <div class="oott_list" v-if="oottDisplay.length > 0">
             <div class="oott_card" v-for="(item, index) in paginatedOottDisplay" :key="item.id">
-                    <router-link :to="item.link" title="點擊查看穿搭詳情">
-                        <Oott :oottCardId="item.id" :oottPhoto="item.img" :oottCardTags="item.tag" :oottCardDate="item.date"
-                            :oottAuthorPhoto="item.authorphoto" :oottCardAuthor="item.author" />
-                    </router-link>
+                <Oott 
+                    :oottCardId="item.id" 
+                    :oottPhoto="item.img" 
+                    :oottCardTags="item.tag" 
+                    :oottCardDate="item.date"
+                    :oottAuthorPhoto="item.authorphoto" 
+                    :oottCardAuthor="item.author" />
                 </div>
             </div>
             <div class="no_result" v-else>查無結果，請重新輸入關鍵字</div>
