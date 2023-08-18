@@ -125,8 +125,8 @@ export default createStore({
         restoreFinalCartItems(state, finalCartItems) {
             state.finalCartItems = finalCartItems;
         },
-        updateOrderInfo(state, orderInfo) {
-            state.orderInfo = orderInfo;
+        updateOrderInfo(state, newOrderInfo) {
+            state.orderInfo = newOrderInfo;
         },
         setName(state, payload) {
             state.name = payload
@@ -204,8 +204,9 @@ export default createStore({
                 commit('updateItemCount', item);
             }
         },
-        submitOrderInfo({ commit }, orderInfo) {
-            commit('updateOrderInfo', orderInfo);
+        setOrderInfo({ commit }, newOrderInfo) {
+            commit('updateOrderInfo', newOrderInfo);
+            console.log('[store]成功連接orderInfo:', this.state.orderInfo);
         },
         //將SignUpInfo的Email輸入值, 輸出給SignUpInfo的Email輸入框
         updateAccount({ commit }, account) {

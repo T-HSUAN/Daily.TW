@@ -109,7 +109,6 @@
                     <button class="btn" @click="SubmitOrderInfo">確認付款</button>
                 </router-link>
             </div>
-            <!-- <button @click="test">test</button> -->
         </div>
     </div>
 </template>
@@ -120,15 +119,16 @@ export default {
     data() {
         return {
             memberData: [],
-            OrderDetails: [],
             recipient_info: {
+                ord_no: 1,
+                ord_date: new Date().toLocaleDateString(),
                 // ticket_name: this.FilterFinalCartItems.Name,
                 // price_adult: this.FilterFinalCartItems.price_adultF,
                 // price_ex: this.FilterFinalCartItems.price_exF,
                 // count_adult: this.FilterFinalCartItems.count_adult,
                 // count_ex: this.FilterFinalCartItems.count_ex,
                 // subtotal: this.FilterFinalCartItems.subtotal,
-                ord_sum: this.finalCartTotalPrice,
+                ord_sum: "",
                 ord_receiver: "",
                 ord_phone: "",
                 ord_email: "",
@@ -138,11 +138,7 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['submitOrderInfo']),
-        test() {
-            this.SubmitInfo
-            console.log(this.orderInfo);
-        },
+        ...mapActions(['setOrderInfo']),
         switchCheck() {
             this.checked = !this.checked;
             this.CheckedSame();
@@ -154,21 +150,17 @@ export default {
                 this.recipient_info.ord_email = this.memberData.mem_email;
             }
         },
-        SubmitInfo() {
+        SubmitOrderInfo() {
             // 假设 this.recipient_info 包含需要的订单信息
-            this.submitOrderInfo(this.recipient_info);
+            this.setOrderInfo(this.recipient_info);
+            console.log('[訂單資訊]:', this.recipient_info);
         }
     },
     computed: {
         ...mapGetters(['cartItems', 'finalCartItems', 'finalCartTotalPrice', 'orderInfo']),
-        Item() {
-            console.log(this.finalCartItems);
-        },
         FilterFinalCartItems() {
             // 假設 finalCartItems 是包含所有項目的陣列
             const FilterFinalCartItems = this.finalCartItems.filter(item => item.subtotal !== 0);
-            this.OrderDetails = FilterFinalCartItems;
-            console.log('最終清單:', this.OrderDetails);
             return FilterFinalCartItems;
         },
     },
@@ -182,6 +174,7 @@ export default {
             .catch((err) => {
                 console.log(err);
             });
+        this.recipient_info.ord_sum = this.finalCartTotalPrice;
     },
 };
 </script>
