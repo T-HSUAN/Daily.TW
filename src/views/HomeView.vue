@@ -134,7 +134,7 @@
                                     :ticketTags="ticket.tag"
                                     :originalPrice="ticket.ticket_discount !== null ? ticket.ticket_adult : ''" 
                                     :FinalPrice="ticket.final_price"
-                                    :discountTag="ticket.ticket_discount !== null ? parseFloat(ticket.ticket_discount).toFixed(1) : ''" />
+                                    :discountTag="ticket.ticket_discount !== null ? parseFloat(ticket.ticket_discount) : ''" />
                                 </router-link>
                             </div>
                         </div>
