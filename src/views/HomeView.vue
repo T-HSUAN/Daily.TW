@@ -491,10 +491,10 @@ export default {
             .swiper_wrap {
                 position: absolute;
                 opacity: 0;
-                top: $sp10;
-                right: -20%;
+                top: $sp15;
+                right: -120px;
                 z-index: 1;
-                width: 320px;
+                width: 400px;
                 animation: index_btn 1.5s 0.8s 1 forwards;
 
                 @media (min-width: $md) {
@@ -520,13 +520,13 @@ export default {
                 }
 
                 .mask_plan{
-                    width: 320px;
-                    height: 160px;
+                    width: 400px;
+                    height: 240px;
                     -webkit-mask-image: url(@/assets/img/index_cover_mask.svg);
                     mask-image: url(@/assets/img/index_cover_mask.svg);
                     -webkit-mask-repeat: no-repeat;
                     mask-repeat: no-repeat;
-                    mask-size: 320px 160px;
+                    mask-size: 400px 240px;
                     @media (min-width: $md){
                         width: 480px;
                         height: 560px;
@@ -545,7 +545,7 @@ export default {
                     rotate: 0deg;
                     position: absolute;
                     top: -$sp10;
-                    left: $sp15;
+                    left: 168px;
                     animation: boy_move_sm 1s 0.5s linear forwards;
 
                     @media (min-width: $md) {
