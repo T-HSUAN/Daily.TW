@@ -893,7 +893,7 @@ export default defineComponent({
                 weatherData: {},
                 location: 'Taichung',
                 lang:'zh_tw',
-                token:'713d2a4d5d6d47dca9a15517232207',
+                token:'48d9612929c544fd8ce154938232108',
             },
             regionWeatherData: {},
             tickets: [
@@ -946,7 +946,7 @@ export default defineComponent({
         fetchWeather(region) {
             this.weather.location = this.placeData.find(place => place.region_name === region)?.region_weather || 'Taichung';
 
-            fetch(`https://api.weatherapi.com/v1/forecast.json?q=${this.weather.location}&days=7&hour=9&lang=zh_tw&key=713d2a4d5d6d47dca9a15517232207`)
+            fetch(`https://api.weatherapi.com/v1/forecast.json?q=${this.weather.location}&days=7&hour=9&lang=zh_tw&key=48d9612929c544fd8ce154938232108`)
             .then(res=> {
                 return res.json()
             })
