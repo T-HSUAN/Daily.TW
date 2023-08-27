@@ -22,7 +22,6 @@
                         <span class="btn" v-show="!previewUrl">上傳大頭貼</span>
                         <div class="photo_upload" v-if="previewUrl">
                             <img :src="previewUrl" alt="Preview">
-                            <!-- ../assets/img/photo_stickers.png -->
                         </div>
                         
                     </label>
@@ -124,16 +123,6 @@
                         </button>
                     </div>
                     </form>
-                
-                <!-- <div class="member_sm" v-if="isPopBoxVisible">
-                    <div class="block">
-                        <div class="pic">
-                            <img src="~@/assets/img/popbox_check.svg" alt="">
-                            <h3>註冊成功！</h3>
-                        </div>
-                        <button class="btn" @click="redirectToOtherPage">確定</button>
-                    </div>
-                </div> -->
     
             </div>
         </section>
@@ -141,8 +130,7 @@
     </template>
     
     <script>
-    import { mapState } from 'vuex';	
-    import { POST } from '../plugin/axios.js';	
+    import { mapState } from 'vuex';		
     import  axios  from "axios";
     
     export default {
@@ -172,9 +160,6 @@
                 // 預覽圖片
                 selectedFile: null,
                 // 要傳到後台的資料
-                selectedStyle: '',
-                selectedPlace: '',
-                selectedSeason: '',
                 previewUrl: '',
                 
             }
@@ -264,19 +249,6 @@
             checkPasswordMatch() {
                 this.isPasswordMatch = this.sign_psw == this.repeat_psw;
             },
-            // showPopbox() {
-            //     const emptyFieldIndex = this.inputValues.findIndex((value) => value.trim() === "");
-            //     if (emptyFieldIndex !== -1) {
-            //         // There is an empty field, set focus to the corresponding input element
-            //         this.$nextTick(() => {
-            //             this.inputEls[emptyFieldIndex].focus();
-            //         });
-            //     } else {
-            //         this.isPopBoxVisible = !this.isPopBoxVisible;
-            //         // All fields have values, do your submit logic here
-            //         // ...
-            //     }
-            // },
             redirectToOtherPage() {
                 this.isPopBoxVisible = false;
                 this.$router.push('/member');
@@ -450,12 +422,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: end;
-               
-                
-                // @media (min-width: 768px) {
-                    // flex-direction: row;
-                    // justify-content: center;
-                // }
     
                 .member_img {
                     width: 100px;
@@ -475,23 +441,9 @@
                         height: 100%;
                         display: block;
                         cursor: pointer;
-                        @media (min-width: 768px) {
-                            // border-radius: 50%;
-                            // width: 200px;
-                            // height: 200%;
-                        }
                     }
                     .post_sticker{
                         display: none;
-                        // width: 100px;
-                        // height: 100px;
-                        // cursor: pointer;
-                        // @media (min-width: 768px) {
-                        //     width: 200px;
-                        //     height: 200px;
-                        //     border-radius: 50%;
-                            
-                        // }
                     }
                     
                     input[type="file"]::-webkit-file-upload-button {
@@ -500,15 +452,11 @@
                     input[type="file"]::before {
                         content: url(''); 
                         display: inline-block;
-                        width: 16px; /* 调整图片宽度 */
+                        width: 16px;
                         height: 16px; 
                         cursor: pointer;
                         vertical-align: middle;
-                        margin-right: 5px; /* 可选，根据需要调整图片和文本之间的间距 */
-                        // @media (min-width: 768px) {
-                        //     width: 20px;
-                        //     height: 200px;
-                        // }
+                        margin-right: 5px; 
                     }
                     
                     
@@ -702,167 +650,158 @@
     
             //popbox
     
-            .member_sm {
-                display: flex;
-                width: 273px;
-                height: 194px;
-                border: 3px solid $textColor_default;
-                background-color: $textColor_white;
-                border-radius: 20px;
+            // .member_sm {
+            //     display: flex;
+            //     width: 273px;
+            //     height: 194px;
+            //     border: 3px solid $textColor_default;
+            //     background-color: $textColor_white;
+            //     border-radius: 20px;
     
-                position: absolute;
-                z-index: 10;
-                top: 900px;
-                left: 50%;
-                transform: translate(-50%, 0%);
+            //     position: absolute;
+            //     z-index: 10;
+            //     top: 900px;
+            //     left: 50%;
+            //     transform: translate(-50%, 0%);
     
-                .block {
-                    width: 250px;
-                    left: 50%;
-                    transform: translate(-50%, 0%);
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-around;
-                    align-items: center;
+            //     .block {
+            //         width: 250px;
+            //         left: 50%;
+            //         transform: translate(-50%, 0%);
+            //         position: relative;
+            //         display: flex;
+            //         flex-direction: column;
+            //         justify-content: space-around;
+            //         align-items: center;
     
-                    .pic {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        margin-top: 20px;
+            //         .pic {
+            //             display: flex;
+            //             flex-direction: column;
+            //             align-items: center;
+            //             margin-top: 20px;
     
-                        img {
-                            width: 28px;
-                        }
+            //             img {
+            //                 width: 28px;
+            //             }
     
-                        h3 {
-                            padding: 10px;
-                            font-size: $sm_h4;
-                        }
-                    }
+            //             h3 {
+            //                 padding: 10px;
+            //                 font-size: $sm_h4;
+            //             }
+            //         }
     
-                    // .button{
-                    // margin-left: auto;
-                    // .cancel{
-                    //     font-size: $sm_h5;
-                    //     color: $textColor_default;
-                    //     border-bottom: 1px solid $textColor_default;
-                    //     margin-right: 20px;
-                    // }
-                    .btn {
-                        font-size: $sm_h5;
-                        padding: 8px 24px;
-                        box-shadow: 1px 1px 1px 1px #0005;
-                        white-space: nowrap;
-                        color: $textColor_white;
-                        text-align: center;
-                        font-family: $fontFamily;
-                        letter-spacing: 0.6px;
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                        border-radius: 50px;
-                        border: 2px solid $textColor_default;
-                        background: $textColor_default;
-                        cursor: pointer;
+            //         .btn {
+            //             font-size: $sm_h5;
+            //             padding: 8px 24px;
+            //             box-shadow: 1px 1px 1px 1px #0005;
+            //             white-space: nowrap;
+            //             color: $textColor_white;
+            //             text-align: center;
+            //             font-family: $fontFamily;
+            //             letter-spacing: 0.6px;
+            //             display: inline-flex;
+            //             justify-content: center;
+            //             align-items: center;
+            //             gap: 10px;
+            //             border-radius: 50px;
+            //             border: 2px solid $textColor_default;
+            //             background: $textColor_default;
+            //             cursor: pointer;
     
-                        &:hover {
-                            color: $textColor_default;
-                            background: $textColor_white;
-                            box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-                        }
+            //             &:hover {
+            //                 color: $textColor_default;
+            //                 background: $textColor_white;
+            //                 box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+            //             }
     
-                        &:active {
-                            color: $textColor_tint;
-                            border: 2px solid $textColor_tint;
-                            background: $textColor_white;
-                        }
-                    }
+            //             &:active {
+            //                 color: $textColor_tint;
+            //                 border: 2px solid $textColor_tint;
+            //                 background: $textColor_white;
+            //             }
+            //         }
     
-                    // }
-                }
+            //     }
     
-                // 電腦版
-                @media (min-width: 768px) {
-                    display: flex;
+            //     // 電腦版
+            //     @media (min-width: 768px) {
+            //         display: flex;
     
-                    width: 410px;
-                    height: 243px;
-                    border: 3px solid $textColor_default;
-                    background-color: $textColor_white;
-                    border-radius: 20px;
-                    justify-content: center;
+            //         width: 410px;
+            //         height: 243px;
+            //         border: 3px solid $textColor_default;
+            //         background-color: $textColor_white;
+            //         border-radius: 20px;
+            //         justify-content: center;
     
-                    position: absolute;
-                    z-index: 10;
+            //         position: absolute;
+            //         z-index: 10;
     
-                    .block {
-                        width: 100%;
-                        position: relative;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-around;
-                        align-items: center;
+            //         .block {
+            //             width: 100%;
+            //             position: relative;
+            //             display: flex;
+            //             flex-direction: column;
+            //             justify-content: space-around;
+            //             align-items: center;
     
-                        .pic {
-                            margin-top: 10px;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
+            //             .pic {
+            //                 margin-top: 10px;
+            //                 display: flex;
+            //                 flex-direction: column;
+            //                 align-items: center;
     
-                            img {
-                                width: 34px;
-                            }
+            //                 img {
+            //                     width: 34px;
+            //                 }
     
-                            h3 {
-                                text-align: center;
-                                font-size: $sm_h3;
-                                line-height: 150%;
-                                margin-top: 15px;
-                            }
-                        }
+            //                 h3 {
+            //                     text-align: center;
+            //                     font-size: $sm_h3;
+            //                     line-height: 150%;
+            //                     margin-top: 15px;
+            //                 }
+            //             }
     
-                        .btn {
-                            font-size: $sm_h5;
-                            padding: 8px 24px;
-                            box-shadow: 1px 1px 1px 1px #0005;
+            //             .btn {
+            //                 font-size: $sm_h5;
+            //                 padding: 8px 24px;
+            //                 box-shadow: 1px 1px 1px 1px #0005;
     
-                            @media (min-width: 768px) {
-                                font-size: $xl_h5;
-                                padding: 8px 32px;
-                            }
+            //                 @media (min-width: 768px) {
+            //                     font-size: $xl_h5;
+            //                     padding: 8px 32px;
+            //                 }
     
-                            white-space: nowrap;
-                            color: $textColor_white;
-                            text-align: center;
-                            font-family: $fontFamily;
-                            letter-spacing: 0.6px;
-                            display: inline-flex;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 10px;
-                            border-radius: 50px;
-                            border: 2px solid $textColor_default;
-                            background: $textColor_default;
-                            cursor: pointer;
+            //                 white-space: nowrap;
+            //                 color: $textColor_white;
+            //                 text-align: center;
+            //                 font-family: $fontFamily;
+            //                 letter-spacing: 0.6px;
+            //                 display: inline-flex;
+            //                 justify-content: center;
+            //                 align-items: center;
+            //                 gap: 10px;
+            //                 border-radius: 50px;
+            //                 border: 2px solid $textColor_default;
+            //                 background: $textColor_default;
+            //                 cursor: pointer;
     
-                            &:hover {
-                                color: $textColor_default;
-                                background: $textColor_white;
-                                box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-                            }
+            //                 &:hover {
+            //                     color: $textColor_default;
+            //                     background: $textColor_white;
+            //                     box-shadow: -2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+            //                 }
     
-                            &:active {
-                                color: $textColor_tint;
-                                border: 2px solid $textColor_tint;
-                                background: $textColor_white;
-                            }
-                        }
-                    }
-                }
-            }
+            //                 &:active {
+            //                     color: $textColor_tint;
+            //                     border: 2px solid $textColor_tint;
+            //                     background: $textColor_white;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
     }
